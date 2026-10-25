@@ -71,6 +71,7 @@
   --page-bg:radial-gradient(ellipse at 20% 30%,#1a1435 0%,#0b0a1a 60%,#05040c 100%); --html-bg:#05040c;
   --ov-03:rgba(255,255,255,.03); --ov-04:rgba(255,255,255,.04); --ov-05:rgba(255,255,255,.05); --ov-06:rgba(255,255,255,.06);
   --ov-08:rgba(255,255,255,.08); --ov-12:rgba(255,255,255,.12); --ov-15:rgba(255,255,255,.15); --ov-30:rgba(255,255,255,.3);
+  --pop-bg:#1b1738;
   --field-bg:rgba(10,8,25,.7); --scheme:dark; --on-gold:#1a1435; --on-purple:#0b0a1a; --purple-ink:#c4b0f0; --h1-mid:#f5e6b8;
   --modal-bg:linear-gradient(160deg,#1a1435,#0f0c24); --toast-bg:rgba(20,18,45,.95); --export-bg:#0b0a1a;
   --gold-bright:#e8c36a; --stars-opacity:.7; --stars2-opacity:.4;
@@ -91,6 +92,7 @@
   --page-bg:radial-gradient(ellipse at 20% 30%,#ffffff 0%,#f1edfb 55%,#e2d9f4 100%); --html-bg:#e2d9f4;
   --ov-03:rgba(40,28,90,.035); --ov-04:rgba(40,28,90,.045); --ov-05:rgba(40,28,90,.06); --ov-06:rgba(40,28,90,.08);
   --ov-08:rgba(40,28,90,.11); --ov-12:rgba(40,28,90,.14); --ov-15:rgba(40,28,90,.2); --ov-30:rgba(40,28,90,.3);
+  --pop-bg:#ffffff;
   --field-bg:#ffffff; --scheme:light; --on-gold:#ffffff; --on-purple:#ffffff; --purple-ink:#5a3fa8; --h1-mid:#b08a2e;
   --modal-bg:linear-gradient(160deg,#ffffff,#f1edfb); --toast-bg:rgba(255,255,255,.97); --export-bg:#f4f1fb;
   --stars-opacity:.35; --stars2-opacity:.2;
@@ -172,9 +174,11 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
   border:1px solid var(--ov-06);
 }
 .field{ display:flex; flex-direction:column; gap:.45rem; flex:1 1 220px; min-width:0; }
-.field-time{ flex:0 1 180px; }
+.field-time{ flex:0 1 230px; }
 .field-name{ flex:1 1 100%; }
-.input-zone label{ font-size:.88rem; color:var(--muted); font-weight:500; white-space:nowrap; }
+/* Libellés sur plusieurs lignes si besoin (langues aux mots longs) ; les champs restent alignés en bas */
+.input-zone label{ font-size:.88rem; color:var(--muted); font-weight:500; white-space:normal; line-height:1.3; }
+.field{ justify-content:flex-end; }
 .input-zone .opt{ font-weight:400; opacity:.7; }
 .input-zone select{
   width:100%; background:var(--field-bg); border:1px solid var(--ov-15); border-radius:14px;
@@ -545,11 +549,25 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .offline-btn:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
 .offline-hint{ color:var(--muted); font-size:.8rem; flex:1 1 260px; }
 
-/* Onglets du résultat */
-.view-tabs{ display:inline-flex; border:1px solid var(--ov-15); border-radius:14px; overflow:hidden; margin-bottom:1rem; max-width:100%; }
-.view-tabs button{ background:transparent; border:none; color:var(--muted); padding:.6rem 1.1rem; font-size:.9rem; cursor:pointer; }
-.view-tabs button[aria-selected="true"]{ background:var(--gold); color:var(--on-gold); font-weight:700; }
-.view-tabs button:focus-visible{ outline:2px solid var(--gold); outline-offset:-3px; }
+/* Onglets du résultat : deux grandes cartes côte à côte, bien visibles */
+.view-tabs{ display:grid; grid-template-columns:1fr 1fr; gap:.7rem; width:100%; max-width:760px; margin:.4rem auto 1.4rem; }
+.view-tabs button{
+  display:flex; align-items:center; gap:.8rem; text-align:start; cursor:pointer;
+  background:var(--ov-04); border:1px solid var(--ov-15); border-radius:18px; padding:.85rem 1.1rem;
+  color:var(--text); transition:border-color .2s, background .2s, box-shadow .2s;
+}
+.view-tabs button:hover{ border-color:var(--gold); }
+.view-tabs button[aria-selected="true"]{
+  border:2px solid var(--gold); padding:calc(.85rem - 1px) calc(1.1rem - 1px);
+  background:linear-gradient(135deg, var(--ov-08), transparent); box-shadow:0 0 22px var(--glow);
+}
+.view-tabs button:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+.vt-icon{ font-size:1.7rem; line-height:1; color:var(--gold); font-variant-emoji:text; }
+.vt-txt{ display:flex; flex-direction:column; gap:.15rem; min-width:0; }
+.vt-title{ font-weight:700; font-size:1rem; }
+.vt-sub{ color:var(--muted); font-size:.8rem; }
+.view-tabs button[aria-selected="true"] .vt-title{ color:var(--gold); }
+@media (max-width:640px){ .view-tabs button{ padding:.7rem .75rem; gap:.55rem; } .vt-icon{ font-size:1.35rem; } .vt-title{ font-size:.9rem; } .vt-sub{ font-size:.74rem; } }
 .dual[hidden], .natal[hidden]{ display:none; }
 
 /* Thème natal */
@@ -609,6 +627,27 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .na-sym{ color:var(--gold); font-weight:700; margin:0 .2rem; }
 .na-type{ color:var(--gold); font-size:.8rem; }
 .na-mean{ color:var(--muted); font-size:.84rem; }
+
+/* Information sous les champs : heure + lieu pour le thème natal */
+.field-hint{ flex:1 1 100%; color:var(--muted); font-size:.82rem; display:flex; align-items:center; gap:.45rem; margin-top:-.2rem; }
+.field-hint-icon, .info-btn{
+  display:inline-flex; align-items:center; justify-content:center; flex:none; width:1.15rem; height:1.15rem; border-radius:50%;
+  border:1px solid var(--ov-30); color:var(--muted); font:italic 700 .72rem/1 Georgia, 'Times New Roman', serif;
+  text-transform:none; letter-spacing:0;
+}
+/* Boutons (i) et bulle d'information */
+.info-btn{ background:transparent; margin-inline-start:.4rem; vertical-align:middle; cursor:pointer; padding:0; transition:color .2s, border-color .2s; }
+.info-btn:hover, .info-btn[aria-expanded="true"]{ color:var(--gold); border-color:var(--gold); }
+.info-btn:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+.info-pop{
+  position:absolute; z-index:400; width:min(330px, calc(100vw - 20px)); padding:.9rem 1rem;
+  background:var(--pop-bg); color:var(--text); border:1px solid var(--gold); border-radius:14px;
+  box-shadow:0 14px 34px rgba(0,0,0,.45); animation:fadeIn .15s ease;
+}
+.info-pop[hidden]{ display:none; }
+.info-pop-title{ color:var(--gold); font-weight:700; font-size:.82rem; text-transform:uppercase; letter-spacing:.08em; margin-bottom:.35rem; }
+.info-pop-text{ font-size:.88rem; line-height:1.55; }
+.natal-complete{ margin:.2rem 0 .6rem; }
 
 .aff-hint{ font-size:.8rem; color:var(--muted); margin-bottom:.9rem; }
 .decan-badge .cn-num{ font-size:.85rem; font-weight:700; }
@@ -779,6 +818,7 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
       <select id="birthPlace"></select>
     </div>
     <button class="btn-reveal" id="btnReveal">Révéler mon signe</button>
+    <p class="field-hint"><span class="field-hint-icon" aria-hidden="true">i</span> <span id="timePlaceHint">L'heure et le lieu de naissance sont nécessaires pour le thème natal (ascendant et maisons).</span></p>
   </div>
   <div id="errorMsg" class="error-msg hidden" role="alert"></div>
   <div class="history" id="history" hidden></div>
@@ -1551,6 +1591,18 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
       assertEq(new Set(SIGN_ORDER.map(s => n.asc[s])).size, 12, `${lang} : ascendants distincts`);
       if (lang !== 'ru') SIGN_ORDER.forEach(s => assert(n.asc[s].includes(I18N[lang].signNames[s]), `${lang} : le texte de l'ascendant ${s} ne nomme pas le signe`));
       if (lang !== 'fr') assert(n.asc.aries !== I18N.fr.natal.asc.aries && n.title !== I18N.fr.natal.title, `${lang} : textes non traduits`);
+    }
+  });
+
+  test('Bulles d\'information (i) : 21 explications complètes et traduites', () => {
+    const keys = Object.keys(I18N.fr.info);
+    assertEq(keys.length, 21, 'nombre d\'explications');
+    for (const lang of Object.keys(I18N)) {
+      const info = I18N[lang].info;
+      assert(keys.every(k => typeof info[k] === 'string' && info[k].length > 20), `${lang} : explication manquante ou trop courte`);   // 20 : le chinois est bien plus dense
+      assertEq(new Set(keys.map(k => info[k])).size, keys.length, `${lang} : explications en double`);
+      if (lang !== 'fr') assert(keys.every(k => info[k] !== I18N.fr.info[k]), `${lang} : explication non traduite`);
+      assert(I18N[lang].timePlaceHint && I18N[lang].infoLabel && I18N[lang].natal.completeFields, `${lang} : libellés`);
     }
   });
 
@@ -2928,7 +2980,35 @@ I18N.fr = {
       square: "tension : un défi qui pousse à agir",
       trine: "harmonie : un talent naturel",
       opposition: "polarité : un équilibre à trouver entre deux forces"
-    }
+    },
+    tabSignsSub: "Le portrait simple",
+    tabNatalSub: "Le portrait complet",
+    completeFields: "Compléter l'heure et le lieu"
+  },
+  infoLabel: "Plus d'informations",
+  timePlaceHint: "L'heure et le lieu de naissance sont nécessaires pour le thème natal (ascendant et maisons).",
+  info: {
+    sunPosition: "Position exacte du Soleil sur le zodiaque à la naissance, en degrés dans le signe (de 0 à 30°). C'est elle qui détermine le signe et le décan : elle est calculée astronomiquement, et non d'après des dates fixes.",
+    natalMoon: "Le signe où se trouvait la Lune à la naissance ; en astrologie, il représente la vie émotionnelle. La Lune change de signe environ tous les deux jours et demi : sans l'heure de naissance, deux signes sont parfois possibles.",
+    modality: "Les signes se répartissent en trois modes : cardinal (qui initie, au début de chaque saison), fixe (qui stabilise, au cœur de la saison) et mutable (qui s'adapte, en fin de saison).",
+    ruler: "L'astre traditionnellement associé au signe, censé en colorer le caractère. L'astrologie moderne attribue Uranus, Neptune et Pluton au Verseau, aux Poissons et au Scorpion.",
+    decan: "Chaque signe couvre 30° du zodiaque, découpés en trois décans de 10°. Selon le degré du Soleil, le décan nuance le signe par l'influence d'un second astre : celui d'un signe du même élément.",
+    affinities: "Entente traditionnelle entre signes, de 1 à 5 étoiles, fondée surtout sur les éléments : Feu et Air se stimulent, Terre et Eau se complètent, les éléments opposés s'attirent mais se heurtent.",
+    cnAffinities: "Entente traditionnelle entre animaux chinois : les six harmonies et les triades sont favorables ; les oppositions, les nuisances et les punitions sont difficiles.",
+    cnYear: "L'année chinoise commence au Nouvel An lunaire, entre le 21 janvier et le 20 février. Né avant cette date, on appartient à l'animal de l'année précédente.",
+    yearElement: "Les années suivent un cycle de cinq éléments (Bois, Feu, Terre, Métal, Eau), chacun durant deux ans. Combiné aux 12 animaux, il forme un grand cycle de 60 ans.",
+    polarity: "Les années alternent entre yang et yin : les années paires sont yang (énergie active, tournée vers l'extérieur), les impaires yin (énergie réceptive, tournée vers l'intérieur).",
+    fixedElement: "Chaque animal a aussi un élément propre, qui ne change pas d'une année à l'autre (le Rat est toujours associé à l'Eau, par exemple). Il se combine avec l'élément de l'année.",
+    hourAnimal: "La journée est divisée en 12 tranches de deux heures, chacune associée à un animal (le Rat de 23 h à 1 h, le Bœuf de 1 h à 3 h, etc.). L'animal de l'heure de naissance complète le portrait.",
+    natalChart: "Le thème natal est la carte complète du ciel au moment et au lieu de la naissance : la position de chaque astre dans les signes et les maisons, et les angles qu'ils forment entre eux.",
+    ascendant: "Le signe qui se levait à l'horizon est au moment de la naissance. Il change environ toutes les deux heures, d'où la nécessité de l'heure et du lieu exacts. Il représenterait la façon dont on se présente aux autres.",
+    midheaven: "Le point du zodiaque le plus haut dans le ciel au moment de la naissance. La tradition l'associe à la vocation, à la carrière et à l'image publique.",
+    houses: "Le ciel de naissance est découpé en 12 maisons à partir de l'ascendant, chacune liée à un domaine de la vie (argent, couple, carrière…). La maison d'un astre indique où son énergie s'exprime. Méthode de calcul : Placidus.",
+    aspects: "Angles particuliers entre deux astres, mesurés le long du zodiaque : conjonction (0°), sextile (60°), carré (90°), trigone (120°) et opposition (180°), avec une marge appelée orbe. Plus l'orbe est faible, plus l'aspect est fort.",
+    retrograde: "Vue depuis la Terre, une planète semble parfois reculer quelques semaines sur le zodiaque : c'est une illusion due au mouvement des planètes les unes par rapport aux autres. En astrologie, cette période invite à revenir sur le domaine de la planète.",
+    horoscope: "L'horoscope compare la position actuelle des astres à votre signe : un astre qui traverse votre signe ou forme un angle avec lui (un transit) colore la période. Les planètes lentes donnent les grandes tendances, les rapides le climat du moment.",
+    skymap: "Le ciel tel qu'on le voit en levant les yeux depuis la ville choisie : le bord du disque est l'horizon, le centre le point juste au-dessus de vous. Le nord est en haut et l'est à gauche, puisqu'on regarde vers le ciel.",
+    compat: "L'entente globale est la moyenne des axes disponibles : signes du zodiaque, animaux chinois et, si les heures de naissance sont connues, signes lunaires. C'est une lecture symbolique, pas une prédiction."
   }
 };
 
@@ -3589,7 +3669,35 @@ I18N.en = deepMerge(I18N.fr, {
       square: "tension: a challenge that drives action",
       trine: "harmony: a natural talent",
       opposition: "polarity: a balance to find between two forces"
-    }
+    },
+    tabSignsSub: "The simple portrait",
+    tabNatalSub: "The full portrait",
+    completeFields: "Add the time and place"
+  },
+  infoLabel: "More information",
+  timePlaceHint: "The time and place of birth are needed for the birth chart (ascendant and houses).",
+  info: {
+    sunPosition: "The Sun's exact position on the zodiac at birth, in degrees within the sign (0 to 30°). It determines the sign and the decan, and it is calculated astronomically rather than from fixed dates.",
+    natalMoon: "The sign the Moon was in at birth; in astrology it stands for emotional life. The Moon changes sign about every two and a half days: without the time of birth, two signs are sometimes possible.",
+    modality: "The signs fall into three modes: cardinal (initiating, at the start of each season), fixed (stabilising, at the heart of the season) and mutable (adapting, at the end of the season).",
+    ruler: "The celestial body traditionally linked to the sign, said to colour its character. Modern astrology assigns Uranus, Neptune and Pluto to Aquarius, Pisces and Scorpio.",
+    decan: "Each sign covers 30° of the zodiac, split into three decans of 10°. Depending on the Sun's degree, the decan adds the influence of a second body: the ruler of a sign of the same element.",
+    affinities: "Traditional affinity between signs, from 1 to 5 stars, based mostly on the elements: Fire and Air stimulate each other, Earth and Water complement each other, opposite elements attract but clash.",
+    cnAffinities: "Traditional affinity between Chinese animals: the six harmonies and the triads are favourable; oppositions, harms and punishments are difficult.",
+    cnYear: "The Chinese year begins at the Lunar New Year, between 21 January and 20 February. If you were born before that date, you belong to the previous year's animal.",
+    yearElement: "Years follow a cycle of five elements (Wood, Fire, Earth, Metal, Water), each lasting two years. Combined with the 12 animals, it forms a great 60-year cycle.",
+    polarity: "Years alternate between yang and yin: even years are yang (active energy, turned outward), odd years are yin (receptive energy, turned inward).",
+    fixedElement: "Each animal also has its own element, which does not change from year to year (the Rat is always linked to Water, for example). It combines with the element of the year.",
+    hourAnimal: "The day is divided into 12 two-hour periods, each linked to an animal (the Rat from 11 pm to 1 am, the Ox from 1 to 3 am, and so on). The animal of your birth hour completes the portrait.",
+    natalChart: "The birth chart is the complete map of the sky at the moment and place of birth: the position of each body in the signs and houses, and the angles they form with one another.",
+    ascendant: "The sign rising on the eastern horizon at the moment of birth. It changes roughly every two hours, hence the need for the exact time and place. It is said to reflect how you come across to others.",
+    midheaven: "The point of the zodiac highest in the sky at the moment of birth. Tradition links it to vocation, career and public image.",
+    houses: "The birth sky is divided into 12 houses starting from the ascendant, each tied to an area of life (money, partnership, career…). A body's house shows where its energy is expressed. Calculation method: Placidus.",
+    aspects: "Specific angles between two bodies, measured along the zodiac: conjunction (0°), sextile (60°), square (90°), trine (120°) and opposition (180°), with a margin called the orb. The smaller the orb, the stronger the aspect.",
+    retrograde: "Seen from Earth, a planet sometimes seems to move backwards on the zodiac for a few weeks: an illusion caused by the planets' motion relative to one another. In astrology, this period invites you to revisit the planet's area.",
+    horoscope: "The horoscope compares the current positions of the bodies with your sign: a body crossing your sign or forming an angle with it (a transit) colours the period. Slow planets set the major trends, fast ones the mood of the moment.",
+    skymap: "The sky as you see it when you look up from the chosen city: the edge of the disc is the horizon, the centre the point straight above you. North is at the top and east on the left, because you are looking up.",
+    compat: "The overall match is the average of the available axes: zodiac signs, Chinese animals and, if the birth times are known, Moon signs. It is a symbolic reading, not a prediction."
   }
 });
 
@@ -4253,7 +4361,35 @@ I18N.es = deepMerge(I18N.fr, {
       square: "tensión: un desafío que impulsa a actuar",
       trine: "armonía: un talento natural",
       opposition: "polaridad: un equilibrio por encontrar entre dos fuerzas"
-    }
+    },
+    tabSignsSub: "El retrato sencillo",
+    tabNatalSub: "El retrato completo",
+    completeFields: "Completar la hora y el lugar"
+  },
+  infoLabel: "Más información",
+  timePlaceHint: "La hora y el lugar de nacimiento son necesarios para la carta natal (ascendente y casas).",
+  info: {
+    sunPosition: "Posición exacta del Sol en el zodiaco al nacer, en grados dentro del signo (de 0 a 30°). Determina el signo y el decano, y se calcula astronómicamente, no a partir de fechas fijas.",
+    natalMoon: "El signo en el que estaba la Luna al nacer; en astrología representa la vida emocional. La Luna cambia de signo cada dos días y medio aproximadamente: sin la hora de nacimiento, a veces hay dos signos posibles.",
+    modality: "Los signos se reparten en tres modos: cardinal (que inicia, al comienzo de cada estación), fijo (que estabiliza, en pleno corazón de la estación) y mutable (que se adapta, al final de la estación).",
+    ruler: "El astro tradicionalmente asociado al signo, que colorearía su carácter. La astrología moderna atribuye Urano, Neptuno y Plutón a Acuario, Piscis y Escorpio.",
+    decan: "Cada signo abarca 30° del zodiaco, divididos en tres decanos de 10°. Según el grado del Sol, el decano matiza el signo con la influencia de un segundo astro: el regente de un signo del mismo elemento.",
+    affinities: "Afinidad tradicional entre signos, de 1 a 5 estrellas, basada sobre todo en los elementos: Fuego y Aire se estimulan, Tierra y Agua se complementan, los elementos opuestos se atraen pero chocan.",
+    cnAffinities: "Afinidad tradicional entre animales chinos: las seis armonías y las tríadas son favorables; las oposiciones, los daños y los castigos son difíciles.",
+    cnYear: "El año chino empieza con el Año Nuevo lunar, entre el 21 de enero y el 20 de febrero. Si naciste antes de esa fecha, perteneces al animal del año anterior.",
+    yearElement: "Los años siguen un ciclo de cinco elementos (Madera, Fuego, Tierra, Metal, Agua), cada uno de dos años. Combinado con los 12 animales, forma un gran ciclo de 60 años.",
+    polarity: "Los años alternan entre yang y yin: los años pares son yang (energía activa, volcada hacia fuera) y los impares yin (energía receptiva, volcada hacia dentro).",
+    fixedElement: "Cada animal tiene también un elemento propio, que no cambia de un año a otro (la Rata siempre se asocia al Agua, por ejemplo). Se combina con el elemento del año.",
+    hourAnimal: "El día se divide en 12 franjas de dos horas, cada una asociada a un animal (la Rata de 23 h a 1 h, el Buey de 1 h a 3 h, etc.). El animal de la hora de nacimiento completa el retrato.",
+    natalChart: "La carta natal es el mapa completo del cielo en el momento y el lugar del nacimiento: la posición de cada astro en los signos y las casas, y los ángulos que forman entre sí.",
+    ascendant: "El signo que ascendía por el horizonte este en el momento del nacimiento. Cambia aproximadamente cada dos horas, de ahí la necesidad de la hora y el lugar exactos. Reflejaría cómo te presentas ante los demás.",
+    midheaven: "El punto del zodiaco más alto en el cielo en el momento del nacimiento. La tradición lo asocia a la vocación, la carrera y la imagen pública.",
+    houses: "El cielo natal se divide en 12 casas a partir del ascendente, cada una ligada a un ámbito de la vida (dinero, pareja, carrera…). La casa de un astro indica dónde se expresa su energía. Método de cálculo: Placidus.",
+    aspects: "Ángulos particulares entre dos astros, medidos a lo largo del zodiaco: conjunción (0°), sextil (60°), cuadratura (90°), trígono (120°) y oposición (180°), con un margen llamado orbe. Cuanto menor es el orbe, más fuerte es el aspecto.",
+    retrograde: "Visto desde la Tierra, un planeta parece a veces retroceder unas semanas en el zodiaco: es una ilusión debida al movimiento de los planetas unos respecto a otros. En astrología, este periodo invita a revisar el ámbito del planeta.",
+    horoscope: "El horóscopo compara la posición actual de los astros con tu signo: un astro que atraviesa tu signo o forma un ángulo con él (un tránsito) colorea el periodo. Los planetas lentos marcan las grandes tendencias; los rápidos, el clima del momento.",
+    skymap: "El cielo tal como se ve al levantar la vista desde la ciudad elegida: el borde del disco es el horizonte y el centro, el punto justo encima de ti. El norte está arriba y el este a la izquierda, porque miras hacia el cielo.",
+    compat: "La afinidad global es la media de los ejes disponibles: signos del zodiaco, animales chinos y, si se conocen las horas de nacimiento, signos lunares. Es una lectura simbólica, no una predicción."
   }
 });
 
@@ -4884,7 +5020,35 @@ I18N.zh = deepMerge(I18N.fr, {
       square: "紧张：促使行动的挑战",
       trine: "和谐：天生的才能",
       opposition: "对立：需要在两股力量间找到平衡"
-    }
+    },
+    tabSignsSub: "简明画像",
+    tabNatalSub: "完整画像",
+    completeFields: "补充时间和地点"
+  },
+  infoLabel: "更多信息",
+  timePlaceHint: "本命盘（上升点与宫位）需要出生时间和出生地点。",
+  info: {
+    sunPosition: "出生时太阳在黄道上的精确位置，以星座内的度数表示（0° 至 30°）。星座和旬星由它决定，而且是按天文计算得出，并非依据固定日期。",
+    natalMoon: "出生时月亮所在的星座；在占星学中代表情感生活。月亮约每两天半换一个星座：没有出生时间时，有时会有两个可能的星座。",
+    modality: "星座分为三种模式：基本（开创，位于每个季节之初）、固定（稳定，位于季节之中）和变动（适应，位于季节之末）。",
+    ruler: "传统上与该星座相关的天体，被认为会影响其性格。现代占星学将天王星、海王星和冥王星分别归于水瓶座、双鱼座和天蝎座。",
+    decan: "每个星座占黄道 30°，分为三个各 10° 的旬。根据太阳所在的度数，旬星会为星座加入第二个天体的影响：即同一元素星座的守护星。",
+    affinities: "星座之间的传统相性，以 1 至 5 颗星表示，主要依据元素：火与风相互激励，土与水相互补充，对立的元素相互吸引却也容易冲突。",
+    cnAffinities: "生肖之间的传统相性：六合与三合为吉；相冲、相害与相刑则较为困难。",
+    cnYear: "农历年从春节开始，春节在 1 月 21 日至 2 月 20 日之间。在春节之前出生的人，属于前一年的生肖。",
+    yearElement: "年份按五行（木、火、土、金、水）循环，每种元素持续两年。与十二生肖结合，形成六十年一轮的大循环。",
+    polarity: "年份在阳与阴之间交替：偶数年为阳（主动、向外的能量），奇数年为阴（接纳、向内的能量）。",
+    fixedElement: "每个生肖还有自己固定的五行，不随年份改变（例如鼠总是对应水）。它与当年的五行相互结合。",
+    hourAnimal: "一天分为十二个时辰，每个时辰两小时，各对应一个生肖（子时鼠为 23 点至 1 点，丑时牛为 1 点至 3 点，依此类推）。出生时辰的生肖让画像更完整。",
+    natalChart: "本命盘是出生时刻、出生地点的完整天空图：每个天体所在的星座和宫位，以及它们彼此形成的角度。",
+    ascendant: "出生时刻从东方地平线升起的星座。它大约每两小时变化一次，因此需要准确的出生时间和地点。它被认为反映你给别人的第一印象。",
+    midheaven: "出生时刻黄道上位于天空最高处的点。传统上与志向、事业和公众形象相关。",
+    houses: "出生时的天空以上升点为起点分为十二宫，每一宫对应一个生活领域（金钱、伴侣、事业等）。天体所在的宫位表示其能量在哪里发挥。计算方法：普拉西度制。",
+    aspects: "两个天体之间沿黄道测量的特定角度：合相（0°）、六分相（60°）、四分相（90°）、三分相（120°）和对分相（180°），允许的误差称为容许度。容许度越小，相位越强。",
+    retrograde: "从地球上看，行星有时会在黄道上倒退几周：这是行星彼此相对运动造成的视觉现象。在占星学中，这段时期提醒人们回顾该行星所代表的领域。",
+    horoscope: "运势将天体当前的位置与你的星座作比较：经过你的星座或与它形成角度的天体（即行运）会影响这一时期。慢行星决定大趋势，快行星决定当下的氛围。",
+    skymap: "从所选城市抬头仰望时看到的天空：圆盘边缘是地平线，中心是你头顶正上方的点。北方在上，东方在左，因为你是在仰望天空。",
+    compat: "整体契合度是现有各项的平均值：星座、生肖，以及在出生时间已知时的月亮星座。这是一种象征性的解读，而非预言。"
   }
 });
 
@@ -5564,7 +5728,35 @@ I18N.ru = deepMerge(I18N.fr, {
       square: "напряжение: вызов, побуждающий к действию",
       trine: "гармония: природный талант",
       opposition: "полярность: равновесие между двумя силами"
-    }
+    },
+    tabSignsSub: "Краткий портрет",
+    tabNatalSub: "Полный портрет",
+    completeFields: "Указать время и место"
+  },
+  infoLabel: "Подробнее",
+  timePlaceHint: "Для натальной карты (асцендент и дома) нужны время и место рождения.",
+  info: {
+    sunPosition: "Точное положение Солнца в зодиаке в момент рождения, в градусах внутри знака (от 0 до 30°). Именно оно определяет знак и декан, и рассчитывается астрономически, а не по фиксированным датам.",
+    natalMoon: "Знак, в котором находилась Луна при рождении; в астрологии он отражает эмоциональную жизнь. Луна меняет знак примерно каждые два с половиной дня: без времени рождения иногда возможны два знака.",
+    modality: "Знаки делятся на три типа: кардинальные (начинают, в начале каждого сезона), фиксированные (укрепляют, в середине сезона) и мутабельные (приспосабливаются, в конце сезона).",
+    ruler: "Небесное тело, традиционно связанное со знаком и, как считается, окрашивающее его характер. Современная астрология относит Уран, Нептун и Плутон к Водолею, Рыбам и Скорпиону.",
+    decan: "Каждый знак занимает 30° зодиака и делится на три декана по 10°. В зависимости от градуса Солнца декан добавляет влияние второго светила — управителя знака той же стихии.",
+    affinities: "Традиционная совместимость знаков, от 1 до 5 звёзд, основанная прежде всего на стихиях: Огонь и Воздух вдохновляют друг друга, Земля и Вода дополняют друг друга, противоположные стихии притягиваются, но конфликтуют.",
+    cnAffinities: "Традиционная совместимость животных китайского зодиака: шесть гармоний и триады благоприятны; противостояния, вред и наказания — трудны.",
+    cnYear: "Китайский год начинается с Нового года по лунному календарю, между 21 января и 20 февраля. Если вы родились до этой даты, вы относитесь к животному предыдущего года.",
+    yearElement: "Годы следуют циклу пяти стихий (Дерево, Огонь, Земля, Металл, Вода), каждая длится два года. Вместе с 12 животными это образует большой 60-летний цикл.",
+    polarity: "Годы чередуются между ян и инь: чётные годы — ян (активная энергия, направленная вовне), нечётные — инь (восприимчивая энергия, направленная внутрь).",
+    fixedElement: "У каждого животного есть и своя постоянная стихия, которая не меняется от года к году (например, Крыса всегда связана с Водой). Она сочетается со стихией года.",
+    hourAnimal: "Сутки делятся на 12 двухчасовых отрезков, каждый связан с животным (Крыса с 23:00 до 1:00, Бык с 1:00 до 3:00 и т. д.). Животное часа рождения дополняет портрет.",
+    natalChart: "Натальная карта — это полная карта неба в момент и в месте рождения: положение каждого светила в знаках и домах и углы, которые они образуют друг с другом.",
+    ascendant: "Знак, восходивший на восточном горизонте в момент рождения. Он меняется примерно каждые два часа, поэтому нужны точные время и место. Считается, что он отражает то, каким вас видят окружающие.",
+    midheaven: "Самая высокая точка зодиака на небе в момент рождения. Традиция связывает её с призванием, карьерой и общественным образом.",
+    houses: "Небо рождения делится на 12 домов, начиная от асцендента; каждый связан с какой-либо сферой жизни (деньги, брак, карьера…). Дом светила показывает, где проявляется его энергия. Метод расчёта: Плацидус.",
+    aspects: "Особые углы между двумя светилами, измеряемые вдоль зодиака: соединение (0°), секстиль (60°), квадрат (90°), трин (120°) и оппозиция (180°), с допуском, который называется орбисом. Чем меньше орбис, тем сильнее аспект.",
+    retrograde: "С Земли кажется, что планета иногда несколько недель движется по зодиаку назад: это иллюзия, вызванная движением планет друг относительно друга. В астрологии этот период призывает вернуться к сфере, за которую отвечает планета.",
+    horoscope: "Гороскоп сравнивает нынешнее положение светил с вашим знаком: светило, проходящее через ваш знак или образующее с ним угол (транзит), окрашивает период. Медленные планеты задают общие тенденции, быстрые — атмосферу момента.",
+    skymap: "Небо, каким его видно, если поднять голову в выбранном городе: край круга — это горизонт, центр — точка прямо над вами. Север вверху, восток слева, потому что вы смотрите вверх.",
+    compat: "Общая совместимость — это среднее значение доступных показателей: знаков зодиака, китайских животных и, если известно время рождения, лунных знаков. Это символическое толкование, а не предсказание."
   }
 });
 
@@ -6228,7 +6420,35 @@ I18N.de = deepMerge(I18N.fr, {
       square: "Spannung: eine Herausforderung, die zum Handeln drängt",
       trine: "Harmonie: ein natürliches Talent",
       opposition: "Polarität: ein Gleichgewicht zwischen zwei Kräften finden"
-    }
+    },
+    tabSignsSub: "Das einfache Porträt",
+    tabNatalSub: "Das vollständige Porträt",
+    completeFields: "Zeit und Ort ergänzen"
+  },
+  infoLabel: "Mehr Informationen",
+  timePlaceHint: "Für das Geburtshoroskop (Aszendent und Häuser) werden Geburtszeit und Geburtsort benötigt.",
+  info: {
+    sunPosition: "Die genaue Stellung der Sonne im Tierkreis bei der Geburt, in Grad innerhalb des Zeichens (0 bis 30°). Sie bestimmt Zeichen und Dekan und wird astronomisch berechnet, nicht nach festen Daten.",
+    natalMoon: "Das Zeichen, in dem der Mond bei der Geburt stand; in der Astrologie steht es für das Gefühlsleben. Der Mond wechselt etwa alle zweieinhalb Tage das Zeichen: Ohne Geburtszeit sind manchmal zwei Zeichen möglich.",
+    modality: "Die Zeichen teilen sich in drei Qualitäten: kardinal (beginnend, am Anfang jeder Jahreszeit), fix (festigend, mitten in der Jahreszeit) und veränderlich (anpassend, am Ende der Jahreszeit).",
+    ruler: "Der Himmelskörper, der traditionell mit dem Zeichen verbunden ist und seinen Charakter prägen soll. Die moderne Astrologie ordnet Uranus, Neptun und Pluto dem Wassermann, den Fischen und dem Skorpion zu.",
+    decan: "Jedes Zeichen umfasst 30° des Tierkreises, aufgeteilt in drei Dekane zu 10°. Je nach Grad der Sonne fügt der Dekan den Einfluss eines zweiten Himmelskörpers hinzu: des Herrschers eines Zeichens desselben Elements.",
+    affinities: "Traditionelle Verträglichkeit der Zeichen, von 1 bis 5 Sternen, vor allem nach den Elementen: Feuer und Luft beflügeln sich, Erde und Wasser ergänzen sich, gegensätzliche Elemente ziehen sich an, reiben sich aber.",
+    cnAffinities: "Traditionelle Verträglichkeit der chinesischen Tiere: Die sechs Harmonien und die Triaden sind günstig; Oppositionen, Schädigungen und Strafen sind schwierig.",
+    cnYear: "Das chinesische Jahr beginnt mit dem Mondneujahr, zwischen dem 21. Januar und dem 20. Februar. Wer vor diesem Datum geboren ist, gehört zum Tier des Vorjahres.",
+    yearElement: "Die Jahre folgen einem Zyklus aus fünf Elementen (Holz, Feuer, Erde, Metall, Wasser), von denen jedes zwei Jahre dauert. Zusammen mit den 12 Tieren ergibt sich ein großer 60-Jahres-Zyklus.",
+    polarity: "Die Jahre wechseln zwischen Yang und Yin: Gerade Jahre sind Yang (aktive, nach außen gerichtete Energie), ungerade Jahre Yin (empfangende, nach innen gerichtete Energie).",
+    fixedElement: "Jedes Tier hat außerdem ein eigenes Element, das sich von Jahr zu Jahr nicht ändert (die Ratte gehört zum Beispiel immer zum Wasser). Es verbindet sich mit dem Element des Jahres.",
+    hourAnimal: "Der Tag ist in 12 Abschnitte von zwei Stunden geteilt, jeder einem Tier zugeordnet (die Ratte von 23 bis 1 Uhr, der Büffel von 1 bis 3 Uhr usw.). Das Tier der Geburtsstunde vervollständigt das Porträt.",
+    natalChart: "Das Geburtshoroskop ist die vollständige Karte des Himmels zum Zeitpunkt und am Ort der Geburt: die Stellung jedes Himmelskörpers in den Zeichen und Häusern und die Winkel, die sie zueinander bilden.",
+    ascendant: "Das Zeichen, das im Moment der Geburt am östlichen Horizont aufstieg. Es wechselt etwa alle zwei Stunden, daher braucht man genaue Zeit und genauen Ort. Es soll zeigen, wie man auf andere wirkt.",
+    midheaven: "Der höchste Punkt des Tierkreises am Himmel im Moment der Geburt. Die Tradition verbindet ihn mit Berufung, Karriere und öffentlichem Bild.",
+    houses: "Der Geburtshimmel wird vom Aszendenten aus in 12 Häuser geteilt, jedes einem Lebensbereich zugeordnet (Geld, Partnerschaft, Karriere …). Das Haus eines Himmelskörpers zeigt, wo sich seine Energie ausdrückt. Berechnungsmethode: Placidus.",
+    aspects: "Besondere Winkel zwischen zwei Himmelskörpern, entlang des Tierkreises gemessen: Konjunktion (0°), Sextil (60°), Quadrat (90°), Trigon (120°) und Opposition (180°), mit einem Spielraum, dem Orbis. Je kleiner der Orbis, desto stärker der Aspekt.",
+    retrograde: "Von der Erde aus scheint ein Planet manchmal einige Wochen im Tierkreis rückwärts zu laufen: eine Täuschung durch die Bewegung der Planeten zueinander. In der Astrologie lädt diese Zeit dazu ein, den Bereich des Planeten zu überdenken.",
+    horoscope: "Das Horoskop vergleicht die aktuelle Stellung der Himmelskörper mit deinem Zeichen: Ein Himmelskörper, der dein Zeichen durchläuft oder einen Winkel dazu bildet (ein Transit), prägt die Zeit. Langsame Planeten bestimmen die großen Trends, schnelle die Stimmung des Augenblicks.",
+    skymap: "Der Himmel, wie man ihn sieht, wenn man in der gewählten Stadt nach oben schaut: Der Rand der Scheibe ist der Horizont, die Mitte der Punkt direkt über dir. Norden ist oben und Osten links, weil du nach oben blickst.",
+    compat: "Die Gesamtverträglichkeit ist der Durchschnitt der verfügbaren Achsen: Tierkreiszeichen, chinesische Tiere und, wenn die Geburtszeiten bekannt sind, Mondzeichen. Es ist eine symbolische Deutung, keine Vorhersage."
   }
 });
 
@@ -6892,7 +7112,35 @@ I18N.it = deepMerge(I18N.fr, {
       square: "tensione: una sfida che spinge ad agire",
       trine: "armonia: un talento naturale",
       opposition: "polarità: un equilibrio da trovare tra due forze"
-    }
+    },
+    tabSignsSub: "Il ritratto semplice",
+    tabNatalSub: "Il ritratto completo",
+    completeFields: "Completa l'ora e il luogo"
+  },
+  infoLabel: "Maggiori informazioni",
+  timePlaceHint: "L'ora e il luogo di nascita sono necessari per il tema natale (ascendente e case).",
+  info: {
+    sunPosition: "Posizione esatta del Sole nello zodiaco alla nascita, in gradi all'interno del segno (da 0 a 30°). Determina il segno e il decano, ed è calcolata astronomicamente, non in base a date fisse.",
+    natalMoon: "Il segno in cui si trovava la Luna alla nascita; in astrologia rappresenta la vita emotiva. La Luna cambia segno circa ogni due giorni e mezzo: senza l'ora di nascita, a volte i segni possibili sono due.",
+    modality: "I segni si dividono in tre modalità: cardinale (che avvia, all'inizio di ogni stagione), fissa (che stabilizza, nel cuore della stagione) e mobile (che si adatta, alla fine della stagione).",
+    ruler: "L'astro tradizionalmente associato al segno, che ne colorerebbe il carattere. L'astrologia moderna attribuisce Urano, Nettuno e Plutone all'Acquario, ai Pesci e allo Scorpione.",
+    decan: "Ogni segno copre 30° dello zodiaco, divisi in tre decani di 10°. A seconda del grado del Sole, il decano sfuma il segno con l'influenza di un secondo astro: il governatore di un segno dello stesso elemento.",
+    affinities: "Affinità tradizionale tra segni, da 1 a 5 stelle, basata soprattutto sugli elementi: Fuoco e Aria si stimolano, Terra e Acqua si completano, gli elementi opposti si attraggono ma si scontrano.",
+    cnAffinities: "Affinità tradizionale tra animali cinesi: le sei armonie e le triadi sono favorevoli; le opposizioni, i danni e le punizioni sono difficili.",
+    cnYear: "L'anno cinese inizia con il Capodanno lunare, tra il 21 gennaio e il 20 febbraio. Chi è nato prima di questa data appartiene all'animale dell'anno precedente.",
+    yearElement: "Gli anni seguono un ciclo di cinque elementi (Legno, Fuoco, Terra, Metallo, Acqua), ciascuno della durata di due anni. Insieme ai 12 animali forma un grande ciclo di 60 anni.",
+    polarity: "Gli anni si alternano tra yang e yin: gli anni pari sono yang (energia attiva, rivolta verso l'esterno), quelli dispari yin (energia ricettiva, rivolta verso l'interno).",
+    fixedElement: "Ogni animale ha anche un elemento proprio, che non cambia da un anno all'altro (il Topo è sempre associato all'Acqua, per esempio). Si combina con l'elemento dell'anno.",
+    hourAnimal: "Il giorno è diviso in 12 fasce di due ore, ciascuna associata a un animale (il Topo dalle 23 all'1, il Bue dall'1 alle 3, ecc.). L'animale dell'ora di nascita completa il ritratto.",
+    natalChart: "Il tema natale è la mappa completa del cielo nel momento e nel luogo della nascita: la posizione di ogni astro nei segni e nelle case, e gli angoli che formano tra loro.",
+    ascendant: "Il segno che sorgeva all'orizzonte est nel momento della nascita. Cambia circa ogni due ore, da qui la necessità di ora e luogo esatti. Rifletterebbe il modo in cui ci si presenta agli altri.",
+    midheaven: "Il punto dello zodiaco più alto nel cielo nel momento della nascita. La tradizione lo associa alla vocazione, alla carriera e all'immagine pubblica.",
+    houses: "Il cielo di nascita è diviso in 12 case a partire dall'ascendente, ciascuna legata a un ambito della vita (denaro, coppia, carriera…). La casa di un astro indica dove si esprime la sua energia. Metodo di calcolo: Placidus.",
+    aspects: "Angoli particolari tra due astri, misurati lungo lo zodiaco: congiunzione (0°), sestile (60°), quadratura (90°), trigono (120°) e opposizione (180°), con un margine chiamato orbita. Più l'orbita è piccola, più l'aspetto è forte.",
+    retrograde: "Visto dalla Terra, un pianeta sembra a volte arretrare per qualche settimana nello zodiaco: è un'illusione dovuta al moto dei pianeti gli uni rispetto agli altri. In astrologia, questo periodo invita a tornare sull'ambito del pianeta.",
+    horoscope: "L'oroscopo confronta la posizione attuale degli astri con il tuo segno: un astro che attraversa il tuo segno o forma un angolo con esso (un transito) colora il periodo. I pianeti lenti danno le grandi tendenze, quelli veloci il clima del momento.",
+    skymap: "Il cielo come lo si vede alzando gli occhi dalla città scelta: il bordo del disco è l'orizzonte, il centro il punto proprio sopra di te. Il nord è in alto e l'est a sinistra, perché si guarda verso il cielo.",
+    compat: "L'affinità globale è la media degli assi disponibili: segni zodiacali, animali cinesi e, se le ore di nascita sono note, segni lunari. È una lettura simbolica, non una previsione."
   }
 });
 
@@ -7742,7 +7990,7 @@ function renderOwner(){
 }
 
 /* Briques de rendu partagées par les deux fiches */
-const infoItem = (label, value) => `<div class="info-item"><span class="info-label">${label}</span><span class="info-value">${value}</span></div>`;
+const infoItem = (label, value, info) => `<div class="info-item"><span class="info-label">${label}${info ? infoBtn(info, label) : ''}</span><span class="info-value">${value}</span></div>`;
 const swatches = (colors, t) => colors.map(c => `<span class="swatch" style="background:${COLOR_HEX[c]}"></span>${t.colors[c]}`).join(', ');
 const tags = list => list.map(x => `<span class="trait-tag">${x}</span>`).join('');
 function strengthsCard(t, strengths, weaknesses){
@@ -7770,7 +8018,7 @@ function affinityCard(t, sys, own, keys, sym, name, score){
             <div class="aff-stars" aria-label="${score(other)}/5">${starHtml(score(other))}</div>
           </div>`).join('');
   return `<div class="card">
-        <h3>${t.sections.affinities}</h3>
+        <h3>${t.sections.affinities}${infoBtn(sys === 'cn' ? 'cnAffinities' : 'affinities', t.sections.affinities)}</h3>
         <p class="aff-hint">${t.sections.affinityHint}</p>
         <div class="affinity-grid">${items}</div>
       </div>`;
@@ -7805,10 +8053,10 @@ function westernCards(t, signKey, decanIdx){
         <p class="summary">${t.summaries[signKey]}</p>
         <div class="info-grid">
           ${infoItem(t.labels.dateRange, formatDateRange(signKey, currentLang))}
-          ${currentSky ? infoItem(t.labels.sunPosition, formatSunPosition(currentSky)) : ''}
+          ${currentSky ? infoItem(t.labels.sunPosition, formatSunPosition(currentSky), 'sunPosition') : ''}
           ${natalMoonItems(t)}
-          ${infoItem(t.labels.modality, t.modalities[meta.modality])}
-          ${infoItem(t.labels.ruler, t.rulers[meta.ruler])}
+          ${infoItem(t.labels.modality, t.modalities[meta.modality], 'modality')}
+          ${infoItem(t.labels.ruler, t.rulers[meta.ruler], 'ruler')}
           ${infoItem(t.labels.luckyNumbers, meta.luckyNumbers)}
           ${infoItem(t.labels.colors, swatches(meta.colors, t))}
           ${infoItem(t.labels.stone, t.stones[meta.stone])}
@@ -7818,7 +8066,7 @@ function westernCards(t, signKey, decanIdx){
     strengthsCard(t, t.strengths[signKey], t.weaknesses[signKey]),
     loveCareerCard(t, t.love[signKey], t.career[signKey]),
     `<div class="card">
-        <h3>${t.sections.decan}</h3>
+        <h3>${t.sections.decan}${infoBtn('decan', t.sections.decan)}</h3>
         <div class="decan-badge"><span class="num">${decanIdx + 1}</span><span>${t.decanLabel[decanIdx]}</span></div>
         <p class="decan-desc">${decanDesc}</p>
         <div class="traits">
@@ -7848,11 +8096,11 @@ function chineseCards(t, cn, hourAnimal){
         </div>
         <p class="summary">${t.cn.summaries[cn.animal]}</p>
         <div class="info-grid">
-          ${infoItem(t.cn.labels.year, formatCnSpan(cn, currentLang))}
-          ${infoItem(t.cn.labels.yearElement, `<span aria-hidden="true">${CN_ELEMENT_SYM[el]}</span> ${t.cn.elements[el]}`)}
-          ${infoItem(t.cn.labels.polarity, t.cn[polarity])}
-          ${infoItem(t.cn.labels.fixedElement, t.cn.elements[meta.element])}
-          ${infoItem(t.cn.labels.hourAnimal, hourAnimal ? glyphName(hourAnimal) : '—')}
+          ${infoItem(t.cn.labels.year, formatCnSpan(cn, currentLang), 'cnYear')}
+          ${infoItem(t.cn.labels.yearElement, `<span aria-hidden="true">${CN_ELEMENT_SYM[el]}</span> ${t.cn.elements[el]}`, 'yearElement')}
+          ${infoItem(t.cn.labels.polarity, t.cn[polarity], 'polarity')}
+          ${infoItem(t.cn.labels.fixedElement, t.cn.elements[meta.element], 'fixedElement')}
+          ${infoItem(t.cn.labels.hourAnimal, hourAnimal ? glyphName(hourAnimal) : '—', 'hourAnimal')}
           ${infoItem(t.labels.luckyNumbers, meta.luckyNumbers)}
           ${infoItem(t.labels.colors, swatches(meta.colors, t))}
         </div>
@@ -7889,8 +8137,8 @@ function renderResult(signKey, decanIdx){
       <button class="btn-secondary" id="btnReset">↺ ${t.btnReset}</button>
     </div>
     <div class="view-tabs" role="tablist" aria-label="${t.natal.tabsLabel}">
-      <button type="button" role="tab" id="tabSigns" aria-controls="viewSigns">${t.natal.tabSigns}</button>
-      <button type="button" role="tab" id="tabNatal" aria-controls="viewNatal">${t.natal.tabNatal}</button>
+      <button type="button" role="tab" id="tabSigns" aria-controls="viewSigns"><span class="vt-icon" aria-hidden="true">☉</span><span class="vt-txt"><span class="vt-title">${t.natal.tabSigns}</span><span class="vt-sub">${t.natal.tabSignsSub}</span></span></button>
+      <button type="button" role="tab" id="tabNatal" aria-controls="viewNatal"><span class="vt-icon" aria-hidden="true">✦</span><span class="vt-txt"><span class="vt-title">${t.natal.tabNatal}</span><span class="vt-sub">${t.natal.tabNatalSub}</span></span></button>
     </div>
     <div id="profileContent">
       <div class="owner" id="profileOwner"></div>
@@ -7903,7 +8151,7 @@ function renderResult(signKey, decanIdx){
     ${compatCardHtml(t)}
     <section class="card sky-card" aria-labelledby="skyTitle">
       <div class="sky-head">
-        <h3 id="skyTitle">${t.horo.title} · ${t.signNames[signKey]}</h3>
+        <h3 id="skyTitle">${t.horo.title} · ${t.signNames[signKey]}${infoBtn('horoscope', t.horo.title)}</h3>
         <div class="sky-controls">
           <label class="sr-only" for="skyDate">${t.horo.date}</label>
           <input type="date" id="skyDate" value="${skyDate || todayISO()}">
@@ -7917,7 +8165,7 @@ function renderResult(signKey, decanIdx){
     </section>
     <section class="card map-card" aria-labelledby="mapTitle">
       <div class="sky-head">
-        <h3 id="mapTitle">${t.map.title}</h3>
+        <h3 id="mapTitle">${t.map.title}${infoBtn('skymap', t.map.title)}</h3>
         <div class="sky-controls">
           <label class="sr-only" for="mapPlace">${t.map.place}</label>
           <select id="mapPlace">${placeOptions(t)}</select>
@@ -7950,7 +8198,14 @@ function renderResult(signKey, decanIdx){
   document.getElementById('btnShare').addEventListener('click', shareProfile);
   document.getElementById('btnExport').addEventListener('click', exportImage);
 
+  closeInfo(false);
   setView(viewMode);
+  const complete = document.getElementById('natalComplete');
+  if (complete) complete.addEventListener('click', () => {
+    const target = document.getElementById(document.getElementById('birthTime').value ? 'birthPlace' : 'birthTime');
+    target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'center' });
+    target.focus({ preventScroll: true });
+  });
   const tabs = [document.getElementById('tabSigns'), document.getElementById('tabNatal')];
   tabs.forEach((tb, i) => {
     tb.addEventListener('click', () => setView(i ? 'natal' : 'signs'));
@@ -8039,7 +8294,7 @@ function renderSky(){
     <div class="sky-grid">
       <div class="sky-main">
         ${major.length || moment.length ? block(h.groups.major, major, aspectLine) + block(h.groups.moment, moment, aspectLine) : `<p class="sky-none">${h.none}</p>`}
-        ${block(h.groups.retro, tr.retro, retroLine)}
+        ${block(h.groups.retro + infoBtn('retrograde', h.groups.retro), tr.retro, retroLine)}
       </div>
       <aside class="sky-side">
         <h4>${h.groups.positions}</h4><ul class="positions">${positions}</ul>
@@ -8210,6 +8465,54 @@ function renderHistory(){
 }
 
 /* ============================================================
+   BULLES D'INFORMATION (boutons « i »)
+   Une seule bulle partagée, ouverte sous le bouton touché ; fonctionne au doigt comme à la souris
+   (pas de survol). Fermeture : second appui, touche Échap, appui ailleurs, nouveau rendu.
+   ============================================================ */
+function infoBtn(key, title){
+  const t = I18N[currentLang];
+  const plain = String(title).replace(/<[^>]*>/g, '').trim();
+  return `<button type="button" class="info-btn" data-info="${key}" data-title="${escapeHtml(plain)}" aria-label="${escapeHtml(t.infoLabel + ' : ' + plain)}" aria-expanded="false">i</button>`;
+}
+let infoOpenBtn = null;
+function closeInfo(restoreFocus){
+  const pop = document.getElementById('infoPop');
+  if (pop) pop.hidden = true;
+  if (infoOpenBtn) { infoOpenBtn.setAttribute('aria-expanded', 'false'); if (restoreFocus && infoOpenBtn.isConnected) infoOpenBtn.focus(); }
+  infoOpenBtn = null;
+}
+function openInfo(btn){
+  let pop = document.getElementById('infoPop');
+  if (!pop) {
+    pop = document.createElement('div');
+    pop.id = 'infoPop'; pop.className = 'info-pop'; pop.setAttribute('role', 'dialog'); pop.hidden = true;
+    pop.innerHTML = '<p class="info-pop-title" id="infoPopTitle"></p><p class="info-pop-text"></p>';
+    pop.setAttribute('aria-labelledby', 'infoPopTitle');
+    document.body.appendChild(pop);
+  }
+  closeInfo(false);
+  const t = I18N[currentLang];
+  pop.querySelector('.info-pop-title').textContent = btn.dataset.title;
+  pop.querySelector('.info-pop-text').textContent = t.info[btn.dataset.info] || '';
+  pop.hidden = false;
+  // Sous le bouton, gardée dans l'écran ; au-dessus s'il manque de place en bas
+  const r = btn.getBoundingClientRect(), w = pop.offsetWidth, h = pop.offsetHeight, m = 10;
+  const left = Math.min(Math.max(m, r.left + r.width / 2 - w / 2), document.documentElement.clientWidth - w - m);
+  const below = r.bottom + 8 + h < window.innerHeight || r.top - 8 - h < 0;
+  pop.style.left = `${left + window.scrollX}px`;
+  pop.style.top = `${(below ? r.bottom + 8 : r.top - 8 - h) + window.scrollY}px`;
+  btn.setAttribute('aria-expanded', 'true');
+  infoOpenBtn = btn;
+}
+document.addEventListener('click', e => {
+  const btn = e.target.closest && e.target.closest('.info-btn');
+  if (btn) { e.preventDefault(); e.stopPropagation(); if (btn === infoOpenBtn) closeInfo(false); else openInfo(btn); return; }
+  if (infoOpenBtn && !e.target.closest('#infoPop')) closeInfo(false);
+}, true);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && infoOpenBtn) closeInfo(true); });
+window.addEventListener('resize', () => closeInfo(false));
+
+/* ============================================================
    THÈME NATAL (vue « Thème natal » du résultat)
    ============================================================ */
 let currentBirthPlace = '';   // nom de la ville de naissance (CITIES), '' si non précisé
@@ -8280,7 +8583,7 @@ function natalHtml(t){
       <td>${signCell(b.lon)}</td><td class="nt-house">${b.house || ''}</td><td class="nt-retro">${b.retro ? '℞' : ''}</td></tr>`).join('');
   const angles = chart.exact ? [[n.ascendant, chart.asc, 'AC'], [n.midheaven, chart.mc, 'MC']].map(([lab, lon, ab]) =>
       `<tr class="nt-angle"><td class="nt-sym">${ab}</td><td>${lab}</td><td>${signCell(lon)}</td><td></td><td></td></tr>`).join('') : '';
-  const head = chart.exact ? `<thead><tr><th></th><th></th><th></th><th class="nt-house">${n.house}</th><th></th></tr></thead>` : '';
+  const head = chart.exact ? `<thead><tr><th></th><th></th><th></th><th class="nt-house">${n.house}${infoBtn('houses', n.house)}</th><th></th></tr></thead>` : '';
   const lines = chart.bodies.map(b => `<li><div class="nl-head"><span class="nl-sym" aria-hidden="true">${PLANET_SYM[b.body]}</span> <strong>${t.rulers[b.body]}</strong> · ${signTag(t, b.sign)}${b.house ? ` · ${n.house} ${b.house}` : ''}</div>
       <p>${capitalize(n.domains[b.body])} — ${n.styles[b.sign]}${b.house ? ` — ${n.house} ${b.house} (${n.houses[b.house - 1]})` : ''}.</p></li>`).join('');
   const nf = new Intl.NumberFormat(currentLang, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
@@ -8288,9 +8591,10 @@ function natalHtml(t){
       <span class="na-type">${n.aspectNames[a.type]} · ${nf.format(a.orb)}°</span><span class="na-mean">${n.aspectMeanings[a.type]}</span></li>`).join('');
   const ascSign = chart.exact ? signFromLongitude(chart.asc) : null, mcSign = chart.exact ? signFromLongitude(chart.mc) : null;
   return `<div class="card natal-main">
-        <h3>${n.title}</h3>
+        <h3>${n.title}${infoBtn('natalChart', n.title)}</h3>
         <div class="big-three">${chip(PLANET_SYM.sun, t.rulers.sun, sun.sign)}${chip(PLANET_SYM.moon, t.rulers.moon, moon.sign)}${ascSign ? chip('AC', n.ascendant, ascSign) : ''}</div>
         ${notes.map(x => `<p class="natal-note">${x}</p>`).join('')}
+        ${chart.exact ? '' : `<button type="button" class="btn-secondary natal-complete" id="natalComplete">${n.completeFields}</button>`}
         <div class="natal-grid">
           <div class="natal-wheel">${natalWheelSvg(chart, t)}</div>
           <div class="natal-table"><h4>${n.positions}</h4><table>${head}<tbody>${rows}${angles}</tbody></table></div>
@@ -8299,12 +8603,12 @@ function natalHtml(t){
       <div class="card natal-reading">
         <h3>${n.reading}</h3>
         <p class="natal-legend">${n.legend}</p>
-        ${ascSign ? `<div class="natal-asc"><h4>${n.ascendant} · ${signTag(t, ascSign)}</h4><p>${n.asc[ascSign]}</p>
-          <h4>${n.midheaven} · ${signTag(t, mcSign)}</h4><p>${n.mcText}</p></div>` : ''}
+        ${ascSign ? `<div class="natal-asc"><h4>${n.ascendant} · ${signTag(t, ascSign)}${infoBtn('ascendant', n.ascendant)}</h4><p>${n.asc[ascSign]}</p>
+          <h4>${n.midheaven} · ${signTag(t, mcSign)}${infoBtn('midheaven', n.midheaven)}</h4><p>${n.mcText}</p></div>` : ''}
         <ul class="natal-lines">${lines}</ul>
       </div>
       <div class="card natal-aspects">
-        <h3>${n.aspects}</h3>
+        <h3>${n.aspects}${infoBtn('aspects', n.aspects)}</h3>
         ${aspects ? `<ul class="natal-asp-list">${aspects}</ul>` : `<p class="natal-note">${n.noAspects}</p>`}
       </div>`;
 }
@@ -8330,7 +8634,7 @@ let pairState = null;    // { name, date: "AAAA-MM-JJ", time: "HH:MM" ou "" } �
 function compatCardHtml(t){
   const p = pairState || { name: '', date: '', time: '' }, q = t.pair;
   return `<section class="card compat-card" aria-labelledby="pairTitle">
-      <h3 id="pairTitle">${q.title}</h3>
+      <h3 id="pairTitle">${q.title}${infoBtn('compat', q.title)}</h3>
       <div class="compat-form">
         <div class="field"><label for="pairName">${q.partnerName} <span class="opt">${t.optional}</span></label>
           <input type="text" id="pairName" maxlength="40" spellcheck="false" autocomplete="off" value="${escapeHtml(p.name)}"></div>
@@ -8647,7 +8951,7 @@ async function exportImage(){
     + `padding:32px;box-sizing:content-box;background:${getComputedStyle(document.documentElement).getPropertyValue('--export-bg').trim()};`;
   for (const part of parts) {
     const copy = part.cloneNode(true);
-    copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label').forEach(n => n.remove());
+    copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .natal-complete').forEach(n => n.remove());
     copy.querySelectorAll('[id]').forEach(n => n.removeAttribute('id'));
     copy.removeAttribute('id');
     frame.appendChild(copy);
@@ -8839,6 +9143,7 @@ function applyUITranslations(){
   document.getElementById('labelBirthDate').textContent = t.labelBirthDate;
   document.getElementById('labelBirthTime').textContent = t.labelBirthTime;
   document.getElementById('labelBirthPlace').textContent = t.labelBirthPlace;
+  document.getElementById('timePlaceHint').textContent = t.timePlaceHint;
   renderPlaceSelect(t);
   document.getElementById('labelName').textContent = t.labelName;
   document.getElementById('offlineLabel').textContent = t.offline.button;
