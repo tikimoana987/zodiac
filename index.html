@@ -176,6 +176,12 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .field-name{ flex:1 1 100%; }
 .input-zone label{ font-size:.88rem; color:var(--muted); font-weight:500; white-space:nowrap; }
 .input-zone .opt{ font-weight:400; opacity:.7; }
+.input-zone select{
+  width:100%; background:var(--field-bg); border:1px solid var(--ov-15); border-radius:14px;
+  padding:.85rem 1rem; color:var(--text); font-size:1rem; outline:none; color-scheme:var(--scheme);
+}
+.input-zone select:focus{ border-color:var(--gold); box-shadow:0 0 0 3px rgba(232,195,106,.15); }
+.field-place{ flex:1 1 220px; }
 .input-zone input[type=date], .input-zone input[type=time], .input-zone input[type=text]{
   width:100%; background:var(--field-bg);
   border:1px solid var(--ov-15); border-radius:14px;
@@ -539,6 +545,71 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .offline-btn:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
 .offline-hint{ color:var(--muted); font-size:.8rem; flex:1 1 260px; }
 
+/* Onglets du résultat */
+.view-tabs{ display:inline-flex; border:1px solid var(--ov-15); border-radius:14px; overflow:hidden; margin-bottom:1rem; max-width:100%; }
+.view-tabs button{ background:transparent; border:none; color:var(--muted); padding:.6rem 1.1rem; font-size:.9rem; cursor:pointer; }
+.view-tabs button[aria-selected="true"]{ background:var(--gold); color:var(--on-gold); font-weight:700; }
+.view-tabs button:focus-visible{ outline:2px solid var(--gold); outline-offset:-3px; }
+.dual[hidden], .natal[hidden]{ display:none; }
+
+/* Thème natal */
+.natal{ display:grid; gap:1.1rem; }
+.natal > .card{ margin-bottom:0; }
+.big-three{ display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:1rem; }
+.big-chip{ display:flex; align-items:center; gap:.5rem; background:var(--ov-04); border:1px solid var(--ov-12); border-radius:999px; padding:.45rem 1rem; }
+.big-sym{ color:var(--gold); font-weight:700; font-variant-emoji:text; }
+.big-label{ color:var(--muted); font-size:.85rem; }
+.big-sign{ color:var(--text); font-weight:600; font-variant-emoji:text; }
+.big-sign span, .nl-head span, .natal-table td span, .natal-asc h4 span{ color:var(--gold); }
+.natal-note{ color:var(--muted); font-size:.85rem; line-height:1.5; margin-bottom:.5rem; }
+.natal-grid{ display:grid; gap:1.4rem; align-items:start; margin-top:.8rem; }
+@media (min-width:960px){ .natal-grid{ grid-template-columns:minmax(0,3fr) minmax(0,2fr); } }
+.natal-wheel{ display:flex; justify-content:center; }
+.natal-svg{ width:100%; max-width:480px; height:auto; display:block; }
+.natal-svg .ws{ stroke:var(--ov-15); stroke-width:.6; }
+.nw-sign{ fill:var(--text); font-size:13px; text-anchor:middle; dominant-baseline:central; font-variant-emoji:text; }
+.nw-tick{ stroke:var(--ov-30); stroke-width:.4; }
+.nw-ring{ fill:none; stroke:var(--ov-15); stroke-width:.6; }
+.nw-house{ stroke:var(--ov-30); stroke-width:.6; }
+.nw-axis{ stroke:var(--gold); stroke-width:1.2; }
+.nw-num{ fill:var(--muted); font-size:7px; text-anchor:middle; dominant-baseline:central; }
+.nw-axis-lab{ fill:var(--gold); font-size:8px; font-weight:700; text-anchor:middle; dominant-baseline:central; }
+.nw-asp{ stroke-width:.7; opacity:.8; }
+.nw-harm{ stroke:#4a9fd8; } .nw-tense{ stroke:var(--red); }
+.nw-ptick{ stroke:var(--gold); stroke-width:.8; }
+.nw-planet{ fill:var(--gold); font-size:13px; text-anchor:middle; dominant-baseline:central; font-variant-emoji:text; }
+.natal-table h4, .natal-asc h4{ font-size:.75rem; text-transform:uppercase; letter-spacing:.12em; color:var(--gold); margin:.2rem 0 .6rem; }
+.natal-table table{ width:100%; border-collapse:collapse; font-size:.88rem; color:var(--text); }
+.natal-table td{ padding:.32rem .3rem; border-bottom:1px dashed var(--ov-08); font-variant-emoji:text; }
+.nt-sym{ color:var(--gold); text-align:center; width:1.6rem; }
+.nt-retro{ color:var(--red); font-weight:700; text-align:right; }
+.nt-angle td{ font-weight:600; }
+.natal-table th{ font-size:.68rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; padding:0 .3rem .3rem; }
+.nt-sign{ white-space:nowrap; }
+.nt-deg{ display:inline-block; white-space:nowrap; color:var(--muted); }
+.nt-house{ text-align:center; width:3.6rem; }
+.big-chip{ white-space:nowrap; }
+@media (max-width:640px){
+  .natal-main{ padding-left:.9rem; padding-right:.9rem; }
+  .natal-table table{ font-size:.82rem; }
+  .natal-table td{ padding:.3rem .2rem; }
+  .nt-house{ width:auto; }
+  .nw-sign{ font-size:14px; } .nw-planet{ font-size:15px; } .nw-num{ font-size:9px; } .nw-axis-lab{ font-size:10px; }
+}
+.natal-legend{ color:var(--muted); font-size:.85rem; font-style:italic; margin-bottom:1rem; }
+.natal-asc{ margin-bottom:1rem; }
+.natal-asc p{ color:var(--text); font-size:.92rem; line-height:1.6; margin-bottom:.8rem; }
+.natal-lines, .natal-asp-list{ list-style:none; display:grid; gap:.9rem; }
+@media (min-width:960px){ .natal-lines, .natal-asp-list{ grid-template-columns:1fr 1fr; } }
+.nl-head{ color:var(--text); font-size:.92rem; font-variant-emoji:text; }
+.nl-sym{ color:var(--gold); }
+.natal-lines p{ color:var(--muted); font-size:.86rem; line-height:1.55; margin-top:.2rem; }
+.natal-asp-list li{ display:flex; flex-direction:column; gap:.15rem; }
+.na-pair{ color:var(--text); font-size:.9rem; font-variant-emoji:text; }
+.na-sym{ color:var(--gold); font-weight:700; margin:0 .2rem; }
+.na-type{ color:var(--gold); font-size:.8rem; }
+.na-mean{ color:var(--muted); font-size:.84rem; }
+
 .aff-hint{ font-size:.8rem; color:var(--muted); margin-bottom:.9rem; }
 .decan-badge .cn-num{ font-size:.85rem; font-weight:700; }
 .cn-note{ color:var(--muted); font-size:.85rem; line-height:1.5; margin-top:.9rem; }
@@ -703,6 +774,10 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
       <label for="birthTime"><span id="labelBirthTime">Heure de naissance</span> <span class="opt">(facultatif)</span></label>
       <input type="time" id="birthTime">
     </div>
+    <div class="field field-place">
+      <label for="birthPlace"><span id="labelBirthPlace">Lieu de naissance</span> <span class="opt">(facultatif)</span></label>
+      <select id="birthPlace"></select>
+    </div>
     <button class="btn-reveal" id="btnReveal">Révéler mon signe</button>
   </div>
   <div id="errorMsg" class="error-msg hidden" role="alert"></div>
@@ -754,6 +829,7 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
     catch (e) { results.push({ group, name, ok: false, info: e.message }); }
   }
   function assert(cond, msg){ if (!cond) throw new Error(msg); }
+  function assertEq(got, exp, msg){ if (got !== exp) throw new Error(`${msg} : obtenu ${got}, attendu ${exp}`); }
   const angleDiff = (a, b) => Math.abs(((a - b + 540) % 360) - 180);
   const utc = iso => new Date(iso.replace('Z', ':00Z')).getTime();
 
@@ -1401,6 +1477,83 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
     assert(!doc.getElementById('result').innerHTML.trim() && !doc.getElementById('history').innerHTML.trim(), 'la copie contient un résultat ou un historique');
   });
 
+  /* ---------------- Thème natal ---------------- */
+  // Références : maisons Placidus de la Swiss Ephemeris 2.10 ; conversions d'heure de la base IANA 2026e (Python zoneinfo)
+  const NATAL_REF = [[-708271082201, "Buenos Aires", -34.6, -58.38, 104.4312, 34.6856, [104.4312, 143.6648, 182.9199, 214.6856, 239.7316, 261.6904, 284.4312, 323.6648, 2.9199, 34.6856, 59.7316, 81.6904]], [1808738609523, "Reykjavík", 64.15, -21.94, 131.1247, 3.46, [131.1247, 141.8403, 157.6332, 183.46, 229.1792, 282.4117, 311.1247, 321.8403, 337.6332, 3.46, 49.1792, 102.4117]], [2041354518064, "Paris", 48.86, 2.35, 8.8061, 273.7504, [8.8061, 51.0971, 74.8487, 93.7504, 113.3476, 139.9075, 188.8061, 231.0971, 254.8487, 273.7504, 293.3476, 319.9075]], [939865184476, "Singapore", 1.35, 103.82, 242.483, 148.7795, [242.483, 270.4874, 298.6316, 328.7795, 1.0009, 32.932, 62.483, 90.4874, 118.6316, 148.7795, 181.0009, 212.932]], [-160320655649, "Anchorage", 61.22, -149.9, 173.097, 79.5768, [173.097, 193.3029, 221.2133, 259.5768, 300.368, 330.7187, 353.097, 13.3029, 41.2133, 79.5768, 120.368, 150.7187]], [2921785064563, "Nairobi", -1.29, 36.82, 64.5487, 331.0393, [64.5487, 92.4845, 120.7148, 151.0393, 183.3454, 215.1639, 244.5487, 272.4845, 300.7148, 331.0393, 3.3454, 35.1639]], [3538939849700, "Moskva", 55.76, 37.62, 234.7079, 171.9729, [234.7079, 266.6279, 310.9963, 351.9729, 20.2496, 39.8476, 54.7079, 86.6279, 130.9963, 171.9729, 200.2496, 219.8476]], [-1886300567184, "Sydney", -33.87, 151.21, 357.3885, 267.1616, [357.3885, 24.4266, 54.8147, 87.1616, 119.5245, 150.0329, 177.3885, 204.4266, 234.8147, 267.1616, 299.5245, 330.0329]], [-1874659506952, "Moskva", 55.76, 37.62, 247.0156, 191.46, [247.0156, 284.0275, 333.4864, 11.46, 35.9569, 53.1973, 67.0156, 104.0275, 153.4864, 191.46, 215.9569, 233.1973]], [1186288148917, "Paris", 48.86, 2.35, 131.4745, 24.8186, [131.4745, 149.8852, 173.4484, 204.8186, 243.636, 281.3377, 311.4745, 329.8852, 353.4484, 24.8186, 63.636, 101.3377]], [1743705814408, "Singapore", 1.35, 103.82, 304.2619, 219.46, [304.2619, 335.0756, 7.7156, 39.46, 68.6108, 96.1277, 124.2619, 155.0756, 187.7156, 219.46, 248.6108, 276.1277]], [3405106020073, "Sydney", -33.87, 151.21, 300.4613, 200.0179, [300.4613, 322.5515, 348.5771, 20.0179, 55.2996, 89.7777, 120.4613, 142.5515, 168.5771, 200.0179, 235.2996, 269.7777]], [-1050575707360, "Anchorage", 61.22, -149.9, 153.7319, 49.0885, [153.7319, 170.4633, 194.3153, 229.0885, 273.6309, 308.5848, 333.7319, 350.4633, 14.3153, 49.0885, 93.6309, 128.5848]], [-428294514841, "Anchorage", 61.22, -149.9, 164.1308, 65.789, [164.1308, 182.7779, 208.9538, 245.789, 288.3444, 320.4644, 344.1308, 2.7779, 28.9538, 65.789, 108.3444, 140.4644]]];
+  const TZ_REF = [["America/New_York", 2019, 4, 21, 1, 15, 1555823700000], ["Europe/Paris", 1995, 8, 28, 7, 45, 809588700000], ["Europe/Helsinki", 1971, 3, 28, 12, 15, 39003300000], ["Europe/Brussels", 2076, 4, 13, 9, 0, 3353986800000], ["Europe/Vienna", 2006, 3, 5, 8, 0, 1141542000000], ["Europe/Berlin", 1977, 10, 19, 0, 30, 246065400000], ["Europe/Paris", 1979, 6, 27, 9, 45, 299317500000], ["Asia/Singapore", 1980, 3, 16, 15, 15, 322040700000], ["Europe/Paris", 2040, 7, 12, 12, 0, 2225700000000], ["America/Mexico_City", 2034, 5, 25, 14, 0, 2032200000000], ["Indian/Antananarivo", 1994, 5, 2, 13, 0, 767872800000], ["Europe/Zurich", 1987, 9, 20, 11, 15, 559127700000], ["Europe/Berlin", 1970, 12, 18, 2, 30, 30331800000], ["Asia/Ho_Chi_Minh", 1981, 5, 6, 2, 15, 357938100000], ["Asia/Manila", 2076, 5, 16, 5, 0, 3356802000000], ["Europe/Paris", 2053, 9, 13, 1, 15, 2641331700000], ["Asia/Shanghai", 2052, 6, 27, 8, 45, 2603061900000], ["Asia/Kolkata", 2007, 3, 2, 20, 0, 1172845800000], ["Australia/Sydney", 2026, 6, 27, 6, 15, 1782504900000], ["Asia/Hong_Kong", 2044, 3, 21, 13, 0, 2342149200000], ["Pacific/Noumea", 2011, 6, 5, 1, 45, 1307198700000], ["America/Sao_Paulo", 2024, 12, 24, 10, 45, 1735047900000], ["Europe/Madrid", 1974, 8, 13, 4, 0, 145591200000], ["Europe/Warsaw", 2036, 3, 21, 15, 30, 2089722600000], ["Europe/Paris", 1991, 12, 19, 21, 0, 693172800000], ["Asia/Shanghai", 1978, 6, 18, 22, 30, 267028200000], ["America/New_York", 2024, 5, 25, 22, 30, 1716690600000], ["America/Sao_Paulo", 1987, 11, 6, 18, 0, 563227200000], ["Europe/Moscow", 2040, 5, 11, 21, 30, 2220373800000], ["Europe/Moscow", 1973, 9, 21, 21, 30, 117484200000], ["Europe/Berlin", 1970, 11, 12, 23, 45, 27297900000], ["America/Santiago", 2022, 5, 23, 2, 45, 1653288300000], ["Pacific/Noumea", 2057, 10, 17, 21, 45, 2770541100000], ["Europe/Lisbon", 2059, 9, 25, 20, 30, 2831743800000], ["Asia/Riyadh", 2066, 3, 8, 21, 15, 3035297700000], ["Asia/Tehran", 2083, 1, 16, 7, 15, 3567296700000], ["Europe/Luxembourg", 2040, 1, 14, 14, 30, 2210160600000], ["Europe/Warsaw", 2069, 10, 3, 18, 15, 3148042500000], ["America/Toronto", 2083, 6, 1, 11, 45, 3579090300000], ["America/Sao_Paulo", 1971, 7, 28, 3, 30, 49530600000], ["Europe/Paris", 2040, 10, 10, 3, 30, 2233445400000], ["Africa/Abidjan", 2031, 6, 19, 9, 30, 1939627800000], ["Pacific/Auckland", 2069, 1, 13, 3, 30, 3125226600000], ["Africa/Lagos", 2057, 9, 5, 10, 45, 2766908700000], ["Europe/Athens", 2010, 4, 16, 9, 45, 1271400300000], ["Asia/Kuala_Lumpur", 1997, 7, 28, 5, 30, 870039000000], ["Asia/Shanghai", 1977, 8, 9, 13, 0, 239950800000], ["Europe/Rome", 1978, 8, 10, 4, 45, 271565100000], ["Asia/Novosibirsk", 2036, 9, 9, 7, 45, 2104533900000], ["Asia/Manila", 1973, 5, 16, 19, 45, 106400700000], ["Africa/Casablanca", 2065, 10, 24, 3, 0, 3023575200000], ["Asia/Dubai", 1975, 12, 17, 0, 45, 187994700000], ["Europe/Berlin", 1992, 11, 24, 18, 15, 722625300000], ["America/Anchorage", 2075, 9, 7, 0, 45, 3335071500000], ["Asia/Seoul", 2009, 10, 19, 22, 45, 1255959900000], ["America/New_York", 1998, 8, 13, 21, 15, 903057300000], ["America/Havana", 1975, 8, 27, 2, 30, 178353000000], ["Asia/Beirut", 2020, 5, 5, 5, 45, 1588646700000], ["Asia/Ho_Chi_Minh", 2040, 8, 11, 17, 15, 2228292900000], ["Europe/Athens", 2049, 9, 26, 1, 0, 2516220000000]];
+
+  test('Lieu de naissance : heure locale → temps universel (changements d\'heure compris)', () => {
+    const iso = ms => new Date(ms).toISOString().slice(0, 16);
+    const cases = [
+      ['Europe/Paris', 1982, 11, 3, 19, 0, '1982-11-03T18:00'],   // hiver : UTC+1
+      ['Europe/Paris', 1982, 7, 15, 19, 0, '1982-07-15T17:00'],   // été : UTC+2
+      ['Europe/Paris', 1970, 7, 15, 12, 0, '1970-07-15T11:00'],   // pas d'heure d'été avant 1976
+      ['America/New_York', 1990, 7, 4, 12, 0, '1990-07-04T16:00'],
+      ['Australia/Sydney', 2000, 1, 1, 12, 0, '2000-01-01T01:00'], // été austral : UTC+11
+      ['Europe/Paris', 2024, 3, 31, 2, 30, '2024-03-31T01:30'],   // heure inexistante : décalage d'avant le changement
+      ['Europe/Paris', 2024, 10, 27, 2, 30, '2024-10-27T00:30'],  // heure ambiguë : première occurrence
+    ];
+    for (const [tz, y, m, d, h, mi, exp] of cases) assertEq(iso(zonedInstant({ y, m, d }, h, mi, tz)), exp, `${tz} ${y}-${m}-${d} ${h}:${mi}`);
+    for (const [tz, y, m, d, h, mi, exp] of TZ_REF) assertEq(zonedInstant({ y, m, d }, h, mi, tz), exp, `${tz} ${y}-${m}-${d} ${h}:${mi}`);
+  });
+
+  test('Villes : chaque fuseau officiel est reconnu par le navigateur', () => {
+    for (const c of CITIES) {
+      assert(typeof c[4] === 'string' && c[4].includes('/'), `${c[0]} : fuseau manquant`);
+      try { new Intl.DateTimeFormat('en', { timeZone: c[4] }); } catch (e) { throw new Error(`${c[0]} : fuseau ${c[4]} inconnu`); }
+    }
+    assert(birthPlace('Paris').tz === 'Europe/Paris' && birthPlace('Nowhere') === null, 'birthPlace');
+  });
+
+  test('Ascendant, Milieu du Ciel et maisons Placidus (Swiss Ephemeris, ≤ 0,03°)', () => {
+    const d = (a, b) => Math.abs(((a - b + 540) % 360) - 180);
+    for (const [ms, name, lat, lon, asc, mc, cusps] of NATAL_REF) {
+      const eps = obliquity(julianCenturies(ms)), ramc = ramcAt(ms, lon);
+      assert(d(ascendant(ramc, eps, lat), asc) <= 0.03, `${name} ${new Date(ms).toISOString()} : ascendant`);
+      assert(d(midheaven(ramc, eps), mc) <= 0.03, `${name} : Milieu du Ciel`);
+      const pc = placidusCusps(ramc, eps, lat);
+      assert(pc, `${name} : maisons non calculées`);
+      cusps.forEach((v, i) => assert(d(pc[i], v) <= 0.03, `${name} : maison ${i + 1} (${pc[i].toFixed(3)} au lieu de ${v})`));
+    }
+  });
+
+  test('Maisons : appartenance et repli en maisons égales au-delà du cercle polaire', () => {
+    const cusps = [350, 20, 50, 80, 110, 140, 170, 200, 230, 260, 290, 320];
+    assertEq(houseOf(355, cusps), 1, 'avant 0°'); assertEq(houseOf(5, cusps), 1, 'après 0°'); assertEq(houseOf(20, cusps), 2, 'sur la pointe');
+    assertEq(houseOf(349.9, cusps), 12, 'fin du cycle');
+    const polar = natalChart({ y: 2000, m: 6, d: 21 }, { h: 12, min: 0 }, { name: 'Test', lat: 70, lon: 20, tz: 'Europe/Oslo' });
+    assertEq(polar.system, 'equal', 'système');
+    polar.cusps.forEach((c, i) => assert(Math.abs(((c - polar.asc - 30 * i) % 360 + 360) % 360) < 1e-9, `pointe ${i + 1}`));
+  });
+
+  test('Thème natal de référence (3 nov. 1982, 19 h, Paris), quel que soit le fuseau de l\'appareil', () => {
+    const c = natalChart({ y: 1982, m: 11, d: 3 }, { h: 19, min: 0 }, birthPlace('Paris'));
+    assert(c.exact && c.system === 'placidus', 'thème complet');
+    assertEq(new Date(c.ms).toISOString().slice(0, 16), '1982-11-03T18:00', 'instant');
+    assertEq(signFromLongitude(c.asc), 'gemini', 'ascendant'); assert(Math.abs(c.asc - 74.72) < 0.03, 'degré de l\'ascendant');
+    assertEq(signFromLongitude(c.mc), 'aquarius', 'Milieu du Ciel');
+    const by = Object.fromEntries(c.bodies.map(b => [b.body, b]));
+    assertEq(by.sun.sign, 'scorpio', 'Soleil'); assertEq(by.sun.house, 6, 'maison du Soleil');
+    assertEq(by.moon.sign, 'gemini', 'Lune'); assertEq(by.moon.house, 12, 'maison de la Lune');
+    assert(c.aspects.some(a => a.a === 'sun' && a.b === 'venus' && a.type === 'conjunction'), 'Soleil conjoint à Vénus');
+    assert(c.aspects.some(a => a.a === 'moon' && a.b === 'uranus' && a.type === 'opposition'), 'Lune opposée à Uranus');
+    // Sans lieu : ni ascendant ni maisons
+    const partial = natalChart({ y: 1982, m: 11, d: 3 }, { h: 19, min: 0 }, null);
+    assert(!partial.exact && partial.asc === null && partial.bodies.every(b => b.house === undefined), 'thème partiel');
+  });
+
+  test('Thème natal : textes des 7 langues (ascendants, mots-clés, aspects)', () => {
+    for (const lang of Object.keys(I18N)) {
+      const n = I18N[lang].natal;
+      assert(SIGN_ORDER.every(s => n.asc[s] && n.styles[s]), `${lang} : signe manquant`);
+      assert(BODIES.every(b => n.domains[b]) && n.houses.length === 12, `${lang} : astres ou maisons`);
+      assert(Object.keys(ASPECT_SYM).every(a => n.aspectNames[a] && n.aspectMeanings[a]), `${lang} : aspects`);
+      assertEq(new Set(SIGN_ORDER.map(s => n.asc[s])).size, 12, `${lang} : ascendants distincts`);
+      if (lang !== 'ru') SIGN_ORDER.forEach(s => assert(n.asc[s].includes(I18N[lang].signNames[s]), `${lang} : le texte de l'ascendant ${s} ne nomme pas le signe`));
+      if (lang !== 'fr') assert(n.asc.aries !== I18N.fr.natal.asc.aries && n.title !== I18N.fr.natal.title, `${lang} : textes non traduits`);
+    }
+  });
+
   /* ---------------- Rapport ---------------- */
   const failed = results.filter(r => !r.ok);
   window.__testResults = results;
@@ -1422,7 +1575,7 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 })();
 
 </script>
-<!-- Ordre de chargement important : données → traductions → calculs → planètes → carte du ciel → application -->
+<!-- Ordre de chargement important : données → traductions → calculs → planètes → carte du ciel → thème natal → application -->
 <script>
 /* ============================================================
    Zodiaque & Décans — données
@@ -1965,131 +2118,132 @@ const METEOR_SHOWERS = {
   ursids:         { peak:[12,22], start:[12,17], end:[12,26], zhr:10,  radiant:[217,76] }
 };
 
-/* Villes proposées pour la carte du ciel : [nom, pays (ISO 3166), latitude, longitude] */
+/* Villes (carte du ciel et lieu de naissance) : [nom, pays (ISO 3166), latitude, longitude, fuseau officiel IANA].
+   Le fuseau permet de convertir une heure de naissance locale en temps universel, changements d'heure compris. */
 const CITIES = [
-  ["Paris","FR",48.86,2.35],
-  ["Marseille","FR",43.3,5.37],
-  ["Lyon","FR",45.76,4.84],
-  ["Toulouse","FR",43.6,1.44],
-  ["Nice","FR",43.7,7.27],
-  ["Nantes","FR",47.22,-1.55],
-  ["Strasbourg","FR",48.57,7.75],
-  ["Montpellier","FR",43.61,3.88],
-  ["Bordeaux","FR",44.84,-0.58],
-  ["Lille","FR",50.63,3.06],
-  ["Rennes","FR",48.11,-1.68],
-  ["Reims","FR",49.26,4.03],
-  ["Brest","FR",48.39,-4.49],
-  ["Grenoble","FR",45.19,5.72],
-  ["Dijon","FR",47.32,5.04],
-  ["Clermont-Ferrand","FR",45.78,3.08],
-  ["Ajaccio","FR",41.93,8.74],
-  ["Fort-de-France","MQ",14.6,-61.07],
-  ["Pointe-à-Pitre","GP",16.24,-61.53],
-  ["Cayenne","GF",4.92,-52.33],
-  ["Saint-Denis","RE",-20.88,55.45],
-  ["Nouméa","NC",-22.27,166.44],
-  ["Papeete","PF",-17.53,-149.57],
-  ["Bruxelles","BE",50.85,4.35],
-  ["Luxembourg","LU",49.61,6.13],
-  ["Genève","CH",46.2,6.14],
-  ["Zurich","CH",47.37,8.54],
-  ["Monaco","MC",43.74,7.42],
-  ["Montréal","CA",45.5,-73.57],
-  ["Québec","CA",46.81,-71.21],
-  ["Toronto","CA",43.65,-79.38],
-  ["Vancouver","CA",49.28,-123.12],
-  ["London","GB",51.51,-0.13],
-  ["Edinburgh","GB",55.95,-3.19],
-  ["Dublin","IE",53.35,-6.26],
-  ["Madrid","ES",40.42,-3.7],
-  ["Barcelona","ES",41.39,2.17],
-  ["Sevilla","ES",37.39,-5.98],
-  ["Lisboa","PT",38.72,-9.14],
-  ["Roma","IT",41.9,12.5],
-  ["Milano","IT",45.46,9.19],
-  ["Napoli","IT",40.85,14.27],
-  ["Berlin","DE",52.52,13.4],
-  ["München","DE",48.14,11.58],
-  ["Hamburg","DE",53.55,9.99],
-  ["Amsterdam","NL",52.37,4.9],
-  ["Wien","AT",48.21,16.37],
-  ["Praha","CZ",50.08,14.44],
-  ["Warszawa","PL",52.23,21.01],
-  ["København","DK",55.68,12.57],
-  ["Stockholm","SE",59.33,18.07],
-  ["Oslo","NO",59.91,10.75],
-  ["Helsinki","FI",60.17,24.94],
-  ["Reykjavík","IS",64.15,-21.94],
-  ["Athína","GR",37.98,23.73],
-  ["Budapest","HU",47.5,19.04],
-  ["București","RO",44.43,26.1],
-  ["İstanbul","TR",41.01,28.98],
-  ["Kyiv","UA",50.45,30.52],
-  ["Moskva","RU",55.76,37.62],
-  ["Sankt-Peterburg","RU",59.93,30.34],
-  ["Novosibirsk","RU",55.03,82.92],
-  ["Vladivostok","RU",43.12,131.89],
-  ["Alger","DZ",36.75,3.06],
-  ["Tunis","TN",36.81,10.18],
-  ["Casablanca","MA",33.57,-7.59],
-  ["Rabat","MA",34.02,-6.84],
-  ["Le Caire","EG",30.04,31.24],
-  ["Dakar","SN",14.72,-17.47],
-  ["Abidjan","CI",5.36,-4.01],
-  ["Bamako","ML",12.64,-8.0],
-  ["Douala","CM",4.05,9.77],
-  ["Lagos","NG",6.52,3.38],
-  ["Kinshasa","CD",-4.44,15.27],
-  ["Nairobi","KE",-1.29,36.82],
-  ["Antananarivo","MG",-18.88,47.51],
-  ["Johannesburg","ZA",-26.2,28.05],
-  ["Cape Town","ZA",-33.92,18.42],
-  ["Dubai","AE",25.2,55.27],
-  ["Riyadh","SA",24.71,46.68],
-  ["Tehran","IR",35.69,51.39],
-  ["Tel Aviv","IL",32.09,34.78],
-  ["Beyrouth","LB",33.89,35.5],
-  ["Mumbai","IN",19.08,72.88],
-  ["Delhi","IN",28.61,77.21],
-  ["Bengaluru","IN",12.97,77.59],
-  ["Bangkok","TH",13.76,100.5],
-  ["Hà Nội","VN",21.03,105.85],
-  ["Hồ Chí Minh","VN",10.82,106.63],
-  ["Singapore","SG",1.35,103.82],
-  ["Kuala Lumpur","MY",3.14,101.69],
-  ["Jakarta","ID",-6.21,106.85],
-  ["Manila","PH",14.6,120.98],
-  ["Hong Kong","HK",22.32,114.17],
-  ["北京 Beijing","CN",39.9,116.4],
-  ["上海 Shanghai","CN",31.23,121.47],
-  ["广州 Guangzhou","CN",23.13,113.26],
-  ["成都 Chengdu","CN",30.57,104.07],
-  ["台北 Taipei","TW",25.03,121.57],
-  ["서울 Seoul","KR",37.57,126.98],
-  ["東京 Tokyo","JP",35.68,139.69],
-  ["大阪 Osaka","JP",34.69,135.5],
-  ["Sydney","AU",-33.87,151.21],
-  ["Melbourne","AU",-37.81,144.96],
-  ["Perth","AU",-31.95,115.86],
-  ["Auckland","NZ",-36.85,174.76],
-  ["New York","US",40.71,-74.01],
-  ["Washington","US",38.91,-77.04],
-  ["Chicago","US",41.88,-87.63],
-  ["Miami","US",25.76,-80.19],
-  ["Los Angeles","US",34.05,-118.24],
-  ["San Francisco","US",37.77,-122.42],
-  ["Honolulu","US",21.31,-157.86],
-  ["Anchorage","US",61.22,-149.9],
-  ["Ciudad de México","MX",19.43,-99.13],
-  ["La Habana","CU",23.11,-82.37],
-  ["Port-au-Prince","HT",18.54,-72.34],
-  ["Bogotá","CO",4.71,-74.07],
-  ["Lima","PE",-12.05,-77.04],
-  ["Santiago","CL",-33.45,-70.67],
-  ["Buenos Aires","AR",-34.6,-58.38],
-  ["São Paulo","BR",-23.55,-46.63],
-  ["Rio de Janeiro","BR",-22.91,-43.17]
+  ["Paris","FR",48.86,2.35,"Europe/Paris"],
+  ["Marseille","FR",43.3,5.37,"Europe/Paris"],
+  ["Lyon","FR",45.76,4.84,"Europe/Paris"],
+  ["Toulouse","FR",43.6,1.44,"Europe/Paris"],
+  ["Nice","FR",43.7,7.27,"Europe/Paris"],
+  ["Nantes","FR",47.22,-1.55,"Europe/Paris"],
+  ["Strasbourg","FR",48.57,7.75,"Europe/Paris"],
+  ["Montpellier","FR",43.61,3.88,"Europe/Paris"],
+  ["Bordeaux","FR",44.84,-0.58,"Europe/Paris"],
+  ["Lille","FR",50.63,3.06,"Europe/Paris"],
+  ["Rennes","FR",48.11,-1.68,"Europe/Paris"],
+  ["Reims","FR",49.26,4.03,"Europe/Paris"],
+  ["Brest","FR",48.39,-4.49,"Europe/Paris"],
+  ["Grenoble","FR",45.19,5.72,"Europe/Paris"],
+  ["Dijon","FR",47.32,5.04,"Europe/Paris"],
+  ["Clermont-Ferrand","FR",45.78,3.08,"Europe/Paris"],
+  ["Ajaccio","FR",41.93,8.74,"Europe/Paris"],
+  ["Fort-de-France","MQ",14.6,-61.07,"America/Martinique"],
+  ["Pointe-à-Pitre","GP",16.24,-61.53,"America/Guadeloupe"],
+  ["Cayenne","GF",4.92,-52.33,"America/Cayenne"],
+  ["Saint-Denis","RE",-20.88,55.45,"Indian/Reunion"],
+  ["Nouméa","NC",-22.27,166.44,"Pacific/Noumea"],
+  ["Papeete","PF",-17.53,-149.57,"Pacific/Tahiti"],
+  ["Bruxelles","BE",50.85,4.35,"Europe/Brussels"],
+  ["Luxembourg","LU",49.61,6.13,"Europe/Luxembourg"],
+  ["Genève","CH",46.2,6.14,"Europe/Zurich"],
+  ["Zurich","CH",47.37,8.54,"Europe/Zurich"],
+  ["Monaco","MC",43.74,7.42,"Europe/Monaco"],
+  ["Montréal","CA",45.5,-73.57,"America/Toronto"],
+  ["Québec","CA",46.81,-71.21,"America/Toronto"],
+  ["Toronto","CA",43.65,-79.38,"America/Toronto"],
+  ["Vancouver","CA",49.28,-123.12,"America/Vancouver"],
+  ["London","GB",51.51,-0.13,"Europe/London"],
+  ["Edinburgh","GB",55.95,-3.19,"Europe/London"],
+  ["Dublin","IE",53.35,-6.26,"Europe/Dublin"],
+  ["Madrid","ES",40.42,-3.7,"Europe/Madrid"],
+  ["Barcelona","ES",41.39,2.17,"Europe/Madrid"],
+  ["Sevilla","ES",37.39,-5.98,"Europe/Madrid"],
+  ["Lisboa","PT",38.72,-9.14,"Europe/Lisbon"],
+  ["Roma","IT",41.9,12.5,"Europe/Rome"],
+  ["Milano","IT",45.46,9.19,"Europe/Rome"],
+  ["Napoli","IT",40.85,14.27,"Europe/Rome"],
+  ["Berlin","DE",52.52,13.4,"Europe/Berlin"],
+  ["München","DE",48.14,11.58,"Europe/Berlin"],
+  ["Hamburg","DE",53.55,9.99,"Europe/Berlin"],
+  ["Amsterdam","NL",52.37,4.9,"Europe/Amsterdam"],
+  ["Wien","AT",48.21,16.37,"Europe/Vienna"],
+  ["Praha","CZ",50.08,14.44,"Europe/Prague"],
+  ["Warszawa","PL",52.23,21.01,"Europe/Warsaw"],
+  ["København","DK",55.68,12.57,"Europe/Copenhagen"],
+  ["Stockholm","SE",59.33,18.07,"Europe/Stockholm"],
+  ["Oslo","NO",59.91,10.75,"Europe/Oslo"],
+  ["Helsinki","FI",60.17,24.94,"Europe/Helsinki"],
+  ["Reykjavík","IS",64.15,-21.94,"Atlantic/Reykjavik"],
+  ["Athína","GR",37.98,23.73,"Europe/Athens"],
+  ["Budapest","HU",47.5,19.04,"Europe/Budapest"],
+  ["București","RO",44.43,26.1,"Europe/Bucharest"],
+  ["İstanbul","TR",41.01,28.98,"Europe/Istanbul"],
+  ["Kyiv","UA",50.45,30.52,"Europe/Kiev"],
+  ["Moskva","RU",55.76,37.62,"Europe/Moscow"],
+  ["Sankt-Peterburg","RU",59.93,30.34,"Europe/Moscow"],
+  ["Novosibirsk","RU",55.03,82.92,"Asia/Novosibirsk"],
+  ["Vladivostok","RU",43.12,131.89,"Asia/Vladivostok"],
+  ["Alger","DZ",36.75,3.06,"Africa/Algiers"],
+  ["Tunis","TN",36.81,10.18,"Africa/Tunis"],
+  ["Casablanca","MA",33.57,-7.59,"Africa/Casablanca"],
+  ["Rabat","MA",34.02,-6.84,"Africa/Casablanca"],
+  ["Le Caire","EG",30.04,31.24,"Africa/Cairo"],
+  ["Dakar","SN",14.72,-17.47,"Africa/Dakar"],
+  ["Abidjan","CI",5.36,-4.01,"Africa/Abidjan"],
+  ["Bamako","ML",12.64,-8.0,"Africa/Bamako"],
+  ["Douala","CM",4.05,9.77,"Africa/Douala"],
+  ["Lagos","NG",6.52,3.38,"Africa/Lagos"],
+  ["Kinshasa","CD",-4.44,15.27,"Africa/Kinshasa"],
+  ["Nairobi","KE",-1.29,36.82,"Africa/Nairobi"],
+  ["Antananarivo","MG",-18.88,47.51,"Indian/Antananarivo"],
+  ["Johannesburg","ZA",-26.2,28.05,"Africa/Johannesburg"],
+  ["Cape Town","ZA",-33.92,18.42,"Africa/Johannesburg"],
+  ["Dubai","AE",25.2,55.27,"Asia/Dubai"],
+  ["Riyadh","SA",24.71,46.68,"Asia/Riyadh"],
+  ["Tehran","IR",35.69,51.39,"Asia/Tehran"],
+  ["Tel Aviv","IL",32.09,34.78,"Asia/Jerusalem"],
+  ["Beyrouth","LB",33.89,35.5,"Asia/Beirut"],
+  ["Mumbai","IN",19.08,72.88,"Asia/Kolkata"],
+  ["Delhi","IN",28.61,77.21,"Asia/Kolkata"],
+  ["Bengaluru","IN",12.97,77.59,"Asia/Kolkata"],
+  ["Bangkok","TH",13.76,100.5,"Asia/Bangkok"],
+  ["Hà Nội","VN",21.03,105.85,"Asia/Ho_Chi_Minh"],
+  ["Hồ Chí Minh","VN",10.82,106.63,"Asia/Ho_Chi_Minh"],
+  ["Singapore","SG",1.35,103.82,"Asia/Singapore"],
+  ["Kuala Lumpur","MY",3.14,101.69,"Asia/Kuala_Lumpur"],
+  ["Jakarta","ID",-6.21,106.85,"Asia/Jakarta"],
+  ["Manila","PH",14.6,120.98,"Asia/Manila"],
+  ["Hong Kong","HK",22.32,114.17,"Asia/Hong_Kong"],
+  ["北京 Beijing","CN",39.9,116.4,"Asia/Shanghai"],
+  ["上海 Shanghai","CN",31.23,121.47,"Asia/Shanghai"],
+  ["广州 Guangzhou","CN",23.13,113.26,"Asia/Shanghai"],
+  ["成都 Chengdu","CN",30.57,104.07,"Asia/Shanghai"],
+  ["台北 Taipei","TW",25.03,121.57,"Asia/Taipei"],
+  ["서울 Seoul","KR",37.57,126.98,"Asia/Seoul"],
+  ["東京 Tokyo","JP",35.68,139.69,"Asia/Tokyo"],
+  ["大阪 Osaka","JP",34.69,135.5,"Asia/Tokyo"],
+  ["Sydney","AU",-33.87,151.21,"Australia/Sydney"],
+  ["Melbourne","AU",-37.81,144.96,"Australia/Melbourne"],
+  ["Perth","AU",-31.95,115.86,"Australia/Perth"],
+  ["Auckland","NZ",-36.85,174.76,"Pacific/Auckland"],
+  ["New York","US",40.71,-74.01,"America/New_York"],
+  ["Washington","US",38.91,-77.04,"America/New_York"],
+  ["Chicago","US",41.88,-87.63,"America/Chicago"],
+  ["Miami","US",25.76,-80.19,"America/New_York"],
+  ["Los Angeles","US",34.05,-118.24,"America/Los_Angeles"],
+  ["San Francisco","US",37.77,-122.42,"America/Los_Angeles"],
+  ["Honolulu","US",21.31,-157.86,"Pacific/Honolulu"],
+  ["Anchorage","US",61.22,-149.9,"America/Anchorage"],
+  ["Ciudad de México","MX",19.43,-99.13,"America/Mexico_City"],
+  ["La Habana","CU",23.11,-82.37,"America/Havana"],
+  ["Port-au-Prince","HT",18.54,-72.34,"America/Port-au-Prince"],
+  ["Bogotá","CO",4.71,-74.07,"America/Bogota"],
+  ["Lima","PE",-12.05,-77.04,"America/Lima"],
+  ["Santiago","CL",-33.45,-70.67,"America/Santiago"],
+  ["Buenos Aires","AR",-34.6,-58.38,"America/Argentina/Buenos_Aires"],
+  ["São Paulo","BR",-23.55,-46.63,"America/Sao_Paulo"],
+  ["Rio de Janeiro","BR",-22.91,-43.17,"America/Sao_Paulo"]
 ];
 /* Ville par défaut selon la langue, tant qu'aucun lieu n'a été choisi */
 const DEFAULT_CITY = { fr:"Paris", en:"London", es:"Madrid", zh:"北京 Beijing", ru:"Moskva", de:"Berlin", it:"Roma" };
@@ -2696,6 +2850,85 @@ I18N.fr = {
     button: "Version hors ligne",
     hint: "Télécharger l'outil complet en un seul fichier HTML, utilisable sans internet et facile à partager.",
     opened: "La version autonome s'ouvre dans un nouvel onglet : cliquez-y sur « Version hors ligne » pour l'enregistrer."
+  },
+  labelBirthPlace: "Lieu de naissance",
+  placeNone: "— non précisé —",
+  natal: {
+    title: "Thème natal",
+    tabSigns: "Signe & zodiaque chinois",
+    tabNatal: "Thème natal",
+    tabsLabel: "Vue du résultat",
+    ascendant: "Ascendant",
+    midheaven: "Milieu du Ciel",
+    positions: "Positions à la naissance",
+    house: "Maison",
+    reading: "Lecture du thème",
+    aspects: "Aspects",
+    noAspects: "Aucun aspect majeur.",
+    needBoth: "Ajoutez l'heure et le lieu de naissance pour obtenir l'ascendant, le Milieu du Ciel et les maisons.",
+    needTime: "Ajoutez l'heure de naissance pour obtenir l'ascendant, le Milieu du Ciel et les maisons.",
+    needPlace: "Ajoutez le lieu de naissance pour obtenir l'ascendant, le Milieu du Ciel et les maisons.",
+    noonMoon: "Sans l'heure de naissance, les positions sont calculées à midi : celle de la Lune peut être décalée de quelques degrés.",
+    placidus: "Maisons Placidus.",
+    equal: "Maisons égales : au-delà du cercle polaire, la méthode Placidus n'est pas applicable.",
+    tzNote: "Heure locale du lieu de naissance, changements d'heure compris.",
+    mcText: "Le Milieu du Ciel évoque la vocation et l'image publique.",
+    legend: "La planète dit quoi, le signe dit comment, la maison dit où.",
+    domains: {
+      sun: "l'identité, la volonté",
+      moon: "les émotions, les besoins intimes",
+      mercury: "la pensée, la communication",
+      venus: "l'amour, les goûts, l'harmonie",
+      mars: "l'énergie, l'action, le désir",
+      jupiter: "la chance, l'expansion, la confiance",
+      saturn: "les règles, la maturité, les épreuves",
+      uranus: "l'originalité, le changement (marque de génération)",
+      neptune: "le rêve, l'intuition (marque de génération)",
+      pluto: "la transformation, le pouvoir (marque de génération)"
+    },
+    styles: {
+      aries: "avec élan, franchise et impatience",
+      taurus: "avec constance, sensualité et prudence",
+      gemini: "avec curiosité, légèreté et vivacité",
+      cancer: "avec sensibilité, protection et attachement",
+      leo: "avec éclat, générosité et fierté",
+      virgo: "avec précision, méthode et réserve",
+      libra: "avec charme, diplomatie et sens de l'équilibre",
+      scorpio: "avec intensité, passion et profondeur",
+      sagittarius: "avec enthousiasme, ouverture et goût de la liberté",
+      capricorn: "avec ambition, discipline et patience",
+      aquarius: "avec originalité, indépendance et esprit collectif",
+      pisces: "avec sensibilité, imagination et compassion"
+    },
+    houses: ["la personnalité, l'apparence", "l'argent, les possessions", "la communication, l'entourage proche", "le foyer, la famille", "l'amour, les plaisirs, la créativité", "le travail quotidien, la santé", "le couple, les associés", "les transformations, l'intimité", "les voyages, les études, la philosophie", "la carrière, la réputation", "les amis, les projets", "la vie intérieure"],
+    asc: {
+      aries: "Ascendant Bélier : une présence directe et énergique. On vous perçoit comme quelqu'un d'entreprenant, qui fonce et n'aime pas attendre.",
+      taurus: "Ascendant Taureau : une présence calme et rassurante. On vous perçoit comme quelqu'un de stable, patient et attaché au confort.",
+      gemini: "Ascendant Gémeaux : une présence vive et communicative. On vous perçoit comme quelqu'un de curieux, drôle et toujours en mouvement.",
+      cancer: "Ascendant Cancer : une présence douce et protectrice. On vous perçoit comme quelqu'un de sensible, attentionné et proche des siens.",
+      leo: "Ascendant Lion : une présence lumineuse et chaleureuse. On vous perçoit comme quelqu'un de généreux, sûr de soi et qui aime briller.",
+      virgo: "Ascendant Vierge : une présence discrète et soignée. On vous perçoit comme quelqu'un de précis, serviable et attentif aux détails.",
+      libra: "Ascendant Balance : une présence aimable et élégante. On vous perçoit comme quelqu'un de diplomate, sociable et en quête d'harmonie.",
+      scorpio: "Ascendant Scorpion : une présence intense et magnétique. On vous perçoit comme quelqu'un de mystérieux, perspicace et déterminé.",
+      sagittarius: "Ascendant Sagittaire : une présence enthousiaste et ouverte. On vous perçoit comme quelqu'un d'optimiste, franc et avide de découvertes.",
+      capricorn: "Ascendant Capricorne : une présence sérieuse et posée. On vous perçoit comme quelqu'un de fiable, ambitieux et maître de soi.",
+      aquarius: "Ascendant Verseau : une présence originale et indépendante. On vous perçoit comme quelqu'un d'inventif, libre et un peu à part.",
+      pisces: "Ascendant Poissons : une présence douce et rêveuse. On vous perçoit comme quelqu'un d'intuitif, empathique et insaisissable."
+    },
+    aspectNames: {
+      conjunction: "conjonction",
+      sextile: "sextile",
+      square: "carré",
+      trine: "trigone",
+      opposition: "opposition"
+    },
+    aspectMeanings: {
+      conjunction: "fusion : les deux énergies agissent ensemble",
+      sextile: "opportunité : une collaboration facile à saisir",
+      square: "tension : un défi qui pousse à agir",
+      trine: "harmonie : un talent naturel",
+      opposition: "polarité : un équilibre à trouver entre deux forces"
+    }
   }
 };
 
@@ -3278,6 +3511,85 @@ I18N.en = deepMerge(I18N.fr, {
     button: "Offline version",
     hint: "Download the complete tool as a single HTML file, usable without internet and easy to share.",
     opened: "The standalone version opens in a new tab: click “Offline version” there to save it."
+  },
+  labelBirthPlace: "Place of birth",
+  placeNone: "— not specified —",
+  natal: {
+    title: "Birth chart",
+    tabSigns: "Sign & Chinese zodiac",
+    tabNatal: "Birth chart",
+    tabsLabel: "Result view",
+    ascendant: "Ascendant",
+    midheaven: "Midheaven",
+    positions: "Positions at birth",
+    house: "House",
+    reading: "Chart reading",
+    aspects: "Aspects",
+    noAspects: "No major aspect.",
+    needBoth: "Add the time and place of birth to get the ascendant, the Midheaven and the houses.",
+    needTime: "Add the time of birth to get the ascendant, the Midheaven and the houses.",
+    needPlace: "Add the place of birth to get the ascendant, the Midheaven and the houses.",
+    noonMoon: "Without the time of birth, positions are calculated for noon: the Moon may be off by a few degrees.",
+    placidus: "Placidus houses.",
+    equal: "Equal houses: beyond the polar circle, the Placidus method cannot be applied.",
+    tzNote: "Local time at the place of birth, clock changes included.",
+    mcText: "The Midheaven relates to vocation and public image.",
+    legend: "The planet says what, the sign says how, the house says where.",
+    domains: {
+      sun: "identity, will",
+      moon: "emotions, inner needs",
+      mercury: "thinking, communication",
+      venus: "love, tastes, harmony",
+      mars: "energy, action, desire",
+      jupiter: "luck, growth, confidence",
+      saturn: "rules, maturity, trials",
+      uranus: "originality, change (a generational mark)",
+      neptune: "dreams, intuition (a generational mark)",
+      pluto: "transformation, power (a generational mark)"
+    },
+    styles: {
+      aries: "with drive, frankness and impatience",
+      taurus: "with steadiness, sensuality and caution",
+      gemini: "with curiosity, lightness and liveliness",
+      cancer: "with sensitivity, care and attachment",
+      leo: "with brilliance, generosity and pride",
+      virgo: "with precision, method and reserve",
+      libra: "with charm, diplomacy and a sense of balance",
+      scorpio: "with intensity, passion and depth",
+      sagittarius: "with enthusiasm, openness and a love of freedom",
+      capricorn: "with ambition, discipline and patience",
+      aquarius: "with originality, independence and a collective spirit",
+      pisces: "with sensitivity, imagination and compassion"
+    },
+    houses: ["personality, appearance", "money, possessions", "communication, close circle", "home, family", "love, pleasures, creativity", "daily work, health", "partnership, associates", "transformation, intimacy", "travel, studies, philosophy", "career, reputation", "friends, projects", "inner life"],
+    asc: {
+      aries: "Aries ascendant: a direct, energetic presence. People see you as enterprising, someone who goes for it and hates waiting.",
+      taurus: "Taurus ascendant: a calm, reassuring presence. People see you as steady, patient and fond of comfort.",
+      gemini: "Gemini ascendant: a lively, talkative presence. People see you as curious, funny and always on the move.",
+      cancer: "Cancer ascendant: a gentle, protective presence. People see you as sensitive, caring and close to your loved ones.",
+      leo: "Leo ascendant: a bright, warm presence. People see you as generous, self-assured and fond of the spotlight.",
+      virgo: "Virgo ascendant: a discreet, polished presence. People see you as precise, helpful and attentive to detail.",
+      libra: "Libra ascendant: a pleasant, elegant presence. People see you as diplomatic, sociable and in search of harmony.",
+      scorpio: "Scorpio ascendant: an intense, magnetic presence. People see you as mysterious, perceptive and determined.",
+      sagittarius: "Sagittarius ascendant: an enthusiastic, open presence. People see you as optimistic, frank and eager for discovery.",
+      capricorn: "Capricorn ascendant: a serious, composed presence. People see you as reliable, ambitious and self-controlled.",
+      aquarius: "Aquarius ascendant: an original, independent presence. People see you as inventive, free and a little apart.",
+      pisces: "Pisces ascendant: a gentle, dreamy presence. People see you as intuitive, empathetic and hard to pin down."
+    },
+    aspectNames: {
+      conjunction: "conjunction",
+      sextile: "sextile",
+      square: "square",
+      trine: "trine",
+      opposition: "opposition"
+    },
+    aspectMeanings: {
+      conjunction: "fusion: both energies act together",
+      sextile: "opportunity: an easy collaboration to seize",
+      square: "tension: a challenge that drives action",
+      trine: "harmony: a natural talent",
+      opposition: "polarity: a balance to find between two forces"
+    }
   }
 });
 
@@ -3863,6 +4175,85 @@ I18N.es = deepMerge(I18N.fr, {
     button: "Versión sin conexión",
     hint: "Descarga la herramienta completa en un único archivo HTML, utilizable sin internet y fácil de compartir.",
     opened: "La versión autónoma se abre en una pestaña nueva: haz clic allí en «Versión sin conexión» para guardarla."
+  },
+  labelBirthPlace: "Lugar de nacimiento",
+  placeNone: "— sin especificar —",
+  natal: {
+    title: "Carta natal",
+    tabSigns: "Signo y zodiaco chino",
+    tabNatal: "Carta natal",
+    tabsLabel: "Vista del resultado",
+    ascendant: "Ascendente",
+    midheaven: "Medio Cielo",
+    positions: "Posiciones al nacer",
+    house: "Casa",
+    reading: "Lectura de la carta",
+    aspects: "Aspectos",
+    noAspects: "Ningún aspecto mayor.",
+    needBoth: "Añade la hora y el lugar de nacimiento para obtener el ascendente, el Medio Cielo y las casas.",
+    needTime: "Añade la hora de nacimiento para obtener el ascendente, el Medio Cielo y las casas.",
+    needPlace: "Añade el lugar de nacimiento para obtener el ascendente, el Medio Cielo y las casas.",
+    noonMoon: "Sin la hora de nacimiento, las posiciones se calculan a mediodía: la de la Luna puede variar unos grados.",
+    placidus: "Casas Placidus.",
+    equal: "Casas iguales: más allá del círculo polar, el método Placidus no es aplicable.",
+    tzNote: "Hora local del lugar de nacimiento, cambios de hora incluidos.",
+    mcText: "El Medio Cielo evoca la vocación y la imagen pública.",
+    legend: "El planeta dice qué, el signo dice cómo, la casa dice dónde.",
+    domains: {
+      sun: "la identidad, la voluntad",
+      moon: "las emociones, las necesidades íntimas",
+      mercury: "el pensamiento, la comunicación",
+      venus: "el amor, los gustos, la armonía",
+      mars: "la energía, la acción, el deseo",
+      jupiter: "la suerte, la expansión, la confianza",
+      saturn: "las normas, la madurez, las pruebas",
+      uranus: "la originalidad, el cambio (marca generacional)",
+      neptune: "el sueño, la intuición (marca generacional)",
+      pluto: "la transformación, el poder (marca generacional)"
+    },
+    styles: {
+      aries: "con ímpetu, franqueza e impaciencia",
+      taurus: "con constancia, sensualidad y prudencia",
+      gemini: "con curiosidad, ligereza y viveza",
+      cancer: "con sensibilidad, protección y apego",
+      leo: "con brillo, generosidad y orgullo",
+      virgo: "con precisión, método y reserva",
+      libra: "con encanto, diplomacia y sentido del equilibrio",
+      scorpio: "con intensidad, pasión y profundidad",
+      sagittarius: "con entusiasmo, apertura y gusto por la libertad",
+      capricorn: "con ambición, disciplina y paciencia",
+      aquarius: "con originalidad, independencia y espíritu colectivo",
+      pisces: "con sensibilidad, imaginación y compasión"
+    },
+    houses: ["la personalidad, la apariencia", "el dinero, las posesiones", "la comunicación, el entorno cercano", "el hogar, la familia", "el amor, los placeres, la creatividad", "el trabajo diario, la salud", "la pareja, los socios", "las transformaciones, la intimidad", "los viajes, los estudios, la filosofía", "la carrera, la reputación", "los amigos, los proyectos", "la vida interior"],
+    asc: {
+      aries: "Ascendente Aries: una presencia directa y enérgica. Te perciben como alguien emprendedor, que va a por todas y no soporta esperar.",
+      taurus: "Ascendente Tauro: una presencia tranquila y tranquilizadora. Te perciben como alguien estable, paciente y amante de la comodidad.",
+      gemini: "Ascendente Géminis: una presencia viva y comunicativa. Te perciben como alguien curioso, divertido y siempre en movimiento.",
+      cancer: "Ascendente Cáncer: una presencia dulce y protectora. Te perciben como alguien sensible, atento y cercano a los suyos.",
+      leo: "Ascendente Leo: una presencia luminosa y cálida. Te perciben como alguien generoso, seguro de sí y al que le gusta brillar.",
+      virgo: "Ascendente Virgo: una presencia discreta y cuidada. Te perciben como alguien preciso, servicial y atento a los detalles.",
+      libra: "Ascendente Libra: una presencia amable y elegante. Te perciben como alguien diplomático, sociable y en busca de armonía.",
+      scorpio: "Ascendente Escorpio: una presencia intensa y magnética. Te perciben como alguien misterioso, perspicaz y decidido.",
+      sagittarius: "Ascendente Sagitario: una presencia entusiasta y abierta. Te perciben como alguien optimista, franco y ávido de descubrimientos.",
+      capricorn: "Ascendente Capricornio: una presencia seria y serena. Te perciben como alguien fiable, ambicioso y dueño de sí.",
+      aquarius: "Ascendente Acuario: una presencia original e independiente. Te perciben como alguien inventivo, libre y un poco aparte.",
+      pisces: "Ascendente Piscis: una presencia dulce y soñadora. Te perciben como alguien intuitivo, empático e inaprensible."
+    },
+    aspectNames: {
+      conjunction: "conjunción",
+      sextile: "sextil",
+      square: "cuadratura",
+      trine: "trígono",
+      opposition: "oposición"
+    },
+    aspectMeanings: {
+      conjunction: "fusión: las dos energías actúan juntas",
+      sextile: "oportunidad: una colaboración fácil de aprovechar",
+      square: "tensión: un desafío que impulsa a actuar",
+      trine: "armonía: un talento natural",
+      opposition: "polaridad: un equilibrio por encontrar entre dos fuerzas"
+    }
   }
 });
 
@@ -4421,7 +4812,80 @@ I18N.zh = deepMerge(I18N.fr, {
   theme: { light: "浅色模式" },
   wheel: { title: "黄道十二宫轮", today: "今天", birth: "出生时" },
   history: { title: "最近查询", clear: "清除记录" },
-  offline: { button: "离线版", hint: "下载完整工具（单个 HTML 文件），无需联网即可使用，也便于分享。", opened: "独立版将在新标签页中打开：请在该页点击“离线版”保存。" }
+  offline: { button: "离线版", hint: "下载完整工具（单个 HTML 文件），无需联网即可使用，也便于分享。", opened: "独立版将在新标签页中打开：请在该页点击“离线版”保存。" },
+  labelBirthPlace: "出生地点",
+  placeNone: "— 未指定 —",
+  natal: {
+    title: "本命盘",
+    tabSigns: "星座与生肖",
+    tabNatal: "本命盘",
+    tabsLabel: "结果视图",
+    ascendant: "上升点",
+    midheaven: "天顶",
+    positions: "出生时的位置",
+    house: "宫",
+    reading: "星盘解读",
+    aspects: "相位",
+    noAspects: "没有主要相位。",
+    needBoth: "填写出生时间和地点，即可得到上升点、天顶和宫位。",
+    needTime: "填写出生时间，即可得到上升点、天顶和宫位。",
+    needPlace: "填写出生地点，即可得到上升点、天顶和宫位。",
+    noonMoon: "没有出生时间时，位置按正午计算：月亮的位置可能相差几度。",
+    placidus: "普拉西度宫位制。",
+    equal: "等宫制：在极圈以外无法使用普拉西度宫位制。",
+    tzNote: "出生地的当地时间，已计入夏令时等时制变化。",
+    mcText: "天顶代表志向与公众形象。",
+    legend: "行星说明“什么”，星座说明“如何”，宫位说明“在哪里”。",
+    domains: {
+      sun: "自我、意志",
+      moon: "情感、内在需求",
+      mercury: "思维、沟通",
+      venus: "爱情、品味、和谐",
+      mars: "能量、行动、欲望",
+      jupiter: "幸运、扩展、自信",
+      saturn: "规则、成熟、考验",
+      uranus: "独创、变革（世代印记）",
+      neptune: "梦想、直觉（世代印记）",
+      pluto: "转化、力量（世代印记）"
+    },
+    styles: {
+      aries: "带着冲劲、坦率与急躁",
+      taurus: "带着坚定、感性与谨慎",
+      gemini: "带着好奇、轻快与机敏",
+      cancer: "带着敏感、呵护与依恋",
+      leo: "带着光彩、慷慨与自豪",
+      virgo: "带着精确、条理与含蓄",
+      libra: "带着魅力、圆融与平衡感",
+      scorpio: "带着强烈、激情与深度",
+      sagittarius: "带着热情、开放与对自由的热爱",
+      capricorn: "带着雄心、自律与耐心",
+      aquarius: "带着独创、独立与集体精神",
+      pisces: "带着敏感、想象与慈悲"
+    },
+    houses: ["个性、外表", "金钱、财物", "沟通、亲近的人", "家庭、居所", "爱情、享乐、创造", "日常工作、健康", "伴侣、合作者", "转化、亲密关系", "旅行、学业、哲学", "事业、声誉", "朋友、计划", "内心世界"],
+    asc: {
+      aries: "上升白羊座：直接而充满活力的气场。别人眼中的你积极进取、行动迅速，不喜欢等待。",
+      taurus: "上升金牛座：沉稳而令人安心的气场。别人眼中的你稳定、耐心，重视舒适。",
+      gemini: "上升双子座：活泼而健谈的气场。别人眼中的你好奇、风趣，总在忙碌之中。",
+      cancer: "上升巨蟹座：温柔而有保护欲的气场。别人眼中的你敏感、体贴，重视亲人。",
+      leo: "上升狮子座：明亮而温暖的气场。别人眼中的你慷慨、自信，喜欢闪耀。",
+      virgo: "上升处女座：低调而细致的气场。别人眼中的你精确、乐于助人，注重细节。",
+      libra: "上升天秤座：亲切而优雅的气场。别人眼中的你圆融、善交际，追求和谐。",
+      scorpio: "上升天蝎座：强烈而有吸引力的气场。别人眼中的你神秘、敏锐而坚定。",
+      sagittarius: "上升射手座：热情而开放的气场。别人眼中的你乐观、坦率，渴望探索。",
+      capricorn: "上升摩羯座：严肃而沉稳的气场。别人眼中的你可靠、有雄心，善于自制。",
+      aquarius: "上升水瓶座：独特而独立的气场。别人眼中的你富有创意、自由，略显与众不同。",
+      pisces: "上升双鱼座：温柔而梦幻的气场。别人眼中的你直觉敏锐、富有同理心，难以捉摸。"
+    },
+    aspectNames: { conjunction: "合相", sextile: "六分相", square: "四分相", trine: "三分相", opposition: "对分相" },
+    aspectMeanings: {
+      conjunction: "融合：两种能量共同作用",
+      sextile: "机会：容易把握的合作",
+      square: "紧张：促使行动的挑战",
+      trine: "和谐：天生的才能",
+      opposition: "对立：需要在两股力量间找到平衡"
+    }
+  }
 });
 
 </script>
@@ -5022,6 +5486,85 @@ I18N.ru = deepMerge(I18N.fr, {
     button: "Офлайн-версия",
     hint: "Скачать весь инструмент одним HTML-файлом: работает без интернета, им легко поделиться.",
     opened: "Автономная версия откроется в новой вкладке: нажмите там «Офлайн-версия», чтобы сохранить её."
+  },
+  labelBirthPlace: "Место рождения",
+  placeNone: "— не указано —",
+  natal: {
+    title: "Натальная карта",
+    tabSigns: "Знак и китайский зодиак",
+    tabNatal: "Натальная карта",
+    tabsLabel: "Вид результата",
+    ascendant: "Асцендент",
+    midheaven: "Середина неба",
+    positions: "Положения при рождении",
+    house: "Дом",
+    reading: "Толкование карты",
+    aspects: "Аспекты",
+    noAspects: "Нет мажорных аспектов.",
+    needBoth: "Укажите время и место рождения, чтобы получить асцендент, Середину неба и дома.",
+    needTime: "Укажите время рождения, чтобы получить асцендент, Середину неба и дома.",
+    needPlace: "Укажите место рождения, чтобы получить асцендент, Середину неба и дома.",
+    noonMoon: "Без времени рождения положения рассчитаны на полдень: Луна может сместиться на несколько градусов.",
+    placidus: "Дома по системе Плацидуса.",
+    equal: "Равные дома: за полярным кругом система Плацидуса неприменима.",
+    tzNote: "Местное время в месте рождения с учётом перевода часов.",
+    mcText: "Середина неба связана с призванием и общественным образом.",
+    legend: "Планета говорит что, знак — как, дом — где.",
+    domains: {
+      sun: "личность, воля",
+      moon: "эмоции, внутренние потребности",
+      mercury: "мышление, общение",
+      venus: "любовь, вкусы, гармония",
+      mars: "энергия, действие, желание",
+      jupiter: "удача, рост, уверенность",
+      saturn: "правила, зрелость, испытания",
+      uranus: "оригинальность, перемены (знак поколения)",
+      neptune: "мечты, интуиция (знак поколения)",
+      pluto: "трансформация, власть (знак поколения)"
+    },
+    styles: {
+      aries: "с напором, прямотой и нетерпением",
+      taurus: "с постоянством, чувственностью и осторожностью",
+      gemini: "с любознательностью, лёгкостью и живостью",
+      cancer: "с чуткостью, заботой и привязанностью",
+      leo: "с блеском, щедростью и гордостью",
+      virgo: "с точностью, методичностью и сдержанностью",
+      libra: "с обаянием, дипломатичностью и чувством равновесия",
+      scorpio: "с интенсивностью, страстью и глубиной",
+      sagittarius: "с энтузиазмом, открытостью и любовью к свободе",
+      capricorn: "с честолюбием, дисциплиной и терпением",
+      aquarius: "с оригинальностью, независимостью и коллективным духом",
+      pisces: "с чуткостью, воображением и состраданием"
+    },
+    houses: ["личность, внешность", "деньги, имущество", "общение, ближнее окружение", "дом, семья", "любовь, удовольствия, творчество", "повседневная работа, здоровье", "брак, партнёры", "трансформации, близость", "путешествия, учёба, философия", "карьера, репутация", "друзья, планы", "внутренний мир"],
+    asc: {
+      aries: "Асцендент в Овне: прямое и энергичное присутствие. Вас воспринимают как предприимчивого человека, который действует сразу и не любит ждать.",
+      taurus: "Асцендент в Тельце: спокойное и надёжное присутствие. Вас воспринимают как устойчивого, терпеливого человека, ценящего комфорт.",
+      gemini: "Асцендент в Близнецах: живое и общительное присутствие. Вас воспринимают как любознательного, остроумного и всегда занятого человека.",
+      cancer: "Асцендент в Раке: мягкое и заботливое присутствие. Вас воспринимают как чуткого, внимательного и близкого к родным человека.",
+      leo: "Асцендент во Льве: яркое и тёплое присутствие. Вас воспринимают как щедрого, уверенного в себе человека, который любит блистать.",
+      virgo: "Асцендент в Деве: сдержанное и аккуратное присутствие. Вас воспринимают как точного, услужливого и внимательного к деталям человека.",
+      libra: "Асцендент в Весах: приятное и элегантное присутствие. Вас воспринимают как дипломатичного, общительного человека, ищущего гармонии.",
+      scorpio: "Асцендент в Скорпионе: сильное и притягательное присутствие. Вас воспринимают как загадочного, проницательного и решительного человека.",
+      sagittarius: "Асцендент в Стрельце: восторженное и открытое присутствие. Вас воспринимают как оптимистичного, прямого человека, жаждущего открытий.",
+      capricorn: "Асцендент в Козероге: серьёзное и сдержанное присутствие. Вас воспринимают как надёжного, честолюбивого и владеющего собой человека.",
+      aquarius: "Асцендент в Водолее: оригинальное и независимое присутствие. Вас воспринимают как изобретательного, свободного и немного обособленного человека.",
+      pisces: "Асцендент в Рыбах: мягкое и мечтательное присутствие. Вас воспринимают как интуитивного, отзывчивого и неуловимого человека."
+    },
+    aspectNames: {
+      conjunction: "соединение",
+      sextile: "секстиль",
+      square: "квадрат",
+      trine: "трин",
+      opposition: "оппозиция"
+    },
+    aspectMeanings: {
+      conjunction: "слияние: обе энергии действуют вместе",
+      sextile: "возможность: лёгкое сотрудничество",
+      square: "напряжение: вызов, побуждающий к действию",
+      trine: "гармония: природный талант",
+      opposition: "полярность: равновесие между двумя силами"
+    }
   }
 });
 
@@ -5607,6 +6150,85 @@ I18N.de = deepMerge(I18N.fr, {
     button: "Offline-Version",
     hint: "Das komplette Tool als einzelne HTML-Datei herunterladen – ohne Internet nutzbar und leicht weiterzugeben.",
     opened: "Die eigenständige Version öffnet sich in einem neuen Tab: Klicke dort auf „Offline-Version“, um sie zu speichern."
+  },
+  labelBirthPlace: "Geburtsort",
+  placeNone: "— nicht angegeben —",
+  natal: {
+    title: "Geburtshoroskop",
+    tabSigns: "Zeichen & chinesischer Tierkreis",
+    tabNatal: "Geburtshoroskop",
+    tabsLabel: "Ergebnisansicht",
+    ascendant: "Aszendent",
+    midheaven: "Medium Coeli",
+    positions: "Stellungen bei der Geburt",
+    house: "Haus",
+    reading: "Deutung des Horoskops",
+    aspects: "Aspekte",
+    noAspects: "Kein Hauptaspekt.",
+    needBoth: "Gib Geburtszeit und Geburtsort an, um Aszendent, Medium Coeli und Häuser zu erhalten.",
+    needTime: "Gib die Geburtszeit an, um Aszendent, Medium Coeli und Häuser zu erhalten.",
+    needPlace: "Gib den Geburtsort an, um Aszendent, Medium Coeli und Häuser zu erhalten.",
+    noonMoon: "Ohne Geburtszeit werden die Stellungen für 12 Uhr berechnet: Der Mond kann um einige Grad abweichen.",
+    placidus: "Häuser nach Placidus.",
+    equal: "Äqualhäuser: Jenseits des Polarkreises ist die Placidus-Methode nicht anwendbar.",
+    tzNote: "Ortszeit am Geburtsort, Zeitumstellungen eingeschlossen.",
+    mcText: "Das Medium Coeli steht für Berufung und öffentliches Bild.",
+    legend: "Der Planet sagt was, das Zeichen wie, das Haus wo.",
+    domains: {
+      sun: "Identität, Wille",
+      moon: "Gefühle, innere Bedürfnisse",
+      mercury: "Denken, Kommunikation",
+      venus: "Liebe, Geschmack, Harmonie",
+      mars: "Energie, Handeln, Begehren",
+      jupiter: "Glück, Wachstum, Vertrauen",
+      saturn: "Regeln, Reife, Prüfungen",
+      uranus: "Originalität, Wandel (Merkmal einer Generation)",
+      neptune: "Traum, Intuition (Merkmal einer Generation)",
+      pluto: "Wandlung, Macht (Merkmal einer Generation)"
+    },
+    styles: {
+      aries: "mit Schwung, Offenheit und Ungeduld",
+      taurus: "mit Beständigkeit, Sinnlichkeit und Vorsicht",
+      gemini: "mit Neugier, Leichtigkeit und Lebhaftigkeit",
+      cancer: "mit Feingefühl, Fürsorge und Bindung",
+      leo: "mit Glanz, Großzügigkeit und Stolz",
+      virgo: "mit Genauigkeit, Methode und Zurückhaltung",
+      libra: "mit Charme, Diplomatie und Sinn für Ausgleich",
+      scorpio: "mit Intensität, Leidenschaft und Tiefe",
+      sagittarius: "mit Begeisterung, Offenheit und Freiheitsliebe",
+      capricorn: "mit Ehrgeiz, Disziplin und Geduld",
+      aquarius: "mit Originalität, Unabhängigkeit und Gemeinschaftssinn",
+      pisces: "mit Feingefühl, Fantasie und Mitgefühl"
+    },
+    houses: ["Persönlichkeit, Erscheinung", "Geld, Besitz", "Kommunikation, nahes Umfeld", "Zuhause, Familie", "Liebe, Vergnügen, Kreativität", "Arbeitsalltag, Gesundheit", "Partnerschaft, Teilhaber", "Wandlungen, Intimität", "Reisen, Studium, Philosophie", "Karriere, Ansehen", "Freunde, Pläne", "Innenleben"],
+    asc: {
+      aries: "Aszendent Widder: eine direkte, energiegeladene Ausstrahlung. Man sieht dich als unternehmungslustig, als jemanden, der loslegt und nicht gern wartet.",
+      taurus: "Aszendent Stier: eine ruhige, beruhigende Ausstrahlung. Man sieht dich als beständig, geduldig und komfortliebend.",
+      gemini: "Aszendent Zwillinge: eine lebhafte, gesprächige Ausstrahlung. Man sieht dich als neugierig, witzig und immer in Bewegung.",
+      cancer: "Aszendent Krebs: eine sanfte, schützende Ausstrahlung. Man sieht dich als einfühlsam, aufmerksam und deinen Liebsten nah.",
+      leo: "Aszendent Löwe: eine strahlende, warme Ausstrahlung. Man sieht dich als großzügig, selbstsicher und gern im Mittelpunkt.",
+      virgo: "Aszendent Jungfrau: eine dezente, gepflegte Ausstrahlung. Man sieht dich als genau, hilfsbereit und detailverliebt.",
+      libra: "Aszendent Waage: eine liebenswürdige, elegante Ausstrahlung. Man sieht dich als diplomatisch, gesellig und harmoniesuchend.",
+      scorpio: "Aszendent Skorpion: eine intensive, magnetische Ausstrahlung. Man sieht dich als geheimnisvoll, scharfsinnig und entschlossen.",
+      sagittarius: "Aszendent Schütze: eine begeisterte, offene Ausstrahlung. Man sieht dich als optimistisch, offen und entdeckungsfreudig.",
+      capricorn: "Aszendent Steinbock: eine ernste, gefasste Ausstrahlung. Man sieht dich als zuverlässig, ehrgeizig und beherrscht.",
+      aquarius: "Aszendent Wassermann: eine originelle, unabhängige Ausstrahlung. Man sieht dich als erfinderisch, frei und ein wenig eigen.",
+      pisces: "Aszendent Fische: eine sanfte, verträumte Ausstrahlung. Man sieht dich als intuitiv, einfühlsam und schwer zu fassen."
+    },
+    aspectNames: {
+      conjunction: "Konjunktion",
+      sextile: "Sextil",
+      square: "Quadrat",
+      trine: "Trigon",
+      opposition: "Opposition"
+    },
+    aspectMeanings: {
+      conjunction: "Verschmelzung: beide Energien wirken zusammen",
+      sextile: "Gelegenheit: eine leicht zu nutzende Zusammenarbeit",
+      square: "Spannung: eine Herausforderung, die zum Handeln drängt",
+      trine: "Harmonie: ein natürliches Talent",
+      opposition: "Polarität: ein Gleichgewicht zwischen zwei Kräften finden"
+    }
   }
 });
 
@@ -6192,6 +6814,85 @@ I18N.it = deepMerge(I18N.fr, {
     button: "Versione offline",
     hint: "Scarica lo strumento completo in un unico file HTML, utilizzabile senza internet e facile da condividere.",
     opened: "La versione autonoma si apre in una nuova scheda: fai clic lì su «Versione offline» per salvarla."
+  },
+  labelBirthPlace: "Luogo di nascita",
+  placeNone: "— non specificato —",
+  natal: {
+    title: "Tema natale",
+    tabSigns: "Segno e zodiaco cinese",
+    tabNatal: "Tema natale",
+    tabsLabel: "Vista del risultato",
+    ascendant: "Ascendente",
+    midheaven: "Medio Cielo",
+    positions: "Posizioni alla nascita",
+    house: "Casa",
+    reading: "Lettura del tema",
+    aspects: "Aspetti",
+    noAspects: "Nessun aspetto maggiore.",
+    needBoth: "Aggiungi l'ora e il luogo di nascita per ottenere l'ascendente, il Medio Cielo e le case.",
+    needTime: "Aggiungi l'ora di nascita per ottenere l'ascendente, il Medio Cielo e le case.",
+    needPlace: "Aggiungi il luogo di nascita per ottenere l'ascendente, il Medio Cielo e le case.",
+    noonMoon: "Senza l'ora di nascita, le posizioni sono calcolate a mezzogiorno: quella della Luna può variare di qualche grado.",
+    placidus: "Case Placidus.",
+    equal: "Case uguali: oltre il circolo polare il metodo Placidus non è applicabile.",
+    tzNote: "Ora locale del luogo di nascita, cambi d'ora compresi.",
+    mcText: "Il Medio Cielo evoca la vocazione e l'immagine pubblica.",
+    legend: "Il pianeta dice cosa, il segno dice come, la casa dice dove.",
+    domains: {
+      sun: "l'identità, la volontà",
+      moon: "le emozioni, i bisogni intimi",
+      mercury: "il pensiero, la comunicazione",
+      venus: "l'amore, i gusti, l'armonia",
+      mars: "l'energia, l'azione, il desiderio",
+      jupiter: "la fortuna, l'espansione, la fiducia",
+      saturn: "le regole, la maturità, le prove",
+      uranus: "l'originalità, il cambiamento (segno generazionale)",
+      neptune: "il sogno, l'intuizione (segno generazionale)",
+      pluto: "la trasformazione, il potere (segno generazionale)"
+    },
+    styles: {
+      aries: "con slancio, franchezza e impazienza",
+      taurus: "con costanza, sensualità e prudenza",
+      gemini: "con curiosità, leggerezza e vivacità",
+      cancer: "con sensibilità, protezione e attaccamento",
+      leo: "con splendore, generosità e fierezza",
+      virgo: "con precisione, metodo e riservatezza",
+      libra: "con fascino, diplomazia e senso dell'equilibrio",
+      scorpio: "con intensità, passione e profondità",
+      sagittarius: "con entusiasmo, apertura e amore per la libertà",
+      capricorn: "con ambizione, disciplina e pazienza",
+      aquarius: "con originalità, indipendenza e spirito collettivo",
+      pisces: "con sensibilità, immaginazione e compassione"
+    },
+    houses: ["la personalità, l'aspetto", "il denaro, i beni", "la comunicazione, la cerchia vicina", "la casa, la famiglia", "l'amore, i piaceri, la creatività", "il lavoro quotidiano, la salute", "la coppia, i soci", "le trasformazioni, l'intimità", "i viaggi, gli studi, la filosofia", "la carriera, la reputazione", "gli amici, i progetti", "la vita interiore"],
+    asc: {
+      aries: "Ascendente Ariete: una presenza diretta ed energica. Ti percepiscono come una persona intraprendente, che si lancia e non ama aspettare.",
+      taurus: "Ascendente Toro: una presenza calma e rassicurante. Ti percepiscono come una persona stabile, paziente e amante del comfort.",
+      gemini: "Ascendente Gemelli: una presenza vivace e comunicativa. Ti percepiscono come una persona curiosa, spiritosa e sempre in movimento.",
+      cancer: "Ascendente Cancro: una presenza dolce e protettiva. Ti percepiscono come una persona sensibile, premurosa e vicina ai suoi cari.",
+      leo: "Ascendente Leone: una presenza luminosa e calorosa. Ti percepiscono come una persona generosa, sicura di sé e che ama brillare.",
+      virgo: "Ascendente Vergine: una presenza discreta e curata. Ti percepiscono come una persona precisa, disponibile e attenta ai dettagli.",
+      libra: "Ascendente Bilancia: una presenza amabile ed elegante. Ti percepiscono come una persona diplomatica, socievole e in cerca di armonia.",
+      scorpio: "Ascendente Scorpione: una presenza intensa e magnetica. Ti percepiscono come una persona misteriosa, perspicace e determinata.",
+      sagittarius: "Ascendente Sagittario: una presenza entusiasta e aperta. Ti percepiscono come una persona ottimista, franca e avida di scoperte.",
+      capricorn: "Ascendente Capricorno: una presenza seria e composta. Ti percepiscono come una persona affidabile, ambiziosa e padrona di sé.",
+      aquarius: "Ascendente Acquario: una presenza originale e indipendente. Ti percepiscono come una persona inventiva, libera e un po' a parte.",
+      pisces: "Ascendente Pesci: una presenza dolce e sognante. Ti percepiscono come una persona intuitiva, empatica e sfuggente."
+    },
+    aspectNames: {
+      conjunction: "congiunzione",
+      sextile: "sestile",
+      square: "quadratura",
+      trine: "trigono",
+      opposition: "opposizione"
+    },
+    aspectMeanings: {
+      conjunction: "fusione: le due energie agiscono insieme",
+      sextile: "opportunità: una collaborazione facile da cogliere",
+      square: "tensione: una sfida che spinge ad agire",
+      trine: "armonia: un talento naturale",
+      opposition: "polarità: un equilibrio da trovare tra due forze"
+    }
   }
 });
 
@@ -6232,8 +6933,11 @@ function parseTime(str){
   return (h < 24 && min < 60) ? { h, min } : null;
 }
 
-/* Instant local (fuseau du navigateur) → ms UTC. Sans heure : midi, soit ±0,5° de Soleil au pire. */
-function localInstant(date, h, min){
+/* Instant local → ms UTC. Avec tz (fuseau IANA du lieu de naissance, ex. « Europe/Paris ») : heure du lieu,
+   changements d'heure compris (zonedInstant, zodiac-natal.js) ; sans tz : fuseau de l'appareil.
+   Sans heure, les appelants prennent midi, soit ±0,5° de Soleil au pire. */
+function localInstant(date, h, min, tz){
+  if (tz) return zonedInstant(date, h, min, tz);
   const dt = new Date(2000, 0, 1, 12, 0, 0, 0);
   dt.setFullYear(date.y, date.m - 1, date.d);   // setFullYear : correct aussi pour les années < 100
   dt.setHours(h, min, 0, 0);
@@ -6242,12 +6946,12 @@ function localInstant(date, h, min){
 
 /* Ciel de naissance : longitude, signe, décan, et alerte si le Soleil change de signe ou de décan
    ce jour-là alors qu'aucune heure n'a été fournie. */
-function computeSky(date, time){
-  const lon = sunLongitude(time ? localInstant(date, time.h, time.min) : localInstant(date, 12, 0));
+function computeSky(date, time, tz){
+  const lon = sunLongitude(time ? localInstant(date, time.h, time.min, tz) : localInstant(date, 12, 0, tz));
   let cusp = null;
   if (!time) {
-    const a = sunLongitude(localInstant(date, 0, 0));
-    const b = sunLongitude(localInstant(date, 23, 59));
+    const a = sunLongitude(localInstant(date, 0, 0, tz));
+    const b = sunLongitude(localInstant(date, 23, 59, tz));
     if (signFromLongitude(a) !== signFromLongitude(b)) cusp = 'sign';
     else if (decanFromLongitude(a) !== decanFromLongitude(b)) cusp = 'decan';
   }
@@ -6532,10 +7236,10 @@ function wholeSignAspect(bodySign, personSign){
 }
 
 /* Lune natale : phase, et signe(s) possibles (deux si elle change de signe ce jour-là et que l'heure manque) */
-function natalMoon(date, time){
-  const at = time ? localInstant(date, time.h, time.min) : localInstant(date, 12, 0);
+function natalMoon(date, time, tz){
+  const at = time ? localInstant(date, time.h, time.min, tz) : localInstant(date, 12, 0, tz);
   const signs = time ? [signFromLongitude(moonLongitude(at))]
-    : [...new Set([0, 12, 23.99].map(h => signFromLongitude(moonLongitude(localInstant(date, Math.floor(h), Math.round((h % 1) * 60))))))];
+    : [...new Set([0, 12, 23.99].map(h => signFromLongitude(moonLongitude(localInstant(date, Math.floor(h), Math.round((h % 1) * 60), tz)))))];
   return { phase: moonPhase(at), signs };
 }
 
@@ -6590,11 +7294,11 @@ function lunarEvents(startMs, endMs){
    Personne = { date: {y, m, d}, time: {h, min} | null }. Trois axes, notés de 1 à 5 :
    signes solaires (matrice AFF), animaux chinois (relations traditionnelles), Lunes (matrice AFF sur les
    signes lunaires, seulement si les deux sont certains). L'entente globale est la moyenne des axes disponibles. */
-function personChart(date, time){
-  return { sign: computeSky(date, time).sign, cn: chineseYearInfo(date), moon: natalMoon(date, time) };
+function personChart(date, time, tz){
+  return { sign: computeSky(date, time, tz).sign, cn: chineseYearInfo(date), moon: natalMoon(date, time, tz) };
 }
 function compatibility(p1, p2){
-  const a = personChart(p1.date, p1.time), b = personChart(p2.date, p2.time);
+  const a = personChart(p1.date, p1.time, p1.tz), b = personChart(p2.date, p2.time, p2.tz);
   const west = { a: a.sign, b: b.sign, score: AFF[a.sign][b.sign] };
   const cn = a.cn && b.cn
     ? { a: a.cn.animal, b: b.cn.animal, rel: cnRelation(a.cn.animal, b.cn.animal), score: cnScore(a.cn.animal, b.cn.animal) }
@@ -6700,6 +7404,150 @@ function nextEclipses(ms, count){
 }
 /* Une éclipse de Lune est visible si la Lune est au-dessus de l'horizon au maximum */
 function lunarEclipseVisible(ms, lat, lon){ return bodyAltAz('moon', lat, lon, ms).alt > 0; }
+
+</script>
+<script>
+/* ============================================================
+   Zodiaque & Décans — thème natal
+   Heure locale du lieu de naissance → temps universel, ascendant, Milieu du Ciel, maisons (Placidus),
+   maison de chaque astre, aspects. Fonctions pures, sans DOM.
+   Dépend de zodiac-data.js, zodiac-sky-data.js (CITIES), zodiac-astro.js, zodiac-planets.js, zodiac-skymap.js.
+   ============================================================ */
+
+/* ---------- Fuseau horaire du lieu de naissance ----------
+   Le navigateur contient l'historique mondial des changements d'heure (base IANA) : à partir du fuseau
+   officiel d'une ville (« Europe/Paris »), on retrouve le décalage exact à n'importe quelle date
+   (heure d'été, changements de fuseau, heure locale d'avant 1911…). */
+const tzFormatters = {};
+function tzParts(ms, tz){
+  const f = tzFormatters[tz] || (tzFormatters[tz] = new Intl.DateTimeFormat('en-US', {
+    timeZone: tz, hourCycle: 'h23', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', era: 'short'
+  }));
+  const p = {};
+  for (const { type, value } of f.formatToParts(new Date(ms))) p[type] = value;
+  const year = p.era === 'BC' || p.era === 'B' ? 1 - +p.year : +p.year;
+  return { y: year, m: +p.month, d: +p.day, h: +p.hour, min: +p.minute, s: +p.second };
+}
+/* Décalage du fuseau (ms) à un instant donné : heure locale − temps universel */
+function tzOffset(ms, tz){
+  const p = tzParts(ms, tz);
+  const asUtc = new Date(0);
+  asUtc.setUTCFullYear(p.y, p.m - 1, p.d);
+  asUtc.setUTCHours(p.h, p.min, p.s, 0);
+  return asUtc.getTime() - Math.floor(ms / 1000) * 1000;
+}
+/* Heure locale d'un lieu → instant UTC (ms). Heure inexistante (passage à l'heure d'été) : décalée d'autant ;
+   heure ambiguë (retour à l'heure d'hiver) : première occurrence. */
+function zonedInstant(date, h, min, tz){
+  const wall = new Date(0);
+  wall.setUTCFullYear(date.y, date.m - 1, date.d);
+  wall.setUTCHours(h, min, 0, 0);
+  const w = wall.getTime();
+  // Décalages possibles autour de cette date ; on garde ceux qui redonnent bien l'heure locale demandée
+  const offsets = new Set([tzOffset(w - 86400e3, tz), tzOffset(w, tz), tzOffset(w + 86400e3, tz)]);
+  const valid = [...offsets].map(o => w - o).filter(t => tzOffset(t, tz) === w - t).sort((a, b) => a - b);
+  if (valid.length) return valid[0];                  // heure ambiguë : première occurrence
+  return w - tzOffset(w - 86400e3, tz);               // heure inexistante : décalage d'avant le changement
+}
+/* Ville de naissance (nom tel que dans CITIES) → { name, country, lat, lon, tz } ou null */
+function birthPlace(name){
+  const c = CITIES.find(x => x[0] === name);
+  return c ? { name: c[0], country: c[1], lat: c[2], lon: c[3], tz: c[4] } : null;
+}
+
+/* ---------- Angles et maisons ---------- */
+/* Temps sidéral local (degrés) = ascension droite du Milieu du Ciel */
+function ramcAt(ms, lon){ return norm360(gmst(ms) + lon); }
+/* Milieu du Ciel : point de l'écliptique au méridien */
+function midheaven(ramc, eps){
+  return norm360(Math.atan2(Math.sin(ramc * DEG), Math.cos(ramc * DEG) * Math.cos(eps * DEG)) / DEG);
+}
+/* Ascendant : point de l'écliptique qui se lève à l'horizon est */
+function ascendant(ramc, eps, lat){
+  const r = ramc * DEG, e = eps * DEG, p = lat * DEG;
+  return norm360(Math.atan2(Math.cos(r), -(Math.sin(r) * Math.cos(e) + Math.tan(p) * Math.sin(e))) / DEG);
+}
+/* Point de l'écliptique d'ascension droite donnée */
+function eclipticFromRA(ra, eps){ return norm360(Math.atan2(Math.sin(ra * DEG), Math.cos(ra * DEG) * Math.cos(eps * DEG)) / DEG); }
+
+/* Maisons Placidus : chaque pointe intermédiaire est le point de l'écliptique dont l'angle horaire vaut
+   1/3 ou 2/3 de son demi-arc (diurne au-dessus de l'horizon, nocturne en dessous). Résolu par itération.
+   Renvoie null si la méthode est impossible (cercle polaire : certains points ne se lèvent ni ne se couchent). */
+function placidusCusps(ramc, eps, lat){
+  const asc = ascendant(ramc, eps, lat), mc = midheaven(ramc, eps);
+  const tp = Math.tan(lat * DEG), se = Math.sin(eps * DEG);
+  const cusp = (fraction, below) => {
+    let lon = below ? norm360(mc + 180 - 90 * fraction) : norm360(mc + 90 * fraction);   // première estimation
+    for (let k = 0; k < 50; k++) {
+      const dec = Math.asin(se * Math.sin(lon * DEG));
+      const x = -tp * Math.tan(dec);
+      if (Math.abs(x) > 1) return null;
+      const dsa = Math.acos(x) / DEG;                 // demi-arc diurne
+      const ra = below ? ramc + 180 - fraction * (180 - dsa) : ramc + fraction * dsa;
+      const next = eclipticFromRA(norm360(ra), eps);
+      if (Math.abs(((next - lon + 540) % 360) - 180) < 1e-9) { lon = next; break; }
+      lon = next;
+    }
+    return lon;
+  };
+  // 11 et 12 au-dessus de l'horizon (du MC vers l'ascendant) ; 2 et 3 en dessous (de l'ascendant vers le fond du ciel)
+  const c11 = cusp(1 / 3, false), c12 = cusp(2 / 3, false), c2 = cusp(2 / 3, true), c3 = cusp(1 / 3, true);
+  if ([c11, c12, c2, c3].some(v => v === null)) return null;
+  // Maisons 5 à 9 : opposées à 11, 12, 1, 2, 3
+  return [asc, c2, c3, norm360(mc + 180), norm360(c11 + 180), norm360(c12 + 180), norm360(asc + 180), norm360(c2 + 180), norm360(c3 + 180), mc, c11, c12];
+}
+/* Maisons égales : 30° chacune à partir de l'ascendant (repli au-delà du cercle polaire) */
+function equalCusps(asc){ return Array.from({ length: 12 }, (_, i) => norm360(asc + 30 * i)); }
+/* Maison (1 à 12) d'une longitude, d'après les 12 pointes */
+function houseOf(lon, cusps){
+  for (let i = 0; i < 12; i++) {
+    const a = cusps[i], b = cusps[(i + 1) % 12];
+    const span = norm360(b - a), off = norm360(lon - a);
+    if (off < span) return i + 1;
+  }
+  return 12;
+}
+
+/* ---------- Aspects ---------- */
+const ASPECTS = [ // [nom, angle, orbe en degrés]
+  ['conjunction', 0, 8], ['sextile', 60, 5], ['square', 90, 7], ['trine', 120, 7], ['opposition', 180, 8]
+];
+function aspectsBetween(positions){
+  const out = [];
+  for (let i = 0; i < positions.length; i++) for (let j = i + 1; j < positions.length; j++) {
+    let d = Math.abs(positions[i].lon - positions[j].lon) % 360;
+    if (d > 180) d = 360 - d;
+    for (const [type, angle, orb] of ASPECTS) {
+      if (Math.abs(d - angle) <= orb) { out.push({ a: positions[i].body, b: positions[j].body, type, orb: Math.abs(d - angle) }); break; }
+    }
+  }
+  return out.sort((x, y) => x.orb - y.orb);
+}
+
+/* ---------- Thème natal complet ----------
+   date {y,m,d} ; time {h,min} ou null ; place (birthPlace) ou null.
+   Sans heure : positions à midi, ni ascendant ni maisons (la Lune peut alors être imprécise).
+   Sans lieu : heure interprétée dans le fuseau de l'appareil, ni ascendant ni maisons. */
+function natalChart(date, time, place){
+  const exact = !!(time && place);
+  const ms = place ? zonedInstant(date, time ? time.h : 12, time ? time.min : 0, place.tz)
+                   : localInstant(date, time ? time.h : 12, time ? time.min : 0);
+  const bodies = BODIES.map(body => {
+    const lon = bodyLongitude(body, ms);
+    return { body, lon, sign: signFromLongitude(lon), retro: isRetrograde(body, ms) };
+  });
+  const chart = { ms, exact, bodies, asc: null, mc: null, cusps: null, system: null, aspects: aspectsBetween(bodies) };
+  if (exact) {
+    const eps = obliquity(julianCenturies(ms)), ramc = ramcAt(ms, place.lon);
+    chart.asc = ascendant(ramc, eps, place.lat);
+    chart.mc = midheaven(ramc, eps);
+    const pl = Math.abs(place.lat) < 66 ? placidusCusps(ramc, eps, place.lat) : null;
+    chart.cusps = pl || equalCusps(chart.asc);
+    chart.system = pl ? 'placidus' : 'equal';
+    for (const b of bodies) b.house = houseOf(b.lon, chart.cusps);
+  }
+  return chart;
+}
 
 </script>
 <script>
@@ -6890,7 +7738,7 @@ function renderOwner(){
   const el = document.getElementById('profileOwner');
   if (!el) return;
   const name = currentName ? `<div class="owner-name">${escapeHtml(currentName)}</div>` : '';
-  el.innerHTML = name + `<div class="owner-birth">${formatBirth(currentDate, currentTime, currentLang)}</div>`;
+  el.innerHTML = name + `<div class="owner-birth">${formatBirth(currentDate, currentTime, currentLang)}${currentBirthPlace ? ' · ' + escapeHtml(currentBirthPlace) : ''}</div>`;
 }
 
 /* Briques de rendu partagées par les deux fiches */
@@ -6932,7 +7780,7 @@ function affinityCard(t, sys, own, keys, sym, name, score){
 function natalMoonItems(t){
   const date = parseISODate(currentDate);
   if (!date) return '';
-  const moon = natalMoon(date, parseTime(currentTime));
+  const moon = natalMoon(date, parseTime(currentTime), birthTz());
   const signs = moon.signs.map(s => `<span aria-hidden="true">${SIGN_META[s].sym}</span> ${t.signNames[s]}`).join(' / ');
   return infoItem(t.labels.natalMoon, `<span aria-hidden="true">${MOON_PHASE_EMOJI[moon.phase.index]}</span> ${t.horo.phases[moon.phase.index]}`)
        + infoItem(t.labels.moonSign, signs);
@@ -7040,12 +7888,17 @@ function renderResult(signKey, decanIdx){
       <button class="btn-secondary" id="btnExport">📷 ${t.btnExport}</button>
       <button class="btn-secondary" id="btnReset">↺ ${t.btnReset}</button>
     </div>
+    <div class="view-tabs" role="tablist" aria-label="${t.natal.tabsLabel}">
+      <button type="button" role="tab" id="tabSigns" aria-controls="viewSigns">${t.natal.tabSigns}</button>
+      <button type="button" role="tab" id="tabNatal" aria-controls="viewNatal">${t.natal.tabNatal}</button>
+    </div>
     <div id="profileContent">
       <div class="owner" id="profileOwner"></div>
-      <div class="dual">
+      <div class="dual" id="viewSigns" role="tabpanel" aria-labelledby="tabSigns">
         ${westernCards(t, signKey, decanIdx).join('\n')}
         ${chineseCards(t, currentCn, hourAnimal).join('\n')}
       </div>
+      <div class="natal" id="viewNatal" role="tabpanel" aria-labelledby="tabNatal">${natalHtml(t)}</div>
     </div>
     ${compatCardHtml(t)}
     <section class="card sky-card" aria-labelledby="skyTitle">
@@ -7096,6 +7949,15 @@ function renderResult(signKey, decanIdx){
   document.getElementById('btnReset').addEventListener('click', reset);
   document.getElementById('btnShare').addEventListener('click', shareProfile);
   document.getElementById('btnExport').addEventListener('click', exportImage);
+
+  setView(viewMode);
+  const tabs = [document.getElementById('tabSigns'), document.getElementById('tabNatal')];
+  tabs.forEach((tb, i) => {
+    tb.addEventListener('click', () => setView(i ? 'natal' : 'signs'));
+    tb.addEventListener('keydown', e => {   // flèches gauche / droite entre les onglets
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); setView(viewMode === 'signs' ? 'natal' : 'signs', true); }
+    });
+  });
 
   if (!skyDate) skyDate = todayISO();
   document.getElementById('skyDate').addEventListener('change', e => {
@@ -7286,8 +8148,8 @@ function updateWheel(){
   if (currentSky && currentDate) {
     const d = parseISODate(currentDate), tm = parseTime(currentTime);
     sunLon = currentSky.lon;
-    moonLon = moonLongitude(tm ? localInstant(d, tm.h, tm.min) : localInstant(d, 12, 0));
-    moonSigns = natalMoon(d, tm).signs;
+    moonLon = moonLongitude(tm ? localInstant(d, tm.h, tm.min, birthTz()) : localInstant(d, 12, 0, birthTz()));
+    moonSigns = natalMoon(d, tm, birthTz()).signs;
     label = t.wheel.birth;
   } else {
     const now = Date.now();
@@ -7317,7 +8179,7 @@ function readHistory(){
 }
 /* Ajoute une recherche en tête, sans doublon (même date, heure et nom), en gardant les plus récentes */
 function pushHistory(list, entry, max = HISTORY_MAX){
-  const key = e => `${e.date}|${e.time || ''}|${(e.name || '').toLowerCase()}`;
+  const key = e => `${e.date}|${e.time || ''}|${e.place || ''}|${(e.name || '').toLowerCase()}`;
   return [entry, ...list.filter(e => key(e) !== key(entry))].slice(0, max);
 }
 function renderHistory(){
@@ -7341,9 +8203,123 @@ function renderHistory(){
     if (currentName) store.set('zodiac_name', currentName); else store.remove('zodiac_name');
     document.getElementById('birthDate').value = e.date;
     document.getElementById('birthTime').value = e.time || '';
+    document.getElementById('birthPlace').value = birthPlace(e.place) ? e.place : '';
     launchSearch();
   }));
   document.getElementById('historyClear').addEventListener('click', () => { store.remove('zodiac_history'); renderHistory(); });
+}
+
+/* ============================================================
+   THÈME NATAL (vue « Thème natal » du résultat)
+   ============================================================ */
+let currentBirthPlace = '';   // nom de la ville de naissance (CITIES), '' si non précisé
+let viewMode = 'signs';       // onglet affiché : 'signs' (signe & zodiaque chinois) ou 'natal'
+const ASPECT_SYM = { conjunction: '☌', sextile: '⚹', square: '□', trine: '△', opposition: '☍' };
+
+function birthTz(){ const p = birthPlace(currentBirthPlace); return p ? p.tz : null; }
+function renderPlaceSelect(t){
+  const sel = document.getElementById('birthPlace');
+  if (!sel) return;
+  const keep = sel.value || currentBirthPlace;
+  sel.innerHTML = `<option value="">${t.placeNone}</option>` + CITIES.map(c => `<option value="${c[0]}">${c[0]} (${regionName(c[1])})</option>`).join('');
+  sel.value = birthPlace(keep) ? keep : '';
+}
+const degMin = lon => { const x = lon % 30, d = Math.floor(x); return `${d}°${String(Math.floor((x - d) * 60)).padStart(2, '0')}′`; };
+const signTag = (t, s) => `<span aria-hidden="true">${SIGN_META[s].sym}</span> ${t.signNames[s]}`;
+const capitalize = s => s.charAt(0).toLocaleUpperCase(currentLang) + s.slice(1);
+
+/* Dessin du thème : signes en couronne, maisons, astres, aspects ; ascendant à gauche (ou Bélier sans ascendant) */
+function natalWheelSvg(chart, t){
+  const ref = chart.asc === null ? 0 : chart.asc;
+  const pt = (r, lon) => wheelPoint(r, 270 - (lon - ref));
+  const f = v => v.toFixed(2);
+  let g = '';
+  SIGN_ORDER.forEach((k, i) => {
+    const [x0, y0] = pt(140, i * 30), [x1, y1] = pt(140, i * 30 + 30), [x2, y2] = pt(118, i * 30 + 30), [x3, y3] = pt(118, i * 30);
+    g += `<path class="ws ws-${SIGN_META[k].element}" d="M${f(x0)},${f(y0)} A140,140 0 0 0 ${f(x1)},${f(y1)} L${f(x2)},${f(y2)} A118,118 0 0 1 ${f(x3)},${f(y3)} Z"/>`;
+    const [gx, gy] = pt(129, i * 30 + 15);
+    g += `<text class="nw-sign" x="${f(gx)}" y="${f(gy)}">${SIGN_META[k].sym}</text>`;
+  });
+  for (let d = 0; d < 360; d += 5) { const [ax, ay] = pt(118, d), [bx, by] = pt(d % 10 ? 115 : 112, d); g += `<line class="nw-tick" x1="${f(ax)}" y1="${f(ay)}" x2="${f(bx)}" y2="${f(by)}"/>`; }
+  g += `<circle class="nw-ring" r="118"/><circle class="nw-ring" r="58"/>`;
+  if (chart.cusps) chart.cusps.forEach((c, i) => {
+    const axis = i % 3 === 0, [ax, ay] = pt(axis ? 146 : 118, c), [bx, by] = pt(58, c);
+    g += `<line class="nw-house${axis ? ' nw-axis' : ''}" x1="${f(ax)}" y1="${f(ay)}" x2="${f(bx)}" y2="${f(by)}"/>`;
+    const next = chart.cusps[(i + 1) % 12], mid = c + norm360(next - c) / 2, [nx, ny] = pt(66, mid);
+    g += `<text class="nw-num" x="${f(nx)}" y="${f(ny)}">${i + 1}</text>`;
+  });
+  if (chart.asc !== null) for (const [lon, lab] of [[chart.asc, 'AC'], [chart.mc, 'MC']]) { const [x, y] = pt(150, lon); g += `<text class="nw-axis-lab" x="${f(x)}" y="${f(y)}">${lab}</text>`; }
+  // Aspects (sauf conjonctions, déjà visibles côte à côte) entre les positions exactes
+  const pos = Object.fromEntries(chart.bodies.map(b => [b.body, b.lon]));
+  for (const a of chart.aspects) {
+    if (a.type === 'conjunction') continue;
+    const [x1, y1] = pt(56, pos[a.a]), [x2, y2] = pt(56, pos[a.b]);
+    g += `<line class="nw-asp ${a.type === 'trine' || a.type === 'sextile' ? 'nw-harm' : 'nw-tense'}" x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}"/>`;
+  }
+  // Astres : repère à la position exacte, symbole écarté si plusieurs astres sont proches
+  const sorted = [...chart.bodies].sort((a, b) => a.lon - b.lon), shown = sorted.map(b => b.lon);
+  for (let pass = 0; pass < 3; pass++) for (let i = 1; i < shown.length; i++) if (shown[i] - shown[i - 1] < 8) shown[i] = shown[i - 1] + 8;
+  sorted.forEach((b, i) => {
+    const [ax, ay] = pt(118, b.lon), [bx, by] = pt(108, b.lon), [px, py] = pt(97, shown[i]);
+    g += `<line class="nw-ptick" x1="${f(ax)}" y1="${f(ay)}" x2="${f(bx)}" y2="${f(by)}"/><text class="nw-planet" x="${f(px)}" y="${f(py)}">${PLANET_SYM[b.body]}</text>`;
+  });
+  return `<svg class="natal-svg" viewBox="-156 -156 312 312" role="img" aria-label="${t.natal.title}">${g}</svg>`;
+}
+
+function natalHtml(t){
+  const n = t.natal, date = parseISODate(currentDate), time = parseTime(currentTime), place = birthPlace(currentBirthPlace);
+  const chart = natalChart(date, time, place);
+  const sun = chart.bodies[0], moon = chart.bodies[1];
+  const chip = (sym, label, sign) => `<div class="big-chip"><span class="big-sym" aria-hidden="true">${sym}</span><span class="big-label">${label}</span><span class="big-sign">${signTag(t, sign)}</span></div>`;
+  const notes = [];
+  if (!chart.exact) notes.push(!time && !place ? n.needBoth : !time ? n.needTime : n.needPlace);
+  if (!time) notes.push(n.noonMoon);
+  if (chart.exact) notes.push(`${n.tzNote} ${chart.system === 'placidus' ? n.placidus : n.equal}`);
+  const signCell = lon => `<span class="nt-sign">${signTag(t, signFromLongitude(lon))}</span> <span class="nt-deg">${degMin(lon)}</span>`;
+  const rows = chart.bodies.map(b => `<tr><td class="nt-sym" aria-hidden="true">${PLANET_SYM[b.body]}</td><td>${t.rulers[b.body]}</td>
+      <td>${signCell(b.lon)}</td><td class="nt-house">${b.house || ''}</td><td class="nt-retro">${b.retro ? '℞' : ''}</td></tr>`).join('');
+  const angles = chart.exact ? [[n.ascendant, chart.asc, 'AC'], [n.midheaven, chart.mc, 'MC']].map(([lab, lon, ab]) =>
+      `<tr class="nt-angle"><td class="nt-sym">${ab}</td><td>${lab}</td><td>${signCell(lon)}</td><td></td><td></td></tr>`).join('') : '';
+  const head = chart.exact ? `<thead><tr><th></th><th></th><th></th><th class="nt-house">${n.house}</th><th></th></tr></thead>` : '';
+  const lines = chart.bodies.map(b => `<li><div class="nl-head"><span class="nl-sym" aria-hidden="true">${PLANET_SYM[b.body]}</span> <strong>${t.rulers[b.body]}</strong> · ${signTag(t, b.sign)}${b.house ? ` · ${n.house} ${b.house}` : ''}</div>
+      <p>${capitalize(n.domains[b.body])} — ${n.styles[b.sign]}${b.house ? ` — ${n.house} ${b.house} (${n.houses[b.house - 1]})` : ''}.</p></li>`).join('');
+  const nf = new Intl.NumberFormat(currentLang, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  const aspects = chart.aspects.slice(0, 14).map(a => `<li><span class="na-pair"><span aria-hidden="true">${PLANET_SYM[a.a]}</span> ${t.rulers[a.a]} <span class="na-sym" aria-hidden="true">${ASPECT_SYM[a.type]}</span> <span aria-hidden="true">${PLANET_SYM[a.b]}</span> ${t.rulers[a.b]}</span>
+      <span class="na-type">${n.aspectNames[a.type]} · ${nf.format(a.orb)}°</span><span class="na-mean">${n.aspectMeanings[a.type]}</span></li>`).join('');
+  const ascSign = chart.exact ? signFromLongitude(chart.asc) : null, mcSign = chart.exact ? signFromLongitude(chart.mc) : null;
+  return `<div class="card natal-main">
+        <h3>${n.title}</h3>
+        <div class="big-three">${chip(PLANET_SYM.sun, t.rulers.sun, sun.sign)}${chip(PLANET_SYM.moon, t.rulers.moon, moon.sign)}${ascSign ? chip('AC', n.ascendant, ascSign) : ''}</div>
+        ${notes.map(x => `<p class="natal-note">${x}</p>`).join('')}
+        <div class="natal-grid">
+          <div class="natal-wheel">${natalWheelSvg(chart, t)}</div>
+          <div class="natal-table"><h4>${n.positions}</h4><table>${head}<tbody>${rows}${angles}</tbody></table></div>
+        </div>
+      </div>
+      <div class="card natal-reading">
+        <h3>${n.reading}</h3>
+        <p class="natal-legend">${n.legend}</p>
+        ${ascSign ? `<div class="natal-asc"><h4>${n.ascendant} · ${signTag(t, ascSign)}</h4><p>${n.asc[ascSign]}</p>
+          <h4>${n.midheaven} · ${signTag(t, mcSign)}</h4><p>${n.mcText}</p></div>` : ''}
+        <ul class="natal-lines">${lines}</ul>
+      </div>
+      <div class="card natal-aspects">
+        <h3>${n.aspects}</h3>
+        ${aspects ? `<ul class="natal-asp-list">${aspects}</ul>` : `<p class="natal-note">${n.noAspects}</p>`}
+      </div>`;
+}
+
+/* Bascule entre les deux vues, sans recalcul ; le choix est retenu pour les recherches suivantes */
+function setView(mode, focus){
+  viewMode = mode;
+  store.set('zodiac_view', mode);
+  for (const [tab, panel, m] of [['tabSigns', 'viewSigns', 'signs'], ['tabNatal', 'viewNatal', 'natal']]) {
+    const tb = document.getElementById(tab), pn = document.getElementById(panel);
+    if (!tb) continue;
+    tb.setAttribute('aria-selected', String(m === mode)); tb.tabIndex = m === mode ? 0 : -1;
+    pn.hidden = m !== mode;
+    if (focus && m === mode) tb.focus();
+  }
 }
 
 /* ============================================================
@@ -7373,7 +8349,7 @@ function renderCompat(){
   if (!el) return;
   if (!pairState || !currentDate) { el.innerHTML = ''; return; }
   const t = I18N[currentLang], q = t.pair;
-  const me = { date: parseISODate(currentDate), time: parseTime(currentTime) };
+  const me = { date: parseISODate(currentDate), time: parseTime(currentTime), tz: birthTz() };
   const other = { date: parseISODate(pairState.date), time: parseTime(pairState.time) };
   const c = compatibility(me, other);
   const nameA = escapeHtml(currentName || q.you), nameB = escapeHtml(pairState.name || q.other);
@@ -7717,6 +8693,9 @@ function reset(){
   document.getElementById('result').classList.add('hidden');
   document.getElementById('birthDate').value = '';
   document.getElementById('birthTime').value = '';
+  document.getElementById('birthPlace').value = '';
+  currentBirthPlace = '';
+  store.remove('zodiac_lastPlace');
   document.getElementById('userName').value = '';
   document.getElementById('btnReveal').disabled = false;
   currentName = '';
@@ -7808,7 +8787,8 @@ function launchSearch(){
   if (!date) { showError(t.errorInvalid); flagInput(input); return; }
   const timeValue = document.getElementById('birthTime').value;
   const time = parseTime(timeValue);           // facultative : null si vide
-  const sky = computeSky(date, time);
+  const place = birthPlace(document.getElementById('birthPlace').value);
+  const sky = computeSky(date, time, place ? place.tz : null);
   const sign = sky.sign;
   hideError();
 
@@ -7818,10 +8798,12 @@ function launchSearch(){
   currentDate = input.value;
   currentTime = time ? timeValue.slice(0, 5) : null;
   currentName = document.getElementById('userName').value.trim();
+  currentBirthPlace = place ? place.name : '';
 
   // Persistance
   store.set('zodiac_lastDate', currentDate);
-  store.set('zodiac_history', JSON.stringify(pushHistory(readHistory(), { name: currentName, date: currentDate, time: currentTime || '', sign })));
+  store.set('zodiac_history', JSON.stringify(pushHistory(readHistory(), { name: currentName, date: currentDate, time: currentTime || '', place: currentBirthPlace, sign })));
+  if (currentBirthPlace) store.set('zodiac_lastPlace', currentBirthPlace); else store.remove('zodiac_lastPlace');
   renderHistory();
   if (currentTime) store.set('zodiac_lastTime', currentTime); else store.remove('zodiac_lastTime');
   updateURL(currentDate, currentTime, currentLang);
@@ -7842,6 +8824,7 @@ function updateURL(date, time, lang){
     const url = new URL(window.location);
     if (date) url.searchParams.set('date', date); else url.searchParams.delete('date');
     if (date && time) url.searchParams.set('time', time); else url.searchParams.delete('time');
+    if (date && currentBirthPlace) url.searchParams.set('place', currentBirthPlace); else url.searchParams.delete('place');
     url.searchParams.set('lang', lang);
     history.replaceState(null, '', url);
   } catch (e) { /* certains contextes (iframe sandboxée) interdisent replaceState */ }
@@ -7855,6 +8838,8 @@ function applyUITranslations(){
   document.getElementById('appTitle').textContent = t.appTitle;
   document.getElementById('labelBirthDate').textContent = t.labelBirthDate;
   document.getElementById('labelBirthTime').textContent = t.labelBirthTime;
+  document.getElementById('labelBirthPlace').textContent = t.labelBirthPlace;
+  renderPlaceSelect(t);
   document.getElementById('labelName').textContent = t.labelName;
   document.getElementById('offlineLabel').textContent = t.offline.button;
   document.getElementById('offlineHint').textContent = t.offline.hint;
@@ -7886,6 +8871,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const urlLang = params.get('lang');
   const urlDate = params.get('date');
   const urlTime = params.get('time');
+  const urlPlace = params.get('place');
+  viewMode = store.get('zodiac_view') === 'natal' ? 'natal' : 'signs';
   const lsLang = store.get('zodiac_lang');
   const lsDate = store.get('zodiac_lastDate');
   const lsTime = store.get('zodiac_lastTime');
@@ -7943,16 +8930,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (parseISODate(urlDate)) {
       input.value = urlDate;
       if (parseTime(urlTime)) timeInput.value = urlTime.slice(0, 5);
+      if (birthPlace(urlPlace)) document.getElementById('birthPlace').value = urlPlace;
       launchSearch();
     } else showError(I18N[currentLang].errorInvalid);
   } else if (parseISODate(lsDate)) {
     input.value = lsDate;
     if (parseTime(lsTime)) timeInput.value = lsTime;
+    const lsPlace = store.get('zodiac_lastPlace');
+    if (birthPlace(lsPlace)) document.getElementById('birthPlace').value = lsPlace;
   }
 
   // 5. Boutons
   document.getElementById('btnReveal').addEventListener('click', () => launchSearch());
-  ['userName', 'birthDate', 'birthTime'].forEach(id => document.getElementById(id).addEventListener('keydown', e => {
+  ['userName', 'birthDate', 'birthTime', 'birthPlace'].forEach(id => document.getElementById(id).addEventListener('keydown', e => {
     if (e.key === 'Enter') launchSearch();
   }));
 
