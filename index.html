@@ -225,6 +225,17 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .range-warn{ margin:.5rem 0 0; padding:.55rem .8rem; border-radius:10px; font-size:.85rem; color:var(--text);
   background:rgba(255,167,87,.12); border:1px solid rgba(255,167,87,.4); }
 .compat-form .field-place{ flex:1 1 220px; }
+/* Observer le ciel cette nuit */
+.night-card{ margin-top:1.1rem; }
+.night-card h4{ font-size:.75rem; text-transform:uppercase; letter-spacing:.12em; color:var(--gold); margin:1rem 0 .5rem; }
+.night-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:.8rem; }
+.night-item{ display:flex; flex-direction:column; gap:.2rem; }
+.night-label{ font-size:.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
+.night-value{ color:var(--text); font-weight:600; font-size:.95rem; font-variant-emoji:text; }
+.night-msg, .night-best{ color:var(--text); font-size:.9rem; margin-top:.6rem; }
+.night-planets{ list-style:none; display:grid; gap:.4rem; color:var(--text); font-size:.92rem; }
+.ecl-safety{ margin-top:.6rem; padding:.5rem .7rem; border-radius:10px; font-size:.82rem; color:var(--text);
+  background:rgba(255,167,87,.12); border:1px solid rgba(255,167,87,.4); }
 .app-credit{ flex:1 1 100%; color:var(--muted); font-size:.75rem; opacity:.8; }
 .input-zone input[type=date], .input-zone input[type=time], .input-zone input[type=text]{
   width:100%; background:var(--field-bg);
@@ -1638,9 +1649,9 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
     }
   });
 
-  test('Bulles d\'information (i) : 22 explications complètes et traduites', () => {
+  test('Bulles d\'information (i) : 24 explications complètes et traduites', () => {
     const keys = Object.keys(I18N.fr.info);
-    assertEq(keys.length, 22, 'nombre d\'explications');
+    assertEq(keys.length, 24, 'nombre d\'explications');
     for (const lang of Object.keys(I18N)) {
       const info = I18N[lang].info;
       assert(keys.every(k => typeof info[k] === 'string' && info[k].length > 20), `${lang} : explication manquante ou trop courte`);   // 20 : le chinois est bien plus dense
@@ -1722,6 +1733,33 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
     for (const l of Object.keys(I18N)) assert(I18N[l].rangeWarning && /1900/.test(I18N[l].rangeWarning) && /2100/.test(I18N[l].rangeWarning), `${l} : avertissement`);
   });
 
+  test('Observation : éclipses de Soleil vues d\'un lieu et nuit (références astropy)', () => {
+    const ecl = (iso, lat, lon) => { const day = Date.parse(iso + 'T12:00:00Z') / 60000;
+      const e = ECLIPSES.find(x => Math.abs(x[0] - day) < 1440 && 'TAHP'.includes(x[1])); return solarEclipseLocal(e[0] * 60000, lat, lon); };
+    const dallas = ecl('2024-04-08', 32.78, -96.80);
+    assert(dallas.visible && dallas.kind === 'total', 'Dallas 2024 : totale');
+    const tot = (dallas.central.end - dallas.central.start) / 1000;
+    assert(Math.abs(tot - 230) <= 45, `Dallas 2024 : totalité ${tot} s au lieu d'environ 230 s`);
+    const paris = ecl('2027-08-02', 48.86, 2.35);
+    assert(paris.visible && paris.kind === 'partial' && Math.abs(paris.obscuration - 0.513) < 0.02, `Paris 2027 : ${paris.obscuration}`);
+    const ny = ecl('2021-06-10', 40.71, -74.01);
+    assert(ny.visible && ny.risesEclipsed && !ny.setsEclipsed && Math.abs(ny.obscuration - 0.725) < 0.02, 'New York 2021 : lever éclipsé');
+    const madrid = ecl('2026-08-12', 40.42, -3.70);
+    assert(madrid.visible && madrid.setsEclipsed && madrid.obscuration > 0.99, 'Madrid 2026 : coucher éclipsé, Soleil caché à plus de 99 %');
+    const sydney = ecl('2026-08-12', -33.87, 151.21);
+    assert(sydney === null || !sydney.visible, 'Sydney 2026 : non visible');
+    assertEq(obscuration(1, 1, 0), 1, 'disques confondus'); assertEq(obscuration(1, 1, 2), 0, 'disques tangents');
+    assert(Math.abs(obscuration(1, 1, 1) - 0.391) < 0.001, 'demi-recouvrement');
+    // Nuit à Paris, 25 octobre 2026 : coucher 16:42:10 TU, lever 06:27:50 TU (astropy) — à 90 s près
+    const plan = nightPlan(48.86, 2.35, zonedInstant({ y: 2026, m: 10, d: 25 }, 12, 0, 'Europe/Paris'));
+    assert(Math.abs(plan.sunset - 1792946530000) < 90e3, `coucher ${new Date(plan.sunset).toISOString()}`);
+    assert(Math.abs(plan.sunrise - 1792996070000) < 90e3, `lever ${new Date(plan.sunrise).toISOString()}`);
+    assert(plan.astroDusk > plan.sunset && plan.astroDawn < plan.sunrise && !plan.polarDay && !plan.polarNight, 'nuit noire entre coucher et lever');
+    const day = nightPlan(69.65, 18.96, zonedInstant({ y: 2026, m: 6, d: 21 }, 12, 0, 'Europe/Oslo'));
+    const night = nightPlan(69.65, 18.96, zonedInstant({ y: 2026, m: 12, d: 21 }, 12, 0, 'Europe/Oslo'));
+    assert(day.polarDay && !day.sunset && night.polarNight && !night.sunrise, 'Tromsø : jour polaire en juin, nuit polaire en décembre');
+  });
+
   /* ---------------- Rapport ---------------- */
   const failed = results.filter(r => !r.ok);
   window.__testResults = results;
@@ -1743,7 +1781,7 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 })();
 
 </script>
-<!-- Ordre de chargement important : données → traductions → calculs → planètes → carte du ciel → villes de naissance → thème natal → application -->
+<!-- Ordre de chargement important : données → traductions → calculs → planètes → carte du ciel → observation → villes de naissance → thème natal → application -->
 <script>
 /* ============================================================
    Zodiaque & Décans — données
@@ -3005,7 +3043,13 @@ I18N.fr = {
       Aql: "Aigle",
       CMa: "Grand Chien"
     },
-    aboveHorizon: "Au-dessus de l'horizon"
+    aboveHorizon: "Au-dessus de l'horizon",
+    eclPartial: "partielle d'ici : {pct} du Soleil caché, de {a} à {b} (maximum à {m})",
+    eclTotal: "totale d'ici : {dur} de totalité vers {m} (éclipse de {a} à {b})",
+    eclAnnular: "annulaire d'ici : {dur} d'anneau vers {m} (éclipse de {a} à {b})",
+    eclRises: "le Soleil se lève déjà éclipsé",
+    eclSets: "le Soleil se couche encore éclipsé",
+    eclSafety: "⚠️ Ne regardez jamais le Soleil sans lunettes d'éclipse conformes à la norme ISO 12312-2."
   },
   pair: {
     title: "Compatibilité à deux",
@@ -3139,14 +3183,36 @@ I18N.fr = {
     horoscope: "L'horoscope compare la position actuelle des astres à votre signe : un astre qui traverse votre signe ou forme un angle avec lui (un transit) colore la période. Les planètes lentes donnent les grandes tendances, les rapides le climat du moment.",
     skymap: "Le ciel tel qu'on le voit en levant les yeux depuis la ville choisie : le bord du disque est l'horizon, le centre le point juste au-dessus de vous. Le nord est en haut et l'est à gauche, puisqu'on regarde vers le ciel.",
     compat: "L'entente globale est la moyenne des axes disponibles : signes du zodiaque, animaux chinois et, si les heures de naissance sont connues, signes lunaires. C'est une lecture symbolique, pas une prédiction.",
-    signVsConstellation: "Les signes astrologiques sont 12 secteurs égaux de 30°, comptés à partir de l'équinoxe de printemps : c'est le zodiaque tropical, utilisé ici. Les constellations du même nom sont des groupes d'étoiles de tailles inégales. À cause de la lente rotation de l'axe de la Terre (la précession), signes et constellations se sont décalés d'environ un signe depuis l'Antiquité : le Soleil peut être dans le signe du Bélier tout en se trouvant devant la constellation des Poissons."
+    signVsConstellation: "Les signes astrologiques sont 12 secteurs égaux de 30°, comptés à partir de l'équinoxe de printemps : c'est le zodiaque tropical, utilisé ici. Les constellations du même nom sont des groupes d'étoiles de tailles inégales. À cause de la lente rotation de l'axe de la Terre (la précession), signes et constellations se sont décalés d'environ un signe depuis l'Antiquité : le Soleil peut être dans le signe du Bélier tout en se trouvant devant la constellation des Poissons.",
+    night: "La nuit noire commence quand le Soleil passe à plus de 18° sous l'horizon (fin du crépuscule astronomique) et s'achève à l'aube. La Lune éclaire le ciel et cache les étoiles faibles : le meilleur moment combine nuit noire et Lune couchée. Une planète est jugée bien visible à plus de 10° de hauteur, le Soleil étant à plus de 6° sous l'horizon.",
+    solarEclipse: "Calcul pour ce lieu, à une demi-minute près. Le pourcentage est la part de la surface du Soleil cachée par la Lune ; les heures vont du premier au dernier contact des deux disques, limitées au moment où le Soleil est levé. Une éclipse totale ou annulaire n'est visible comme telle que dans une étroite bande ; ailleurs, elle est partielle."
   },
   placePlaceholder: "Tapez le nom d'une ville…",
   placeNoMatch: "Aucune ville trouvée. Essayez la ville la plus proche.",
   placeUnknown: "Lieu de naissance non reconnu : choisissez une ville dans la liste proposée (la plus proche convient).",
   placeClear: "Effacer le lieu",
   placesCredit: "Villes : GeoNames (www.geonames.org), licence CC BY 4.0.",
-  rangeWarning: "Les calculs sont vérifiés pour les naissances de 1900 à 2100 : en dehors de cette période, les positions des planètes et les fuseaux horaires deviennent moins précis."
+  rangeWarning: "Les calculs sont vérifiés pour les naissances de 1900 à 2100 : en dehors de cette période, les positions des planètes et les fuseaux horaires deviennent moins précis.",
+  night: {
+    title: "Observer le ciel cette nuit",
+    sunset: "Coucher du Soleil",
+    sunrise: "Lever du Soleil",
+    dark: "Nuit noire",
+    moon: "Lune",
+    moonLit: "éclairée à {pct}",
+    moonrise: "lever à {t}",
+    moonset: "coucher à {t}",
+    moonAllNight: "au-dessus de l'horizon toute la nuit",
+    moonNone: "sous l'horizon toute la nuit",
+    best: "Meilleur moment pour observer",
+    bestNone: "Pas de nuit noire sans Lune cette nuit.",
+    planets: "Planètes visibles",
+    noPlanets: "Aucune planète bien visible cette nuit.",
+    polarDay: "Le Soleil ne se couche pas : jour polaire.",
+    polarNight: "Le Soleil ne se lève pas : nuit polaire.",
+    noAstroNight: "Pas de nuit noire à cette saison : le Soleil reste trop près de l'horizon.",
+    note: "Heures locales du lieu choisi, pour un horizon dégagé. La météo et la pollution lumineuse ne sont pas prises en compte."
+  }
 };
 
 </script>
@@ -3702,7 +3768,13 @@ I18N.en = deepMerge(I18N.fr, {
       Aql: "Eagle",
       CMa: "Great Dog"
     },
-    aboveHorizon: "Above the horizon"
+    aboveHorizon: "Above the horizon",
+    eclPartial: "partial from here: {pct} of the Sun hidden, from {a} to {b} (maximum at {m})",
+    eclTotal: "total from here: {dur} of totality around {m} (eclipse from {a} to {b})",
+    eclAnnular: "annular from here: {dur} of ring around {m} (eclipse from {a} to {b})",
+    eclRises: "the Sun rises already eclipsed",
+    eclSets: "the Sun sets still eclipsed",
+    eclSafety: "⚠️ Never look at the Sun without eclipse glasses meeting the ISO 12312-2 standard."
   },
   pair: {
     title: "Compatibility for two",
@@ -3836,14 +3908,36 @@ I18N.en = deepMerge(I18N.fr, {
     horoscope: "The horoscope compares the current positions of the bodies with your sign: a body crossing your sign or forming an angle with it (a transit) colours the period. Slow planets set the major trends, fast ones the mood of the moment.",
     skymap: "The sky as you see it when you look up from the chosen city: the edge of the disc is the horizon, the centre the point straight above you. North is at the top and east on the left, because you are looking up.",
     compat: "The overall match is the average of the available axes: zodiac signs, Chinese animals and, if the birth times are known, Moon signs. It is a symbolic reading, not a prediction.",
-    signVsConstellation: "Astrological signs are 12 equal 30° sectors counted from the March equinox: this is the tropical zodiac, used here. The constellations of the same name are groups of stars of unequal sizes. Because of the slow wobble of Earth's axis (precession), signs and constellations have drifted apart by about one sign since antiquity: the Sun can be in the sign of Aries while standing in front of the constellation Pisces."
+    signVsConstellation: "Astrological signs are 12 equal 30° sectors counted from the March equinox: this is the tropical zodiac, used here. The constellations of the same name are groups of stars of unequal sizes. Because of the slow wobble of Earth's axis (precession), signs and constellations have drifted apart by about one sign since antiquity: the Sun can be in the sign of Aries while standing in front of the constellation Pisces.",
+    night: "Full darkness begins when the Sun is more than 18° below the horizon (end of astronomical twilight) and ends at dawn. The Moon brightens the sky and hides faint stars: the best time combines full darkness with the Moon set. A planet counts as well placed when it is more than 10° high with the Sun more than 6° below the horizon.",
+    solarEclipse: "Calculated for this place, to within half a minute. The percentage is the share of the Sun's surface hidden by the Moon; the times run from the first to the last contact of the two discs, limited to when the Sun is up. A total or annular eclipse is only seen as such within a narrow band; elsewhere it is partial."
   },
   placePlaceholder: "Type a city name…",
   placeNoMatch: "No city found. Try the nearest town.",
   placeUnknown: "Place of birth not recognised: choose a city from the suggestions (the nearest one will do).",
   placeClear: "Clear the place",
   placesCredit: "Cities: GeoNames (www.geonames.org), CC BY 4.0 licence.",
-  rangeWarning: "Calculations are verified for births from 1900 to 2100: outside this period, planetary positions and time zones become less accurate."
+  rangeWarning: "Calculations are verified for births from 1900 to 2100: outside this period, planetary positions and time zones become less accurate.",
+  night: {
+    title: "Observing the sky tonight",
+    sunset: "Sunset",
+    sunrise: "Sunrise",
+    dark: "Full darkness",
+    moon: "Moon",
+    moonLit: "{pct} lit",
+    moonrise: "rises at {t}",
+    moonset: "sets at {t}",
+    moonAllNight: "above the horizon all night",
+    moonNone: "below the horizon all night",
+    best: "Best time to observe",
+    bestNone: "No moonless full darkness tonight.",
+    planets: "Visible planets",
+    noPlanets: "No planet well placed tonight.",
+    polarDay: "The Sun does not set: polar day.",
+    polarNight: "The Sun does not rise: polar night.",
+    noAstroNight: "No full darkness at this time of year: the Sun stays too close to the horizon.",
+    note: "Local times at the chosen place, for a clear horizon. Weather and light pollution are not taken into account."
+  }
 });
 
 </script>
@@ -4402,7 +4496,13 @@ I18N.es = deepMerge(I18N.fr, {
       Aql: "Águila",
       CMa: "Perro Mayor"
     },
-    aboveHorizon: "Sobre el horizonte"
+    aboveHorizon: "Sobre el horizonte",
+    eclPartial: "parcial desde aquí: {pct} del Sol oculto, de {a} a {b} (máximo a las {m})",
+    eclTotal: "total desde aquí: {dur} de totalidad hacia las {m} (eclipse de {a} a {b})",
+    eclAnnular: "anular desde aquí: {dur} de anillo hacia las {m} (eclipse de {a} a {b})",
+    eclRises: "el Sol sale ya eclipsado",
+    eclSets: "el Sol se pone aún eclipsado",
+    eclSafety: "⚠️ No mires nunca el Sol sin gafas de eclipse que cumplan la norma ISO 12312-2."
   },
   pair: {
     title: "Compatibilidad de pareja",
@@ -4536,14 +4636,36 @@ I18N.es = deepMerge(I18N.fr, {
     horoscope: "El horóscopo compara la posición actual de los astros con tu signo: un astro que atraviesa tu signo o forma un ángulo con él (un tránsito) colorea el periodo. Los planetas lentos marcan las grandes tendencias; los rápidos, el clima del momento.",
     skymap: "El cielo tal como se ve al levantar la vista desde la ciudad elegida: el borde del disco es el horizonte y el centro, el punto justo encima de ti. El norte está arriba y el este a la izquierda, porque miras hacia el cielo.",
     compat: "La afinidad global es la media de los ejes disponibles: signos del zodiaco, animales chinos y, si se conocen las horas de nacimiento, signos lunares. Es una lectura simbólica, no una predicción.",
-    signVsConstellation: "Los signos astrológicos son 12 sectores iguales de 30°, contados desde el equinoccio de marzo: es el zodiaco tropical, el que se usa aquí. Las constelaciones del mismo nombre son grupos de estrellas de tamaños desiguales. Debido al lento bamboleo del eje de la Tierra (la precesión), signos y constelaciones se han desplazado alrededor de un signo desde la Antigüedad: el Sol puede estar en el signo de Aries mientras se encuentra delante de la constelación de Piscis."
+    signVsConstellation: "Los signos astrológicos son 12 sectores iguales de 30°, contados desde el equinoccio de marzo: es el zodiaco tropical, el que se usa aquí. Las constelaciones del mismo nombre son grupos de estrellas de tamaños desiguales. Debido al lento bamboleo del eje de la Tierra (la precesión), signos y constelaciones se han desplazado alrededor de un signo desde la Antigüedad: el Sol puede estar en el signo de Aries mientras se encuentra delante de la constelación de Piscis.",
+    night: "La noche cerrada empieza cuando el Sol está a más de 18° bajo el horizonte (fin del crepúsculo astronómico) y termina al alba. La Luna ilumina el cielo y oculta las estrellas débiles: el mejor momento combina noche cerrada y Luna puesta. Un planeta se considera bien visible a más de 10° de altura, con el Sol a más de 6° bajo el horizonte.",
+    solarEclipse: "Cálculo para este lugar, con medio minuto de precisión. El porcentaje es la parte de la superficie del Sol oculta por la Luna; las horas van del primer al último contacto de los dos discos, limitadas al tiempo en que el Sol está sobre el horizonte. Un eclipse total o anular solo se ve como tal en una franja estrecha; en el resto es parcial."
   },
   placePlaceholder: "Escribe el nombre de una ciudad…",
   placeNoMatch: "No se encontró ninguna ciudad. Prueba con la más cercana.",
   placeUnknown: "Lugar de nacimiento no reconocido: elige una ciudad de la lista (sirve la más cercana).",
   placeClear: "Borrar el lugar",
   placesCredit: "Ciudades: GeoNames (www.geonames.org), licencia CC BY 4.0.",
-  rangeWarning: "Los cálculos están verificados para nacimientos entre 1900 y 2100: fuera de este periodo, las posiciones de los planetas y los husos horarios son menos precisos."
+  rangeWarning: "Los cálculos están verificados para nacimientos entre 1900 y 2100: fuera de este periodo, las posiciones de los planetas y los husos horarios son menos precisos.",
+  night: {
+    title: "Observar el cielo esta noche",
+    sunset: "Puesta de sol",
+    sunrise: "Salida del sol",
+    dark: "Noche cerrada",
+    moon: "Luna",
+    moonLit: "iluminada al {pct}",
+    moonrise: "sale a las {t}",
+    moonset: "se pone a las {t}",
+    moonAllNight: "sobre el horizonte toda la noche",
+    moonNone: "bajo el horizonte toda la noche",
+    best: "Mejor momento para observar",
+    bestNone: "Esta noche no hay noche cerrada sin Luna.",
+    planets: "Planetas visibles",
+    noPlanets: "Ningún planeta bien visible esta noche.",
+    polarDay: "El Sol no se pone: día polar.",
+    polarNight: "El Sol no sale: noche polar.",
+    noAstroNight: "En esta época no hay noche cerrada: el Sol se queda demasiado cerca del horizonte.",
+    note: "Horas locales del lugar elegido, con el horizonte despejado. No se tienen en cuenta el tiempo ni la contaminación lumínica."
+  }
 });
 
 </script>
@@ -5079,7 +5201,13 @@ I18N.zh = deepMerge(I18N.fr, {
       Aql: "天鹰座",
       CMa: "大犬座"
     },
-    aboveHorizon: "地平线以上"
+    aboveHorizon: "地平线以上",
+    eclPartial: "此地可见偏食：太阳被遮住 {pct}，{a} 至 {b}（食甚 {m}）",
+    eclTotal: "此地可见全食：约 {m} 全食 {dur}（日食 {a} 至 {b}）",
+    eclAnnular: "此地可见环食：约 {m} 环食 {dur}（日食 {a} 至 {b}）",
+    eclRises: "太阳带食而升",
+    eclSets: "太阳带食而落",
+    eclSafety: "⚠️ 切勿在没有符合 ISO 12312-2 标准的日食眼镜时直视太阳。"
   },
   pair: {
     title: "双人契合度",
@@ -5203,14 +5331,36 @@ I18N.zh = deepMerge(I18N.fr, {
     horoscope: "运势将天体当前的位置与你的星座作比较：经过你的星座或与它形成角度的天体（即行运）会影响这一时期。慢行星决定大趋势，快行星决定当下的氛围。",
     skymap: "从所选城市抬头仰望时看到的天空：圆盘边缘是地平线，中心是你头顶正上方的点。北方在上，东方在左，因为你是在仰望天空。",
     compat: "整体契合度是现有各项的平均值：星座、生肖，以及在出生时间已知时的月亮星座。这是一种象征性的解读，而非预言。",
-    signVsConstellation: "占星学的十二星座是从春分点起算、各占30°的等分区段，即此处使用的回归黄道。而同名的天文星座是大小不一的恒星群。由于地轴缓慢的摆动（岁差），自古以来两者已错开约一个星座：太阳可能位于占星学的白羊座区段，实际上却在双鱼座恒星群的前方。"
+    signVsConstellation: "占星学的十二星座是从春分点起算、各占30°的等分区段，即此处使用的回归黄道。而同名的天文星座是大小不一的恒星群。由于地轴缓慢的摆动（岁差），自古以来两者已错开约一个星座：太阳可能位于占星学的白羊座区段，实际上却在双鱼座恒星群的前方。",
+    night: "当太阳位于地平线下 18° 以下（天文晨昏蒙影结束）时完全黑夜开始，到黎明结束。月光会照亮天空、掩盖暗星：最佳时间是完全黑夜且月亮已落。行星高于 10°、且太阳在地平线下 6° 以下时，才算清晰可见。",
+    solarEclipse: "按此地计算，精度约半分钟。百分比是太阳表面被月亮遮住的比例；时间从两个圆面的初次接触到最后接触，仅限太阳在地平线上的时段。日全食或日环食只在狭窄的带状区域内才能看到；其他地方看到的是偏食。"
   },
   placePlaceholder: "输入城市名称…",
   placeNoMatch: "未找到城市，请尝试最近的城市。",
   placeUnknown: "无法识别出生地点：请从建议列表中选择一个城市（选最近的即可）。",
   placeClear: "清除地点",
   placesCredit: "城市数据：GeoNames（www.geonames.org），CC BY 4.0 许可。",
-  rangeWarning: "计算结果已针对1900年至2100年出生的情况进行验证：超出这一时期，行星位置和时区的精确度会降低。"
+  rangeWarning: "计算结果已针对1900年至2100年出生的情况进行验证：超出这一时期，行星位置和时区的精确度会降低。",
+  night: {
+    title: "今夜观星",
+    sunset: "日落",
+    sunrise: "日出",
+    dark: "完全黑夜",
+    moon: "月亮",
+    moonLit: "照亮 {pct}",
+    moonrise: "{t} 升起",
+    moonset: "{t} 落下",
+    moonAllNight: "整夜位于地平线上",
+    moonNone: "整夜位于地平线下",
+    best: "最佳观测时间",
+    bestNone: "今夜没有无月的完全黑夜。",
+    planets: "可见行星",
+    noPlanets: "今夜没有清晰可见的行星。",
+    polarDay: "太阳不落：极昼。",
+    polarNight: "太阳不升：极夜。",
+    noAstroNight: "这个季节没有完全黑夜：太阳离地平线太近。",
+    note: "所选地点的当地时间，按开阔地平线计算。未考虑天气和光污染。"
+  }
 });
 
 </script>
@@ -5785,7 +5935,13 @@ I18N.ru = deepMerge(I18N.fr, {
       Aql: "Орёл",
       CMa: "Большой Пёс"
     },
-    aboveHorizon: "Над горизонтом"
+    aboveHorizon: "Над горизонтом",
+    eclPartial: "частное отсюда: Солнце закрыто на {pct}, с {a} до {b} (максимум в {m})",
+    eclTotal: "полное отсюда: {dur} полной фазы около {m} (затмение с {a} до {b})",
+    eclAnnular: "кольцеобразное отсюда: {dur} кольца около {m} (затмение с {a} до {b})",
+    eclRises: "Солнце восходит уже затменным",
+    eclSets: "Солнце заходит ещё затменным",
+    eclSafety: "⚠️ Никогда не смотрите на Солнце без очков для затмений по стандарту ISO 12312-2."
   },
   pair: {
     title: "Совместимость пары",
@@ -5919,14 +6075,36 @@ I18N.ru = deepMerge(I18N.fr, {
     horoscope: "Гороскоп сравнивает нынешнее положение светил с вашим знаком: светило, проходящее через ваш знак или образующее с ним угол (транзит), окрашивает период. Медленные планеты задают общие тенденции, быстрые — атмосферу момента.",
     skymap: "Небо, каким его видно, если поднять голову в выбранном городе: край круга — это горизонт, центр — точка прямо над вами. Север вверху, восток слева, потому что вы смотрите вверх.",
     compat: "Общая совместимость — это среднее значение доступных показателей: знаков зодиака, китайских животных и, если известно время рождения, лунных знаков. Это символическое толкование, а не предсказание.",
-    signVsConstellation: "Астрологические знаки — это 12 равных секторов по 30°, отсчитываемых от весеннего равноденствия: это тропический зодиак, используемый здесь. Одноимённые созвездия — группы звёзд разного размера. Из-за медленного покачивания земной оси (прецессии) знаки и созвездия со времён античности разошлись примерно на один знак: Солнце может находиться в знаке Овна, стоя при этом перед созвездием Рыб."
+    signVsConstellation: "Астрологические знаки — это 12 равных секторов по 30°, отсчитываемых от весеннего равноденствия: это тропический зодиак, используемый здесь. Одноимённые созвездия — группы звёзд разного размера. Из-за медленного покачивания земной оси (прецессии) знаки и созвездия со времён античности разошлись примерно на один знак: Солнце может находиться в знаке Овна, стоя при этом перед созвездием Рыб.",
+    night: "Полная темнота наступает, когда Солнце опускается более чем на 18° под горизонт (конец астрономических сумерек), и заканчивается на рассвете. Луна освещает небо и скрывает слабые звёзды: лучшее время — полная темнота при зашедшей Луне. Планета считается хорошо видимой выше 10° над горизонтом, когда Солнце более чем на 6° под горизонтом.",
+    solarEclipse: "Расчёт для этого места с точностью до полуминуты. Процент — доля поверхности Солнца, закрытая Луной; время указано от первого до последнего касания дисков, только пока Солнце над горизонтом. Полное или кольцеобразное затмение видно таким лишь в узкой полосе; в остальных местах оно частное."
   },
   placePlaceholder: "Введите название города…",
   placeNoMatch: "Город не найден. Попробуйте ближайший.",
   placeUnknown: "Место рождения не распознано: выберите город из списка (подойдёт ближайший).",
   placeClear: "Очистить место",
   placesCredit: "Города: GeoNames (www.geonames.org), лицензия CC BY 4.0.",
-  rangeWarning: "Расчёты проверены для дат рождения с 1900 по 2100 год: за пределами этого периода положения планет и часовые пояса менее точны."
+  rangeWarning: "Расчёты проверены для дат рождения с 1900 по 2100 год: за пределами этого периода положения планет и часовые пояса менее точны.",
+  night: {
+    title: "Наблюдение неба этой ночью",
+    sunset: "Заход Солнца",
+    sunrise: "Восход Солнца",
+    dark: "Полная темнота",
+    moon: "Луна",
+    moonLit: "освещена на {pct}",
+    moonrise: "восход в {t}",
+    moonset: "заход в {t}",
+    moonAllNight: "над горизонтом всю ночь",
+    moonNone: "под горизонтом всю ночь",
+    best: "Лучшее время для наблюдений",
+    bestNone: "Этой ночью нет полной темноты без Луны.",
+    planets: "Видимые планеты",
+    noPlanets: "Этой ночью планеты плохо видны.",
+    polarDay: "Солнце не заходит: полярный день.",
+    polarNight: "Солнце не восходит: полярная ночь.",
+    noAstroNight: "В это время года нет полной темноты: Солнце остаётся слишком близко к горизонту.",
+    note: "Местное время выбранного места, при открытом горизонте. Погода и световое загрязнение не учитываются."
+  }
 });
 
 </script>
@@ -6485,7 +6663,13 @@ I18N.de = deepMerge(I18N.fr, {
       Aql: "Adler",
       CMa: "Großer Hund"
     },
-    aboveHorizon: "Über dem Horizont"
+    aboveHorizon: "Über dem Horizont",
+    eclPartial: "partiell von hier: {pct} der Sonne verdeckt, von {a} bis {b} (Maximum {m})",
+    eclTotal: "total von hier: {dur} Totalität gegen {m} (Finsternis von {a} bis {b})",
+    eclAnnular: "ringförmig von hier: {dur} Ring gegen {m} (Finsternis von {a} bis {b})",
+    eclRises: "die Sonne geht bereits verfinstert auf",
+    eclSets: "die Sonne geht noch verfinstert unter",
+    eclSafety: "⚠️ Nie ohne Finsternisbrille nach Norm ISO 12312-2 in die Sonne schauen."
   },
   pair: {
     title: "Kompatibilität zu zweit",
@@ -6619,14 +6803,36 @@ I18N.de = deepMerge(I18N.fr, {
     horoscope: "Das Horoskop vergleicht die aktuelle Stellung der Himmelskörper mit deinem Zeichen: Ein Himmelskörper, der dein Zeichen durchläuft oder einen Winkel dazu bildet (ein Transit), prägt die Zeit. Langsame Planeten bestimmen die großen Trends, schnelle die Stimmung des Augenblicks.",
     skymap: "Der Himmel, wie man ihn sieht, wenn man in der gewählten Stadt nach oben schaut: Der Rand der Scheibe ist der Horizont, die Mitte der Punkt direkt über dir. Norden ist oben und Osten links, weil du nach oben blickst.",
     compat: "Die Gesamtverträglichkeit ist der Durchschnitt der verfügbaren Achsen: Tierkreiszeichen, chinesische Tiere und, wenn die Geburtszeiten bekannt sind, Mondzeichen. Es ist eine symbolische Deutung, keine Vorhersage.",
-    signVsConstellation: "Die astrologischen Zeichen sind 12 gleich große Abschnitte von 30°, gezählt ab der Frühlings-Tagundnachtgleiche: der hier verwendete tropische Tierkreis. Die gleichnamigen Sternbilder sind Sterngruppen von ungleicher Größe. Durch die langsame Kreiselbewegung der Erdachse (Präzession) haben sich Zeichen und Sternbilder seit der Antike um etwa ein Zeichen verschoben: Die Sonne kann im Zeichen Widder stehen und sich zugleich vor dem Sternbild Fische befinden."
+    signVsConstellation: "Die astrologischen Zeichen sind 12 gleich große Abschnitte von 30°, gezählt ab der Frühlings-Tagundnachtgleiche: der hier verwendete tropische Tierkreis. Die gleichnamigen Sternbilder sind Sterngruppen von ungleicher Größe. Durch die langsame Kreiselbewegung der Erdachse (Präzession) haben sich Zeichen und Sternbilder seit der Antike um etwa ein Zeichen verschoben: Die Sonne kann im Zeichen Widder stehen und sich zugleich vor dem Sternbild Fische befinden.",
+    night: "Die volle Dunkelheit beginnt, wenn die Sonne mehr als 18° unter dem Horizont steht (Ende der astronomischen Dämmerung), und endet in der Morgendämmerung. Der Mond erhellt den Himmel und verdeckt schwache Sterne: Am besten ist volle Dunkelheit bei untergegangenem Mond. Ein Planet gilt als gut sichtbar ab 10° Höhe, wenn die Sonne mehr als 6° unter dem Horizont steht.",
+    solarEclipse: "Berechnung für diesen Ort, auf eine halbe Minute genau. Der Prozentwert ist der Anteil der Sonnenfläche, den der Mond verdeckt; die Zeiten reichen vom ersten bis zum letzten Kontakt der beiden Scheiben, begrenzt auf die Zeit, in der die Sonne über dem Horizont steht. Eine totale oder ringförmige Finsternis ist nur in einem schmalen Streifen als solche zu sehen; anderswo ist sie partiell."
   },
   placePlaceholder: "Stadtnamen eingeben …",
   placeNoMatch: "Keine Stadt gefunden. Versuche die nächstgelegene.",
   placeUnknown: "Geburtsort nicht erkannt: Wähle eine Stadt aus der Liste (die nächstgelegene genügt).",
   placeClear: "Ort löschen",
   placesCredit: "Städte: GeoNames (www.geonames.org), Lizenz CC BY 4.0.",
-  rangeWarning: "Die Berechnungen sind für Geburten von 1900 bis 2100 geprüft: Außerhalb dieses Zeitraums werden Planetenstellungen und Zeitzonen ungenauer."
+  rangeWarning: "Die Berechnungen sind für Geburten von 1900 bis 2100 geprüft: Außerhalb dieses Zeitraums werden Planetenstellungen und Zeitzonen ungenauer.",
+  night: {
+    title: "Den Himmel heute Nacht beobachten",
+    sunset: "Sonnenuntergang",
+    sunrise: "Sonnenaufgang",
+    dark: "Volle Dunkelheit",
+    moon: "Mond",
+    moonLit: "zu {pct} beleuchtet",
+    moonrise: "Aufgang {t}",
+    moonset: "Untergang {t}",
+    moonAllNight: "die ganze Nacht über dem Horizont",
+    moonNone: "die ganze Nacht unter dem Horizont",
+    best: "Beste Beobachtungszeit",
+    bestNone: "Heute Nacht keine volle Dunkelheit ohne Mond.",
+    planets: "Sichtbare Planeten",
+    noPlanets: "Heute Nacht ist kein Planet gut sichtbar.",
+    polarDay: "Die Sonne geht nicht unter: Polartag.",
+    polarNight: "Die Sonne geht nicht auf: Polarnacht.",
+    noAstroNight: "Zu dieser Jahreszeit keine volle Dunkelheit: Die Sonne bleibt zu nah am Horizont.",
+    note: "Ortszeiten des gewählten Ortes, bei freiem Horizont. Wetter und Lichtverschmutzung werden nicht berücksichtigt."
+  }
 });
 
 </script>
@@ -7185,7 +7391,13 @@ I18N.it = deepMerge(I18N.fr, {
       Aql: "Aquila",
       CMa: "Cane Maggiore"
     },
-    aboveHorizon: "Sopra l'orizzonte"
+    aboveHorizon: "Sopra l'orizzonte",
+    eclPartial: "parziale da qui: {pct} del Sole nascosto, dalle {a} alle {b} (massimo alle {m})",
+    eclTotal: "totale da qui: {dur} di totalità verso le {m} (eclissi dalle {a} alle {b})",
+    eclAnnular: "anulare da qui: {dur} di anello verso le {m} (eclissi dalle {a} alle {b})",
+    eclRises: "il Sole sorge già eclissato",
+    eclSets: "il Sole tramonta ancora eclissato",
+    eclSafety: "⚠️ Non guardare mai il Sole senza occhiali per eclissi conformi alla norma ISO 12312-2."
   },
   pair: {
     title: "Compatibilità di coppia",
@@ -7319,14 +7531,36 @@ I18N.it = deepMerge(I18N.fr, {
     horoscope: "L'oroscopo confronta la posizione attuale degli astri con il tuo segno: un astro che attraversa il tuo segno o forma un angolo con esso (un transito) colora il periodo. I pianeti lenti danno le grandi tendenze, quelli veloci il clima del momento.",
     skymap: "Il cielo come lo si vede alzando gli occhi dalla città scelta: il bordo del disco è l'orizzonte, il centro il punto proprio sopra di te. Il nord è in alto e l'est a sinistra, perché si guarda verso il cielo.",
     compat: "L'affinità globale è la media degli assi disponibili: segni zodiacali, animali cinesi e, se le ore di nascita sono note, segni lunari. È una lettura simbolica, non una previsione.",
-    signVsConstellation: "I segni astrologici sono 12 settori uguali di 30°, contati a partire dall'equinozio di primavera: è lo zodiaco tropicale, usato qui. Le costellazioni con lo stesso nome sono gruppi di stelle di dimensioni diverse. A causa della lenta oscillazione dell'asse terrestre (la precessione), segni e costellazioni si sono sfasati di circa un segno dall'antichità: il Sole può trovarsi nel segno dell'Ariete pur stando davanti alla costellazione dei Pesci."
+    signVsConstellation: "I segni astrologici sono 12 settori uguali di 30°, contati a partire dall'equinozio di primavera: è lo zodiaco tropicale, usato qui. Le costellazioni con lo stesso nome sono gruppi di stelle di dimensioni diverse. A causa della lenta oscillazione dell'asse terrestre (la precessione), segni e costellazioni si sono sfasati di circa un segno dall'antichità: il Sole può trovarsi nel segno dell'Ariete pur stando davanti alla costellazione dei Pesci.",
+    night: "La notte fonda inizia quando il Sole è più di 18° sotto l'orizzonte (fine del crepuscolo astronomico) e finisce all'alba. La Luna rischiara il cielo e nasconde le stelle deboli: il momento migliore unisce notte fonda e Luna tramontata. Un pianeta è considerato ben visibile a più di 10° di altezza, con il Sole più di 6° sotto l'orizzonte.",
+    solarEclipse: "Calcolo per questo luogo, con mezzo minuto di precisione. La percentuale è la parte della superficie del Sole nascosta dalla Luna; gli orari vanno dal primo all'ultimo contatto dei due dischi, limitati al periodo in cui il Sole è sopra l'orizzonte. Un'eclissi totale o anulare si vede come tale solo in una fascia stretta; altrove è parziale."
   },
   placePlaceholder: "Digita il nome di una città…",
   placeNoMatch: "Nessuna città trovata. Prova con la più vicina.",
   placeUnknown: "Luogo di nascita non riconosciuto: scegli una città dall'elenco (va bene la più vicina).",
   placeClear: "Cancella il luogo",
   placesCredit: "Città: GeoNames (www.geonames.org), licenza CC BY 4.0.",
-  rangeWarning: "I calcoli sono verificati per le nascite dal 1900 al 2100: al di fuori di questo periodo, le posizioni dei pianeti e i fusi orari diventano meno precisi."
+  rangeWarning: "I calcoli sono verificati per le nascite dal 1900 al 2100: al di fuori di questo periodo, le posizioni dei pianeti e i fusi orari diventano meno precisi.",
+  night: {
+    title: "Osservare il cielo stanotte",
+    sunset: "Tramonto",
+    sunrise: "Alba",
+    dark: "Notte fonda",
+    moon: "Luna",
+    moonLit: "illuminata al {pct}",
+    moonrise: "sorge alle {t}",
+    moonset: "tramonta alle {t}",
+    moonAllNight: "sopra l'orizzonte tutta la notte",
+    moonNone: "sotto l'orizzonte tutta la notte",
+    best: "Momento migliore per osservare",
+    bestNone: "Stanotte non c'è notte fonda senza Luna.",
+    planets: "Pianeti visibili",
+    noPlanets: "Nessun pianeta ben visibile stanotte.",
+    polarDay: "Il Sole non tramonta: giorno polare.",
+    polarNight: "Il Sole non sorge: notte polare.",
+    noAstroNight: "In questa stagione non c'è notte fonda: il Sole resta troppo vicino all'orizzonte.",
+    note: "Orari locali del luogo scelto, con orizzonte libero. Meteo e inquinamento luminoso non sono considerati."
+  }
 });
 
 </script>
@@ -7861,7 +8095,13 @@ I18N.ja = deepMerge(I18N.fr, {
       Aql: "わし座",
       CMa: "おおいぬ座"
     },
-    aboveHorizon: "地平線の上"
+    aboveHorizon: "地平線の上",
+    eclPartial: "ここでは部分日食：太陽の {pct} が隠れます、{a}〜{b}（食の最大 {m}）",
+    eclTotal: "ここでは皆既日食：{m} ごろ皆既 {dur}（日食 {a}〜{b}）",
+    eclAnnular: "ここでは金環日食：{m} ごろ金環 {dur}（日食 {a}〜{b}）",
+    eclRises: "太陽は欠けたまま昇ります",
+    eclSets: "太陽は欠けたまま沈みます",
+    eclSafety: "⚠️ ISO 12312-2 規格に適合した日食グラスなしで太陽を見ないでください。"
   },
   pair: {
     title: "二人の相性",
@@ -7995,14 +8235,36 @@ I18N.ja = deepMerge(I18N.fr, {
     horoscope: "ホロスコープは現在の天体の位置をあなたの星座と比べます。あなたの星座を通過する天体や、星座と角度をつくる天体（トランジット）がその時期を彩ります。動きの遅い惑星は大きな流れを、速い惑星はその時の雰囲気を表します。",
     skymap: "選んだ都市で空を見上げたときの星空です。円の縁が地平線、中心があなたの真上です。空を見上げているので、北が上、東が左になります。",
     compat: "総合的な相性は、利用できる項目（星座、干支、出生時刻がわかる場合は月星座）の平均です。象徴的な読み解きであり、予言ではありません。",
-    signVsConstellation: "占星術の12星座は、春分点から数えた30°ずつの等しい区分で、ここで使っているトロピカル方式です。同じ名前の天文学の星座は、大きさの異なる星の集まりです。地軸のゆっくりとした首振り運動（歳差）のため、古代から両者は約1星座分ずれています。太陽が占星術の牡羊座にあっても、実際には魚座の星々の前にあることがあります。"
+    signVsConstellation: "占星術の12星座は、春分点から数えた30°ずつの等しい区分で、ここで使っているトロピカル方式です。同じ名前の天文学の星座は、大きさの異なる星の集まりです。地軸のゆっくりとした首振り運動（歳差）のため、古代から両者は約1星座分ずれています。太陽が占星術の牡羊座にあっても、実際には魚座の星々の前にあることがあります。",
+    night: "太陽が地平線下 18° より低くなると（天文薄明の終わり）完全な暗夜となり、明け方に終わります。月明かりは空を明るくし暗い星を隠すため、最適なのは完全な暗夜で月が沈んでいる時間です。惑星は高度 10° 以上、太陽が地平線下 6° 以下のとき、よく見えるとみなします。",
+    solarEclipse: "この場所での計算で、精度は約30秒です。百分率は月に隠される太陽の面積の割合です。時刻は二つの円の最初の接触から最後の接触までで、太陽が地平線上にある間に限ります。皆既日食や金環日食がそのとおりに見えるのは狭い帯の中だけで、それ以外では部分日食になります。"
   },
   placePlaceholder: "都市名を入力…",
   placeNoMatch: "都市が見つかりません。最寄りの都市を試してください。",
   placeUnknown: "出生地を認識できません。候補の一覧から都市を選んでください（最寄りの都市で構いません）。",
   placeClear: "出生地を消去",
   placesCredit: "都市データ：GeoNames（www.geonames.org）、CC BY 4.0 ライセンス。",
-  rangeWarning: "計算は1900年から2100年までの生まれについて検証済みです。この期間外では、惑星の位置とタイムゾーンの精度が下がります。"
+  rangeWarning: "計算は1900年から2100年までの生まれについて検証済みです。この期間外では、惑星の位置とタイムゾーンの精度が下がります。",
+  night: {
+    title: "今夜の星空観察",
+    sunset: "日の入り",
+    sunrise: "日の出",
+    dark: "完全な暗夜",
+    moon: "月",
+    moonLit: "輝面比 {pct}",
+    moonrise: "{t} 月の出",
+    moonset: "{t} 月の入り",
+    moonAllNight: "一晩中地平線の上",
+    moonNone: "一晩中地平線の下",
+    best: "観察に最適な時間",
+    bestNone: "今夜は月のない完全な暗夜がありません。",
+    planets: "見える惑星",
+    noPlanets: "今夜はよく見える惑星がありません。",
+    polarDay: "太陽が沈みません：白夜（極昼）です。",
+    polarNight: "太陽が昇りません：極夜です。",
+    noAstroNight: "この季節は完全な暗夜になりません：太陽が地平線に近すぎます。",
+    note: "選んだ場所の現地時刻、開けた地平線での値です。天候や光害は考慮していません。"
+  }
 });
 
 </script>
@@ -8537,7 +8799,13 @@ I18N.ko = deepMerge(I18N.fr, {
       Aql: "독수리자리",
       CMa: "큰개자리"
     },
-    aboveHorizon: "지평선 위"
+    aboveHorizon: "지평선 위",
+    eclPartial: "이곳에서 부분 일식: 태양의 {pct}가 가려짐, {a}~{b} (최대 {m})",
+    eclTotal: "이곳에서 개기 일식: {m}경 개기 {dur} (일식 {a}~{b})",
+    eclAnnular: "이곳에서 금환 일식: {m}경 금환 {dur} (일식 {a}~{b})",
+    eclRises: "해가 이미 가려진 채로 뜹니다",
+    eclSets: "해가 아직 가려진 채로 집니다",
+    eclSafety: "⚠️ ISO 12312-2 규격에 맞는 일식 안경 없이 절대 태양을 보지 마세요."
   },
   pair: {
     title: "두 사람의 궁합",
@@ -8665,14 +8933,36 @@ I18N.ko = deepMerge(I18N.fr, {
     horoscope: "운세는 지금 천체의 위치를 당신의 별자리와 비교합니다. 당신의 별자리를 지나가거나 별자리와 각도를 이루는 천체(트랜짓)가 그 시기를 물들입니다. 느린 행성은 큰 흐름을, 빠른 행성은 그때의 분위기를 나타냅니다.",
     skymap: "선택한 도시에서 하늘을 올려다볼 때 보이는 모습입니다. 원의 가장자리는 지평선, 가운데는 머리 바로 위입니다. 하늘을 올려다보고 있으므로 북쪽이 위, 동쪽이 왼쪽입니다.",
     compat: "종합 궁합은 이용할 수 있는 항목(별자리, 띠, 출생 시각을 알면 달 별자리)의 평균입니다. 상징적인 해석이지 예언이 아닙니다.",
-    signVsConstellation: "점성술의 12별자리는 춘분점부터 30°씩 나눈 같은 크기의 구역으로, 여기서 쓰는 트로피컬 방식입니다. 같은 이름의 천문 별자리는 크기가 제각각인 별들의 무리입니다. 지구 자전축이 천천히 흔들리는 세차 운동 때문에 고대 이후 두 체계는 약 한 별자리만큼 어긋났습니다. 태양이 점성술의 양자리에 있으면서도 실제로는 물고기자리 별들 앞에 있을 수 있습니다."
+    signVsConstellation: "점성술의 12별자리는 춘분점부터 30°씩 나눈 같은 크기의 구역으로, 여기서 쓰는 트로피컬 방식입니다. 같은 이름의 천문 별자리는 크기가 제각각인 별들의 무리입니다. 지구 자전축이 천천히 흔들리는 세차 운동 때문에 고대 이후 두 체계는 약 한 별자리만큼 어긋났습니다. 태양이 점성술의 양자리에 있으면서도 실제로는 물고기자리 별들 앞에 있을 수 있습니다.",
+    night: "해가 지평선 아래 18°보다 낮아지면(천문 박명의 끝) 완전한 어둠이 시작되어 새벽에 끝납니다. 달빛은 하늘을 밝혀 희미한 별을 가리므로, 가장 좋은 시간은 완전한 어둠 속에서 달이 진 때입니다. 행성은 고도 10° 이상이고 해가 지평선 아래 6°보다 낮을 때 잘 보인다고 봅니다.",
+    solarEclipse: "이 장소 기준으로 약 30초 정밀도로 계산했습니다. 백분율은 달이 가린 태양 면적의 비율이며, 시각은 두 원판의 첫 접촉부터 마지막 접촉까지로 해가 지평선 위에 있는 동안에 한합니다. 개기 일식이나 금환 일식은 좁은 띠 안에서만 그렇게 보이고, 다른 곳에서는 부분 일식으로 보입니다."
   },
   placePlaceholder: "도시 이름을 입력하세요…",
   placeNoMatch: "도시를 찾을 수 없습니다. 가장 가까운 도시를 입력해 보세요.",
   placeUnknown: "출생지를 알 수 없습니다. 제안 목록에서 도시를 골라 주세요(가장 가까운 도시도 괜찮습니다).",
   placeClear: "출생지 지우기",
   placesCredit: "도시 정보: GeoNames(www.geonames.org), CC BY 4.0 라이선스.",
-  rangeWarning: "계산은 1900년부터 2100년 사이의 출생에 대해 검증되었습니다. 이 기간을 벗어나면 행성의 위치와 시간대의 정확도가 떨어집니다."
+  rangeWarning: "계산은 1900년부터 2100년 사이의 출생에 대해 검증되었습니다. 이 기간을 벗어나면 행성의 위치와 시간대의 정확도가 떨어집니다.",
+  night: {
+    title: "오늘 밤 하늘 관측",
+    sunset: "일몰",
+    sunrise: "일출",
+    dark: "완전한 어둠",
+    moon: "달",
+    moonLit: "{pct} 밝음",
+    moonrise: "{t} 월출",
+    moonset: "{t} 월몰",
+    moonAllNight: "밤새 지평선 위",
+    moonNone: "밤새 지평선 아래",
+    best: "관측하기 가장 좋은 시간",
+    bestNone: "오늘 밤에는 달 없는 완전한 어둠이 없습니다.",
+    planets: "보이는 행성",
+    noPlanets: "오늘 밤 잘 보이는 행성이 없습니다.",
+    polarDay: "해가 지지 않습니다: 백야(극낮)입니다.",
+    polarNight: "해가 뜨지 않습니다: 극야입니다.",
+    noAstroNight: "이 계절에는 완전한 어둠이 없습니다: 해가 지평선에 너무 가까이 있습니다.",
+    note: "선택한 장소의 현지 시각이며, 탁 트인 지평선 기준입니다. 날씨와 빛 공해는 고려하지 않았습니다."
+  }
 });
 
 </script>
@@ -9230,7 +9520,13 @@ I18N.pt = deepMerge(I18N.fr, {
       Aql: "Águia",
       CMa: "Cão Maior"
     },
-    aboveHorizon: "Acima do horizonte"
+    aboveHorizon: "Acima do horizonte",
+    eclPartial: "parcial daqui: {pct} do Sol encoberto, das {a} às {b} (máximo às {m})",
+    eclTotal: "total daqui: {dur} de totalidade por volta das {m} (eclipse das {a} às {b})",
+    eclAnnular: "anular daqui: {dur} de anel por volta das {m} (eclipse das {a} às {b})",
+    eclRises: "o Sol nasce já eclipsado",
+    eclSets: "o Sol se põe ainda eclipsado",
+    eclSafety: "⚠️ Nunca olhe para o Sol sem óculos de eclipse que atendam à norma ISO 12312-2."
   },
   pair: {
     title: "Compatibilidade a dois",
@@ -9364,14 +9660,36 @@ I18N.pt = deepMerge(I18N.fr, {
     horoscope: "O horóscopo compara a posição atual dos astros com o seu signo: um astro que atravessa o seu signo ou forma um ângulo com ele (um trânsito) dá o tom do período. Os planetas lentos trazem as grandes tendências; os rápidos, o clima do momento.",
     skymap: "O céu como você o vê ao olhar para cima a partir da cidade escolhida: a borda do disco é o horizonte e o centro, o ponto logo acima de você. O norte fica em cima e o leste à esquerda, porque você está olhando para o céu.",
     compat: "O entendimento geral é a média dos eixos disponíveis: signos do zodíaco, animais chineses e, se as horas de nascimento forem conhecidas, signos lunares. É uma leitura simbólica, não uma previsão.",
-    signVsConstellation: "Os signos astrológicos são 12 setores iguais de 30°, contados a partir do equinócio de março: é o zodíaco tropical, usado aqui. As constelações de mesmo nome são grupos de estrelas de tamanhos desiguais. Por causa do lento giro do eixo da Terra (a precessão), signos e constelações se afastaram cerca de um signo desde a Antiguidade: o Sol pode estar no signo de Áries enquanto se encontra diante da constelação de Peixes."
+    signVsConstellation: "Os signos astrológicos são 12 setores iguais de 30°, contados a partir do equinócio de março: é o zodíaco tropical, usado aqui. As constelações de mesmo nome são grupos de estrelas de tamanhos desiguais. Por causa do lento giro do eixo da Terra (a precessão), signos e constelações se afastaram cerca de um signo desde a Antiguidade: o Sol pode estar no signo de Áries enquanto se encontra diante da constelação de Peixes.",
+    night: "A noite escura começa quando o Sol está mais de 18° abaixo do horizonte (fim do crepúsculo astronômico) e termina na aurora. A Lua clareia o céu e esconde as estrelas fracas: o melhor momento combina noite escura e Lua posta. Um planeta é considerado bem visível a mais de 10° de altura, com o Sol mais de 6° abaixo do horizonte.",
+    solarEclipse: "Cálculo para este lugar, com precisão de meio minuto. A porcentagem é a parte da superfície do Sol encoberta pela Lua; os horários vão do primeiro ao último contato dos dois discos, limitados ao período em que o Sol está acima do horizonte. Um eclipse total ou anular só é visto assim numa faixa estreita; fora dela, é parcial."
   },
   placePlaceholder: "Digite o nome de uma cidade…",
   placeNoMatch: "Nenhuma cidade encontrada. Tente a cidade mais próxima.",
   placeUnknown: "Local de nascimento não reconhecido: escolha uma cidade da lista sugerida (a mais próxima serve).",
   placeClear: "Apagar o local",
   placesCredit: "Cidades: GeoNames (www.geonames.org), licença CC BY 4.0.",
-  rangeWarning: "Os cálculos são verificados para nascimentos de 1900 a 2100: fora desse período, as posições dos planetas e os fusos horários ficam menos precisos."
+  rangeWarning: "Os cálculos são verificados para nascimentos de 1900 a 2100: fora desse período, as posições dos planetas e os fusos horários ficam menos precisos.",
+  night: {
+    title: "Observar o céu esta noite",
+    sunset: "Pôr do sol",
+    sunrise: "Nascer do sol",
+    dark: "Noite escura",
+    moon: "Lua",
+    moonLit: "{pct} iluminada",
+    moonrise: "nasce às {t}",
+    moonset: "se põe às {t}",
+    moonAllNight: "acima do horizonte a noite toda",
+    moonNone: "abaixo do horizonte a noite toda",
+    best: "Melhor momento para observar",
+    bestNone: "Não há noite escura sem Lua esta noite.",
+    planets: "Planetas visíveis",
+    noPlanets: "Nenhum planeta bem visível esta noite.",
+    polarDay: "O Sol não se põe: dia polar.",
+    polarNight: "O Sol não nasce: noite polar.",
+    noAstroNight: "Não há noite escura nesta época: o Sol fica perto demais do horizonte.",
+    note: "Horários locais do lugar escolhido, com horizonte livre. O clima e a poluição luminosa não são considerados."
+  }
 });
 
 </script>
@@ -9926,7 +10244,13 @@ I18N.tr = deepMerge(I18N.fr, {
       Aql: "Kartal",
       CMa: "Büyükköpek"
     },
-    aboveHorizon: "Ufkun üstünde"
+    aboveHorizon: "Ufkun üstünde",
+    eclPartial: "buradan parçalı: Güneş'in {pct} kadarı örtülü, {a} – {b} (en yüksek {m})",
+    eclTotal: "buradan tam: {m} civarında {dur} tam tutulma ({a} – {b})",
+    eclAnnular: "buradan halkalı: {m} civarında {dur} halka ({a} – {b})",
+    eclRises: "Güneş tutulmuş olarak doğuyor",
+    eclSets: "Güneş hâlâ tutulmuş olarak batıyor",
+    eclSafety: "⚠️ Güneş'e asla ISO 12312-2 standardına uygun tutulma gözlüğü olmadan bakmayın."
   },
   pair: {
     title: "İki kişilik uyum",
@@ -10060,14 +10384,36 @@ I18N.tr = deepMerge(I18N.fr, {
     horoscope: "Burç yorumu, gök cisimlerinin şu anki konumlarını burcunuzla karşılaştırır: burcunuzdan geçen ya da onunla açı yapan bir gök cismi (transit) dönemi renklendirir. Yavaş gezegenler büyük eğilimleri, hızlı olanlar anın havasını verir.",
     skymap: "Seçilen şehirden başınızı kaldırdığınızda gördüğünüz gökyüzü: diskin kenarı ufuk, merkezi tam tepenizdeki noktadır. Gökyüzüne baktığınız için kuzey yukarıda, doğu soldadır.",
     compat: "Genel uyum, mevcut eksenlerin ortalamasıdır: burçlar, Çin burçları ve doğum saatleri biliniyorsa Ay burçları. Bu sembolik bir yorumdur, bir kehanet değildir.",
-    signVsConstellation: "Astrolojik burçlar, ilkbahar ekinoksundan itibaren sayılan 30°'lik 12 eşit dilimdir: burada kullanılan tropikal zodyak budur. Aynı adı taşıyan takımyıldızlar ise farklı büyüklükteki yıldız gruplarıdır. Dünya ekseninin yavaş salınımı (presesyon) nedeniyle burçlar ile takımyıldızlar Antik Çağ'dan bu yana yaklaşık bir burç kaymıştır: Güneş Koç burcundayken aslında Balık takımyıldızının önünde olabilir."
+    signVsConstellation: "Astrolojik burçlar, ilkbahar ekinoksundan itibaren sayılan 30°'lik 12 eşit dilimdir: burada kullanılan tropikal zodyak budur. Aynı adı taşıyan takımyıldızlar ise farklı büyüklükteki yıldız gruplarıdır. Dünya ekseninin yavaş salınımı (presesyon) nedeniyle burçlar ile takımyıldızlar Antik Çağ'dan bu yana yaklaşık bir burç kaymıştır: Güneş Koç burcundayken aslında Balık takımyıldızının önünde olabilir.",
+    night: "Tam karanlık, Güneş ufkun 18°'den fazla altına indiğinde (astronomik alacakaranlığın sonu) başlar ve şafakta biter. Ay gökyüzünü aydınlatır ve sönük yıldızları gizler: en iyi zaman, tam karanlık ile Ay'ın batmış olduğu andır. Bir gezegen, Güneş ufkun 6°'den fazla altındayken 10°'den yüksekte ise iyi görünür sayılır.",
+    solarEclipse: "Bu yer için yarım dakika hassasiyetle hesaplanmıştır. Yüzde, Güneş yüzeyinin Ay tarafından örtülen kısmıdır; saatler iki diskin ilk temasından son temasına kadardır ve Güneş'in ufkun üstünde olduğu süreyle sınırlıdır. Tam veya halkalı tutulma ancak dar bir şeritte böyle görülür; başka yerlerde parçalıdır."
   },
   placePlaceholder: "Bir şehir adı yazın…",
   placeNoMatch: "Şehir bulunamadı. En yakın şehri deneyin.",
   placeUnknown: "Doğum yeri tanınmadı: önerilen listeden bir şehir seçin (en yakını da olur).",
   placeClear: "Yeri temizle",
   placesCredit: "Şehirler: GeoNames (www.geonames.org), CC BY 4.0 lisansı.",
-  rangeWarning: "Hesaplamalar 1900–2100 arası doğumlar için doğrulanmıştır: bu dönemin dışında gezegen konumları ve saat dilimleri daha az kesindir."
+  rangeWarning: "Hesaplamalar 1900–2100 arası doğumlar için doğrulanmıştır: bu dönemin dışında gezegen konumları ve saat dilimleri daha az kesindir.",
+  night: {
+    title: "Bu gece gökyüzünü gözlemlemek",
+    sunset: "Gün batımı",
+    sunrise: "Gün doğumu",
+    dark: "Tam karanlık",
+    moon: "Ay",
+    moonLit: "{pct} aydınlık",
+    moonrise: "doğuş {t}",
+    moonset: "batış {t}",
+    moonAllNight: "bütün gece ufkun üstünde",
+    moonNone: "bütün gece ufkun altında",
+    best: "Gözlem için en iyi zaman",
+    bestNone: "Bu gece Ay'sız tam karanlık yok.",
+    planets: "Görünen gezegenler",
+    noPlanets: "Bu gece iyi görünen gezegen yok.",
+    polarDay: "Güneş batmıyor: kutup gündüzü.",
+    polarNight: "Güneş doğmuyor: kutup gecesi.",
+    noAstroNight: "Bu mevsimde tam karanlık yok: Güneş ufka fazla yakın kalıyor.",
+    note: "Seçilen yerin yerel saatleri, açık bir ufuk için. Hava durumu ve ışık kirliliği hesaba katılmaz."
+  }
 });
 
 </script>
@@ -10622,7 +10968,13 @@ I18N.ar = deepMerge(I18N.fr, {
       Aql: "العقاب",
       CMa: "الكلب الأكبر"
     },
-    aboveHorizon: "فوق الأفق"
+    aboveHorizon: "فوق الأفق",
+    eclPartial: "جزئي من هنا: يُحجب {pct} من الشمس، من {a} إلى {b} (الذروة {m})",
+    eclTotal: "كلي من هنا: {dur} من الكسوف الكلي نحو {m} (الكسوف من {a} إلى {b})",
+    eclAnnular: "حلقي من هنا: {dur} من الحلقة نحو {m} (الكسوف من {a} إلى {b})",
+    eclRises: "تشرق الشمس وهي مكسوفة",
+    eclSets: "تغرب الشمس وهي ما زالت مكسوفة",
+    eclSafety: "⚠️ لا تنظر أبدًا إلى الشمس دون نظارات كسوف مطابقة للمعيار ISO 12312-2."
   },
   pair: {
     title: "التوافق بين شخصين",
@@ -10756,14 +11108,36 @@ I18N.ar = deepMerge(I18N.fr, {
     horoscope: "يقارن الطالع اليومي مواقع الأجرام الحالية ببرجك: فالجرم الذي يعبر برجك أو يشكّل معه زاوية (العبور) يطبع الفترة بطابعه. الكواكب البطيئة تحدد الاتجاهات الكبرى، والسريعة أجواء اللحظة.",
     skymap: "السماء كما تراها حين ترفع بصرك من المدينة المختارة: حافة القرص هي الأفق، ومركزه النقطة التي فوق رأسك مباشرة. الشمال في الأعلى والشرق على اليسار، لأنك تنظر نحو السماء.",
     compat: "التوافق العام هو متوسط المحاور المتاحة: الأبراج، والحيوانات الصينية، وأبراج القمر إذا عُرفت ساعات الميلاد. إنها قراءة رمزية، وليست تنبؤًا.",
-    signVsConstellation: "الأبراج في التنجيم 12 قطاعًا متساويًا، كل منها 30°، تُعدّ ابتداءً من الاعتدال الربيعي: إنها دائرة البروج المدارية المستخدمة هنا. أما الكوكبات التي تحمل الأسماء نفسها فهي مجموعات نجمية متفاوتة الأحجام. وبسبب الترنح البطيء لمحور الأرض (المبادرة)، انزاحت الأبراج عن الكوكبات بنحو برج واحد منذ العصور القديمة: فقد تكون الشمس في برج الحمل بينما تقع أمام كوكبة الحوت."
+    signVsConstellation: "الأبراج في التنجيم 12 قطاعًا متساويًا، كل منها 30°، تُعدّ ابتداءً من الاعتدال الربيعي: إنها دائرة البروج المدارية المستخدمة هنا. أما الكوكبات التي تحمل الأسماء نفسها فهي مجموعات نجمية متفاوتة الأحجام. وبسبب الترنح البطيء لمحور الأرض (المبادرة)، انزاحت الأبراج عن الكوكبات بنحو برج واحد منذ العصور القديمة: فقد تكون الشمس في برج الحمل بينما تقع أمام كوكبة الحوت.",
+    night: "يبدأ الظلام التام حين تنخفض الشمس أكثر من 18° تحت الأفق (نهاية الشفق الفلكي) وينتهي عند الفجر. ينير القمر السماء ويحجب النجوم الخافتة: أفضل وقت يجمع بين الظلام التام وغياب القمر. ويُعدّ الكوكب واضح الرؤية إذا ارتفع أكثر من 10° والشمس أكثر من 6° تحت الأفق.",
+    solarEclipse: "حساب لهذا المكان بدقة نصف دقيقة. النسبة هي جزء سطح الشمس الذي يحجبه القمر؛ وتمتد الأوقات من أول تماس للقرصين إلى آخره، في حدود الفترة التي تكون فيها الشمس فوق الأفق. لا يُرى الكسوف الكلي أو الحلقي على حقيقته إلا في شريط ضيق؛ وفي غيره يكون جزئيًا."
   },
   placePlaceholder: "اكتب اسم مدينة…",
   placeNoMatch: "لم يُعثر على أي مدينة. جرّب أقرب مدينة.",
   placeUnknown: "لم يُتعرّف على مكان الميلاد: اختر مدينة من القائمة المقترحة (أقرب مدينة تفي بالغرض).",
   placeClear: "مسح المكان",
   placesCredit: "المدن: GeoNames (www.geonames.org)، بترخيص CC BY 4.0.",
-  rangeWarning: "الحسابات مُتحقَّق منها لمواليد الفترة من 1900 إلى 2100: خارج هذه الفترة تقل دقة مواقع الكواكب والمناطق الزمنية."
+  rangeWarning: "الحسابات مُتحقَّق منها لمواليد الفترة من 1900 إلى 2100: خارج هذه الفترة تقل دقة مواقع الكواكب والمناطق الزمنية.",
+  night: {
+    title: "رصد السماء هذه الليلة",
+    sunset: "غروب الشمس",
+    sunrise: "شروق الشمس",
+    dark: "الظلام التام",
+    moon: "القمر",
+    moonLit: "مضاء بنسبة {pct}",
+    moonrise: "يطلع في {t}",
+    moonset: "يغرب في {t}",
+    moonAllNight: "فوق الأفق طوال الليل",
+    moonNone: "تحت الأفق طوال الليل",
+    best: "أفضل وقت للرصد",
+    bestNone: "لا يوجد ظلام تام بلا قمر هذه الليلة.",
+    planets: "الكواكب المرئية",
+    noPlanets: "لا يوجد كوكب واضح الرؤية هذه الليلة.",
+    polarDay: "لا تغرب الشمس: نهار قطبي.",
+    polarNight: "لا تشرق الشمس: ليل قطبي.",
+    noAstroNight: "لا ظلام تام في هذا الموسم: تبقى الشمس قريبة جدًا من الأفق.",
+    note: "أوقات محلية للمكان المختار، مع أفق مكشوف. لا تؤخذ الأحوال الجوية ولا التلوث الضوئي في الحسبان."
+  }
 });
 
 </script>
@@ -11318,7 +11692,13 @@ I18N.hi = deepMerge(I18N.fr, {
       Aql: "गरुड़",
       CMa: "बृहल्लुब्धक"
     },
-    aboveHorizon: "क्षितिज के ऊपर"
+    aboveHorizon: "क्षितिज के ऊपर",
+    eclPartial: "यहाँ से आंशिक: सूर्य का {pct} ढका, {a} से {b} तक (अधिकतम {m})",
+    eclTotal: "यहाँ से पूर्ण: {m} के आसपास {dur} की पूर्णता (ग्रहण {a} से {b} तक)",
+    eclAnnular: "यहाँ से वलयाकार: {m} के आसपास {dur} का वलय (ग्रहण {a} से {b} तक)",
+    eclRises: "सूर्य ग्रहण लगे हुए ही उगता है",
+    eclSets: "सूर्य ग्रहण लगे हुए ही अस्त होता है",
+    eclSafety: "⚠️ ISO 12312-2 मानक वाले ग्रहण चश्मे के बिना सूर्य को कभी न देखें।"
   },
   pair: {
     title: "दो लोगों की अनुकूलता",
@@ -11452,14 +11832,36 @@ I18N.hi = deepMerge(I18N.fr, {
     horoscope: "राशिफल ग्रहों की वर्तमान स्थिति की तुलना आपकी राशि से करता है: आपकी राशि से गुज़रता या उससे कोण बनाता ग्रह (गोचर) उस अवधि को रंग देता है। धीमे ग्रह बड़े रुझान दिखाते हैं, तेज़ ग्रह इस समय का माहौल।",
     skymap: "चुने हुए शहर से ऊपर देखने पर दिखने वाला आकाश: चक्र का किनारा क्षितिज है और केंद्र ठीक आपके सिर के ऊपर का बिंदु। उत्तर ऊपर और पूर्व बाईं ओर है, क्योंकि आप आकाश की ओर देख रहे हैं।",
     compat: "कुल अनुकूलता उपलब्ध पहलुओं का औसत है: राशियाँ, चीनी पशु और, यदि जन्म समय ज्ञात हों, चंद्र राशियाँ। यह एक प्रतीकात्मक व्याख्या है, भविष्यवाणी नहीं।",
-    signVsConstellation: "यहाँ की राशियाँ वसंत विषुव से गिने गए 30° के 12 बराबर हिस्से हैं: यह सायन (ट्रॉपिकल) राशिचक्र है। उन्हीं नामों वाले तारामंडल अलग-अलग आकार के तारों के समूह हैं। पृथ्वी की धुरी के धीमे डोलन (अयन-चलन) के कारण प्राचीन काल से राशियाँ और तारामंडल लगभग एक राशि खिसक गए हैं। भारतीय वैदिक ज्योतिष निरयन (साइडरियल) राशिचक्र अपनाता है, इसलिए वहाँ आपकी राशि अक्सर यहाँ से एक राशि पीछे होती है।"
+    signVsConstellation: "यहाँ की राशियाँ वसंत विषुव से गिने गए 30° के 12 बराबर हिस्से हैं: यह सायन (ट्रॉपिकल) राशिचक्र है। उन्हीं नामों वाले तारामंडल अलग-अलग आकार के तारों के समूह हैं। पृथ्वी की धुरी के धीमे डोलन (अयन-चलन) के कारण प्राचीन काल से राशियाँ और तारामंडल लगभग एक राशि खिसक गए हैं। भारतीय वैदिक ज्योतिष निरयन (साइडरियल) राशिचक्र अपनाता है, इसलिए वहाँ आपकी राशि अक्सर यहाँ से एक राशि पीछे होती है।",
+    night: "पूर्ण अंधकार तब शुरू होता है जब सूर्य क्षितिज से 18° से अधिक नीचे चला जाता है (खगोलीय संध्या का अंत) और भोर में समाप्त होता है। चंद्रमा आकाश को रोशन करता है और धुँधले तारों को छिपा देता है: सबसे अच्छा समय पूर्ण अंधकार और चंद्रास्त का मेल है। कोई ग्रह तब अच्छी तरह दिखता है जब वह 10° से अधिक ऊँचा हो और सूर्य क्षितिज से 6° से अधिक नीचे हो।",
+    solarEclipse: "इस स्थान के लिए आधे मिनट की सटीकता से गणना। प्रतिशत सूर्य की सतह का वह भाग है जिसे चंद्रमा ढकता है; समय दोनों बिंबों के पहले से अंतिम स्पर्श तक है, केवल तब तक जब सूर्य क्षितिज के ऊपर हो। पूर्ण या वलयाकार ग्रहण केवल एक संकरी पट्टी में ही वैसा दिखता है; बाकी जगह वह आंशिक होता है।"
   },
   placePlaceholder: "शहर का नाम लिखें…",
   placeNoMatch: "कोई शहर नहीं मिला। सबसे पास का शहर आज़माएँ।",
   placeUnknown: "जन्म स्थान पहचाना नहीं गया: सुझाई गई सूची से कोई शहर चुनें (सबसे पास का शहर भी चलेगा)।",
   placeClear: "स्थान मिटाएँ",
   placesCredit: "शहर: GeoNames (www.geonames.org), CC BY 4.0 लाइसेंस।",
-  rangeWarning: "गणनाएँ 1900 से 2100 के बीच जन्म के लिए जाँची गई हैं: इस अवधि के बाहर ग्रहों की स्थिति और समय क्षेत्रों की सटीकता कम हो जाती है।"
+  rangeWarning: "गणनाएँ 1900 से 2100 के बीच जन्म के लिए जाँची गई हैं: इस अवधि के बाहर ग्रहों की स्थिति और समय क्षेत्रों की सटीकता कम हो जाती है।",
+  night: {
+    title: "आज रात आकाश देखें",
+    sunset: "सूर्यास्त",
+    sunrise: "सूर्योदय",
+    dark: "पूर्ण अंधकार",
+    moon: "चंद्रमा",
+    moonLit: "{pct} प्रकाशित",
+    moonrise: "उदय {t}",
+    moonset: "अस्त {t}",
+    moonAllNight: "पूरी रात क्षितिज के ऊपर",
+    moonNone: "पूरी रात क्षितिज के नीचे",
+    best: "देखने का सबसे अच्छा समय",
+    bestNone: "आज रात चंद्रमा रहित पूर्ण अंधकार नहीं है।",
+    planets: "दिखने वाले ग्रह",
+    noPlanets: "आज रात कोई ग्रह ठीक से नहीं दिखेगा।",
+    polarDay: "सूर्य अस्त नहीं होता: ध्रुवीय दिन।",
+    polarNight: "सूर्य उदय नहीं होता: ध्रुवीय रात।",
+    noAstroNight: "इस मौसम में पूर्ण अंधकार नहीं होता: सूर्य क्षितिज के बहुत पास रहता है।",
+    note: "चुने गए स्थान का स्थानीय समय, खुले क्षितिज के लिए। मौसम और प्रकाश प्रदूषण शामिल नहीं हैं।"
+  }
 });
 
 </script>
@@ -12014,7 +12416,13 @@ I18N.th = deepMerge(I18N.fr, {
       Aql: "กลุ่มดาวนกอินทรี",
       CMa: "กลุ่มดาวหมาใหญ่"
     },
-    aboveHorizon: "เหนือขอบฟ้า"
+    aboveHorizon: "เหนือขอบฟ้า",
+    eclPartial: "เห็นบางส่วนจากที่นี่: ดวงอาทิตย์ถูกบัง {pct} ตั้งแต่ {a} ถึง {b} (มากที่สุดเวลา {m})",
+    eclTotal: "เห็นเต็มดวงจากที่นี่: มืดหมด {dur} ราว {m} (อุปราคา {a} – {b})",
+    eclAnnular: "เห็นวงแหวนจากที่นี่: วงแหวน {dur} ราว {m} (อุปราคา {a} – {b})",
+    eclRises: "ดวงอาทิตย์ขึ้นมาขณะเกิดอุปราคาอยู่แล้ว",
+    eclSets: "ดวงอาทิตย์ตกขณะยังเกิดอุปราคาอยู่",
+    eclSafety: "⚠️ ห้ามมองดวงอาทิตย์โดยไม่ใช้แว่นดูสุริยุปราคาตามมาตรฐาน ISO 12312-2"
   },
   pair: {
     title: "ความเข้ากันได้ของสองคน",
@@ -12142,14 +12550,36 @@ I18N.th = deepMerge(I18N.fr, {
     horoscope: "ดวงชะตาเปรียบเทียบตำแหน่งปัจจุบันของดาวกับราศีของคุณ ดาวที่โคจรผ่านราศีของคุณหรือทำมุมกับราศีของคุณ (ดาวจร) จะส่งผลต่อช่วงเวลานั้น ดาวที่เคลื่อนช้าบอกแนวโน้มใหญ่ ดาวที่เคลื่อนเร็วบอกบรรยากาศช่วงนี้",
     skymap: "ท้องฟ้าที่คุณเห็นเมื่อเงยหน้ามองจากเมืองที่เลือก ขอบวงกลมคือขอบฟ้า จุดกึ่งกลางคือจุดเหนือศีรษะพอดี ทิศเหนืออยู่ด้านบนและทิศตะวันออกอยู่ทางซ้าย เพราะคุณกำลังมองขึ้นไปบนฟ้า",
     compat: "ความเข้ากันได้โดยรวมคือค่าเฉลี่ยของด้านที่มีข้อมูล ได้แก่ ราศี นักษัตรจีน และราศีของดวงจันทร์หากทราบเวลาเกิด เป็นการตีความเชิงสัญลักษณ์ ไม่ใช่คำทำนาย",
-    signVsConstellation: "ราศีในที่นี้คือ 12 ช่วงเท่า ๆ กัน ช่วงละ 30° นับจากจุดวสันตวิษุวัต เรียกว่าระบบสายนะ ส่วนกลุ่มดาวชื่อเดียวกันเป็นกลุ่มดาวที่มีขนาดไม่เท่ากัน เพราะแกนโลกส่ายอย่างช้า ๆ (การหมุนควง) ราศีกับกลุ่มดาวจึงเหลื่อมกันราวหนึ่งราศีนับแต่สมัยโบราณ โหราศาสตร์ไทยดั้งเดิมใช้ระบบนิรายนะ ราศีของคุณในระบบนั้นจึงมักถอยไปหนึ่งราศี"
+    signVsConstellation: "ราศีในที่นี้คือ 12 ช่วงเท่า ๆ กัน ช่วงละ 30° นับจากจุดวสันตวิษุวัต เรียกว่าระบบสายนะ ส่วนกลุ่มดาวชื่อเดียวกันเป็นกลุ่มดาวที่มีขนาดไม่เท่ากัน เพราะแกนโลกส่ายอย่างช้า ๆ (การหมุนควง) ราศีกับกลุ่มดาวจึงเหลื่อมกันราวหนึ่งราศีนับแต่สมัยโบราณ โหราศาสตร์ไทยดั้งเดิมใช้ระบบนิรายนะ ราศีของคุณในระบบนั้นจึงมักถอยไปหนึ่งราศี",
+    night: "ฟ้ามืดสนิทเริ่มเมื่อดวงอาทิตย์ลงต่ำกว่าขอบฟ้าเกิน 18° (สิ้นสุดสนธยาดาราศาสตร์) และจบลงตอนรุ่งอรุณ ดวงจันทร์ทำให้ท้องฟ้าสว่างและกลบดาวจาง ๆ ช่วงที่ดีที่สุดจึงเป็นช่วงฟ้ามืดสนิทขณะดวงจันทร์ตกแล้ว ดาวเคราะห์ถือว่ามองเห็นได้ชัดเมื่อสูงเกิน 10° และดวงอาทิตย์อยู่ต่ำกว่าขอบฟ้าเกิน 6°",
+    solarEclipse: "คำนวณสำหรับสถานที่นี้ แม่นยำราวครึ่งนาที เปอร์เซ็นต์คือส่วนของพื้นผิวดวงอาทิตย์ที่ดวงจันทร์บัง เวลาเริ่มจากการสัมผัสครั้งแรกถึงครั้งสุดท้ายของทั้งสองดวง เฉพาะช่วงที่ดวงอาทิตย์อยู่เหนือขอบฟ้า สุริยุปราคาเต็มดวงหรือวงแหวนจะเห็นเช่นนั้นได้เฉพาะในแนวแคบ ๆ ที่อื่นจะเห็นเพียงบางส่วน"
   },
   placePlaceholder: "พิมพ์ชื่อเมือง…",
   placeNoMatch: "ไม่พบเมือง ลองใช้เมืองที่ใกล้ที่สุด",
   placeUnknown: "ไม่รู้จักสถานที่เกิด กรุณาเลือกเมืองจากรายการที่แนะนำ (เมืองที่ใกล้ที่สุดก็ได้)",
   placeClear: "ล้างสถานที่",
   placesCredit: "ข้อมูลเมือง: GeoNames (www.geonames.org) สัญญาอนุญาต CC BY 4.0",
-  rangeWarning: "การคำนวณผ่านการตรวจสอบสำหรับผู้ที่เกิดระหว่าง ค.ศ. 1900 ถึง 2100 นอกช่วงเวลานี้ ตำแหน่งดาวและเขตเวลาจะแม่นยำน้อยลง"
+  rangeWarning: "การคำนวณผ่านการตรวจสอบสำหรับผู้ที่เกิดระหว่าง ค.ศ. 1900 ถึง 2100 นอกช่วงเวลานี้ ตำแหน่งดาวและเขตเวลาจะแม่นยำน้อยลง",
+  night: {
+    title: "ดูดาวคืนนี้",
+    sunset: "ดวงอาทิตย์ตก",
+    sunrise: "ดวงอาทิตย์ขึ้น",
+    dark: "ฟ้ามืดสนิท",
+    moon: "ดวงจันทร์",
+    moonLit: "สว่าง {pct}",
+    moonrise: "ขึ้น {t}",
+    moonset: "ตก {t}",
+    moonAllNight: "อยู่เหนือขอบฟ้าทั้งคืน",
+    moonNone: "อยู่ใต้ขอบฟ้าทั้งคืน",
+    best: "ช่วงเวลาที่ดีที่สุดในการดูดาว",
+    bestNone: "คืนนี้ไม่มีช่วงฟ้ามืดสนิทที่ไม่มีดวงจันทร์",
+    planets: "ดาวเคราะห์ที่มองเห็นได้",
+    noPlanets: "คืนนี้ไม่มีดาวเคราะห์ที่มองเห็นได้ชัด",
+    polarDay: "ดวงอาทิตย์ไม่ตก: กลางวันขั้วโลก",
+    polarNight: "ดวงอาทิตย์ไม่ขึ้น: กลางคืนขั้วโลก",
+    noAstroNight: "ช่วงนี้ไม่มีฟ้ามืดสนิท เพราะดวงอาทิตย์อยู่ใกล้ขอบฟ้าเกินไป",
+    note: "เวลาท้องถิ่นของสถานที่ที่เลือก สำหรับขอบฟ้าที่เปิดโล่ง ไม่รวมสภาพอากาศและมลภาวะทางแสง"
+  }
 });
 
 </script>
@@ -12168,6 +12598,31 @@ const DEG = Math.PI / 180;
 function norm360(x){ return ((x % 360) + 360) % 360; }
 
 /* Longitude écliptique apparente du Soleil, en degrés (0° = point vernal), à un instant en ms UTC */
+/* ---------- Précision accrue du Soleil (éclipses vues d'un lieu) ----------
+   Corrections de la longitude apparente et distance Terre-Soleil : moindres carrés sur 20 000 positions de référence
+   (astropy) de 1895 à 2105 — anomalie moyenne, perturbations de Vénus, Mars, Jupiter et Saturne, mouvement autour du
+   barycentre Terre-Lune, nutation. Écart résiduel : 2,1″ rms (5,4″ au plus) ; distance à 600 km près.
+   Ligne : [M, L⊕, L♀, L♂, L♃, L♄, D, Ω, L☉ (multiples), cosinus ?, ×T ?, amplitude] ; 1e-7 degré, 1e-9 UA.
+   Générées par l'ajustement (fit_sun.py) : ne pas modifier à la main. */
+const SUN_LON_FIX = [[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, -1409], [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 26322], [2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, -45538], [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2793], [2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1579], [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 18058], [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 706], [0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 105], [0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, -52465], [0, -1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 13448], [0, -3, 2, 0, 0, 0, 0, 0, 0, 1, 0, 6644], [0, -2, 2, 0, 0, 0, 0, 0, 0, 0, 0, -15341], [0, -5, 3, 0, 0, 0, 0, 0, 0, 0, 0, -2253], [0, -4, 3, 0, 0, 0, 0, 0, 0, 1, 0, 4107], [0, -3, 3, 0, 0, 0, 0, 0, 0, 0, 0, -1824], [0, -1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 895], [0, -2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 5620], [0, -1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 4076], [0, -1, 0, 2, 0, 0, 0, 0, 0, 1, 0, 2892], [0, -2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 1005], [0, -2, 0, 3, 0, 0, 0, 0, 0, 1, 0, 506], [0, -2, 0, 0, 1, 0, 0, 0, 0, 1, 0, 494], [0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 20073], [0, -1, 0, 0, 1, 0, 0, 0, 0, 1, 0, -499], [0, -2, 0, 0, 2, 0, 0, 0, 0, 0, 0, -7654], [0, -1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2656], [0, -1, 0, 0, 2, 0, 0, 0, 0, 1, 0, 3623], [0, -3, 0, 0, 3, 0, 0, 0, 0, 0, 0, -460], [0, -2, 0, 0, 3, 0, 0, 0, 0, 0, 0, -1433], [0, -1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1248]], SUN_LON_FIX0 = [-14051, -5518];
+const SUN_DIST_FIX = [[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -87597], [2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 20366], [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 42111], [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, -1285], [2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, -4558], [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 30890], [0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, -69691], [0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 57059], [0, -1, 1, 0, 0, 0, 0, 0, 0, 1, 0, -5492], [0, -3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2105], [0, -2, 2, 0, 0, 0, 0, 0, 0, 1, 0, 15755], [0, -4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3374], [0, -3, 3, 0, 0, 0, 0, 0, 0, 1, 0, 2366], [0, -2, 0, 2, 0, 0, 0, 0, 0, 1, 0, 4670], [0, -1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 16307], [0, -2, 0, 0, 2, 0, 0, 0, 0, 1, 0, -9233], [0, -1, 0, 0, 2, 0, 0, 0, 0, 0, 0, -2598]], SUN_DIST_FIX0 = [-97, -717];
+function sunSeries(rows, base, T, scale){
+  const a = [357.52911 + 35999.05029 * T, 100.46457 + 35999.37245 * T, 181.97910 + 58517.81539 * T, 355.44700 + 19140.30268 * T,
+             34.39644 + 3034.74613 * T, 49.95424 + 1222.49362 * T, 297.8501921 + 445267.1114034 * T, 125.04452 - 1934.136261 * T,
+             280.4665 + 36000.7698 * T].map(x => x * Math.PI / 180);
+  let s = base[0] + base[1] * T;
+  for (const r of rows) {
+    let arg = 0; for (let k = 0; k < 9; k++) arg += r[k] * a[k];
+    s += r[11] * (r[10] ? T : 1) * (r[9] ? Math.cos(arg) : Math.sin(arg));
+  }
+  return s / scale;
+}
+/* Distance Terre-Soleil (unités astronomiques) */
+function sunDistance(ms){
+  const T = julianCenturies(ms), M = (357.52911 + 35999.05029 * T) * Math.PI / 180;
+  return 1.000140 - 0.016708 * Math.cos(M) - 0.000139 * Math.cos(2 * M) + sunSeries(SUN_DIST_FIX, SUN_DIST_FIX0, T, 1e9);
+}
+
 function sunLongitude(ms){
   const T = (ms / 86400000 + 2440587.5 - 2451545.0) / 36525;   // siècles juliens depuis J2000
   const L0 = 280.46646 + 36000.76983*T + 0.0003032*T*T;        // longitude moyenne
@@ -12176,7 +12631,7 @@ function sunLongitude(ms){
            + (0.019993 - 0.000101*T) * Math.sin(2*M)
            + 0.000289 * Math.sin(3*M);                          // équation du centre
   const omega = (125.04 - 1934.136*T) * DEG;                    // nutation + aberration
-  return norm360(L0 + C - 0.00569 - 0.00478*Math.sin(omega));
+  return norm360(L0 + C - 0.00569 - 0.00478*Math.sin(omega) + sunSeries(SUN_LON_FIX, SUN_LON_FIX0, T, 1e7));   // + corrections fines
 }
 function signFromLongitude(lon){ return SIGN_ORDER[Math.floor(lon / 30) % 12]; }
 function decanFromLongitude(lon){ return Math.floor((lon % 30) / 10); }
@@ -12420,8 +12875,33 @@ function moonLongitude(ms){
   for (const [d, m, mp, f, c] of MOON_TERMS) sum += c * Math.pow(E, Math.abs(m)) * Math.sin(d * D + m * M + mp * Mp + f * F);
   const A1 = (119.75 + 131.849 * T) * DEG, A2 = (53.09 + 479264.290 * T) * DEG;
   sum += 3958 * Math.sin(A1) + 1962 * Math.sin(Lp * DEG - F) + 318 * Math.sin(A2);
-  return norm360(Lp + sum / 1e6);
+  return norm360(Lp + sum / 1e6 + seriesSum(MOON_LON_FIX, MOON_LON_FIX0, T, 1e7));   // + corrections fines
 }
+
+/* ---------- Précision accrue de la Lune (éclipses vues d'un lieu, levers et couchers) ----------
+   Corrections ajoutées à la série de Meeus ci-dessus, et distance Terre-Lune : termes obtenus par moindres carrés
+   sur 20 000 positions de référence (astropy, éphéméride intégrée) de 1895 à 2105, aux fréquences de la théorie
+   lunaire (D, M, M', F) et de la nutation. Écart résiduel : longitude 4,9″ rms, latitude 0,7″, distance 1,7 km.
+   Ligne : [D, M, M', F, Ω, 2L☉/2, 2L☾/2 (multiples), cosinus ?, amplitude]. Longitude/latitude en 1e-7 degré, distance en mètres.
+   Générées par l'ajustement (fit_moon.py) : ne pas modifier à la main. */
+const MOON_LON_FIX = [[0, -2, -1, 0, 0, 0, 0, 0, 1614], [0, -2, 0, 0, 0, 0, 0, 0, 1340], [0, -2, 0, 0, 0, 0, 0, 1, -1534], [0, -2, 1, 0, 0, 0, 0, 0, 3563], [0, 0, -4, 0, 0, 0, 0, 0, -2719], [0, 0, -2, -2, 0, 0, 0, 0, 5532], [0, 0, -2, 2, 0, 0, 0, 0, 1945], [0, 0, -1, 0, 0, 0, 0, 1, 6187], [0, 0, 1, 0, 0, 0, 0, 1, 6187], [0, 0, 2, -2, 0, 0, 0, 0, -1945], [0, 0, 2, 2, 0, 0, 0, 0, -5532], [0, 0, 4, 0, 0, 0, 0, 0, 2719], [0, 2, -1, 0, 0, 0, 0, 0, -3563], [0, 2, 0, 0, 0, 0, 0, 0, -1340], [0, 2, 0, 0, 0, 0, 0, 1, -1534], [0, 2, 1, 0, 0, 0, 0, 0, -1614], [1, 0, -2, 0, 0, 0, 0, 0, -4816], [1, 1, -1, 0, 0, 0, 0, 0, 2509], [1, 1, 1, 0, 0, 0, 0, 0, 3284], [2, -2, -1, 0, 0, 0, 0, 0, 20702], [2, -1, 0, -2, 0, 0, 0, 0, 5899], [2, -1, 2, 0, 0, 0, 0, 0, 3298], [2, 0, 0, 0, 0, 0, 0, 1, 1840], [2, 0, 0, 2, 0, 0, 0, 0, -15722], [2, 0, 1, -2, 0, 0, 0, 0, -17841], [2, 0, 3, 0, 0, 0, 0, 0, 3027], [2, 1, -2, 0, 0, 0, 0, 0, 6720], [2, 1, 0, -2, 0, 0, 0, 0, -3810], [2, 1, 1, 0, 0, 0, 0, 0, -8142], [2, 2, -1, 0, 0, 0, 0, 0, -7013], [2, 2, 0, -2, 0, 0, 0, 0, 20319], [2, 2, 0, -2, 0, 0, 0, 1, 253], [3, 0, -2, 0, 0, 0, 0, 0, -3457], [3, 0, -1, 0, 0, 0, 0, 0, -8894], [4, -1, -2, 0, 0, 0, 0, 0, 7477], [4, -1, -1, 0, 0, 0, 0, 0, 12095], [4, -1, 0, 0, 0, 0, 0, 0, 5214], [4, 0, -3, 0, 0, 0, 0, 0, 3320], [4, 0, 1, 0, 0, 0, 0, 0, 5588], [0, 0, 0, 0, 1, 0, 0, 0, -47126], [0, 0, 0, 0, 1, 0, 0, 1, -919], [0, 0, 0, 0, 2, 0, 0, 0, 19154], [0, 0, 0, 0, 2, 0, 0, 1, -8492], [0, 0, 0, 0, 0, 2, 0, 0, -7417], [0, 0, 0, 0, 0, 2, 0, 1, -1630]], MOON_LON_FIX0 = [75930, 38341];
+const MOON_LAT_FIX = [[0, -1, -2, -1, 0, 0, 0, 0, 885], [0, -1, 2, 1, 0, 0, 0, 0, 1088], [0, 0, -3, 1, 0, 0, 0, 0, -2213], [0, 0, -1, -3, 0, 0, 0, 0, 1401], [0, 0, -1, 3, 0, 0, 0, 0, -3876], [0, 0, 0, -1, 0, 0, 0, 1, 2962], [0, 0, 0, 1, 0, 0, 0, 1, 2962], [0, 0, 1, -3, 0, 0, 0, 0, 3876], [0, 0, 1, 3, 0, 0, 0, 0, -1401], [0, 0, 3, -1, 0, 0, 0, 0, 2213], [0, 1, -2, -1, 0, 0, 0, 0, -1088], [0, 1, 2, 1, 0, 0, 0, 0, -885], [1, 0, -1, -1, 0, 0, 0, 0, -1179], [1, 0, 1, -1, 0, 0, 0, 0, -1609], [1, 0, 1, 1, 0, 0, 0, 0, -1819], [1, 1, 0, -1, 0, 0, 0, 0, 3578], [1, 1, 0, -1, 0, 0, 0, 1, 2131], [1, 1, 0, 1, 0, 0, 0, 0, 2228], [2, -2, 0, -1, 0, 0, 0, 0, 3005], [2, -2, 0, 1, 0, 0, 0, 0, 1073], [2, -1, -2, -1, 0, 0, 0, 0, 1810], [2, -1, 1, -1, 0, 0, 0, 0, 4927], [2, -1, 1, 1, 0, 0, 0, 0, 3140], [2, 0, -3, -1, 0, 0, 0, 0, 4209], [2, 0, -2, 1, 0, 0, 0, 0, -4526], [2, 0, 0, -3, 0, 0, 0, 0, 6054], [2, 0, 2, -1, 0, 0, 0, 0, 5950], [2, 0, 2, 1, 0, 0, 0, 0, 4251], [2, 1, -1, -1, 0, 0, 0, 0, -2196], [2, 1, -1, 1, 0, 0, 0, 0, -3635], [2, 1, 0, 1, 0, 0, 0, 0, -3486], [2, 1, 1, -1, 0, 0, 0, 0, -2314], [4, -1, -1, -1, 0, 0, 0, 0, 1660], [4, -1, 0, -1, 0, 0, 0, 0, 1180], [4, 0, -2, -1, 0, 0, 0, 0, 1757], [4, 0, -2, 1, 0, 0, 0, 0, 6724], [4, 0, 0, 1, 0, 0, 0, 0, 3338], [4, 0, 1, -1, 0, 0, 0, 0, 1318], [0, 0, 0, 0, 1, 0, 0, 0, 1749], [0, 0, 0, 0, 1, 0, 0, 1, -1776]], MOON_LAT_FIX0 = [10, -21];
+const MOON_DIST = [[0, -2, 1, 0, 0, 0, 0, 1, -1056], [0, -1, -2, 0, 0, 0, 0, 1, 2867], [0, -1, -1, 0, 0, 0, 0, 1, 52384], [0, -1, 0, 0, 0, 0, 0, 1, 24431], [0, -1, 1, 0, 0, 0, 0, 1, -64838], [0, -1, 2, 0, 0, 0, 0, 1, -3483], [0, 0, -3, 0, 0, 0, 0, 1, -11604], [0, 0, -2, 0, 0, 0, 0, 1, -284960], [0, 0, -2, 2, 0, 0, 0, 1, -2204], [0, 0, -1, 0, 0, 0, 0, 0, -2031], [0, 0, -1, 0, 0, 0, 0, 1, -10452669], [0, 0, -1, 2, 0, 0, 0, 1, 39822], [0, 0, 0, -2, 0, 0, 0, 1, -1579], [0, 0, 0, 2, 0, 0, 0, 1, -1579], [0, 0, 1, -2, 0, 0, 0, 1, 39822], [0, 0, 1, 0, 0, 0, 0, 0, 2031], [0, 0, 1, 0, 0, 0, 0, 1, -10452669], [0, 0, 2, -2, 0, 0, 0, 1, -2204], [0, 0, 2, 0, 0, 0, 0, 1, -284960], [0, 0, 3, 0, 0, 0, 0, 1, -11604], [0, 1, -2, 0, 0, 0, 0, 1, -3483], [0, 1, -1, 0, 0, 0, 0, 1, -64838], [0, 1, 0, 0, 0, 0, 0, 1, 24431], [0, 1, 1, 0, 0, 0, 0, 1, 52384], [0, 1, 2, 0, 0, 0, 0, 1, 2867], [0, 2, -1, 0, 0, 0, 0, 1, -1056], [1, 0, -2, 0, 0, 0, 0, 1, -1749], [1, 0, -1, 0, 0, 0, 0, 0, -2542], [1, 0, -1, 0, 0, 0, 0, 1, -8410], [1, 0, 0, 0, 0, 0, 0, 0, 38360], [1, 0, 0, 0, 0, 0, 0, 1, 108711], [1, 0, 1, 0, 0, 0, 0, 0, 1049], [1, 0, 1, 0, 0, 0, 0, 1, 6332], [1, 1, 0, 0, 0, 0, 0, 1, -16689], [2, -2, -1, 0, 0, 0, 0, 1, -4976], [2, -2, 0, 0, 0, 0, 0, 1, -9876], [2, -1, -2, 0, 0, 0, 0, 1, 10035], [2, -1, -1, 0, 0, 0, 0, 1, -152163], [2, -1, 0, 0, 0, 0, 0, 1, -204591], [2, -1, 1, 0, 0, 0, 0, 1, -12851], [2, 0, -3, 0, 0, 0, 0, 1, 14406], [2, 0, -2, 0, 0, 0, 0, 1, 246166], [2, 0, -1, -2, 0, 0, 0, 1, 8778], [2, 0, -1, 0, 0, 0, 0, 1, -3699091], [2, 0, 0, -2, 0, 0, 0, 1, 10312], [2, 0, 0, 0, 0, 0, 0, 1, -2955990], [2, 0, 1, -2, 0, 0, 0, 1, 4151], [2, 0, 1, 0, 0, 0, 0, 1, -170741], [2, 0, 2, 0, 0, 0, 0, 1, -10460], [2, 1, -1, 0, 0, 0, 0, 1, 24219], [2, 1, 0, 0, 0, 0, 0, 1, 30815], [2, 1, 1, 0, 0, 0, 0, 1, 2640], [2, 2, -1, 0, 0, 0, 0, 1, 2342], [3, 0, -1, 0, 0, 0, 0, 1, 3259], [4, -1, -2, 0, 0, 0, 0, 1, -1949], [4, -1, -1, 0, 0, 0, 0, 1, -3949], [4, -1, 0, 0, 0, 0, 0, 1, -1547], [4, 0, -2, 0, 0, 0, 0, 1, -21606], [4, 0, -1, 0, 0, 0, 0, 1, -34778], [4, 0, 0, 0, 0, 0, 0, 1, -11682], [4, 0, 1, 0, 0, 0, 0, 1, -1433]], MOON_DIST0 = [9, 13];
+function moonArgs(T){
+  return [(297.8501921 + 445267.1114034 * T) * DEG, (357.5291092 + 35999.0502909 * T) * DEG, (134.9633964 + 477198.8675055 * T) * DEG,
+          (93.2720950 + 483202.0175233 * T) * DEG, (125.04452 - 1934.136261 * T) * DEG, (280.4665 + 36000.7698 * T) * DEG, (218.3165 + 481267.8813 * T) * DEG];
+}
+function seriesSum(rows, base, T, scale){
+  const a = moonArgs(T), E = 1 - 0.002516 * T - 0.0000074 * T * T;
+  let s = base[0] + base[1] * T;
+  for (const r of rows) {
+    const arg = r[0] * a[0] + r[1] * a[1] + r[2] * a[2] + r[3] * a[3] + r[4] * a[4] + r[5] * a[5] + r[6] * a[6];
+    s += r[8] * Math.pow(E, Math.abs(r[1])) * (r[7] ? Math.cos(arg) : Math.sin(arg));
+  }
+  return s / scale;
+}
+/* Distance Terre-Lune (km), centre à centre */
+function moonDistance(ms){ return 385000.56 + seriesSum(MOON_DIST, MOON_DIST0, julianCenturies(ms), 1e3); }
 
 /* Longitude géocentrique d'un corps (degrés, équinoxe de la date) */
 function bodyLongitude(body, ms){
@@ -12454,7 +12934,7 @@ function bodyLatitude(body, ms){
     const A1 = (119.75 + 131.849 * T) * DEG, A3 = (313.45 + 481266.484 * T) * DEG;
     sum += -2235 * Math.sin(Lp * DEG) + 382 * Math.sin(A3) + 175 * Math.sin(A1 - F) + 175 * Math.sin(A1 + F)
          + 127 * Math.sin(Lp * DEG - Mp) - 115 * Math.sin(Lp * DEG + Mp);
-    return sum / 1e6;
+    return sum / 1e6 + seriesSum(MOON_LAT_FIX, MOON_LAT_FIX0, T, 1e7);   // + corrections fines
   }
   const p = heliocentric(body, T), e = heliocentric('earth', T);
   const x = p[0] - e[0], y = p[1] - e[1], z = p[2] - e[2];
@@ -12660,6 +13140,191 @@ function nextEclipses(ms, count){
 }
 /* Une éclipse de Lune est visible si la Lune est au-dessus de l'horizon au maximum */
 function lunarEclipseVisible(ms, lat, lon){ return bodyAltAz('moon', lat, lon, ms).alt > 0; }
+
+</script>
+<script>
+/* ============================================================
+   Zodiaque & Décans — observation depuis un lieu
+   Éclipses de Soleil vues d'un lieu (contacts, part du Soleil cachée), levers et couchers, crépuscules,
+   programme de la nuit (Lune, nuit noire, planètes visibles). Fonctions pures, sans DOM.
+   Dépend de zodiac-astro.js (sunLongitude, sunDistance), zodiac-planets.js (Lune, planètes) et zodiac-skymap.js.
+   ============================================================ */
+
+const EARTH_RADIUS_KM = 6378.137, MOON_RADIUS_KM = 1737.4, AU_KM = 149597870.7;
+const SUN_SEMIDIAMETER_1AU = 959.63 / 3600;     // degrés, à 1 UA
+const HORIZON = -0.833;                          // bord supérieur à l'horizon, réfraction comprise (Soleil et Lune)
+
+/* Coordonnées géocentriques de l'observateur (aplatissement terrestre, Meeus chap. 11), au niveau de la mer */
+function observerFactors(lat){
+  const u = Math.atan(0.99664719 * Math.tan(lat * DEG));
+  return { rs: 0.99664719 * Math.sin(u), rc: Math.cos(u) };
+}
+/* Position vue depuis la surface (parallaxe), à partir de la position géocentrique (Meeus chap. 40, forme rigoureuse).
+   dist en rayons terrestres ; renvoie ascension droite, déclinaison (degrés) et distance (rayons terrestres). */
+function topocentric(ra, dec, dist, lat, lon, ms){
+  const { rs, rc } = observerFactors(lat), lst = gmst(ms) + lon;
+  const H = (lst - ra) * DEG, d = dec * DEG;
+  const A = Math.cos(d) * Math.sin(H) * dist, B = Math.cos(d) * Math.cos(H) * dist - rc, C = Math.sin(d) * dist - rs;
+  const q = Math.hypot(A, B, C);
+  return { ra: norm360(lst - Math.atan2(A, B) / DEG), dec: Math.asin(C / q) / DEG, dist: q };
+}
+/* Soleil et Lune vus du lieu : positions, rayons apparents (degrés), séparation des centres (degrés) */
+function sunMoonFrom(lat, lon, ms){
+  const eps = obliquity(julianCenturies(ms));
+  const [sra, sdec] = eclToEq(sunLongitude(ms), 0, eps), sunAu = sunDistance(ms);
+  const [mra, mdec] = eclToEq(moonLongitude(ms), bodyLatitude('moon', ms), eps);
+  const sun = topocentric(sra, sdec, sunAu * AU_KM / EARTH_RADIUS_KM, lat, lon, ms);
+  const moon = topocentric(mra, mdec, moonDistance(ms) / EARTH_RADIUS_KM, lat, lon, ms);
+  const cosSep = Math.sin(sun.dec * DEG) * Math.sin(moon.dec * DEG) + Math.cos(sun.dec * DEG) * Math.cos(moon.dec * DEG) * Math.cos((sun.ra - moon.ra) * DEG);
+  return {
+    sun, moon, sep: Math.acos(Math.min(1, cosSep)) / DEG,
+    rs: SUN_SEMIDIAMETER_1AU / (sun.dist * EARTH_RADIUS_KM / AU_KM),
+    rm: Math.asin(MOON_RADIUS_KM / (moon.dist * EARTH_RADIUS_KM)) / DEG,
+    sunAlt: altAz(sun.ra, sun.dec, lat, lon, ms).alt
+  };
+}
+/* Part de la surface du Soleil cachée par la Lune (0 à 1) : aire de l'intersection de deux disques */
+function obscuration(rs, rm, s){
+  if (s >= rs + rm) return 0;
+  if (s <= Math.abs(rs - rm)) return rm >= rs ? 1 : (rm * rm) / (rs * rs);
+  const a = Math.acos((s * s + rs * rs - rm * rm) / (2 * s * rs)), b = Math.acos((s * s + rm * rm - rs * rs) / (2 * s * rm));
+  const k = Math.sqrt((-s + rs + rm) * (s + rs - rm) * (s - rs + rm) * (s + rs + rm));
+  return (rs * rs * a + rm * rm * b - k / 2) / (Math.PI * rs * rs);
+}
+/* Instant où f change de signe entre a et b (bissection, à la seconde) */
+function bisect(f, a, b){
+  let fa = f(a);
+  for (let k = 0; k < 40 && b - a > 1000; k++) {
+    const m = (a + b) / 2, fm = f(m);
+    if ((fm < 0) === (fa < 0)) { a = m; fa = fm; } else b = m;
+  }
+  return Math.round((a + b) / 2);
+}
+
+/* ---------- Éclipse de Soleil vue d'un lieu ----------
+   t0 : instant de l'éclipse (table ECLIPSES). Renvoie null si la Lune ne touche pas le Soleil vu de ce lieu,
+   sinon { visible, kind ('partial' | 'total' | 'annular'), start, end, max (ms), central: {start, end} | null,
+   obscuration (part de la surface cachée, 0 à 1), magnitude (part du diamètre couverte), sunAlt (au maximum),
+   risesEclipsed, setsEclipsed (le Soleil se lève ou se couche éclipsé) }. Les heures sont limitées à la période
+   où le Soleil est au-dessus de l'horizon ; visible = false si l'éclipse a lieu Soleil couché. */
+function solarEclipseLocal(t0, lat, lon){
+  const at = ms => sunMoonFrom(lat, lon, ms);
+  const contact = ms => { const p = at(ms); return p.sep - (p.rs + p.rm); };
+  // Recherche du rapprochement maximal sur ±4 h (pas de 2 min), puis affinage à la seconde
+  let best = null;
+  for (let ms = t0 - 4 * 3600e3; ms <= t0 + 4 * 3600e3; ms += 120e3) { const p = at(ms); if (!best || p.sep - p.rs - p.rm < best.v) best = { ms, v: p.sep - p.rs - p.rm }; }
+  if (best.v >= 0) return null;
+  let lo = best.ms - 120e3, hi = best.ms + 120e3;
+  for (let k = 0; k < 40 && hi - lo > 500; k++) {                        // section dorée sur la séparation
+    const m1 = lo + (hi - lo) * 0.382, m2 = lo + (hi - lo) * 0.618;
+    if (contact(m1) < contact(m2)) hi = m2; else lo = m1;
+  }
+  const tMax = Math.round((lo + hi) / 2);
+  let start = tMax, end = tMax;
+  while (contact(start - 300e3) < 0) start -= 300e3;
+  while (contact(end + 300e3) < 0) end += 300e3;
+  start = bisect(contact, start - 300e3, start); end = bisect(contact, end, end + 300e3);
+  // Phase centrale (totale ou annulaire) : séparation inférieure à la différence des rayons
+  const central = ms => { const p = at(ms); return p.sep - Math.abs(p.rs - p.rm); };
+  let centralSpan = null;
+  if (central(tMax) < 0) {
+    let a = tMax, b = tMax;
+    while (central(a - 30e3) < 0) a -= 30e3;
+    while (central(b + 30e3) < 0) b += 30e3;
+    centralSpan = { start: bisect(central, a - 30e3, a), end: bisect(central, b, b + 30e3) };
+  }
+  const pMax = at(tMax);
+  const kind = centralSpan ? (pMax.rm >= pMax.rs ? 'total' : 'annular') : 'partial';
+  // Partie visible : Soleil au-dessus de l'horizon (pas de 2 min, puis affinage)
+  const up = ms => at(ms).sunAlt - HORIZON;
+  // Échantillons de 2 min du premier au dernier contact, le dernier contact compris
+  const samples = [];
+  for (let ms = start; ms < end; ms += 120e3) samples.push(ms);
+  samples.push(end);
+  const above = samples.map(t => up(t) > 0);
+  const iFirst = above.indexOf(true), iLast = above.lastIndexOf(true);
+  if (iFirst < 0) return { visible: false, kind, start, end, max: tMax, central: centralSpan, obscuration: obscuration(pMax.rs, pMax.rm, pMax.sep), magnitude: (pMax.rs + pMax.rm - pMax.sep) / (2 * pMax.rs), sunAlt: pMax.sunAlt };
+  const vs = iFirst === 0 ? start : bisect(up, samples[iFirst - 1], samples[iFirst]);            // le Soleil se lève éclipsé
+  const ve = iLast === samples.length - 1 ? end : bisect(up, samples[iLast], samples[iLast + 1]);  // le Soleil se couche éclipsé
+  const tVis = Math.min(Math.max(tMax, vs), ve), p = at(tVis);
+  const visibleCentral = centralSpan && centralSpan.end > vs && centralSpan.start < ve
+    ? { start: Math.max(centralSpan.start, vs), end: Math.min(centralSpan.end, ve) } : null;
+  return {
+    visible: true, kind: visibleCentral ? kind : 'partial', start: vs, end: ve, max: tVis, central: visibleCentral,
+    obscuration: obscuration(p.rs, p.rm, p.sep), magnitude: (p.rs + p.rm - p.sep) / (2 * p.rs), sunAlt: p.sunAlt,
+    risesEclipsed: vs > start, setsEclipsed: ve < end
+  };
+}
+
+/* ---------- Levers, couchers, crépuscules ---------- */
+/* Hauteur du centre du Soleil et de la Lune vue du lieu (degrés, sans réfraction) */
+function sunAltitude(lat, lon, ms){
+  const [ra, dec] = eclToEq(sunLongitude(ms), 0, obliquity(julianCenturies(ms)));
+  return altAz(ra, dec, lat, lon, ms).alt;
+}
+function moonAltitude(lat, lon, ms){
+  const eps = obliquity(julianCenturies(ms));
+  const [ra, dec] = eclToEq(moonLongitude(ms), bodyLatitude('moon', ms), eps);
+  const m = topocentric(ra, dec, moonDistance(ms) / EARTH_RADIUS_KM, lat, lon, ms);
+  return altAz(m.ra, m.dec, lat, lon, ms).alt;
+}
+/* Passages d'une hauteur h0 entre deux instants : [{ ms, rising }] (pas de 10 min, affinage à la seconde) */
+function crossings(altFn, from, to, h0){
+  const out = [], step = 600e3;
+  let prev = altFn(from) - h0;
+  for (let ms = from + step; ms <= to; ms += step) {
+    const cur = altFn(ms) - h0;
+    if ((prev < 0) !== (cur < 0)) out.push({ ms: bisect(t => altFn(t) - h0, ms - step, ms), rising: cur > 0 });
+    prev = cur;
+  }
+  return out;
+}
+/* Intervalles où une condition est vraie, échantillonnée toutes les 5 min */
+function intervals(test, from, to){
+  const out = [];
+  let open = null;
+  for (let ms = from; ms <= to; ms += 300e3) {
+    if (test(ms)) { if (open === null) open = ms; }
+    else if (open !== null) { out.push([open, ms]); open = null; }
+  }
+  if (open !== null) out.push([open, to]);
+  return out;
+}
+
+/* ---------- Programme de la nuit ----------
+   from : midi local du jour choisi (ms), to : midi du lendemain. Renvoie les heures du Soleil (coucher, fin des
+   crépuscules, aube, lever), de la Lune (lever, coucher, éclairement), la fenêtre de nuit noire sans Lune,
+   et les planètes visibles à l'œil nu (plus de 10° de haut, Soleil à plus de 6° sous l'horizon). */
+const NAKED_EYE_PLANETS = ['mercury', 'venus', 'mars', 'jupiter', 'saturn'];
+function nightPlan(lat, lon, from){
+  const to = from + 86400e3, sunAlt = ms => sunAltitude(lat, lon, ms), moonAlt = ms => moonAltitude(lat, lon, ms);
+  const first = (list, rising) => (list.find(c => c.rising === rising) || {}).ms || null;
+  const sun = {};
+  for (const [name, h] of [['horizon', HORIZON], ['civil', -6], ['nautical', -12], ['astro', -18]]) {
+    const c = crossings(sunAlt, from, to, h);
+    sun[name] = { down: first(c, false), up: first(c, true) };
+  }
+  const noonAlt = sunAlt(from), midnightAlt = sunAlt(from + 43200e3);
+  const moonC = crossings(moonAlt, from, to, HORIZON);
+  const phase = moonPhase(from + 43200e3);
+  const dark = intervals(ms => sunAlt(ms) < -18 && moonAlt(ms) < HORIZON, from, to);
+  const planets = [];
+  for (const body of NAKED_EYE_PLANETS) {
+    const win = intervals(ms => sunAlt(ms) < -6 && bodyAltAz(body, lat, lon, ms).alt > 10, from, to);
+    if (win.length) {
+      const [a, b] = win.reduce((x, y) => (y[1] - y[0] > x[1] - x[0] ? y : x));
+      planets.push({ body, start: a, end: b, az: bodyAltAz(body, lat, lon, (a + b) / 2).az, sign: signFromLongitude(bodyLongitude(body, (a + b) / 2)) });
+    }
+  }
+  return {
+    sunset: sun.horizon.down, sunrise: sun.horizon.up, civilDusk: sun.civil.down, civilDawn: sun.civil.up,
+    nauticalDusk: sun.nautical.down, nauticalDawn: sun.nautical.up, astroDusk: sun.astro.down, astroDawn: sun.astro.up,
+    polarDay: sun.horizon.down === null && midnightAlt > HORIZON, polarNight: sun.horizon.up === null && noonAlt < HORIZON,
+    noAstroNight: sun.astro.down === null && midnightAlt > -18,
+    moonrise: first(moonC, true), moonset: first(moonC, false), moonUp: moonAlt(from + 43200e3) > HORIZON, moonPhase: phase,
+    dark, planets
+  };
+}
 
 </script>
 <script>
@@ -47521,6 +48186,11 @@ function renderResult(signKey, decanIdx){
       </div>
       <p class="sky-note">${t.map.note}</p>
     </section>
+    <section class="card night-card" aria-labelledby="nightTitle">
+      <h3 id="nightTitle">${t.night.title}${infoBtn('night', t.night.title)}</h3>
+      <div id="nightBody"></div>
+      <p class="sky-note">${t.night.note}</p>
+    </section>
   `;
   container.classList.remove('hidden');
   document.querySelector('.app').classList.add('has-result');
@@ -48244,9 +48914,12 @@ function renderMap(){
     return `<li>✶ ${m.showers[k]} <span class="sub">· ${m.meteorActive.replace('{d}', peakDate(localDate.y, ...s.peak)).replace('{zhr}', s.zhr)}</span></li>`;
   }).join('');
   else { const n = nextShowerPeak(localDate); meteors = `<li>${m.meteorNext.replace('{name}', m.showers[n.key]).replace('{d}', peakDate(n.date.y, n.date.m, n.date.d))}</li>`; }
-  const eFmt = new Intl.DateTimeFormat(loc(currentLang), { day: 'numeric', month: 'short', year: 'numeric' });
+  const eFmt = new Intl.DateTimeFormat(loc(currentLang), { day: 'numeric', month: 'short', year: 'numeric', ...(tz ? { timeZone: tz } : {}) });
+  let solarSeen = false;
   const eclipses = nextEclipses(ms, 3).map(e => {
-    const where = e.solar ? m.solarWhere : (lunarEclipseVisible(e.ms, lat, lon) ? m.visibleHere : m.notVisibleHere);
+    let where;
+    if (e.solar) { const r = eclipseLocal(e.ms, lat, lon); solarSeen = solarSeen || !!(r && r.visible); where = solarLocalText(r, m, tz); }
+    else where = lunarEclipseVisible(e.ms, lat, lon) ? m.visibleHere : m.notVisibleHere;
     return `<li>${m.eclipseTypes[e.type]} <span class="sub">· ${eFmt.format(new Date(e.ms))} · ${where}</span></li>`;
   }).join('');
   side.innerHTML = `
@@ -48254,7 +48927,71 @@ function renderMap(){
     ${day ? `<p class="map-day">${m.daylight}</p>` : ''}
     <h4>${day ? m.aboveHorizon : m.visibleNow}</h4><ul class="map-list">${visible || `<li class="sub">${m.noneVisible}</li>`}</ul>
     <h4>${m.meteors}</h4><ul class="map-list">${meteors}</ul>
-    ${eclipses ? `<h4>${m.eclipses}</h4><ul class="map-list">${eclipses}</ul>` : ''}`;
+    ${eclipses ? `<h4>${m.eclipses}${infoBtn('solarEclipse', m.eclipses)}</h4><ul class="map-list">${eclipses}</ul>` : ''}
+    ${solarSeen ? `<p class="ecl-safety">${m.eclSafety}</p>` : ''}`;
+  renderNight();
+}
+
+/* ============================================================
+   OBSERVER LE CIEL CETTE NUIT (même lieu et même date que la carte du ciel)
+   ============================================================ */
+let nightCache = null;
+const eclipseCache = new Map();
+function eclipseLocal(ms, lat, lon){
+  const key = `${ms}|${lat}|${lon}`;
+  if (!eclipseCache.has(key)) eclipseCache.set(key, solarEclipseLocal(ms, lat, lon));
+  return eclipseCache.get(key);
+}
+/* Heure locale du lieu observé (fuseau de la ville ; appareil pour « Ma position ») */
+function placeTime(ms, tz){
+  return ms ? new Intl.DateTimeFormat(loc(currentLang), { hour: '2-digit', minute: '2-digit', ...(tz ? { timeZone: tz } : {}) }).format(new Date(ms)) : '—';
+}
+/* Durée en minutes et secondes, unités dans la langue (« 2 min 3 s ») */
+function formatDuration(sec){
+  const l = loc(currentLang), m = Math.floor(sec / 60), s = Math.round(sec % 60);
+  const u = (v, unit) => new Intl.NumberFormat(l, { style: 'unit', unit, unitDisplay: 'short' }).format(v);
+  return m ? `${u(m, 'minute')} ${u(s, 'second')}` : u(s, 'second');
+}
+/* Éclipse de Soleil vue du lieu, en une ligne */
+function solarLocalText(r, m, tz){
+  if (!r || !r.visible) return m.notVisibleHere;
+  const pctValue = r.kind === 'partial' && r.obscuration > 0.99 ? Math.floor(r.obscuration * 1000) / 1000 : r.obscuration;
+  const pct = new Intl.NumberFormat(loc(currentLang), { style: 'percent', maximumFractionDigits: pctValue > 0.99 && pctValue < 1 ? 1 : 0 }).format(pctValue);
+  const fill = tpl => tpl.replace('{pct}', pct).replace('{a}', placeTime(r.start, tz)).replace('{b}', placeTime(r.end, tz))
+    .replace('{m}', placeTime(r.kind === 'partial' ? r.max : (r.central.start + r.central.end) / 2, tz))
+    .replace('{dur}', r.central ? formatDuration((r.central.end - r.central.start) / 1000) : '');
+  let txt = fill(r.kind === 'total' ? m.eclTotal : r.kind === 'annular' ? m.eclAnnular : m.eclPartial);
+  if (r.risesEclipsed) txt += ` · ${m.eclRises}`;
+  if (r.setsEclipsed) txt += ` · ${m.eclSets}`;
+  return txt;
+}
+function renderNight(){
+  const el = document.getElementById('nightBody'), date = parseISODate(skyDate);
+  if (!el || !date) return;
+  const t = I18N[currentLang], n = t.night, place = currentPlace(), tz = mapTz(place);
+  const from = localInstant(date, 12, 0, tz), key = `${from}|${place.lat}|${place.lon}`;
+  if (!nightCache || nightCache.key !== key) nightCache = { key, plan: nightPlan(place.lat, place.lon, from) };
+  const p = nightCache.plan, hm = ms => placeTime(ms, tz), dirs = t.map.directions;
+  const item = (label, value) => `<div class="night-item"><span class="night-label">${label}</span><span class="night-value">${value}</span></div>`;
+  const parts = [];
+  if (p.polarDay) parts.push(`<p class="night-msg">${n.polarDay}</p>`);
+  else if (p.polarNight) parts.push(`<p class="night-msg">${n.polarNight}</p>`);
+  const sunItems = [];
+  if (p.sunset) sunItems.push(item(`<span aria-hidden="true">☀︎</span> ${n.sunset}`, hm(p.sunset)));
+  if (p.astroDusk) sunItems.push(item(n.dark, `${hm(p.astroDusk)} → ${hm(p.astroDawn)}`));
+  if (p.sunrise) sunItems.push(item(`<span aria-hidden="true">☀︎</span> ${n.sunrise}`, hm(p.sunrise)));
+  const lit = new Intl.NumberFormat(loc(currentLang), { style: 'percent' }).format(p.moonPhase.illumination);
+  const moonEvents = [[p.moonrise, n.moonrise], [p.moonset, n.moonset]].filter(e => e[0]).sort((a, b) => a[0] - b[0]).map(e => e[1].replace('{t}', hm(e[0])));
+  const moonText = `<span aria-hidden="true">${MOON_PHASE_EMOJI[p.moonPhase.index]}</span> ${n.moonLit.replace('{pct}', lit)} · ${moonEvents.length ? moonEvents.join(' · ') : (p.moonUp ? n.moonAllNight : n.moonNone)}`;
+  sunItems.push(item(n.moon, moonText));
+  parts.push(`<div class="night-grid">${sunItems.join('')}</div>`);
+  if (p.noAstroNight && !p.polarDay) parts.push(`<p class="night-msg">${n.noAstroNight}</p>`);
+  const best = p.dark.filter(([a, b]) => b - a >= 20 * 60e3);
+  if (!p.noAstroNight && !p.polarDay) parts.push(`<h4>${n.best}</h4><p class="night-best">${best.length ? best.map(([a, b]) => `${hm(a)} → ${hm(b)}`).join(' · ') : n.bestNone}</p>`);
+  if (!p.polarDay) parts.push(`<h4>${n.planets}</h4>` + (p.planets.length
+    ? `<ul class="night-planets">${p.planets.map(x => `<li><span class="map-sym" aria-hidden="true">${PLANET_SYM[x.body]}</span> ${t.rulers[x.body]} <span class="sub">· ${t.signNames[x.sign]} · ${hm(x.start)} → ${hm(x.end)} · ${dirs[compassIndex(x.az)]}</span></li>`).join('')}</ul>`
+    : `<p class="night-best">${n.noPlanets}</p>`));
+  el.innerHTML = parts.join('');
 }
 
 /* Branchements de la carte (appelés après chaque rendu du résultat) */
@@ -48366,7 +49103,7 @@ async function exportImage(){
      ce conteneur n'est ouvert que dans la copie d'export. */
   const src = document.getElementById('profileContent');
   const parts = [src, pairState ? document.querySelector('.compat-card') : null,
-                 document.querySelector('.sky-card'), document.querySelector('.map-card')].filter(Boolean);
+                 document.querySelector('.sky-card'), document.querySelector('.map-card'), document.querySelector('.night-card')].filter(Boolean);
   const holder = document.createElement('div');
   holder.id = 'exportHolder';
   holder.setAttribute('aria-hidden', 'true');
