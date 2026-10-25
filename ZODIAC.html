@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zodiaque & Décans · Cosmic Interface</title>
+<!-- Export en image : copie locale de html2canvas (fonctionne sans internet) -->
+<script src="html2canvas.min.js"></script>
+<link rel="stylesheet" href="zodiac.css">
+<!-- Mode clair appliqué avant l'affichage, pour éviter un éclair sombre au chargement -->
+<script>try { if (localStorage.getItem('zodiac_theme') === 'light') document.documentElement.dataset.theme = 'light'; } catch (e) {}</script>
+</head>
+<body>
+
+<div class="app">
+  <header class="header">
+    <div class="brand">
+      <h1><span class="sym" aria-hidden="true">♈&#xFE0E;</span><span id="appTitle">Zodiaque & Décans</span></h1>
+      <p class="today" id="today"></p>
+    </div>
+    <div class="header-tools">
+    <button type="button" class="theme-btn" id="themeBtn" aria-pressed="false"><span aria-hidden="true" id="themeIcon">☀</span></button>
+    <div class="langs" id="langs">
+      <span class="lang-globe" aria-hidden="true">🌐</span>
+      <select id="langSelect" class="lang-select" aria-label="Language"></select>
+    </div>
+    </div>
+  </header>
+
+  <!-- Roue du zodiaque : tourne lentement à l'accueil, puis s'arrête sur le signe trouvé -->
+  <figure class="wheel-wrap">
+    <svg id="wheel" viewBox="-114 -114 228 228" role="img"></svg>
+    <figcaption class="wheel-caption" id="wheelCaption"></figcaption>
+  </figure>
+
+  <div class="input-zone">
+    <div class="field field-name">
+      <label for="userName"><span id="labelName">Prénom ou nom</span> <span class="opt">(facultatif)</span></label>
+      <input type="text" id="userName" maxlength="40" autocomplete="name" spellcheck="false">
+    </div>
+    <div class="field">
+      <label for="birthDate" id="labelBirthDate">Date de naissance</label>
+      <input type="date" id="birthDate" required aria-describedby="errorMsg">
+    </div>
+    <div class="field field-time">
+      <label for="birthTime"><span id="labelBirthTime">Heure de naissance</span> <span class="opt">(facultatif)</span></label>
+      <input type="time" id="birthTime">
+    </div>
+    <div class="field field-place">
+      <label for="birthPlace"><span id="labelBirthPlace">Lieu de naissance</span> <span class="opt">(facultatif)</span></label>
+      <div class="place-box">
+        <input type="text" id="birthPlace" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="placeList" autocomplete="off" spellcheck="false">
+        <button type="button" class="place-clear" id="placeClear" hidden>×</button>
+        <ul class="place-list" id="placeList" role="listbox" hidden></ul>
+      </div>
+    </div>
+    <button class="btn-reveal" id="btnReveal">Révéler mon signe</button>
+    <p class="field-hint"><span class="field-hint-icon" aria-hidden="true">i</span> <span id="timePlaceHint">L'heure et le lieu de naissance sont nécessaires pour le thème natal (ascendant et maisons).</span></p>
+  </div>
+  <div id="errorMsg" class="error-msg hidden" role="alert"></div>
+  <div class="history" id="history" hidden></div>
+
+  <div id="result" class="result hidden" aria-live="polite"></div>
+
+  <footer class="app-foot">
+    <button type="button" class="offline-btn" id="offlineBtn"><span aria-hidden="true">⬇</span> <span id="offlineLabel">Version hors ligne</span></button>
+    <p class="offline-hint" id="offlineHint"></p>
+    <p class="app-credit" id="placesCredit"></p>
+  </footer>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div id="overlay" class="search-overlay hidden" aria-hidden="true">
+  <div class="sky">
+    <svg class="constellation" viewBox="0 0 200 200" id="constSvg" aria-hidden="true"></svg>
+    <div class="crosshair" id="crosshair"><div class="dot"></div></div>
+  </div>
+  <p class="search-text" id="searchText"></p>
+</div>
+
+<!-- MODAL COMPATIBILITÉ -->
+<div id="modalOverlay" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <div class="modal-pair" id="modalPair"></div>
+    <h3 id="modalTitle"></h3>
+    <div class="modal-stars" id="modalStars"></div>
+    <div class="modal-level" id="modalLevel"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Ordre de chargement important : données → traductions → calculs → planètes → carte du ciel → observation → villes de naissance → thème natal → application -->
+<script src="zodiac-data.js"></script>
+<script src="zodiac-sky-data.js"></script>
+<script src="zodiac-i18n.js"></script>
+<script src="zodiac-i18n-fr.js"></script>
+<script src="zodiac-i18n-en.js"></script>
+<script src="zodiac-i18n-es.js"></script>
+<script src="zodiac-i18n-zh.js"></script>
+<script src="zodiac-i18n-ru.js"></script>
+<script src="zodiac-i18n-de.js"></script>
+<script src="zodiac-i18n-it.js"></script>
+<script src="zodiac-i18n-ja.js"></script>
+<script src="zodiac-i18n-ko.js"></script>
+<script src="zodiac-i18n-pt.js"></script>
+<script src="zodiac-i18n-tr.js"></script>
+<script src="zodiac-i18n-ar.js"></script>
+<script src="zodiac-i18n-hi.js"></script>
+<script src="zodiac-i18n-th.js"></script>
+<script src="zodiac-astro.js"></script>
+<script src="zodiac-planets.js"></script>
+<script src="zodiac-skymap.js"></script>
+<script src="zodiac-observe.js"></script>
+<script src="zodiac-places-data.js"></script>
+<script src="zodiac-places.js"></script>
+<script src="zodiac-natal.js"></script>
+<script src="zodiac-app.js"></script>
+
+</body>
+</html>

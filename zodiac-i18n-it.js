@@ -1,0 +1,725 @@
+/* ============================================================
+   Zodiaque & Décans — traduction : italien
+   Fusionnée sur le français : une clé manquante s'affiche en français.
+   ============================================================ */
+
+I18N.it = deepMerge(I18N.fr, {
+  appTitle: "Zodiaco e Decani",
+  labelName: "Nome",
+  labelBirthDate: "Data di nascita",
+  labelBirthTime: "Ora di nascita",
+  optional: "(facoltativo)",
+  btnReveal: "Rivela il mio segno",
+  btnReset: "Nuova ricerca",
+  btnExport: "Esporta come immagine",
+  btnShare: "Condividi",
+  shareCopied: "Link copiato!",
+  exported: "Immagine salvata ✓",
+  errorNoDate: "Seleziona una data.",
+  errorInvalid: "Data non valida.",
+  exportError: "Impossibile esportare l'immagine.",
+  close: "Chiudi",
+  langSelector: "Selettore lingua",
+  cuspSign: "Il Sole cambia segno quel giorno: indica la tua ora di nascita per un risultato esatto.",
+  cuspDecan: "Il Sole cambia decano quel giorno: indica la tua ora di nascita per un risultato esatto.",
+  searching: "Cercando nel cielo…",
+  found: "Costellazione trovata",
+  decanLabel: ["Primo decano", "Secondo decano", "Terzo decano"],
+  sections: {
+    profile: "Profilo",
+    strengthWeak: "Punti di forza e debolezza",
+    loveCareer: "Amore e carriera",
+    decan: "Decano",
+    affinities: "Affinità",
+    affinityHint: "Clicca un segno per i dettagli",
+    quickInfo: "Informazioni",
+    western: "Zodiaco occidentale",
+    chinese: "Zodiaco cinese",
+    yearElement: "Elemento dell'anno"
+  },
+  labels: {
+    dateRange: "Date abituali",
+    sunPosition: "Posizione del Sole",
+    modality: "Modalità",
+    ruler: "Pianeta",
+    luckyNumbers: "Numeri",
+    colors: "Colori",
+    stone: "Pietra",
+    day: "Giorno",
+    strengths: "Forze",
+    weaknesses: "Debolezze",
+    love: "Amore",
+    career: "Carriera",
+    natalMoon: "Luna natale",
+    moonSign: "Segno lunare"
+  },
+  signNames: {
+    aries: "Ariete",
+    taurus: "Toro",
+    gemini: "Gemelli",
+    cancer: "Cancro",
+    leo: "Leone",
+    virgo: "Vergine",
+    libra: "Bilancia",
+    scorpio: "Scorpione",
+    sagittarius: "Sagittario",
+    capricorn: "Capricorno",
+    aquarius: "Acquario",
+    pisces: "Pesci"
+  },
+  summaries: {
+    aries: "Segno di Fuoco governato da Marte. Energico, coraggioso e pioniere, l'Ariete si lancia verso i suoi obiettivi con passione.",
+    taurus: "Segno di Terra governato da Venere. Leale, paziente e sensuale, il Toro cerca stabilità e piaceri semplici.",
+    gemini: "Segno d'Aria governato da Mercurio. Curiosi, adattabili e arguti, i Gemelli amano imparare e comunicare.",
+    cancer: "Segno d'Acqua governato dalla Luna. Sensibile, protettivo e intuitivo, il Cancro è profondamente legato alle sue radici.",
+    leo: "Segno di Fuoco governato dal Sole. Carismatico, generoso e creativo, il Leone ama brillare e ispirare.",
+    virgo: "Segno di Terra governato da Mercurio. Analitica, meticolosa e disponibile, la Vergine cerca la perfezione.",
+    libra: "Segno d'Aria governato da Venere. Diplomatica, esteta e socievole, la Bilancia cerca armonia e giustizia.",
+    scorpio: "Segno d'Acqua governato da Plutone. Intenso, appassionato e misterioso, lo Scorpione vive tutto fino in fondo.",
+    sagittarius: "Segno di Fuoco governato da Giove. Avventuroso, ottimista e filosofo, il Sagittario ha sete di libertà.",
+    capricorn: "Segno di Terra governato da Saturno. Ambizioso, disciplinato e responsabile, il Capricorno costruisce per durare.",
+    aquarius: "Segno d'Aria governato da Urano. Originale, umanista e indipendente, l'Acquario pensa in modo diverso.",
+    pisces: "Segno d'Acqua governato da Nettuno. Sognatori, empatici e artistici, i Pesci sono connessi all'invisibile."
+  },
+  strengths: {
+    aries: ["Coraggio", "Determinazione", "Entusiasmo"],
+    taurus: ["Lealtà", "Pazienza", "Affidabilità"],
+    gemini: ["Curiosità", "Adattabilità", "Arguzia"],
+    cancer: ["Empatia", "Lealtà", "Intuizione"],
+    leo: ["Carisma", "Generosità", "Creatività"],
+    virgo: ["Rigore", "Analisi", "Affidabilità"],
+    libra: ["Diplomazia", "Fascino", "Equità"],
+    scorpio: ["Intensità", "Lealtà", "Magnetismo"],
+    sagittarius: ["Ottimismo", "Avventura", "Onestà"],
+    capricorn: ["Ambizione", "Disciplina", "Responsabilità"],
+    aquarius: ["Originalità", "Umanesimo", "Indipendenza"],
+    pisces: ["Empatia", "Immaginazione", "Dolcezza"]
+  },
+  weaknesses: {
+    aries: ["Impazienza", "Impulsività", "Testardaggine"],
+    taurus: ["Testardaggine", "Possessività", "Rigidità"],
+    gemini: ["Incostanza", "Superficialità", "Nervosismo"],
+    cancer: ["Ipersensibilità", "Possessività", "Umore"],
+    leo: ["Orgoglio", "Vanità", "Autoritarismo"],
+    virgo: ["Perfezionismo", "Ansia", "Critica"],
+    libra: ["Indecisione", "Compiacenza", "Dipendenza"],
+    scorpio: ["Gelosia", "Possessività", "Rancore"],
+    sagittarius: ["Imprudenza", "Incostanza", "Franchezza"],
+    capricorn: ["Rigidità", "Pessimismo", "Freddezza"],
+    aquarius: ["Distacco", "Ribellione", "Intransigenza"],
+    pisces: ["Ingenuità", "Evasione", "Ipersensibilità"]
+  },
+  love: {
+    aries: "Appassionato e diretto, ama conquistare e odia la noia.",
+    taurus: "Leale e romantico, cerca sicurezza e tenerezza.",
+    gemini: "Affascinante e giocoso, ha bisogno di stimoli intellettuali.",
+    cancer: "Tenero e protettivo, cerca un nido rassicurante.",
+    leo: "Appassionato e romantico, ama essere ammirato e coccolato.",
+    virgo: "Attenta e devota, esprime i sentimenti con pudore.",
+    libra: "Romantica e armoniosa, cerca un partner equilibrato.",
+    scorpio: "Appassionato e fusionale, ama profondamente ed esclusivamente.",
+    sagittarius: "Libero ed entusiasta, ha bisogno di spazio e avventure.",
+    capricorn: "Leale e riservato, costruisce relazioni durature.",
+    aquarius: "Atipico e libero, cerca una connessione intellettuale.",
+    pisces: "Romantici e fusionali, sognano un amore assoluto."
+  },
+  career: {
+    aries: "Eccelle in leadership, imprenditoria e azione.",
+    taurus: "Prospera in finanza, artigianato e gastronomia.",
+    gemini: "Brilla in giornalismo, marketing e insegnamento.",
+    cancer: "Prospera in cura, educazione e immobiliare.",
+    leo: "Brilla in arte, spettacolo e direzione.",
+    virgo: "Eccelle in salute, ricerca e analisi.",
+    libra: "Prospera in diritto, moda e design.",
+    scorpio: "Eccelle in psicologia, investigazione e finanza.",
+    sagittarius: "Brilla in viaggi, insegnamento e internazionale.",
+    capricorn: "Prospera in gestione, politica e architettura.",
+    aquarius: "Brilla in tecnologia, scienza e ONG.",
+    pisces: "Prospera in arte, musica e spiritualità."
+  },
+  rulers: {
+    mars: "Marte",
+    venus: "Venere",
+    mercury: "Mercurio",
+    moon: "Luna",
+    sun: "Sole",
+    pluto: "Plutone",
+    jupiter: "Giove",
+    saturn: "Saturno",
+    uranus: "Urano",
+    neptune: "Nettuno"
+  },
+  colors: {
+    red: "Rosso",
+    white: "Bianco",
+    green: "Verde",
+    brown: "Marrone",
+    yellow: "Giallo",
+    silver: "Argento",
+    gold: "Oro",
+    orange: "Arancione",
+    pink: "Rosa",
+    blue: "Blu",
+    black: "Nero",
+    purple: "Viola",
+    seaGreen: "Verde mare"
+  },
+  stones: {
+    diamond: "Diamante",
+    emerald: "Smeraldo",
+    pearl: "Perla",
+    moonstone: "Pietra di luna",
+    ruby: "Rubino",
+    sapphire: "Zaffiro",
+    opal: "Opale",
+    topaz: "Topazio",
+    turquoise: "Turchese",
+    garnet: "Granato",
+    amethyst: "Ametista",
+    aquamarine: "Acquamarina"
+  },
+  modalities: { cardinal: "Cardinale", fixed: "Fisso", mutable: "Mobile" },
+  elements: { fire: "Fuoco", earth: "Terra", air: "Aria", water: "Acqua" },
+  decanTraits: {
+    aries: [
+      [["Pioniere", "Entusiasta", "Conquistatore"], "Sotto Marte, questo decano incarna l'Ariete nella sua forma più pura: pioniere, entusiasta e conquistatore."],
+      [["Carismatico", "Fiero", "Generoso"], "Sotto il Sole, questo decano addolcisce l'Ariete: più carismatico, fiero e generoso."],
+      [["Avventuroso", "Ottimista", "Espansivo"], "Sotto Giove, questo decano allarga gli orizzonti dell'Ariete: più ottimista, avventuroso ed espansivo."]
+    ],
+    taurus: [
+      [["Sensuale", "Leale", "Esteta"], "Sotto Venere, questo decano incarna il Toro nella sua forma più pura: sensuale, leale e amante del bello."],
+      [["Pratico", "Curioso", "Abile"], "Sotto Mercurio, questo decano rende il Toro più curioso, pratico e abile."],
+      [["Perseverante", "Ambizioso", "Rigoroso"], "Sotto Saturno, questo decano rende il Toro più rigoroso, perseverante e ambizioso."]
+    ],
+    gemini: [
+      [["Vivace", "Curioso", "Comunicativo"], "Sotto Mercurio, questo decano incarna i Gemelli nella loro forma più pura: vivaci, curiosi e loquaci."],
+      [["Affascinante", "Socievole", "Esteta"], "Sotto Venere, questo decano abbellisce i Gemelli: più affascinanti, socievoli ed esteti."],
+      [["Originale", "Innovativo", "Indipendente"], "Sotto Urano, questo decano radicalizza i Gemelli: più originali, innovativi e indipendenti."]
+    ],
+    cancer: [
+      [["Emotivo", "Protettivo", "Leale"], "Sotto la Luna, questo decano incarna il Cancro nella sua forma più pura: emotivo, protettivo e leale."],
+      [["Intenso", "Determinato", "Resiliente"], "Sotto Plutone, questo decano rende il Cancro più intenso, determinato e resiliente."],
+      [["Intuitivo", "Artistico", "Sognatore"], "Sotto Nettuno, questo decano rende il Cancro più sognatore, intuitivo e artistico."]
+    ],
+    leo: [
+      [["Carismatico", "Generoso", "Creativo"], "Sotto il Sole, questo decano incarna il Leone nella sua forma più pura: radioso, generoso e creativo."],
+      [["Audace", "Avventuroso", "Espansivo"], "Sotto Giove, questo decano rende il Leone più avventuroso, audace ed espansivo."],
+      [["Combattivo", "Volitivo", "Trascinatore"], "Sotto Marte, questo decano rende il Leone più combattivo, volitivo e trascinatore."]
+    ],
+    virgo: [
+      [["Analitica", "Meticolosa", "Pratica"], "Sotto Mercurio, questo decano incarna la Vergine nella sua forma più pura: analitica, meticolosa e pratica."],
+      [["Perseverante", "Affidabile", "Strutturata"], "Sotto Saturno, questo decano rende la Vergine più strutturata, affidabile e perseverante."],
+      [["Sensibile", "Creativa", "Esteta"], "Sotto Venere, questo decano addolcisce la Vergine: più sensibile, creativa ed esteta."]
+    ],
+    libra: [
+      [["Diplomatica", "Socievole", "Esteta"], "Sotto Venere, questo decano incarna la Bilancia nella sua forma più pura: diplomatica, socievole ed esteta."],
+      [["Visionaria", "Indipendente", "Originale"], "Sotto Urano, questo decano rende la Bilancia più originale, indipendente e visionaria."],
+      [["Curiosa", "Intellettuale", "Eloquente"], "Sotto Mercurio, questo decano rende la Bilancia più intellettuale, curiosa ed eloquente."]
+    ],
+    scorpio: [
+      [["Intenso", "Appassionato", "Magnetico"], "Sotto Plutone, questo decano incarna lo Scorpione nella sua forma più pura: intenso, appassionato e magnetico."],
+      [["Intuitivo", "Mistico", "Empatico"], "Sotto Nettuno, questo decano rende lo Scorpione più mistico, intuitivo ed empatico."],
+      [["Emotivo", "Protettivo", "Fusionale"], "Sotto la Luna, questo decano rende lo Scorpione più emotivo, protettivo e fusionale."]
+    ],
+    sagittarius: [
+      [["Avventuroso", "Ottimista", "Filosofo"], "Sotto Giove, questo decano incarna il Sagittario nella sua forma più pura: avventuroso, ottimista e filosofo."],
+      [["Appassionato", "Audace", "Conquistatore"], "Sotto Marte, questo decano rende il Sagittario più appassionato, audace e conquistatore."],
+      [["Radioso", "Creativo", "Generoso"], "Sotto il Sole, questo decano rende il Sagittario più radioso, creativo e generoso."]
+    ],
+    capricorn: [
+      [["Ambizioso", "Disciplinato", "Responsabile"], "Sotto Saturno, questo decano incarna il Capricorno nella sua forma più pura: ambizioso, disciplinato e responsabile."],
+      [["Paziente", "Sensibile", "Esteta"], "Sotto Venere, questo decano addolcisce il Capricorno: più paziente, sensibile ed esteta."],
+      [["Metodico", "Analitico", "Pragmatico"], "Sotto Mercurio, questo decano rende il Capricorno più metodico, analitico e pragmatico."]
+    ],
+    aquarius: [
+      [["Originale", "Umanista", "Visionario"], "Sotto Urano, questo decano incarna l'Acquario nella sua forma più pura: originale, umanista e visionario."],
+      [["Curioso", "Socievole", "Inventivo"], "Sotto Mercurio, questo decano rende l'Acquario più curioso, socievole e inventivo."],
+      [["Armonioso", "Caloroso", "Idealista"], "Sotto Venere, questo decano rende l'Acquario più armonioso, caloroso e idealista."]
+    ],
+    pisces: [
+      [["Sognatore", "Empatico", "Artistico"], "Sotto Nettuno, questo decano incarna i Pesci nella loro forma più pura: sognatori, empatici e artistici."],
+      [["Intuitivo", "Emotivo", "Compassionevole"], "Sotto la Luna, questo decano rende i Pesci più intuitivi, emotivi e compassionevoli."],
+      [["Intenso", "Resiliente", "Trasformatore"], "Sotto Plutone, questo decano rende i Pesci più intensi, resilienti e trasformatori."]
+    ]
+  },
+  compat: {
+    levels: {
+      1: "Relazione tesa — attrazione possibile, ma attriti frequenti.",
+      2: "Relazione stimolante ma impegnativa.",
+      3: "Compatibilità media — possibile con sforzo reciproco.",
+      4: "Molto compatibili — intesa fluida con piccoli aggiustamenti.",
+      5: "Anime gemelle — connessione naturale e profonda."
+    },
+    pairs: {
+      fire_fire: "Due fuochi che si accendono: passione intensa, rischio di bruciature.",
+      fire_air: "L'aria alimenta la fiamma: complicità intellettuale ed entusiasmo condiviso.",
+      fire_earth: "La terra soffoca il fuoco: richiede pazienza e aggiustamenti.",
+      fire_water: "L'acqua spegne il fuoco: opposizione elementare, attrazione magnetica.",
+      earth_earth: "Due terre: stabilità e affidabilità, rischio di routine.",
+      earth_air: "Terra e aria: due ritmi diversi da accordare.",
+      earth_water: "L'acqua feconda la terra: crescita e sostegno reciproco.",
+      air_air: "Due arie: complicità mentale, rischio di superficialità.",
+      air_water: "L'aria muove l'acqua: la mente incontra le profondità.",
+      water_water: "Due acque: fusione emotiva, intensità e comprensione silenziosa."
+    }
+  },
+  cn: {
+    names: {
+      rat: "Topo",
+      ox: "Bue",
+      tiger: "Tigre",
+      rabbit: "Coniglio",
+      dragon: "Drago",
+      snake: "Serpente",
+      horse: "Cavallo",
+      goat: "Capra",
+      monkey: "Scimmia",
+      rooster: "Gallo",
+      dog: "Cane",
+      pig: "Maiale"
+    },
+    summaries: {
+      rat: "Vivace, ingegnoso e affascinante, il Topo coglie ogni occasione e non resta mai senza risorse.",
+      ox: "Paziente, laborioso e affidabile, il Bue avanza con costanza e costruisce su basi solide.",
+      tiger: "Coraggiosa, appassionata e indipendente, la Tigre si lancia nell'avventura e difende le sue convinzioni.",
+      rabbit: "Dolce, raffinato e diplomatico, il Coniglio cerca l'armonia e coltiva l'arte di vivere.",
+      dragon: "Potente, ambizioso e radioso, il Drago ispira gli altri e pensa in grande.",
+      snake: "Saggio, intuitivo ed elegante, il Serpente riflette prima di agire e svela i misteri.",
+      horse: "Libero, energico ed entusiasta, il Cavallo ama il movimento e i grandi spazi.",
+      goat: "Dolce, artistica e compassionevole, la Capra cerca pace e bellezza intorno a sé.",
+      monkey: "Furba, curiosa e piena di umorismo, la Scimmia trova una soluzione a tutto.",
+      rooster: "Franco, organizzato e laborioso, il Gallo ama la precisione e il lavoro ben fatto.",
+      dog: "Leale, giusto e protettivo, il Cane difende chi ama e le giuste cause.",
+      pig: "Generoso, sincero e amante della vita, il Maiale apprezza i piaceri semplici e condivisi."
+    },
+    strengths: {
+      rat: ["Ingegno", "Fascino", "Adattabilità"],
+      ox: ["Perseveranza", "Affidabilità", "Onestà"],
+      tiger: ["Coraggio", "Generosità", "Carisma"],
+      rabbit: ["Delicatezza", "Diplomazia", "Prudenza"],
+      dragon: ["Energia", "Ambizione", "Fiducia in sé"],
+      snake: ["Saggezza", "Intuizione", "Eleganza"],
+      horse: ["Entusiasmo", "Indipendenza", "Socievolezza"],
+      goat: ["Creatività", "Gentilezza", "Empatia"],
+      monkey: ["Intelligenza", "Umorismo", "Versatilità"],
+      rooster: ["Rigore", "Franchezza", "Coraggio"],
+      dog: ["Lealtà", "Onestà", "Senso di giustizia"],
+      pig: ["Generosità", "Sincerità", "Tolleranza"]
+    },
+    weaknesses: {
+      rat: ["Opportunismo", "Avidità", "Nervosismo"],
+      ox: ["Testardaggine", "Rigidità", "Rancore"],
+      tiger: ["Impulsività", "Ribellione", "Impazienza"],
+      rabbit: ["Indecisione", "Fuga dai conflitti", "Permalosità"],
+      dragon: ["Orgoglio", "Intolleranza", "Impazienza"],
+      snake: ["Diffidenza", "Gelosia", "Segretezza"],
+      horse: ["Impazienza", "Incostanza", "Egocentrismo"],
+      goat: ["Inquietudine", "Pessimismo", "Dipendenza"],
+      monkey: ["Malizia", "Vanità", "Instabilità"],
+      rooster: ["Spirito critico", "Vanteria", "Perfezionismo"],
+      dog: ["Ansia", "Pessimismo", "Diffidenza"],
+      pig: ["Ingenuità", "Eccessi", "Pigrizia"]
+    },
+    love: {
+      rat: "Premuroso e sentimentale, resta fedele a chi conquista la sua fiducia.",
+      ox: "Discreto e leale, ama a lungo e protegge i suoi cari.",
+      tiger: "Ardente e totale, vive passioni intense e ha bisogno di libertà.",
+      rabbit: "Tenero e premuroso, cerca una casa tranquilla e rassicurante.",
+      dragon: "Appassionato e magnetico, attira molti ma si dona completamente solo a chi lo merita.",
+      snake: "Seducente e possessivo, ama con intensità e molto pudore.",
+      horse: "Romantico e focoso, si innamora in fretta ma tiene alla sua indipendenza.",
+      goat: "Tenera e devota, ha bisogno di sicurezza affettiva e di attenzioni.",
+      monkey: "Giocosa e seducente, ha bisogno di un partner che la stimoli.",
+      rooster: "Fedele e protettivo, esprime l'amore con gesti concreti.",
+      dog: "Fedele e sincero, si impegna per la vita una volta che si fida.",
+      pig: "Caloroso e devoto, ama senza calcoli e con grande tenerezza."
+    },
+    career: {
+      rat: "Brilla nel commercio, nella scrittura e nella strategia.",
+      ox: "Prospera nell'agricoltura, nell'industria, nella finanza e nell'artigianato.",
+      tiger: "Eccelle nel comando, nell'imprenditoria e nelle professioni a rischio.",
+      rabbit: "Prospera nelle arti, nella diplomazia, nella consulenza e nell'arredamento.",
+      dragon: "Brilla nella direzione, nella politica, nello spettacolo e nell'innovazione.",
+      snake: "Eccelle nella ricerca, nella psicologia, nella finanza e nella filosofia.",
+      horse: "Brilla nei viaggi, nelle vendite, nella comunicazione e nello sport.",
+      goat: "Prospera nelle arti, nella cura, nel design e nell'insegnamento.",
+      monkey: "Eccelle nelle scienze, nell'ingegneria, nel commercio e nell'intrattenimento.",
+      rooster: "Brilla nell'amministrazione, nella medicina, nell'esercito e nel giornalismo.",
+      dog: "Prospera nel diritto, nel sociale, nella sanità e nella sicurezza.",
+      pig: "Prospera nella ristorazione, nell'intrattenimento, nel sociale e nell'immobiliare."
+    },
+    elements: { wood: "Legno", fire: "Fuoco", earth: "Terra", metal: "Metallo", water: "Acqua" },
+    elementTraits: {
+      wood: [["Generoso", "Creativo", "Idealista"], "Anno di Legno: crescita e generosità. Il Legno rende l'animale più creativo, collaborativo e attento agli altri."],
+      fire: [["Appassionato", "Dinamico", "Audace"], "Anno di Fuoco: energia e passione. Il Fuoco rende l'animale più dinamico, espressivo e audace."],
+      earth: [["Stabile", "Paziente", "Affidabile"], "Anno di Terra: stabilità e pazienza. La Terra rende l'animale più pragmatico, affidabile e sereno."],
+      metal: [["Determinato", "Rigoroso", "Ambizioso"], "Anno di Metallo: forza e rigore. Il Metallo rende l'animale più determinato, esigente e ambizioso."],
+      water: [["Intuitivo", "Flessibile", "Diplomatico"], "Anno d'Acqua: intuizione e flessibilità. L'Acqua rende l'animale più intuitivo, adattabile e diplomatico."]
+    },
+    yin: "Yin",
+    yang: "Yang",
+    polarityDesc: {
+      yin: "Yin: energia ricettiva, rivolta verso l'interno.",
+      yang: "Yang: energia attiva, rivolta verso l'esterno."
+    },
+    labels: {
+      year: "Anno cinese",
+      yearElement: "Elemento dell'anno",
+      polarity: "Polarità",
+      fixedElement: "Elemento fisso",
+      hourAnimal: "Animale dell'ora"
+    },
+    hourNote: "Il tuo «ascendente cinese», determinato dall'ora di nascita.",
+    noHour: "Indica la tua ora di nascita per scoprire il tuo animale dell'ora.",
+    outOfRange: "Lo zodiaco cinese è disponibile per le nascite dal 1900 al 2100.",
+    relationNames: {
+      harmony: "Sei armonie (六合)",
+      triad: "Triade (三合)",
+      clash: "Opposizione (六冲)",
+      harm: "Danno (六害)",
+      punishment: "Punizione (相刑)",
+      selfPunish: "Stesso segno (自刑)",
+      same: "Stesso segno",
+      neutral: "Relazione neutra"
+    },
+    relations: {
+      harmony: "Un'alleanza segreta: questi due segni si completano in modo naturale e si sostengono nel tempo.",
+      triad: "Membri della stessa triade: stessi valori e stessa energia, un'intesa fluida e spontanea.",
+      clash: "Segni opposti nel ciclo: l'attrazione è possibile, ma tensioni e scontri di carattere sono frequenti.",
+      harm: "Una relazione logorante: malintesi e piccole ferite si accumulano se non si fa attenzione.",
+      punishment: "Una dinamica impegnativa: i difetti di ciascuno emergono, la relazione richiede molti sforzi.",
+      selfPunish: "Due nature identiche che amplificano i propri difetti: vera complicità, ma rischio di eccessi.",
+      same: "Due nature identiche: comprensione immediata, ma poca complementarità.",
+      neutral: "Nessun legame particolare nella tradizione: tutto dipende dalle persone e dal loro impegno."
+    },
+    yearOf: {
+      rat: "Anno del Topo {el}",
+      ox: "Anno del Bue {el}",
+      tiger: "Anno della Tigre {el}",
+      rabbit: "Anno del Coniglio {el}",
+      dragon: "Anno del Drago {el}",
+      snake: "Anno del Serpente {el}",
+      horse: "Anno del Cavallo {el}",
+      goat: "Anno della Capra {el}",
+      monkey: "Anno della Scimmia {el}",
+      rooster: "Anno del Gallo {el}",
+      dog: "Anno del Cane {el}",
+      pig: "Anno del Maiale {el}"
+    },
+    yearElementOf: { wood: "di Legno", fire: "di Fuoco", earth: "di Terra", metal: "di Metallo", water: "d'Acqua" }
+  },
+  horo: {
+    title: "Oroscopo",
+    day: "Giorno",
+    week: "Settimana",
+    date: "Data di lettura",
+    weekOf: "Settimana dal {start} al {end}",
+    groups: {
+      major: "Grandi tendenze",
+      moment: "Clima del momento",
+      retro: "Retrogradazioni",
+      positions: "Posizioni dei pianeti",
+      moon: "Luna della settimana"
+    },
+    aspects: { conj: "nel tuo segno", trine: "in trigono", square: "in quadratura", opp: "in opposizione" },
+    when: { from: "dal {d}", until: "fino al {d}", range: "dal {a} al {b}" },
+    none: "Nessun transito di rilievo per il tuo segno: un cielo calmo, approfittane.",
+    note: "Posizioni calcolate per mezzogiorno, ora locale. Interpretazioni simboliche della tradizione astrologica.",
+    retrograde: "retrogrado",
+    phases: ["Luna nuova", "Luna crescente", "Primo quarto", "Gibbosa crescente", "Luna piena", "Gibbosa calante", "Ultimo quarto", "Luna calante"],
+    texts: {
+      sun: {
+        conj: "È la tua stagione: vitalità e fiducia al massimo, il momento di portare avanti i tuoi progetti.",
+        trine: "Energia fluida e buon umore: le tue iniziative sono ben accolte.",
+        square: "Un calo di energia: dosa le forze ed evita inutili bracci di ferro.",
+        opp: "Gli altri sono al centro della scena: punta sulla collaborazione più che sull'ego."
+      },
+      moon: {
+        conj: "Emozioni a fior di pelle: ascolta l'intuito, oggi vede giusto.",
+        trine: "Clima interiore sereno: una giornata propizia ai momenti condivisi.",
+        square: "Umore altalenante: prenditi un momento prima di reagire.",
+        opp: "Sensibile alle aspettative altrui: trova l'equilibrio tra dare e ricevere."
+      },
+      mercury: {
+        conj: "Mente vivace e parola facile: ideale per negoziare, scrivere o convincere.",
+        trine: "Scambi fluidi: buon momento per pratiche, contratti e spostamenti.",
+        square: "Rischio di malintesi: rileggi i messaggi e controlla i dettagli.",
+        opp: "Discussioni animate con chi ti circonda: ascolta quanto parli."
+      },
+      venus: {
+        conj: "Fascino al massimo: incontri, riconciliazioni e piaceri sono favoriti.",
+        trine: "Dolcezza nelle relazioni: un clima favorevole all'amore e alle finanze.",
+        square: "Piccole frustrazioni affettive: evita le spese impulsive.",
+        opp: "Il rapporto con l'altro è al centro di tutto: spazio ai compromessi in amore."
+      },
+      mars: {
+        conj: "Energia moltiplicata: buttati, ma attenzione all'impazienza e agli scontri.",
+        trine: "Dinamismo ben incanalato: i tuoi sforzi danno frutto.",
+        square: "Tensioni e irritabilità: incanala l'energia nello sport o nell'azione.",
+        opp: "Possibili prove di forza: scegli con cura le tue battaglie."
+      },
+      jupiter: {
+        conj: "Periodo di espansione: la fortuna ti sorride, osa pensare in grande.",
+        trine: "Opportunità in vista: un aiuto o una bella notizia può cambiare tutto.",
+        square: "Eccesso di ottimismo: non promettere più di quanto puoi mantenere.",
+        opp: "Gli altri ti aprono porte: resta realista nei tuoi impegni."
+      },
+      saturn: {
+        conj: "Periodo di costruzione: impegno e rigore gettano basi durature.",
+        trine: "Stabilità e serietà: i tuoi progetti a lungo termine avanzano con sicurezza.",
+        square: "Ostacoli e lentezze: pazienza, ogni difficoltà ti fa crescere.",
+        opp: "Responsabilità verso gli altri: mantieni gli impegni, saranno ricompensati."
+      },
+      uranus: {
+        conj: "Vento di cambiamento: l'imprevisto scuote le tue abitudini, resta flessibile.",
+        trine: "Idee nuove e liberazione: osa l'originalità.",
+        square: "Sorprese e instabilità: tieni a portata di mano un piano B.",
+        opp: "Le persone vicine ti sorprendono: accetta di uscire dalla tua zona di comfort."
+      },
+      neptune: {
+        conj: "Immaginazione e intuito amplificati: sogna, ma con i piedi per terra.",
+        trine: "Ispirazione e sensibilità artistica: un clima propizio alla creatività.",
+        square: "Confusione e illusioni: verifica i fatti prima di impegnarti.",
+        opp: "Attenzione alle promesse troppo belle: chiarisci le situazioni ambigue."
+      },
+      pluto: {
+        conj: "Trasformazione profonda: si chiude un capitolo per lasciare spazio al rinnovamento.",
+        trine: "Potere personale rafforzato: sai volgere le situazioni a tuo vantaggio.",
+        square: "Rimesse in discussione intense: lascia andare ciò che non ti va più.",
+        opp: "Dinamiche di potere nelle relazioni: punta sulla trasparenza."
+      }
+    },
+    retroTexts: {
+      mercury: "Prudenza con contratti, messaggi e dispositivi; ideale per rileggere e rivedere.",
+      venus: "Ritorna il passato amoroso; evita decisioni sentimentali affrettate.",
+      mars: "L'energia si rivolge all'interno; riprendi invece di avviare.",
+      jupiter: "Momento di consolidare i risultati invece di espanderti.",
+      saturn: "Rivedi le tue strutture e i tuoi impegni di fondo.",
+      uranus: "I cambiamenti maturano dietro le quinte.",
+      neptune: "Le illusioni si dissolvono, torna la lucidità.",
+      pluto: "Lavoro interiore e trasformazioni discrete."
+    }
+  },
+  map: {
+    title: "Mappa del cielo",
+    place: "Luogo di osservazione",
+    myPosition: "📍 La mia posizione",
+    locate: "Localizzami",
+    locating: "Localizzazione…",
+    geoError: "Posizione non disponibile: scegli una città dall'elenco.",
+    time: "Ora di osservazione",
+    visibleNow: "Visibili a quest'ora",
+    noneVisible: "Nessun pianeta sopra l'orizzonte.",
+    daylight: "A quest'ora è giorno: le stelle non sono visibili.",
+    meteors: "Sciami meteorici",
+    meteorActive: "attivo · picco il {d} · fino a {zhr} all'ora",
+    meteorNext: "Prossimo picco: {name}, il {d}",
+    eclipses: "Prossime eclissi",
+    visibleHere: "visibile da qui",
+    notVisibleHere: "non visibile da qui",
+    solarWhere: "visibile da una parte del globo",
+    note: "Cielo calcolato all'ora locale del luogo scelto (ora del dispositivo per «La mia posizione»), senza rifrazione atmosferica. Stelle: d3-celestial (O. Frohn, licenza BSD), catalogo Hipparcos.",
+    directions: ["N", "NE", "E", "SE", "S", "SO", "O", "NO"],
+    eclipseTypes: {
+      T: "Eclissi totale di Sole",
+      A: "Eclissi anulare di Sole",
+      H: "Eclissi ibrida di Sole",
+      P: "Eclissi parziale di Sole",
+      t: "Eclissi totale di Luna",
+      p: "Eclissi parziale di Luna",
+      n: "Eclissi penombrale di Luna"
+    },
+    showers: {
+      quadrantids: "Quadrantidi",
+      lyrids: "Liridi",
+      etaAquariids: "Eta Aquaridi",
+      deltaAquariids: "Delta Aquaridi Australi",
+      perseids: "Perseidi",
+      draconids: "Draconidi",
+      orionids: "Orionidi",
+      leonids: "Leonidi",
+      geminids: "Geminidi",
+      ursids: "Ursidi"
+    },
+    constellations: {
+      Ori: "Orione",
+      UMa: "Orsa Maggiore",
+      UMi: "Orsa Minore",
+      Cas: "Cassiopeia",
+      Cyg: "Cigno",
+      Cru: "Croce del Sud",
+      Lyr: "Lira",
+      Aql: "Aquila",
+      CMa: "Cane Maggiore"
+    },
+    aboveHorizon: "Sopra l'orizzonte",
+    eclPartial: "parziale da qui: {pct} del Sole nascosto, dalle {a} alle {b} (massimo alle {m})",
+    eclTotal: "totale da qui: {dur} di totalità verso le {m} (eclissi dalle {a} alle {b})",
+    eclAnnular: "anulare da qui: {dur} di anello verso le {m} (eclissi dalle {a} alle {b})",
+    eclRises: "il Sole sorge già eclissato",
+    eclSets: "il Sole tramonta ancora eclissato",
+    eclSafety: "⚠️ Non guardare mai il Sole senza occhiali per eclissi conformi alla norma ISO 12312-2."
+  },
+  pair: {
+    title: "Compatibilità di coppia",
+    partnerName: "Nome dell'altra persona",
+    partnerDate: "La sua data di nascita",
+    partnerTime: "La sua ora di nascita",
+    compare: "Confronta",
+    you: "Tu",
+    other: "L'altra persona",
+    global: "Armonia generale",
+    western: "Segni zodiacali",
+    chinese: "Animali cinesi",
+    moon: "Lune · affinità emotiva",
+    moonUnknown: "Per confrontare le Lune, indica gli orari di nascita: la Luna cambia segno il giorno di una delle nascite.",
+    invalid: "Data di nascita non valida.",
+    noDate: "Indica la data di nascita dell'altra persona.",
+    note: "Compatibilità simbolica, secondo le tradizioni astrologiche occidentale e cinese. L'armonia generale è la media degli assi disponibili.",
+    partnerPlace: "Il suo luogo di nascita"
+  },
+  theme: { light: "Modalità chiara" },
+  wheel: { title: "Ruota dello zodiaco", today: "Oggi", birth: "Alla nascita" },
+  history: { title: "Recenti", clear: "Cancella cronologia" },
+  offline: {
+    button: "Versione offline",
+    hint: "Scarica lo strumento completo in un unico file HTML, utilizzabile senza internet e facile da condividere.",
+    opened: "La versione autonoma si apre in una nuova scheda: fai clic lì su «Versione offline» per salvarla."
+  },
+  labelBirthPlace: "Luogo di nascita",
+  placeNone: "— non specificato —",
+  natal: {
+    title: "Tema natale",
+    tabSigns: "Segno e zodiaco cinese",
+    tabNatal: "Tema natale",
+    tabsLabel: "Vista del risultato",
+    ascendant: "Ascendente",
+    midheaven: "Medio Cielo",
+    positions: "Posizioni alla nascita",
+    house: "Casa",
+    reading: "Lettura del tema",
+    aspects: "Aspetti",
+    noAspects: "Nessun aspetto maggiore.",
+    needBoth: "Aggiungi l'ora e il luogo di nascita per ottenere l'ascendente, il Medio Cielo e le case.",
+    needTime: "Aggiungi l'ora di nascita per ottenere l'ascendente, il Medio Cielo e le case.",
+    needPlace: "Aggiungi il luogo di nascita per ottenere l'ascendente, il Medio Cielo e le case.",
+    noonMoon: "Senza l'ora di nascita, le posizioni sono calcolate a mezzogiorno: quella della Luna può variare di qualche grado.",
+    placidus: "Case Placidus.",
+    equal: "Case uguali: oltre il circolo polare il metodo Placidus non è applicabile.",
+    tzNote: "Ora locale del luogo di nascita, cambi d'ora compresi.",
+    mcText: "Il Medio Cielo evoca la vocazione e l'immagine pubblica.",
+    legend: "Il pianeta dice cosa, il segno dice come, la casa dice dove.",
+    domains: {
+      sun: "l'identità, la volontà",
+      moon: "le emozioni, i bisogni intimi",
+      mercury: "il pensiero, la comunicazione",
+      venus: "l'amore, i gusti, l'armonia",
+      mars: "l'energia, l'azione, il desiderio",
+      jupiter: "la fortuna, l'espansione, la fiducia",
+      saturn: "le regole, la maturità, le prove",
+      uranus: "l'originalità, il cambiamento (segno generazionale)",
+      neptune: "il sogno, l'intuizione (segno generazionale)",
+      pluto: "la trasformazione, il potere (segno generazionale)"
+    },
+    styles: {
+      aries: "con slancio, franchezza e impazienza",
+      taurus: "con costanza, sensualità e prudenza",
+      gemini: "con curiosità, leggerezza e vivacità",
+      cancer: "con sensibilità, protezione e attaccamento",
+      leo: "con splendore, generosità e fierezza",
+      virgo: "con precisione, metodo e riservatezza",
+      libra: "con fascino, diplomazia e senso dell'equilibrio",
+      scorpio: "con intensità, passione e profondità",
+      sagittarius: "con entusiasmo, apertura e amore per la libertà",
+      capricorn: "con ambizione, disciplina e pazienza",
+      aquarius: "con originalità, indipendenza e spirito collettivo",
+      pisces: "con sensibilità, immaginazione e compassione"
+    },
+    houses: ["la personalità, l'aspetto", "il denaro, i beni", "la comunicazione, la cerchia vicina", "la casa, la famiglia", "l'amore, i piaceri, la creatività", "il lavoro quotidiano, la salute", "la coppia, i soci", "le trasformazioni, l'intimità", "i viaggi, gli studi, la filosofia", "la carriera, la reputazione", "gli amici, i progetti", "la vita interiore"],
+    asc: {
+      aries: "Ascendente Ariete: una presenza diretta ed energica. Ti percepiscono come una persona intraprendente, che si lancia e non ama aspettare.",
+      taurus: "Ascendente Toro: una presenza calma e rassicurante. Ti percepiscono come una persona stabile, paziente e amante del comfort.",
+      gemini: "Ascendente Gemelli: una presenza vivace e comunicativa. Ti percepiscono come una persona curiosa, spiritosa e sempre in movimento.",
+      cancer: "Ascendente Cancro: una presenza dolce e protettiva. Ti percepiscono come una persona sensibile, premurosa e vicina ai suoi cari.",
+      leo: "Ascendente Leone: una presenza luminosa e calorosa. Ti percepiscono come una persona generosa, sicura di sé e che ama brillare.",
+      virgo: "Ascendente Vergine: una presenza discreta e curata. Ti percepiscono come una persona precisa, disponibile e attenta ai dettagli.",
+      libra: "Ascendente Bilancia: una presenza amabile ed elegante. Ti percepiscono come una persona diplomatica, socievole e in cerca di armonia.",
+      scorpio: "Ascendente Scorpione: una presenza intensa e magnetica. Ti percepiscono come una persona misteriosa, perspicace e determinata.",
+      sagittarius: "Ascendente Sagittario: una presenza entusiasta e aperta. Ti percepiscono come una persona ottimista, franca e avida di scoperte.",
+      capricorn: "Ascendente Capricorno: una presenza seria e composta. Ti percepiscono come una persona affidabile, ambiziosa e padrona di sé.",
+      aquarius: "Ascendente Acquario: una presenza originale e indipendente. Ti percepiscono come una persona inventiva, libera e un po' a parte.",
+      pisces: "Ascendente Pesci: una presenza dolce e sognante. Ti percepiscono come una persona intuitiva, empatica e sfuggente."
+    },
+    aspectNames: {
+      conjunction: "congiunzione",
+      sextile: "sestile",
+      square: "quadratura",
+      trine: "trigono",
+      opposition: "opposizione"
+    },
+    aspectMeanings: {
+      conjunction: "fusione: le due energie agiscono insieme",
+      sextile: "opportunità: una collaborazione facile da cogliere",
+      square: "tensione: una sfida che spinge ad agire",
+      trine: "armonia: un talento naturale",
+      opposition: "polarità: un equilibrio da trovare tra due forze"
+    },
+    tabSignsSub: "Il ritratto semplice",
+    tabNatalSub: "Il ritratto completo",
+    completeFields: "Completa l'ora e il luogo"
+  },
+  infoLabel: "Maggiori informazioni",
+  timePlaceHint: "L'ora e il luogo di nascita sono necessari per il tema natale (ascendente e case).",
+  info: {
+    sunPosition: "Posizione esatta del Sole nello zodiaco alla nascita, in gradi all'interno del segno (da 0 a 30°). Determina il segno e il decano, ed è calcolata astronomicamente, non in base a date fisse.",
+    natalMoon: "Il segno in cui si trovava la Luna alla nascita; in astrologia rappresenta la vita emotiva. La Luna cambia segno circa ogni due giorni e mezzo: senza l'ora di nascita, a volte i segni possibili sono due.",
+    modality: "I segni si dividono in tre modalità: cardinale (che avvia, all'inizio di ogni stagione), fissa (che stabilizza, nel cuore della stagione) e mobile (che si adatta, alla fine della stagione).",
+    ruler: "L'astro tradizionalmente associato al segno, che ne colorerebbe il carattere. L'astrologia moderna attribuisce Urano, Nettuno e Plutone all'Acquario, ai Pesci e allo Scorpione.",
+    decan: "Ogni segno copre 30° dello zodiaco, divisi in tre decani di 10°. A seconda del grado del Sole, il decano sfuma il segno con l'influenza di un secondo astro: il governatore di un segno dello stesso elemento.",
+    affinities: "Affinità tradizionale tra segni, da 1 a 5 stelle, basata soprattutto sugli elementi: Fuoco e Aria si stimolano, Terra e Acqua si completano, gli elementi opposti si attraggono ma si scontrano.",
+    cnAffinities: "Affinità tradizionale tra animali cinesi: le sei armonie e le triadi sono favorevoli; le opposizioni, i danni e le punizioni sono difficili.",
+    cnYear: "L'anno cinese inizia con il Capodanno lunare, tra il 21 gennaio e il 20 febbraio. Chi è nato prima di questa data appartiene all'animale dell'anno precedente.",
+    yearElement: "Gli anni seguono un ciclo di cinque elementi (Legno, Fuoco, Terra, Metallo, Acqua), ciascuno della durata di due anni. Insieme ai 12 animali forma un grande ciclo di 60 anni.",
+    polarity: "Gli anni si alternano tra yang e yin: gli anni pari sono yang (energia attiva, rivolta verso l'esterno), quelli dispari yin (energia ricettiva, rivolta verso l'interno).",
+    fixedElement: "Ogni animale ha anche un elemento proprio, che non cambia da un anno all'altro (il Topo è sempre associato all'Acqua, per esempio). Si combina con l'elemento dell'anno.",
+    hourAnimal: "Il giorno è diviso in 12 fasce di due ore, ciascuna associata a un animale (il Topo dalle 23 all'1, il Bue dall'1 alle 3, ecc.). L'animale dell'ora di nascita completa il ritratto.",
+    natalChart: "Il tema natale è la mappa completa del cielo nel momento e nel luogo della nascita: la posizione di ogni astro nei segni e nelle case, e gli angoli che formano tra loro.",
+    ascendant: "Il segno che sorgeva all'orizzonte est nel momento della nascita. Cambia circa ogni due ore, da qui la necessità di ora e luogo esatti. Rifletterebbe il modo in cui ci si presenta agli altri.",
+    midheaven: "Il punto dello zodiaco più alto nel cielo nel momento della nascita. La tradizione lo associa alla vocazione, alla carriera e all'immagine pubblica.",
+    houses: "Il cielo di nascita è diviso in 12 case a partire dall'ascendente, ciascuna legata a un ambito della vita (denaro, coppia, carriera…). La casa di un astro indica dove si esprime la sua energia. Metodo di calcolo: Placidus.",
+    aspects: "Angoli particolari tra due astri, misurati lungo lo zodiaco: congiunzione (0°), sestile (60°), quadratura (90°), trigono (120°) e opposizione (180°), con un margine chiamato orbita. Più l'orbita è piccola, più l'aspetto è forte.",
+    retrograde: "Visto dalla Terra, un pianeta sembra a volte arretrare per qualche settimana nello zodiaco: è un'illusione dovuta al moto dei pianeti gli uni rispetto agli altri. In astrologia, questo periodo invita a tornare sull'ambito del pianeta.",
+    horoscope: "L'oroscopo confronta la posizione attuale degli astri con il tuo segno: un astro che attraversa il tuo segno o forma un angolo con esso (un transito) colora il periodo. I pianeti lenti danno le grandi tendenze, quelli veloci il clima del momento.",
+    skymap: "Il cielo come lo si vede alzando gli occhi dalla città scelta: il bordo del disco è l'orizzonte, il centro il punto proprio sopra di te. Il nord è in alto e l'est a sinistra, perché si guarda verso il cielo.",
+    compat: "L'affinità globale è la media degli assi disponibili: segni zodiacali, animali cinesi e, se le ore di nascita sono note, segni lunari. È una lettura simbolica, non una previsione.",
+    signVsConstellation: "I segni astrologici sono 12 settori uguali di 30°, contati a partire dall'equinozio di primavera: è lo zodiaco tropicale, usato qui. Le costellazioni con lo stesso nome sono gruppi di stelle di dimensioni diverse. A causa della lenta oscillazione dell'asse terrestre (la precessione), segni e costellazioni si sono sfasati di circa un segno dall'antichità: il Sole può trovarsi nel segno dell'Ariete pur stando davanti alla costellazione dei Pesci.",
+    night: "La notte fonda inizia quando il Sole è più di 18° sotto l'orizzonte (fine del crepuscolo astronomico) e finisce all'alba. La Luna rischiara il cielo e nasconde le stelle deboli: il momento migliore unisce notte fonda e Luna tramontata. Un pianeta è considerato ben visibile a più di 10° di altezza, con il Sole più di 6° sotto l'orizzonte.",
+    solarEclipse: "Calcolo per questo luogo, con mezzo minuto di precisione. La percentuale è la parte della superficie del Sole nascosta dalla Luna; gli orari vanno dal primo all'ultimo contatto dei due dischi, limitati al periodo in cui il Sole è sopra l'orizzonte. Un'eclissi totale o anulare si vede come tale solo in una fascia stretta; altrove è parziale."
+  },
+  placePlaceholder: "Digita il nome di una città…",
+  placeNoMatch: "Nessuna città trovata. Prova con la più vicina.",
+  placeUnknown: "Luogo di nascita non riconosciuto: scegli una città dall'elenco (va bene la più vicina).",
+  placeClear: "Cancella il luogo",
+  placesCredit: "Città: GeoNames (www.geonames.org), licenza CC BY 4.0.",
+  rangeWarning: "I calcoli sono verificati per le nascite dal 1900 al 2100: al di fuori di questo periodo, le posizioni dei pianeti e i fusi orari diventano meno precisi.",
+  night: {
+    title: "Osservare il cielo stanotte",
+    sunset: "Tramonto",
+    sunrise: "Alba",
+    dark: "Notte fonda",
+    moon: "Luna",
+    moonLit: "illuminata al {pct}",
+    moonrise: "sorge alle {t}",
+    moonset: "tramonta alle {t}",
+    moonAllNight: "sopra l'orizzonte tutta la notte",
+    moonNone: "sotto l'orizzonte tutta la notte",
+    best: "Momento migliore per osservare",
+    bestNone: "Stanotte non c'è notte fonda senza Luna.",
+    planets: "Pianeti visibili",
+    noPlanets: "Nessun pianeta ben visibile stanotte.",
+    polarDay: "Il Sole non tramonta: giorno polare.",
+    polarNight: "Il Sole non sorge: notte polare.",
+    noAstroNight: "In questa stagione non c'è notte fonda: il Sole resta troppo vicino all'orizzonte.",
+    note: "Orari locali del luogo scelto, con orizzonte libero. Meteo e inquinamento luminoso non sono considerati."
+  }
+});

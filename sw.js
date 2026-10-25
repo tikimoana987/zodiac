@@ -2,9 +2,9 @@
    Garde l'outil en mémoire sur l'appareil pour qu'il fonctionne hors ligne.
    Page : réseau d'abord (pour recevoir les mises à jour), mémoire si hors ligne.
    Autres fichiers (icônes, manifeste) : mémoire d'abord.
-   7130da7084c2 est remplacé par build-standalone.py : chaque nouvelle version change ce fichier,
+   __VERSION__ est remplacé par build-standalone.py : chaque nouvelle version change ce fichier,
    ce qui déclenche l'installation de la nouvelle copie et l'effacement de l'ancienne. */
-const CACHE = 'zodiac-7130da7084c2';
+const CACHE = 'zodiac-__VERSION__';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', event => {

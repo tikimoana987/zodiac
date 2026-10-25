@@ -1,0 +1,725 @@
+/* ============================================================
+   Zodiaque & Décans — traduction : allemand
+   Fusionnée sur le français : une clé manquante s'affiche en français.
+   ============================================================ */
+
+I18N.de = deepMerge(I18N.fr, {
+  appTitle: "Zodiak & Dekane",
+  labelName: "Name",
+  labelBirthDate: "Geburtsdatum",
+  labelBirthTime: "Geburtszeit",
+  optional: "(optional)",
+  btnReveal: "Mein Zeichen enthüllen",
+  btnReset: "Neue Suche",
+  btnExport: "Als Bild exportieren",
+  btnShare: "Teilen",
+  shareCopied: "Link kopiert!",
+  exported: "Bild gespeichert ✓",
+  errorNoDate: "Bitte wähle ein Datum.",
+  errorInvalid: "Ungültiges Datum.",
+  exportError: "Bild konnte nicht exportiert werden.",
+  close: "Schließen",
+  langSelector: "Sprachauswahl",
+  cuspSign: "Die Sonne wechselt an diesem Tag das Zeichen: Gib deine Geburtszeit an, um ein genaues Ergebnis zu erhalten.",
+  cuspDecan: "Die Sonne wechselt an diesem Tag den Dekan: Gib deine Geburtszeit an, um ein genaues Ergebnis zu erhalten.",
+  searching: "Suche im Himmel…",
+  found: "Konstellation gefunden",
+  decanLabel: ["Erster Dekan", "Zweiter Dekan", "Dritter Dekan"],
+  sections: {
+    profile: "Profil",
+    strengthWeak: "Stärken & Schwächen",
+    loveCareer: "Liebe & Karriere",
+    decan: "Dekan",
+    affinities: "Affinitäten",
+    affinityHint: "Klicke ein Zeichen für Details",
+    quickInfo: "Informationen",
+    western: "Westlicher Tierkreis",
+    chinese: "Chinesischer Tierkreis",
+    yearElement: "Element des Jahres"
+  },
+  labels: {
+    dateRange: "Übliche Daten",
+    sunPosition: "Sonnenstand",
+    modality: "Modalität",
+    ruler: "Planet",
+    luckyNumbers: "Zahlen",
+    colors: "Farben",
+    stone: "Stein",
+    day: "Tag",
+    strengths: "Stärken",
+    weaknesses: "Schwächen",
+    love: "Liebe",
+    career: "Karriere",
+    natalMoon: "Geburtsmond",
+    moonSign: "Mondzeichen"
+  },
+  signNames: {
+    aries: "Widder",
+    taurus: "Stier",
+    gemini: "Zwillinge",
+    cancer: "Krebs",
+    leo: "Löwe",
+    virgo: "Jungfrau",
+    libra: "Waage",
+    scorpio: "Skorpion",
+    sagittarius: "Schütze",
+    capricorn: "Steinbock",
+    aquarius: "Wassermann",
+    pisces: "Fische"
+  },
+  summaries: {
+    aries: "Feuerzeichen, regiert von Mars. Energisch, mutig und bahnbrechend stürmt der Widder leidenschaftlich auf seine Ziele zu.",
+    taurus: "Erdzeichen, regiert von Venus. Loyal, geduldig und sinnlich sucht der Stier Stabilität und einfache Freuden.",
+    gemini: "Luftzeichen, regiert von Merkur. Neugierig, anpassungsfähig und geistreich lieben die Zwillinge das Lernen und Kommunizieren.",
+    cancer: "Wasserzeichen, regiert vom Mond. Sensibel, beschützend und intuitiv ist der Krebs tief mit seinen Wurzeln verbunden.",
+    leo: "Feuerzeichen, regiert von der Sonne. Charismatisch, großzügig und kreativ liebt es der Löwe, zu glänzen und zu inspirieren.",
+    virgo: "Erdzeichen, regiert von Merkur. Analytisch, sorgfältig und hilfsbereit strebt die Jungfrau nach Perfektion.",
+    libra: "Luftzeichen, regiert von Venus. Diplomatisch, ästhetisch und gesellig sucht die Waage Harmonie und Gerechtigkeit.",
+    scorpio: "Wasserzeichen, regiert von Pluto. Intensiv, leidenschaftlich und geheimnisvoll erlebt der Skorpion alles mit voller Hingabe.",
+    sagittarius: "Feuerzeichen, regiert von Jupiter. Abenteuerlustig, optimistisch und philosophisch dürstet der Schütze nach Freiheit.",
+    capricorn: "Erdzeichen, regiert von Saturn. Ehrgeizig, diszipliniert und verantwortungsbewusst baut der Steinbock auf Dauer.",
+    aquarius: "Luftzeichen, regiert von Uranus. Originell, humanistisch und unabhängig denkt der Wassermann anders.",
+    pisces: "Wasserzeichen, regiert von Neptun. Verträumt, einfühlsam und künstlerisch sind die Fische mit dem Unsichtbaren verbunden."
+  },
+  strengths: {
+    aries: ["Mut", "Entschlossenheit", "Begeisterung"],
+    taurus: ["Loyalität", "Geduld", "Zuverlässigkeit"],
+    gemini: ["Neugier", "Anpassungsfähigkeit", "Geist"],
+    cancer: ["Empathie", "Loyalität", "Intuition"],
+    leo: ["Charisma", "Großzügigkeit", "Kreativität"],
+    virgo: ["Genauigkeit", "Analyse", "Zuverlässigkeit"],
+    libra: ["Diplomatie", "Charme", "Fairness"],
+    scorpio: ["Intensität", "Loyalität", "Magnetismus"],
+    sagittarius: ["Optimismus", "Abenteuer", "Ehrlichkeit"],
+    capricorn: ["Ehrgeiz", "Disziplin", "Verantwortung"],
+    aquarius: ["Originalität", "Humanismus", "Unabhängigkeit"],
+    pisces: ["Empathie", "Vorstellungskraft", "Sanftheit"]
+  },
+  weaknesses: {
+    aries: ["Ungeduld", "Impulsivität", "Sturheit"],
+    taurus: ["Sturheit", "Besitzergreifung", "Starrheit"],
+    gemini: ["Unbeständigkeit", "Oberflächlichkeit", "Nervosität"],
+    cancer: ["Überempfindlichkeit", "Besitzergreifung", "Launenhaftigkeit"],
+    leo: ["Stolz", "Eitelkeit", "Autoritarismus"],
+    virgo: ["Perfektionismus", "Angst", "Kritik"],
+    libra: ["Unentschlossenheit", "Gefälligkeit", "Abhängigkeit"],
+    scorpio: ["Eifersucht", "Besitzergreifung", "Groll"],
+    sagittarius: ["Rücksichtslosigkeit", "Unbeständigkeit", "Direktheit"],
+    capricorn: ["Starrheit", "Pessimismus", "Kälte"],
+    aquarius: ["Distanziertheit", "Rebellion", "Kompromisslosigkeit"],
+    pisces: ["Naivität", "Realitätsflucht", "Überempfindlichkeit"]
+  },
+  love: {
+    aries: "Leidenschaftlich und direkt, liebt Eroberungen, hasst Langeweile.",
+    taurus: "Loyal und romantisch, sucht Sicherheit und Zärtlichkeit.",
+    gemini: "Charmant und verspielt, braucht intellektuelle Anregung.",
+    cancer: "Zärtlich und beschützend, sucht ein beruhigendes Nest.",
+    leo: "Leidenschaftlich und romantisch, liebt Bewunderung und Verwöhnung.",
+    virgo: "Aufmerksam und hingebungsvoll, drückt Gefühle zurückhaltend aus.",
+    libra: "Romantisch und harmonisch, sucht einen ausgleichenden Partner.",
+    scorpio: "Leidenschaftlich und verschmelzend, liebt tief und exklusiv.",
+    sagittarius: "Frei und enthusiastisch, braucht Raum und Abenteuer.",
+    capricorn: "Loyal und zurückhaltend, baut dauerhafte Beziehungen auf.",
+    aquarius: "Ungewöhnlich und frei, sucht eine intellektuelle Verbindung.",
+    pisces: "Romantisch und verschmelzend, träumen von absoluter Liebe."
+  },
+  career: {
+    aries: "Glänzt in Führung, Unternehmertum und Aktion.",
+    taurus: "Gedeiht in Finanzen, Handwerk und Gastronomie.",
+    gemini: "Glänzt in Journalismus, Marketing und Lehre.",
+    cancer: "Gedeiht in Pflege, Bildung und Immobilien.",
+    leo: "Glänzt in Kunst, Show und Management.",
+    virgo: "Glänzt in Gesundheit, Forschung und Analyse.",
+    libra: "Gedeiht in Recht, Mode und Design.",
+    scorpio: "Glänzt in Psychologie, Investigation und Finanzen.",
+    sagittarius: "Glänzt in Reisen, Lehre und internationaler Arbeit.",
+    capricorn: "Gedeiht in Management, Politik und Architektur.",
+    aquarius: "Glänzt in Technologie, Wissenschaft und NGOs.",
+    pisces: "Gedeiht in Kunst, Musik und Spiritualität."
+  },
+  rulers: {
+    mars: "Mars",
+    venus: "Venus",
+    mercury: "Merkur",
+    moon: "Mond",
+    sun: "Sonne",
+    pluto: "Pluto",
+    jupiter: "Jupiter",
+    saturn: "Saturn",
+    uranus: "Uranus",
+    neptune: "Neptun"
+  },
+  colors: {
+    red: "Rot",
+    white: "Weiß",
+    green: "Grün",
+    brown: "Braun",
+    yellow: "Gelb",
+    silver: "Silber",
+    gold: "Gold",
+    orange: "Orange",
+    pink: "Rosa",
+    blue: "Blau",
+    black: "Schwarz",
+    purple: "Lila",
+    seaGreen: "Meergrün"
+  },
+  stones: {
+    diamond: "Diamant",
+    emerald: "Smaragd",
+    pearl: "Perle",
+    moonstone: "Mondstein",
+    ruby: "Rubin",
+    sapphire: "Saphir",
+    opal: "Opal",
+    topaz: "Topas",
+    turquoise: "Türkis",
+    garnet: "Granat",
+    amethyst: "Amethyst",
+    aquamarine: "Aquamarin"
+  },
+  modalities: { cardinal: "Kardinal", fixed: "Fix", mutable: "Veränderlich" },
+  elements: { fire: "Feuer", earth: "Erde", air: "Luft", water: "Wasser" },
+  decanTraits: {
+    aries: [
+      [["Bahnbrechend", "Begeistert", "Eroberungslustig"], "Unter Mars verkörpert dieser Dekan den Widder in Reinform: bahnbrechend, begeistert und eroberungslustig."],
+      [["Charismatisch", "Stolz", "Großzügig"], "Unter der Sonne wird der Widder sanfter: charismatischer, stolzer und großzügiger."],
+      [["Abenteuerlustig", "Optimistisch", "Expansiv"], "Unter Jupiter weitet sich der Horizont des Widders: optimistischer, abenteuerlustiger und expansiver."]
+    ],
+    taurus: [
+      [["Sinnlich", "Loyal", "Ästhetisch"], "Unter Venus verkörpert dieser Dekan den Stier in Reinform: sinnlich, loyal und schönheitsliebend."],
+      [["Praktisch", "Neugierig", "Geschickt"], "Unter Merkur wird der Stier neugieriger, praktischer und geschickter."],
+      [["Beharrlich", "Ehrgeizig", "Gründlich"], "Unter Saturn wird der Stier gründlicher, beharrlicher und ehrgeiziger."]
+    ],
+    gemini: [
+      [["Lebhaft", "Neugierig", "Gesprächig"], "Unter Merkur verkörpert dieser Dekan die Zwillinge in Reinform: lebhaft, neugierig und gesprächig."],
+      [["Charmant", "Gesellig", "Ästhetisch"], "Unter Venus werden die Zwillinge charmanter, geselliger und ästhetischer."],
+      [["Originell", "Innovativ", "Unabhängig"], "Unter Uranus werden die Zwillinge origineller, innovativer und unabhängiger."]
+    ],
+    cancer: [
+      [["Emotional", "Beschützend", "Loyal"], "Unter dem Mond verkörpert dieser Dekan den Krebs in Reinform: emotional, beschützend und loyal."],
+      [["Intensiv", "Entschlossen", "Belastbar"], "Unter Pluto wird der Krebs intensiver, entschlossener und belastbarer."],
+      [["Intuitiv", "Künstlerisch", "Verträumt"], "Unter Neptun wird der Krebs verträumter, intuitiver und künstlerischer."]
+    ],
+    leo: [
+      [["Charismatisch", "Großzügig", "Kreativ"], "Unter der Sonne verkörpert dieser Dekan den Löwen in Reinform: strahlend, großzügig und kreativ."],
+      [["Kühn", "Abenteuerlustig", "Expansiv"], "Unter Jupiter wird der Löwe abenteuerlustiger, kühner und expansiver."],
+      [["Kämpferisch", "Willensstark", "Führungsstark"], "Unter Mars wird der Löwe kämpferischer, willensstärker und führungsstärker."]
+    ],
+    virgo: [
+      [["Analytisch", "Sorgfältig", "Praktisch"], "Unter Merkur verkörpert dieser Dekan die Jungfrau in Reinform: analytisch, sorgfältig und praktisch."],
+      [["Beharrlich", "Zuverlässig", "Strukturiert"], "Unter Saturn wird die Jungfrau strukturierter, zuverlässiger und beharrlicher."],
+      [["Sensibel", "Kreativ", "Ästhetisch"], "Unter Venus wird die Jungfrau sanfter: sensibler, kreativer und ästhetischer."]
+    ],
+    libra: [
+      [["Diplomatisch", "Gesellig", "Ästhetisch"], "Unter Venus verkörpert dieser Dekan die Waage in Reinform: diplomatisch, gesellig und ästhetisch."],
+      [["Visionär", "Unabhängig", "Originell"], "Unter Uranus wird die Waage origineller, unabhängiger und visionärer."],
+      [["Neugierig", "Intellektuell", "Redegewandt"], "Unter Merkur wird die Waage intellektueller, neugieriger und redegewandter."]
+    ],
+    scorpio: [
+      [["Intensiv", "Leidenschaftlich", "Magnetisch"], "Unter Pluto verkörpert dieser Dekan den Skorpion in Reinform: intensiv, leidenschaftlich und magnetisch."],
+      [["Intuitiv", "Mystisch", "Einfühlsam"], "Unter Neptun wird der Skorpion mystischer, intuitiver und einfühlsamer."],
+      [["Emotional", "Beschützend", "Hingebungsvoll"], "Unter dem Mond wird der Skorpion emotionaler, beschützender und hingebungsvoller."]
+    ],
+    sagittarius: [
+      [["Abenteuerlustig", "Optimistisch", "Philosophisch"], "Unter Jupiter verkörpert dieser Dekan den Schützen in Reinform: abenteuerlustig, optimistisch und philosophisch."],
+      [["Leidenschaftlich", "Kühn", "Eroberungslustig"], "Unter Mars wird der Schütze leidenschaftlicher, kühner und eroberungslustiger."],
+      [["Strahlend", "Kreativ", "Großzügig"], "Unter der Sonne wird der Schütze strahlender, kreativer und großzügiger."]
+    ],
+    capricorn: [
+      [["Ehrgeizig", "Diszipliniert", "Verantwortungsvoll"], "Unter Saturn verkörpert dieser Dekan den Steinbock in Reinform: ehrgeizig, diszipliniert und verantwortungsvoll."],
+      [["Geduldig", "Sensibel", "Ästhetisch"], "Unter Venus wird der Steinbock sanfter: geduldiger, sensibler und ästhetischer."],
+      [["Methodisch", "Analytisch", "Pragmatisch"], "Unter Merkur wird der Steinbock methodischer, analytischer und pragmatischer."]
+    ],
+    aquarius: [
+      [["Originell", "Humanistisch", "Visionär"], "Unter Uranus verkörpert dieser Dekan den Wassermann in Reinform: originell, humanistisch und visionär."],
+      [["Neugierig", "Gesellig", "Erfinderisch"], "Unter Merkur wird der Wassermann neugieriger, geselliger und erfinderischer."],
+      [["Harmonisch", "Warmherzig", "Idealistisch"], "Unter Venus wird der Wassermann harmonischer, warmherziger und idealistischer."]
+    ],
+    pisces: [
+      [["Verträumt", "Einfühlsam", "Künstlerisch"], "Unter Neptun verkörpert dieser Dekan die Fische in Reinform: verträumt, einfühlsam und künstlerisch."],
+      [["Intuitiv", "Emotional", "Mitfühlend"], "Unter dem Mond werden die Fische intuitiver, emotionaler und mitfühlender."],
+      [["Intensiv", "Belastbar", "Wandlungsfähig"], "Unter Pluto werden die Fische intensiver, belastbarer und wandlungsfähiger."]
+    ]
+  },
+  compat: {
+    levels: {
+      1: "Spannungsreiche Beziehung — Anziehung möglich, aber häufige Reibung.",
+      2: "Stimulierende, aber herausfordernde Beziehung.",
+      3: "Durchschnittliche Kompatibilität — mit gegenseitiger Anstrengung möglich.",
+      4: "Sehr kompatibel — fließendes Verständnis mit kleinen Anpassungen.",
+      5: "Seelenverwandte — natürliche und tiefe Verbindung."
+    },
+    pairs: {
+      fire_fire: "Zwei Feuer: intensive Leidenschaft, Verbrennungsrisiko.",
+      fire_air: "Luft nährt die Flamme: intellektuelle Nähe und gemeinsame Begeisterung.",
+      fire_earth: "Erde erstickt Feuer: erfordert Geduld und Anpassung.",
+      fire_water: "Wasser löscht Feuer: elementare Opposition, magnetische Anziehung.",
+      earth_earth: "Zwei Erden: Stabilität, aber Routinegefahr.",
+      earth_air: "Erde und Luft: zwei verschiedene Rhythmen zu vereinbaren.",
+      earth_water: "Wasser befruchtet Erde: Wachstum und gegenseitige Unterstützung.",
+      air_air: "Zwei Lüfte: geistige Nähe, Oberflächlichkeitsrisiko.",
+      air_water: "Luft bewegt Wasser: Geist trifft Tiefe.",
+      water_water: "Zwei Wasser: emotionale Verschmelzung, Intensität und wortloses Verstehen."
+    }
+  },
+  cn: {
+    names: {
+      rat: "Ratte",
+      ox: "Büffel",
+      tiger: "Tiger",
+      rabbit: "Hase",
+      dragon: "Drache",
+      snake: "Schlange",
+      horse: "Pferd",
+      goat: "Ziege",
+      monkey: "Affe",
+      rooster: "Hahn",
+      dog: "Hund",
+      pig: "Schwein"
+    },
+    summaries: {
+      rat: "Flink, findig und charmant, nutzt die Ratte jede Gelegenheit und weiß sich immer zu helfen.",
+      ox: "Geduldig, fleißig und zuverlässig, geht der Büffel beständig voran und baut auf festem Grund.",
+      tiger: "Mutig, leidenschaftlich und unabhängig, stürzt sich der Tiger ins Abenteuer und verteidigt seine Überzeugungen.",
+      rabbit: "Sanft, kultiviert und diplomatisch, sucht der Hase Harmonie und pflegt die Kunst des Lebens.",
+      dragon: "Mächtig, ehrgeizig und strahlend, inspiriert der Drache andere und denkt in großen Dimensionen.",
+      snake: "Weise, intuitiv und elegant, denkt die Schlange nach, bevor sie handelt, und durchschaut Geheimnisse.",
+      horse: "Frei, energiegeladen und begeisterungsfähig, liebt das Pferd Bewegung und Weite.",
+      goat: "Sanft, künstlerisch und mitfühlend, sucht die Ziege Frieden und Schönheit um sich herum.",
+      monkey: "Schlau, neugierig und humorvoll, findet der Affe für alles eine Lösung.",
+      rooster: "Offen, organisiert und fleißig, liebt der Hahn Präzision und gut gemachte Arbeit.",
+      dog: "Treu, gerecht und beschützend, verteidigt der Hund die Menschen, die er liebt, und gerechte Anliegen.",
+      pig: "Großzügig, aufrichtig und genussfreudig, schätzt das Schwein einfache, geteilte Freuden."
+    },
+    strengths: {
+      rat: ["Einfallsreichtum", "Charme", "Anpassungsfähigkeit"],
+      ox: ["Ausdauer", "Zuverlässigkeit", "Ehrlichkeit"],
+      tiger: ["Mut", "Großzügigkeit", "Charisma"],
+      rabbit: ["Feingefühl", "Diplomatie", "Umsicht"],
+      dragon: ["Energie", "Ehrgeiz", "Selbstvertrauen"],
+      snake: ["Weisheit", "Intuition", "Eleganz"],
+      horse: ["Begeisterung", "Unabhängigkeit", "Geselligkeit"],
+      goat: ["Kreativität", "Freundlichkeit", "Empathie"],
+      monkey: ["Intelligenz", "Humor", "Vielseitigkeit"],
+      rooster: ["Genauigkeit", "Offenheit", "Mut"],
+      dog: ["Treue", "Ehrlichkeit", "Gerechtigkeitssinn"],
+      pig: ["Großzügigkeit", "Aufrichtigkeit", "Toleranz"]
+    },
+    weaknesses: {
+      rat: ["Opportunismus", "Gier", "Nervosität"],
+      ox: ["Sturheit", "Starrheit", "Nachtragendheit"],
+      tiger: ["Impulsivität", "Rebellion", "Ungeduld"],
+      rabbit: ["Unentschlossenheit", "Konfliktscheu", "Empfindlichkeit"],
+      dragon: ["Stolz", "Intoleranz", "Ungeduld"],
+      snake: ["Misstrauen", "Eifersucht", "Verschlossenheit"],
+      horse: ["Ungeduld", "Unbeständigkeit", "Egozentrik"],
+      goat: ["Sorge", "Pessimismus", "Abhängigkeit"],
+      monkey: ["Gerissenheit", "Eitelkeit", "Unruhe"],
+      rooster: ["Kritiksucht", "Prahlerei", "Perfektionismus"],
+      dog: ["Ängstlichkeit", "Pessimismus", "Misstrauen"],
+      pig: ["Naivität", "Maßlosigkeit", "Trägheit"]
+    },
+    love: {
+      rat: "Aufmerksam und gefühlvoll, bleibt sie denen treu, die ihr Vertrauen gewinnen.",
+      ox: "Zurückhaltend und treu, liebt er dauerhaft und beschützt seine Liebsten.",
+      tiger: "Feurig und ganz, lebt er intensive Leidenschaften und braucht Freiheit.",
+      rabbit: "Zärtlich und aufmerksam, sucht er ein friedliches, sicheres Zuhause.",
+      dragon: "Leidenschaftlich und anziehend, zieht er viele an, schenkt sich aber ganz nur dem, der es verdient.",
+      snake: "Verführerisch und besitzergreifend, liebt sie intensiv und mit viel Zurückhaltung.",
+      horse: "Romantisch und feurig, verliebt es sich schnell, legt aber Wert auf Unabhängigkeit.",
+      goat: "Zärtlich und hingebungsvoll, braucht sie emotionale Sicherheit und Aufmerksamkeit.",
+      monkey: "Verspielt und verführerisch, braucht er einen Partner, der ihn anregt.",
+      rooster: "Treu und beschützend, zeigt er seine Liebe durch konkrete Taten.",
+      dog: "Treu und aufrichtig, bindet er sich fürs Leben, sobald er vertraut.",
+      pig: "Herzlich und hingebungsvoll, liebt es ohne Berechnung und mit viel Zärtlichkeit."
+    },
+    career: {
+      rat: "Glänzt in Handel, Schreiben und Strategie.",
+      ox: "Gedeiht in Landwirtschaft, Industrie, Finanzen und Handwerk.",
+      tiger: "Glänzt in Führung, Unternehmertum und risikoreichen Berufen.",
+      rabbit: "Gedeiht in Kunst, Diplomatie, Beratung und Innenarchitektur.",
+      dragon: "Glänzt in Management, Politik, Unterhaltung und Innovation.",
+      snake: "Glänzt in Forschung, Psychologie, Finanzen und Philosophie.",
+      horse: "Glänzt in Reisen, Vertrieb, Kommunikation und Sport.",
+      goat: "Gedeiht in Kunst, Pflege, Design und Lehre.",
+      monkey: "Glänzt in Wissenschaft, Technik, Handel und Unterhaltung.",
+      rooster: "Glänzt in Verwaltung, Medizin, Militär und Journalismus.",
+      dog: "Gedeiht in Recht, Sozialarbeit, Gesundheit und Sicherheit.",
+      pig: "Gedeiht in Gastronomie, Unterhaltung, Sozialem und Immobilien."
+    },
+    elements: { wood: "Holz", fire: "Feuer", earth: "Erde", metal: "Metall", water: "Wasser" },
+    elementTraits: {
+      wood: [["Großzügig", "Kreativ", "Idealistisch"], "Holz-Jahr: Wachstum und Großzügigkeit. Holz macht das Tier kreativer, kooperativer und zugewandter."],
+      fire: [["Leidenschaftlich", "Dynamisch", "Kühn"], "Feuer-Jahr: Energie und Leidenschaft. Feuer macht das Tier dynamischer, ausdrucksstärker und kühner."],
+      earth: [["Stabil", "Geduldig", "Zuverlässig"], "Erde-Jahr: Stabilität und Geduld. Erde macht das Tier pragmatischer, zuverlässiger und gelassener."],
+      metal: [["Entschlossen", "Gründlich", "Ehrgeizig"], "Metall-Jahr: Stärke und Strenge. Metall macht das Tier entschlossener, anspruchsvoller und ehrgeiziger."],
+      water: [["Intuitiv", "Flexibel", "Diplomatisch"], "Wasser-Jahr: Intuition und Flexibilität. Wasser macht das Tier intuitiver, anpassungsfähiger und diplomatischer."]
+    },
+    yin: "Yin",
+    yang: "Yang",
+    polarityDesc: {
+      yin: "Yin: empfangende, nach innen gerichtete Energie.",
+      yang: "Yang: aktive, nach außen gerichtete Energie."
+    },
+    labels: {
+      year: "Chinesisches Jahr",
+      yearElement: "Jahreselement",
+      polarity: "Polarität",
+      fixedElement: "Festes Element",
+      hourAnimal: "Tier der Stunde"
+    },
+    hourNote: "Dein „chinesischer Aszendent“, bestimmt durch die Geburtszeit.",
+    noHour: "Gib deine Geburtszeit an, um dein Tier der Stunde zu erfahren.",
+    outOfRange: "Der chinesische Tierkreis ist für Geburten von 1900 bis 2100 verfügbar.",
+    relationNames: {
+      harmony: "Sechs Harmonien (六合)",
+      triad: "Triade (三合)",
+      clash: "Konflikt (六冲)",
+      harm: "Schaden (六害)",
+      punishment: "Strafe (相刑)",
+      selfPunish: "Gleiches Zeichen (自刑)",
+      same: "Gleiches Zeichen",
+      neutral: "Neutrale Beziehung"
+    },
+    relations: {
+      harmony: "Ein geheimes Bündnis: Diese beiden Zeichen ergänzen sich ganz natürlich und stützen sich auf Dauer.",
+      triad: "Mitglieder derselben Triade: gleiche Werte und gleiche Energie, ein müheloses, spontanes Verständnis.",
+      clash: "Gegenüberliegende Zeichen im Zyklus: Anziehung ist möglich, doch Spannungen und Charakterkonflikte sind häufig.",
+      harm: "Eine zermürbende Beziehung: Missverständnisse und kleine Verletzungen häufen sich, wenn man nicht achtgibt.",
+      punishment: "Eine anspruchsvolle Dynamik: Die Schwächen beider treten hervor, die Beziehung verlangt viel Einsatz.",
+      selfPunish: "Zwei gleiche Naturen, die ihre Schwächen verstärken: echte Nähe, aber Gefahr der Übertreibung.",
+      same: "Zwei gleiche Naturen: sofortiges Verständnis, aber wenig Ergänzung.",
+      neutral: "Keine besondere Verbindung in der Tradition: Alles hängt von den Menschen und ihrem Einsatz ab."
+    },
+    yearOf: {
+      rat: "Jahr der {el}-Ratte",
+      ox: "Jahr des {el}-Büffels",
+      tiger: "Jahr des {el}-Tigers",
+      rabbit: "Jahr des {el}-Hasen",
+      dragon: "Jahr des {el}-Drachen",
+      snake: "Jahr der {el}-Schlange",
+      horse: "Jahr des {el}-Pferdes",
+      goat: "Jahr der {el}-Ziege",
+      monkey: "Jahr des {el}-Affen",
+      rooster: "Jahr des {el}-Hahns",
+      dog: "Jahr des {el}-Hundes",
+      pig: "Jahr des {el}-Schweins"
+    },
+    yearElementOf: { wood: "Holz", fire: "Feuer", earth: "Erde", metal: "Metall", water: "Wasser" }
+  },
+  horo: {
+    title: "Horoskop",
+    day: "Tag",
+    week: "Woche",
+    date: "Lesedatum",
+    weekOf: "Woche vom {start} bis {end}",
+    groups: {
+      major: "Große Tendenzen",
+      moment: "Aktuelles Klima",
+      retro: "Rückläufigkeiten",
+      positions: "Planetenpositionen",
+      moon: "Mond der Woche"
+    },
+    aspects: { conj: "in deinem Zeichen", trine: "im Trigon", square: "im Quadrat", opp: "in Opposition" },
+    when: { from: "ab {d}", until: "bis {d}", range: "{a} – {b}" },
+    none: "Kein bedeutender Transit für dein Zeichen: ein ruhiger Himmel, genieß ihn.",
+    note: "Positionen für 12 Uhr Ortszeit berechnet. Symbolische Deutungen aus der astrologischen Tradition.",
+    retrograde: "rückläufig",
+    phases: ["Neumond", "Zunehmende Sichel", "Erstes Viertel", "Zunehmender Mond", "Vollmond", "Abnehmender Mond", "Letztes Viertel", "Abnehmende Sichel"],
+    texts: {
+      sun: {
+        conj: "Es ist deine Zeit: Vitalität und Selbstvertrauen auf dem Höhepunkt, der Moment, deine Pläne voranzubringen.",
+        trine: "Fließende Energie und gute Laune: Deine Initiativen kommen gut an.",
+        square: "Ein kleines Energietief: Teil dir deine Kräfte ein und meide unnötige Machtkämpfe.",
+        opp: "Andere stehen im Mittelpunkt: Setze auf Zusammenarbeit statt auf dein Ego."
+      },
+      moon: {
+        conj: "Gefühle liegen blank: Hör auf deine Intuition, sie liegt heute richtig.",
+        trine: "Innere Ruhe: ein guter Tag für gemeinsame Momente.",
+        square: "Wechselhafte Stimmung: Nimm dir einen Moment, bevor du reagierst.",
+        opp: "Empfindlich für die Erwartungen anderer: Finde das Gleichgewicht zwischen Geben und Nehmen."
+      },
+      mercury: {
+        conj: "Wacher Geist und leichte Worte: ideal zum Verhandeln, Schreiben oder Überzeugen.",
+        trine: "Flüssiger Austausch: eine gute Zeit für Formalitäten, Verträge und Reisen.",
+        square: "Gefahr von Missverständnissen: Lies deine Nachrichten nochmals und prüfe die Details.",
+        opp: "Lebhafte Debatten im Umfeld: Hör ebenso viel zu, wie du sprichst."
+      },
+      venus: {
+        conj: "Charme auf dem Höhepunkt: Begegnungen, Versöhnungen und Genuss werden begünstigt.",
+        trine: "Sanftheit in Beziehungen: ein günstiges Klima für Liebe und Finanzen.",
+        square: "Kleine emotionale Frustrationen: Vermeide Spontankäufe.",
+        opp: "Die Beziehung zu anderen steht im Mittelpunkt: Raum für Kompromisse in der Liebe."
+      },
+      mars: {
+        conj: "Vervielfachte Energie: Leg los, aber Vorsicht vor Ungeduld und Zusammenstößen.",
+        trine: "Gut gelenkte Dynamik: Deine Anstrengungen tragen Früchte.",
+        square: "Spannungen und Reizbarkeit: Lenke deine Energie in Sport oder Tatkraft.",
+        opp: "Machtkämpfe sind möglich: Wähle deine Kämpfe mit Bedacht."
+      },
+      jupiter: {
+        conj: "Eine Zeit der Expansion: Das Glück lächelt dir zu, wage es, größer zu denken.",
+        trine: "Chancen in Sicht: Unterstützung oder eine gute Nachricht kann alles verändern.",
+        square: "Zu viel Optimismus: Versprich nicht mehr, als du halten kannst.",
+        opp: "Andere öffnen dir Türen: Bleib bei deinen Zusagen realistisch."
+      },
+      saturn: {
+        conj: "Eine Zeit des Aufbaus: Einsatz und Disziplin legen dauerhafte Grundlagen.",
+        trine: "Stabilität und Ernsthaftigkeit: Deine langfristigen Projekte kommen sicher voran.",
+        square: "Hindernisse und Verzögerungen: Geduld, jede Schwierigkeit lässt dich wachsen.",
+        opp: "Verantwortung gegenüber anderen: Halte deine Zusagen, es wird sich lohnen."
+      },
+      uranus: {
+        conj: "Wind der Veränderung: Unerwartetes rüttelt an deinen Gewohnheiten, bleib flexibel.",
+        trine: "Neue Ideen und Befreiung: Trau dich, originell zu sein.",
+        square: "Überraschungen und Unbeständigkeit: Halte einen Plan B bereit.",
+        opp: "Nahestehende überraschen dich: Wage es, deine Komfortzone zu verlassen."
+      },
+      neptune: {
+        conj: "Fantasie und Intuition verstärkt: Träume, aber bleib auf dem Boden.",
+        trine: "Inspiration und künstlerisches Gespür: ein Klima, das die Kreativität fördert.",
+        square: "Unklarheit und Illusionen: Prüfe die Fakten, bevor du dich festlegst.",
+        opp: "Vorsicht bei zu schönen Versprechen: Kläre zweideutige Situationen."
+      },
+      pluto: {
+        conj: "Tiefe Wandlung: Ein Kapitel schließt sich, um Platz für Neues zu machen.",
+        trine: "Gestärkte persönliche Kraft: Du verstehst es, Situationen zu deinem Vorteil zu wenden.",
+        square: "Intensive Selbstprüfung: Lass los, was nicht mehr zu dir passt.",
+        opp: "Machtspiele in deinen Beziehungen: Setze auf Transparenz."
+      }
+    },
+    retroTexts: {
+      mercury: "Vorsicht bei Verträgen, Nachrichten und Geräten; ideal zum Überprüfen und Überarbeiten.",
+      venus: "Die Liebesvergangenheit kehrt zurück; vermeide überstürzte Herzensentscheidungen.",
+      mars: "Die Energie richtet sich nach innen; nimm wieder auf, statt neu zu starten.",
+      jupiter: "Zeit, Erreichtes zu festigen, statt zu expandieren.",
+      saturn: "Überprüfe deine Strukturen und grundlegenden Verpflichtungen.",
+      uranus: "Veränderungen reifen im Hintergrund.",
+      neptune: "Illusionen lösen sich auf, Klarheit kehrt zurück.",
+      pluto: "Innere Arbeit und stille Wandlungen."
+    }
+  },
+  map: {
+    title: "Sternkarte",
+    place: "Beobachtungsort",
+    myPosition: "📍 Mein Standort",
+    locate: "Standort ermitteln",
+    locating: "Wird ermittelt…",
+    geoError: "Standort nicht verfügbar: Wähle eine Stadt aus der Liste.",
+    time: "Beobachtungszeit",
+    visibleNow: "Zu dieser Zeit sichtbar",
+    noneVisible: "Kein Planet über dem Horizont.",
+    daylight: "Zu dieser Uhrzeit ist es Tag: Die Sterne sind nicht sichtbar.",
+    meteors: "Sternschnuppen",
+    meteorActive: "aktiv · Maximum am {d} · bis zu {zhr} pro Stunde",
+    meteorNext: "Nächstes Maximum: {name}, am {d}",
+    eclipses: "Nächste Finsternisse",
+    visibleHere: "von hier sichtbar",
+    notVisibleHere: "von hier nicht sichtbar",
+    solarWhere: "von einem Teil der Erde aus sichtbar",
+    note: "Himmel berechnet für die Ortszeit des gewählten Ortes (Gerätezeit für „Mein Standort“), ohne atmosphärische Refraktion. Sterne: d3-celestial (O. Frohn, BSD-Lizenz), Hipparcos-Katalog.",
+    directions: ["N", "NO", "O", "SO", "S", "SW", "W", "NW"],
+    eclipseTypes: {
+      T: "Totale Sonnenfinsternis",
+      A: "Ringförmige Sonnenfinsternis",
+      H: "Hybride Sonnenfinsternis",
+      P: "Partielle Sonnenfinsternis",
+      t: "Totale Mondfinsternis",
+      p: "Partielle Mondfinsternis",
+      n: "Halbschatten-Mondfinsternis"
+    },
+    showers: {
+      quadrantids: "Quadrantiden",
+      lyrids: "Lyriden",
+      etaAquariids: "Eta-Aquariiden",
+      deltaAquariids: "Südliche Delta-Aquariiden",
+      perseids: "Perseiden",
+      draconids: "Draconiden",
+      orionids: "Orioniden",
+      leonids: "Leoniden",
+      geminids: "Geminiden",
+      ursids: "Ursiden"
+    },
+    constellations: {
+      Ori: "Orion",
+      UMa: "Großer Bär",
+      UMi: "Kleiner Bär",
+      Cas: "Kassiopeia",
+      Cyg: "Schwan",
+      Cru: "Kreuz des Südens",
+      Lyr: "Leier",
+      Aql: "Adler",
+      CMa: "Großer Hund"
+    },
+    aboveHorizon: "Über dem Horizont",
+    eclPartial: "partiell von hier: {pct} der Sonne verdeckt, von {a} bis {b} (Maximum {m})",
+    eclTotal: "total von hier: {dur} Totalität gegen {m} (Finsternis von {a} bis {b})",
+    eclAnnular: "ringförmig von hier: {dur} Ring gegen {m} (Finsternis von {a} bis {b})",
+    eclRises: "die Sonne geht bereits verfinstert auf",
+    eclSets: "die Sonne geht noch verfinstert unter",
+    eclSafety: "⚠️ Nie ohne Finsternisbrille nach Norm ISO 12312-2 in die Sonne schauen."
+  },
+  pair: {
+    title: "Kompatibilität zu zweit",
+    partnerName: "Name der anderen Person",
+    partnerDate: "Geburtsdatum der anderen Person",
+    partnerTime: "Geburtszeit der anderen Person",
+    compare: "Vergleichen",
+    you: "Du",
+    other: "Die andere Person",
+    global: "Gesamtharmonie",
+    western: "Tierkreiszeichen",
+    chinese: "Chinesische Tiere",
+    moon: "Monde · emotionale Nähe",
+    moonUnknown: "Um die Monde zu vergleichen, gib die Geburtszeiten an: Der Mond wechselt am Tag einer der Geburten das Zeichen.",
+    invalid: "Ungültiges Geburtsdatum.",
+    noDate: "Gib das Geburtsdatum der anderen Person an.",
+    note: "Symbolische Kompatibilität nach westlicher und chinesischer astrologischer Tradition. Die Gesamtharmonie ist der Durchschnitt der verfügbaren Achsen.",
+    partnerPlace: "Geburtsort der anderen Person"
+  },
+  theme: { light: "Heller Modus" },
+  wheel: { title: "Tierkreisrad", today: "Heute", birth: "Bei der Geburt" },
+  history: { title: "Zuletzt", clear: "Verlauf löschen" },
+  offline: {
+    button: "Offline-Version",
+    hint: "Das komplette Tool als einzelne HTML-Datei herunterladen – ohne Internet nutzbar und leicht weiterzugeben.",
+    opened: "Die eigenständige Version öffnet sich in einem neuen Tab: Klicke dort auf „Offline-Version“, um sie zu speichern."
+  },
+  labelBirthPlace: "Geburtsort",
+  placeNone: "— nicht angegeben —",
+  natal: {
+    title: "Geburtshoroskop",
+    tabSigns: "Zeichen & chinesischer Tierkreis",
+    tabNatal: "Geburtshoroskop",
+    tabsLabel: "Ergebnisansicht",
+    ascendant: "Aszendent",
+    midheaven: "Medium Coeli",
+    positions: "Stellungen bei der Geburt",
+    house: "Haus",
+    reading: "Deutung des Horoskops",
+    aspects: "Aspekte",
+    noAspects: "Kein Hauptaspekt.",
+    needBoth: "Gib Geburtszeit und Geburtsort an, um Aszendent, Medium Coeli und Häuser zu erhalten.",
+    needTime: "Gib die Geburtszeit an, um Aszendent, Medium Coeli und Häuser zu erhalten.",
+    needPlace: "Gib den Geburtsort an, um Aszendent, Medium Coeli und Häuser zu erhalten.",
+    noonMoon: "Ohne Geburtszeit werden die Stellungen für 12 Uhr berechnet: Der Mond kann um einige Grad abweichen.",
+    placidus: "Häuser nach Placidus.",
+    equal: "Äqualhäuser: Jenseits des Polarkreises ist die Placidus-Methode nicht anwendbar.",
+    tzNote: "Ortszeit am Geburtsort, Zeitumstellungen eingeschlossen.",
+    mcText: "Das Medium Coeli steht für Berufung und öffentliches Bild.",
+    legend: "Der Planet sagt was, das Zeichen wie, das Haus wo.",
+    domains: {
+      sun: "Identität, Wille",
+      moon: "Gefühle, innere Bedürfnisse",
+      mercury: "Denken, Kommunikation",
+      venus: "Liebe, Geschmack, Harmonie",
+      mars: "Energie, Handeln, Begehren",
+      jupiter: "Glück, Wachstum, Vertrauen",
+      saturn: "Regeln, Reife, Prüfungen",
+      uranus: "Originalität, Wandel (Merkmal einer Generation)",
+      neptune: "Traum, Intuition (Merkmal einer Generation)",
+      pluto: "Wandlung, Macht (Merkmal einer Generation)"
+    },
+    styles: {
+      aries: "mit Schwung, Offenheit und Ungeduld",
+      taurus: "mit Beständigkeit, Sinnlichkeit und Vorsicht",
+      gemini: "mit Neugier, Leichtigkeit und Lebhaftigkeit",
+      cancer: "mit Feingefühl, Fürsorge und Bindung",
+      leo: "mit Glanz, Großzügigkeit und Stolz",
+      virgo: "mit Genauigkeit, Methode und Zurückhaltung",
+      libra: "mit Charme, Diplomatie und Sinn für Ausgleich",
+      scorpio: "mit Intensität, Leidenschaft und Tiefe",
+      sagittarius: "mit Begeisterung, Offenheit und Freiheitsliebe",
+      capricorn: "mit Ehrgeiz, Disziplin und Geduld",
+      aquarius: "mit Originalität, Unabhängigkeit und Gemeinschaftssinn",
+      pisces: "mit Feingefühl, Fantasie und Mitgefühl"
+    },
+    houses: ["Persönlichkeit, Erscheinung", "Geld, Besitz", "Kommunikation, nahes Umfeld", "Zuhause, Familie", "Liebe, Vergnügen, Kreativität", "Arbeitsalltag, Gesundheit", "Partnerschaft, Teilhaber", "Wandlungen, Intimität", "Reisen, Studium, Philosophie", "Karriere, Ansehen", "Freunde, Pläne", "Innenleben"],
+    asc: {
+      aries: "Aszendent Widder: eine direkte, energiegeladene Ausstrahlung. Man sieht dich als unternehmungslustig, als jemanden, der loslegt und nicht gern wartet.",
+      taurus: "Aszendent Stier: eine ruhige, beruhigende Ausstrahlung. Man sieht dich als beständig, geduldig und komfortliebend.",
+      gemini: "Aszendent Zwillinge: eine lebhafte, gesprächige Ausstrahlung. Man sieht dich als neugierig, witzig und immer in Bewegung.",
+      cancer: "Aszendent Krebs: eine sanfte, schützende Ausstrahlung. Man sieht dich als einfühlsam, aufmerksam und deinen Liebsten nah.",
+      leo: "Aszendent Löwe: eine strahlende, warme Ausstrahlung. Man sieht dich als großzügig, selbstsicher und gern im Mittelpunkt.",
+      virgo: "Aszendent Jungfrau: eine dezente, gepflegte Ausstrahlung. Man sieht dich als genau, hilfsbereit und detailverliebt.",
+      libra: "Aszendent Waage: eine liebenswürdige, elegante Ausstrahlung. Man sieht dich als diplomatisch, gesellig und harmoniesuchend.",
+      scorpio: "Aszendent Skorpion: eine intensive, magnetische Ausstrahlung. Man sieht dich als geheimnisvoll, scharfsinnig und entschlossen.",
+      sagittarius: "Aszendent Schütze: eine begeisterte, offene Ausstrahlung. Man sieht dich als optimistisch, offen und entdeckungsfreudig.",
+      capricorn: "Aszendent Steinbock: eine ernste, gefasste Ausstrahlung. Man sieht dich als zuverlässig, ehrgeizig und beherrscht.",
+      aquarius: "Aszendent Wassermann: eine originelle, unabhängige Ausstrahlung. Man sieht dich als erfinderisch, frei und ein wenig eigen.",
+      pisces: "Aszendent Fische: eine sanfte, verträumte Ausstrahlung. Man sieht dich als intuitiv, einfühlsam und schwer zu fassen."
+    },
+    aspectNames: {
+      conjunction: "Konjunktion",
+      sextile: "Sextil",
+      square: "Quadrat",
+      trine: "Trigon",
+      opposition: "Opposition"
+    },
+    aspectMeanings: {
+      conjunction: "Verschmelzung: beide Energien wirken zusammen",
+      sextile: "Gelegenheit: eine leicht zu nutzende Zusammenarbeit",
+      square: "Spannung: eine Herausforderung, die zum Handeln drängt",
+      trine: "Harmonie: ein natürliches Talent",
+      opposition: "Polarität: ein Gleichgewicht zwischen zwei Kräften finden"
+    },
+    tabSignsSub: "Das einfache Porträt",
+    tabNatalSub: "Das vollständige Porträt",
+    completeFields: "Zeit und Ort ergänzen"
+  },
+  infoLabel: "Mehr Informationen",
+  timePlaceHint: "Für das Geburtshoroskop (Aszendent und Häuser) werden Geburtszeit und Geburtsort benötigt.",
+  info: {
+    sunPosition: "Die genaue Stellung der Sonne im Tierkreis bei der Geburt, in Grad innerhalb des Zeichens (0 bis 30°). Sie bestimmt Zeichen und Dekan und wird astronomisch berechnet, nicht nach festen Daten.",
+    natalMoon: "Das Zeichen, in dem der Mond bei der Geburt stand; in der Astrologie steht es für das Gefühlsleben. Der Mond wechselt etwa alle zweieinhalb Tage das Zeichen: Ohne Geburtszeit sind manchmal zwei Zeichen möglich.",
+    modality: "Die Zeichen teilen sich in drei Qualitäten: kardinal (beginnend, am Anfang jeder Jahreszeit), fix (festigend, mitten in der Jahreszeit) und veränderlich (anpassend, am Ende der Jahreszeit).",
+    ruler: "Der Himmelskörper, der traditionell mit dem Zeichen verbunden ist und seinen Charakter prägen soll. Die moderne Astrologie ordnet Uranus, Neptun und Pluto dem Wassermann, den Fischen und dem Skorpion zu.",
+    decan: "Jedes Zeichen umfasst 30° des Tierkreises, aufgeteilt in drei Dekane zu 10°. Je nach Grad der Sonne fügt der Dekan den Einfluss eines zweiten Himmelskörpers hinzu: des Herrschers eines Zeichens desselben Elements.",
+    affinities: "Traditionelle Verträglichkeit der Zeichen, von 1 bis 5 Sternen, vor allem nach den Elementen: Feuer und Luft beflügeln sich, Erde und Wasser ergänzen sich, gegensätzliche Elemente ziehen sich an, reiben sich aber.",
+    cnAffinities: "Traditionelle Verträglichkeit der chinesischen Tiere: Die sechs Harmonien und die Triaden sind günstig; Oppositionen, Schädigungen und Strafen sind schwierig.",
+    cnYear: "Das chinesische Jahr beginnt mit dem Mondneujahr, zwischen dem 21. Januar und dem 20. Februar. Wer vor diesem Datum geboren ist, gehört zum Tier des Vorjahres.",
+    yearElement: "Die Jahre folgen einem Zyklus aus fünf Elementen (Holz, Feuer, Erde, Metall, Wasser), von denen jedes zwei Jahre dauert. Zusammen mit den 12 Tieren ergibt sich ein großer 60-Jahres-Zyklus.",
+    polarity: "Die Jahre wechseln zwischen Yang und Yin: Gerade Jahre sind Yang (aktive, nach außen gerichtete Energie), ungerade Jahre Yin (empfangende, nach innen gerichtete Energie).",
+    fixedElement: "Jedes Tier hat außerdem ein eigenes Element, das sich von Jahr zu Jahr nicht ändert (die Ratte gehört zum Beispiel immer zum Wasser). Es verbindet sich mit dem Element des Jahres.",
+    hourAnimal: "Der Tag ist in 12 Abschnitte von zwei Stunden geteilt, jeder einem Tier zugeordnet (die Ratte von 23 bis 1 Uhr, der Büffel von 1 bis 3 Uhr usw.). Das Tier der Geburtsstunde vervollständigt das Porträt.",
+    natalChart: "Das Geburtshoroskop ist die vollständige Karte des Himmels zum Zeitpunkt und am Ort der Geburt: die Stellung jedes Himmelskörpers in den Zeichen und Häusern und die Winkel, die sie zueinander bilden.",
+    ascendant: "Das Zeichen, das im Moment der Geburt am östlichen Horizont aufstieg. Es wechselt etwa alle zwei Stunden, daher braucht man genaue Zeit und genauen Ort. Es soll zeigen, wie man auf andere wirkt.",
+    midheaven: "Der höchste Punkt des Tierkreises am Himmel im Moment der Geburt. Die Tradition verbindet ihn mit Berufung, Karriere und öffentlichem Bild.",
+    houses: "Der Geburtshimmel wird vom Aszendenten aus in 12 Häuser geteilt, jedes einem Lebensbereich zugeordnet (Geld, Partnerschaft, Karriere …). Das Haus eines Himmelskörpers zeigt, wo sich seine Energie ausdrückt. Berechnungsmethode: Placidus.",
+    aspects: "Besondere Winkel zwischen zwei Himmelskörpern, entlang des Tierkreises gemessen: Konjunktion (0°), Sextil (60°), Quadrat (90°), Trigon (120°) und Opposition (180°), mit einem Spielraum, dem Orbis. Je kleiner der Orbis, desto stärker der Aspekt.",
+    retrograde: "Von der Erde aus scheint ein Planet manchmal einige Wochen im Tierkreis rückwärts zu laufen: eine Täuschung durch die Bewegung der Planeten zueinander. In der Astrologie lädt diese Zeit dazu ein, den Bereich des Planeten zu überdenken.",
+    horoscope: "Das Horoskop vergleicht die aktuelle Stellung der Himmelskörper mit deinem Zeichen: Ein Himmelskörper, der dein Zeichen durchläuft oder einen Winkel dazu bildet (ein Transit), prägt die Zeit. Langsame Planeten bestimmen die großen Trends, schnelle die Stimmung des Augenblicks.",
+    skymap: "Der Himmel, wie man ihn sieht, wenn man in der gewählten Stadt nach oben schaut: Der Rand der Scheibe ist der Horizont, die Mitte der Punkt direkt über dir. Norden ist oben und Osten links, weil du nach oben blickst.",
+    compat: "Die Gesamtverträglichkeit ist der Durchschnitt der verfügbaren Achsen: Tierkreiszeichen, chinesische Tiere und, wenn die Geburtszeiten bekannt sind, Mondzeichen. Es ist eine symbolische Deutung, keine Vorhersage.",
+    signVsConstellation: "Die astrologischen Zeichen sind 12 gleich große Abschnitte von 30°, gezählt ab der Frühlings-Tagundnachtgleiche: der hier verwendete tropische Tierkreis. Die gleichnamigen Sternbilder sind Sterngruppen von ungleicher Größe. Durch die langsame Kreiselbewegung der Erdachse (Präzession) haben sich Zeichen und Sternbilder seit der Antike um etwa ein Zeichen verschoben: Die Sonne kann im Zeichen Widder stehen und sich zugleich vor dem Sternbild Fische befinden.",
+    night: "Die volle Dunkelheit beginnt, wenn die Sonne mehr als 18° unter dem Horizont steht (Ende der astronomischen Dämmerung), und endet in der Morgendämmerung. Der Mond erhellt den Himmel und verdeckt schwache Sterne: Am besten ist volle Dunkelheit bei untergegangenem Mond. Ein Planet gilt als gut sichtbar ab 10° Höhe, wenn die Sonne mehr als 6° unter dem Horizont steht.",
+    solarEclipse: "Berechnung für diesen Ort, auf eine halbe Minute genau. Der Prozentwert ist der Anteil der Sonnenfläche, den der Mond verdeckt; die Zeiten reichen vom ersten bis zum letzten Kontakt der beiden Scheiben, begrenzt auf die Zeit, in der die Sonne über dem Horizont steht. Eine totale oder ringförmige Finsternis ist nur in einem schmalen Streifen als solche zu sehen; anderswo ist sie partiell."
+  },
+  placePlaceholder: "Stadtnamen eingeben …",
+  placeNoMatch: "Keine Stadt gefunden. Versuche die nächstgelegene.",
+  placeUnknown: "Geburtsort nicht erkannt: Wähle eine Stadt aus der Liste (die nächstgelegene genügt).",
+  placeClear: "Ort löschen",
+  placesCredit: "Städte: GeoNames (www.geonames.org), Lizenz CC BY 4.0.",
+  rangeWarning: "Die Berechnungen sind für Geburten von 1900 bis 2100 geprüft: Außerhalb dieses Zeitraums werden Planetenstellungen und Zeitzonen ungenauer.",
+  night: {
+    title: "Den Himmel heute Nacht beobachten",
+    sunset: "Sonnenuntergang",
+    sunrise: "Sonnenaufgang",
+    dark: "Volle Dunkelheit",
+    moon: "Mond",
+    moonLit: "zu {pct} beleuchtet",
+    moonrise: "Aufgang {t}",
+    moonset: "Untergang {t}",
+    moonAllNight: "die ganze Nacht über dem Horizont",
+    moonNone: "die ganze Nacht unter dem Horizont",
+    best: "Beste Beobachtungszeit",
+    bestNone: "Heute Nacht keine volle Dunkelheit ohne Mond.",
+    planets: "Sichtbare Planeten",
+    noPlanets: "Heute Nacht ist kein Planet gut sichtbar.",
+    polarDay: "Die Sonne geht nicht unter: Polartag.",
+    polarNight: "Die Sonne geht nicht auf: Polarnacht.",
+    noAstroNight: "Zu dieser Jahreszeit keine volle Dunkelheit: Die Sonne bleibt zu nah am Horizont.",
+    note: "Ortszeiten des gewählten Ortes, bei freiem Horizont. Wetter und Lichtverschmutzung werden nicht berücksichtigt."
+  }
+});
