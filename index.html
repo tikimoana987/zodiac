@@ -222,6 +222,9 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
   .place-list li{ flex-direction:column; align-items:flex-start; gap:.1rem; }
   .po-meta{ text-align:start; max-width:none; }
 }
+.range-warn{ margin:.5rem 0 0; padding:.55rem .8rem; border-radius:10px; font-size:.85rem; color:var(--text);
+  background:rgba(255,167,87,.12); border:1px solid rgba(255,167,87,.4); }
+.compat-form .field-place{ flex:1 1 220px; }
 .app-credit{ flex:1 1 100%; color:var(--muted); font-size:.75rem; opacity:.8; }
 .input-zone input[type=date], .input-zone input[type=time], .input-zone input[type=text]{
   width:100%; background:var(--field-bg);
@@ -1635,9 +1638,9 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
     }
   });
 
-  test('Bulles d\'information (i) : 21 explications complètes et traduites', () => {
+  test('Bulles d\'information (i) : 22 explications complètes et traduites', () => {
     const keys = Object.keys(I18N.fr.info);
-    assertEq(keys.length, 21, 'nombre d\'explications');
+    assertEq(keys.length, 22, 'nombre d\'explications');
     for (const lang of Object.keys(I18N)) {
       const info = I18N[lang].info;
       assert(keys.every(k => typeof info[k] === 'string' && info[k].length > 20), `${lang} : explication manquante ou trop courte`);   // 20 : le chinois est bien plus dense
@@ -1688,6 +1691,35 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
     assertEq(placeName(tokyo, 'fr'), 'Tokyo', 'alphabet latin : nom de la base');
     assertEq(placeName(birthPlace('Papeete|PF'), 'ja'), 'Papeete', 'petite ville sans nom traduit');
     assert(searchPlaces('a', 8).length === 8, 'limite de résultats');
+  });
+
+  test('Version corrective : heure stricte, fuseau de la 2e personne, fuseau de la carte, période vérifiée', () => {
+    // Heure : HH:MM ou HH:MM:SS, rien d'autre
+    assertEq(JSON.stringify(parseTime('12:34')), '{"h":12,"min":34}', '12:34');
+    assertEq(JSON.stringify(parseTime('12:34:56')), '{"h":12,"min":34}', 'avec secondes');
+    for (const bad of ['12:34xyz', '12:34:99', '24:00', '7:05', '12:3', ' 12:34', '']) assertEq(parseTime(bad), null, `refusé : « ${bad} »`);
+    // 2e personne : son fuseau, pas celui de l'appareil. On cherche un jour où la Lune change de signe entre
+    // midi à Tokyo et midi à Los Angeles, puis on vérifie que la compatibilité suit le fuseau donné
+    let found = null;
+    for (let d = 1; d <= 28 && !found; d++) {
+      const date = { y: 2001, m: 3, d };
+      const tokyo = signFromLongitude(moonLongitude(zonedInstant(date, 12, 0, 'Asia/Tokyo')));
+      const la = signFromLongitude(moonLongitude(zonedInstant(date, 12, 0, 'America/Los_Angeles')));
+      if (tokyo !== la) found = { date, tokyo, la };
+    }
+    assert(found, 'jour de test introuvable');
+    const me = { date: { y: 1990, m: 6, d: 15 }, time: { h: 12, min: 0 }, tz: 'Europe/Paris' };
+    const withTokyo = compatibility(me, { date: found.date, time: { h: 12, min: 0 }, tz: 'Asia/Tokyo' });
+    const withLA = compatibility(me, { date: found.date, time: { h: 12, min: 0 }, tz: 'America/Los_Angeles' });
+    assertEq(personChart(found.date, { h: 12, min: 0 }, 'Asia/Tokyo').moon.signs[0], found.tokyo, 'Lune de la 2e personne à Tokyo');
+    assertEq(personChart(found.date, { h: 12, min: 0 }, 'America/Los_Angeles').moon.signs[0], found.la, 'Lune de la 2e personne à Los Angeles');
+    assert(JSON.stringify(withTokyo) !== JSON.stringify(withLA), 'le lieu de la 2e personne change le résultat');
+    // Carte du ciel : fuseau de la ville choisie, appareil pour « Ma position »
+    assertEq(mapTz({ kind: 'city', name: 'Paris' }), 'Europe/Paris', 'Paris');
+    assertEq(mapTz({ kind: 'city', name: '東京 Tokyo' }), 'Asia/Tokyo', 'Tokyo');
+    assertEq(mapTz({ kind: 'geo', lat: 1, lon: 2 }), null, 'ma position');
+    // Période vérifiée : message présent et traduit dans chaque langue
+    for (const l of Object.keys(I18N)) assert(I18N[l].rangeWarning && /1900/.test(I18N[l].rangeWarning) && /2100/.test(I18N[l].rangeWarning), `${l} : avertissement`);
   });
 
   /* ---------------- Rapport ---------------- */
@@ -2939,7 +2971,7 @@ I18N.fr = {
     visibleHere: "visible d'ici",
     notVisibleHere: "pas visible d'ici",
     solarWhere: "visible depuis une partie du globe",
-    note: "Ciel calculé pour l'heure de votre appareil, sans réfraction atmosphérique. Étoiles : d3-celestial (O. Frohn, licence BSD), catalogue Hipparcos.",
+    note: "Ciel calculé à l'heure locale du lieu choisi (heure de l'appareil pour « Ma position »), sans réfraction atmosphérique. Étoiles : d3-celestial (O. Frohn, licence BSD), catalogue Hipparcos.",
     directions: ["N", "NE", "E", "SE", "S", "SO", "O", "NO"],
     eclipseTypes: {
       T: "Éclipse totale de Soleil",
@@ -2990,7 +3022,8 @@ I18N.fr = {
     moonUnknown: "Pour comparer les Lunes, indiquez les heures de naissance : la Lune change de signe le jour de l'une des naissances.",
     invalid: "Date de naissance invalide.",
     noDate: "Indiquez la date de naissance de l'autre personne.",
-    note: "Compatibilité symbolique, d'après les traditions astrologiques occidentale et chinoise. L'entente globale est la moyenne des axes disponibles."
+    note: "Compatibilité symbolique, d'après les traditions astrologiques occidentale et chinoise. L'entente globale est la moyenne des axes disponibles.",
+    partnerPlace: "Son lieu de naissance"
   },
   theme: { light: "Mode clair" },
   wheel: { title: "Roue du zodiaque", today: "Aujourd'hui", birth: "À la naissance" },
@@ -3105,13 +3138,15 @@ I18N.fr = {
     retrograde: "Vue depuis la Terre, une planète semble parfois reculer quelques semaines sur le zodiaque : c'est une illusion due au mouvement des planètes les unes par rapport aux autres. En astrologie, cette période invite à revenir sur le domaine de la planète.",
     horoscope: "L'horoscope compare la position actuelle des astres à votre signe : un astre qui traverse votre signe ou forme un angle avec lui (un transit) colore la période. Les planètes lentes donnent les grandes tendances, les rapides le climat du moment.",
     skymap: "Le ciel tel qu'on le voit en levant les yeux depuis la ville choisie : le bord du disque est l'horizon, le centre le point juste au-dessus de vous. Le nord est en haut et l'est à gauche, puisqu'on regarde vers le ciel.",
-    compat: "L'entente globale est la moyenne des axes disponibles : signes du zodiaque, animaux chinois et, si les heures de naissance sont connues, signes lunaires. C'est une lecture symbolique, pas une prédiction."
+    compat: "L'entente globale est la moyenne des axes disponibles : signes du zodiaque, animaux chinois et, si les heures de naissance sont connues, signes lunaires. C'est une lecture symbolique, pas une prédiction.",
+    signVsConstellation: "Les signes astrologiques sont 12 secteurs égaux de 30°, comptés à partir de l'équinoxe de printemps : c'est le zodiaque tropical, utilisé ici. Les constellations du même nom sont des groupes d'étoiles de tailles inégales. À cause de la lente rotation de l'axe de la Terre (la précession), signes et constellations se sont décalés d'environ un signe depuis l'Antiquité : le Soleil peut être dans le signe du Bélier tout en se trouvant devant la constellation des Poissons."
   },
   placePlaceholder: "Tapez le nom d'une ville…",
   placeNoMatch: "Aucune ville trouvée. Essayez la ville la plus proche.",
   placeUnknown: "Lieu de naissance non reconnu : choisissez une ville dans la liste proposée (la plus proche convient).",
   placeClear: "Effacer le lieu",
-  placesCredit: "Villes : GeoNames (www.geonames.org), licence CC BY 4.0."
+  placesCredit: "Villes : GeoNames (www.geonames.org), licence CC BY 4.0.",
+  rangeWarning: "Les calculs sont vérifiés pour les naissances de 1900 à 2100 : en dehors de cette période, les positions des planètes et les fuseaux horaires deviennent moins précis."
 };
 
 </script>
@@ -3633,7 +3668,7 @@ I18N.en = deepMerge(I18N.fr, {
     visibleHere: "visible from here",
     notVisibleHere: "not visible from here",
     solarWhere: "visible from part of the globe",
-    note: "Sky computed for your device's time, without atmospheric refraction. Stars: d3-celestial (O. Frohn, BSD licence), Hipparcos catalogue.",
+    note: "Sky calculated for the local time of the chosen place (device time for “My location”), without atmospheric refraction. Stars: d3-celestial (O. Frohn, BSD licence), Hipparcos catalogue.",
     directions: ["N", "NE", "E", "SE", "S", "SW", "W", "NW"],
     eclipseTypes: {
       T: "Total solar eclipse",
@@ -3684,7 +3719,8 @@ I18N.en = deepMerge(I18N.fr, {
     moonUnknown: "To compare the Moons, add the times of birth: the Moon changes sign on one of the birth days.",
     invalid: "Invalid date of birth.",
     noDate: "Enter the other person's date of birth.",
-    note: "Symbolic compatibility, based on the Western and Chinese astrological traditions. Overall harmony is the average of the available axes."
+    note: "Symbolic compatibility, based on the Western and Chinese astrological traditions. Overall harmony is the average of the available axes.",
+    partnerPlace: "Their place of birth"
   },
   theme: { light: "Light mode" },
   wheel: { title: "Zodiac wheel", today: "Today", birth: "At birth" },
@@ -3799,13 +3835,15 @@ I18N.en = deepMerge(I18N.fr, {
     retrograde: "Seen from Earth, a planet sometimes seems to move backwards on the zodiac for a few weeks: an illusion caused by the planets' motion relative to one another. In astrology, this period invites you to revisit the planet's area.",
     horoscope: "The horoscope compares the current positions of the bodies with your sign: a body crossing your sign or forming an angle with it (a transit) colours the period. Slow planets set the major trends, fast ones the mood of the moment.",
     skymap: "The sky as you see it when you look up from the chosen city: the edge of the disc is the horizon, the centre the point straight above you. North is at the top and east on the left, because you are looking up.",
-    compat: "The overall match is the average of the available axes: zodiac signs, Chinese animals and, if the birth times are known, Moon signs. It is a symbolic reading, not a prediction."
+    compat: "The overall match is the average of the available axes: zodiac signs, Chinese animals and, if the birth times are known, Moon signs. It is a symbolic reading, not a prediction.",
+    signVsConstellation: "Astrological signs are 12 equal 30° sectors counted from the March equinox: this is the tropical zodiac, used here. The constellations of the same name are groups of stars of unequal sizes. Because of the slow wobble of Earth's axis (precession), signs and constellations have drifted apart by about one sign since antiquity: the Sun can be in the sign of Aries while standing in front of the constellation Pisces."
   },
   placePlaceholder: "Type a city name…",
   placeNoMatch: "No city found. Try the nearest town.",
   placeUnknown: "Place of birth not recognised: choose a city from the suggestions (the nearest one will do).",
   placeClear: "Clear the place",
-  placesCredit: "Cities: GeoNames (www.geonames.org), CC BY 4.0 licence."
+  placesCredit: "Cities: GeoNames (www.geonames.org), CC BY 4.0 licence.",
+  rangeWarning: "Calculations are verified for births from 1900 to 2100: outside this period, planetary positions and time zones become less accurate."
 });
 
 </script>
@@ -4330,7 +4368,7 @@ I18N.es = deepMerge(I18N.fr, {
     visibleHere: "visible desde aquí",
     notVisibleHere: "no visible desde aquí",
     solarWhere: "visible desde parte del planeta",
-    note: "Cielo calculado para la hora de tu dispositivo, sin refracción atmosférica. Estrellas: d3-celestial (O. Frohn, licencia BSD), catálogo Hipparcos.",
+    note: "Cielo calculado para la hora local del lugar elegido (hora del dispositivo para «Mi ubicación»), sin refracción atmosférica. Estrellas: d3-celestial (O. Frohn, licencia BSD), catálogo Hipparcos.",
     directions: ["N", "NE", "E", "SE", "S", "SO", "O", "NO"],
     eclipseTypes: {
       T: "Eclipse total de Sol",
@@ -4381,7 +4419,8 @@ I18N.es = deepMerge(I18N.fr, {
     moonUnknown: "Para comparar las Lunas, indica las horas de nacimiento: la Luna cambia de signo el día de uno de los nacimientos.",
     invalid: "Fecha de nacimiento no válida.",
     noDate: "Indica la fecha de nacimiento de la otra persona.",
-    note: "Compatibilidad simbólica, según las tradiciones astrológicas occidental y china. La armonía global es la media de los ejes disponibles."
+    note: "Compatibilidad simbólica, según las tradiciones astrológicas occidental y china. La armonía global es la media de los ejes disponibles.",
+    partnerPlace: "Su lugar de nacimiento"
   },
   theme: { light: "Modo claro" },
   wheel: { title: "Rueda del zodiaco", today: "Hoy", birth: "Al nacer" },
@@ -4496,13 +4535,15 @@ I18N.es = deepMerge(I18N.fr, {
     retrograde: "Visto desde la Tierra, un planeta parece a veces retroceder unas semanas en el zodiaco: es una ilusión debida al movimiento de los planetas unos respecto a otros. En astrología, este periodo invita a revisar el ámbito del planeta.",
     horoscope: "El horóscopo compara la posición actual de los astros con tu signo: un astro que atraviesa tu signo o forma un ángulo con él (un tránsito) colorea el periodo. Los planetas lentos marcan las grandes tendencias; los rápidos, el clima del momento.",
     skymap: "El cielo tal como se ve al levantar la vista desde la ciudad elegida: el borde del disco es el horizonte y el centro, el punto justo encima de ti. El norte está arriba y el este a la izquierda, porque miras hacia el cielo.",
-    compat: "La afinidad global es la media de los ejes disponibles: signos del zodiaco, animales chinos y, si se conocen las horas de nacimiento, signos lunares. Es una lectura simbólica, no una predicción."
+    compat: "La afinidad global es la media de los ejes disponibles: signos del zodiaco, animales chinos y, si se conocen las horas de nacimiento, signos lunares. Es una lectura simbólica, no una predicción.",
+    signVsConstellation: "Los signos astrológicos son 12 sectores iguales de 30°, contados desde el equinoccio de marzo: es el zodiaco tropical, el que se usa aquí. Las constelaciones del mismo nombre son grupos de estrellas de tamaños desiguales. Debido al lento bamboleo del eje de la Tierra (la precesión), signos y constelaciones se han desplazado alrededor de un signo desde la Antigüedad: el Sol puede estar en el signo de Aries mientras se encuentra delante de la constelación de Piscis."
   },
   placePlaceholder: "Escribe el nombre de una ciudad…",
   placeNoMatch: "No se encontró ninguna ciudad. Prueba con la más cercana.",
   placeUnknown: "Lugar de nacimiento no reconocido: elige una ciudad de la lista (sirve la más cercana).",
   placeClear: "Borrar el lugar",
-  placesCredit: "Ciudades: GeoNames (www.geonames.org), licencia CC BY 4.0."
+  placesCredit: "Ciudades: GeoNames (www.geonames.org), licencia CC BY 4.0.",
+  rangeWarning: "Los cálculos están verificados para nacimientos entre 1900 y 2100: fuera de este periodo, las posiciones de los planetas y los husos horarios son menos precisos."
 });
 
 </script>
@@ -5012,7 +5053,7 @@ I18N.zh = deepMerge(I18N.fr, {
     visibleHere: "此地可见",
     notVisibleHere: "此地不可见",
     solarWhere: "地球部分地区可见",
-    note: "星空按设备时间计算，未计大气折射。星表：d3-celestial（O. Frohn，BSD 许可），依巴谷星表。",
+    note: "按所选地点的当地时间计算天空（“我的位置”使用设备时间），未计入大气折射。星表：d3-celestial（O. Frohn，BSD 许可），依巴谷星表。",
     directions: ["北", "东北", "东", "东南", "南", "西南", "西", "西北"],
     eclipseTypes: { T: "日全食", A: "日环食", H: "全环食", P: "日偏食", t: "月全食", p: "月偏食", n: "半影月食" },
     showers: {
@@ -5055,7 +5096,8 @@ I18N.zh = deepMerge(I18N.fr, {
     moonUnknown: "如需比较月亮星座，请填写出生时间：其中一人出生当天月亮更换了星座。",
     invalid: "出生日期无效。",
     noDate: "请填写对方的出生日期。",
-    note: "象征性的契合度，依据西方与中国占星传统。整体契合为可用各项的平均值。"
+    note: "象征性的契合度，依据西方与中国占星传统。整体契合为可用各项的平均值。",
+    partnerPlace: "对方的出生地点"
   },
   theme: { light: "浅色模式" },
   wheel: { title: "黄道十二宫轮", today: "今天", birth: "出生时" },
@@ -5160,13 +5202,15 @@ I18N.zh = deepMerge(I18N.fr, {
     retrograde: "从地球上看，行星有时会在黄道上倒退几周：这是行星彼此相对运动造成的视觉现象。在占星学中，这段时期提醒人们回顾该行星所代表的领域。",
     horoscope: "运势将天体当前的位置与你的星座作比较：经过你的星座或与它形成角度的天体（即行运）会影响这一时期。慢行星决定大趋势，快行星决定当下的氛围。",
     skymap: "从所选城市抬头仰望时看到的天空：圆盘边缘是地平线，中心是你头顶正上方的点。北方在上，东方在左，因为你是在仰望天空。",
-    compat: "整体契合度是现有各项的平均值：星座、生肖，以及在出生时间已知时的月亮星座。这是一种象征性的解读，而非预言。"
+    compat: "整体契合度是现有各项的平均值：星座、生肖，以及在出生时间已知时的月亮星座。这是一种象征性的解读，而非预言。",
+    signVsConstellation: "占星学的十二星座是从春分点起算、各占30°的等分区段，即此处使用的回归黄道。而同名的天文星座是大小不一的恒星群。由于地轴缓慢的摆动（岁差），自古以来两者已错开约一个星座：太阳可能位于占星学的白羊座区段，实际上却在双鱼座恒星群的前方。"
   },
   placePlaceholder: "输入城市名称…",
   placeNoMatch: "未找到城市，请尝试最近的城市。",
   placeUnknown: "无法识别出生地点：请从建议列表中选择一个城市（选最近的即可）。",
   placeClear: "清除地点",
-  placesCredit: "城市数据：GeoNames（www.geonames.org），CC BY 4.0 许可。"
+  placesCredit: "城市数据：GeoNames（www.geonames.org），CC BY 4.0 许可。",
+  rangeWarning: "计算结果已针对1900年至2100年出生的情况进行验证：超出这一时期，行星位置和时区的精确度会降低。"
 });
 
 </script>
@@ -5707,7 +5751,7 @@ I18N.ru = deepMerge(I18N.fr, {
     visibleHere: "видно отсюда",
     notVisibleHere: "не видно отсюда",
     solarWhere: "видно в части земного шара",
-    note: "Небо рассчитано на время вашего устройства, без учёта атмосферной рефракции. Звёзды: d3-celestial (O. Frohn, лицензия BSD), каталог Hipparcos.",
+    note: "Небо рассчитано по местному времени выбранного места (для «Моё местоположение» — по времени устройства), без учёта атмосферной рефракции. Звёзды: d3-celestial (O. Frohn, лицензия BSD), каталог Hipparcos.",
     directions: ["С", "СВ", "В", "ЮВ", "Ю", "ЮЗ", "З", "СЗ"],
     eclipseTypes: {
       T: "Полное солнечное затмение",
@@ -5758,7 +5802,8 @@ I18N.ru = deepMerge(I18N.fr, {
     moonUnknown: "Чтобы сравнить Луны, укажите время рождения: в день одного из рождений Луна меняет знак.",
     invalid: "Неверная дата рождения.",
     noDate: "Укажите дату рождения партнёра.",
-    note: "Символическая совместимость по западной и китайской астрологическим традициям. Общая гармония — среднее доступных показателей."
+    note: "Символическая совместимость по западной и китайской астрологическим традициям. Общая гармония — среднее доступных показателей.",
+    partnerPlace: "Место рождения второго человека"
   },
   theme: { light: "Светлая тема" },
   wheel: { title: "Зодиакальный круг", today: "Сегодня", birth: "При рождении" },
@@ -5873,13 +5918,15 @@ I18N.ru = deepMerge(I18N.fr, {
     retrograde: "С Земли кажется, что планета иногда несколько недель движется по зодиаку назад: это иллюзия, вызванная движением планет друг относительно друга. В астрологии этот период призывает вернуться к сфере, за которую отвечает планета.",
     horoscope: "Гороскоп сравнивает нынешнее положение светил с вашим знаком: светило, проходящее через ваш знак или образующее с ним угол (транзит), окрашивает период. Медленные планеты задают общие тенденции, быстрые — атмосферу момента.",
     skymap: "Небо, каким его видно, если поднять голову в выбранном городе: край круга — это горизонт, центр — точка прямо над вами. Север вверху, восток слева, потому что вы смотрите вверх.",
-    compat: "Общая совместимость — это среднее значение доступных показателей: знаков зодиака, китайских животных и, если известно время рождения, лунных знаков. Это символическое толкование, а не предсказание."
+    compat: "Общая совместимость — это среднее значение доступных показателей: знаков зодиака, китайских животных и, если известно время рождения, лунных знаков. Это символическое толкование, а не предсказание.",
+    signVsConstellation: "Астрологические знаки — это 12 равных секторов по 30°, отсчитываемых от весеннего равноденствия: это тропический зодиак, используемый здесь. Одноимённые созвездия — группы звёзд разного размера. Из-за медленного покачивания земной оси (прецессии) знаки и созвездия со времён античности разошлись примерно на один знак: Солнце может находиться в знаке Овна, стоя при этом перед созвездием Рыб."
   },
   placePlaceholder: "Введите название города…",
   placeNoMatch: "Город не найден. Попробуйте ближайший.",
   placeUnknown: "Место рождения не распознано: выберите город из списка (подойдёт ближайший).",
   placeClear: "Очистить место",
-  placesCredit: "Города: GeoNames (www.geonames.org), лицензия CC BY 4.0."
+  placesCredit: "Города: GeoNames (www.geonames.org), лицензия CC BY 4.0.",
+  rangeWarning: "Расчёты проверены для дат рождения с 1900 по 2100 год: за пределами этого периода положения планет и часовые пояса менее точны."
 });
 
 </script>
@@ -6404,7 +6451,7 @@ I18N.de = deepMerge(I18N.fr, {
     visibleHere: "von hier sichtbar",
     notVisibleHere: "von hier nicht sichtbar",
     solarWhere: "von einem Teil der Erde aus sichtbar",
-    note: "Himmel für die Uhrzeit deines Geräts berechnet, ohne atmosphärische Refraktion. Sterne: d3-celestial (O. Frohn, BSD-Lizenz), Hipparcos-Katalog.",
+    note: "Himmel berechnet für die Ortszeit des gewählten Ortes (Gerätezeit für „Mein Standort“), ohne atmosphärische Refraktion. Sterne: d3-celestial (O. Frohn, BSD-Lizenz), Hipparcos-Katalog.",
     directions: ["N", "NO", "O", "SO", "S", "SW", "W", "NW"],
     eclipseTypes: {
       T: "Totale Sonnenfinsternis",
@@ -6455,7 +6502,8 @@ I18N.de = deepMerge(I18N.fr, {
     moonUnknown: "Um die Monde zu vergleichen, gib die Geburtszeiten an: Der Mond wechselt am Tag einer der Geburten das Zeichen.",
     invalid: "Ungültiges Geburtsdatum.",
     noDate: "Gib das Geburtsdatum der anderen Person an.",
-    note: "Symbolische Kompatibilität nach westlicher und chinesischer astrologischer Tradition. Die Gesamtharmonie ist der Durchschnitt der verfügbaren Achsen."
+    note: "Symbolische Kompatibilität nach westlicher und chinesischer astrologischer Tradition. Die Gesamtharmonie ist der Durchschnitt der verfügbaren Achsen.",
+    partnerPlace: "Geburtsort der anderen Person"
   },
   theme: { light: "Heller Modus" },
   wheel: { title: "Tierkreisrad", today: "Heute", birth: "Bei der Geburt" },
@@ -6570,13 +6618,15 @@ I18N.de = deepMerge(I18N.fr, {
     retrograde: "Von der Erde aus scheint ein Planet manchmal einige Wochen im Tierkreis rückwärts zu laufen: eine Täuschung durch die Bewegung der Planeten zueinander. In der Astrologie lädt diese Zeit dazu ein, den Bereich des Planeten zu überdenken.",
     horoscope: "Das Horoskop vergleicht die aktuelle Stellung der Himmelskörper mit deinem Zeichen: Ein Himmelskörper, der dein Zeichen durchläuft oder einen Winkel dazu bildet (ein Transit), prägt die Zeit. Langsame Planeten bestimmen die großen Trends, schnelle die Stimmung des Augenblicks.",
     skymap: "Der Himmel, wie man ihn sieht, wenn man in der gewählten Stadt nach oben schaut: Der Rand der Scheibe ist der Horizont, die Mitte der Punkt direkt über dir. Norden ist oben und Osten links, weil du nach oben blickst.",
-    compat: "Die Gesamtverträglichkeit ist der Durchschnitt der verfügbaren Achsen: Tierkreiszeichen, chinesische Tiere und, wenn die Geburtszeiten bekannt sind, Mondzeichen. Es ist eine symbolische Deutung, keine Vorhersage."
+    compat: "Die Gesamtverträglichkeit ist der Durchschnitt der verfügbaren Achsen: Tierkreiszeichen, chinesische Tiere und, wenn die Geburtszeiten bekannt sind, Mondzeichen. Es ist eine symbolische Deutung, keine Vorhersage.",
+    signVsConstellation: "Die astrologischen Zeichen sind 12 gleich große Abschnitte von 30°, gezählt ab der Frühlings-Tagundnachtgleiche: der hier verwendete tropische Tierkreis. Die gleichnamigen Sternbilder sind Sterngruppen von ungleicher Größe. Durch die langsame Kreiselbewegung der Erdachse (Präzession) haben sich Zeichen und Sternbilder seit der Antike um etwa ein Zeichen verschoben: Die Sonne kann im Zeichen Widder stehen und sich zugleich vor dem Sternbild Fische befinden."
   },
   placePlaceholder: "Stadtnamen eingeben …",
   placeNoMatch: "Keine Stadt gefunden. Versuche die nächstgelegene.",
   placeUnknown: "Geburtsort nicht erkannt: Wähle eine Stadt aus der Liste (die nächstgelegene genügt).",
   placeClear: "Ort löschen",
-  placesCredit: "Städte: GeoNames (www.geonames.org), Lizenz CC BY 4.0."
+  placesCredit: "Städte: GeoNames (www.geonames.org), Lizenz CC BY 4.0.",
+  rangeWarning: "Die Berechnungen sind für Geburten von 1900 bis 2100 geprüft: Außerhalb dieses Zeitraums werden Planetenstellungen und Zeitzonen ungenauer."
 });
 
 </script>
@@ -7101,7 +7151,7 @@ I18N.it = deepMerge(I18N.fr, {
     visibleHere: "visibile da qui",
     notVisibleHere: "non visibile da qui",
     solarWhere: "visibile da una parte del globo",
-    note: "Cielo calcolato per l'ora del tuo dispositivo, senza rifrazione atmosferica. Stelle: d3-celestial (O. Frohn, licenza BSD), catalogo Hipparcos.",
+    note: "Cielo calcolato all'ora locale del luogo scelto (ora del dispositivo per «La mia posizione»), senza rifrazione atmosferica. Stelle: d3-celestial (O. Frohn, licenza BSD), catalogo Hipparcos.",
     directions: ["N", "NE", "E", "SE", "S", "SO", "O", "NO"],
     eclipseTypes: {
       T: "Eclissi totale di Sole",
@@ -7152,7 +7202,8 @@ I18N.it = deepMerge(I18N.fr, {
     moonUnknown: "Per confrontare le Lune, indica gli orari di nascita: la Luna cambia segno il giorno di una delle nascite.",
     invalid: "Data di nascita non valida.",
     noDate: "Indica la data di nascita dell'altra persona.",
-    note: "Compatibilità simbolica, secondo le tradizioni astrologiche occidentale e cinese. L'armonia generale è la media degli assi disponibili."
+    note: "Compatibilità simbolica, secondo le tradizioni astrologiche occidentale e cinese. L'armonia generale è la media degli assi disponibili.",
+    partnerPlace: "Il suo luogo di nascita"
   },
   theme: { light: "Modalità chiara" },
   wheel: { title: "Ruota dello zodiaco", today: "Oggi", birth: "Alla nascita" },
@@ -7267,13 +7318,15 @@ I18N.it = deepMerge(I18N.fr, {
     retrograde: "Visto dalla Terra, un pianeta sembra a volte arretrare per qualche settimana nello zodiaco: è un'illusione dovuta al moto dei pianeti gli uni rispetto agli altri. In astrologia, questo periodo invita a tornare sull'ambito del pianeta.",
     horoscope: "L'oroscopo confronta la posizione attuale degli astri con il tuo segno: un astro che attraversa il tuo segno o forma un angolo con esso (un transito) colora il periodo. I pianeti lenti danno le grandi tendenze, quelli veloci il clima del momento.",
     skymap: "Il cielo come lo si vede alzando gli occhi dalla città scelta: il bordo del disco è l'orizzonte, il centro il punto proprio sopra di te. Il nord è in alto e l'est a sinistra, perché si guarda verso il cielo.",
-    compat: "L'affinità globale è la media degli assi disponibili: segni zodiacali, animali cinesi e, se le ore di nascita sono note, segni lunari. È una lettura simbolica, non una previsione."
+    compat: "L'affinità globale è la media degli assi disponibili: segni zodiacali, animali cinesi e, se le ore di nascita sono note, segni lunari. È una lettura simbolica, non una previsione.",
+    signVsConstellation: "I segni astrologici sono 12 settori uguali di 30°, contati a partire dall'equinozio di primavera: è lo zodiaco tropicale, usato qui. Le costellazioni con lo stesso nome sono gruppi di stelle di dimensioni diverse. A causa della lenta oscillazione dell'asse terrestre (la precessione), segni e costellazioni si sono sfasati di circa un segno dall'antichità: il Sole può trovarsi nel segno dell'Ariete pur stando davanti alla costellazione dei Pesci."
   },
   placePlaceholder: "Digita il nome di una città…",
   placeNoMatch: "Nessuna città trovata. Prova con la più vicina.",
   placeUnknown: "Luogo di nascita non riconosciuto: scegli una città dall'elenco (va bene la più vicina).",
   placeClear: "Cancella il luogo",
-  placesCredit: "Città: GeoNames (www.geonames.org), licenza CC BY 4.0."
+  placesCredit: "Città: GeoNames (www.geonames.org), licenza CC BY 4.0.",
+  rangeWarning: "I calcoli sono verificati per le nascite dal 1900 al 2100: al di fuori di questo periodo, le posizioni dei pianeti e i fusi orari diventano meno precisi."
 });
 
 </script>
@@ -7459,61 +7512,6 @@ I18N.ja = deepMerge(I18N.fr, {
   },
   modalities: { cardinal: "活動宮", fixed: "不動宮", mutable: "柔軟宮" },
   elements: { fire: "火", earth: "地", air: "風", water: "水" },
-  compat: {
-    levels: {
-      1: "緊張をはらむ関係。惹かれ合うこともありますが、衝突しがちです。",
-      2: "刺激的ですが、難しさもある関係です。",
-      3: "まずまずの相性。お互いの努力で良い関係を築けます。",
-      4: "とても相性が良く、少しの歩み寄りで自然に分かり合えます。",
-      5: "ソウルメイト。自然で深い絆があります。"
-    },
-    pairs: {
-      fire_fire: "燃え上がる二つの炎。激しい情熱がありますが、燃え尽きる危険も。",
-      fire_air: "風が炎をあおります。知的な共感と、分かち合う熱意。",
-      fire_earth: "地が火を覆います。忍耐と歩み寄りが必要です。",
-      fire_water: "水が火を消します。正反対の要素ですが、強く惹かれ合います。",
-      earth_earth: "二つの地。安定と信頼がありますが、マンネリに注意。",
-      earth_air: "地と風。異なるリズムを合わせる必要があります。",
-      earth_water: "水が地を潤します。成長と支え合い、実りある関係。",
-      air_air: "二つの風。心の通い合いがありますが、表面的になる危険も。",
-      air_water: "風が水を揺らします。知性が深い感情と出会います。",
-      water_water: "二つの水。感情が溶け合い、言葉なしに分かり合えます。"
-    }
-  },
-  pair: {
-    title: "二人の相性",
-    partnerName: "相手の名前",
-    partnerDate: "相手の生年月日",
-    partnerTime: "相手の出生時刻",
-    compare: "比べる",
-    you: "あなた",
-    other: "相手",
-    global: "総合的な相性",
-    western: "星座",
-    chinese: "干支",
-    moon: "月星座・心の相性",
-    moonUnknown: "月星座を比べるには出生時刻を入力してください。どちらかの誕生日に月が星座を移っています。",
-    invalid: "生年月日が無効です。",
-    noDate: "相手の生年月日を入力してください。",
-    note: "西洋占星術と東洋の干支の伝統にもとづく象徴的な相性です。総合的な相性は、利用できる項目の平均です。"
-  },
-  theme: { light: "ライトモード" },
-  wheel: { title: "黄道十二宮", today: "今日", birth: "誕生時" },
-  history: { title: "最近の検索", clear: "履歴を消去" },
-  offline: {
-    button: "オフライン版",
-    hint: "ツール全体を1つのHTMLファイルとしてダウンロード。インターネットなしで使え、共有も簡単です。",
-    opened: "スタンドアロン版が新しいタブで開きます。そのタブで「オフライン版」をクリックすると保存できます。"
-  },
-  labelBirthPlace: "出生地",
-  placeNone: "— 未指定 —",
-  infoLabel: "詳しい説明",
-  timePlaceHint: "ネイタルチャート（アセンダントとハウス）には出生時刻と出生地が必要です。",
-  placePlaceholder: "都市名を入力…",
-  placeNoMatch: "都市が見つかりません。最寄りの都市を試してください。",
-  placeUnknown: "出生地を認識できません。候補の一覧から都市を選んでください（最寄りの都市で構いません）。",
-  placeClear: "出生地を消去",
-  placesCredit: "都市データ：GeoNames（www.geonames.org）、CC BY 4.0 ライセンス。",
   decanTraits: {
     aries: [
       [["開拓者", "情熱的", "征服者"], "火星のもとにあるこのデーカンは、牡羊座の純粋な姿を体現します。開拓精神にあふれ、情熱的で征服心が旺盛です。"],
@@ -7575,6 +7573,27 @@ I18N.ja = deepMerge(I18N.fr, {
       [["直感的", "感情豊か", "思いやりがある"], "月のもとにあるこのデーカンは、魚座をより直感的で感情豊か、思いやりのあるものにします。"],
       [["情熱的", "打たれ強い", "変容をもたらす"], "冥王星のもとにあるこのデーカンは、魚座をより情熱的で打たれ強く、変容をもたらすものにします。"]
     ]
+  },
+  compat: {
+    levels: {
+      1: "緊張をはらむ関係。惹かれ合うこともありますが、衝突しがちです。",
+      2: "刺激的ですが、難しさもある関係です。",
+      3: "まずまずの相性。お互いの努力で良い関係を築けます。",
+      4: "とても相性が良く、少しの歩み寄りで自然に分かり合えます。",
+      5: "ソウルメイト。自然で深い絆があります。"
+    },
+    pairs: {
+      fire_fire: "燃え上がる二つの炎。激しい情熱がありますが、燃え尽きる危険も。",
+      fire_air: "風が炎をあおります。知的な共感と、分かち合う熱意。",
+      fire_earth: "地が火を覆います。忍耐と歩み寄りが必要です。",
+      fire_water: "水が火を消します。正反対の要素ですが、強く惹かれ合います。",
+      earth_earth: "二つの地。安定と信頼がありますが、マンネリに注意。",
+      earth_air: "地と風。異なるリズムを合わせる必要があります。",
+      earth_water: "水が地を潤します。成長と支え合い、実りある関係。",
+      air_air: "二つの風。心の通い合いがありますが、表面的になる危険も。",
+      air_water: "風が水を揺らします。知性が深い感情と出会います。",
+      water_water: "二つの水。感情が溶け合い、言葉なしに分かり合えます。"
+    }
   },
   cn: {
     names: {
@@ -7816,7 +7835,7 @@ I18N.ja = deepMerge(I18N.fr, {
     visibleHere: "ここから見える",
     notVisibleHere: "ここからは見えない",
     solarWhere: "地球上の一部の地域で見える",
-    note: "お使いの端末の時刻で計算した空です（大気差は考慮していません）。恒星データ：d3-celestial（O. Frohn、BSDライセンス）、ヒッパルコス星表。",
+    note: "選んだ場所の現地時刻で計算した空です（「現在地」の場合は端末の時刻）。大気差は考慮していません。恒星データ：d3-celestial（O. Frohn、BSDライセンス）、ヒッパルコス星表。",
     directions: ["北", "北東", "東", "南東", "南", "南西", "西", "北西"],
     eclipseTypes: { T: "皆既日食", A: "金環日食", H: "金環皆既日食", P: "部分日食", t: "皆既月食", p: "部分月食", n: "半影月食" },
     showers: {
@@ -7844,14 +7863,39 @@ I18N.ja = deepMerge(I18N.fr, {
     },
     aboveHorizon: "地平線の上"
   },
+  pair: {
+    title: "二人の相性",
+    partnerName: "相手の名前",
+    partnerDate: "相手の生年月日",
+    partnerTime: "相手の出生時刻",
+    compare: "比べる",
+    you: "あなた",
+    other: "相手",
+    global: "総合的な相性",
+    western: "星座",
+    chinese: "干支",
+    moon: "月星座・心の相性",
+    moonUnknown: "月星座を比べるには出生時刻を入力してください。どちらかの誕生日に月が星座を移っています。",
+    invalid: "生年月日が無効です。",
+    noDate: "相手の生年月日を入力してください。",
+    note: "西洋占星術と東洋の干支の伝統にもとづく象徴的な相性です。総合的な相性は、利用できる項目の平均です。",
+    partnerPlace: "相手の出生地"
+  },
+  theme: { light: "ライトモード" },
+  wheel: { title: "黄道十二宮", today: "今日", birth: "誕生時" },
+  history: { title: "最近の検索", clear: "履歴を消去" },
+  offline: {
+    button: "オフライン版",
+    hint: "ツール全体を1つのHTMLファイルとしてダウンロード。インターネットなしで使え、共有も簡単です。",
+    opened: "スタンドアロン版が新しいタブで開きます。そのタブで「オフライン版」をクリックすると保存できます。"
+  },
+  labelBirthPlace: "出生地",
+  placeNone: "— 未指定 —",
   natal: {
     title: "ネイタルチャート",
     tabSigns: "星座と干支",
     tabNatal: "ネイタルチャート",
     tabsLabel: "結果の表示",
-    tabSignsSub: "シンプルな人物像",
-    tabNatalSub: "詳しい人物像",
-    completeFields: "出生時刻と出生地を入力",
     ascendant: "アセンダント",
     midheaven: "MC（天頂）",
     positions: "出生時の天体の位置",
@@ -7922,8 +7966,13 @@ I18N.ja = deepMerge(I18N.fr, {
       square: "緊張：行動を促す課題",
       trine: "調和：生まれ持った才能",
       opposition: "対立：二つの力のバランスを見つけること"
-    }
+    },
+    tabSignsSub: "シンプルな人物像",
+    tabNatalSub: "詳しい人物像",
+    completeFields: "出生時刻と出生地を入力"
   },
+  infoLabel: "詳しい説明",
+  timePlaceHint: "ネイタルチャート（アセンダントとハウス）には出生時刻と出生地が必要です。",
   info: {
     sunPosition: "誕生時の太陽の黄道上の正確な位置で、星座の中の度数（0〜30°）で表します。星座とデーカンはこの位置で決まり、決まった日付ではなく天文学的に計算しています。",
     natalMoon: "誕生時に月があった星座で、占星術では感情面を表します。月は約2日半ごとに星座を移るため、出生時刻がないと二つの星座の可能性があることもあります。",
@@ -7945,8 +7994,15 @@ I18N.ja = deepMerge(I18N.fr, {
     retrograde: "地球から見ると、惑星が数週間、黄道上を後ろに戻るように見えることがあります。これは惑星どうしの相対的な動きによる見かけの現象です。占星術では、その惑星が表す分野を見直す時期とされます。",
     horoscope: "ホロスコープは現在の天体の位置をあなたの星座と比べます。あなたの星座を通過する天体や、星座と角度をつくる天体（トランジット）がその時期を彩ります。動きの遅い惑星は大きな流れを、速い惑星はその時の雰囲気を表します。",
     skymap: "選んだ都市で空を見上げたときの星空です。円の縁が地平線、中心があなたの真上です。空を見上げているので、北が上、東が左になります。",
-    compat: "総合的な相性は、利用できる項目（星座、干支、出生時刻がわかる場合は月星座）の平均です。象徴的な読み解きであり、予言ではありません。"
-  }
+    compat: "総合的な相性は、利用できる項目（星座、干支、出生時刻がわかる場合は月星座）の平均です。象徴的な読み解きであり、予言ではありません。",
+    signVsConstellation: "占星術の12星座は、春分点から数えた30°ずつの等しい区分で、ここで使っているトロピカル方式です。同じ名前の天文学の星座は、大きさの異なる星の集まりです。地軸のゆっくりとした首振り運動（歳差）のため、古代から両者は約1星座分ずれています。太陽が占星術の牡羊座にあっても、実際には魚座の星々の前にあることがあります。"
+  },
+  placePlaceholder: "都市名を入力…",
+  placeNoMatch: "都市が見つかりません。最寄りの都市を試してください。",
+  placeUnknown: "出生地を認識できません。候補の一覧から都市を選んでください（最寄りの都市で構いません）。",
+  placeClear: "出生地を消去",
+  placesCredit: "都市データ：GeoNames（www.geonames.org）、CC BY 4.0 ライセンス。",
+  rangeWarning: "計算は1900年から2100年までの生まれについて検証済みです。この期間外では、惑星の位置とタイムゾーンの精度が下がります。"
 });
 
 </script>
@@ -8132,61 +8188,6 @@ I18N.ko = deepMerge(I18N.fr, {
   },
   modalities: { cardinal: "활동궁", fixed: "고정궁", mutable: "변동궁" },
   elements: { fire: "불", earth: "흙", air: "공기", water: "물" },
-  compat: {
-    levels: {
-      1: "긴장된 관계. 끌릴 수는 있지만 자주 부딪힙니다.",
-      2: "자극적이지만 쉽지 않은 관계입니다.",
-      3: "보통의 궁합. 서로 노력하면 좋은 관계를 만들 수 있습니다.",
-      4: "궁합이 아주 좋아, 조금만 맞춰 가면 자연스럽게 통합니다.",
-      5: "소울메이트. 자연스럽고 깊은 유대가 있습니다."
-    },
-    pairs: {
-      fire_fire: "타오르는 두 불꽃. 강렬한 열정이 있지만 타 버릴 위험도 있습니다.",
-      fire_air: "공기가 불꽃을 키웁니다. 지적인 교감과 함께 나누는 열정.",
-      fire_earth: "흙이 불을 덮습니다. 인내와 조율이 필요합니다.",
-      fire_water: "물이 불을 끕니다. 정반대의 원소이지만 강하게 끌립니다.",
-      earth_earth: "두 개의 흙. 안정과 신뢰가 있지만 단조로움에 주의하세요.",
-      earth_air: "흙과 공기. 서로 다른 두 리듬을 맞춰야 합니다.",
-      earth_water: "물이 흙을 적십니다. 성장과 서로에 대한 지지, 풍요로운 관계.",
-      air_air: "두 개의 공기. 마음이 잘 통하지만 피상적이 될 위험이 있습니다.",
-      air_water: "공기가 물을 흔듭니다. 지성이 깊은 감정과 만납니다.",
-      water_water: "두 개의 물. 감정이 하나로 녹아들고, 말없이도 서로를 이해합니다."
-    }
-  },
-  pair: {
-    title: "두 사람의 궁합",
-    partnerName: "상대의 이름",
-    partnerDate: "상대의 생년월일",
-    partnerTime: "상대의 출생 시각",
-    compare: "비교하기",
-    you: "나",
-    other: "상대",
-    global: "종합 궁합",
-    western: "별자리",
-    chinese: "띠",
-    moon: "달 별자리 · 정서적 궁합",
-    moonUnknown: "달 별자리를 비교하려면 출생 시각을 입력해 주세요. 두 사람 중 한 명의 생일에 달이 별자리를 옮겨 갑니다.",
-    invalid: "생년월일이 올바르지 않습니다.",
-    noDate: "상대의 생년월일을 입력해 주세요.",
-    note: "서양 점성술과 동양 띠의 전통에 바탕을 둔 상징적인 궁합입니다. 종합 궁합은 이용할 수 있는 항목의 평균입니다."
-  },
-  theme: { light: "밝은 모드" },
-  wheel: { title: "황도 12궁", today: "오늘", birth: "태어날 때" },
-  history: { title: "최근 검색", clear: "기록 지우기" },
-  offline: {
-    button: "오프라인 버전",
-    hint: "도구 전체를 HTML 파일 하나로 내려받습니다. 인터넷 없이 쓸 수 있고 공유하기도 쉽습니다.",
-    opened: "독립 실행 버전이 새 탭에서 열립니다. 그 탭에서 ‘오프라인 버전’을 누르면 저장할 수 있습니다."
-  },
-  labelBirthPlace: "출생지",
-  placeNone: "— 지정 안 함 —",
-  infoLabel: "자세한 설명",
-  timePlaceHint: "네이탈 차트(어센던트와 하우스)에는 출생 시각과 출생지가 필요합니다.",
-  placePlaceholder: "도시 이름을 입력하세요…",
-  placeNoMatch: "도시를 찾을 수 없습니다. 가장 가까운 도시를 입력해 보세요.",
-  placeUnknown: "출생지를 알 수 없습니다. 제안 목록에서 도시를 골라 주세요(가장 가까운 도시도 괜찮습니다).",
-  placeClear: "출생지 지우기",
-  placesCredit: "도시 정보: GeoNames(www.geonames.org), CC BY 4.0 라이선스.",
   decanTraits: {
     aries: [
       [["개척자", "열정적", "정복자"], "화성의 영향 아래 있는 이 데칸은 양자리의 순수한 모습을 보여 줍니다. 개척 정신이 넘치고 열정적이며 정복욕이 강합니다."],
@@ -8248,6 +8249,27 @@ I18N.ko = deepMerge(I18N.fr, {
       [["직관", "풍부한 감정", "연민"], "달의 영향 아래 있는 이 데칸은 물고기자리를 더 직관적이고 감정이 풍부하며 연민 어린 존재로 만듭니다."],
       [["강렬함", "회복력", "변화의 힘"], "명왕성의 영향 아래 있는 이 데칸은 물고기자리를 더 강렬하고 회복력 있으며 변화를 이끄는 존재로 만듭니다."]
     ]
+  },
+  compat: {
+    levels: {
+      1: "긴장된 관계. 끌릴 수는 있지만 자주 부딪힙니다.",
+      2: "자극적이지만 쉽지 않은 관계입니다.",
+      3: "보통의 궁합. 서로 노력하면 좋은 관계를 만들 수 있습니다.",
+      4: "궁합이 아주 좋아, 조금만 맞춰 가면 자연스럽게 통합니다.",
+      5: "소울메이트. 자연스럽고 깊은 유대가 있습니다."
+    },
+    pairs: {
+      fire_fire: "타오르는 두 불꽃. 강렬한 열정이 있지만 타 버릴 위험도 있습니다.",
+      fire_air: "공기가 불꽃을 키웁니다. 지적인 교감과 함께 나누는 열정.",
+      fire_earth: "흙이 불을 덮습니다. 인내와 조율이 필요합니다.",
+      fire_water: "물이 불을 끕니다. 정반대의 원소이지만 강하게 끌립니다.",
+      earth_earth: "두 개의 흙. 안정과 신뢰가 있지만 단조로움에 주의하세요.",
+      earth_air: "흙과 공기. 서로 다른 두 리듬을 맞춰야 합니다.",
+      earth_water: "물이 흙을 적십니다. 성장과 서로에 대한 지지, 풍요로운 관계.",
+      air_air: "두 개의 공기. 마음이 잘 통하지만 피상적이 될 위험이 있습니다.",
+      air_water: "공기가 물을 흔듭니다. 지성이 깊은 감정과 만납니다.",
+      water_water: "두 개의 물. 감정이 하나로 녹아들고, 말없이도 서로를 이해합니다."
+    }
   },
   cn: {
     names: {
@@ -8489,7 +8511,7 @@ I18N.ko = deepMerge(I18N.fr, {
     visibleHere: "이곳에서 보임",
     notVisibleHere: "이곳에서는 보이지 않음",
     solarWhere: "지구의 일부 지역에서 보임",
-    note: "기기의 시각을 기준으로 계산한 하늘입니다(대기 굴절은 반영하지 않음). 별 자료: d3-celestial(O. Frohn, BSD 라이선스), 히파르코스 목록.",
+    note: "선택한 장소의 현지 시각을 기준으로 계산한 하늘입니다(‘내 위치’는 기기 시각). 대기 굴절은 반영하지 않았습니다. 별 자료: d3-celestial(O. Frohn, BSD 라이선스), 히파르코스 목록.",
     directions: ["북", "북동", "동", "남동", "남", "남서", "서", "북서"],
     eclipseTypes: { T: "개기일식", A: "금환일식", H: "혼성일식", P: "부분일식", t: "개기월식", p: "부분월식", n: "반영월식" },
     showers: {
@@ -8517,14 +8539,39 @@ I18N.ko = deepMerge(I18N.fr, {
     },
     aboveHorizon: "지평선 위"
   },
+  pair: {
+    title: "두 사람의 궁합",
+    partnerName: "상대의 이름",
+    partnerDate: "상대의 생년월일",
+    partnerTime: "상대의 출생 시각",
+    compare: "비교하기",
+    you: "나",
+    other: "상대",
+    global: "종합 궁합",
+    western: "별자리",
+    chinese: "띠",
+    moon: "달 별자리 · 정서적 궁합",
+    moonUnknown: "달 별자리를 비교하려면 출생 시각을 입력해 주세요. 두 사람 중 한 명의 생일에 달이 별자리를 옮겨 갑니다.",
+    invalid: "생년월일이 올바르지 않습니다.",
+    noDate: "상대의 생년월일을 입력해 주세요.",
+    note: "서양 점성술과 동양 띠의 전통에 바탕을 둔 상징적인 궁합입니다. 종합 궁합은 이용할 수 있는 항목의 평균입니다.",
+    partnerPlace: "상대의 출생지"
+  },
+  theme: { light: "밝은 모드" },
+  wheel: { title: "황도 12궁", today: "오늘", birth: "태어날 때" },
+  history: { title: "최근 검색", clear: "기록 지우기" },
+  offline: {
+    button: "오프라인 버전",
+    hint: "도구 전체를 HTML 파일 하나로 내려받습니다. 인터넷 없이 쓸 수 있고 공유하기도 쉽습니다.",
+    opened: "독립 실행 버전이 새 탭에서 열립니다. 그 탭에서 ‘오프라인 버전’을 누르면 저장할 수 있습니다."
+  },
+  labelBirthPlace: "출생지",
+  placeNone: "— 지정 안 함 —",
   natal: {
     title: "네이탈 차트",
     tabSigns: "별자리와 띠",
     tabNatal: "네이탈 차트",
     tabsLabel: "결과 보기 방식",
-    tabSignsSub: "간단한 프로필",
-    tabNatalSub: "자세한 프로필",
-    completeFields: "출생 시각과 출생지 입력하기",
     ascendant: "어센던트",
     midheaven: "MC(중천)",
     positions: "태어날 때 천체의 위치",
@@ -8589,8 +8636,13 @@ I18N.ko = deepMerge(I18N.fr, {
       square: "긴장: 행동을 이끄는 도전",
       trine: "조화: 타고난 재능",
       opposition: "대립: 두 힘 사이에서 균형을 찾아야 합니다"
-    }
+    },
+    tabSignsSub: "간단한 프로필",
+    tabNatalSub: "자세한 프로필",
+    completeFields: "출생 시각과 출생지 입력하기"
   },
+  infoLabel: "자세한 설명",
+  timePlaceHint: "네이탈 차트(어센던트와 하우스)에는 출생 시각과 출생지가 필요합니다.",
   info: {
     sunPosition: "태어날 때 태양이 황도 위에 있던 정확한 위치로, 별자리 안의 각도(0~30°)로 나타냅니다. 별자리와 데칸은 이 위치로 정해지며, 고정된 날짜가 아니라 천문학적으로 계산합니다.",
     natalMoon: "태어날 때 달이 있던 별자리로, 점성술에서는 감정 생활을 나타냅니다. 달은 약 이틀 반마다 별자리를 옮기므로, 출생 시각이 없으면 두 별자리가 모두 가능할 때가 있습니다.",
@@ -8612,8 +8664,15 @@ I18N.ko = deepMerge(I18N.fr, {
     retrograde: "지구에서 보면 행성이 몇 주 동안 황도 위를 거꾸로 가는 것처럼 보일 때가 있습니다. 행성들이 서로 상대적으로 움직여서 생기는 겉보기 현상입니다. 점성술에서는 그 행성이 나타내는 영역을 되돌아보는 시기로 봅니다.",
     horoscope: "운세는 지금 천체의 위치를 당신의 별자리와 비교합니다. 당신의 별자리를 지나가거나 별자리와 각도를 이루는 천체(트랜짓)가 그 시기를 물들입니다. 느린 행성은 큰 흐름을, 빠른 행성은 그때의 분위기를 나타냅니다.",
     skymap: "선택한 도시에서 하늘을 올려다볼 때 보이는 모습입니다. 원의 가장자리는 지평선, 가운데는 머리 바로 위입니다. 하늘을 올려다보고 있으므로 북쪽이 위, 동쪽이 왼쪽입니다.",
-    compat: "종합 궁합은 이용할 수 있는 항목(별자리, 띠, 출생 시각을 알면 달 별자리)의 평균입니다. 상징적인 해석이지 예언이 아닙니다."
-  }
+    compat: "종합 궁합은 이용할 수 있는 항목(별자리, 띠, 출생 시각을 알면 달 별자리)의 평균입니다. 상징적인 해석이지 예언이 아닙니다.",
+    signVsConstellation: "점성술의 12별자리는 춘분점부터 30°씩 나눈 같은 크기의 구역으로, 여기서 쓰는 트로피컬 방식입니다. 같은 이름의 천문 별자리는 크기가 제각각인 별들의 무리입니다. 지구 자전축이 천천히 흔들리는 세차 운동 때문에 고대 이후 두 체계는 약 한 별자리만큼 어긋났습니다. 태양이 점성술의 양자리에 있으면서도 실제로는 물고기자리 별들 앞에 있을 수 있습니다."
+  },
+  placePlaceholder: "도시 이름을 입력하세요…",
+  placeNoMatch: "도시를 찾을 수 없습니다. 가장 가까운 도시를 입력해 보세요.",
+  placeUnknown: "출생지를 알 수 없습니다. 제안 목록에서 도시를 골라 주세요(가장 가까운 도시도 괜찮습니다).",
+  placeClear: "출생지 지우기",
+  placesCredit: "도시 정보: GeoNames(www.geonames.org), CC BY 4.0 라이선스.",
+  rangeWarning: "계산은 1900년부터 2100년 사이의 출생에 대해 검증되었습니다. 이 기간을 벗어나면 행성의 위치와 시간대의 정확도가 떨어집니다."
 });
 
 </script>
@@ -8799,61 +8858,6 @@ I18N.pt = deepMerge(I18N.fr, {
   },
   modalities: { cardinal: "Cardinal", fixed: "Fixo", mutable: "Mutável" },
   elements: { fire: "Fogo", earth: "Terra", air: "Ar", water: "Água" },
-  compat: {
-    levels: {
-      1: "Relação tensa: pode haver atração, mas os atritos são frequentes.",
-      2: "Relação estimulante, mas desafiadora.",
-      3: "Compatibilidade média: a relação é possível com esforço dos dois.",
-      4: "Muito compatíveis: entendimento fluido com alguns ajustes.",
-      5: "Almas gêmeas: cumplicidade natural e profunda."
-    },
-    pairs: {
-      fire_fire: "Dois fogos que se inflamam: paixão intensa, mas risco de queimadura.",
-      fire_air: "O ar aviva a chama: cumplicidade intelectual e entusiasmo compartilhado.",
-      fire_earth: "A terra abafa o fogo: é preciso paciência e ajustes.",
-      fire_water: "A água apaga o fogo: elementos opostos, atração magnética.",
-      earth_earth: "Duas terras: estabilidade e confiança, mas risco de rotina.",
-      earth_air: "Terra e ar: dois ritmos diferentes para conciliar.",
-      earth_water: "A água fertiliza a terra: crescimento, apoio mútuo e fartura.",
-      air_air: "Dois ares: cumplicidade mental, risco de superficialidade.",
-      air_water: "O ar agita a água: o intelecto encontra as profundezas.",
-      water_water: "Duas águas: fusão emocional, intensidade e compreensão silenciosa."
-    }
-  },
-  pair: {
-    title: "Compatibilidade a dois",
-    partnerName: "Nome da outra pessoa",
-    partnerDate: "Data de nascimento dela",
-    partnerTime: "Hora de nascimento dela",
-    compare: "Comparar",
-    you: "Você",
-    other: "A outra pessoa",
-    global: "Entendimento geral",
-    western: "Signos do zodíaco",
-    chinese: "Animais chineses",
-    moon: "Luas · afinidade emocional",
-    moonUnknown: "Para comparar as Luas, informe as horas de nascimento: a Lua muda de signo no dia de um dos nascimentos.",
-    invalid: "Data de nascimento inválida.",
-    noDate: "Informe a data de nascimento da outra pessoa.",
-    note: "Compatibilidade simbólica, segundo as tradições astrológicas ocidental e chinesa. O entendimento geral é a média dos eixos disponíveis."
-  },
-  theme: { light: "Modo claro" },
-  wheel: { title: "Roda do zodíaco", today: "Hoje", birth: "No nascimento" },
-  history: { title: "Recentes", clear: "Apagar o histórico" },
-  offline: {
-    button: "Versão offline",
-    hint: "Baixe a ferramenta completa em um único arquivo HTML, para usar sem internet e compartilhar facilmente.",
-    opened: "A versão autônoma abre em uma nova aba: clique lá em “Versão offline” para salvá-la."
-  },
-  labelBirthPlace: "Local de nascimento",
-  placeNone: "— não informado —",
-  infoLabel: "Mais informações",
-  timePlaceHint: "A hora e o local de nascimento são necessários para o mapa astral (ascendente e casas).",
-  placePlaceholder: "Digite o nome de uma cidade…",
-  placeNoMatch: "Nenhuma cidade encontrada. Tente a cidade mais próxima.",
-  placeUnknown: "Local de nascimento não reconhecido: escolha uma cidade da lista sugerida (a mais próxima serve).",
-  placeClear: "Apagar o local",
-  placesCredit: "Cidades: GeoNames (www.geonames.org), licença CC BY 4.0.",
   decanTraits: {
     aries: [
       [["Pioneiro", "Entusiasta", "Conquistador"], "Sob Marte, este decanato encarna Áries em sua forma mais pura: pioneiro, entusiasta e conquistador."],
@@ -8915,6 +8919,27 @@ I18N.pt = deepMerge(I18N.fr, {
       [["Intuitivo", "Emotivo", "Compassivo"], "Sob a Lua, este decanato torna Peixes mais intuitivo, emotivo e compassivo."],
       [["Intenso", "Resiliente", "Transformador"], "Sob Plutão, este decanato torna Peixes mais intenso, resiliente e transformador."]
     ]
+  },
+  compat: {
+    levels: {
+      1: "Relação tensa: pode haver atração, mas os atritos são frequentes.",
+      2: "Relação estimulante, mas desafiadora.",
+      3: "Compatibilidade média: a relação é possível com esforço dos dois.",
+      4: "Muito compatíveis: entendimento fluido com alguns ajustes.",
+      5: "Almas gêmeas: cumplicidade natural e profunda."
+    },
+    pairs: {
+      fire_fire: "Dois fogos que se inflamam: paixão intensa, mas risco de queimadura.",
+      fire_air: "O ar aviva a chama: cumplicidade intelectual e entusiasmo compartilhado.",
+      fire_earth: "A terra abafa o fogo: é preciso paciência e ajustes.",
+      fire_water: "A água apaga o fogo: elementos opostos, atração magnética.",
+      earth_earth: "Duas terras: estabilidade e confiança, mas risco de rotina.",
+      earth_air: "Terra e ar: dois ritmos diferentes para conciliar.",
+      earth_water: "A água fertiliza a terra: crescimento, apoio mútuo e fartura.",
+      air_air: "Dois ares: cumplicidade mental, risco de superficialidade.",
+      air_water: "O ar agita a água: o intelecto encontra as profundezas.",
+      water_water: "Duas águas: fusão emocional, intensidade e compreensão silenciosa."
+    }
   },
   cn: {
     names: {
@@ -9171,7 +9196,7 @@ I18N.pt = deepMerge(I18N.fr, {
     visibleHere: "visível daqui",
     notVisibleHere: "não visível daqui",
     solarWhere: "visível em parte do planeta",
-    note: "Céu calculado para a hora do seu aparelho, sem refração atmosférica. Estrelas: d3-celestial (O. Frohn, licença BSD), catálogo Hipparcos.",
+    note: "Céu calculado na hora local do lugar escolhido (hora do aparelho para “Minha localização”), sem refração atmosférica. Estrelas: d3-celestial (O. Frohn, licença BSD), catálogo Hipparcos.",
     directions: ["N", "NE", "L", "SE", "S", "SO", "O", "NO"],
     eclipseTypes: {
       T: "Eclipse solar total",
@@ -9207,14 +9232,39 @@ I18N.pt = deepMerge(I18N.fr, {
     },
     aboveHorizon: "Acima do horizonte"
   },
+  pair: {
+    title: "Compatibilidade a dois",
+    partnerName: "Nome da outra pessoa",
+    partnerDate: "Data de nascimento dela",
+    partnerTime: "Hora de nascimento dela",
+    compare: "Comparar",
+    you: "Você",
+    other: "A outra pessoa",
+    global: "Entendimento geral",
+    western: "Signos do zodíaco",
+    chinese: "Animais chineses",
+    moon: "Luas · afinidade emocional",
+    moonUnknown: "Para comparar as Luas, informe as horas de nascimento: a Lua muda de signo no dia de um dos nascimentos.",
+    invalid: "Data de nascimento inválida.",
+    noDate: "Informe a data de nascimento da outra pessoa.",
+    note: "Compatibilidade simbólica, segundo as tradições astrológicas ocidental e chinesa. O entendimento geral é a média dos eixos disponíveis.",
+    partnerPlace: "Local de nascimento dela"
+  },
+  theme: { light: "Modo claro" },
+  wheel: { title: "Roda do zodíaco", today: "Hoje", birth: "No nascimento" },
+  history: { title: "Recentes", clear: "Apagar o histórico" },
+  offline: {
+    button: "Versão offline",
+    hint: "Baixe a ferramenta completa em um único arquivo HTML, para usar sem internet e compartilhar facilmente.",
+    opened: "A versão autônoma abre em uma nova aba: clique lá em “Versão offline” para salvá-la."
+  },
+  labelBirthPlace: "Local de nascimento",
+  placeNone: "— não informado —",
   natal: {
     title: "Mapa astral",
     tabSigns: "Signo e zodíaco chinês",
     tabNatal: "Mapa astral",
     tabsLabel: "Visualização do resultado",
-    tabSignsSub: "O retrato simples",
-    tabNatalSub: "O retrato completo",
-    completeFields: "Informar a hora e o local",
     ascendant: "Ascendente",
     midheaven: "Meio do Céu",
     positions: "Posições no nascimento",
@@ -9285,8 +9335,13 @@ I18N.pt = deepMerge(I18N.fr, {
       square: "tensão: um desafio que leva à ação",
       trine: "harmonia: um talento natural",
       opposition: "polaridade: um equilíbrio a encontrar entre duas forças"
-    }
+    },
+    tabSignsSub: "O retrato simples",
+    tabNatalSub: "O retrato completo",
+    completeFields: "Informar a hora e o local"
   },
+  infoLabel: "Mais informações",
+  timePlaceHint: "A hora e o local de nascimento são necessários para o mapa astral (ascendente e casas).",
   info: {
     sunPosition: "Posição exata do Sol no zodíaco no nascimento, em graus dentro do signo (de 0 a 30°). É ela que define o signo e o decanato: é calculada astronomicamente, e não a partir de datas fixas.",
     natalMoon: "O signo em que a Lua estava no nascimento; na astrologia, representa a vida emocional. A Lua muda de signo mais ou menos a cada dois dias e meio: sem a hora de nascimento, às vezes dois signos são possíveis.",
@@ -9308,8 +9363,15 @@ I18N.pt = deepMerge(I18N.fr, {
     retrograde: "Visto da Terra, um planeta às vezes parece andar para trás no zodíaco durante algumas semanas: é uma ilusão causada pelo movimento dos planetas uns em relação aos outros. Na astrologia, esse período convida a rever a área do planeta.",
     horoscope: "O horóscopo compara a posição atual dos astros com o seu signo: um astro que atravessa o seu signo ou forma um ângulo com ele (um trânsito) dá o tom do período. Os planetas lentos trazem as grandes tendências; os rápidos, o clima do momento.",
     skymap: "O céu como você o vê ao olhar para cima a partir da cidade escolhida: a borda do disco é o horizonte e o centro, o ponto logo acima de você. O norte fica em cima e o leste à esquerda, porque você está olhando para o céu.",
-    compat: "O entendimento geral é a média dos eixos disponíveis: signos do zodíaco, animais chineses e, se as horas de nascimento forem conhecidas, signos lunares. É uma leitura simbólica, não uma previsão."
-  }
+    compat: "O entendimento geral é a média dos eixos disponíveis: signos do zodíaco, animais chineses e, se as horas de nascimento forem conhecidas, signos lunares. É uma leitura simbólica, não uma previsão.",
+    signVsConstellation: "Os signos astrológicos são 12 setores iguais de 30°, contados a partir do equinócio de março: é o zodíaco tropical, usado aqui. As constelações de mesmo nome são grupos de estrelas de tamanhos desiguais. Por causa do lento giro do eixo da Terra (a precessão), signos e constelações se afastaram cerca de um signo desde a Antiguidade: o Sol pode estar no signo de Áries enquanto se encontra diante da constelação de Peixes."
+  },
+  placePlaceholder: "Digite o nome de uma cidade…",
+  placeNoMatch: "Nenhuma cidade encontrada. Tente a cidade mais próxima.",
+  placeUnknown: "Local de nascimento não reconhecido: escolha uma cidade da lista sugerida (a mais próxima serve).",
+  placeClear: "Apagar o local",
+  placesCredit: "Cidades: GeoNames (www.geonames.org), licença CC BY 4.0.",
+  rangeWarning: "Os cálculos são verificados para nascimentos de 1900 a 2100: fora desse período, as posições dos planetas e os fusos horários ficam menos precisos."
 });
 
 </script>
@@ -9495,61 +9557,6 @@ I18N.tr = deepMerge(I18N.fr, {
   },
   modalities: { cardinal: "Öncü", fixed: "Sabit", mutable: "Değişken" },
   elements: { fire: "Ateş", earth: "Toprak", air: "Hava", water: "Su" },
-  compat: {
-    levels: {
-      1: "Gergin bir ilişki: çekim olabilir ama sürtüşmeler sık yaşanır.",
-      2: "Heyecan verici ama zorlu bir ilişki.",
-      3: "Orta düzeyde uyum: karşılıklı çabayla ilişki mümkündür.",
-      4: "Çok uyumlu: birkaç küçük ayarla akıcı bir anlaşma.",
-      5: "Ruh eşleri: doğal ve derin bir yakınlık."
-    },
-    pairs: {
-      fire_fire: "Birlikte alevlenen iki ateş: yoğun tutku, ama yanma riski de var.",
-      fire_air: "Hava alevi körükler: zihinsel yakınlık ve paylaşılan coşku.",
-      fire_earth: "Toprak ateşi boğar: sabır ve uyum çabası gerekir.",
-      fire_water: "Su ateşi söndürür: zıt elementler, ama güçlü bir çekim.",
-      earth_earth: "İki toprak: istikrar ve güven, ama rutine düşme riski.",
-      earth_air: "Toprak ve hava: uyumlanması gereken iki farklı ritim.",
-      earth_water: "Su toprağı besler: büyüme, karşılıklı destek ve bereket.",
-      air_air: "İki hava: zihinsel yakınlık, yüzeysellik riski.",
-      air_water: "Hava suyu dalgalandırır: akıl derinliklerle buluşur.",
-      water_water: "İki su: duygusal bütünleşme, yoğunluk ve sözsüz anlayış."
-    }
-  },
-  pair: {
-    title: "İki kişilik uyum",
-    partnerName: "Diğer kişinin adı",
-    partnerDate: "Doğum tarihi",
-    partnerTime: "Doğum saati",
-    compare: "Karşılaştır",
-    you: "Siz",
-    other: "Diğer kişi",
-    global: "Genel uyum",
-    western: "Burçlar",
-    chinese: "Çin burçları",
-    moon: "Ay burçları · duygusal uyum",
-    moonUnknown: "Ay burçlarını karşılaştırmak için doğum saatlerini girin: doğum günlerinden birinde Ay burç değiştiriyor.",
-    invalid: "Geçersiz doğum tarihi.",
-    noDate: "Diğer kişinin doğum tarihini girin.",
-    note: "Batı ve Çin astroloji geleneklerine dayanan sembolik bir uyumdur. Genel uyum, mevcut eksenlerin ortalamasıdır."
-  },
-  theme: { light: "Açık mod" },
-  wheel: { title: "Burç çarkı", today: "Bugün", birth: "Doğumda" },
-  history: { title: "Son aramalar", clear: "Geçmişi temizle" },
-  offline: {
-    button: "Çevrimdışı sürüm",
-    hint: "Aracın tamamını tek bir HTML dosyası olarak indirin: internetsiz kullanılabilir ve kolayca paylaşılır.",
-    opened: "Bağımsız sürüm yeni bir sekmede açılıyor: kaydetmek için oradaki “Çevrimdışı sürüm” düğmesine tıklayın."
-  },
-  labelBirthPlace: "Doğum yeri",
-  placeNone: "— belirtilmedi —",
-  infoLabel: "Daha fazla bilgi",
-  timePlaceHint: "Doğum haritası (yükselen ve evler) için doğum saati ve doğum yeri gereklidir.",
-  placePlaceholder: "Bir şehir adı yazın…",
-  placeNoMatch: "Şehir bulunamadı. En yakın şehri deneyin.",
-  placeUnknown: "Doğum yeri tanınmadı: önerilen listeden bir şehir seçin (en yakını da olur).",
-  placeClear: "Yeri temizle",
-  placesCredit: "Şehirler: GeoNames (www.geonames.org), CC BY 4.0 lisansı.",
   decanTraits: {
     aries: [
       [["Öncü", "Coşkulu", "Fatih"], "Mars etkisindeki bu dekan, Koç'u en saf hâliyle yansıtır: öncü, coşkulu ve fetheden."],
@@ -9611,6 +9618,27 @@ I18N.tr = deepMerge(I18N.fr, {
       [["Sezgili", "Duygusal", "Şefkatli"], "Ay etkisindeki bu dekan, Balık'ı daha sezgili, duygusal ve şefkatli kılar."],
       [["Yoğun", "Dirençli", "Dönüştürücü"], "Plüton etkisindeki bu dekan, Balık'ı daha yoğun, dirençli ve dönüştürücü kılar."]
     ]
+  },
+  compat: {
+    levels: {
+      1: "Gergin bir ilişki: çekim olabilir ama sürtüşmeler sık yaşanır.",
+      2: "Heyecan verici ama zorlu bir ilişki.",
+      3: "Orta düzeyde uyum: karşılıklı çabayla ilişki mümkündür.",
+      4: "Çok uyumlu: birkaç küçük ayarla akıcı bir anlaşma.",
+      5: "Ruh eşleri: doğal ve derin bir yakınlık."
+    },
+    pairs: {
+      fire_fire: "Birlikte alevlenen iki ateş: yoğun tutku, ama yanma riski de var.",
+      fire_air: "Hava alevi körükler: zihinsel yakınlık ve paylaşılan coşku.",
+      fire_earth: "Toprak ateşi boğar: sabır ve uyum çabası gerekir.",
+      fire_water: "Su ateşi söndürür: zıt elementler, ama güçlü bir çekim.",
+      earth_earth: "İki toprak: istikrar ve güven, ama rutine düşme riski.",
+      earth_air: "Toprak ve hava: uyumlanması gereken iki farklı ritim.",
+      earth_water: "Su toprağı besler: büyüme, karşılıklı destek ve bereket.",
+      air_air: "İki hava: zihinsel yakınlık, yüzeysellik riski.",
+      air_water: "Hava suyu dalgalandırır: akıl derinliklerle buluşur.",
+      water_water: "İki su: duygusal bütünleşme, yoğunluk ve sözsüz anlayış."
+    }
   },
   cn: {
     names: {
@@ -9864,7 +9892,7 @@ I18N.tr = deepMerge(I18N.fr, {
     visibleHere: "buradan görülür",
     notVisibleHere: "buradan görülmez",
     solarWhere: "Dünya'nın bir bölümünden görülür",
-    note: "Gökyüzü, cihazınızın saatine göre ve atmosferik kırılma hesaba katılmadan hesaplanmıştır. Yıldızlar: d3-celestial (O. Frohn, BSD lisansı), Hipparcos kataloğu.",
+    note: "Gökyüzü, seçilen yerin yerel saatine göre hesaplanmıştır (“Konumum” için cihaz saati); atmosferik kırılma hesaba katılmamıştır. Yıldızlar: d3-celestial (O. Frohn, BSD lisansı), Hipparcos kataloğu.",
     directions: ["K", "KD", "D", "GD", "G", "GB", "B", "KB"],
     eclipseTypes: {
       T: "Tam Güneş tutulması",
@@ -9900,14 +9928,39 @@ I18N.tr = deepMerge(I18N.fr, {
     },
     aboveHorizon: "Ufkun üstünde"
   },
+  pair: {
+    title: "İki kişilik uyum",
+    partnerName: "Diğer kişinin adı",
+    partnerDate: "Doğum tarihi",
+    partnerTime: "Doğum saati",
+    compare: "Karşılaştır",
+    you: "Siz",
+    other: "Diğer kişi",
+    global: "Genel uyum",
+    western: "Burçlar",
+    chinese: "Çin burçları",
+    moon: "Ay burçları · duygusal uyum",
+    moonUnknown: "Ay burçlarını karşılaştırmak için doğum saatlerini girin: doğum günlerinden birinde Ay burç değiştiriyor.",
+    invalid: "Geçersiz doğum tarihi.",
+    noDate: "Diğer kişinin doğum tarihini girin.",
+    note: "Batı ve Çin astroloji geleneklerine dayanan sembolik bir uyumdur. Genel uyum, mevcut eksenlerin ortalamasıdır.",
+    partnerPlace: "Onun doğum yeri"
+  },
+  theme: { light: "Açık mod" },
+  wheel: { title: "Burç çarkı", today: "Bugün", birth: "Doğumda" },
+  history: { title: "Son aramalar", clear: "Geçmişi temizle" },
+  offline: {
+    button: "Çevrimdışı sürüm",
+    hint: "Aracın tamamını tek bir HTML dosyası olarak indirin: internetsiz kullanılabilir ve kolayca paylaşılır.",
+    opened: "Bağımsız sürüm yeni bir sekmede açılıyor: kaydetmek için oradaki “Çevrimdışı sürüm” düğmesine tıklayın."
+  },
+  labelBirthPlace: "Doğum yeri",
+  placeNone: "— belirtilmedi —",
   natal: {
     title: "Doğum haritası",
     tabSigns: "Burç ve Çin burcu",
     tabNatal: "Doğum haritası",
     tabsLabel: "Sonuç görünümü",
-    tabSignsSub: "Kısa portre",
-    tabNatalSub: "Ayrıntılı portre",
-    completeFields: "Saati ve yeri ekle",
     ascendant: "Yükselen",
     midheaven: "Tepe Noktası (MC)",
     positions: "Doğumdaki konumlar",
@@ -9978,8 +10031,13 @@ I18N.tr = deepMerge(I18N.fr, {
       square: "gerilim: harekete geçiren bir zorluk",
       trine: "uyum: doğal bir yetenek",
       opposition: "kutupluluk: iki güç arasında bulunacak bir denge"
-    }
+    },
+    tabSignsSub: "Kısa portre",
+    tabNatalSub: "Ayrıntılı portre",
+    completeFields: "Saati ve yeri ekle"
   },
+  infoLabel: "Daha fazla bilgi",
+  timePlaceHint: "Doğum haritası (yükselen ve evler) için doğum saati ve doğum yeri gereklidir.",
   info: {
     sunPosition: "Doğum anında Güneş'in zodyaktaki tam konumu; burç içindeki derece olarak (0–30°) gösterilir. Burcu ve dekanı belirleyen budur: sabit tarihlere göre değil, astronomik olarak hesaplanır.",
     natalMoon: "Doğum anında Ay'ın bulunduğu burç; astrolojide duygusal yaşamı temsil eder. Ay yaklaşık iki buçuk günde bir burç değiştirir: doğum saati olmadan bazen iki burç mümkündür.",
@@ -10001,8 +10059,15 @@ I18N.tr = deepMerge(I18N.fr, {
     retrograde: "Dünya'dan bakıldığında bir gezegen bazen birkaç hafta boyunca zodyakta geri gidiyormuş gibi görünür: bu, gezegenlerin birbirine göre hareketinden kaynaklanan bir yanılsamadır. Astrolojide bu dönem, gezegenin alanını yeniden gözden geçirmeye davet eder.",
     horoscope: "Burç yorumu, gök cisimlerinin şu anki konumlarını burcunuzla karşılaştırır: burcunuzdan geçen ya da onunla açı yapan bir gök cismi (transit) dönemi renklendirir. Yavaş gezegenler büyük eğilimleri, hızlı olanlar anın havasını verir.",
     skymap: "Seçilen şehirden başınızı kaldırdığınızda gördüğünüz gökyüzü: diskin kenarı ufuk, merkezi tam tepenizdeki noktadır. Gökyüzüne baktığınız için kuzey yukarıda, doğu soldadır.",
-    compat: "Genel uyum, mevcut eksenlerin ortalamasıdır: burçlar, Çin burçları ve doğum saatleri biliniyorsa Ay burçları. Bu sembolik bir yorumdur, bir kehanet değildir."
-  }
+    compat: "Genel uyum, mevcut eksenlerin ortalamasıdır: burçlar, Çin burçları ve doğum saatleri biliniyorsa Ay burçları. Bu sembolik bir yorumdur, bir kehanet değildir.",
+    signVsConstellation: "Astrolojik burçlar, ilkbahar ekinoksundan itibaren sayılan 30°'lik 12 eşit dilimdir: burada kullanılan tropikal zodyak budur. Aynı adı taşıyan takımyıldızlar ise farklı büyüklükteki yıldız gruplarıdır. Dünya ekseninin yavaş salınımı (presesyon) nedeniyle burçlar ile takımyıldızlar Antik Çağ'dan bu yana yaklaşık bir burç kaymıştır: Güneş Koç burcundayken aslında Balık takımyıldızının önünde olabilir."
+  },
+  placePlaceholder: "Bir şehir adı yazın…",
+  placeNoMatch: "Şehir bulunamadı. En yakın şehri deneyin.",
+  placeUnknown: "Doğum yeri tanınmadı: önerilen listeden bir şehir seçin (en yakını da olur).",
+  placeClear: "Yeri temizle",
+  placesCredit: "Şehirler: GeoNames (www.geonames.org), CC BY 4.0 lisansı.",
+  rangeWarning: "Hesaplamalar 1900–2100 arası doğumlar için doğrulanmıştır: bu dönemin dışında gezegen konumları ve saat dilimleri daha az kesindir."
 });
 
 </script>
@@ -10188,61 +10253,6 @@ I18N.ar = deepMerge(I18N.fr, {
   },
   modalities: { cardinal: "منقلب", fixed: "ثابت", mutable: "ذو جسدين" },
   elements: { fire: "النار", earth: "التراب", air: "الهواء", water: "الماء" },
-  compat: {
-    levels: {
-      1: "علاقة متوترة: قد يوجد انجذاب، لكن الاحتكاكات متكررة.",
-      2: "علاقة محفزة لكنها صعبة.",
-      3: "توافق متوسط: العلاقة ممكنة بجهد من الطرفين.",
-      4: "توافق كبير: تفاهم سلس مع بعض التعديلات.",
-      5: "توأم روح: تفاهم طبيعي وعميق."
-    },
-    pairs: {
-      fire_fire: "ناران تشتعلان معًا: شغف حاد، لكن مع خطر الاحتراق.",
-      fire_air: "الهواء يؤجج اللهب: تفاهم فكري وحماس مشترك.",
-      fire_earth: "التراب يخمد النار: لا بد من الصبر والتكيّف.",
-      fire_water: "الماء يطفئ النار: عنصران متضادان، وانجذاب قوي.",
-      earth_earth: "ترابان: استقرار وثقة، لكن مع خطر الرتابة.",
-      earth_air: "التراب والهواء: إيقاعان مختلفان يحتاجان إلى التوفيق.",
-      earth_water: "الماء يُخصب التراب: نمو ودعم متبادل وخير وفير.",
-      air_air: "هواءان: تفاهم ذهني، مع خطر السطحية.",
-      air_water: "الهواء يحرّك الماء: العقل يلتقي بالأعماق.",
-      water_water: "ماءان: اندماج عاطفي، وعمق وتفاهم بلا كلام."
-    }
-  },
-  pair: {
-    title: "التوافق بين شخصين",
-    partnerName: "اسم الشخص الآخر",
-    partnerDate: "تاريخ ميلاده",
-    partnerTime: "ساعة ميلاده",
-    compare: "قارن",
-    you: "أنت",
-    other: "الشخص الآخر",
-    global: "التوافق العام",
-    western: "الأبراج",
-    chinese: "الأبراج الصينية",
-    moon: "القمران · التوافق العاطفي",
-    moonUnknown: "لمقارنة برجي القمر، أدخل ساعتي الميلاد: القمر ينتقل إلى برج آخر في يوم أحد الميلادين.",
-    invalid: "تاريخ ميلاد غير صالح.",
-    noDate: "أدخل تاريخ ميلاد الشخص الآخر.",
-    note: "توافق رمزي بحسب التقاليد الفلكية الغربية والصينية. التوافق العام هو متوسط المحاور المتاحة."
-  },
-  theme: { light: "الوضع الفاتح" },
-  wheel: { title: "دائرة البروج", today: "اليوم", birth: "عند الميلاد" },
-  history: { title: "عمليات البحث الأخيرة", clear: "مسح السجل" },
-  offline: {
-    button: "النسخة غير المتصلة",
-    hint: "نزّل الأداة كاملة في ملف HTML واحد، لاستخدامها دون إنترنت ومشاركتها بسهولة.",
-    opened: "تُفتح النسخة المستقلة في علامة تبويب جديدة: انقر فيها على «النسخة غير المتصلة» لحفظها."
-  },
-  labelBirthPlace: "مكان الميلاد",
-  placeNone: "— غير محدد —",
-  infoLabel: "مزيد من المعلومات",
-  timePlaceHint: "ساعة الميلاد ومكانه ضروريان للخريطة الفلكية (الطالع والبيوت).",
-  placePlaceholder: "اكتب اسم مدينة…",
-  placeNoMatch: "لم يُعثر على أي مدينة. جرّب أقرب مدينة.",
-  placeUnknown: "لم يُتعرّف على مكان الميلاد: اختر مدينة من القائمة المقترحة (أقرب مدينة تفي بالغرض).",
-  placeClear: "مسح المكان",
-  placesCredit: "المدن: GeoNames (www.geonames.org)، بترخيص CC BY 4.0.",
   decanTraits: {
     aries: [
       [["رائد", "متحمس", "فاتح"], "تحت تأثير المريخ، يجسّد هذا الوجه برج الحمل في أنقى صوره: رائد ومتحمس ومحب للانتصار."],
@@ -10304,6 +10314,27 @@ I18N.ar = deepMerge(I18N.fr, {
       [["حدسي", "عاطفي", "رحيم"], "تحت تأثير القمر، يجعل هذا الوجه برج الحوت أكثر حدسًا وعاطفية ورحمة."],
       [["عميق", "صلب", "مُحوِّل"], "تحت تأثير بلوتو، يجعل هذا الوجه برج الحوت أكثر عمقًا وصلابة وقدرة على التحويل."]
     ]
+  },
+  compat: {
+    levels: {
+      1: "علاقة متوترة: قد يوجد انجذاب، لكن الاحتكاكات متكررة.",
+      2: "علاقة محفزة لكنها صعبة.",
+      3: "توافق متوسط: العلاقة ممكنة بجهد من الطرفين.",
+      4: "توافق كبير: تفاهم سلس مع بعض التعديلات.",
+      5: "توأم روح: تفاهم طبيعي وعميق."
+    },
+    pairs: {
+      fire_fire: "ناران تشتعلان معًا: شغف حاد، لكن مع خطر الاحتراق.",
+      fire_air: "الهواء يؤجج اللهب: تفاهم فكري وحماس مشترك.",
+      fire_earth: "التراب يخمد النار: لا بد من الصبر والتكيّف.",
+      fire_water: "الماء يطفئ النار: عنصران متضادان، وانجذاب قوي.",
+      earth_earth: "ترابان: استقرار وثقة، لكن مع خطر الرتابة.",
+      earth_air: "التراب والهواء: إيقاعان مختلفان يحتاجان إلى التوفيق.",
+      earth_water: "الماء يُخصب التراب: نمو ودعم متبادل وخير وفير.",
+      air_air: "هواءان: تفاهم ذهني، مع خطر السطحية.",
+      air_water: "الهواء يحرّك الماء: العقل يلتقي بالأعماق.",
+      water_water: "ماءان: اندماج عاطفي، وعمق وتفاهم بلا كلام."
+    }
   },
   cn: {
     names: {
@@ -10557,7 +10588,7 @@ I18N.ar = deepMerge(I18N.fr, {
     visibleHere: "مرئي من هنا",
     notVisibleHere: "غير مرئي من هنا",
     solarWhere: "مرئي من جزء من الكرة الأرضية",
-    note: "السماء محسوبة بحسب ساعة جهازك، دون احتساب الانكسار الجوي. النجوم: d3-celestial (O. Frohn، ترخيص BSD)، فهرس هيباركوس.",
+    note: "السماء محسوبة بالتوقيت المحلي للمكان المختار (توقيت الجهاز بالنسبة إلى «موقعي»)، دون احتساب الانكسار الجوي. النجوم: d3-celestial (O. Frohn، ترخيص BSD)، فهرس هيباركوس.",
     directions: ["شمال", "شمال شرق", "شرق", "جنوب شرق", "جنوب", "جنوب غرب", "غرب", "شمال غرب"],
     eclipseTypes: {
       T: "كسوف كلي للشمس",
@@ -10593,14 +10624,39 @@ I18N.ar = deepMerge(I18N.fr, {
     },
     aboveHorizon: "فوق الأفق"
   },
+  pair: {
+    title: "التوافق بين شخصين",
+    partnerName: "اسم الشخص الآخر",
+    partnerDate: "تاريخ ميلاده",
+    partnerTime: "ساعة ميلاده",
+    compare: "قارن",
+    you: "أنت",
+    other: "الشخص الآخر",
+    global: "التوافق العام",
+    western: "الأبراج",
+    chinese: "الأبراج الصينية",
+    moon: "القمران · التوافق العاطفي",
+    moonUnknown: "لمقارنة برجي القمر، أدخل ساعتي الميلاد: القمر ينتقل إلى برج آخر في يوم أحد الميلادين.",
+    invalid: "تاريخ ميلاد غير صالح.",
+    noDate: "أدخل تاريخ ميلاد الشخص الآخر.",
+    note: "توافق رمزي بحسب التقاليد الفلكية الغربية والصينية. التوافق العام هو متوسط المحاور المتاحة.",
+    partnerPlace: "مكان ميلاد الشخص الآخر"
+  },
+  theme: { light: "الوضع الفاتح" },
+  wheel: { title: "دائرة البروج", today: "اليوم", birth: "عند الميلاد" },
+  history: { title: "عمليات البحث الأخيرة", clear: "مسح السجل" },
+  offline: {
+    button: "النسخة غير المتصلة",
+    hint: "نزّل الأداة كاملة في ملف HTML واحد، لاستخدامها دون إنترنت ومشاركتها بسهولة.",
+    opened: "تُفتح النسخة المستقلة في علامة تبويب جديدة: انقر فيها على «النسخة غير المتصلة» لحفظها."
+  },
+  labelBirthPlace: "مكان الميلاد",
+  placeNone: "— غير محدد —",
   natal: {
     title: "الخريطة الفلكية",
     tabSigns: "البرج والأبراج الصينية",
     tabNatal: "الخريطة الفلكية",
     tabsLabel: "طريقة عرض النتيجة",
-    tabSignsSub: "الصورة المختصرة",
-    tabNatalSub: "الصورة الكاملة",
-    completeFields: "أكمل الساعة والمكان",
     ascendant: "الطالع",
     midheaven: "وسط السماء",
     positions: "المواقع عند الميلاد",
@@ -10671,8 +10727,13 @@ I18N.ar = deepMerge(I18N.fr, {
       square: "توتر: تحدٍّ يدفع إلى الفعل",
       trine: "انسجام: موهبة طبيعية",
       opposition: "قطبية: توازن ينبغي إيجاده بين قوتين"
-    }
+    },
+    tabSignsSub: "الصورة المختصرة",
+    tabNatalSub: "الصورة الكاملة",
+    completeFields: "أكمل الساعة والمكان"
   },
+  infoLabel: "مزيد من المعلومات",
+  timePlaceHint: "ساعة الميلاد ومكانه ضروريان للخريطة الفلكية (الطالع والبيوت).",
   info: {
     sunPosition: "الموقع الدقيق للشمس في دائرة البروج عند الميلاد، بالدرجات داخل البرج (من 0 إلى 30°). هو الذي يحدد البرج والوجه، ويُحسب فلكيًا لا بحسب تواريخ ثابتة.",
     natalMoon: "البرج الذي كان فيه القمر عند الميلاد؛ وهو في علم التنجيم يمثّل الحياة العاطفية. ينتقل القمر إلى برج آخر كل يومين ونصف تقريبًا: من دون ساعة الميلاد قد يكون هناك برجان محتملان.",
@@ -10694,8 +10755,15 @@ I18N.ar = deepMerge(I18N.fr, {
     retrograde: "يبدو الكوكب أحيانًا، عند رصده من الأرض، كأنه يرجع إلى الخلف في دائرة البروج لبضعة أسابيع: إنه خداع بصري ناتج عن حركة الكواكب بعضها بالنسبة إلى بعض. وفي التنجيم تدعو هذه الفترة إلى مراجعة مجال الكوكب.",
     horoscope: "يقارن الطالع اليومي مواقع الأجرام الحالية ببرجك: فالجرم الذي يعبر برجك أو يشكّل معه زاوية (العبور) يطبع الفترة بطابعه. الكواكب البطيئة تحدد الاتجاهات الكبرى، والسريعة أجواء اللحظة.",
     skymap: "السماء كما تراها حين ترفع بصرك من المدينة المختارة: حافة القرص هي الأفق، ومركزه النقطة التي فوق رأسك مباشرة. الشمال في الأعلى والشرق على اليسار، لأنك تنظر نحو السماء.",
-    compat: "التوافق العام هو متوسط المحاور المتاحة: الأبراج، والحيوانات الصينية، وأبراج القمر إذا عُرفت ساعات الميلاد. إنها قراءة رمزية، وليست تنبؤًا."
-  }
+    compat: "التوافق العام هو متوسط المحاور المتاحة: الأبراج، والحيوانات الصينية، وأبراج القمر إذا عُرفت ساعات الميلاد. إنها قراءة رمزية، وليست تنبؤًا.",
+    signVsConstellation: "الأبراج في التنجيم 12 قطاعًا متساويًا، كل منها 30°، تُعدّ ابتداءً من الاعتدال الربيعي: إنها دائرة البروج المدارية المستخدمة هنا. أما الكوكبات التي تحمل الأسماء نفسها فهي مجموعات نجمية متفاوتة الأحجام. وبسبب الترنح البطيء لمحور الأرض (المبادرة)، انزاحت الأبراج عن الكوكبات بنحو برج واحد منذ العصور القديمة: فقد تكون الشمس في برج الحمل بينما تقع أمام كوكبة الحوت."
+  },
+  placePlaceholder: "اكتب اسم مدينة…",
+  placeNoMatch: "لم يُعثر على أي مدينة. جرّب أقرب مدينة.",
+  placeUnknown: "لم يُتعرّف على مكان الميلاد: اختر مدينة من القائمة المقترحة (أقرب مدينة تفي بالغرض).",
+  placeClear: "مسح المكان",
+  placesCredit: "المدن: GeoNames (www.geonames.org)، بترخيص CC BY 4.0.",
+  rangeWarning: "الحسابات مُتحقَّق منها لمواليد الفترة من 1900 إلى 2100: خارج هذه الفترة تقل دقة مواقع الكواكب والمناطق الزمنية."
 });
 
 </script>
@@ -10881,61 +10949,6 @@ I18N.hi = deepMerge(I18N.fr, {
   },
   modalities: { cardinal: "चर", fixed: "स्थिर", mutable: "द्विस्वभाव" },
   elements: { fire: "अग्नि", earth: "पृथ्वी", air: "वायु", water: "जल" },
-  compat: {
-    levels: {
-      1: "तनावपूर्ण रिश्ता: आकर्षण हो सकता है, पर टकराव अक्सर होते हैं।",
-      2: "उत्साहजनक लेकिन चुनौतीपूर्ण रिश्ता।",
-      3: "औसत अनुकूलता: दोनों की कोशिश से रिश्ता संभव है।",
-      4: "बहुत अनुकूल: थोड़े तालमेल के साथ सहज समझ।",
-      5: "आत्मीय साथी: स्वाभाविक और गहरा अपनापन।"
-    },
-    pairs: {
-      fire_fire: "दो आग जो साथ भड़कती हैं: तीव्र जुनून, पर जल जाने का खतरा भी।",
-      fire_air: "वायु लौ को भड़काती है: बौद्धिक मेल और साझा उत्साह।",
-      fire_earth: "पृथ्वी आग को दबा देती है: धैर्य और तालमेल ज़रूरी है।",
-      fire_water: "जल आग बुझा देता है: विपरीत तत्व, पर गहरा आकर्षण।",
-      earth_earth: "दो पृथ्वी: स्थिरता और भरोसा, पर एकरसता का खतरा।",
-      earth_air: "पृथ्वी और वायु: दो अलग लय जिन्हें मिलाना होगा।",
-      earth_water: "जल पृथ्वी को उपजाऊ बनाता है: विकास, आपसी सहारा और समृद्धि।",
-      air_air: "दो वायु: मानसिक मेल, पर सतहीपन का खतरा।",
-      air_water: "वायु जल को हिलाती है: बुद्धि गहराइयों से मिलती है।",
-      water_water: "दो जल: भावनात्मक मिलन, गहराई और बिना कहे समझ।"
-    }
-  },
-  pair: {
-    title: "दो लोगों की अनुकूलता",
-    partnerName: "दूसरे व्यक्ति का नाम",
-    partnerDate: "उनकी जन्म तिथि",
-    partnerTime: "उनका जन्म समय",
-    compare: "तुलना करें",
-    you: "आप",
-    other: "दूसरा व्यक्ति",
-    global: "कुल अनुकूलता",
-    western: "राशियाँ",
-    chinese: "चीनी पशु",
-    moon: "चंद्र राशियाँ · भावनात्मक मेल",
-    moonUnknown: "चंद्र राशियों की तुलना के लिए जन्म समय दर्ज करें: किसी एक जन्मदिन पर चंद्रमा राशि बदलता है।",
-    invalid: "अमान्य जन्म तिथि।",
-    noDate: "दूसरे व्यक्ति की जन्म तिथि दर्ज करें।",
-    note: "पश्चिमी और चीनी ज्योतिष परंपराओं पर आधारित प्रतीकात्मक अनुकूलता। कुल अनुकूलता उपलब्ध पहलुओं का औसत है।"
-  },
-  theme: { light: "हल्का मोड" },
-  wheel: { title: "राशिचक्र", today: "आज", birth: "जन्म के समय" },
-  history: { title: "हाल की खोजें", clear: "इतिहास मिटाएँ" },
-  offline: {
-    button: "ऑफ़लाइन संस्करण",
-    hint: "पूरा टूल एक HTML फ़ाइल में डाउनलोड करें: बिना इंटरनेट के चलता है और साझा करना आसान है।",
-    opened: "स्वतंत्र संस्करण नए टैब में खुलता है: सहेजने के लिए वहाँ “ऑफ़लाइन संस्करण” पर क्लिक करें।"
-  },
-  labelBirthPlace: "जन्म स्थान",
-  placeNone: "— तय नहीं —",
-  infoLabel: "अधिक जानकारी",
-  timePlaceHint: "जन्म कुंडली (लग्न और भाव) के लिए जन्म समय और जन्म स्थान ज़रूरी हैं।",
-  placePlaceholder: "शहर का नाम लिखें…",
-  placeNoMatch: "कोई शहर नहीं मिला। सबसे पास का शहर आज़माएँ।",
-  placeUnknown: "जन्म स्थान पहचाना नहीं गया: सुझाई गई सूची से कोई शहर चुनें (सबसे पास का शहर भी चलेगा)।",
-  placeClear: "स्थान मिटाएँ",
-  placesCredit: "शहर: GeoNames (www.geonames.org), CC BY 4.0 लाइसेंस।",
   decanTraits: {
     aries: [
       [["अग्रणी", "उत्साही", "विजेता"], "मंगल के प्रभाव में यह द्रेष्काण मेष का शुद्धतम रूप है: अग्रणी, उत्साही और विजयी।"],
@@ -10997,6 +11010,27 @@ I18N.hi = deepMerge(I18N.fr, {
       [["अंतर्ज्ञानी", "भावुक", "करुणामय"], "चंद्रमा के प्रभाव में यह द्रेष्काण मीन को अधिक अंतर्ज्ञानी, भावुक और करुणामय बनाता है।"],
       [["तीव्र", "लचीला", "परिवर्तनकारी"], "प्लूटो के प्रभाव में यह द्रेष्काण मीन को अधिक तीव्र, हर मुश्किल से उबरने वाला और परिवर्तनकारी बनाता है।"]
     ]
+  },
+  compat: {
+    levels: {
+      1: "तनावपूर्ण रिश्ता: आकर्षण हो सकता है, पर टकराव अक्सर होते हैं।",
+      2: "उत्साहजनक लेकिन चुनौतीपूर्ण रिश्ता।",
+      3: "औसत अनुकूलता: दोनों की कोशिश से रिश्ता संभव है।",
+      4: "बहुत अनुकूल: थोड़े तालमेल के साथ सहज समझ।",
+      5: "आत्मीय साथी: स्वाभाविक और गहरा अपनापन।"
+    },
+    pairs: {
+      fire_fire: "दो आग जो साथ भड़कती हैं: तीव्र जुनून, पर जल जाने का खतरा भी।",
+      fire_air: "वायु लौ को भड़काती है: बौद्धिक मेल और साझा उत्साह।",
+      fire_earth: "पृथ्वी आग को दबा देती है: धैर्य और तालमेल ज़रूरी है।",
+      fire_water: "जल आग बुझा देता है: विपरीत तत्व, पर गहरा आकर्षण।",
+      earth_earth: "दो पृथ्वी: स्थिरता और भरोसा, पर एकरसता का खतरा।",
+      earth_air: "पृथ्वी और वायु: दो अलग लय जिन्हें मिलाना होगा।",
+      earth_water: "जल पृथ्वी को उपजाऊ बनाता है: विकास, आपसी सहारा और समृद्धि।",
+      air_air: "दो वायु: मानसिक मेल, पर सतहीपन का खतरा।",
+      air_water: "वायु जल को हिलाती है: बुद्धि गहराइयों से मिलती है।",
+      water_water: "दो जल: भावनात्मक मिलन, गहराई और बिना कहे समझ।"
+    }
   },
   cn: {
     names: {
@@ -11250,7 +11284,7 @@ I18N.hi = deepMerge(I18N.fr, {
     visibleHere: "यहाँ से दिखेगा",
     notVisibleHere: "यहाँ से नहीं दिखेगा",
     solarWhere: "पृथ्वी के एक हिस्से से दिखेगा",
-    note: "आकाश आपके उपकरण के समय के अनुसार, वायुमंडलीय अपवर्तन के बिना गणना किया गया है। तारे: d3-celestial (O. Frohn, BSD लाइसेंस), हिप्पार्कोस सूची।",
+    note: "आकाश चुने गए स्थान के स्थानीय समय के अनुसार गणना किया गया है (“मेरा स्थान” के लिए उपकरण का समय), वायुमंडलीय अपवर्तन के बिना। तारे: d3-celestial (O. Frohn, BSD लाइसेंस), हिप्पार्कोस सूची।",
     directions: ["उत्तर", "उत्तर-पूर्व", "पूर्व", "दक्षिण-पूर्व", "दक्षिण", "दक्षिण-पश्चिम", "पश्चिम", "उत्तर-पश्चिम"],
     eclipseTypes: {
       T: "पूर्ण सूर्य ग्रहण",
@@ -11286,14 +11320,39 @@ I18N.hi = deepMerge(I18N.fr, {
     },
     aboveHorizon: "क्षितिज के ऊपर"
   },
+  pair: {
+    title: "दो लोगों की अनुकूलता",
+    partnerName: "दूसरे व्यक्ति का नाम",
+    partnerDate: "उनकी जन्म तिथि",
+    partnerTime: "उनका जन्म समय",
+    compare: "तुलना करें",
+    you: "आप",
+    other: "दूसरा व्यक्ति",
+    global: "कुल अनुकूलता",
+    western: "राशियाँ",
+    chinese: "चीनी पशु",
+    moon: "चंद्र राशियाँ · भावनात्मक मेल",
+    moonUnknown: "चंद्र राशियों की तुलना के लिए जन्म समय दर्ज करें: किसी एक जन्मदिन पर चंद्रमा राशि बदलता है।",
+    invalid: "अमान्य जन्म तिथि।",
+    noDate: "दूसरे व्यक्ति की जन्म तिथि दर्ज करें।",
+    note: "पश्चिमी और चीनी ज्योतिष परंपराओं पर आधारित प्रतीकात्मक अनुकूलता। कुल अनुकूलता उपलब्ध पहलुओं का औसत है।",
+    partnerPlace: "दूसरे व्यक्ति का जन्म स्थान"
+  },
+  theme: { light: "हल्का मोड" },
+  wheel: { title: "राशिचक्र", today: "आज", birth: "जन्म के समय" },
+  history: { title: "हाल की खोजें", clear: "इतिहास मिटाएँ" },
+  offline: {
+    button: "ऑफ़लाइन संस्करण",
+    hint: "पूरा टूल एक HTML फ़ाइल में डाउनलोड करें: बिना इंटरनेट के चलता है और साझा करना आसान है।",
+    opened: "स्वतंत्र संस्करण नए टैब में खुलता है: सहेजने के लिए वहाँ “ऑफ़लाइन संस्करण” पर क्लिक करें।"
+  },
+  labelBirthPlace: "जन्म स्थान",
+  placeNone: "— तय नहीं —",
   natal: {
     title: "जन्म कुंडली",
     tabSigns: "राशि और चीनी राशिचक्र",
     tabNatal: "जन्म कुंडली",
     tabsLabel: "परिणाम का दृश्य",
-    tabSignsSub: "संक्षिप्त चित्र",
-    tabNatalSub: "पूरा चित्र",
-    completeFields: "समय और स्थान जोड़ें",
     ascendant: "लग्न",
     midheaven: "मध्य आकाश (MC)",
     positions: "जन्म के समय स्थितियाँ",
@@ -11364,8 +11423,13 @@ I18N.hi = deepMerge(I18N.fr, {
       square: "तनाव: कर्म के लिए प्रेरित करने वाली चुनौती",
       trine: "सामंजस्य: स्वाभाविक प्रतिभा",
       opposition: "ध्रुवता: दो शक्तियों के बीच संतुलन ढूँढना"
-    }
+    },
+    tabSignsSub: "संक्षिप्त चित्र",
+    tabNatalSub: "पूरा चित्र",
+    completeFields: "समय और स्थान जोड़ें"
   },
+  infoLabel: "अधिक जानकारी",
+  timePlaceHint: "जन्म कुंडली (लग्न और भाव) के लिए जन्म समय और जन्म स्थान ज़रूरी हैं।",
   info: {
     sunPosition: "जन्म के समय राशिचक्र में सूर्य की सटीक स्थिति, राशि के भीतर अंशों में (0 से 30° तक)। राशि और द्रेष्काण इसी से तय होते हैं, और यह खगोलीय गणना से निकाली जाती है, निश्चित तारीख़ों से नहीं।",
     natalMoon: "जन्म के समय चंद्रमा जिस राशि में था; ज्योतिष में यह भावनात्मक जीवन को दर्शाती है। चंद्रमा लगभग हर ढाई दिन में राशि बदलता है: जन्म समय के बिना कभी-कभी दो राशियाँ संभव होती हैं।",
@@ -11387,8 +11451,15 @@ I18N.hi = deepMerge(I18N.fr, {
     retrograde: "पृथ्वी से देखने पर कोई ग्रह कभी-कभी कुछ हफ़्तों तक राशिचक्र में पीछे जाता दिखता है: यह ग्रहों की एक-दूसरे के सापेक्ष गति से बना भ्रम है। ज्योतिष में यह अवधि उस ग्रह के क्षेत्र पर दोबारा विचार करने का संकेत है।",
     horoscope: "राशिफल ग्रहों की वर्तमान स्थिति की तुलना आपकी राशि से करता है: आपकी राशि से गुज़रता या उससे कोण बनाता ग्रह (गोचर) उस अवधि को रंग देता है। धीमे ग्रह बड़े रुझान दिखाते हैं, तेज़ ग्रह इस समय का माहौल।",
     skymap: "चुने हुए शहर से ऊपर देखने पर दिखने वाला आकाश: चक्र का किनारा क्षितिज है और केंद्र ठीक आपके सिर के ऊपर का बिंदु। उत्तर ऊपर और पूर्व बाईं ओर है, क्योंकि आप आकाश की ओर देख रहे हैं।",
-    compat: "कुल अनुकूलता उपलब्ध पहलुओं का औसत है: राशियाँ, चीनी पशु और, यदि जन्म समय ज्ञात हों, चंद्र राशियाँ। यह एक प्रतीकात्मक व्याख्या है, भविष्यवाणी नहीं।"
-  }
+    compat: "कुल अनुकूलता उपलब्ध पहलुओं का औसत है: राशियाँ, चीनी पशु और, यदि जन्म समय ज्ञात हों, चंद्र राशियाँ। यह एक प्रतीकात्मक व्याख्या है, भविष्यवाणी नहीं।",
+    signVsConstellation: "यहाँ की राशियाँ वसंत विषुव से गिने गए 30° के 12 बराबर हिस्से हैं: यह सायन (ट्रॉपिकल) राशिचक्र है। उन्हीं नामों वाले तारामंडल अलग-अलग आकार के तारों के समूह हैं। पृथ्वी की धुरी के धीमे डोलन (अयन-चलन) के कारण प्राचीन काल से राशियाँ और तारामंडल लगभग एक राशि खिसक गए हैं। भारतीय वैदिक ज्योतिष निरयन (साइडरियल) राशिचक्र अपनाता है, इसलिए वहाँ आपकी राशि अक्सर यहाँ से एक राशि पीछे होती है।"
+  },
+  placePlaceholder: "शहर का नाम लिखें…",
+  placeNoMatch: "कोई शहर नहीं मिला। सबसे पास का शहर आज़माएँ।",
+  placeUnknown: "जन्म स्थान पहचाना नहीं गया: सुझाई गई सूची से कोई शहर चुनें (सबसे पास का शहर भी चलेगा)।",
+  placeClear: "स्थान मिटाएँ",
+  placesCredit: "शहर: GeoNames (www.geonames.org), CC BY 4.0 लाइसेंस।",
+  rangeWarning: "गणनाएँ 1900 से 2100 के बीच जन्म के लिए जाँची गई हैं: इस अवधि के बाहर ग्रहों की स्थिति और समय क्षेत्रों की सटीकता कम हो जाती है।"
 });
 
 </script>
@@ -11574,61 +11645,6 @@ I18N.th = deepMerge(I18N.fr, {
   },
   modalities: { cardinal: "จร", fixed: "สถิร", mutable: "อุภัย" },
   elements: { fire: "ไฟ", earth: "ดิน", air: "ลม", water: "น้ำ" },
-  compat: {
-    levels: {
-      1: "ความสัมพันธ์ตึงเครียด อาจดึงดูดกันได้แต่ขัดแย้งบ่อย",
-      2: "ความสัมพันธ์ที่ตื่นเต้นแต่ท้าทาย",
-      3: "เข้ากันได้ปานกลาง ความสัมพันธ์เป็นไปได้หากทั้งสองฝ่ายพยายาม",
-      4: "เข้ากันได้ดีมาก เข้าใจกันง่ายเพียงปรับเล็กน้อย",
-      5: "เนื้อคู่ ผูกพันกันอย่างเป็นธรรมชาติและลึกซึ้ง"
-    },
-    pairs: {
-      fire_fire: "ไฟสองกองที่ลุกโชน ความรักเร่าร้อน แต่ก็เสี่ยงจะมอดไหม้",
-      fire_air: "ลมช่วยโหมไฟ เข้าใจกันทางความคิดและร่วมกันกระตือรือร้น",
-      fire_earth: "ดินกลบไฟ ต้องอาศัยความอดทนและการปรับตัว",
-      fire_water: "น้ำดับไฟ ธาตุตรงข้ามกัน แต่ดึงดูดกันอย่างแรง",
-      earth_earth: "ดินสองก้อน มั่นคงและไว้ใจกันได้ แต่เสี่ยงจะจำเจ",
-      earth_air: "ดินกับลม จังหวะต่างกันที่ต้องปรับเข้าหากัน",
-      earth_water: "น้ำหล่อเลี้ยงดิน เติบโตไปด้วยกัน ค้ำจุนกันและอุดมสมบูรณ์",
-      air_air: "ลมสองสาย เข้าใจกันทางความคิด แต่เสี่ยงจะผิวเผิน",
-      air_water: "ลมพัดผิวน้ำ ความคิดได้พบกับความลึกซึ้ง",
-      water_water: "น้ำสองสาย อารมณ์หลอมรวมกัน ลึกซึ้งและเข้าใจกันโดยไม่ต้องพูด"
-    }
-  },
-  pair: {
-    title: "ความเข้ากันได้ของสองคน",
-    partnerName: "ชื่อของอีกฝ่าย",
-    partnerDate: "วันเกิดของอีกฝ่าย",
-    partnerTime: "เวลาเกิดของอีกฝ่าย",
-    compare: "เปรียบเทียบ",
-    you: "คุณ",
-    other: "อีกฝ่าย",
-    global: "ความเข้ากันได้โดยรวม",
-    western: "ราศี",
-    chinese: "นักษัตรจีน",
-    moon: "ราศีของดวงจันทร์ · ความเข้ากันทางอารมณ์",
-    moonUnknown: "หากต้องการเปรียบเทียบราศีของดวงจันทร์ กรุณาใส่เวลาเกิด เพราะดวงจันทร์ย้ายราศีในวันเกิดของคนใดคนหนึ่ง",
-    invalid: "วันเกิดไม่ถูกต้อง",
-    noDate: "กรุณาใส่วันเกิดของอีกฝ่าย",
-    note: "ความเข้ากันได้เชิงสัญลักษณ์ ตามธรรมเนียมโหราศาสตร์ตะวันตกและจีน ความเข้ากันได้โดยรวมคือค่าเฉลี่ยของด้านที่มีข้อมูล"
-  },
-  theme: { light: "โหมดสว่าง" },
-  wheel: { title: "วงล้อจักรราศี", today: "วันนี้", birth: "ขณะเกิด" },
-  history: { title: "การค้นหาล่าสุด", clear: "ล้างประวัติ" },
-  offline: {
-    button: "เวอร์ชันออฟไลน์",
-    hint: "ดาวน์โหลดเครื่องมือทั้งหมดเป็นไฟล์ HTML ไฟล์เดียว ใช้งานได้โดยไม่ต้องมีอินเทอร์เน็ตและแชร์ได้ง่าย",
-    opened: "เวอร์ชันแบบสแตนด์อโลนจะเปิดในแท็บใหม่ คลิก “เวอร์ชันออฟไลน์” ในแท็บนั้นเพื่อบันทึก"
-  },
-  labelBirthPlace: "สถานที่เกิด",
-  placeNone: "— ไม่ระบุ —",
-  infoLabel: "ข้อมูลเพิ่มเติม",
-  timePlaceHint: "ดวงกำเนิด (ลัคนาและเรือน) ต้องใช้เวลาเกิดและสถานที่เกิด",
-  placePlaceholder: "พิมพ์ชื่อเมือง…",
-  placeNoMatch: "ไม่พบเมือง ลองใช้เมืองที่ใกล้ที่สุด",
-  placeUnknown: "ไม่รู้จักสถานที่เกิด กรุณาเลือกเมืองจากรายการที่แนะนำ (เมืองที่ใกล้ที่สุดก็ได้)",
-  placeClear: "ล้างสถานที่",
-  placesCredit: "ข้อมูลเมือง: GeoNames (www.geonames.org) สัญญาอนุญาต CC BY 4.0",
   decanTraits: {
     aries: [
       [["ผู้บุกเบิก", "กระตือรือร้น", "นักพิชิต"], "ภายใต้อิทธิพลของดาวอังคาร ตรียางค์นี้แสดงราศีเมษในแบบที่บริสุทธิ์ที่สุด เป็นผู้บุกเบิก กระตือรือร้น และชอบพิชิต"],
@@ -11690,6 +11706,27 @@ I18N.th = deepMerge(I18N.fr, {
       [["มีสัญชาตญาณ", "อ่อนไหว", "มีเมตตา"], "ภายใต้อิทธิพลของดวงจันทร์ ตรียางค์นี้ทำให้ราศีมีนมีสัญชาตญาณ อ่อนไหว และมีเมตตายิ่งขึ้น"],
       [["เข้มข้น", "ฟื้นตัวเก่ง", "นำการเปลี่ยนแปลง"], "ภายใต้อิทธิพลของดาวพลูโต ตรียางค์นี้ทำให้ราศีมีนเข้มข้น ฟื้นตัวเก่ง และนำการเปลี่ยนแปลงยิ่งขึ้น"]
     ]
+  },
+  compat: {
+    levels: {
+      1: "ความสัมพันธ์ตึงเครียด อาจดึงดูดกันได้แต่ขัดแย้งบ่อย",
+      2: "ความสัมพันธ์ที่ตื่นเต้นแต่ท้าทาย",
+      3: "เข้ากันได้ปานกลาง ความสัมพันธ์เป็นไปได้หากทั้งสองฝ่ายพยายาม",
+      4: "เข้ากันได้ดีมาก เข้าใจกันง่ายเพียงปรับเล็กน้อย",
+      5: "เนื้อคู่ ผูกพันกันอย่างเป็นธรรมชาติและลึกซึ้ง"
+    },
+    pairs: {
+      fire_fire: "ไฟสองกองที่ลุกโชน ความรักเร่าร้อน แต่ก็เสี่ยงจะมอดไหม้",
+      fire_air: "ลมช่วยโหมไฟ เข้าใจกันทางความคิดและร่วมกันกระตือรือร้น",
+      fire_earth: "ดินกลบไฟ ต้องอาศัยความอดทนและการปรับตัว",
+      fire_water: "น้ำดับไฟ ธาตุตรงข้ามกัน แต่ดึงดูดกันอย่างแรง",
+      earth_earth: "ดินสองก้อน มั่นคงและไว้ใจกันได้ แต่เสี่ยงจะจำเจ",
+      earth_air: "ดินกับลม จังหวะต่างกันที่ต้องปรับเข้าหากัน",
+      earth_water: "น้ำหล่อเลี้ยงดิน เติบโตไปด้วยกัน ค้ำจุนกันและอุดมสมบูรณ์",
+      air_air: "ลมสองสาย เข้าใจกันทางความคิด แต่เสี่ยงจะผิวเผิน",
+      air_water: "ลมพัดผิวน้ำ ความคิดได้พบกับความลึกซึ้ง",
+      water_water: "น้ำสองสาย อารมณ์หลอมรวมกัน ลึกซึ้งและเข้าใจกันโดยไม่ต้องพูด"
+    }
   },
   cn: {
     names: {
@@ -11943,7 +11980,7 @@ I18N.th = deepMerge(I18N.fr, {
     visibleHere: "มองเห็นได้จากที่นี่",
     notVisibleHere: "มองไม่เห็นจากที่นี่",
     solarWhere: "มองเห็นได้จากบางส่วนของโลก",
-    note: "ท้องฟ้าคำนวณตามเวลาของอุปกรณ์ของคุณ โดยไม่รวมการหักเหของบรรยากาศ ข้อมูลดาว: d3-celestial (O. Frohn สัญญาอนุญาต BSD) แคตตาล็อกฮิปปาร์คอส",
+    note: "ท้องฟ้าคำนวณตามเวลาท้องถิ่นของสถานที่ที่เลือก (ใช้เวลาของอุปกรณ์สำหรับ “ตำแหน่งของฉัน”) โดยไม่รวมการหักเหของบรรยากาศ ข้อมูลดาว: d3-celestial (O. Frohn สัญญาอนุญาต BSD) แคตตาล็อกฮิปปาร์คอส",
     directions: ["เหนือ", "ตะวันออกเฉียงเหนือ", "ตะวันออก", "ตะวันออกเฉียงใต้", "ใต้", "ตะวันตกเฉียงใต้", "ตะวันตก", "ตะวันตกเฉียงเหนือ"],
     eclipseTypes: {
       T: "สุริยุปราคาเต็มดวง",
@@ -11979,14 +12016,39 @@ I18N.th = deepMerge(I18N.fr, {
     },
     aboveHorizon: "เหนือขอบฟ้า"
   },
+  pair: {
+    title: "ความเข้ากันได้ของสองคน",
+    partnerName: "ชื่อของอีกฝ่าย",
+    partnerDate: "วันเกิดของอีกฝ่าย",
+    partnerTime: "เวลาเกิดของอีกฝ่าย",
+    compare: "เปรียบเทียบ",
+    you: "คุณ",
+    other: "อีกฝ่าย",
+    global: "ความเข้ากันได้โดยรวม",
+    western: "ราศี",
+    chinese: "นักษัตรจีน",
+    moon: "ราศีของดวงจันทร์ · ความเข้ากันทางอารมณ์",
+    moonUnknown: "หากต้องการเปรียบเทียบราศีของดวงจันทร์ กรุณาใส่เวลาเกิด เพราะดวงจันทร์ย้ายราศีในวันเกิดของคนใดคนหนึ่ง",
+    invalid: "วันเกิดไม่ถูกต้อง",
+    noDate: "กรุณาใส่วันเกิดของอีกฝ่าย",
+    note: "ความเข้ากันได้เชิงสัญลักษณ์ ตามธรรมเนียมโหราศาสตร์ตะวันตกและจีน ความเข้ากันได้โดยรวมคือค่าเฉลี่ยของด้านที่มีข้อมูล",
+    partnerPlace: "สถานที่เกิดของอีกฝ่าย"
+  },
+  theme: { light: "โหมดสว่าง" },
+  wheel: { title: "วงล้อจักรราศี", today: "วันนี้", birth: "ขณะเกิด" },
+  history: { title: "การค้นหาล่าสุด", clear: "ล้างประวัติ" },
+  offline: {
+    button: "เวอร์ชันออฟไลน์",
+    hint: "ดาวน์โหลดเครื่องมือทั้งหมดเป็นไฟล์ HTML ไฟล์เดียว ใช้งานได้โดยไม่ต้องมีอินเทอร์เน็ตและแชร์ได้ง่าย",
+    opened: "เวอร์ชันแบบสแตนด์อโลนจะเปิดในแท็บใหม่ คลิก “เวอร์ชันออฟไลน์” ในแท็บนั้นเพื่อบันทึก"
+  },
+  labelBirthPlace: "สถานที่เกิด",
+  placeNone: "— ไม่ระบุ —",
   natal: {
     title: "ดวงกำเนิด",
     tabSigns: "ราศีและนักษัตรจีน",
     tabNatal: "ดวงกำเนิด",
     tabsLabel: "มุมมองผลลัพธ์",
-    tabSignsSub: "ภาพรวมแบบย่อ",
-    tabNatalSub: "ภาพรวมแบบครบถ้วน",
-    completeFields: "เพิ่มเวลาและสถานที่เกิด",
     ascendant: "ลัคนา",
     midheaven: "จุดกลางฟ้า (MC)",
     positions: "ตำแหน่งดาวขณะเกิด",
@@ -12051,8 +12113,13 @@ I18N.th = deepMerge(I18N.fr, {
       square: "ตึงเครียด: ความท้าทายที่ผลักดันให้ลงมือ",
       trine: "กลมกลืน: พรสวรรค์โดยธรรมชาติ",
       opposition: "ขั้วตรงข้าม: ต้องหาสมดุลระหว่างสองพลัง"
-    }
+    },
+    tabSignsSub: "ภาพรวมแบบย่อ",
+    tabNatalSub: "ภาพรวมแบบครบถ้วน",
+    completeFields: "เพิ่มเวลาและสถานที่เกิด"
   },
+  infoLabel: "ข้อมูลเพิ่มเติม",
+  timePlaceHint: "ดวงกำเนิด (ลัคนาและเรือน) ต้องใช้เวลาเกิดและสถานที่เกิด",
   info: {
     sunPosition: "ตำแหน่งที่แน่นอนของดวงอาทิตย์บนจักรราศีขณะเกิด เป็นองศาภายในราศี (0 ถึง 30°) ตำแหน่งนี้กำหนดราศีและตรียางค์ และคำนวณทางดาราศาสตร์ ไม่ได้อิงจากวันที่ตายตัว",
     natalMoon: "ราศีที่ดวงจันทร์สถิตอยู่ขณะเกิด ในทางโหราศาสตร์หมายถึงชีวิตด้านอารมณ์ ดวงจันทร์ย้ายราศีประมาณทุกสองวันครึ่ง หากไม่มีเวลาเกิด บางครั้งอาจเป็นได้สองราศี",
@@ -12074,8 +12141,15 @@ I18N.th = deepMerge(I18N.fr, {
     retrograde: "เมื่อมองจากโลก บางครั้งดาวเคราะห์ดูเหมือนเคลื่อนถอยหลังบนจักรราศีอยู่หลายสัปดาห์ นี่คือภาพลวงที่เกิดจากการเคลื่อนที่ของดาวเคราะห์เมื่อเทียบกัน ในทางโหราศาสตร์ ช่วงนี้ชวนให้ทบทวนเรื่องที่ดาวดวงนั้นดูแล",
     horoscope: "ดวงชะตาเปรียบเทียบตำแหน่งปัจจุบันของดาวกับราศีของคุณ ดาวที่โคจรผ่านราศีของคุณหรือทำมุมกับราศีของคุณ (ดาวจร) จะส่งผลต่อช่วงเวลานั้น ดาวที่เคลื่อนช้าบอกแนวโน้มใหญ่ ดาวที่เคลื่อนเร็วบอกบรรยากาศช่วงนี้",
     skymap: "ท้องฟ้าที่คุณเห็นเมื่อเงยหน้ามองจากเมืองที่เลือก ขอบวงกลมคือขอบฟ้า จุดกึ่งกลางคือจุดเหนือศีรษะพอดี ทิศเหนืออยู่ด้านบนและทิศตะวันออกอยู่ทางซ้าย เพราะคุณกำลังมองขึ้นไปบนฟ้า",
-    compat: "ความเข้ากันได้โดยรวมคือค่าเฉลี่ยของด้านที่มีข้อมูล ได้แก่ ราศี นักษัตรจีน และราศีของดวงจันทร์หากทราบเวลาเกิด เป็นการตีความเชิงสัญลักษณ์ ไม่ใช่คำทำนาย"
-  }
+    compat: "ความเข้ากันได้โดยรวมคือค่าเฉลี่ยของด้านที่มีข้อมูล ได้แก่ ราศี นักษัตรจีน และราศีของดวงจันทร์หากทราบเวลาเกิด เป็นการตีความเชิงสัญลักษณ์ ไม่ใช่คำทำนาย",
+    signVsConstellation: "ราศีในที่นี้คือ 12 ช่วงเท่า ๆ กัน ช่วงละ 30° นับจากจุดวสันตวิษุวัต เรียกว่าระบบสายนะ ส่วนกลุ่มดาวชื่อเดียวกันเป็นกลุ่มดาวที่มีขนาดไม่เท่ากัน เพราะแกนโลกส่ายอย่างช้า ๆ (การหมุนควง) ราศีกับกลุ่มดาวจึงเหลื่อมกันราวหนึ่งราศีนับแต่สมัยโบราณ โหราศาสตร์ไทยดั้งเดิมใช้ระบบนิรายนะ ราศีของคุณในระบบนั้นจึงมักถอยไปหนึ่งราศี"
+  },
+  placePlaceholder: "พิมพ์ชื่อเมือง…",
+  placeNoMatch: "ไม่พบเมือง ลองใช้เมืองที่ใกล้ที่สุด",
+  placeUnknown: "ไม่รู้จักสถานที่เกิด กรุณาเลือกเมืองจากรายการที่แนะนำ (เมืองที่ใกล้ที่สุดก็ได้)",
+  placeClear: "ล้างสถานที่",
+  placesCredit: "ข้อมูลเมือง: GeoNames (www.geonames.org) สัญญาอนุญาต CC BY 4.0",
+  rangeWarning: "การคำนวณผ่านการตรวจสอบสำหรับผู้ที่เกิดระหว่าง ค.ศ. 1900 ถึง 2100 นอกช่วงเวลานี้ ตำแหน่งดาวและเขตเวลาจะแม่นยำน้อยลง"
 });
 
 </script>
@@ -12109,10 +12183,10 @@ function decanFromLongitude(lon){ return Math.floor((lon % 30) / 10); }
 
 /* "HH:MM" (ou "HH:MM:SS") → {h, min}, ou null si vide / invalide */
 function parseTime(str){
-  const r = /^(\d{2}):(\d{2})/.exec(str || '');
+  const r = /^(\d{2}):(\d{2})(?::(\d{2}))?$/.exec(str || '');   // HH:MM ou HH:MM:SS (champ avec secondes), rien d'autre
   if (!r) return null;
-  const h = +r[1], min = +r[2];
-  return (h < 24 && min < 60) ? { h, min } : null;
+  const h = +r[1], min = +r[2], sec = r[3] === undefined ? 0 : +r[3];
+  return (h < 24 && min < 60 && sec < 60) ? { h, min } : null;
 }
 
 /* Instant local → ms UTC. Avec tz (fuseau IANA du lieu de naissance, ex. « Europe/Paris ») : heure du lieu,
@@ -47246,7 +47320,9 @@ function renderOwner(){
   const el = document.getElementById('profileOwner');
   if (!el) return;
   const name = currentName ? `<div class="owner-name">${escapeHtml(currentName)}</div>` : '';
-  el.innerHTML = name + `<div class="owner-birth">${formatBirth(currentDate, currentTime, currentLang)}${birthPlace(currentBirthPlace) ? ' · ' + escapeHtml(placeName(birthPlace(currentBirthPlace), currentLang)) : ''}</div>`;
+  const yr = parseISODate(currentDate).y;
+  const warn = yr < 1900 || yr > 2100 ? `<p class="range-warn" role="note">${I18N[currentLang].rangeWarning}</p>` : '';
+  el.innerHTML = name + `<div class="owner-birth">${formatBirth(currentDate, currentTime, currentLang)}${birthPlace(currentBirthPlace) ? ' · ' + escapeHtml(placeName(birthPlace(currentBirthPlace), currentLang)) : ''}</div>` + warn;
 }
 
 /* Briques de rendu partagées par les deux fiches */
@@ -47301,7 +47377,7 @@ function westernCards(t, signKey, decanIdx){
   const [decanTraitList, decanDesc] = t.decanTraits[signKey][decanIdx];
   return [
     `<div class="card">
-        <h3>${t.sections.western}</h3>
+        <h3>${t.sections.western}${infoBtn('signVsConstellation', t.sections.western)}</h3>
         <div class="sign-head">
           <span class="sign-icon" aria-hidden="true">${meta.sym}</span>
           <div>
@@ -47718,7 +47794,7 @@ function renderHistory(){
     if (currentName) store.set('zodiac_name', currentName); else store.remove('zodiac_name');
     document.getElementById('birthDate').value = e.date;
     document.getElementById('birthTime').value = e.time || '';
-    setPlace(e.place);
+    birthField.set(e.place);
     launchSearch();
   }));
   document.getElementById('historyClear').addEventListener('click', () => { store.remove('zodiac_history'); renderHistory(); });
@@ -47780,85 +47856,80 @@ let viewMode = 'signs';       // onglet affiché : 'signs' (signe & zodiaque chi
 const ASPECT_SYM = { conjunction: '☌', sextile: '⚹', square: '□', trine: '△', opposition: '☍' };
 
 function birthTz(){ const p = birthPlace(currentBirthPlace); return p ? p.tz : null; }
-/* ---------- Champ « Lieu de naissance » : recherche dans ~34 000 villes ---------- */
-let selectedPlaceKey = '';           // identifiant de la ville choisie dans la liste ('' : aucune)
-let placeResults = [], placeActive = -1;
+/* ---------- Champ de recherche de ville (~34 000 villes) ----------
+   Composant réutilisable : lieu de naissance, et lieu de naissance de la 2e personne (compatibilité).
+   Suggestions au fil de la frappe, flèches, Entrée, Échap, bouton ×. */
 function placeLabel(p){ return `${placeName(p, currentLang)} (${regionName(p.country)})`; }
-function closePlaceList(){
-  const list = document.getElementById('placeList'), input = document.getElementById('birthPlace');
-  list.hidden = true; input.setAttribute('aria-expanded', 'false'); input.removeAttribute('aria-activedescendant'); placeActive = -1;
-}
-/* Fixe la ville choisie (ou aucune) et affiche son nom avec le pays dans la langue courante */
-function setPlace(key){
-  const p = birthPlace(key), input = document.getElementById('birthPlace');
-  selectedPlaceKey = p ? p.key : '';
-  input.value = p ? placeLabel(p) : '';
-  document.getElementById('placeClear').hidden = !input.value;
-  closePlaceList();
-}
-function renderPlaceList(){
-  const t = I18N[currentLang], list = document.getElementById('placeList'), input = document.getElementById('birthPlace');
-  const q = normPlace(input.value);
-  if (!placeResults.length) {
-    list.innerHTML = `<li class="po-empty" role="presentation">${t.placeNoMatch}</li>`;
-  } else {
-    const dupes = new Set(), seen = new Set();
-    for (const p of placeResults) { const k = p.name + '|' + p.country; if (seen.has(k)) dupes.add(k); seen.add(k); }
-    const nf = new Intl.NumberFormat(loc(currentLang), { maximumFractionDigits: 2 });
-    list.innerHTML = placeResults.map((p, i) => {
-      // Nom trouvé dans une autre langue : on l'affiche pour qu'on comprenne la suggestion (« London · Londres »)
-      const alt = !(' ' + p.norm).includes(' ' + q.replace(PLACE_ARTICLES, '')) ? p.alts.find((a, k) => (' ' + p.normAlts[k]).includes(' ' + q.replace(PLACE_ARTICLES, ''))) : null;
-      const dir = t.map.directions;   // points cardinaux traduits (N, E, S, O… dans chaque langue)
-      const where = dupes.has(p.name + '|' + p.country) ? ` · ${ltr(nf.format(Math.abs(p.lat)) + '°')} ${p.lat >= 0 ? dir[0] : dir[4]}, ${ltr(nf.format(Math.abs(p.lon)) + '°')} ${p.lon >= 0 ? dir[2] : dir[6]}` : '';
-      return `<li role="option" id="placeOpt${i}" data-i="${i}" aria-selected="${i === placeActive}"><span class="po-name">${escapeHtml(placeName(p, currentLang))}${alt ? ` <span class="po-alt">· ${escapeHtml(alt)}</span>` : ''}</span><span class="po-meta">${regionName(p.country)}${where}</span></li>`;
-    }).join('');
-  }
-  list.hidden = false;
-  input.setAttribute('aria-expanded', 'true');
-  if (placeActive >= 0) { input.setAttribute('aria-activedescendant', `placeOpt${placeActive}`); document.getElementById(`placeOpt${placeActive}`).scrollIntoView({ block: 'nearest' }); }
-  else input.removeAttribute('aria-activedescendant');
-}
-function updatePlaceSearch(){
-  const v = document.getElementById('birthPlace').value.trim();
-  document.getElementById('placeClear').hidden = !v;
-  // 2 lettres minimum en alphabet latin, 1 caractère pour les écritures où un signe vaut une syllabe ou un mot
-  const enough = v.length >= 2 || /[\u0e00-\u0e7f\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]/.test(v);
-  if (!enough) { placeResults = []; closePlaceList(); return; }
-  placeResults = searchPlaces(v, 8);
-  placeActive = placeResults.length ? 0 : -1;
-  renderPlaceList();
-}
-/* Texte saisi sans choisir dans la liste : accepté s'il désigne exactement une ville (la plus peuplée) */
-function resolveTypedPlace(){
-  const v = document.getElementById('birthPlace').value.trim();
-  if (!v || selectedPlaceKey) return true;
-  const first = searchPlaces(v, 1)[0];
-  if (first && (normPlace(first.name) === normPlace(v) || placeLabel(first) === v || first.normAlts.includes(normPlace(v)) || first.alts.some(a => `${a} (${regionName(first.country)})` === v))) { setPlace(first.key); return true; }
-  return false;
-}
-function bindPlaceField(){
-  const input = document.getElementById('birthPlace'), list = document.getElementById('placeList');
-  let timer = null;   // léger délai : la frappe rapide reste fluide sur téléphone
-  input.addEventListener('input', () => { selectedPlaceKey = ''; clearTimeout(timer); timer = setTimeout(updatePlaceSearch, 60); });
-  input.addEventListener('focus', () => { if (input.value.trim() && !selectedPlaceKey) updatePlaceSearch(); });
+function makePlaceField(inputId, listId, clearId, onEnter){
+  const input = document.getElementById(inputId), list = document.getElementById(listId), clear = document.getElementById(clearId);
+  let key = '', results = [], active = -1, timer = null;
+  const close = () => { list.hidden = true; input.setAttribute('aria-expanded', 'false'); input.removeAttribute('aria-activedescendant'); active = -1; };
+  const set = k => {
+    const p = birthPlace(k);
+    key = p ? p.key : '';
+    input.value = p ? placeLabel(p) : '';
+    clear.hidden = !input.value;
+    close();
+  };
+  const render = () => {
+    const t = I18N[currentLang], q = normPlace(input.value).replace(PLACE_ARTICLES, '');
+    if (!results.length) list.innerHTML = `<li class="po-empty" role="presentation">${t.placeNoMatch}</li>`;
+    else {
+      const dupes = new Set(), seen = new Set();
+      for (const p of results) { const k = p.name + '|' + p.country; if (seen.has(k)) dupes.add(k); seen.add(k); }
+      const nf = new Intl.NumberFormat(loc(currentLang), { maximumFractionDigits: 2 }), dir = t.map.directions;
+      list.innerHTML = results.map((p, i) => {
+        // Nom trouvé dans une autre langue : affiché pour qu'on comprenne la suggestion (« London · Londres »)
+        const alt = !(' ' + p.norm).includes(' ' + q) ? p.alts.find((a, k) => (' ' + p.normAlts[k]).includes(' ' + q)) : null;
+        const where = dupes.has(p.name + '|' + p.country) ? ` · ${ltr(nf.format(Math.abs(p.lat)) + '°')} ${p.lat >= 0 ? dir[0] : dir[4]}, ${ltr(nf.format(Math.abs(p.lon)) + '°')} ${p.lon >= 0 ? dir[2] : dir[6]}` : '';
+        return `<li role="option" id="${listId}Opt${i}" data-i="${i}" aria-selected="${i === active}"><span class="po-name">${escapeHtml(placeName(p, currentLang))}${alt ? ` <span class="po-alt">· ${escapeHtml(alt)}</span>` : ''}</span><span class="po-meta">${regionName(p.country)}${where}</span></li>`;
+      }).join('');
+    }
+    list.hidden = false;
+    input.setAttribute('aria-expanded', 'true');
+    if (active >= 0) { input.setAttribute('aria-activedescendant', `${listId}Opt${active}`); document.getElementById(`${listId}Opt${active}`).scrollIntoView({ block: 'nearest' }); }
+    else input.removeAttribute('aria-activedescendant');
+  };
+  const update = () => {
+    const v = input.value.trim();
+    clear.hidden = !v;
+    // 2 lettres minimum en alphabet latin, 1 caractère pour les écritures où un signe vaut une syllabe ou un mot
+    const enough = v.length >= 2 || /[\u0e00-\u0e7f\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]/.test(v);
+    if (!enough) { results = []; close(); return; }
+    results = searchPlaces(v, 8);
+    active = results.length ? 0 : -1;
+    render();
+  };
+  /* Texte saisi sans choisir dans la liste : accepté s'il désigne exactement une ville (la plus peuplée) */
+  const resolve = () => {
+    const v = input.value.trim();
+    if (!v || key) return true;
+    const first = searchPlaces(v, 1)[0];
+    if (first && (normPlace(first.name) === normPlace(v) || placeLabel(first) === v || first.normAlts.includes(normPlace(v)) || first.alts.some(a => `${a} (${regionName(first.country)})` === v))) { set(first.key); return true; }
+    return false;
+  };
+  input.addEventListener('input', () => { key = ''; clearTimeout(timer); timer = setTimeout(update, 60); });   // léger délai : frappe fluide sur téléphone
+  input.addEventListener('focus', () => { if (input.value.trim() && !key) update(); });
   input.addEventListener('keydown', e => {
-    const open = !list.hidden && placeResults.length;
+    const open = !list.hidden && results.length;
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       e.preventDefault();
-      if (!open) { updatePlaceSearch(); return; }
-      placeActive = (placeActive + (e.key === 'ArrowDown' ? 1 : -1) + placeResults.length) % placeResults.length;
-      renderPlaceList();
+      if (!open) { update(); return; }
+      active = (active + (e.key === 'ArrowDown' ? 1 : -1) + results.length) % results.length;
+      render();
     } else if (e.key === 'Enter') {
       e.preventDefault();
-      if (open && placeActive >= 0) setPlace(placeResults[placeActive].key);
-      else launchSearch();
-    } else if (e.key === 'Escape' && !list.hidden) { e.preventDefault(); e.stopPropagation(); closePlaceList(); }
+      if (open && active >= 0) set(results[active].key); else onEnter();
+    } else if (e.key === 'Escape' && !list.hidden) { e.preventDefault(); e.stopPropagation(); close(); }
   });
-  input.addEventListener('blur', () => setTimeout(() => { closePlaceList(); resolveTypedPlace(); }, 120));
+  input.addEventListener('blur', () => setTimeout(() => { close(); resolve(); }, 120));
   list.addEventListener('mousedown', e => e.preventDefault());   // garder le focus dans le champ
-  list.addEventListener('click', e => { const li = e.target.closest('li[data-i]'); if (li) setPlace(placeResults[+li.dataset.i].key); });
-  document.getElementById('placeClear').addEventListener('click', () => { setPlace(''); input.focus(); });
+  list.addEventListener('click', e => { const li = e.target.closest('li[data-i]'); if (li) set(results[+li.dataset.i].key); });
+  clear.addEventListener('click', () => { set(''); input.focus(); });
+  return { get key(){ return key; }, set, resolve, relabel(){ if (key) set(key); } };
 }
+let birthField = null;   // champ « Lieu de naissance » (créé à l'initialisation)
+let pairField = null;    // lieu de naissance de la 2e personne (recréé avec la carte de compatibilité)
 /* Valeur en degrés isolée en lecture gauche-droite : sinon, en arabe, le « ° » ou le « ′ » (caractères neutres)
    passe du mauvais côté du nombre (« °1 » au lieu de « 1° ») */
 const ltr = s => `<bdi dir="ltr">${s}</bdi>`;
@@ -47967,7 +48038,7 @@ function setView(mode, focus){
 let pairState = null;    // { name, date: "AAAA-MM-JJ", time: "HH:MM" ou "" } — en mémoire seulement, jamais enregistré
 
 function compatCardHtml(t){
-  const p = pairState || { name: '', date: '', time: '' }, q = t.pair;
+  const p = pairState || { name: '', date: '', time: '', place: '' }, q = t.pair;
   return `<section class="card compat-card" aria-labelledby="pairTitle">
       <h3 id="pairTitle">${q.title}${infoBtn('compat', q.title)}</h3>
       <div class="compat-form">
@@ -47976,6 +48047,12 @@ function compatCardHtml(t){
         <div class="field"><label for="pairDate">${q.partnerDate}</label><input type="date" id="pairDate" value="${p.date}"></div>
         <div class="field field-time"><label for="pairTime">${q.partnerTime} <span class="opt">${t.optional}</span></label>
           <input type="time" id="pairTime" value="${p.time}"></div>
+        <div class="field field-place"><label for="pairPlace">${q.partnerPlace} <span class="opt">${t.optional}</span></label>
+          <div class="place-box">
+            <input type="text" id="pairPlace" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="pairPlaceList" autocomplete="off" spellcheck="false" placeholder="${escapeHtml(t.placePlaceholder)}">
+            <button type="button" class="place-clear" id="pairPlaceClear" hidden aria-label="${escapeHtml(t.placeClear)}">×</button>
+            <ul class="place-list" id="pairPlaceList" role="listbox" hidden></ul>
+          </div></div>
         <button type="button" class="btn-reveal" id="pairBtn">${q.compare}</button>
       </div>
       <p class="pair-error hidden" id="pairError" role="alert"></p>
@@ -47989,7 +48066,8 @@ function renderCompat(){
   if (!pairState || !currentDate) { el.innerHTML = ''; return; }
   const t = I18N[currentLang], q = t.pair;
   const me = { date: parseISODate(currentDate), time: parseTime(currentTime), tz: birthTz() };
-  const other = { date: parseISODate(pairState.date), time: parseTime(pairState.time) };
+  const op = birthPlace(pairState.place);
+  const other = { date: parseISODate(pairState.date), time: parseTime(pairState.time), tz: op ? op.tz : null };
   const c = compatibility(me, other);
   const nameA = escapeHtml(currentName || q.you), nameB = escapeHtml(pairState.name || q.other);
   const cnA = chineseYearInfo(me.date), cnB = chineseYearInfo(other.date);
@@ -48032,10 +48110,13 @@ function bindCompat(){
     err.classList.add('hidden');
     if (!date) { err.textContent = t.pair.noDate; err.classList.remove('hidden'); return; }
     if (!parseISODate(date)) { err.textContent = t.pair.invalid; err.classList.remove('hidden'); return; }
+    if (!pairField.resolve()) { err.textContent = t.placeUnknown; err.classList.remove('hidden'); return; }
     const time = document.getElementById('pairTime').value;
-    pairState = { name: document.getElementById('pairName').value.trim(), date, time: parseTime(time) ? time.slice(0, 5) : '' };
+    pairState = { name: document.getElementById('pairName').value.trim(), date, time: parseTime(time) ? time.slice(0, 5) : '', place: pairField.key };
     renderCompat();
   };
+  pairField = makePlaceField('pairPlace', 'pairPlaceList', 'pairPlaceClear', run);
+  if (pairState && pairState.place) pairField.set(pairState.place);
   document.getElementById('pairBtn').addEventListener('click', run);
   ['pairName', 'pairDate', 'pairTime'].forEach(id => document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') run(); }));
   renderCompat();
@@ -48059,10 +48140,18 @@ function regionName(code){
   try { return new Intl.DisplayNames([loc(currentLang)], { type: 'region' }).of(code); } catch (e) { return code; }
 }
 /* Par défaut : l'heure actuelle si l'on regarde aujourd'hui après midi, sinon 22:00 */
+/* Fuseau du lieu d'observation : celui de la ville choisie ; null (appareil) pour « Ma position » */
+function mapTz(place){
+  if (place.kind !== 'city') return null;
+  const c = CITIES.find(x => x[0] === place.name);
+  return c ? c[4] : null;
+}
+/* Curseur : minutes après midi (heure locale du lieu) ; par défaut « maintenant » si on est dans la nuit affichée, sinon 22 h */
 function defaultMapMinutes(){
-  const now = new Date();
-  if (skyDate === todayISO() && now.getHours() >= 12) return Math.round(((now.getHours() - 12) * 60 + now.getMinutes()) / 10) * 10;
-  return 600;
+  const date = parseISODate(skyDate);
+  if (!date) return 600;
+  const m = (Date.now() - localInstant(date, 12, 0, mapTz(currentPlace()))) / 60000;
+  return m >= 0 && m < 1440 ? Math.round(m / 10) * 10 : 600;
 }
 function placeOptions(t){
   const p = currentPlace();
@@ -48077,7 +48166,8 @@ function renderMap(){
   const t = I18N[currentLang], m = t.map, R = 100, f = v => v.toFixed(1);
   if (mapMinutes === null) mapMinutes = defaultMapMinutes();
   document.getElementById('mapTime').value = mapMinutes;
-  const ms = localInstant(date, 12, 0) + mapMinutes * 60000;
+  const tz = mapTz(currentPlace());
+  const ms = localInstant(date, 12, 0, tz) + mapMinutes * 60000;
   const T = julianCenturies(ms), eps = obliquity(T);
   const place = currentPlace(), lat = place.lat, lon = place.lon;
 
@@ -48138,7 +48228,7 @@ function renderMap(){
   svg.classList.toggle('daylight', day);
 
   // Panneau latéral
-  const when = new Intl.DateTimeFormat(loc(currentLang), { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }).format(local);
+  const when = new Intl.DateTimeFormat(loc(currentLang), { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', ...(tz ? { timeZone: tz } : {}) }).format(local);
   document.getElementById('mapTimeOut').textContent = when;
   const nf = new Intl.NumberFormat(loc(currentLang), { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const coords = `${ltr(nf.format(Math.abs(lat)) + '°')} ${lat >= 0 ? m.directions[0] : m.directions[4]} · ${ltr(nf.format(Math.abs(lon)) + '°')} ${lon >= 0 ? m.directions[2] : m.directions[6]}`;
@@ -48332,7 +48422,7 @@ function reset(){
   document.getElementById('result').classList.add('hidden');
   document.getElementById('birthDate').value = '';
   document.getElementById('birthTime').value = '';
-  setPlace('');
+  birthField.set('');
   currentBirthPlace = '';
   store.remove('zodiac_lastPlace');
   document.getElementById('userName').value = '';
@@ -48426,12 +48516,12 @@ function launchSearch(){
   if (!date) { showError(t.errorInvalid); flagInput(input); return; }
   const timeValue = document.getElementById('birthTime').value;
   const time = parseTime(timeValue);           // facultative : null si vide
-  if (!resolveTypedPlace()) {
+  if (!birthField.resolve()) {
     showError(t.placeUnknown);
     flagInput(document.getElementById('birthPlace'));
     return;
   }
-  const place = birthPlace(selectedPlaceKey);
+  const place = birthPlace(birthField.key);
   const sky = computeSky(date, time, place ? place.tz : null);
   const sign = sky.sign;
   hideError();
@@ -48488,7 +48578,7 @@ function applyUITranslations(){
   pin.placeholder = t.placePlaceholder;
   document.getElementById('placeClear').setAttribute('aria-label', t.placeClear);
   document.getElementById('placesCredit').textContent = t.placesCredit;
-  if (selectedPlaceKey) setPlace(selectedPlaceKey);   // pays affiché dans la nouvelle langue
+  if (birthField) birthField.relabel();   // pays affiché dans la nouvelle langue
   document.getElementById('labelName').textContent = t.labelName;
   document.getElementById('offlineLabel').textContent = t.offline.button;
   document.getElementById('offlineHint').textContent = t.offline.hint;
@@ -48529,6 +48619,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 (lsLang && I18N[lsLang]) ? lsLang : 'fr';
 
   applyUITranslations();
+  birthField = makePlaceField('birthPlace', 'placeList', 'placeClear', () => launchSearch());
 
   // Version hors ligne
   document.getElementById('offlineBtn').addEventListener('click', downloadOffline);
@@ -48577,19 +48668,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (parseISODate(urlDate)) {
       input.value = urlDate;
       if (parseTime(urlTime)) timeInput.value = urlTime.slice(0, 5);
-      if (birthPlace(urlPlace)) setPlace(urlPlace);
+      if (birthPlace(urlPlace)) birthField.set(urlPlace);
       launchSearch();
     } else showError(I18N[currentLang].errorInvalid);
   } else if (parseISODate(lsDate)) {
     input.value = lsDate;
     if (parseTime(lsTime)) timeInput.value = lsTime;
     const lsPlace = store.get('zodiac_lastPlace');
-    if (birthPlace(lsPlace)) setPlace(lsPlace);
+    if (birthPlace(lsPlace)) birthField.set(lsPlace);
   }
 
   // 5. Boutons
   document.getElementById('btnReveal').addEventListener('click', () => launchSearch());
-  bindPlaceField();
   ['userName', 'birthDate', 'birthTime'].forEach(id => document.getElementById(id).addEventListener('keydown', e => {
     if (e.key === 'Enter') launchSearch();
   }));
