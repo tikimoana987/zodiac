@@ -124,6 +124,10 @@ Traduit dans les 7 langues, couvert par un test, validé contre une référence 
 - Arabe, hindi, thaï : `letter-spacing:0` forcé (sinon liaisons cassées, surtout dans l'export html2canvas).
 - Recherche de villes : `normPlace()` normalise aussi l'écriture arabe ; `build-places.py` garde pour chaque ville jusqu'à 3 noms dans l'écriture de son pays (`LOCAL_SCRIPTS`), sans lettres d'autres langues (`FOREIGN_LETTERS`), en cyrillique classés par ressemblance avec le nom principal.
 
+### Organisation du résultat
+- Cinq sections, une par onglet (`VIEW_MODES` : signs, natal, sky, compat, numbers) ; toutes sont dans `#profileContent` (exportée telle quelle : seule la section affichée est visible). La numérologie s'affiche dans `#numbersBody`, le tarot dans `#tarotBody`, tous deux dans la section `numbers`.
+- Les scripts de vérification de Claude doivent ouvrir le bon onglet avant d'agir sur une section (les sections cachées ne sont pas cliquables).
+
 ### Bouton « Version hors ligne »
 - Grisé pour le moment (« bientôt disponible ») : constante `OFFLINE_ENABLED = false` dans zodiac-app.js ; le code du téléchargement est intact (mettre `true` pour le réactiver).
 

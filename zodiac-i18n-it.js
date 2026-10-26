@@ -944,5 +944,13 @@ I18N.it = deepMerge(I18N.fr, {
       death: "L'Arcano senza nome",
       tower: "La Casa di Dio"
     }
+  },
+  tabs: {
+    sky: "Il cielo adesso",
+    skySub: "Oroscopo, mappa del cielo, notte",
+    compat: "Compatibilità",
+    compatSub: "Con un'altra persona",
+    numTarot: "Numerologia e tarocchi",
+    numTarotSub: "Numeri e arcani"
   }
 });

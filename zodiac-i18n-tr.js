@@ -940,5 +940,13 @@ I18N.tr = deepMerge(I18N.fr, {
       death: "İsimsiz Arkana",
       tower: "Tanrı'nın Evi"
     }
+  },
+  tabs: {
+    sky: "Şu anki gökyüzü",
+    skySub: "Burç yorumu, gökyüzü haritası, gece",
+    compat: "Uyum",
+    compatSub: "Bir başka kişiyle",
+    numTarot: "Numeroloji ve tarot",
+    numTarotSub: "Sayılar ve arkanalar"
   }
 });

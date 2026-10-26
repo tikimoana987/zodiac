@@ -806,5 +806,13 @@ I18N.ja = deepMerge(I18N.fr, {
       death: "名前のないアルカナ",
       tower: "神の家"
     }
+  },
+  tabs: {
+    sky: "今の空",
+    skySub: "運勢・星空マップ・今夜",
+    compat: "相性",
+    compatSub: "ほかの人と",
+    numTarot: "数秘術とタロット",
+    numTarotSub: "数とアルカナ"
   }
 });

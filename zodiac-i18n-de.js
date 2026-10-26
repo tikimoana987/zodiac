@@ -944,5 +944,13 @@ I18N.de = deepMerge(I18N.fr, {
       death: "Das Arkanum ohne Namen",
       tower: "Das Haus Gottes"
     }
+  },
+  tabs: {
+    sky: "Der Himmel jetzt",
+    skySub: "Horoskop, Himmelskarte, Nacht",
+    compat: "Kompatibilität",
+    compatSub: "Mit einer anderen Person",
+    numTarot: "Numerologie & Tarot",
+    numTarotSub: "Zahlen und Arkana"
   }
 });

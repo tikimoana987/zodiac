@@ -820,5 +820,13 @@ I18N.ko = deepMerge(I18N.fr, {
       death: "이름 없는 아르카나",
       tower: "신의 집"
     }
+  },
+  tabs: {
+    sky: "지금의 하늘",
+    skySub: "운세, 별자리 지도, 오늘 밤",
+    compat: "궁합",
+    compatSub: "다른 사람과",
+    numTarot: "수비학과 타로",
+    numTarotSub: "숫자와 아르카나"
   }
 });

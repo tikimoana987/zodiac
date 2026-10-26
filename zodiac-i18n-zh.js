@@ -790,5 +790,13 @@ I18N.zh = deepMerge(I18N.fr, {
       death: "无名之牌",
       tower: "神之家"
     }
+  },
+  tabs: {
+    sky: "此刻的天空",
+    skySub: "运势、星空图、今夜",
+    compat: "配对",
+    compatSub: "与另一个人",
+    numTarot: "数字命理与塔罗",
+    numTarotSub: "数字与阿尔卡那"
   }
 });

@@ -340,8 +340,9 @@ function renderResult(signKey, decanIdx){
     <div class="view-tabs" role="tablist" aria-label="${t.natal.tabsLabel}">
       <button type="button" role="tab" id="tabSigns" aria-controls="viewSigns"><span class="vt-icon" aria-hidden="true">☉</span><span class="vt-txt"><span class="vt-title">${t.natal.tabSigns}</span><span class="vt-sub">${t.natal.tabSignsSub}</span></span></button>
       <button type="button" role="tab" id="tabNatal" aria-controls="viewNatal"><span class="vt-icon" aria-hidden="true">✦</span><span class="vt-txt"><span class="vt-title">${t.natal.tabNatal}</span><span class="vt-sub">${t.natal.tabNatalSub}</span></span></button>
-      <button type="button" role="tab" id="tabNumbers" aria-controls="viewNumbers"><span class="vt-icon" aria-hidden="true">№</span><span class="vt-txt"><span class="vt-title">${t.num.tab}</span><span class="vt-sub">${t.num.tabSub}</span></span></button>
-      <button type="button" role="tab" id="tabTarot" aria-controls="viewTarot"><span class="vt-icon" aria-hidden="true">✧</span><span class="vt-txt"><span class="vt-title">${t.tarot.tab}</span><span class="vt-sub">${t.tarot.tabSub}</span></span></button>
+      <button type="button" role="tab" id="tabSky" aria-controls="viewSky"><span class="vt-icon" aria-hidden="true">☾</span><span class="vt-txt"><span class="vt-title">${t.tabs.sky}</span><span class="vt-sub">${t.tabs.skySub}</span></span></button>
+      <button type="button" role="tab" id="tabCompat" aria-controls="viewCompat"><span class="vt-icon" aria-hidden="true">♡</span><span class="vt-txt"><span class="vt-title">${t.tabs.compat}</span><span class="vt-sub">${t.tabs.compatSub}</span></span></button>
+      <button type="button" role="tab" id="tabNumbers" aria-controls="viewNumbers"><span class="vt-icon" aria-hidden="true">№</span><span class="vt-txt"><span class="vt-title">${t.tabs.numTarot}</span><span class="vt-sub">${t.tabs.numTarotSub}</span></span></button>
     </div>
     <div id="profileContent">
       <div class="owner" id="profileOwner"></div>
@@ -350,10 +351,7 @@ function renderResult(signKey, decanIdx){
         ${chineseCards(t, currentCn, hourAnimal).join('\n')}
       </div>
       <div class="natal" id="viewNatal" role="tabpanel" aria-labelledby="tabNatal">${natalHtml(t)}</div>
-      <div class="numbers" id="viewNumbers" role="tabpanel" aria-labelledby="tabNumbers"></div>
-      <div class="tarot" id="viewTarot" role="tabpanel" aria-labelledby="tabTarot"></div>
-    </div>
-    ${compatCardHtml(t)}
+      <div class="sky-view" id="viewSky" role="tabpanel" aria-labelledby="tabSky">
     <section class="card sky-card" aria-labelledby="skyTitle">
       <div class="sky-head">
         <h3 id="skyTitle">${t.horo.title} · ${t.signNames[signKey]}${infoBtn('horoscope', t.horo.title)}</h3>
@@ -395,6 +393,13 @@ function renderResult(signKey, decanIdx){
       <div id="nightBody"></div>
       <p class="sky-note">${t.night.note}</p>
     </section>
+      </div>
+      <div class="compat-view" id="viewCompat" role="tabpanel" aria-labelledby="tabCompat">${compatCardHtml(t)}</div>
+      <div class="numtarot" id="viewNumbers" role="tabpanel" aria-labelledby="tabNumbers">
+        <h2 class="section-title">${t.num.tab}</h2><div class="numbers" id="numbersBody"></div>
+        <h2 class="section-title">${t.tarot.tab}</h2><div class="tarot" id="tarotBody"></div>
+      </div>
+    </div>
   `;
   container.classList.remove('hidden');
   document.querySelector('.app').classList.add('has-result');
@@ -763,8 +768,8 @@ window.addEventListener('resize', () => closeInfo(false));
    ============================================================ */
 let currentBirthPlace = '';   // identifiant de la ville de naissance (zodiac-places.js), '' si non précisé
 let viewMode = 'signs';       // onglet affiché : 'signs' (signe & zodiaque chinois), 'natal' ou 'numbers' (numérologie)
-const VIEW_MODES = ['signs', 'natal', 'numbers', 'tarot'];
-const VIEW_TABS = { signs: 'tabSigns', natal: 'tabNatal', numbers: 'tabNumbers', tarot: 'tabTarot' };
+const VIEW_MODES = ['signs', 'natal', 'sky', 'compat', 'numbers'];   // une section par onglet ; 'numbers' : numérologie et tarot
+const VIEW_TABS = { signs: 'tabSigns', natal: 'tabNatal', sky: 'tabSky', compat: 'tabCompat', numbers: 'tabNumbers' };
 let tarotDeck = 'marseille';  // jeu de tarot : 'marseille' (par défaut) ou 'ws' (Waite-Smith) ; retenu sur l'appareil
 const OFFLINE_ENABLED = false;  // bouton « Version hors ligne » : désactivé pour le moment (true pour le réactiver)
 const ASPECT_SYM = { conjunction: '☌', sextile: '⚹', square: '□', trine: '△', opposition: '☍' };
@@ -981,7 +986,7 @@ function natalHtml(t){
    NUMÉROLOGIE (troisième onglet) — cycles personnels à la date de lecture de l'horoscope
    ============================================================ */
 function renderNumbers(){
-  const el = document.getElementById('viewNumbers'), birth = parseISODate(currentDate), on = parseISODate(skyDate || todayISO());
+  const el = document.getElementById('numbersBody'), birth = parseISODate(currentDate), on = parseISODate(skyDate || todayISO());
   if (!el || !birth || !on) return;
   const t = I18N[currentLang], u = t.num;
   const tags = n => `<div class="traits">${u.numbers[n].keywords.map(k => `<span class="trait-tag">${k}</span>`).join('')}</div>`;
@@ -1009,7 +1014,7 @@ function renderNumbers(){
    ============================================================ */
 function tarotName(t, key, deck){ return deck === 'marseille' && t.tarot.marseilleNames[key] ? t.tarot.marseilleNames[key] : t.tarot.cards[key].name; }
 function renderTarot(){
-  const el = document.getElementById('viewTarot'), birth = parseISODate(currentDate), on = skyDate || todayISO(), d = parseISODate(on);
+  const el = document.getElementById('tarotBody'), birth = parseISODate(currentDate), on = skyDate || todayISO(), d = parseISODate(on);
   if (!el || !birth || !d) return;
   const t = I18N[currentLang], u = t.tarot, deck = tarotDeck;
   const slot = (key, title, desc) => {
@@ -1036,7 +1041,7 @@ function renderTarot(){
 function setView(mode, focus){
   viewMode = mode;
   store.set('zodiac_view', mode);
-  for (const [tab, panel, m] of [['tabSigns', 'viewSigns', 'signs'], ['tabNatal', 'viewNatal', 'natal'], ['tabNumbers', 'viewNumbers', 'numbers'], ['tabTarot', 'viewTarot', 'tarot']]) {
+  for (const [tab, panel, m] of [['tabSigns', 'viewSigns', 'signs'], ['tabNatal', 'viewNatal', 'natal'], ['tabSky', 'viewSky', 'sky'], ['tabCompat', 'viewCompat', 'compat'], ['tabNumbers', 'viewNumbers', 'numbers']]) {
     const tb = document.getElementById(tab), pn = document.getElementById(panel);
     if (!tb) continue;
     tb.setAttribute('aria-selected', String(m === mode)); tb.tabIndex = m === mode ? 0 : -1;
@@ -1465,8 +1470,7 @@ async function exportImage(){
      les décorations ▲ ▼, mais il est enfermé dans un conteneur de taille nulle qui le masque à l'écran ;
      ce conteneur n'est ouvert que dans la copie d'export. */
   const src = document.getElementById('profileContent');
-  const parts = [src, pairState ? document.querySelector('.compat-card') : null,
-                 document.querySelector('.sky-card'), document.querySelector('.map-card'), document.querySelector('.night-card')].filter(Boolean);
+  const parts = [src];   // toutes les sections sont dans la zone des onglets ; seule la section affichée est visible
   const holder = document.createElement('div');
   holder.id = 'exportHolder';
   holder.setAttribute('aria-hidden', 'true');
@@ -1716,7 +1720,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const urlDate = params.get('date');
   const urlTime = params.get('time');
   const urlPlace = params.get('place');
-  viewMode = VIEW_MODES.includes(store.get('zodiac_view')) ? store.get('zodiac_view') : 'signs';
+  const savedView = store.get('zodiac_view') === 'tarot' ? 'numbers' : store.get('zodiac_view');   // ancien onglet « Tarot » : section commune
+  viewMode = VIEW_MODES.includes(savedView) ? savedView : 'signs';
   tarotDeck = TAROT_DECKS.includes(store.get('zodiac_deck')) ? store.get('zodiac_deck') : 'marseille';
   const lsLang = store.get('zodiac_lang');
   const lsDate = store.get('zodiac_lastDate');

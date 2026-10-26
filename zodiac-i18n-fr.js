@@ -944,5 +944,13 @@ I18N.fr = {
       death: "L'Arcane sans nom",
       tower: "La Maison Dieu"
     }
+  },
+  tabs: {
+    sky: "Ciel du moment",
+    skySub: "Horoscope, carte du ciel, nuit",
+    compat: "Compatibilité",
+    compatSub: "Avec une autre personne",
+    numTarot: "Numérologie & tarot",
+    numTarotSub: "Nombres et arcanes"
   }
 };

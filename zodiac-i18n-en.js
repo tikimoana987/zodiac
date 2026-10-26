@@ -941,5 +941,13 @@ I18N.en = deepMerge(I18N.fr, {
       death: "The Nameless Arcanum",
       tower: "The House of God"
     }
+  },
+  tabs: {
+    sky: "Sky right now",
+    skySub: "Horoscope, sky map, tonight",
+    compat: "Compatibility",
+    compatSub: "With another person",
+    numTarot: "Numerology & tarot",
+    numTarotSub: "Numbers and arcana"
   }
 });

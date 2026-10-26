@@ -86,8 +86,14 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 
 ## ✨ Fonctionnalités implémentées
 
+### 🗂️ Résultat organisé en cinq sections
+- [x] **Chaque onglet n'affiche que sa section** (auparavant, compatibilité, horoscope, carte du ciel et nuit s'ajoutaient sous tous les onglets) : ☉ Signe & zodiaque chinois · ✦ Thème natal · ☾ Ciel du moment (horoscope, carte du ciel, éclipses, nuit) · ♡ Compatibilité (formulaire, scores, synastrie) · № Numérologie & tarot (nombres puis tarot, sous deux intertitres)
+- [x] Onglets : cinq côte à côte sur ordinateur (icône au-dessus du titre), grille de deux colonnes sur mobile ; mots très longs coupés plutôt que rognés ; ancien choix « Tarot » repris dans la section commune
+- [x] **L'export en image ne contient que la section affichée** (avec le nom et la date en tête) : images bien plus légères
+- [x] Une section cachée le reste quelle que soit sa mise en page (`[role="tabpanel"][hidden]{ display:none !important }`)
+
 ### 🃏 Tarot (étape 6a)
-- [x] **Quatrième onglet « Tarot »** ; réglage du **jeu : Tarot de Marseille (par défaut) ou Waite-Smith**, retenu sur l'appareil
+- [x] Section **« Numérologie & tarot »** (d'abord un quatrième onglet) ; réglage du **jeu : Tarot de Marseille (par défaut) ou Waite-Smith**, retenu sur l'appareil
 - [x] **Carte de naissance** : jour + mois + année, réduits jusqu'à 22 ou moins (22 : le Fou) ; 3/11/1982 → 1996 → 25 → VII Le Chariot
 - [x] **Carte du jour** : tirage propre à chaque personne et à chaque date (empreinte FNV-1a), le même toute la journée, à la date de lecture de l'horoscope
 - [x] **Différences des deux jeux respectées** : noms (Le Mat / Le Fou, Le Bateleur / Le Magicien, La Papesse, Le Pape, L'Amoureux, La Roue de Fortune, L'Arcane sans nom / La Mort, La Maison Dieu / La Tour), Force et Justice échangent VIII et XI, Le Mat sans numéro, arcane XIII sans nom dans son bandeau à Marseille
@@ -96,7 +102,7 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 - [x] **Bouton « Version hors ligne » grisé** (« bientôt disponible ») : `OFFLINE_ENABLED = false` dans zodiac-app.js, code du téléchargement conservé
 
 ### 🔢 Numérologie (étape 5)
-- [x] **Troisième onglet « Numérologie »** à côté de « Signe & zodiaque chinois » et « Thème natal » (retenu d'une recherche à l'autre ; flèches du clavier ; sur mobile, les trois onglets s'empilent pour que les titres longs tiennent dans toutes les langues)
+- [x] Section **« Numérologie & tarot »** (d'abord un troisième onglet « Numérologie ») à côté de « Signe & zodiaque chinois » et « Thème natal » (retenu d'une recherche à l'autre ; flèches du clavier ; sur mobile, les trois onglets s'empilent pour que les titres longs tiennent dans toutes les langues)
 - [x] **Chemin de vie** : jour, mois et année réduits séparément puis additionnés, nombres maîtres 11, 22, 33 gardés
 - [x] **Cycles personnels** (année, mois, jour, de 1 à 9) à la date de lecture de l'horoscope ; thème de l'année personnelle
 - [x] **Nombres du nom** (champ « Nom ») : expression (toutes les lettres), nombre intime (voyelles), personnalité (consonnes) ; accents ignorés, Y voyelle s'il n'est pas à côté d'une voyelle ; **abjad** pour l'arabe (valeur affichée, محمد = 92 → 11) ; **table cyrillique** pour le russe ; autres écritures : invitation à saisir le nom en lettres latines
