@@ -25,8 +25,8 @@ L'expérience inclut **une transition cinématique** (viseur balaie le ciel → 
 ## 📦 État actuel du code
 
 **17 fichiers dans un même dossier**, ~460 Ko, ouverture par double-clic sur `ZODIAC.html` (aucun serveur). **Version autonome** : `ZODIAC-standalone.html`, un seul fichier (~650 Ko), produit par `python3 build-standalone.py`. Chargement par `<script src>` classiques, dans cet ordre :
-`zodiac-data.js` → `zodiac-sky-data.js` → `zodiac-i18n.js` → `zodiac-i18n-fr.js` puis `-en`, `-es`, `-zh`, `-ru`, `-de`, `-it` → `zodiac-astro.js` → `zodiac-planets.js` → `zodiac-skymap.js` → `zodiac-observe.js` → `zodiac-places-data.js` → `zodiac-places.js` → `zodiac-natal.js` → `zodiac-app.js`.
-Styles dans `zodiac.css`. Tests dans `zodiac-tests.js` (64 tests, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
+`zodiac-data.js` → `zodiac-sky-data.js` → `zodiac-i18n.js` → `zodiac-i18n-fr.js` puis `-en`, `-es`, `-zh`, `-ru`, `-de`, `-it` → `zodiac-astro.js` → `zodiac-planets.js` → `zodiac-skymap.js` → `zodiac-observe.js` → `zodiac-places-data.js` → `zodiac-places.js` → `zodiac-natal.js` → `zodiac-transits.js` → `zodiac-app.js`.
+Styles dans `zodiac.css`. Tests dans `zodiac-tests.js` (65 tests, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
 **Aucune ressource en ligne** : `html2canvas` 1.4.1 est une copie locale (`html2canvas.min.js`, licence MIT). Tout fonctionne sans internet.
 
 ### Fonctionnalités en place ✅
@@ -83,7 +83,7 @@ Fiabilité, découpage, nom et date du jour, zodiaque chinois, planètes et horo
 1. ✅ Version corrective : fuseau de la 2e personne, heure locale de la carte du ciel, avertissement hors 1900–2100, heure stricte, bulle « signe ou constellation »
 2. ✅ Éclipses de Soleil visibles depuis le lieu + carte « Observer le ciel cette nuit » (levers, couchers, crépuscules, Lune, planètes)
 3. ✅ Sources du projet sur GitHub + tests lancés automatiquement à chaque modification + publication automatique (GitHub Pages, source « GitHub Actions »)
-4. Astrologie approfondie : transits personnalisés sur le thème natal, synastrie, roue interactive
+4. Astrologie approfondie, en trois livraisons : ✅ 4a transits personnalisés sur le thème natal ; 4b synastrie ; 4c roue interactive
 5. Numérologie : chemin de vie (nombres maîtres 11/22/33), année/mois/jour personnels ; nombres du nom (expression, âme, personnalité) en alphabet latin, abjad pour l'arabe, table cyrillique pour le russe ; nombres de la date seulement pour les autres écritures
 6. Tarot : carte de naissance (calculée), carte du jour (tirage figé pour la journée), puis tirages ; illustrations originales ; tradition à choisir (Marseille ou Rider-Waite) ; 22 arcanes majeurs d'abord
 7. iPhone, en tout dernier
@@ -126,8 +126,10 @@ Traduit dans les 7 langues, couvert par un test, validé contre une référence 
 
 ### Dépôt GitHub et publication
 - Dépôt `tikimoana987/zodiac` : **les sources à la racine**, `tools/run_tests.py`, `.github/workflows/tests-et-publication.yml`. Réglage *Settings → Pages → Source* : **GitHub Actions** (le site n'est plus servi depuis la racine de la branche).
-- Le circuit : checkout v7, setup-python v7 (Python 3.12), `pip install -r tools/requirements.txt` (Playwright 1.56), `playwright install --with-deps chromium`, `python build-standalone.py`, `python tools/run_tests.py`, puis upload-pages-artifact v5 (`site/`) et deploy-pages v5 — uniquement sur `main`.
+- Le circuit tourne sur **ubuntu-24.04** (version fixée : `ubuntu-latest` migre vers Ubuntu 26 depuis le 19 octobre 2026, non prévu par Playwright 1.56) : checkout v7, setup-python v7 (Python 3.12), `pip install -r tools/requirements.txt` (Playwright 1.56), `playwright install --with-deps chromium`, `python build-standalone.py`, `python tools/run_tests.py`, puis upload-pages-artifact v5 (`site/`) et deploy-pages v5 — uniquement sur `main`.
 - Pour mettre à jour : déposer les sources modifiées (glisser-déposer sur GitHub, ou Claude Code avec git) ; ne plus déposer `site/`.
+- Mise en place terminée le 26 octobre 2026 : source Pages = GitHub Actions (l'ancien « pages build and deployment » ne se lance plus), ancien `index.html` de la racine supprimé, `.gitignore` ajouté. Le circuit prend ~1 min (exceptionnellement ~12 min quand l'installation du navigateur de test est lente chez GitHub) ; un seul passage publie à la fois, les suivants attendent leur tour.
+- Piège rencontré : « Create new file » lancé depuis l'intérieur d'un dossier ajoute le chemin tapé à celui du dossier ouvert (`.github/workflows/.github/workflows/…`) ; toujours partir de la page principale du dépôt.
 - Les fichiers générés sont ignorés (`.gitignore`) ; `ZODIAC.zip` livré par Claude les contient encore pour un usage local.
 
 ### Observation (`zodiac-observe.js`) et précision Soleil/Lune

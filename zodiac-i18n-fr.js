@@ -419,7 +419,8 @@ I18N.fr = {
       moment: "Climat du moment",
       retro: "Rétrogradations",
       positions: "Positions des planètes",
-      moon: "Lune de la semaine"
+      moon: "Lune de la semaine",
+      natal: "Sur votre thème natal"
     },
     aspects: { conj: "dans votre signe", trine: "en trigone", square: "en carré", opp: "en opposition" },
     when: { from: "à partir du {d}", until: "jusqu'au {d}", range: "du {a} au {b}" },
@@ -498,7 +499,9 @@ I18N.fr = {
       uranus: "Les changements mûrissent en coulisses.",
       neptune: "Les illusions se dissipent, la lucidité revient.",
       pluto: "Travail intérieur et transformations discrètes."
-    }
+    },
+    natalExact: "exact le {d}",
+    natalNone: "Aucun transit marquant sur votre thème natal en ce moment."
   },
   map: {
     title: "Carte du ciel",
@@ -694,7 +697,8 @@ I18N.fr = {
     compat: "L'entente globale est la moyenne des axes disponibles : signes du zodiaque, animaux chinois et, si les heures de naissance sont connues, signes lunaires. C'est une lecture symbolique, pas une prédiction.",
     signVsConstellation: "Les signes astrologiques sont 12 secteurs égaux de 30°, comptés à partir de l'équinoxe de printemps : c'est le zodiaque tropical, utilisé ici. Les constellations du même nom sont des groupes d'étoiles de tailles inégales. À cause de la lente rotation de l'axe de la Terre (la précession), signes et constellations se sont décalés d'environ un signe depuis l'Antiquité : le Soleil peut être dans le signe du Bélier tout en se trouvant devant la constellation des Poissons.",
     night: "La nuit noire commence quand le Soleil passe à plus de 18° sous l'horizon (fin du crépuscule astronomique) et s'achève à l'aube. La Lune éclaire le ciel et cache les étoiles faibles : le meilleur moment combine nuit noire et Lune couchée. Une planète est jugée bien visible à plus de 10° de hauteur, le Soleil étant à plus de 6° sous l'horizon.",
-    solarEclipse: "Calcul pour ce lieu, à une demi-minute près. Le pourcentage est la part de la surface du Soleil cachée par la Lune ; les heures vont du premier au dernier contact des deux disques, limitées au moment où le Soleil est levé. Une éclipse totale ou annulaire n'est visible comme telle que dans une étroite bande ; ailleurs, elle est partielle."
+    solarEclipse: "Calcul pour ce lieu, à une demi-minute près. Le pourcentage est la part de la surface du Soleil cachée par la Lune ; les heures vont du premier au dernier contact des deux disques, limitées au moment où le Soleil est levé. Une éclipse totale ou annulaire n'est visible comme telle que dans une étroite bande ; ailleurs, elle est partielle.",
+    natalTransits: "Les transits comparent la position actuelle des planètes à celle des astres de votre naissance : une planète en conjonction, sextile, carré, trigone ou opposition avec un point de votre thème en colore le domaine. On retient un écart de 1° pour les planètes rapides et de 1,5° pour les lentes ; les dates donnent la période d'influence et le jour où l'aspect est exact. La Lune natale n'est utilisée que si l'heure de naissance est connue ; l'ascendant et le milieu du ciel, que si l'heure et le lieu le sont."
   },
   placePlaceholder: "Tapez le nom d'une ville…",
   placeNoMatch: "Aucune ville trouvée. Essayez la ville la plus proche.",

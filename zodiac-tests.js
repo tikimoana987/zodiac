@@ -739,9 +739,9 @@
     }
   });
 
-  test('Bulles d\'information (i) : 24 explications complètes et traduites', () => {
+  test('Bulles d\'information (i) : 25 explications complètes et traduites', () => {
     const keys = Object.keys(I18N.fr.info);
-    assertEq(keys.length, 24, 'nombre d\'explications');
+    assertEq(keys.length, 25, 'nombre d\'explications');
     for (const lang of Object.keys(I18N)) {
       const info = I18N[lang].info;
       assert(keys.every(k => typeof info[k] === 'string' && info[k].length > 20), `${lang} : explication manquante ou trop courte`);   // 20 : le chinois est bien plus dense
@@ -848,6 +848,29 @@
     const day = nightPlan(69.65, 18.96, zonedInstant({ y: 2026, m: 6, d: 21 }, 12, 0, 'Europe/Oslo'));
     const night = nightPlan(69.65, 18.96, zonedInstant({ y: 2026, m: 12, d: 21 }, 12, 0, 'Europe/Oslo'));
     assert(day.polarDay && !day.sunset && night.polarNight && !night.sunrise, 'Tromsø : jour polaire en juin, nuit polaire en décembre');
+  });
+
+  test('Transits sur le thème natal : détection, période, jour exact, points retenus', () => {
+    const now = Date.UTC(2026, 9, 26, 12);
+    const sat = bodyLongitude('saturn', now), mars = bodyLongitude('mars', now);
+    // Thème fictif : Vénus à 90° de Saturne (carré exact), Soleil à 120° de Mars + 0,5° (trigone dans l'orbe)
+    const pts = [{ point: 'venus', lon: norm360(sat + 90) }, { point: 'sun', lon: norm360(mars + 120.5) }, { point: 'mercury', lon: norm360(sat + 45) }];
+    const list = natalTransits(pts, [now]);
+    const sq = list.find(x => x.body === 'saturn' && x.point === 'venus');
+    assert(sq && sq.type === 'square' && sq.gap < 0.01 && sq.slow, 'Saturne carré Vénus');
+    assert(sq.start < now && sq.end > now && sq.end - sq.start > 20 * 86400e3, 'période d\'influence de plusieurs semaines');
+    assert(sq.exact && Math.abs(sq.exact - now) < 2 * 86400e3, 'jour exact proche');
+    const tri = list.find(x => x.body === 'mars' && x.point === 'sun');
+    assert(tri && tri.type === 'trine' && Math.abs(tri.gap - 0.5) < 0.05 && !tri.slow, 'Mars trigone Soleil');
+    assert(!list.some(x => x.point === 'mercury' && x.body === 'saturn'), 'pas d\'aspect à 45°');
+    assert(list.indexOf(sq) < list.indexOf(tri), 'planètes lentes en premier');
+    // Points retenus : sans heure, ni Lune, ni ascendant ; avec heure et lieu, tout
+    const chartNoon = natalChart({ y: 1982, m: 11, d: 3 }, null, null);
+    assert(!natalPoints(chartNoon, false).some(p => ['moon', 'asc', 'mc'].includes(p.point)), 'sans heure : ni Lune ni angles');
+    const full = natalChart({ y: 1982, m: 11, d: 3 }, { h: 19, min: 0 }, birthPlace('Paris|FR'));
+    const fp = natalPoints(full, true).map(p => p.point);
+    assert(['moon', 'asc', 'mc'].every(k => fp.includes(k)) && !fp.includes('pluto'), 'avec heure et lieu : Lune, ascendant, milieu du ciel ; pas de Pluton natal');
+    for (const l of Object.keys(I18N)) assert(I18N[l].horo.groups.natal && /\{d\}/.test(I18N[l].horo.natalExact) && I18N[l].horo.natalNone, `${l} : textes`);
   });
 
   /* ---------------- Rapport ---------------- */

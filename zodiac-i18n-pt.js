@@ -418,7 +418,8 @@ I18N.pt = deepMerge(I18N.fr, {
       moment: "Clima do momento",
       retro: "Retrogradações",
       positions: "Posição dos planetas",
-      moon: "Lua da semana"
+      moon: "Lua da semana",
+      natal: "No seu mapa natal"
     },
     aspects: { conj: "no seu signo", trine: "em trígono", square: "em quadratura", opp: "em oposição" },
     when: { from: "a partir de {d}", until: "até {d}", range: "de {a} a {b}" },
@@ -497,7 +498,9 @@ I18N.pt = deepMerge(I18N.fr, {
       uranus: "As mudanças amadurecem nos bastidores.",
       neptune: "As ilusões se dissipam, a lucidez volta.",
       pluto: "Trabalho interior e transformações discretas."
-    }
+    },
+    natalExact: "exato em {d}",
+    natalNone: "Nenhum trânsito marcante no seu mapa natal no momento."
   },
   map: {
     title: "Mapa do céu",
@@ -693,7 +696,8 @@ I18N.pt = deepMerge(I18N.fr, {
     compat: "O entendimento geral é a média dos eixos disponíveis: signos do zodíaco, animais chineses e, se as horas de nascimento forem conhecidas, signos lunares. É uma leitura simbólica, não uma previsão.",
     signVsConstellation: "Os signos astrológicos são 12 setores iguais de 30°, contados a partir do equinócio de março: é o zodíaco tropical, usado aqui. As constelações de mesmo nome são grupos de estrelas de tamanhos desiguais. Por causa do lento giro do eixo da Terra (a precessão), signos e constelações se afastaram cerca de um signo desde a Antiguidade: o Sol pode estar no signo de Áries enquanto se encontra diante da constelação de Peixes.",
     night: "A noite escura começa quando o Sol está mais de 18° abaixo do horizonte (fim do crepúsculo astronômico) e termina na aurora. A Lua clareia o céu e esconde as estrelas fracas: o melhor momento combina noite escura e Lua posta. Um planeta é considerado bem visível a mais de 10° de altura, com o Sol mais de 6° abaixo do horizonte.",
-    solarEclipse: "Cálculo para este lugar, com precisão de meio minuto. A porcentagem é a parte da superfície do Sol encoberta pela Lua; os horários vão do primeiro ao último contato dos dois discos, limitados ao período em que o Sol está acima do horizonte. Um eclipse total ou anular só é visto assim numa faixa estreita; fora dela, é parcial."
+    solarEclipse: "Cálculo para este lugar, com precisão de meio minuto. A porcentagem é a parte da superfície do Sol encoberta pela Lua; os horários vão do primeiro ao último contato dos dois discos, limitados ao período em que o Sol está acima do horizonte. Um eclipse total ou anular só é visto assim numa faixa estreita; fora dela, é parcial.",
+    natalTransits: "Os trânsitos comparam a posição atual dos planetas com a do seu nascimento: um planeta em conjunção, sextil, quadratura, trígono ou oposição a um ponto do seu mapa colore essa área. A margem é de 1° para os planetas rápidos e de 1,5° para os lentos; as datas mostram o período de influência e o dia em que o aspecto é exato. A Lua natal só é usada se a hora de nascimento for conhecida; o ascendente e o meio do céu, só se a hora e o local forem conhecidos."
   },
   placePlaceholder: "Digite o nome de uma cidade…",
   placeNoMatch: "Nenhuma cidade encontrada. Tente a cidade mais próxima.",

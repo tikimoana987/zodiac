@@ -416,7 +416,8 @@ I18N.en = deepMerge(I18N.fr, {
       moment: "Current climate",
       retro: "Retrogrades",
       positions: "Planet positions",
-      moon: "Moon this week"
+      moon: "Moon this week",
+      natal: "On your birth chart"
     },
     aspects: { conj: "in your sign", trine: "trine", square: "square", opp: "opposite" },
     when: { from: "from {d}", until: "until {d}", range: "{a} – {b}" },
@@ -495,7 +496,9 @@ I18N.en = deepMerge(I18N.fr, {
       uranus: "Changes ripen behind the scenes.",
       neptune: "Illusions fade, clarity returns.",
       pluto: "Inner work and quiet transformations."
-    }
+    },
+    natalExact: "exact on {d}",
+    natalNone: "No notable transit on your birth chart right now."
   },
   map: {
     title: "Sky map",
@@ -691,7 +694,8 @@ I18N.en = deepMerge(I18N.fr, {
     compat: "The overall match is the average of the available axes: zodiac signs, Chinese animals and, if the birth times are known, Moon signs. It is a symbolic reading, not a prediction.",
     signVsConstellation: "Astrological signs are 12 equal 30° sectors counted from the March equinox: this is the tropical zodiac, used here. The constellations of the same name are groups of stars of unequal sizes. Because of the slow wobble of Earth's axis (precession), signs and constellations have drifted apart by about one sign since antiquity: the Sun can be in the sign of Aries while standing in front of the constellation Pisces.",
     night: "Full darkness begins when the Sun is more than 18° below the horizon (end of astronomical twilight) and ends at dawn. The Moon brightens the sky and hides faint stars: the best time combines full darkness with the Moon set. A planet counts as well placed when it is more than 10° high with the Sun more than 6° below the horizon.",
-    solarEclipse: "Calculated for this place, to within half a minute. The percentage is the share of the Sun's surface hidden by the Moon; the times run from the first to the last contact of the two discs, limited to when the Sun is up. A total or annular eclipse is only seen as such within a narrow band; elsewhere it is partial."
+    solarEclipse: "Calculated for this place, to within half a minute. The percentage is the share of the Sun's surface hidden by the Moon; the times run from the first to the last contact of the two discs, limited to when the Sun is up. A total or annular eclipse is only seen as such within a narrow band; elsewhere it is partial.",
+    natalTransits: "Transits compare where the planets are now with where they were at your birth: a planet in conjunction, sextile, square, trine or opposition with a point of your chart colours that area. The orb is 1° for fast planets and 1.5° for slow ones; the dates give the period of influence and the day the aspect is exact. The natal Moon is used only if the time of birth is known; the ascendant and midheaven only if both time and place are."
   },
   placePlaceholder: "Type a city name…",
   placeNoMatch: "No city found. Try the nearest town.",

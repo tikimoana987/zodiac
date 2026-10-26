@@ -419,7 +419,8 @@ I18N.it = deepMerge(I18N.fr, {
       moment: "Clima del momento",
       retro: "Retrogradazioni",
       positions: "Posizioni dei pianeti",
-      moon: "Luna della settimana"
+      moon: "Luna della settimana",
+      natal: "Sul tuo tema natale"
     },
     aspects: { conj: "nel tuo segno", trine: "in trigono", square: "in quadratura", opp: "in opposizione" },
     when: { from: "dal {d}", until: "fino al {d}", range: "dal {a} al {b}" },
@@ -498,7 +499,9 @@ I18N.it = deepMerge(I18N.fr, {
       uranus: "I cambiamenti maturano dietro le quinte.",
       neptune: "Le illusioni si dissolvono, torna la lucidità.",
       pluto: "Lavoro interiore e trasformazioni discrete."
-    }
+    },
+    natalExact: "esatto il {d}",
+    natalNone: "Nessun transito rilevante sul tuo tema natale in questo momento."
   },
   map: {
     title: "Mappa del cielo",
@@ -694,7 +697,8 @@ I18N.it = deepMerge(I18N.fr, {
     compat: "L'affinità globale è la media degli assi disponibili: segni zodiacali, animali cinesi e, se le ore di nascita sono note, segni lunari. È una lettura simbolica, non una previsione.",
     signVsConstellation: "I segni astrologici sono 12 settori uguali di 30°, contati a partire dall'equinozio di primavera: è lo zodiaco tropicale, usato qui. Le costellazioni con lo stesso nome sono gruppi di stelle di dimensioni diverse. A causa della lenta oscillazione dell'asse terrestre (la precessione), segni e costellazioni si sono sfasati di circa un segno dall'antichità: il Sole può trovarsi nel segno dell'Ariete pur stando davanti alla costellazione dei Pesci.",
     night: "La notte fonda inizia quando il Sole è più di 18° sotto l'orizzonte (fine del crepuscolo astronomico) e finisce all'alba. La Luna rischiara il cielo e nasconde le stelle deboli: il momento migliore unisce notte fonda e Luna tramontata. Un pianeta è considerato ben visibile a più di 10° di altezza, con il Sole più di 6° sotto l'orizzonte.",
-    solarEclipse: "Calcolo per questo luogo, con mezzo minuto di precisione. La percentuale è la parte della superficie del Sole nascosta dalla Luna; gli orari vanno dal primo all'ultimo contatto dei due dischi, limitati al periodo in cui il Sole è sopra l'orizzonte. Un'eclissi totale o anulare si vede come tale solo in una fascia stretta; altrove è parziale."
+    solarEclipse: "Calcolo per questo luogo, con mezzo minuto di precisione. La percentuale è la parte della superficie del Sole nascosta dalla Luna; gli orari vanno dal primo all'ultimo contatto dei due dischi, limitati al periodo in cui il Sole è sopra l'orizzonte. Un'eclissi totale o anulare si vede come tale solo in una fascia stretta; altrove è parziale.",
+    natalTransits: "I transiti confrontano la posizione attuale dei pianeti con quella della tua nascita: un pianeta in congiunzione, sestile, quadratura, trigono od opposizione con un punto del tuo tema ne colora l'ambito. Si considera uno scarto di 1° per i pianeti veloci e di 1,5° per quelli lenti; le date indicano il periodo d'influenza e il giorno in cui l'aspetto è esatto. La Luna natale si usa solo se l'ora di nascita è nota; l'ascendente e il medio cielo solo se lo sono ora e luogo."
   },
   placePlaceholder: "Digita il nome di una città…",
   placeNoMatch: "Nessuna città trovata. Prova con la più vicina.",

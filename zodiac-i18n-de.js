@@ -419,7 +419,8 @@ I18N.de = deepMerge(I18N.fr, {
       moment: "Aktuelles Klima",
       retro: "Rückläufigkeiten",
       positions: "Planetenpositionen",
-      moon: "Mond der Woche"
+      moon: "Mond der Woche",
+      natal: "Auf dein Geburtshoroskop"
     },
     aspects: { conj: "in deinem Zeichen", trine: "im Trigon", square: "im Quadrat", opp: "in Opposition" },
     when: { from: "ab {d}", until: "bis {d}", range: "{a} – {b}" },
@@ -498,7 +499,9 @@ I18N.de = deepMerge(I18N.fr, {
       uranus: "Veränderungen reifen im Hintergrund.",
       neptune: "Illusionen lösen sich auf, Klarheit kehrt zurück.",
       pluto: "Innere Arbeit und stille Wandlungen."
-    }
+    },
+    natalExact: "exakt am {d}",
+    natalNone: "Derzeit kein bedeutender Transit auf dein Geburtshoroskop."
   },
   map: {
     title: "Sternkarte",
@@ -694,7 +697,8 @@ I18N.de = deepMerge(I18N.fr, {
     compat: "Die Gesamtverträglichkeit ist der Durchschnitt der verfügbaren Achsen: Tierkreiszeichen, chinesische Tiere und, wenn die Geburtszeiten bekannt sind, Mondzeichen. Es ist eine symbolische Deutung, keine Vorhersage.",
     signVsConstellation: "Die astrologischen Zeichen sind 12 gleich große Abschnitte von 30°, gezählt ab der Frühlings-Tagundnachtgleiche: der hier verwendete tropische Tierkreis. Die gleichnamigen Sternbilder sind Sterngruppen von ungleicher Größe. Durch die langsame Kreiselbewegung der Erdachse (Präzession) haben sich Zeichen und Sternbilder seit der Antike um etwa ein Zeichen verschoben: Die Sonne kann im Zeichen Widder stehen und sich zugleich vor dem Sternbild Fische befinden.",
     night: "Die volle Dunkelheit beginnt, wenn die Sonne mehr als 18° unter dem Horizont steht (Ende der astronomischen Dämmerung), und endet in der Morgendämmerung. Der Mond erhellt den Himmel und verdeckt schwache Sterne: Am besten ist volle Dunkelheit bei untergegangenem Mond. Ein Planet gilt als gut sichtbar ab 10° Höhe, wenn die Sonne mehr als 6° unter dem Horizont steht.",
-    solarEclipse: "Berechnung für diesen Ort, auf eine halbe Minute genau. Der Prozentwert ist der Anteil der Sonnenfläche, den der Mond verdeckt; die Zeiten reichen vom ersten bis zum letzten Kontakt der beiden Scheiben, begrenzt auf die Zeit, in der die Sonne über dem Horizont steht. Eine totale oder ringförmige Finsternis ist nur in einem schmalen Streifen als solche zu sehen; anderswo ist sie partiell."
+    solarEclipse: "Berechnung für diesen Ort, auf eine halbe Minute genau. Der Prozentwert ist der Anteil der Sonnenfläche, den der Mond verdeckt; die Zeiten reichen vom ersten bis zum letzten Kontakt der beiden Scheiben, begrenzt auf die Zeit, in der die Sonne über dem Horizont steht. Eine totale oder ringförmige Finsternis ist nur in einem schmalen Streifen als solche zu sehen; anderswo ist sie partiell.",
+    natalTransits: "Transite vergleichen die heutige Stellung der Planeten mit der bei deiner Geburt: Ein Planet in Konjunktion, Sextil, Quadrat, Trigon oder Opposition zu einem Punkt deines Horoskops färbt dessen Bereich. Der Orbis beträgt 1° für schnelle und 1,5° für langsame Planeten; die Daten zeigen den Wirkungszeitraum und den Tag, an dem der Aspekt exakt ist. Der Geburtsmond wird nur bei bekannter Geburtszeit verwendet, Aszendent und Himmelsmitte nur bei bekannter Zeit und bekanntem Ort."
   },
   placePlaceholder: "Stadtnamen eingeben …",
   placeNoMatch: "Keine Stadt gefunden. Versuche die nächstgelegene.",

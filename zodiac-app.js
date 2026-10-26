@@ -470,6 +470,24 @@ function renderSky(){
       <div class="tr-head"><strong>${t.rulers[r.body]}</strong> <span class="tr-aspect">℞ ${h.retrograde}</span>${whenTag(r)}</div>
       <p>${h.retroTexts[r.body]}</p></div></li>`;
   const block = (title, items, line) => items.length ? `<h4>${title}</h4><ul class="transits">${items.map(line).join('')}</ul>` : '';
+  // Transits sur le thème natal (mis en mémoire : la période d'influence des planètes lentes demande des centaines de positions)
+  const birth = parseISODate(currentDate), btime = parseTime(currentTime), bplace = birthPlace(currentBirthPlace);
+  const nKey = `${currentDate}|${currentTime}|${currentBirthPlace}|${tr.noons[0]}|${days}`;
+  if (!natalTransitCache || natalTransitCache.key !== nKey) natalTransitCache = { key: nKey, list: natalTransits(natalPoints(natalChart(birth, btime, bplace), !!btime), tr.noons) };
+  const nt = natalTransitCache.list.filter(x => x.slow || PERSONAL_POINTS.includes(x.point)).slice(0, 8);
+  const n = t.natal, bare = s => s.replace(/\s*[（(][^()（）]*[)）]\s*$/, '');   // sans « (empreinte de génération) »
+  // Date courte, avec l'année quand elle diffère de celle de la lecture (les transits lents s'étalent souvent sur deux années)
+  const readYear = new Date(tr.noons[0]).getFullYear();
+  const shortY = ms => new Date(ms).getFullYear() === readYear ? short(ms)
+    : new Intl.DateTimeFormat(loc(currentLang), { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(ms));
+  const pointName = p => p === 'asc' ? n.ascendant : p === 'mc' ? n.midheaven : t.rulers[p];
+  const pointSym = p => p === 'asc' ? 'AC' : p === 'mc' ? 'MC' : PLANET_SYM[p];
+  const pointDomain = p => p === 'asc' ? n.houses[0] : p === 'mc' ? n.houses[9] : n.domains[p];
+  const natalLine = x => `<li class="transit"><span class="tr-sym" aria-hidden="true">${PLANET_SYM[x.body]}</span><div>
+      <div class="tr-head"><strong>${t.rulers[x.body]}</strong> <span class="tr-aspect"><span aria-hidden="true">${ASPECT_SYM[x.type]}</span> ${n.aspectNames[x.type]}</span> <strong><span aria-hidden="true">${pointSym(x.point)}</span> ${pointName(x.point)}</strong>
+        <span class="tr-when">${[x.exact ? h.natalExact.replace('{d}', shortY(x.exact)) : '', h.when.range.replace('{a}', shortY(x.start)).replace('{b}', shortY(x.end))].filter(Boolean).join(' · ')}</span></div>
+      <p>${n.aspectMeanings[x.type]} — ${t.rulers[x.body]} (${bare(n.domains[x.body])}) ↔ ${pointName(x.point)} (${bare(pointDomain(x.point))})</p></div></li>`;
+  const natalBlock = `<h4>${h.groups.natal}${infoBtn('natalTransits', h.groups.natal)}</h4>` + (nt.length ? `<ul class="transits">${nt.map(natalLine).join('')}</ul>` : `<p class="sky-none">${h.natalNone}</p>`);
   const major = tr.aspects.filter(a => SLOW_BODIES.includes(a.body));
   const moment = tr.aspects.filter(a => !SLOW_BODIES.includes(a.body));
 
@@ -499,6 +517,7 @@ function renderSky(){
     <p class="sky-sub">${heading}</p>
     <div class="sky-grid">
       <div class="sky-main">
+        ${natalBlock}
         ${major.length || moment.length ? block(h.groups.major, major, aspectLine) + block(h.groups.moment, moment, aspectLine) : `<p class="sky-none">${h.none}</p>`}
         ${block(h.groups.retro + infoBtn('retrograde', h.groups.retro), tr.retro, retroLine)}
       </div>
@@ -1136,6 +1155,7 @@ function renderMap(){
    OBSERVER LE CIEL CETTE NUIT (même lieu et même date que la carte du ciel)
    ============================================================ */
 let nightCache = null;
+let natalTransitCache = null;
 const eclipseCache = new Map();
 function eclipseLocal(ms, lat, lon){
   const key = `${ms}|${lat}|${lon}`;

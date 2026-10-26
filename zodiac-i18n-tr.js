@@ -415,7 +415,8 @@ I18N.tr = deepMerge(I18N.fr, {
       moment: "Anın havası",
       retro: "Retrolar",
       positions: "Gezegenlerin konumları",
-      moon: "Haftanın Ay'ı"
+      moon: "Haftanın Ay'ı",
+      natal: "Doğum haritanız üzerinde"
     },
     aspects: { conj: "burcunuzda", trine: "üçgen açıda", square: "kare açıda", opp: "karşıt açıda" },
     when: { from: "{d} itibarıyla", until: "{d} tarihine kadar", range: "{a} – {b}" },
@@ -494,7 +495,9 @@ I18N.tr = deepMerge(I18N.fr, {
       uranus: "Değişimler perde arkasında olgunlaşıyor.",
       neptune: "Yanılsamalar dağılıyor, berraklık geri geliyor.",
       pluto: "İç çalışma ve sessiz dönüşümler."
-    }
+    },
+    natalExact: "tam açı: {d}",
+    natalNone: "Şu anda doğum haritanızda belirgin bir transit yok."
   },
   map: {
     title: "Gökyüzü haritası",
@@ -690,7 +693,8 @@ I18N.tr = deepMerge(I18N.fr, {
     compat: "Genel uyum, mevcut eksenlerin ortalamasıdır: burçlar, Çin burçları ve doğum saatleri biliniyorsa Ay burçları. Bu sembolik bir yorumdur, bir kehanet değildir.",
     signVsConstellation: "Astrolojik burçlar, ilkbahar ekinoksundan itibaren sayılan 30°'lik 12 eşit dilimdir: burada kullanılan tropikal zodyak budur. Aynı adı taşıyan takımyıldızlar ise farklı büyüklükteki yıldız gruplarıdır. Dünya ekseninin yavaş salınımı (presesyon) nedeniyle burçlar ile takımyıldızlar Antik Çağ'dan bu yana yaklaşık bir burç kaymıştır: Güneş Koç burcundayken aslında Balık takımyıldızının önünde olabilir.",
     night: "Tam karanlık, Güneş ufkun 18°'den fazla altına indiğinde (astronomik alacakaranlığın sonu) başlar ve şafakta biter. Ay gökyüzünü aydınlatır ve sönük yıldızları gizler: en iyi zaman, tam karanlık ile Ay'ın batmış olduğu andır. Bir gezegen, Güneş ufkun 6°'den fazla altındayken 10°'den yüksekte ise iyi görünür sayılır.",
-    solarEclipse: "Bu yer için yarım dakika hassasiyetle hesaplanmıştır. Yüzde, Güneş yüzeyinin Ay tarafından örtülen kısmıdır; saatler iki diskin ilk temasından son temasına kadardır ve Güneş'in ufkun üstünde olduğu süreyle sınırlıdır. Tam veya halkalı tutulma ancak dar bir şeritte böyle görülür; başka yerlerde parçalıdır."
+    solarEclipse: "Bu yer için yarım dakika hassasiyetle hesaplanmıştır. Yüzde, Güneş yüzeyinin Ay tarafından örtülen kısmıdır; saatler iki diskin ilk temasından son temasına kadardır ve Güneş'in ufkun üstünde olduğu süreyle sınırlıdır. Tam veya halkalı tutulma ancak dar bir şeritte böyle görülür; başka yerlerde parçalıdır.",
+    natalTransits: "Transitler, gezegenlerin bugünkü konumunu doğumunuzdaki konumlarla karşılaştırır: haritanızdaki bir noktayla kavuşum, altmışlık, kare, üçgen ya da karşıt açı yapan bir gezegen o alanı renklendirir. Hızlı gezegenler için 1°, yavaşlar için 1,5° orb kullanılır; tarihler etki dönemini ve açının tam olduğu günü gösterir. Doğum Ay'ı yalnızca doğum saati biliniyorsa, yükselen ve tepe noktası yalnızca saat ve yer biliniyorsa kullanılır."
   },
   placePlaceholder: "Bir şehir adı yazın…",
   placeNoMatch: "Şehir bulunamadı. En yakın şehri deneyin.",
