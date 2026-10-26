@@ -19,7 +19,7 @@ concurrency:
 jobs:
   tests:
     name: Tests (5 fuseaux, 3 langues, hors ligne, site installable)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
@@ -43,7 +43,7 @@ jobs:
     name: Publication sur GitHub Pages
     needs: tests
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment:
       name: github-pages
       url: ${{ steps.deploiement.outputs.page_url }}
