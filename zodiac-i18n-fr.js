@@ -593,7 +593,8 @@ I18N.fr = {
   offline: {
     button: "Version hors ligne",
     hint: "Télécharger l'outil complet en un seul fichier HTML, utilisable sans internet et facile à partager.",
-    opened: "La version autonome s'ouvre dans un nouvel onglet : cliquez-y sur « Version hors ligne » pour l'enregistrer."
+    opened: "La version autonome s'ouvre dans un nouvel onglet : cliquez-y sur « Version hors ligne » pour l'enregistrer.",
+    soon: "bientôt disponible"
   },
   labelBirthPlace: "Lieu de naissance",
   placeNone: "— non précisé —",
@@ -708,7 +709,8 @@ I18N.fr = {
     natalTransits: "Les transits comparent la position actuelle des planètes à celle des astres de votre naissance : une planète en conjonction, sextile, carré, trigone ou opposition avec un point de votre thème en colore le domaine. On retient un écart de 1° pour les planètes rapides et de 1,5° pour les lentes ; les dates donnent la période d'influence et le jour où l'aspect est exact. La Lune natale n'est utilisée que si l'heure de naissance est connue ; l'ascendant et le milieu du ciel, que si l'heure et le lieu le sont.",
     synastry: "La synastrie compare les deux thèmes natals : chaque planète de l'un est confrontée à chaque planète de l'autre. Trigones et sextiles sont des points d'harmonie, carrés et oppositions des points de tension ; une conjonction est harmonieuse, sauf avec Saturne, ou avec Mars hors Vénus (Vénus–Mars symbolise l'attirance). Écarts retenus : 6° pour les conjonctions et oppositions, 5° pour les carrés et trigones, 4° pour les sextiles. Les liens entre Soleil, Lune, Vénus, Mars et ascendant sont classés en premier. C'est une lecture traditionnelle et symbolique, pas une prédiction.",
     numerology: "La numérologie réduit dates et noms à un chiffre de 1 à 9 en additionnant leurs chiffres, sauf les nombres maîtres 11, 22 et 33, gardés tels quels. Chemin de vie : jour, mois et année de naissance réduits séparément, puis additionnés. Nombres du nom : chaque lettre vaut un chiffre (A = 1, B = 2… I = 9, puis J = 1…) ; toutes les lettres donnent l'expression, les voyelles le nombre intime, les consonnes la personnalité. En arabe, on utilise les valeurs abjad (ا = 1… غ = 1000) ; en russe, la table cyrillique équivalente.",
-    personalYear: "L'année personnelle additionne votre jour et votre mois de naissance à l'année en cours ; elle suit un cycle de 9 ans. Le mois personnel y ajoute le mois en cours, le jour personnel le jour du mois. Les cycles sont calculés pour la date de lecture de l'horoscope."
+    personalYear: "L'année personnelle additionne votre jour et votre mois de naissance à l'année en cours ; elle suit un cycle de 9 ans. Le mois personnel y ajoute le mois en cours, le jour personnel le jour du mois. Les cycles sont calculés pour la date de lecture de l'horoscope.",
+    tarot: "Carte de naissance : on additionne le jour, le mois et l'année de naissance, puis on réduit en additionnant les chiffres jusqu'à obtenir 22 ou moins ; 22 correspond au Fou. Carte du jour : un tirage propre à chaque personne et à chaque date, le même toute la journée. Le tarot de Marseille et le Waite-Smith partagent les 22 arcanes majeurs, mais certains noms diffèrent, et la Force et la Justice échangent leurs numéros (XI et VIII à Marseille, VIII et XI chez Waite-Smith) : un même calcul peut donc donner l'une ou l'autre selon le jeu."
   },
   placePlaceholder: "Tapez le nom d'une ville…",
   placeNoMatch: "Aucune ville trouvée. Essayez la ville la plus proche.",
@@ -809,5 +811,138 @@ I18N.fr = {
       }
     },
     years: ["Année de nouveaux départs : semer, oser, lancer des projets.", "Année de patience et de coopération : nouer des liens, laisser mûrir.", "Année d'expression et de créativité : communiquer, se montrer, se faire plaisir.", "Année de travail et de fondations : organiser, consolider, persévérer.", "Année de changements et de liberté : bouger, s'adapter, découvrir.", "Année des responsabilités et du cœur : foyer, famille, engagements.", "Année de recul et d'introspection : apprendre, réfléchir, se ressourcer.", "Année de réalisation : ambitions, finances, reconnaissance.", "Année de bilan et de clôture : terminer, trier, préparer le cycle suivant."]
+  },
+  tarot: {
+    tab: "Tarot",
+    tabSub: "Les arcanes majeurs",
+    deck: "Jeu",
+    birthCard: "Carte de naissance",
+    birthCardDesc: "Votre arcane, calculé d'après votre date de naissance.",
+    dayCard: "Carte du jour",
+    dayCardDesc: "Tirage du {d} : la même carte toute la journée.",
+    note: "Le tarot est une tradition symbolique : ses cartes invitent à la réflexion, elles ne prédisent pas l'avenir.",
+    decks: { marseille: "Tarot de Marseille", ws: "Waite-Smith" },
+    cards: {
+      fool: {
+        name: "Le Fou",
+        keywords: ["Liberté", "Spontanéité", "Nouveau départ"],
+        text: "Élan et confiance dans l'inconnu : une aventure commence, à vivre avec légèreté sans perdre pied."
+      },
+      magician: {
+        name: "Le Magicien",
+        keywords: ["Initiative", "Habileté", "Commencement"],
+        text: "Tous les outils sont sur la table : le moment d'oser et de mettre ses talents en jeu."
+      },
+      priestess: {
+        name: "La Grande Prêtresse",
+        keywords: ["Intuition", "Savoir caché", "Silence"],
+        text: "La sagesse intérieure : écouter son intuition, observer, laisser mûrir avant d'agir."
+      },
+      empress: {
+        name: "L'Impératrice",
+        keywords: ["Créativité", "Abondance", "Expression"],
+        text: "La fertilité des idées et des projets : beauté, générosité et expression portent leurs fruits."
+      },
+      emperor: {
+        name: "L'Empereur",
+        keywords: ["Autorité", "Structure", "Stabilité"],
+        text: "Le pouvoir qui organise et protège : poser un cadre, prendre ses responsabilités, bâtir solidement."
+      },
+      hierophant: {
+        name: "Le Hiérophante",
+        keywords: ["Transmission", "Tradition", "Conseil"],
+        text: "Une sagesse transmise : un guide, un enseignement ou des valeurs partagées éclairent le chemin."
+      },
+      lovers: {
+        name: "Les Amoureux",
+        keywords: ["Choix", "Union", "Cœur"],
+        text: "Une décision du cœur : choisir selon ses valeurs, s'engager dans une relation ou une voie."
+      },
+      chariot: {
+        name: "Le Chariot",
+        keywords: ["Volonté", "Victoire", "Mouvement"],
+        text: "La maîtrise en marche : avancer avec détermination, garder le cap et surmonter les obstacles."
+      },
+      strength: {
+        name: "La Force",
+        keywords: ["Courage", "Maîtrise de soi", "Douceur"],
+        text: "La force tranquille : dompter ses élans par la patience et la douceur plutôt que par la contrainte."
+      },
+      hermit: {
+        name: "L'Ermite",
+        keywords: ["Introspection", "Sagesse", "Recherche"],
+        text: "La lanterne qui éclaire pas à pas : prendre du recul, chercher sa vérité, avancer à son rythme."
+      },
+      wheel: {
+        name: "La Roue de la Fortune",
+        keywords: ["Cycle", "Changement", "Destinée"],
+        text: "Tout tourne : une page se tourne, les circonstances changent ; s'adapter au mouvement de la vie."
+      },
+      justice: {
+        name: "La Justice",
+        keywords: ["Équilibre", "Vérité", "Responsabilité"],
+        text: "L'heure de peser et de trancher : clarté, honnêteté et justes conséquences de ses actes."
+      },
+      hangedman: {
+        name: "Le Pendu",
+        keywords: ["Pause", "Lâcher-prise", "Autre regard"],
+        text: "Suspendre l'action pour voir autrement : l'attente devient féconde quand on lâche prise."
+      },
+      death: {
+        name: "La Mort",
+        keywords: ["Transformation", "Fin", "Renouveau"],
+        text: "Une fin nécessaire ouvre la voie au renouveau : faire place nette pour que la vie se transforme."
+      },
+      temperance: {
+        name: "La Tempérance",
+        keywords: ["Harmonie", "Patience", "Apaisement"],
+        text: "L'art du juste mélange : modération, échanges apaisés et retour à l'équilibre."
+      },
+      devil: {
+        name: "Le Diable",
+        keywords: ["Désir", "Attachements", "Passion"],
+        text: "Les forces du désir et des liens qui retiennent : reconnaître ses attachements pour s'en libérer ou les assumer."
+      },
+      tower: {
+        name: "La Tour",
+        keywords: ["Bouleversement", "Révélation", "Libération"],
+        text: "Un éclair fait tomber ce qui n'était pas solide : un choc salutaire qui libère et révèle."
+      },
+      star: {
+        name: "L'Étoile",
+        keywords: ["Espoir", "Inspiration", "Sérénité"],
+        text: "La lumière après l'épreuve : confiance retrouvée, inspiration et foi en l'avenir."
+      },
+      moon: {
+        name: "La Lune",
+        keywords: ["Rêves", "Doutes", "Imagination"],
+        text: "Le royaume de l'intuition et des illusions : traverser ses peurs, écouter ses rêves sans s'y perdre."
+      },
+      sun: {
+        name: "Le Soleil",
+        keywords: ["Joie", "Réussite", "Clarté"],
+        text: "Rayonnement et vitalité : succès, chaleur des liens et bonheur partagé en pleine lumière."
+      },
+      judgement: {
+        name: "Le Jugement",
+        keywords: ["Éveil", "Appel", "Renaissance"],
+        text: "Un appel à se réveiller : bilan, pardon et nouveau départ, comme une renaissance."
+      },
+      world: {
+        name: "Le Monde",
+        keywords: ["Accomplissement", "Plénitude", "Unité"],
+        text: "Le cycle s'achève en beauté : réussite complète, harmonie et ouverture au monde."
+      }
+    },
+    marseilleNames: {
+      fool: "Le Mat",
+      magician: "Le Bateleur",
+      priestess: "La Papesse",
+      hierophant: "Le Pape",
+      lovers: "L'Amoureux",
+      wheel: "La Roue de Fortune",
+      death: "L'Arcane sans nom",
+      tower: "La Maison Dieu"
+    }
   }
 };

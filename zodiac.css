@@ -804,6 +804,42 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
    sinon les liaisons se cassent — à l'écran comme dans l'image exportée, où chaque lettre serait dessinée isolément */
 :root:is([lang="ar"], [lang="hi"], [lang="th"]) *{ letter-spacing:0 !important; }
 
+/* Tarot */
+.tarot{ display:grid; gap:1.1rem; }
+.tarot-deck{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:.5rem; }
+.tarot-deck-label{ color:var(--muted); font-size:.85rem; margin-inline-end:.3rem; }
+.deck-btn{ background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.15); color:var(--text); padding:.45rem 1rem; border-radius:999px; font-size:.85rem; cursor:pointer; }
+.deck-btn:hover{ border-color:var(--gold); }
+.deck-btn[aria-pressed="true"]{ background:var(--gold); color:#1a1435; border-color:var(--gold); font-weight:700; }
+.deck-btn:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+.tarot-pair{ display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; }
+.tarot-slot h3{ margin-bottom:.2rem; }
+.tarot-body{ display:flex; gap:1.1rem; align-items:flex-start; margin-top:.6rem; }
+.tarot-visual{ flex:none; }
+.tarot-card{ display:block; width:120px; height:200px; filter:drop-shadow(0 6px 14px rgba(0,0,0,.45)); }
+.tarot-text{ display:flex; flex-direction:column; gap:.5rem; min-width:0; }
+.tarot-title{ color:var(--text); font-weight:700; font-size:1.1rem; }
+.tarot-num{ color:var(--gold); font-family:Georgia, 'Times New Roman', serif; }
+/* Habillage des cartes (couleurs fixes, indépendantes du thème clair ou sombre) */
+.deck-marseille{ --tc-bg:#f3e6c4; --tc-ink:#1d1d1d; --tc-a:#c8102e; --tc-b:#1c4fa1; --tc-c:#f2b705; --tc-band:#f2b705; }
+.deck-ws{ --tc-bg:#fbf6ea; --tc-ink:#3a3550; --tc-a:#d97a6c; --tc-b:#6f8fc9; --tc-c:#e8c36a; --tc-band:#fbf6ea; }
+.tarot-card .t-face{ fill:var(--tc-bg); stroke:var(--tc-ink); stroke-width:2.5; }
+.tarot-card .t-inner{ fill:none; stroke:var(--tc-ink); stroke-width:1; }
+.tarot-card .t-band{ fill:var(--tc-band); stroke:var(--tc-ink); stroke-width:1; }
+.deck-ws .t-face{ stroke:#c9b98f; stroke-width:1.2; } .deck-ws .t-inner{ stroke:#d9c8a0; } .deck-ws .t-band{ fill:none; stroke:none; }
+.tarot-card .t-num{ font:700 13px Georgia, 'Times New Roman', serif; text-anchor:middle; fill:var(--tc-ink); }
+.tarot-card .t-name{ font:700 9.5px Georgia, 'Times New Roman', serif; text-anchor:middle; fill:var(--tc-ink); }
+.tarot-card .ta{ fill:var(--tc-a); } .tarot-card .tb{ fill:var(--tc-b); } .tarot-card .tc{ fill:var(--tc-c); } .tarot-card .tf{ fill:var(--tc-ink); }
+.tarot-card .ti{ fill:none; stroke:var(--tc-ink); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.tarot-card .tw{ fill:none; stroke:var(--tc-ink); stroke-width:4; stroke-linecap:round; stroke-linejoin:round; }
+.tarot-card .tb-l{ fill:none; stroke:var(--tc-b); stroke-width:2.5; stroke-linecap:round; }
+.tarot-card .tthick{ stroke-width:4; } .tarot-card .tdash{ stroke-dasharray:4 3; }
+.tarot-card .ta-s{ stroke:var(--tc-a); stroke-width:3; } .tarot-card .tb-s{ stroke:var(--tc-b); stroke-width:3; }
+.deck-marseille .ta, .deck-marseille .tb, .deck-marseille .tc{ stroke:var(--tc-ink); stroke-width:1.5; }   /* contours de gravure */
+.offline-btn:disabled{ opacity:.55; cursor:not-allowed; }
+.offline-btn:disabled:hover{ border-color:rgba(255,255,255,.15); }
+@media (max-width:640px){ .tarot-pair{ grid-template-columns:1fr; } }
+
 /* Onglets du résultat sur petit écran (en fin de fichier : doit passer après la règle générale des onglets).
    Trois onglets côte à côte sont trop serrés pour les mots longs de certaines langues : empilés en une colonne. */
 @media (max-width:640px){

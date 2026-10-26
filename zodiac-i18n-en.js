@@ -590,7 +590,8 @@ I18N.en = deepMerge(I18N.fr, {
   offline: {
     button: "Offline version",
     hint: "Download the complete tool as a single HTML file, usable without internet and easy to share.",
-    opened: "The standalone version opens in a new tab: click “Offline version” there to save it."
+    opened: "The standalone version opens in a new tab: click “Offline version” there to save it.",
+    soon: "coming soon"
   },
   labelBirthPlace: "Place of birth",
   placeNone: "— not specified —",
@@ -705,7 +706,8 @@ I18N.en = deepMerge(I18N.fr, {
     natalTransits: "Transits compare where the planets are now with where they were at your birth: a planet in conjunction, sextile, square, trine or opposition with a point of your chart colours that area. The orb is 1° for fast planets and 1.5° for slow ones; the dates give the period of influence and the day the aspect is exact. The natal Moon is used only if the time of birth is known; the ascendant and midheaven only if both time and place are.",
     synastry: "Synastry compares two birth charts: each planet of one is set against each planet of the other. Trines and sextiles are points of harmony, squares and oppositions points of tension; a conjunction is harmonious, except with Saturn, or with Mars other than with Venus (Venus–Mars stands for attraction). Orbs: 6° for conjunctions and oppositions, 5° for squares and trines, 4° for sextiles. Links between Sun, Moon, Venus, Mars and the ascendant come first. It is a traditional, symbolic reading, not a prediction.",
     numerology: "Numerology reduces dates and names to a digit from 1 to 9 by adding their digits, except the master numbers 11, 22 and 33, which are kept as they are. Life path: day, month and year of birth reduced separately, then added. Name numbers: each letter has a value (A = 1, B = 2… I = 9, then J = 1…); all letters give the expression, vowels the soul urge, consonants the personality. In Arabic, the abjad values are used (ا = 1… غ = 1000); in Russian, the equivalent Cyrillic table.",
-    personalYear: "Your personal year adds your birth day and month to the current year; it follows a 9-year cycle. The personal month adds the current month, the personal day the day of the month. Cycles are calculated for the horoscope's reading date."
+    personalYear: "Your personal year adds your birth day and month to the current year; it follows a 9-year cycle. The personal month adds the current month, the personal day the day of the month. Cycles are calculated for the horoscope's reading date.",
+    tarot: "Birth card: add the day, month and year of birth, then reduce by adding the digits until you get 22 or less; 22 is the Fool. Card of the day: a draw specific to each person and each date, the same all day long. The Tarot de Marseille and the Waite-Smith share the 22 major arcana, but some names differ, and Strength and Justice swap numbers (XI and VIII in Marseille, VIII and XI in Waite-Smith): the same calculation can therefore give one or the other depending on the deck."
   },
   placePlaceholder: "Type a city name…",
   placeNoMatch: "No city found. Try the nearest town.",
@@ -806,5 +808,138 @@ I18N.en = deepMerge(I18N.fr, {
       }
     },
     years: ["A year of new beginnings: sow, dare, launch projects.", "A year of patience and cooperation: build bonds, let things ripen.", "A year of expression and creativity: communicate, show yourself, enjoy.", "A year of work and foundations: organise, consolidate, persevere.", "A year of change and freedom: move, adapt, discover.", "A year of responsibilities and the heart: home, family, commitments.", "A year of stepping back and introspection: learn, reflect, recharge.", "A year of achievement: ambitions, finances, recognition.", "A year of review and closure: finish, sort out, prepare the next cycle."]
+  },
+  tarot: {
+    tab: "Tarot",
+    tabSub: "The major arcana",
+    deck: "Deck",
+    birthCard: "Birth card",
+    birthCardDesc: "Your arcanum, calculated from your date of birth.",
+    dayCard: "Card of the day",
+    dayCardDesc: "Draw for {d}: the same card all day long.",
+    note: "Tarot is a symbolic tradition: its cards invite reflection, they do not predict the future.",
+    decks: { marseille: "Tarot de Marseille", ws: "Waite-Smith" },
+    cards: {
+      fool: {
+        name: "The Fool",
+        keywords: ["Freedom", "Spontaneity", "New start"],
+        text: "Momentum and trust in the unknown: an adventure begins, to be lived lightly without losing your footing."
+      },
+      magician: {
+        name: "The Magician",
+        keywords: ["Initiative", "Skill", "Beginning"],
+        text: "All the tools are on the table: time to dare and put your talents into play."
+      },
+      priestess: {
+        name: "The High Priestess",
+        keywords: ["Intuition", "Hidden knowledge", "Silence"],
+        text: "Inner wisdom: listen to your intuition, observe, let things ripen before acting."
+      },
+      empress: {
+        name: "The Empress",
+        keywords: ["Creativity", "Abundance", "Expression"],
+        text: "Fertile ideas and projects: beauty, generosity and expression bear fruit."
+      },
+      emperor: {
+        name: "The Emperor",
+        keywords: ["Authority", "Structure", "Stability"],
+        text: "The power that organises and protects: set a framework, take responsibility, build solidly."
+      },
+      hierophant: {
+        name: "The Hierophant",
+        keywords: ["Transmission", "Tradition", "Guidance"],
+        text: "Wisdom passed on: a guide, a teaching or shared values light the way."
+      },
+      lovers: {
+        name: "The Lovers",
+        keywords: ["Choice", "Union", "Heart"],
+        text: "A decision of the heart: choose by your values, commit to a relationship or a path."
+      },
+      chariot: {
+        name: "The Chariot",
+        keywords: ["Willpower", "Victory", "Movement"],
+        text: "Mastery on the move: advance with determination, hold your course and overcome obstacles."
+      },
+      strength: {
+        name: "Strength",
+        keywords: ["Courage", "Self-control", "Gentleness"],
+        text: "Quiet strength: tame your impulses with patience and gentleness rather than force."
+      },
+      hermit: {
+        name: "The Hermit",
+        keywords: ["Introspection", "Wisdom", "Seeking"],
+        text: "The lantern that lights one step at a time: step back, seek your truth, go at your own pace."
+      },
+      wheel: {
+        name: "Wheel of Fortune",
+        keywords: ["Cycle", "Change", "Destiny"],
+        text: "Everything turns: a page turns, circumstances change; adapt to the movement of life."
+      },
+      justice: {
+        name: "Justice",
+        keywords: ["Balance", "Truth", "Responsibility"],
+        text: "Time to weigh and decide: clarity, honesty and fair consequences of one's actions."
+      },
+      hangedman: {
+        name: "The Hanged Man",
+        keywords: ["Pause", "Letting go", "New perspective"],
+        text: "Suspend action to see things differently: waiting becomes fruitful when you let go."
+      },
+      death: {
+        name: "Death",
+        keywords: ["Transformation", "Ending", "Renewal"],
+        text: "A necessary ending opens the way to renewal: clear the ground so life can transform."
+      },
+      temperance: {
+        name: "Temperance",
+        keywords: ["Harmony", "Patience", "Calm"],
+        text: "The art of the right blend: moderation, peaceful exchanges and a return to balance."
+      },
+      devil: {
+        name: "The Devil",
+        keywords: ["Desire", "Attachments", "Passion"],
+        text: "The forces of desire and of ties that bind: recognise your attachments to free yourself or own them."
+      },
+      tower: {
+        name: "The Tower",
+        keywords: ["Upheaval", "Revelation", "Liberation"],
+        text: "Lightning brings down what was not solid: a salutary shock that frees and reveals."
+      },
+      star: {
+        name: "The Star",
+        keywords: ["Hope", "Inspiration", "Serenity"],
+        text: "Light after the ordeal: renewed confidence, inspiration and faith in the future."
+      },
+      moon: {
+        name: "The Moon",
+        keywords: ["Dreams", "Doubts", "Imagination"],
+        text: "The realm of intuition and illusion: move through your fears, listen to your dreams without getting lost."
+      },
+      sun: {
+        name: "The Sun",
+        keywords: ["Joy", "Success", "Clarity"],
+        text: "Radiance and vitality: success, warm bonds and happiness shared in full light."
+      },
+      judgement: {
+        name: "Judgement",
+        keywords: ["Awakening", "Calling", "Rebirth"],
+        text: "A call to wake up: taking stock, forgiveness and a fresh start, like a rebirth."
+      },
+      world: {
+        name: "The World",
+        keywords: ["Fulfilment", "Wholeness", "Unity"],
+        text: "The cycle ends beautifully: complete success, harmony and openness to the world."
+      }
+    },
+    marseilleNames: {
+      fool: "The Fool",
+      magician: "The Juggler",
+      priestess: "The Popess",
+      hierophant: "The Pope",
+      lovers: "The Lover",
+      wheel: "The Wheel of Fortune",
+      death: "The Nameless Arcanum",
+      tower: "The House of God"
+    }
   }
 });

@@ -593,7 +593,8 @@ I18N.es = deepMerge(I18N.fr, {
   offline: {
     button: "Versión sin conexión",
     hint: "Descarga la herramienta completa en un único archivo HTML, utilizable sin internet y fácil de compartir.",
-    opened: "La versión autónoma se abre en una pestaña nueva: haz clic allí en «Versión sin conexión» para guardarla."
+    opened: "La versión autónoma se abre en una pestaña nueva: haz clic allí en «Versión sin conexión» para guardarla.",
+    soon: "próximamente"
   },
   labelBirthPlace: "Lugar de nacimiento",
   placeNone: "— sin especificar —",
@@ -708,7 +709,8 @@ I18N.es = deepMerge(I18N.fr, {
     natalTransits: "Los tránsitos comparan la posición actual de los planetas con la de tu nacimiento: un planeta en conjunción, sextil, cuadratura, trígono u oposición con un punto de tu carta tiñe ese ámbito. Se usa un margen de 1° para los planetas rápidos y de 1,5° para los lentos; las fechas indican el periodo de influencia y el día en que el aspecto es exacto. La Luna natal solo se usa si se conoce la hora de nacimiento; el ascendente y el medio cielo, solo si se conocen la hora y el lugar.",
     synastry: "La sinastría compara las dos cartas natales: cada planeta de una se confronta con cada planeta de la otra. Trígonos y sextiles son puntos de armonía; cuadraturas y oposiciones, puntos de tensión; una conjunción es armoniosa, salvo con Saturno, o con Marte fuera de Venus (Venus–Marte simboliza la atracción). Márgenes: 6° para conjunciones y oposiciones, 5° para cuadraturas y trígonos, 4° para sextiles. Primero aparecen los vínculos entre Sol, Luna, Venus, Marte y ascendente. Es una lectura tradicional y simbólica, no una predicción.",
     numerology: "La numerología reduce fechas y nombres a una cifra del 1 al 9 sumando sus dígitos, salvo los números maestros 11, 22 y 33, que se conservan. Camino de vida: día, mes y año de nacimiento reducidos por separado y luego sumados. Números del nombre: cada letra vale una cifra (A = 1, B = 2… I = 9, luego J = 1…); todas las letras dan la expresión, las vocales el número del alma, las consonantes la personalidad. En árabe se usan los valores abjad (ا = 1… غ = 1000); en ruso, la tabla cirílica equivalente.",
-    personalYear: "El año personal suma tu día y tu mes de nacimiento al año en curso; sigue un ciclo de 9 años. El mes personal añade el mes en curso, y el día personal, el día del mes. Los ciclos se calculan para la fecha de lectura del horóscopo."
+    personalYear: "El año personal suma tu día y tu mes de nacimiento al año en curso; sigue un ciclo de 9 años. El mes personal añade el mes en curso, y el día personal, el día del mes. Los ciclos se calculan para la fecha de lectura del horóscopo.",
+    tarot: "Carta de nacimiento: se suman el día, el mes y el año de nacimiento y luego se reduce sumando las cifras hasta obtener 22 o menos; el 22 corresponde al Loco. Carta del día: una tirada propia de cada persona y de cada fecha, la misma todo el día. El Tarot de Marsella y el Waite-Smith comparten los 22 arcanos mayores, pero algunos nombres cambian, y la Fuerza y la Justicia intercambian sus números (XI y VIII en Marsella, VIII y XI en Waite-Smith): el mismo cálculo puede dar una u otra según la baraja."
   },
   placePlaceholder: "Escribe el nombre de una ciudad…",
   placeNoMatch: "No se encontró ninguna ciudad. Prueba con la más cercana.",
@@ -809,5 +811,138 @@ I18N.es = deepMerge(I18N.fr, {
       }
     },
     years: ["Año de nuevos comienzos: sembrar, atreverse, lanzar proyectos.", "Año de paciencia y cooperación: crear lazos, dejar madurar.", "Año de expresión y creatividad: comunicar, mostrarse, disfrutar.", "Año de trabajo y cimientos: organizar, consolidar, perseverar.", "Año de cambios y libertad: moverse, adaptarse, descubrir.", "Año de responsabilidades y del corazón: hogar, familia, compromisos.", "Año de pausa e introspección: aprender, reflexionar, recargar energías.", "Año de logros: ambiciones, finanzas, reconocimiento.", "Año de balance y cierre: terminar, ordenar, preparar el ciclo siguiente."]
+  },
+  tarot: {
+    tab: "Tarot",
+    tabSub: "Los arcanos mayores",
+    deck: "Baraja",
+    birthCard: "Carta de nacimiento",
+    birthCardDesc: "Tu arcano, calculado a partir de tu fecha de nacimiento.",
+    dayCard: "Carta del día",
+    dayCardDesc: "Tirada del {d}: la misma carta todo el día.",
+    note: "El tarot es una tradición simbólica: sus cartas invitan a reflexionar, no predicen el futuro.",
+    decks: { marseille: "Tarot de Marsella", ws: "Waite-Smith" },
+    cards: {
+      fool: {
+        name: "El Loco",
+        keywords: ["Libertad", "Espontaneidad", "Nuevo comienzo"],
+        text: "Impulso y confianza en lo desconocido: empieza una aventura, para vivirla con ligereza sin perder pie."
+      },
+      magician: {
+        name: "El Mago",
+        keywords: ["Iniciativa", "Habilidad", "Comienzo"],
+        text: "Todas las herramientas están sobre la mesa: es momento de atreverse y poner en juego tus talentos."
+      },
+      priestess: {
+        name: "La Sacerdotisa",
+        keywords: ["Intuición", "Saber oculto", "Silencio"],
+        text: "La sabiduría interior: escuchar la intuición, observar, dejar madurar antes de actuar."
+      },
+      empress: {
+        name: "La Emperatriz",
+        keywords: ["Creatividad", "Abundancia", "Expresión"],
+        text: "La fertilidad de ideas y proyectos: belleza, generosidad y expresión dan sus frutos."
+      },
+      emperor: {
+        name: "El Emperador",
+        keywords: ["Autoridad", "Estructura", "Estabilidad"],
+        text: "El poder que organiza y protege: poner un marco, asumir responsabilidades, construir con solidez."
+      },
+      hierophant: {
+        name: "El Hierofante",
+        keywords: ["Transmisión", "Tradición", "Consejo"],
+        text: "Una sabiduría transmitida: un guía, una enseñanza o valores compartidos iluminan el camino."
+      },
+      lovers: {
+        name: "Los Enamorados",
+        keywords: ["Elección", "Unión", "Corazón"],
+        text: "Una decisión del corazón: elegir según tus valores, comprometerte con una relación o un camino."
+      },
+      chariot: {
+        name: "El Carro",
+        keywords: ["Voluntad", "Victoria", "Movimiento"],
+        text: "El dominio en marcha: avanzar con determinación, mantener el rumbo y superar los obstáculos."
+      },
+      strength: {
+        name: "La Fuerza",
+        keywords: ["Valor", "Autocontrol", "Dulzura"],
+        text: "La fuerza serena: domar los impulsos con paciencia y dulzura más que con imposición."
+      },
+      hermit: {
+        name: "El Ermitaño",
+        keywords: ["Introspección", "Sabiduría", "Búsqueda"],
+        text: "La linterna que alumbra paso a paso: tomar distancia, buscar tu verdad, avanzar a tu ritmo."
+      },
+      wheel: {
+        name: "La Rueda de la Fortuna",
+        keywords: ["Ciclo", "Cambio", "Destino"],
+        text: "Todo gira: se pasa página, las circunstancias cambian; adaptarse al movimiento de la vida."
+      },
+      justice: {
+        name: "La Justicia",
+        keywords: ["Equilibrio", "Verdad", "Responsabilidad"],
+        text: "Hora de sopesar y decidir: claridad, honestidad y justas consecuencias de los actos."
+      },
+      hangedman: {
+        name: "El Colgado",
+        keywords: ["Pausa", "Soltar", "Otra mirada"],
+        text: "Suspender la acción para ver las cosas de otro modo: la espera se vuelve fecunda cuando se suelta."
+      },
+      death: {
+        name: "La Muerte",
+        keywords: ["Transformación", "Final", "Renovación"],
+        text: "Un final necesario abre paso a la renovación: hacer limpieza para que la vida se transforme."
+      },
+      temperance: {
+        name: "La Templanza",
+        keywords: ["Armonía", "Paciencia", "Calma"],
+        text: "El arte de la justa mezcla: moderación, intercambios serenos y regreso al equilibrio."
+      },
+      devil: {
+        name: "El Diablo",
+        keywords: ["Deseo", "Apegos", "Pasión"],
+        text: "Las fuerzas del deseo y de los lazos que atan: reconocer tus apegos para liberarte de ellos o asumirlos."
+      },
+      tower: {
+        name: "La Torre",
+        keywords: ["Conmoción", "Revelación", "Liberación"],
+        text: "Un rayo derriba lo que no era sólido: una sacudida saludable que libera y revela."
+      },
+      star: {
+        name: "La Estrella",
+        keywords: ["Esperanza", "Inspiración", "Serenidad"],
+        text: "La luz tras la prueba: confianza recobrada, inspiración y fe en el futuro."
+      },
+      moon: {
+        name: "La Luna",
+        keywords: ["Sueños", "Dudas", "Imaginación"],
+        text: "El reino de la intuición y las ilusiones: atravesar los miedos, escuchar los sueños sin perderse."
+      },
+      sun: {
+        name: "El Sol",
+        keywords: ["Alegría", "Éxito", "Claridad"],
+        text: "Resplandor y vitalidad: éxito, calidez en los vínculos y felicidad compartida a plena luz."
+      },
+      judgement: {
+        name: "El Juicio",
+        keywords: ["Despertar", "Llamada", "Renacimiento"],
+        text: "Una llamada a despertar: balance, perdón y nuevo comienzo, como un renacer."
+      },
+      world: {
+        name: "El Mundo",
+        keywords: ["Plenitud", "Logro", "Unidad"],
+        text: "El ciclo se cierra con belleza: éxito completo, armonía y apertura al mundo."
+      }
+    },
+    marseilleNames: {
+      fool: "El Loco",
+      magician: "El Mago",
+      priestess: "La Papisa",
+      hierophant: "El Papa",
+      lovers: "El Enamorado",
+      wheel: "La Rueda de la Fortuna",
+      death: "El Arcano sin nombre",
+      tower: "La Casa de Dios"
+    }
   }
 });

@@ -593,7 +593,8 @@ I18N.de = deepMerge(I18N.fr, {
   offline: {
     button: "Offline-Version",
     hint: "Das komplette Tool als einzelne HTML-Datei herunterladen – ohne Internet nutzbar und leicht weiterzugeben.",
-    opened: "Die eigenständige Version öffnet sich in einem neuen Tab: Klicke dort auf „Offline-Version“, um sie zu speichern."
+    opened: "Die eigenständige Version öffnet sich in einem neuen Tab: Klicke dort auf „Offline-Version“, um sie zu speichern.",
+    soon: "bald verfügbar"
   },
   labelBirthPlace: "Geburtsort",
   placeNone: "— nicht angegeben —",
@@ -708,7 +709,8 @@ I18N.de = deepMerge(I18N.fr, {
     natalTransits: "Transite vergleichen die heutige Stellung der Planeten mit der bei deiner Geburt: Ein Planet in Konjunktion, Sextil, Quadrat, Trigon oder Opposition zu einem Punkt deines Horoskops färbt dessen Bereich. Der Orbis beträgt 1° für schnelle und 1,5° für langsame Planeten; die Daten zeigen den Wirkungszeitraum und den Tag, an dem der Aspekt exakt ist. Der Geburtsmond wird nur bei bekannter Geburtszeit verwendet, Aszendent und Himmelsmitte nur bei bekannter Zeit und bekanntem Ort.",
     synastry: "Die Synastrie vergleicht zwei Geburtshoroskope: Jeder Planet des einen wird jedem Planeten des anderen gegenübergestellt. Trigone und Sextile gelten als harmonisch, Quadrate und Oppositionen als spannungsreich; eine Konjunktion ist harmonisch, außer mit Saturn oder mit Mars (außer mit Venus – Venus–Mars steht für Anziehung). Orben: 6° für Konjunktionen und Oppositionen, 5° für Quadrate und Trigone, 4° für Sextile. Verbindungen zwischen Sonne, Mond, Venus, Mars und Aszendent stehen vorn. Es ist eine traditionelle, symbolische Deutung, keine Vorhersage.",
     numerology: "Die Numerologie reduziert Daten und Namen durch Addieren ihrer Ziffern auf eine Zahl von 1 bis 9 – außer den Meisterzahlen 11, 22 und 33, die erhalten bleiben. Lebensweg: Tag, Monat und Jahr der Geburt werden einzeln reduziert und dann addiert. Namenszahlen: Jeder Buchstabe hat einen Wert (A = 1, B = 2 … I = 9, dann J = 1 …); alle Buchstaben ergeben die Ausdruckszahl, die Vokale die Seelenzahl, die Konsonanten die Persönlichkeitszahl. Im Arabischen gelten die Abdschad-Werte (ا = 1 … غ = 1000), im Russischen die entsprechende kyrillische Tabelle.",
-    personalYear: "Das persönliche Jahr addiert deinen Geburtstag und -monat zum laufenden Jahr; es folgt einem Zyklus von 9 Jahren. Der persönliche Monat fügt den laufenden Monat hinzu, der persönliche Tag den Tag des Monats. Die Zyklen gelten für das Lesedatum des Horoskops."
+    personalYear: "Das persönliche Jahr addiert deinen Geburtstag und -monat zum laufenden Jahr; es folgt einem Zyklus von 9 Jahren. Der persönliche Monat fügt den laufenden Monat hinzu, der persönliche Tag den Tag des Monats. Die Zyklen gelten für das Lesedatum des Horoskops.",
+    tarot: "Geburtskarte: Tag, Monat und Jahr der Geburt werden addiert und dann durch Addieren der Ziffern reduziert, bis 22 oder weniger herauskommt; 22 entspricht dem Narren. Tageskarte: eine Ziehung für jede Person und jedes Datum, den ganzen Tag dieselbe. Das Tarot de Marseille und das Waite-Smith teilen die 22 großen Arkana, doch manche Namen unterscheiden sich, und Kraft und Gerechtigkeit tauschen ihre Nummern (XI und VIII bei Marseille, VIII und XI bei Waite-Smith): Dieselbe Rechnung kann je nach Deck die eine oder die andere ergeben."
   },
   placePlaceholder: "Stadtnamen eingeben …",
   placeNoMatch: "Keine Stadt gefunden. Versuche die nächstgelegene.",
@@ -809,5 +811,138 @@ I18N.de = deepMerge(I18N.fr, {
       }
     },
     years: ["Ein Jahr des Neubeginns: säen, wagen, Projekte starten.", "Ein Jahr der Geduld und Zusammenarbeit: Bindungen knüpfen, reifen lassen.", "Ein Jahr des Ausdrucks und der Kreativität: kommunizieren, sich zeigen, genießen.", "Ein Jahr der Arbeit und der Fundamente: ordnen, festigen, durchhalten.", "Ein Jahr des Wandels und der Freiheit: aufbrechen, sich anpassen, entdecken.", "Ein Jahr der Verantwortung und des Herzens: Zuhause, Familie, Verpflichtungen.", "Ein Jahr des Rückzugs und der Selbstbesinnung: lernen, nachdenken, Kraft tanken.", "Ein Jahr der Verwirklichung: Ziele, Finanzen, Anerkennung.", "Ein Jahr der Bilanz und des Abschlusses: beenden, aussortieren, den nächsten Zyklus vorbereiten."]
+  },
+  tarot: {
+    tab: "Tarot",
+    tabSub: "Die großen Arkana",
+    deck: "Deck",
+    birthCard: "Geburtskarte",
+    birthCardDesc: "Deine Karte, berechnet aus deinem Geburtsdatum.",
+    dayCard: "Tageskarte",
+    dayCardDesc: "Ziehung vom {d}: den ganzen Tag dieselbe Karte.",
+    note: "Tarot ist eine symbolische Tradition: Seine Karten laden zum Nachdenken ein, sie sagen die Zukunft nicht voraus.",
+    decks: { marseille: "Tarot de Marseille", ws: "Waite-Smith" },
+    cards: {
+      fool: {
+        name: "Der Narr",
+        keywords: ["Freiheit", "Spontaneität", "Neuanfang"],
+        text: "Schwung und Vertrauen ins Unbekannte: Ein Abenteuer beginnt – leicht leben, ohne den Halt zu verlieren."
+      },
+      magician: {
+        name: "Der Magier",
+        keywords: ["Initiative", "Geschick", "Anfang"],
+        text: "Alle Werkzeuge liegen auf dem Tisch: Zeit, etwas zu wagen und die eigenen Talente einzusetzen."
+      },
+      priestess: {
+        name: "Die Hohepriesterin",
+        keywords: ["Intuition", "Verborgenes Wissen", "Stille"],
+        text: "Innere Weisheit: auf die Intuition hören, beobachten, reifen lassen, bevor man handelt."
+      },
+      empress: {
+        name: "Die Herrscherin",
+        keywords: ["Kreativität", "Fülle", "Ausdruck"],
+        text: "Fruchtbare Ideen und Projekte: Schönheit, Großzügigkeit und Ausdruck tragen Früchte."
+      },
+      emperor: {
+        name: "Der Herrscher",
+        keywords: ["Autorität", "Struktur", "Stabilität"],
+        text: "Die Macht, die ordnet und schützt: einen Rahmen setzen, Verantwortung übernehmen, solide bauen."
+      },
+      hierophant: {
+        name: "Der Hierophant",
+        keywords: ["Weitergabe", "Tradition", "Rat"],
+        text: "Weitergegebene Weisheit: ein Lehrer, eine Lehre oder gemeinsame Werte erhellen den Weg."
+      },
+      lovers: {
+        name: "Die Liebenden",
+        keywords: ["Wahl", "Verbindung", "Herz"],
+        text: "Eine Herzensentscheidung: nach den eigenen Werten wählen, sich auf eine Beziehung oder einen Weg einlassen."
+      },
+      chariot: {
+        name: "Der Wagen",
+        keywords: ["Wille", "Sieg", "Bewegung"],
+        text: "Meisterschaft in Bewegung: entschlossen vorangehen, Kurs halten und Hindernisse überwinden."
+      },
+      strength: {
+        name: "Die Kraft",
+        keywords: ["Mut", "Selbstbeherrschung", "Sanftheit"],
+        text: "Stille Stärke: die eigenen Triebe mit Geduld und Sanftheit zähmen statt mit Zwang."
+      },
+      hermit: {
+        name: "Der Eremit",
+        keywords: ["Selbstbesinnung", "Weisheit", "Suche"],
+        text: "Die Laterne, die Schritt für Schritt leuchtet: Abstand nehmen, die eigene Wahrheit suchen, im eigenen Tempo gehen."
+      },
+      wheel: {
+        name: "Das Rad des Schicksals",
+        keywords: ["Zyklus", "Wandel", "Schicksal"],
+        text: "Alles dreht sich: Ein Kapitel endet, die Umstände ändern sich – sich der Bewegung des Lebens anpassen."
+      },
+      justice: {
+        name: "Die Gerechtigkeit",
+        keywords: ["Gleichgewicht", "Wahrheit", "Verantwortung"],
+        text: "Zeit zu wägen und zu entscheiden: Klarheit, Ehrlichkeit und gerechte Folgen des eigenen Handelns."
+      },
+      hangedman: {
+        name: "Der Gehängte",
+        keywords: ["Pause", "Loslassen", "Neuer Blick"],
+        text: "Das Handeln aussetzen, um anders zu sehen: Das Warten wird fruchtbar, wenn man loslässt."
+      },
+      death: {
+        name: "Der Tod",
+        keywords: ["Wandlung", "Ende", "Erneuerung"],
+        text: "Ein notwendiges Ende ebnet den Weg zur Erneuerung: Platz schaffen, damit sich das Leben wandeln kann."
+      },
+      temperance: {
+        name: "Die Mäßigkeit",
+        keywords: ["Harmonie", "Geduld", "Ruhe"],
+        text: "Die Kunst der richtigen Mischung: Maß, friedlicher Austausch und Rückkehr ins Gleichgewicht."
+      },
+      devil: {
+        name: "Der Teufel",
+        keywords: ["Begierde", "Bindungen", "Leidenschaft"],
+        text: "Die Kräfte der Begierde und der Bindungen, die festhalten: die eigenen Abhängigkeiten erkennen, um sich zu befreien oder sie anzunehmen."
+      },
+      tower: {
+        name: "Der Turm",
+        keywords: ["Umbruch", "Offenbarung", "Befreiung"],
+        text: "Ein Blitz stürzt, was nicht stabil war: ein heilsamer Schock, der befreit und enthüllt."
+      },
+      star: {
+        name: "Der Stern",
+        keywords: ["Hoffnung", "Inspiration", "Gelassenheit"],
+        text: "Licht nach der Prüfung: neues Vertrauen, Inspiration und Glaube an die Zukunft."
+      },
+      moon: {
+        name: "Der Mond",
+        keywords: ["Träume", "Zweifel", "Fantasie"],
+        text: "Das Reich der Intuition und der Illusionen: durch die Ängste gehen, auf Träume hören, ohne sich zu verlieren."
+      },
+      sun: {
+        name: "Die Sonne",
+        keywords: ["Freude", "Erfolg", "Klarheit"],
+        text: "Strahlkraft und Lebensfreude: Erfolg, herzliche Verbindungen und geteiltes Glück im vollen Licht."
+      },
+      judgement: {
+        name: "Das Gericht",
+        keywords: ["Erwachen", "Ruf", "Wiedergeburt"],
+        text: "Ein Ruf zum Erwachen: Bilanz, Vergebung und Neubeginn, wie eine Wiedergeburt."
+      },
+      world: {
+        name: "Die Welt",
+        keywords: ["Vollendung", "Erfüllung", "Einheit"],
+        text: "Der Zyklus schließt sich schön: voller Erfolg, Harmonie und Offenheit für die Welt."
+      }
+    },
+    marseilleNames: {
+      fool: "Der Narr",
+      magician: "Der Gaukler",
+      priestess: "Die Päpstin",
+      hierophant: "Der Papst",
+      lovers: "Der Liebende",
+      wheel: "Das Glücksrad",
+      death: "Das Arkanum ohne Namen",
+      tower: "Das Haus Gottes"
+    }
   }
 });

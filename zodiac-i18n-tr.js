@@ -589,7 +589,8 @@ I18N.tr = deepMerge(I18N.fr, {
   offline: {
     button: "Çevrimdışı sürüm",
     hint: "Aracın tamamını tek bir HTML dosyası olarak indirin: internetsiz kullanılabilir ve kolayca paylaşılır.",
-    opened: "Bağımsız sürüm yeni bir sekmede açılıyor: kaydetmek için oradaki “Çevrimdışı sürüm” düğmesine tıklayın."
+    opened: "Bağımsız sürüm yeni bir sekmede açılıyor: kaydetmek için oradaki “Çevrimdışı sürüm” düğmesine tıklayın.",
+    soon: "yakında"
   },
   labelBirthPlace: "Doğum yeri",
   placeNone: "— belirtilmedi —",
@@ -704,7 +705,8 @@ I18N.tr = deepMerge(I18N.fr, {
     natalTransits: "Transitler, gezegenlerin bugünkü konumunu doğumunuzdaki konumlarla karşılaştırır: haritanızdaki bir noktayla kavuşum, altmışlık, kare, üçgen ya da karşıt açı yapan bir gezegen o alanı renklendirir. Hızlı gezegenler için 1°, yavaşlar için 1,5° orb kullanılır; tarihler etki dönemini ve açının tam olduğu günü gösterir. Doğum Ay'ı yalnızca doğum saati biliniyorsa, yükselen ve tepe noktası yalnızca saat ve yer biliniyorsa kullanılır.",
     synastry: "Sinastri iki doğum haritasını karşılaştırır: birinin her gezegeni diğerinin her gezegeniyle ele alınır. Üçgen ve altmışlık açılar uyum, kare ve karşıt açılar gerilim noktalarıdır; kavuşum uyumludur, ancak Satürn ile ya da (Venüs dışında) Mars ile değildir (Venüs–Mars çekimi simgeler). Orblar: kavuşum ve karşıt için 6°, kare ve üçgen için 5°, altmışlık için 4°. Güneş, Ay, Venüs, Mars ve yükselen arasındaki bağlar önce gelir. Bu, geleneksel ve sembolik bir yorumdur, kehanet değildir.",
     numerology: "Numeroloji, tarihleri ve adları rakamlarını toplayarak 1 ile 9 arasında bir sayıya indirger; yalnızca 11, 22 ve 33 usta sayıları olduğu gibi korunur. Yaşam yolu: doğum günü, ayı ve yılı ayrı ayrı indirgenip toplanır. Adın sayıları: her harfin bir değeri vardır (A = 1, B = 2… I = 9, sonra J = 1…); tüm harfler ifade sayısını, ünlüler ruh sayısını, ünsüzler kişilik sayısını verir. Arapçada ebced değerleri (ا = 1… غ = 1000), Rusçada eşdeğer Kiril tablosu kullanılır.",
-    personalYear: "Kişisel yıl, doğum gününüzü ve ayınızı içinde bulunulan yıla ekler; 9 yıllık bir döngü izler. Kişisel ay buna içinde bulunulan ayı, kişisel gün ayın gününü ekler. Döngüler burç yorumunun okuma tarihine göre hesaplanır."
+    personalYear: "Kişisel yıl, doğum gününüzü ve ayınızı içinde bulunulan yıla ekler; 9 yıllık bir döngü izler. Kişisel ay buna içinde bulunulan ayı, kişisel gün ayın gününü ekler. Döngüler burç yorumunun okuma tarihine göre hesaplanır.",
+    tarot: "Doğum kartı: doğum günü, ayı ve yılı toplanır, ardından 22 ya da daha küçük bir sayı elde edilene kadar rakamlar toplanarak indirgenir; 22, Deli kartına karşılık gelir. Günün kartı: her kişiye ve her tarihe özgü, bütün gün aynı kalan bir çekiliş. Marsilya Tarotu ile Waite-Smith aynı 22 büyük arkanayı paylaşır; ancak bazı adlar farklıdır ve Güç ile Adalet numaralarını değiştirir (Marsilya'da XI ve VIII, Waite-Smith'te VIII ve XI): aynı hesap desteye göre birini ya da ötekini verebilir."
   },
   placePlaceholder: "Bir şehir adı yazın…",
   placeNoMatch: "Şehir bulunamadı. En yakın şehri deneyin.",
@@ -805,5 +807,138 @@ I18N.tr = deepMerge(I18N.fr, {
       }
     },
     years: ["Yeni başlangıçlar yılı: ekmek, cesaret etmek, projeler başlatmak.", "Sabır ve iş birliği yılı: bağlar kurmak, olgunlaşmasını beklemek.", "İfade ve yaratıcılık yılı: iletişim kurmak, kendini göstermek, keyif almak.", "Çalışma ve temel atma yılı: düzenlemek, sağlamlaştırmak, sebat etmek.", "Değişim ve özgürlük yılı: hareket etmek, uyum sağlamak, keşfetmek.", "Sorumluluklar ve gönül yılı: yuva, aile, bağlılıklar.", "Geri çekilme ve iç gözlem yılı: öğrenmek, düşünmek, dinlenmek.", "Başarı yılı: hedefler, para, takdir.", "Muhasebe ve kapanış yılı: bitirmek, ayıklamak, yeni döngüye hazırlanmak."]
+  },
+  tarot: {
+    tab: "Tarot",
+    tabSub: "Büyük arkanalar",
+    deck: "Deste",
+    birthCard: "Doğum kartı",
+    birthCardDesc: "Doğum tarihinizden hesaplanan arkananız.",
+    dayCard: "Günün kartı",
+    dayCardDesc: "{d} çekilişi: bütün gün aynı kart.",
+    note: "Tarot sembolik bir gelenektir: kartları düşünmeye davet eder, geleceği öngörmez.",
+    decks: { marseille: "Marsilya Tarotu", ws: "Waite-Smith" },
+    cards: {
+      fool: {
+        name: "Deli",
+        keywords: ["Özgürlük", "Kendiliğindenlik", "Yeni başlangıç"],
+        text: "Coşku ve bilinmeyene güven: bir macera başlıyor; hafiflikle ama ayakları yere basarak yaşanmalı."
+      },
+      magician: {
+        name: "Büyücü",
+        keywords: ["Girişim", "Beceri", "Başlangıç"],
+        text: "Bütün araçlar masada: cesaret etme ve yeteneklerini ortaya koyma zamanı."
+      },
+      priestess: {
+        name: "Başrahibe",
+        keywords: ["Sezgi", "Gizli bilgi", "Sessizlik"],
+        text: "İçsel bilgelik: sezgini dinle, gözlemle, harekete geçmeden önce olgunlaşmasını bekle."
+      },
+      empress: {
+        name: "İmparatoriçe",
+        keywords: ["Yaratıcılık", "Bolluk", "İfade"],
+        text: "Fikirlerin ve projelerin bereketi: güzellik, cömertlik ve ifade meyvesini veriyor."
+      },
+      emperor: {
+        name: "İmparator",
+        keywords: ["Otorite", "Yapı", "İstikrar"],
+        text: "Düzenleyen ve koruyan güç: bir çerçeve koymak, sorumluluk almak, sağlam inşa etmek."
+      },
+      hierophant: {
+        name: "Başrahip",
+        keywords: ["Aktarım", "Gelenek", "Öğüt"],
+        text: "Aktarılan bilgelik: bir rehber, bir öğreti ya da paylaşılan değerler yolu aydınlatır."
+      },
+      lovers: {
+        name: "Âşıklar",
+        keywords: ["Seçim", "Birliktelik", "Gönül"],
+        text: "Gönülden bir karar: değerlerine göre seçmek, bir ilişkiye ya da bir yola bağlanmak."
+      },
+      chariot: {
+        name: "Savaş Arabası",
+        keywords: ["İrade", "Zafer", "Hareket"],
+        text: "Yürüyen ustalık: kararlılıkla ilerlemek, rotayı korumak ve engelleri aşmak."
+      },
+      strength: {
+        name: "Güç",
+        keywords: ["Cesaret", "Öz denetim", "Yumuşaklık"],
+        text: "Sakin güç: dürtüleri baskıyla değil, sabır ve yumuşaklıkla evcilleştirmek."
+      },
+      hermit: {
+        name: "Ermiş",
+        keywords: ["İç gözlem", "Bilgelik", "Arayış"],
+        text: "Adım adım aydınlatan fener: geri çekilmek, kendi gerçeğini aramak, kendi temponda ilerlemek."
+      },
+      wheel: {
+        name: "Kader Çarkı",
+        keywords: ["Döngü", "Değişim", "Kader"],
+        text: "Her şey döner: bir sayfa kapanır, koşullar değişir; hayatın akışına uyum sağlamak."
+      },
+      justice: {
+        name: "Adalet",
+        keywords: ["Denge", "Hakikat", "Sorumluluk"],
+        text: "Tartma ve karar verme zamanı: açıklık, dürüstlük ve eylemlerin adil sonuçları."
+      },
+      hangedman: {
+        name: "Asılan Adam",
+        keywords: ["Duraklama", "Bırakmak", "Farklı bakış"],
+        text: "Olaylara başka türlü bakmak için eylemi askıya almak: bırakmayı kabul edince bekleyiş verimli olur."
+      },
+      death: {
+        name: "Ölüm",
+        keywords: ["Dönüşüm", "Son", "Yenilenme"],
+        text: "Gerekli bir son, yenilenmenin yolunu açar: hayatın dönüşebilmesi için yer açmak."
+      },
+      temperance: {
+        name: "Denge",
+        keywords: ["Uyum", "Sabır", "Dinginlik"],
+        text: "Doğru karışımın sanatı: ölçülülük, sakin alışverişler ve dengeye dönüş."
+      },
+      devil: {
+        name: "Şeytan",
+        keywords: ["Arzu", "Bağlar", "Tutku"],
+        text: "Arzunun ve insanı tutan bağların gücü: bağlılıklarını tanıyıp onlardan kurtulmak ya da onları üstlenmek."
+      },
+      tower: {
+        name: "Kule",
+        keywords: ["Altüst oluş", "Açığa çıkış", "Kurtuluş"],
+        text: "Bir şimşek sağlam olmayanı yıkar: özgürleştiren ve gerçeği gösteren hayırlı bir sarsıntı."
+      },
+      star: {
+        name: "Yıldız",
+        keywords: ["Umut", "İlham", "Huzur"],
+        text: "Sınavdan sonra gelen ışık: yeniden bulunan güven, ilham ve geleceğe inanç."
+      },
+      moon: {
+        name: "Ay",
+        keywords: ["Düşler", "Kuşkular", "Hayal gücü"],
+        text: "Sezgilerin ve yanılsamaların dünyası: korkuların içinden geçmek, düşleri dinleyip onlarda kaybolmamak."
+      },
+      sun: {
+        name: "Güneş",
+        keywords: ["Neşe", "Başarı", "Açıklık"],
+        text: "Parıltı ve canlılık: başarı, sıcak bağlar ve gün ışığında paylaşılan mutluluk."
+      },
+      judgement: {
+        name: "Yargı",
+        keywords: ["Uyanış", "Çağrı", "Yeniden doğuş"],
+        text: "Uyanmaya bir çağrı: muhasebe, bağışlama ve bir yeniden doğuş gibi yeni bir başlangıç."
+      },
+      world: {
+        name: "Dünya",
+        keywords: ["Tamamlanma", "Doluluk", "Bütünlük"],
+        text: "Döngü güzellikle kapanır: tam başarı, uyum ve dünyaya açılış."
+      }
+    },
+    marseilleNames: {
+      fool: "Deli",
+      magician: "Hokkabaz",
+      priestess: "Kadın Papa",
+      hierophant: "Papa",
+      lovers: "Âşık",
+      wheel: "Talih Çarkı",
+      death: "İsimsiz Arkana",
+      tower: "Tanrı'nın Evi"
+    }
   }
 });

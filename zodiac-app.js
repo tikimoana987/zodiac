@@ -341,6 +341,7 @@ function renderResult(signKey, decanIdx){
       <button type="button" role="tab" id="tabSigns" aria-controls="viewSigns"><span class="vt-icon" aria-hidden="true">☉</span><span class="vt-txt"><span class="vt-title">${t.natal.tabSigns}</span><span class="vt-sub">${t.natal.tabSignsSub}</span></span></button>
       <button type="button" role="tab" id="tabNatal" aria-controls="viewNatal"><span class="vt-icon" aria-hidden="true">✦</span><span class="vt-txt"><span class="vt-title">${t.natal.tabNatal}</span><span class="vt-sub">${t.natal.tabNatalSub}</span></span></button>
       <button type="button" role="tab" id="tabNumbers" aria-controls="viewNumbers"><span class="vt-icon" aria-hidden="true">№</span><span class="vt-txt"><span class="vt-title">${t.num.tab}</span><span class="vt-sub">${t.num.tabSub}</span></span></button>
+      <button type="button" role="tab" id="tabTarot" aria-controls="viewTarot"><span class="vt-icon" aria-hidden="true">✧</span><span class="vt-txt"><span class="vt-title">${t.tarot.tab}</span><span class="vt-sub">${t.tarot.tabSub}</span></span></button>
     </div>
     <div id="profileContent">
       <div class="owner" id="profileOwner"></div>
@@ -350,6 +351,7 @@ function renderResult(signKey, decanIdx){
       </div>
       <div class="natal" id="viewNatal" role="tabpanel" aria-labelledby="tabNatal">${natalHtml(t)}</div>
       <div class="numbers" id="viewNumbers" role="tabpanel" aria-labelledby="tabNumbers"></div>
+      <div class="tarot" id="viewTarot" role="tabpanel" aria-labelledby="tabTarot"></div>
     </div>
     ${compatCardHtml(t)}
     <section class="card sky-card" aria-labelledby="skyTitle">
@@ -414,7 +416,7 @@ function renderResult(signKey, decanIdx){
     target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'center' });
     target.focus({ preventScroll: true });
   });
-  const tabs = [document.getElementById('tabSigns'), document.getElementById('tabNatal'), document.getElementById('tabNumbers')];
+  const tabs = VIEW_MODES.map(m => document.getElementById(VIEW_TABS[m]));
   tabs.forEach((tb, i) => {
     tb.addEventListener('click', () => setView(VIEW_MODES[i]));
     tb.addEventListener('keydown', e => {   // flèches gauche / droite entre les onglets (sens inversé en écriture de droite à gauche)
@@ -427,8 +429,9 @@ function renderResult(signKey, decanIdx){
 
   if (!skyDate) skyDate = todayISO();
   renderNumbers();
+  renderTarot();
   document.getElementById('skyDate').addEventListener('change', e => {
-    if (parseISODate(e.target.value)) { skyDate = e.target.value; mapMinutes = null; renderSky(); renderMap(); renderNumbers(); }
+    if (parseISODate(e.target.value)) { skyDate = e.target.value; mapMinutes = null; renderSky(); renderMap(); renderNumbers(); renderTarot(); }
   });
   document.querySelectorAll('.seg button').forEach(btn => btn.addEventListener('click', () => {
     skyPeriod = btn.dataset.period;
@@ -760,7 +763,10 @@ window.addEventListener('resize', () => closeInfo(false));
    ============================================================ */
 let currentBirthPlace = '';   // identifiant de la ville de naissance (zodiac-places.js), '' si non précisé
 let viewMode = 'signs';       // onglet affiché : 'signs' (signe & zodiaque chinois), 'natal' ou 'numbers' (numérologie)
-const VIEW_MODES = ['signs', 'natal', 'numbers'];
+const VIEW_MODES = ['signs', 'natal', 'numbers', 'tarot'];
+const VIEW_TABS = { signs: 'tabSigns', natal: 'tabNatal', numbers: 'tabNumbers', tarot: 'tabTarot' };
+let tarotDeck = 'marseille';  // jeu de tarot : 'marseille' (par défaut) ou 'ws' (Waite-Smith) ; retenu sur l'appareil
+const OFFLINE_ENABLED = false;  // bouton « Version hors ligne » : désactivé pour le moment (true pour le réactiver)
 const ASPECT_SYM = { conjunction: '☌', sextile: '⚹', square: '□', trine: '△', opposition: '☍' };
 let currentChart = null;   // thème affiché (roue interactive)
 /* Ponctuation selon la langue : fin de phrase, deux-points, énumération */
@@ -998,11 +1004,39 @@ function renderNumbers(){
     <p class="sky-note">${u.note}</p>`;
 }
 
+/* ============================================================
+   TAROT (quatrième onglet) — carte de naissance et carte du jour (date de lecture de l'horoscope)
+   ============================================================ */
+function tarotName(t, key, deck){ return deck === 'marseille' && t.tarot.marseilleNames[key] ? t.tarot.marseilleNames[key] : t.tarot.cards[key].name; }
+function renderTarot(){
+  const el = document.getElementById('viewTarot'), birth = parseISODate(currentDate), on = skyDate || todayISO(), d = parseISODate(on);
+  if (!el || !birth || !d) return;
+  const t = I18N[currentLang], u = t.tarot, deck = tarotDeck;
+  const slot = (key, title, desc) => {
+    const name = tarotName(t, key, deck), num = tarotNumeral(key, deck);
+    return `<div class="card tarot-slot"><h3>${title}</h3><p class="sky-sub">${desc}</p>
+      <div class="tarot-body"><div class="tarot-visual">${tarotCardSvg(key, deck, name)}</div>
+        <div class="tarot-text"><div class="tarot-title">${num ? `<span class="tarot-num">${num}</span> ` : ''}${escapeHtml(name)}</div>
+          <div class="traits">${u.cards[key].keywords.map(k => `<span class="trait-tag">${k}</span>`).join('')}</div>
+          <p class="num-text">${u.cards[key].text}</p></div></div></div>`;
+  };
+  const dLabel = new Intl.DateTimeFormat(loc(currentLang), { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(d.y, d.m - 1, d.d));
+  el.innerHTML = `
+    <div class="tarot-deck" role="group" aria-label="${escapeHtml(u.deck)}"><span class="tarot-deck-label">${u.deck}${infoBtn('tarot', u.tab)}</span>
+      ${TAROT_DECKS.map(k => `<button type="button" class="deck-btn" data-deck="${k}" aria-pressed="${k === deck}">${u.decks[k]}</button>`).join('')}</div>
+    <div class="tarot-pair">${slot(tarotByNumber(birthCardNumber(birth), deck), u.birthCard, u.birthCardDesc)}${slot(dayCardKey(currentDate, on), u.dayCard, u.dayCardDesc.replace('{d}', dLabel))}</div>
+    <p class="sky-note">${u.note}</p>`;
+  el.querySelectorAll('.deck-btn').forEach(b => b.addEventListener('click', () => {
+    tarotDeck = b.dataset.deck; store.set('zodiac_deck', tarotDeck); renderTarot();
+    el.querySelector(`.deck-btn[data-deck="${tarotDeck}"]`).focus();
+  }));
+}
+
 /* Bascule entre les vues, sans recalcul ; le choix est retenu pour les recherches suivantes */
 function setView(mode, focus){
   viewMode = mode;
   store.set('zodiac_view', mode);
-  for (const [tab, panel, m] of [['tabSigns', 'viewSigns', 'signs'], ['tabNatal', 'viewNatal', 'natal'], ['tabNumbers', 'viewNumbers', 'numbers']]) {
+  for (const [tab, panel, m] of [['tabSigns', 'viewSigns', 'signs'], ['tabNatal', 'viewNatal', 'natal'], ['tabNumbers', 'viewNumbers', 'numbers'], ['tabTarot', 'viewTarot', 'tarot']]) {
     const tb = document.getElementById(tab), pn = document.getElementById(panel);
     if (!tb) continue;
     tb.setAttribute('aria-selected', String(m === mode)); tb.tabIndex = m === mode ? 0 : -1;
@@ -1648,6 +1682,12 @@ function applyUITranslations(){
   document.getElementById('labelName').textContent = t.labelName;
   document.getElementById('offlineLabel').textContent = t.offline.button;
   document.getElementById('offlineHint').textContent = t.offline.hint;
+  if (!OFFLINE_ENABLED) {   // grisé, avec « bientôt disponible » ; le code du téléchargement reste en place
+    const ob = document.getElementById('offlineBtn');
+    ob.disabled = true; ob.setAttribute('aria-disabled', 'true');
+    document.getElementById('offlineLabel').textContent = `${t.offline.button} — ${t.offline.soon}`;
+    document.getElementById('offlineHint').hidden = true;
+  }
   updateThemeButton();
   updateWheel();
   renderHistory();
@@ -1677,6 +1717,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const urlTime = params.get('time');
   const urlPlace = params.get('place');
   viewMode = VIEW_MODES.includes(store.get('zodiac_view')) ? store.get('zodiac_view') : 'signs';
+  tarotDeck = TAROT_DECKS.includes(store.get('zodiac_deck')) ? store.get('zodiac_deck') : 'marseille';
   const lsLang = store.get('zodiac_lang');
   const lsDate = store.get('zodiac_lastDate');
   const lsTime = store.get('zodiac_lastTime');

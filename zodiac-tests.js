@@ -739,9 +739,9 @@
     }
   });
 
-  test('Bulles d\'information (i) : 28 explications complètes et traduites', () => {
+  test('Bulles d\'information (i) : 29 explications complètes et traduites', () => {
     const keys = Object.keys(I18N.fr.info);
-    assertEq(keys.length, 28, 'nombre d\'explications');
+    assertEq(keys.length, 29, 'nombre d\'explications');
     for (const lang of Object.keys(I18N)) {
       const info = I18N[lang].info;
       assert(keys.every(k => typeof info[k] === 'string' && info[k].length > 20), `${lang} : explication manquante ou trop courte`);   // 20 : le chinois est bien plus dense
@@ -925,6 +925,27 @@
       const u = I18N[l].num;
       assert(u && ['1', '2', '3', '4', '5', '6', '7', '8', '9', '11', '22', '33'].every(k => u.numbers[k] && u.numbers[k].keywords.length === 3 && u.numbers[k].text), `${l} : sens des nombres`);
       assert(u.years.length === 9 && u.years.every(Boolean) && /\{v\}/.test(u.abjad) && u.tab && u.nameScript, `${l} : textes`);
+    }
+  });
+
+  test('Tarot : carte de naissance, numérotation des deux jeux, carte du jour, cartes et textes', () => {
+    assertEq(birthCardNumber({ y: 1982, m: 11, d: 3 }), 7, '3 + 11 + 1982 = 1996 → 25 → 7');
+    assertEq(tarotByNumber(7, 'marseille'), 'chariot', 'VII : Le Chariot');
+    assertEq(birthCardNumber({ y: 1999, m: 12, d: 31 }), 8, '31 + 12 + 1999 = 2042 → 2 + 0 + 4 + 2 = 8 (Justice à Marseille, Force chez Waite-Smith)');
+    assertEq(tarotByNumber(8, 'marseille'), 'justice', 'VIII à Marseille : la Justice'); assertEq(tarotByNumber(8, 'ws'), 'strength', 'VIII chez Waite-Smith : la Force');
+    assertEq(tarotByNumber(11, 'marseille'), 'strength', 'XI à Marseille : la Force'); assertEq(tarotByNumber(11, 'ws'), 'justice', 'XI chez Waite-Smith : la Justice');
+    assertEq(tarotByNumber(22, 'ws'), 'fool', '22 : le Fou');
+    assertEq(tarotNumeral('fool', 'marseille'), '', 'Le Mat sans numéro'); assertEq(tarotNumeral('fool', 'ws'), '0', 'Le Fou : 0');
+    assertEq(tarotNumeral('strength', 'marseille'), 'XI', 'Force XI'); assertEq(tarotNumeral('world', 'ws'), 'XXI', 'Monde XXI'); assertEq(tarotNumeral('hangedman', 'ws'), 'XII', 'Pendu XII');
+    assertEq(dayCardKey('1982-11-03', '2026-10-26'), dayCardKey('1982-11-03', '2026-10-26'), 'carte du jour stable');
+    const days = new Set(); for (let i = 1; i <= 28; i++) days.add(dayCardKey('1982-11-03', `2026-02-${String(i).padStart(2, '0')}`));
+    assert(days.size >= 12, `carte du jour variée (${days.size} cartes en 28 jours)`);
+    assert(TAROT_KEYS.every(k => TAROT_ART[k]), 'illustration de chaque arcane');
+    assert(!/>L'Arcane sans nom</.test(tarotCardSvg('death', 'marseille', "L'Arcane sans nom")) && />La Mort</.test(tarotCardSvg('death', 'ws', 'La Mort')), 'XIII sans nom à Marseille');
+    for (const l of Object.keys(I18N)) {
+      const u = I18N[l].tarot;
+      assert(u && TAROT_KEYS.every(k => u.cards[k] && u.cards[k].name && u.cards[k].keywords.length === 3 && u.cards[k].text), `${l} : 22 arcanes`);
+      assert(Object.keys(u.marseilleNames).length === 8 && u.decks.marseille && u.decks.ws && /\{d\}/.test(u.dayCardDesc) && I18N[l].offline.soon, `${l} : textes`);
     }
   });
 

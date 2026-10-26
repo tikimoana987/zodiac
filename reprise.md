@@ -25,8 +25,8 @@ L'expérience inclut **une transition cinématique** (viseur balaie le ciel → 
 ## 📦 État actuel du code
 
 **17 fichiers dans un même dossier**, ~460 Ko, ouverture par double-clic sur `ZODIAC.html` (aucun serveur). **Version autonome** : `ZODIAC-standalone.html`, un seul fichier (~650 Ko), produit par `python3 build-standalone.py`. Chargement par `<script src>` classiques, dans cet ordre :
-`zodiac-data.js` → `zodiac-sky-data.js` → `zodiac-i18n.js` → `zodiac-i18n-fr.js` puis `-en`, `-es`, `-zh`, `-ru`, `-de`, `-it` → `zodiac-astro.js` → `zodiac-planets.js` → `zodiac-skymap.js` → `zodiac-observe.js` → `zodiac-places-data.js` → `zodiac-places.js` → `zodiac-natal.js` → `zodiac-transits.js` → `zodiac-numerology.js` → `zodiac-app.js`.
-Styles dans `zodiac.css`. Tests dans `zodiac-tests.js` (68 tests, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
+`zodiac-data.js` → `zodiac-sky-data.js` → `zodiac-i18n.js` → `zodiac-i18n-fr.js` puis `-en`, `-es`, `-zh`, `-ru`, `-de`, `-it` → `zodiac-astro.js` → `zodiac-planets.js` → `zodiac-skymap.js` → `zodiac-observe.js` → `zodiac-places-data.js` → `zodiac-places.js` → `zodiac-natal.js` → `zodiac-transits.js` → `zodiac-numerology.js` → `zodiac-tarot.js` → `zodiac-app.js`.
+Styles dans `zodiac.css`. Tests dans `zodiac-tests.js` (69 tests, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
 **Aucune ressource en ligne** : `html2canvas` 1.4.1 est une copie locale (`html2canvas.min.js`, licence MIT). Tout fonctionne sans internet.
 
 ### Fonctionnalités en place ✅
@@ -85,7 +85,7 @@ Fiabilité, découpage, nom et date du jour, zodiaque chinois, planètes et horo
 3. ✅ Sources du projet sur GitHub + tests lancés automatiquement à chaque modification + publication automatique (GitHub Pages, source « GitHub Actions »)
 4. ✅ Astrologie approfondie : 4a transits personnalisés sur le thème natal ; 4b synastrie ; 4c roue du thème interactive
 5. ✅ Numérologie : troisième onglet ; chemin de vie, cycles personnels, nombres du nom (latin, abjad, cyrillique)
-6. Tarot : carte de naissance (calculée), carte du jour (tirage figé pour la journée), puis tirages ; illustrations originales ; tradition à choisir (Marseille ou Rider-Waite) ; 22 arcanes majeurs d'abord
+6. Tarot : ✅ 6a quatrième onglet, deux jeux (Marseille par défaut, Waite-Smith), carte de naissance, carte du jour, 22 illustrations originales ; ensuite 6b tirages à trois cartes et cartes renversées (option) ; 6c arcanes mineurs (si souhaité)
 7. iPhone, en tout dernier
 
 Remarques : chaque nouveau texte coûte 14 traductions — regrouper les textes de chaque étape ; présenter numérologie et tarot comme des traditions symboliques. Pistes de l'audit gardées pour plus tard : coordonnées manuelles + fuseau, version de la PWA et mise à jour proposée, audit du poids, calendrier .ics, comparateur de systèmes de maisons, rapport PDF, profils locaux et sauvegarde JSON.
@@ -123,6 +123,9 @@ Traduit dans les 7 langues, couvert par un test, validé contre une référence 
 - Toute valeur en degrés passe par `ltr()` (`<bdi dir="ltr">`).
 - Arabe, hindi, thaï : `letter-spacing:0` forcé (sinon liaisons cassées, surtout dans l'export html2canvas).
 - Recherche de villes : `normPlace()` normalise aussi l'écriture arabe ; `build-places.py` garde pour chaque ville jusqu'à 3 noms dans l'écriture de son pays (`LOCAL_SCRIPTS`), sans lettres d'autres langues (`FOREIGN_LETTERS`), en cyrillique classés par ressemblance avec le nom principal.
+
+### Bouton « Version hors ligne »
+- Grisé pour le moment (« bientôt disponible ») : constante `OFFLINE_ENABLED = false` dans zodiac-app.js ; le code du téléchargement est intact (mettre `true` pour le réactiver).
 
 ### Dépôt GitHub et publication
 - Dépôt `tikimoana987/zodiac` : **les sources à la racine**, `tools/run_tests.py`, `.github/workflows/tests-et-publication.yml`. Réglage *Settings → Pages → Source* : **GitHub Actions** (le site n'est plus servi depuis la racine de la branche).

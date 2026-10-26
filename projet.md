@@ -49,6 +49,7 @@ Les fichiers sont chargés par de simples balises `<script src>` (pas de modules
 | `zodiac-observe.js` | Observation depuis un lieu : positions vues de la surface (parallaxe), **éclipses de Soleil locales** (contacts, phase centrale, part du Soleil cachée, lever ou coucher éclipsé), levers, couchers et crépuscules, programme de la nuit (`nightPlan`) |
 | `zodiac-transits.js` | **Transits sur le thème natal** : aspects des planètes du moment (Soleil à Pluton) aux points du thème (Soleil à Saturne, Lune si l'heure est connue, ascendant et milieu du ciel si heure et lieu le sont), période d'influence et jour exact ; **synastrie** (aspects entre deux thèmes, harmonie et tension) |
 | `zodiac-numerology.js` | **Numérologie** : chemin de vie, cycles personnels (année, mois, jour), nombres du nom (expression, intime, personnalité) en alphabet latin (méthode pythagoricienne), arabe (abjad) et cyrillique |
+| `zodiac-tarot.js` | **Tarot** (22 arcanes majeurs) : numérotation des deux jeux (Marseille, Waite-Smith), carte de naissance, carte du jour, 22 illustrations originales et leurs deux habillages |
 | `zodiac-natal.js` | Thème natal : heure locale du lieu de naissance → temps universel (`zonedInstant`), ascendant, Milieu du Ciel, maisons Placidus (repli en maisons égales au-delà de 66°), maison de chaque astre, aspects (`natalChart`) |
 | `zodiac-planets.js` | Calculs purs : Lune et planètes (Mercure → Pluton), rétrogradations, phases, transits, Lune natale, compatibilité à deux |
 | `zodiac-app.js` | État, thème, animation, rendu, modale, horoscope, actions, initialisation |
@@ -84,6 +85,15 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 ---
 
 ## ✨ Fonctionnalités implémentées
+
+### 🃏 Tarot (étape 6a)
+- [x] **Quatrième onglet « Tarot »** ; réglage du **jeu : Tarot de Marseille (par défaut) ou Waite-Smith**, retenu sur l'appareil
+- [x] **Carte de naissance** : jour + mois + année, réduits jusqu'à 22 ou moins (22 : le Fou) ; 3/11/1982 → 1996 → 25 → VII Le Chariot
+- [x] **Carte du jour** : tirage propre à chaque personne et à chaque date (empreinte FNV-1a), le même toute la journée, à la date de lecture de l'horoscope
+- [x] **Différences des deux jeux respectées** : noms (Le Mat / Le Fou, Le Bateleur / Le Magicien, La Papesse, Le Pape, L'Amoureux, La Roue de Fortune, L'Arcane sans nom / La Mort, La Maison Dieu / La Tour), Force et Justice échangent VIII et XI, Le Mat sans numéro, arcane XIII sans nom dans son bandeau à Marseille
+- [x] **22 illustrations originales** (symboles), deux habillages : Marseille (couleurs franches, contours de gravure, bandeaux) et Waite-Smith (palette douce, cadre fin)
+- [x] Pour chaque arcane : noms, 3 mots-clés, une explication ; 14 langues ; 1 bulle (i) sur la méthode et les deux jeux
+- [x] **Bouton « Version hors ligne » grisé** (« bientôt disponible ») : `OFFLINE_ENABLED = false` dans zodiac-app.js, code du téléchargement conservé
 
 ### 🔢 Numérologie (étape 5)
 - [x] **Troisième onglet « Numérologie »** à côté de « Signe & zodiaque chinois » et « Thème natal » (retenu d'une recherche à l'autre ; flèches du clavier ; sur mobile, les trois onglets s'empilent pour que les titres longs tiennent dans toutes les langues)
@@ -362,14 +372,14 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | 1 (html2canvas CDN) |
 | Poids approximatif | ~460 Ko non minifié (dont ~230 Ko de traductions et ~55 Ko de données du ciel) |
-| Tests automatisés | 68 (dans `zodiac-tests.js`) |
+| Tests automatisés | 69 (dans `zodiac-tests.js`) |
 
 ---
 
 ## 🧪 Comment tester
 
 ### Tests automatiques
-Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 68 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
+Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 69 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
 La version autonome se teste de la même façon : `ZODIAC-standalone.html?test` (la suite y est intégrée ; un test supplémentaire vérifie que sa copie vierge est complète et sans donnée personnelle).
 - le calcul du Soleil, comparé à 40 positions de référence calculées par astropy (1900-2100) ;
 - signes et décans de dates de référence, équinoxes connues, jours de transition, effet de l'heure ;
