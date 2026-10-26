@@ -671,7 +671,8 @@ I18N.tr = deepMerge(I18N.fr, {
     },
     tabSignsSub: "Kısa portre",
     tabNatalSub: "Ayrıntılı portre",
-    completeFields: "Saati ve yeri ekle"
+    completeFields: "Saati ve yeri ekle",
+    wheelHint: "Açıklamasını okumak için bir gezegene, burca, eve ya da açıya dokunun."
   },
   infoLabel: "Daha fazla bilgi",
   timePlaceHint: "Doğum haritası (yükselen ve evler) için doğum saati ve doğum yeri gereklidir.",

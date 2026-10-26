@@ -185,6 +185,18 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .syn-asp{ color:var(--gold); white-space:nowrap; }
 .syn-col p{ color:var(--muted); font-size:.82rem; margin-top:.15rem; }
 @media (max-width:640px){ .syn-cols{ grid-template-columns:1fr; } }
+/* Roue du thème interactive */
+.natal-wheel{ flex-direction:column; align-items:center; }
+.wheel-hint{ color:var(--muted); font-size:.78rem; text-align:center; margin-top:.4rem; max-width:320px; }
+.nw-hit{ cursor:pointer; outline:none; }
+.nw-hitzone{ fill:transparent; }
+.nw-hitline{ stroke:transparent; stroke-width:7; }
+.nw-hit:hover .ws, .nw-hit:focus-visible .ws{ filter:brightness(1.5); }
+.nw-hit:hover .nw-planet, .nw-hit:focus-visible .nw-planet, .nw-pl.nw-on .nw-planet,
+.nw-hit:hover .nw-num, .nw-hit:focus-visible .nw-num, .nw-hit:hover .nw-axis-lab, .nw-hit:focus-visible .nw-axis-lab{ filter:drop-shadow(0 0 3px var(--gold)); font-weight:700; }
+.nw-hit:focus-visible .nw-hitzone{ stroke:var(--gold); stroke-width:1; }
+.nw-asp-g:hover .nw-asp, .nw-asp-g.nw-on .nw-asp{ stroke-width:1.8; opacity:1; }
+.natal-svg.nw-focusing .nw-asp-g:not(.nw-on){ opacity:.12; }
 .app-credit{ flex:1 1 100%; color:var(--muted); font-size:.75rem; opacity:.8; }
 .input-zone input[type=date], .input-zone input[type=time], .input-zone input[type=text]{
   width:100%; background:var(--field-bg);

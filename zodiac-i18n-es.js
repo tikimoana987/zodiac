@@ -675,7 +675,8 @@ I18N.es = deepMerge(I18N.fr, {
     },
     tabSignsSub: "El retrato sencillo",
     tabNatalSub: "El retrato completo",
-    completeFields: "Completar la hora y el lugar"
+    completeFields: "Completar la hora y el lugar",
+    wheelHint: "Toca un planeta, un signo, una casa o un aspecto para leer su explicación."
   },
   infoLabel: "Más información",
   timePlaceHint: "La hora y el lugar de nacimiento son necesarios para la carta natal (ascendente y casas).",

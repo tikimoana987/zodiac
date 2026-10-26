@@ -675,7 +675,8 @@ I18N.fr = {
     },
     tabSignsSub: "Le portrait simple",
     tabNatalSub: "Le portrait complet",
-    completeFields: "Compléter l'heure et le lieu"
+    completeFields: "Compléter l'heure et le lieu",
+    wheelHint: "Touchez une planète, un signe, une maison ou un aspect pour en lire l'explication."
   },
   infoLabel: "Plus d'informations",
   timePlaceHint: "L'heure et le lieu de naissance sont nécessaires pour le thème natal (ascendant et maisons).",

@@ -703,10 +703,17 @@ let infoOpenBtn = null;
 function closeInfo(restoreFocus){
   const pop = document.getElementById('infoPop');
   if (pop) pop.hidden = true;
+  document.querySelectorAll('.natal-svg.nw-focusing').forEach(s => s.classList.remove('nw-focusing'));
+  document.querySelectorAll('.natal-svg .nw-on').forEach(g => g.classList.remove('nw-on'));
   if (infoOpenBtn) { infoOpenBtn.setAttribute('aria-expanded', 'false'); if (restoreFocus && infoOpenBtn.isConnected) infoOpenBtn.focus(); }
   infoOpenBtn = null;
 }
 function openInfo(btn){
+  const t = I18N[currentLang];
+  showPop(btn, btn.dataset.title, t.info[btn.dataset.info] || '');
+}
+/* Bulle d'explication sous (ou au-dessus de) l'élément « anchor » : bouton (i) ou élément de la roue du thème */
+function showPop(anchor, title, text){
   let pop = document.getElementById('infoPop');
   if (!pop) {
     pop = document.createElement('div');
@@ -716,25 +723,30 @@ function openInfo(btn){
     document.body.appendChild(pop);
   }
   closeInfo(false);
-  const t = I18N[currentLang];
-  pop.querySelector('.info-pop-title').textContent = btn.dataset.title;
-  pop.querySelector('.info-pop-text').textContent = t.info[btn.dataset.info] || '';
+  pop.querySelector('.info-pop-title').textContent = title;
+  pop.querySelector('.info-pop-text').textContent = text;
   pop.hidden = false;
-  // Sous le bouton, gardée dans l'écran ; au-dessus s'il manque de place en bas
-  const r = btn.getBoundingClientRect(), w = pop.offsetWidth, h = pop.offsetHeight, m = 10;
+  // Sous l'élément, gardée dans l'écran ; au-dessus s'il manque de place en bas
+  const r = anchor.getBoundingClientRect(), w = pop.offsetWidth, h = pop.offsetHeight, m = 10;
   const left = Math.min(Math.max(m, r.left + r.width / 2 - w / 2), document.documentElement.clientWidth - w - m);
   const below = r.bottom + 8 + h < window.innerHeight || r.top - 8 - h < 0;
   pop.style.left = `${left + window.scrollX}px`;
   pop.style.top = `${(below ? r.bottom + 8 : r.top - 8 - h) + window.scrollY}px`;
-  btn.setAttribute('aria-expanded', 'true');
-  infoOpenBtn = btn;
+  anchor.setAttribute('aria-expanded', 'true');
+  infoOpenBtn = anchor;
 }
 document.addEventListener('click', e => {
+  const hit = e.target.closest && e.target.closest('.natal-svg [data-kind]');
+  if (hit) { e.preventDefault(); if (hit === infoOpenBtn) closeInfo(false); else openWheelDetail(hit); return; }
   const btn = e.target.closest && e.target.closest('.info-btn');
   if (btn) { e.preventDefault(); e.stopPropagation(); if (btn === infoOpenBtn) closeInfo(false); else openInfo(btn); return; }
   if (infoOpenBtn && !e.target.closest('#infoPop')) closeInfo(false);
 }, true);
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && infoOpenBtn) closeInfo(true); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && infoOpenBtn) closeInfo(true);
+  const hit = (e.key === 'Enter' || e.key === ' ') && e.target.closest && e.target.closest('.natal-svg [data-kind]');
+  if (hit) { e.preventDefault(); if (hit === infoOpenBtn) closeInfo(false); else openWheelDetail(hit); }
+});
 window.addEventListener('resize', () => closeInfo(false));
 
 /* ============================================================
@@ -743,6 +755,48 @@ window.addEventListener('resize', () => closeInfo(false));
 let currentBirthPlace = '';   // identifiant de la ville de naissance (zodiac-places.js), '' si non précisé
 let viewMode = 'signs';       // onglet affiché : 'signs' (signe & zodiaque chinois) ou 'natal'
 const ASPECT_SYM = { conjunction: '☌', sextile: '⚹', square: '□', trine: '△', opposition: '☍' };
+let currentChart = null;   // thème affiché (roue interactive)
+/* Ponctuation selon la langue : fin de phrase, deux-points, énumération */
+const endPunct = () => ({ zh: '。', ja: '。', hi: '।', th: '' })[currentLang] ?? '.';
+const colon = () => currentLang === 'fr' ? ' : ' : ['zh', 'ja'].includes(currentLang) ? '：' : ': ';
+const listOf = items => new Intl.ListFormat(loc(currentLang), { type: 'unit', style: 'short' }).format(items);
+/* Explication d'un élément de la roue : { title, text } (texte brut ; degrés isolés pour l'écriture de droite à gauche) */
+function wheelDetail(chart, t, kind, key){
+  const n = t.natal, iso = s => '\u2066' + s + '\u2069';
+  const nf = new Intl.NumberFormat(loc(currentLang), { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  if (kind === 'body') {
+    const b = chart.bodies.find(x => x.body === key);
+    const asp = chart.aspects.filter(a => a.a === key || a.b === key).map(a => `${ASPECT_SYM[a.type]} ${t.rulers[a.a === key ? a.b : a.a]}`);
+    return { title: `${PLANET_SYM[key]} ${t.rulers[key]} · ${t.signNames[b.sign]} ${iso(degMin(b.lon))}${b.house ? ` · ${n.house} ${b.house}` : ''}${b.retro ? ' ℞' : ''}`,
+             text: `${capitalize(n.domains[key])} — ${n.styles[b.sign]}${b.house ? ` — ${n.house} ${b.house} (${n.houses[b.house - 1]})` : ''}${endPunct()}` + (asp.length ? ` ${n.aspects}${colon()}${listOf(asp)}${endPunct()}` : '') };
+  }
+  if (kind === 'sign') return { title: `${SIGN_META[key].sym} ${t.signNames[key]}`, text: t.summaries[key] };
+  if (kind === 'house') {
+    const i = +key, inside = chart.bodies.filter(b => b.house === i + 1).map(b => `${PLANET_SYM[b.body]} ${t.rulers[b.body]}`);
+    return { title: `${n.house} ${i + 1}`, text: capitalize(n.houses[i]) + (inside.length ? ` — ${listOf(inside)}` : '') + endPunct() };
+  }
+  if (kind === 'angle') {
+    const lon = key === 'asc' ? chart.asc : chart.mc, s = signFromLongitude(lon);
+    return { title: `${key === 'asc' ? 'AC ' + n.ascendant : 'MC ' + n.midheaven} · ${t.signNames[s]} ${iso(degMin(lon))}`, text: key === 'asc' ? n.asc[s] : n.mcText };
+  }
+  const a = chart.aspects[+key];
+  return { title: `${PLANET_SYM[a.a]} ${t.rulers[a.a]} ${ASPECT_SYM[a.type]} ${PLANET_SYM[a.b]} ${t.rulers[a.b]} · ${n.aspectNames[a.type]} ${iso(nf.format(a.orb) + '°')}`,
+           text: `${capitalize(n.aspectMeanings[a.type])} — ${n.domains[a.a]} ↔ ${n.domains[a.b]}${endPunct()}` };
+}
+/* Ouvre l'explication d'un élément de la roue et met en avant ses aspects */
+function openWheelDetail(el){
+  if (!currentChart) return;
+  const d = wheelDetail(currentChart, I18N[currentLang], el.dataset.kind, el.dataset.key);
+  showPop(el, d.title, d.text);
+  const svg = el.closest('.natal-svg');
+  if (el.dataset.kind === 'body' || el.dataset.kind === 'aspect') {
+    svg.classList.add('nw-focusing');
+    el.classList.add('nw-on');
+    const bodies = el.dataset.kind === 'body' ? [el.dataset.key] : [el.dataset.a, el.dataset.b];
+    svg.querySelectorAll('.nw-asp-g').forEach(g => { if (el.dataset.kind === 'body' ? bodies.includes(g.dataset.a) || bodies.includes(g.dataset.b) : g === el) g.classList.add('nw-on'); });
+    svg.querySelectorAll('.nw-pl').forEach(g => { if (bodies.includes(g.dataset.key)) g.classList.add('nw-on'); });
+  }
+}
 
 function birthTz(){ const p = birthPlace(currentBirthPlace); return p ? p.tz : null; }
 /* ---------- Champ de recherche de ville (~34 000 villes) ----------
@@ -834,9 +888,9 @@ function natalWheelSvg(chart, t){
   let g = '';
   SIGN_ORDER.forEach((k, i) => {
     const [x0, y0] = pt(140, i * 30), [x1, y1] = pt(140, i * 30 + 30), [x2, y2] = pt(118, i * 30 + 30), [x3, y3] = pt(118, i * 30);
-    g += `<path class="ws ws-${SIGN_META[k].element}" d="M${f(x0)},${f(y0)} A140,140 0 0 0 ${f(x1)},${f(y1)} L${f(x2)},${f(y2)} A118,118 0 0 1 ${f(x3)},${f(y3)} Z"/>`;
     const [gx, gy] = pt(129, i * 30 + 15);
-    g += `<text class="nw-sign" x="${f(gx)}" y="${f(gy)}">${SIGN_META[k].sym}</text>`;
+    g += `<g class="nw-hit" data-kind="sign" data-key="${k}" tabindex="0" role="button" aria-label="${escapeHtml(t.signNames[k])}"><path class="ws ws-${SIGN_META[k].element}" d="M${f(x0)},${f(y0)} A140,140 0 0 0 ${f(x1)},${f(y1)} L${f(x2)},${f(y2)} A118,118 0 0 1 ${f(x3)},${f(y3)} Z"/>`
+       + `<text class="nw-sign" x="${f(gx)}" y="${f(gy)}">${SIGN_META[k].sym}</text></g>`;
   });
   for (let d = 0; d < 360; d += 5) { const [ax, ay] = pt(118, d), [bx, by] = pt(d % 10 ? 115 : 112, d); g += `<line class="nw-tick" x1="${f(ax)}" y1="${f(ay)}" x2="${f(bx)}" y2="${f(by)}"/>`; }
   g += `<circle class="nw-ring" r="118"/><circle class="nw-ring" r="58"/>`;
@@ -844,22 +898,23 @@ function natalWheelSvg(chart, t){
     const axis = i % 3 === 0, [ax, ay] = pt(axis ? 146 : 118, c), [bx, by] = pt(58, c);
     g += `<line class="nw-house${axis ? ' nw-axis' : ''}" x1="${f(ax)}" y1="${f(ay)}" x2="${f(bx)}" y2="${f(by)}"/>`;
     const next = chart.cusps[(i + 1) % 12], mid = c + norm360(next - c) / 2, [nx, ny] = pt(66, mid);
-    g += `<text class="nw-num" x="${f(nx)}" y="${f(ny)}">${i + 1}</text>`;
+    g += `<g class="nw-hit" data-kind="house" data-key="${i}" tabindex="0" role="button" aria-label="${escapeHtml(t.natal.house)} ${i + 1}"><circle class="nw-hitzone" cx="${f(nx)}" cy="${f(ny)}" r="7"/><text class="nw-num" x="${f(nx)}" y="${f(ny)}">${i + 1}</text></g>`;
   });
-  if (chart.asc !== null) for (const [lon, lab] of [[chart.asc, 'AC'], [chart.mc, 'MC']]) { const [x, y] = pt(150, lon); g += `<text class="nw-axis-lab" x="${f(x)}" y="${f(y)}">${lab}</text>`; }
+  if (chart.asc !== null) for (const [lon, lab] of [[chart.asc, 'AC'], [chart.mc, 'MC']]) { const [x, y] = pt(150, lon); g += `<g class="nw-hit" data-kind="angle" data-key="${lab === 'AC' ? 'asc' : 'mc'}" tabindex="0" role="button" aria-label="${escapeHtml(lab === 'AC' ? t.natal.ascendant : t.natal.midheaven)}"><circle class="nw-hitzone" cx="${f(x)}" cy="${f(y)}" r="9"/><text class="nw-axis-lab" x="${f(x)}" y="${f(y)}">${lab}</text></g>`; }
   // Aspects (sauf conjonctions, déjà visibles côte à côte) entre les positions exactes
   const pos = Object.fromEntries(chart.bodies.map(b => [b.body, b.lon]));
-  for (const a of chart.aspects) {
-    if (a.type === 'conjunction') continue;
-    const [x1, y1] = pt(56, pos[a.a]), [x2, y2] = pt(56, pos[a.b]);
-    g += `<line class="nw-asp ${a.type === 'trine' || a.type === 'sextile' ? 'nw-harm' : 'nw-tense'}" x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}"/>`;
-  }
+  chart.aspects.forEach((a, idx) => {
+    if (a.type === 'conjunction') return;
+    const [x1, y1] = pt(56, pos[a.a]), [x2, y2] = pt(56, pos[a.b]), xy = `x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}"`;
+    // Trait fin visible + trait large invisible pour le toucher au doigt ; pas dans l'ordre de tabulation (la liste des aspects est lisible plus bas)
+    g += `<g class="nw-hit nw-asp-g" data-kind="aspect" data-key="${idx}" data-a="${a.a}" data-b="${a.b}"><line class="nw-hitline" ${xy}/><line class="nw-asp ${a.type === 'trine' || a.type === 'sextile' ? 'nw-harm' : 'nw-tense'}" ${xy}/></g>`;
+  });
   // Astres : repère à la position exacte, symbole écarté si plusieurs astres sont proches
   const sorted = [...chart.bodies].sort((a, b) => a.lon - b.lon), shown = sorted.map(b => b.lon);
   for (let pass = 0; pass < 3; pass++) for (let i = 1; i < shown.length; i++) if (shown[i] - shown[i - 1] < 8) shown[i] = shown[i - 1] + 8;
   sorted.forEach((b, i) => {
     const [ax, ay] = pt(118, b.lon), [bx, by] = pt(108, b.lon), [px, py] = pt(97, shown[i]);
-    g += `<line class="nw-ptick" x1="${f(ax)}" y1="${f(ay)}" x2="${f(bx)}" y2="${f(by)}"/><text class="nw-planet" x="${f(px)}" y="${f(py)}">${PLANET_SYM[b.body]}</text>`;
+    g += `<g class="nw-hit nw-pl" data-kind="body" data-key="${b.body}" tabindex="0" role="button" aria-label="${escapeHtml(t.rulers[b.body])}"><line class="nw-ptick" x1="${f(ax)}" y1="${f(ay)}" x2="${f(bx)}" y2="${f(by)}"/><circle class="nw-hitzone" cx="${f(px)}" cy="${f(py)}" r="8"/><text class="nw-planet" x="${f(px)}" y="${f(py)}">${PLANET_SYM[b.body]}</text></g>`;
   });
   return `<svg class="natal-svg" viewBox="-156 -156 312 312" role="img" aria-label="${t.natal.title}">${g}</svg>`;
 }
@@ -867,6 +922,7 @@ function natalWheelSvg(chart, t){
 function natalHtml(t){
   const n = t.natal, date = parseISODate(currentDate), time = parseTime(currentTime), place = birthPlace(currentBirthPlace);
   const chart = natalChart(date, time, place);
+  currentChart = chart;
   const sun = chart.bodies[0], moon = chart.bodies[1];
   const chip = (sym, label, sign) => `<div class="big-chip"><span class="big-sym" aria-hidden="true">${sym}</span><span class="big-label">${label}</span><span class="big-sign">${signTag(t, sign)}</span></div>`;
   const notes = [];
@@ -880,7 +936,7 @@ function natalHtml(t){
       `<tr class="nt-angle"><td class="nt-sym">${ab}</td><td>${lab}</td><td>${signCell(lon)}</td><td></td><td></td></tr>`).join('') : '';
   const head = chart.exact ? `<thead><tr><th></th><th></th><th></th><th class="nt-house">${n.house}${infoBtn('houses', n.house)}</th><th></th></tr></thead>` : '';
   const lines = chart.bodies.map(b => `<li><div class="nl-head"><span class="nl-sym" aria-hidden="true">${PLANET_SYM[b.body]}</span> <strong>${t.rulers[b.body]}</strong> · ${signTag(t, b.sign)}${b.house ? ` · ${n.house} ${b.house}` : ''}</div>
-      <p>${capitalize(n.domains[b.body])} — ${n.styles[b.sign]}${b.house ? ` — ${n.house} ${b.house} (${n.houses[b.house - 1]})` : ''}.</p></li>`).join('');
+      <p>${capitalize(n.domains[b.body])} — ${n.styles[b.sign]}${b.house ? ` — ${n.house} ${b.house} (${n.houses[b.house - 1]})` : ''}${endPunct()}</p></li>`).join('');
   const nf = new Intl.NumberFormat(loc(currentLang), { minimumFractionDigits: 1, maximumFractionDigits: 1 });
   const aspects = chart.aspects.slice(0, 14).map(a => `<li><span class="na-pair"><span aria-hidden="true">${PLANET_SYM[a.a]}</span> ${t.rulers[a.a]} <span class="na-sym" aria-hidden="true">${ASPECT_SYM[a.type]}</span> <span aria-hidden="true">${PLANET_SYM[a.b]}</span> ${t.rulers[a.b]}</span>
       <span class="na-type">${n.aspectNames[a.type]} · ${ltr(nf.format(a.orb) + '°')}</span><span class="na-mean">${n.aspectMeanings[a.type]}</span></li>`).join('');
@@ -891,7 +947,7 @@ function natalHtml(t){
         ${notes.map(x => `<p class="natal-note">${x}</p>`).join('')}
         ${chart.exact ? '' : `<button type="button" class="btn-secondary natal-complete" id="natalComplete">${n.completeFields}</button>`}
         <div class="natal-grid">
-          <div class="natal-wheel">${natalWheelSvg(chart, t)}</div>
+          <div class="natal-wheel">${natalWheelSvg(chart, t)}<p class="wheel-hint">${n.wheelHint}</p></div>
           <div class="natal-table"><h4>${n.positions}</h4><table>${head}<tbody>${rows}${angles}</tbody></table></div>
         </div>
       </div>
@@ -1322,6 +1378,7 @@ async function shareProfile(){
 }
 
 async function exportImage(){
+  closeInfo(false);   // pas de bulle ni de mise en avant de la roue dans l'image
   const t = I18N[currentLang];
   if (typeof html2canvas === 'undefined') {
     showToast(t.exportError);
@@ -1351,7 +1408,7 @@ async function exportImage(){
     + `padding:32px;box-sizing:content-box;background:${getComputedStyle(document.documentElement).getPropertyValue('--export-bg').trim()};`;
   for (const part of parts) {
     const copy = part.cloneNode(true);
-    copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .natal-complete').forEach(n => n.remove());
+    copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .natal-complete, .wheel-hint').forEach(n => n.remove());
     copy.querySelectorAll('[id]').forEach(n => n.removeAttribute('id'));
     copy.removeAttribute('id');
     frame.appendChild(copy);

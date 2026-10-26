@@ -674,7 +674,8 @@ I18N.pt = deepMerge(I18N.fr, {
     },
     tabSignsSub: "O retrato simples",
     tabNatalSub: "O retrato completo",
-    completeFields: "Informar a hora e o local"
+    completeFields: "Informar a hora e o local",
+    wheelHint: "Toque em um planeta, signo, casa ou aspecto para ler a explicação."
   },
   infoLabel: "Mais informações",
   timePlaceHint: "A hora e o local de nascimento são necessários para o mapa astral (ascendente e casas).",

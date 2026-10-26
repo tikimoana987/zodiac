@@ -657,7 +657,8 @@ I18N.ja = deepMerge(I18N.fr, {
     },
     tabSignsSub: "シンプルな人物像",
     tabNatalSub: "詳しい人物像",
-    completeFields: "出生時刻と出生地を入力"
+    completeFields: "出生時刻と出生地を入力",
+    wheelHint: "惑星・星座・ハウス・アスペクトをタップすると説明が表示されます。"
   },
   infoLabel: "詳しい説明",
   timePlaceHint: "ネイタルチャート（アセンダントとハウス）には出生時刻と出生地が必要です。",

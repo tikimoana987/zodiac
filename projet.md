@@ -84,6 +84,12 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 
 ## ✨ Fonctionnalités implémentées
 
+### 🎡 Roue du thème interactive (étape 4c)
+- [x] **Chaque élément de la roue est touchable** : astre, signe, maison, aspect, ascendant et milieu du ciel ouvrent une bulle d'explication (textes du thème natal déjà traduits : domaine, style du signe, maison, liste des aspects ; portrait du signe ; domaine de la maison et astres qu'elle contient ; sens de l'aspect)
+- [x] **Mise en avant** : un astre ou un aspect sélectionné fait ressortir ses aspects, les autres s'estompent ; zones de toucher agrandies (traits d'aspects compris) pour le doigt
+- [x] **Clavier** : astres, signes, maisons et angles atteignables par Tab, ouverts par Entrée ou Espace, refermés par Échap (le focus revient sur la roue)
+- [x] Ponctuation selon la langue (virgule et deux-points arabes et japonais, point final 。 ou ।, pas de point en thaï), aussi dans la lecture du thème ; aucune bulle ni mise en avant dans l'image exportée
+
 ### 💞 Synastrie (étape 4b)
 - [x] **Analyse approfondie** sous les trois axes de la compatibilité : aspects entre les planètes des deux thèmes natals (Soleil à Saturne, Lune si l'heure est connue, ascendant si heure et lieu le sont)
 - [x] **Points d'harmonie** (trigones, sextiles, conjonctions sauf avec Saturne ou Mars hors Vénus) et **points de tension** (carrés, oppositions, conjonctions difficiles), 5 de chaque au plus, liens Soleil–Lune, Vénus–Mars et ascendant en premier ; bilan « n points d'harmonie · n points de tension »
@@ -348,14 +354,14 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | 1 (html2canvas CDN) |
 | Poids approximatif | ~460 Ko non minifié (dont ~230 Ko de traductions et ~55 Ko de données du ciel) |
-| Tests automatisés | 66 (dans `zodiac-tests.js`) |
+| Tests automatisés | 67 (dans `zodiac-tests.js`) |
 
 ---
 
 ## 🧪 Comment tester
 
 ### Tests automatiques
-Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 66 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
+Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 67 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
 La version autonome se teste de la même façon : `ZODIAC-standalone.html?test` (la suite y est intégrée ; un test supplémentaire vérifie que sa copie vierge est complète et sans donnée personnelle).
 - le calcul du Soleil, comparé à 40 positions de référence calculées par astropy (1900-2100) ;
 - signes et décans de dates de référence, équinoxes connues, jours de transition, effet de l'heure ;

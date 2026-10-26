@@ -651,7 +651,8 @@ I18N.ko = deepMerge(I18N.fr, {
     },
     tabSignsSub: "간단한 프로필",
     tabNatalSub: "자세한 프로필",
-    completeFields: "출생 시각과 출생지 입력하기"
+    completeFields: "출생 시각과 출생지 입력하기",
+    wheelHint: "행성, 별자리, 하우스, 각을 누르면 설명을 볼 수 있습니다."
   },
   infoLabel: "자세한 설명",
   timePlaceHint: "네이탈 차트(어센던트와 하우스)에는 출생 시각과 출생지가 필요합니다.",

@@ -641,7 +641,8 @@ I18N.zh = deepMerge(I18N.fr, {
     },
     tabSignsSub: "简明画像",
     tabNatalSub: "完整画像",
-    completeFields: "补充时间和地点"
+    completeFields: "补充时间和地点",
+    wheelHint: "点按行星、星座、宫位或相位即可查看说明。"
   },
   infoLabel: "更多信息",
   timePlaceHint: "本命盘（上升点与宫位）需要出生时间和出生地点。",

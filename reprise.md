@@ -26,7 +26,7 @@ L'expérience inclut **une transition cinématique** (viseur balaie le ciel → 
 
 **17 fichiers dans un même dossier**, ~460 Ko, ouverture par double-clic sur `ZODIAC.html` (aucun serveur). **Version autonome** : `ZODIAC-standalone.html`, un seul fichier (~650 Ko), produit par `python3 build-standalone.py`. Chargement par `<script src>` classiques, dans cet ordre :
 `zodiac-data.js` → `zodiac-sky-data.js` → `zodiac-i18n.js` → `zodiac-i18n-fr.js` puis `-en`, `-es`, `-zh`, `-ru`, `-de`, `-it` → `zodiac-astro.js` → `zodiac-planets.js` → `zodiac-skymap.js` → `zodiac-observe.js` → `zodiac-places-data.js` → `zodiac-places.js` → `zodiac-natal.js` → `zodiac-transits.js` → `zodiac-app.js`.
-Styles dans `zodiac.css`. Tests dans `zodiac-tests.js` (66 tests, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
+Styles dans `zodiac.css`. Tests dans `zodiac-tests.js` (67 tests, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
 **Aucune ressource en ligne** : `html2canvas` 1.4.1 est une copie locale (`html2canvas.min.js`, licence MIT). Tout fonctionne sans internet.
 
 ### Fonctionnalités en place ✅
@@ -83,7 +83,7 @@ Fiabilité, découpage, nom et date du jour, zodiaque chinois, planètes et horo
 1. ✅ Version corrective : fuseau de la 2e personne, heure locale de la carte du ciel, avertissement hors 1900–2100, heure stricte, bulle « signe ou constellation »
 2. ✅ Éclipses de Soleil visibles depuis le lieu + carte « Observer le ciel cette nuit » (levers, couchers, crépuscules, Lune, planètes)
 3. ✅ Sources du projet sur GitHub + tests lancés automatiquement à chaque modification + publication automatique (GitHub Pages, source « GitHub Actions »)
-4. Astrologie approfondie, en trois livraisons : ✅ 4a transits personnalisés sur le thème natal ; ✅ 4b synastrie ; 4c roue interactive
+4. ✅ Astrologie approfondie : 4a transits personnalisés sur le thème natal ; 4b synastrie ; 4c roue du thème interactive
 5. Numérologie : chemin de vie (nombres maîtres 11/22/33), année/mois/jour personnels ; nombres du nom (expression, âme, personnalité) en alphabet latin, abjad pour l'arabe, table cyrillique pour le russe ; nombres de la date seulement pour les autres écritures
 6. Tarot : carte de naissance (calculée), carte du jour (tirage figé pour la journée), puis tirages ; illustrations originales ; tradition à choisir (Marseille ou Rider-Waite) ; 22 arcanes majeurs d'abord
 7. iPhone, en tout dernier

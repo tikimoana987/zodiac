@@ -672,7 +672,8 @@ I18N.en = deepMerge(I18N.fr, {
     },
     tabSignsSub: "The simple portrait",
     tabNatalSub: "The full portrait",
-    completeFields: "Add the time and place"
+    completeFields: "Add the time and place",
+    wheelHint: "Tap a planet, sign, house or aspect to read about it."
   },
   infoLabel: "More information",
   timePlaceHint: "The time and place of birth are needed for the birth chart (ascendant and houses).",

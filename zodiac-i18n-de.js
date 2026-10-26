@@ -675,7 +675,8 @@ I18N.de = deepMerge(I18N.fr, {
     },
     tabSignsSub: "Das einfache Porträt",
     tabNatalSub: "Das vollständige Porträt",
-    completeFields: "Zeit und Ort ergänzen"
+    completeFields: "Zeit und Ort ergänzen",
+    wheelHint: "Tippe auf einen Planeten, ein Zeichen, ein Haus oder einen Aspekt, um die Erklärung zu lesen."
   },
   infoLabel: "Mehr Informationen",
   timePlaceHint: "Für das Geburtshoroskop (Aszendent und Häuser) werden Geburtszeit und Geburtsort benötigt.",

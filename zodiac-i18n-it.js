@@ -675,7 +675,8 @@ I18N.it = deepMerge(I18N.fr, {
     },
     tabSignsSub: "Il ritratto semplice",
     tabNatalSub: "Il ritratto completo",
-    completeFields: "Completa l'ora e il luogo"
+    completeFields: "Completa l'ora e il luogo",
+    wheelHint: "Tocca un pianeta, un segno, una casa o un aspetto per leggerne la spiegazione."
   },
   infoLabel: "Maggiori informazioni",
   timePlaceHint: "L'ora e il luogo di nascita sono necessari per il tema natale (ascendente e case).",

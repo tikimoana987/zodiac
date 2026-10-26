@@ -889,6 +889,23 @@
     for (const l of Object.keys(I18N)) assert(/\{h\}/.test(I18N[l].pair.synBalance) && /\{t\}/.test(I18N[l].pair.synBalance) && I18N[l].pair.synTitle, `${l} : textes`);
   });
 
+  test('Roue du thème interactive : éléments touchables et explications dans chaque langue', () => {
+    const chart = natalChart({ y: 1982, m: 11, d: 3 }, { h: 19, min: 0 }, birthPlace('Paris|FR'));
+    const box = document.createElement('div'); box.innerHTML = natalWheelSvg(chart, I18N.fr);
+    const count = k => box.querySelectorAll(`[data-kind="${k}"]`).length;
+    assertEq(count('sign'), 12, 'signes'); assertEq(count('house'), 12, 'maisons'); assertEq(count('body'), 10, 'astres'); assertEq(count('angle'), 2, 'AC et MC');
+    assertEq(count('aspect'), chart.aspects.filter(a => a.type !== 'conjunction').length, 'aspects tracés');
+    const keys = [...box.querySelectorAll('[data-kind]')].map(e => [e.dataset.kind, e.dataset.key]);
+    for (const l of Object.keys(I18N)) for (const [kind, key] of keys) {
+      const d = wheelDetail(chart, I18N[l], kind, key);
+      assert(d.title && d.text && !/undefined|NaN/.test(d.title + d.text), `${l} : ${kind} ${key}`);
+    }
+    const sat = wheelDetail(chart, I18N.fr, 'body', 'saturn');
+    assert(/Saturne/.test(sat.title) && /Balance/.test(sat.title) && /maison 6/i.test(sat.title), `Saturne : ${sat.title}`);
+    const noTime = natalChart({ y: 1982, m: 11, d: 3 }, null, null); box.innerHTML = natalWheelSvg(noTime, I18N.fr);
+    assertEq(count('house') + count('angle'), 0, 'sans heure ni lieu : ni maisons ni angles');
+  });
+
   /* ---------------- Rapport ---------------- */
   const failed = results.filter(r => !r.ok);
   window.__testResults = results;
