@@ -706,7 +706,9 @@ I18N.it = deepMerge(I18N.fr, {
     night: "La notte fonda inizia quando il Sole è più di 18° sotto l'orizzonte (fine del crepuscolo astronomico) e finisce all'alba. La Luna rischiara il cielo e nasconde le stelle deboli: il momento migliore unisce notte fonda e Luna tramontata. Un pianeta è considerato ben visibile a più di 10° di altezza, con il Sole più di 6° sotto l'orizzonte.",
     solarEclipse: "Calcolo per questo luogo, con mezzo minuto di precisione. La percentuale è la parte della superficie del Sole nascosta dalla Luna; gli orari vanno dal primo all'ultimo contatto dei due dischi, limitati al periodo in cui il Sole è sopra l'orizzonte. Un'eclissi totale o anulare si vede come tale solo in una fascia stretta; altrove è parziale.",
     natalTransits: "I transiti confrontano la posizione attuale dei pianeti con quella della tua nascita: un pianeta in congiunzione, sestile, quadratura, trigono od opposizione con un punto del tuo tema ne colora l'ambito. Si considera uno scarto di 1° per i pianeti veloci e di 1,5° per quelli lenti; le date indicano il periodo d'influenza e il giorno in cui l'aspetto è esatto. La Luna natale si usa solo se l'ora di nascita è nota; l'ascendente e il medio cielo solo se lo sono ora e luogo.",
-    synastry: "La sinastria confronta i due temi natali: ogni pianeta dell'uno è messo a confronto con ogni pianeta dell'altro. Trigoni e sestili sono punti di armonia, quadrature e opposizioni punti di tensione; una congiunzione è armoniosa, tranne con Saturno, o con Marte se non con Venere (Venere–Marte simboleggia l'attrazione). Scarti: 6° per congiunzioni e opposizioni, 5° per quadrature e trigoni, 4° per sestili. I legami tra Sole, Luna, Venere, Marte e ascendente vengono per primi. È una lettura tradizionale e simbolica, non una previsione."
+    synastry: "La sinastria confronta i due temi natali: ogni pianeta dell'uno è messo a confronto con ogni pianeta dell'altro. Trigoni e sestili sono punti di armonia, quadrature e opposizioni punti di tensione; una congiunzione è armoniosa, tranne con Saturno, o con Marte se non con Venere (Venere–Marte simboleggia l'attrazione). Scarti: 6° per congiunzioni e opposizioni, 5° per quadrature e trigoni, 4° per sestili. I legami tra Sole, Luna, Venere, Marte e ascendente vengono per primi. È una lettura tradizionale e simbolica, non una previsione.",
+    numerology: "La numerologia riduce date e nomi a una cifra da 1 a 9 sommandone le cifre, tranne i numeri maestri 11, 22 e 33, che si conservano. Sentiero di vita: giorno, mese e anno di nascita ridotti separatamente e poi sommati. Numeri del nome: ogni lettera vale una cifra (A = 1, B = 2… I = 9, poi J = 1…); tutte le lettere danno l'espressione, le vocali il numero dell'anima, le consonanti la personalità. In arabo si usano i valori abjad (ا = 1… غ = 1000); in russo, la tabella cirillica equivalente.",
+    personalYear: "L'anno personale somma il giorno e il mese di nascita all'anno in corso e segue un ciclo di 9 anni. Il mese personale aggiunge il mese in corso, il giorno personale il giorno del mese. I cicli sono calcolati per la data di lettura dell'oroscopo."
   },
   placePlaceholder: "Digita il nome di una città…",
   placeNoMatch: "Nessuna città trovata. Prova con la più vicina.",
@@ -733,5 +735,79 @@ I18N.it = deepMerge(I18N.fr, {
     polarNight: "Il Sole non sorge: notte polare.",
     noAstroNight: "In questa stagione non c'è notte fonda: il Sole resta troppo vicino all'orizzonte.",
     note: "Orari locali del luogo scelto, con orizzonte libero. Meteo e inquinamento luminoso non sono considerati."
+  },
+  num: {
+    tab: "Numerologia",
+    tabSub: "I numeri della tua vita",
+    dateCard: "Data di nascita",
+    cyclesCard: "Cicli personali",
+    nameCard: "Nome",
+    lifePath: "Sentiero di vita",
+    lifePathDesc: "Il tuo cammino e le grandi lezioni della tua vita.",
+    expression: "Numero dell'espressione",
+    expressionDesc: "I tuoi talenti e il tuo modo di agire (tutte le lettere del nome).",
+    soul: "Numero dell'anima",
+    soulDesc: "Le tue aspirazioni profonde (vocali del nome).",
+    personality: "Numero della personalità",
+    personalityDesc: "L'immagine che trasmetti (consonanti del nome).",
+    personalYear: "Anno personale",
+    personalMonth: "Mese personale",
+    personalDay: "Giorno personale",
+    master: "Numero maestro",
+    nameMissing: "Inserisci il tuo nome nel modulo (preferibilmente il nome completo di nascita) per calcolare i numeri del nome.",
+    nameScript: "I numeri del nome si calcolano su lettere latine, arabe (abjad) o cirilliche: scrivi il tuo nome in una di queste scritture.",
+    abjad: "Valore abjad: {v}",
+    note: "La numerologia è una tradizione simbolica, senza fondamento scientifico: i suoi numeri sono un invito alla riflessione.",
+    numbers: {
+      1: {
+        keywords: ["Indipendenza", "Iniziativa", "Leadership"],
+        text: "L'1 apre la strada: energia di partenza, volontà di agire da sé e di affermare la propria diversità."
+      },
+      2: {
+        keywords: ["Cooperazione", "Sensibilità", "Diplomazia"],
+        text: "Il 2 unisce: ascolto, pazienza e senso della collaborazione, al servizio dell'armonia."
+      },
+      3: {
+        keywords: ["Espressione", "Creatività", "Gioia"],
+        text: "Il 3 comunica: immaginazione, disinvoltura con gli altri e bisogno di creare e condividere."
+      },
+      4: {
+        keywords: ["Stabilità", "Lavoro", "Metodo"],
+        text: "Il 4 costruisce: rigore, perseveranza e gusto per le fondamenta solide."
+      },
+      5: {
+        keywords: ["Libertà", "Cambiamento", "Curiosità"],
+        text: "Il 5 esplora: movimento, adattabilità e sete di nuove esperienze."
+      },
+      6: {
+        keywords: ["Responsabilità", "Amore", "Armonia"],
+        text: "Il 6 si prende cura: senso della casa, del dovere e della bellezza dei legami."
+      },
+      7: {
+        keywords: ["Riflessione", "Intuizione", "Saggezza"],
+        text: "Il 7 cerca: introspezione, analisi e ricerca di senso oltre le apparenze."
+      },
+      8: {
+        keywords: ["Ambizione", "Autorità", "Realizzazione"],
+        text: "L'8 realizza: senso degli affari, autorità e capacità di concretizzare."
+      },
+      9: {
+        keywords: ["Altruismo", "Ideale", "Compimento"],
+        text: "Il 9 riunisce: generosità, apertura al mondo e senso del compimento."
+      },
+      11: {
+        keywords: ["Ispirazione", "Intuizione", "Ideale"],
+        text: "Numero maestro 11: un 2 amplificato; intuizione viva, ispirazione e ruolo di messaggero."
+      },
+      22: {
+        keywords: ["Costruttore", "Visione", "Concretezza"],
+        text: "Numero maestro 22: un 4 amplificato; capacità di costruire grandi progetti duraturi."
+      },
+      33: {
+        keywords: ["Compassione", "Guarigione", "Dedizione"],
+        text: "Numero maestro 33: un 6 amplificato; dedizione, benevolenza e spirito di servizio."
+      }
+    },
+    years: ["Anno di nuovi inizi: seminare, osare, avviare progetti.", "Anno di pazienza e collaborazione: creare legami, lasciar maturare.", "Anno di espressione e creatività: comunicare, mostrarsi, concedersi piaceri.", "Anno di lavoro e fondamenta: organizzare, consolidare, perseverare.", "Anno di cambiamenti e libertà: muoversi, adattarsi, scoprire.", "Anno di responsabilità e del cuore: casa, famiglia, impegni.", "Anno di distacco e introspezione: imparare, riflettere, ricaricarsi.", "Anno di realizzazione: ambizioni, finanze, riconoscimento.", "Anno di bilancio e chiusura: concludere, fare ordine, preparare il ciclo successivo."]
   }
 });

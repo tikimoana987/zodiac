@@ -340,6 +340,7 @@ function renderResult(signKey, decanIdx){
     <div class="view-tabs" role="tablist" aria-label="${t.natal.tabsLabel}">
       <button type="button" role="tab" id="tabSigns" aria-controls="viewSigns"><span class="vt-icon" aria-hidden="true">☉</span><span class="vt-txt"><span class="vt-title">${t.natal.tabSigns}</span><span class="vt-sub">${t.natal.tabSignsSub}</span></span></button>
       <button type="button" role="tab" id="tabNatal" aria-controls="viewNatal"><span class="vt-icon" aria-hidden="true">✦</span><span class="vt-txt"><span class="vt-title">${t.natal.tabNatal}</span><span class="vt-sub">${t.natal.tabNatalSub}</span></span></button>
+      <button type="button" role="tab" id="tabNumbers" aria-controls="viewNumbers"><span class="vt-icon" aria-hidden="true">№</span><span class="vt-txt"><span class="vt-title">${t.num.tab}</span><span class="vt-sub">${t.num.tabSub}</span></span></button>
     </div>
     <div id="profileContent">
       <div class="owner" id="profileOwner"></div>
@@ -348,6 +349,7 @@ function renderResult(signKey, decanIdx){
         ${chineseCards(t, currentCn, hourAnimal).join('\n')}
       </div>
       <div class="natal" id="viewNatal" role="tabpanel" aria-labelledby="tabNatal">${natalHtml(t)}</div>
+      <div class="numbers" id="viewNumbers" role="tabpanel" aria-labelledby="tabNumbers"></div>
     </div>
     ${compatCardHtml(t)}
     <section class="card sky-card" aria-labelledby="skyTitle">
@@ -412,17 +414,21 @@ function renderResult(signKey, decanIdx){
     target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'center' });
     target.focus({ preventScroll: true });
   });
-  const tabs = [document.getElementById('tabSigns'), document.getElementById('tabNatal')];
+  const tabs = [document.getElementById('tabSigns'), document.getElementById('tabNatal'), document.getElementById('tabNumbers')];
   tabs.forEach((tb, i) => {
-    tb.addEventListener('click', () => setView(i ? 'natal' : 'signs'));
-    tb.addEventListener('keydown', e => {   // flèches gauche / droite entre les onglets
-      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); setView(viewMode === 'signs' ? 'natal' : 'signs', true); }
+    tb.addEventListener('click', () => setView(VIEW_MODES[i]));
+    tb.addEventListener('keydown', e => {   // flèches gauche / droite entre les onglets (sens inversé en écriture de droite à gauche)
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      const step = (e.key === 'ArrowRight') !== (document.documentElement.dir === 'rtl') ? 1 : -1;
+      setView(VIEW_MODES[(VIEW_MODES.indexOf(viewMode) + step + VIEW_MODES.length) % VIEW_MODES.length], true);
     });
   });
 
   if (!skyDate) skyDate = todayISO();
+  renderNumbers();
   document.getElementById('skyDate').addEventListener('change', e => {
-    if (parseISODate(e.target.value)) { skyDate = e.target.value; mapMinutes = null; renderSky(); renderMap(); }
+    if (parseISODate(e.target.value)) { skyDate = e.target.value; mapMinutes = null; renderSky(); renderMap(); renderNumbers(); }
   });
   document.querySelectorAll('.seg button').forEach(btn => btn.addEventListener('click', () => {
     skyPeriod = btn.dataset.period;
@@ -753,7 +759,8 @@ window.addEventListener('resize', () => closeInfo(false));
    THÈME NATAL (vue « Thème natal » du résultat)
    ============================================================ */
 let currentBirthPlace = '';   // identifiant de la ville de naissance (zodiac-places.js), '' si non précisé
-let viewMode = 'signs';       // onglet affiché : 'signs' (signe & zodiaque chinois) ou 'natal'
+let viewMode = 'signs';       // onglet affiché : 'signs' (signe & zodiaque chinois), 'natal' ou 'numbers' (numérologie)
+const VIEW_MODES = ['signs', 'natal', 'numbers'];
 const ASPECT_SYM = { conjunction: '☌', sextile: '⚹', square: '□', trine: '△', opposition: '☍' };
 let currentChart = null;   // thème affiché (roue interactive)
 /* Ponctuation selon la langue : fin de phrase, deux-points, énumération */
@@ -964,11 +971,38 @@ function natalHtml(t){
       </div>`;
 }
 
-/* Bascule entre les deux vues, sans recalcul ; le choix est retenu pour les recherches suivantes */
+/* ============================================================
+   NUMÉROLOGIE (troisième onglet) — cycles personnels à la date de lecture de l'horoscope
+   ============================================================ */
+function renderNumbers(){
+  const el = document.getElementById('viewNumbers'), birth = parseISODate(currentDate), on = parseISODate(skyDate || todayISO());
+  if (!el || !birth || !on) return;
+  const t = I18N[currentLang], u = t.num;
+  const tags = n => `<div class="traits">${u.numbers[n].keywords.map(k => `<span class="trait-tag">${k}</span>`).join('')}</div>`;
+  const item = (label, desc, n) => `<div class="num-item">
+      <div class="num-head"><span class="num-value">${n}</span><div><div class="num-label">${label}</div><div class="num-desc">${desc}</div></div></div>
+      ${MASTER_NUMBERS.includes(n) ? `<span class="num-master">${u.master}</span>` : ''}${tags(n)}<p class="num-text">${u.numbers[n].text}</p></div>`;
+  const cy = personalCycles(birth, on), nm = nameNumbers(currentName);
+  const cycle = (label, n, text) => `<div class="num-cycle"><span class="num-value small">${n}</span><div><div class="num-label">${label}</div><p class="num-text">${text}</p></div></div>`;
+  const onLabel = new Intl.DateTimeFormat(loc(currentLang), { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(on.y, on.m - 1, on.d));
+  let names;
+  if (!currentName) names = `<p class="num-missing">${u.nameMissing}</p>`;
+  else if (!nm) names = `<p class="num-missing">${u.nameScript}</p>`;
+  else names = `<p class="sky-sub">${escapeHtml(currentName)}${nm.abjadTotal ? ` · ${u.abjad.replace('{v}', new Intl.NumberFormat(loc(currentLang)).format(nm.abjadTotal))}` : ''}</p>
+      <div class="num-grid">${item(u.expression, u.expressionDesc, nm.expression)}${nm.soul ? item(u.soul, u.soulDesc, nm.soul) : ''}${nm.personality ? item(u.personality, u.personalityDesc, nm.personality) : ''}</div>`;
+  el.innerHTML = `
+    <div class="card num-card"><h3>${u.dateCard}${infoBtn('numerology', u.tab)}</h3>${item(u.lifePath, u.lifePathDesc, lifePath(birth))}</div>
+    <div class="card num-card"><h3>${u.cyclesCard}${infoBtn('personalYear', u.cyclesCard)}</h3><p class="sky-sub">${onLabel}</p>
+      <div class="num-cycles">${cycle(u.personalYear, cy.year, u.years[cy.year - 1])}${cycle(u.personalMonth, cy.month, u.numbers[cy.month].keywords.join(' · '))}${cycle(u.personalDay, cy.day, u.numbers[cy.day].keywords.join(' · '))}</div></div>
+    <div class="card num-card"><h3>${u.nameCard}</h3>${names}</div>
+    <p class="sky-note">${u.note}</p>`;
+}
+
+/* Bascule entre les vues, sans recalcul ; le choix est retenu pour les recherches suivantes */
 function setView(mode, focus){
   viewMode = mode;
   store.set('zodiac_view', mode);
-  for (const [tab, panel, m] of [['tabSigns', 'viewSigns', 'signs'], ['tabNatal', 'viewNatal', 'natal']]) {
+  for (const [tab, panel, m] of [['tabSigns', 'viewSigns', 'signs'], ['tabNatal', 'viewNatal', 'natal'], ['tabNumbers', 'viewNumbers', 'numbers']]) {
     const tb = document.getElementById(tab), pn = document.getElementById(panel);
     if (!tb) continue;
     tb.setAttribute('aria-selected', String(m === mode)); tb.tabIndex = m === mode ? 0 : -1;
@@ -1642,7 +1676,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const urlDate = params.get('date');
   const urlTime = params.get('time');
   const urlPlace = params.get('place');
-  viewMode = store.get('zodiac_view') === 'natal' ? 'natal' : 'signs';
+  viewMode = VIEW_MODES.includes(store.get('zodiac_view')) ? store.get('zodiac_view') : 'signs';
   const lsLang = store.get('zodiac_lang');
   const lsDate = store.get('zodiac_lastDate');
   const lsTime = store.get('zodiac_lastTime');

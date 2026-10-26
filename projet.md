@@ -48,6 +48,7 @@ Les fichiers sont chargés par de simples balises `<script src>` (pas de modules
 | `build-places.py` | Construit `zodiac-places-data.js` depuis GeoNames (`pip install geonamescache`) ; à relancer seulement pour mettre à jour la base |
 | `zodiac-observe.js` | Observation depuis un lieu : positions vues de la surface (parallaxe), **éclipses de Soleil locales** (contacts, phase centrale, part du Soleil cachée, lever ou coucher éclipsé), levers, couchers et crépuscules, programme de la nuit (`nightPlan`) |
 | `zodiac-transits.js` | **Transits sur le thème natal** : aspects des planètes du moment (Soleil à Pluton) aux points du thème (Soleil à Saturne, Lune si l'heure est connue, ascendant et milieu du ciel si heure et lieu le sont), période d'influence et jour exact ; **synastrie** (aspects entre deux thèmes, harmonie et tension) |
+| `zodiac-numerology.js` | **Numérologie** : chemin de vie, cycles personnels (année, mois, jour), nombres du nom (expression, intime, personnalité) en alphabet latin (méthode pythagoricienne), arabe (abjad) et cyrillique |
 | `zodiac-natal.js` | Thème natal : heure locale du lieu de naissance → temps universel (`zonedInstant`), ascendant, Milieu du Ciel, maisons Placidus (repli en maisons égales au-delà de 66°), maison de chaque astre, aspects (`natalChart`) |
 | `zodiac-planets.js` | Calculs purs : Lune et planètes (Mercure → Pluton), rétrogradations, phases, transits, Lune natale, compatibilité à deux |
 | `zodiac-app.js` | État, thème, animation, rendu, modale, horoscope, actions, initialisation |
@@ -83,6 +84,13 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 ---
 
 ## ✨ Fonctionnalités implémentées
+
+### 🔢 Numérologie (étape 5)
+- [x] **Troisième onglet « Numérologie »** à côté de « Signe & zodiaque chinois » et « Thème natal » (retenu d'une recherche à l'autre ; flèches du clavier ; sur mobile, les trois onglets s'empilent pour que les titres longs tiennent dans toutes les langues)
+- [x] **Chemin de vie** : jour, mois et année réduits séparément puis additionnés, nombres maîtres 11, 22, 33 gardés
+- [x] **Cycles personnels** (année, mois, jour, de 1 à 9) à la date de lecture de l'horoscope ; thème de l'année personnelle
+- [x] **Nombres du nom** (champ « Nom ») : expression (toutes les lettres), nombre intime (voyelles), personnalité (consonnes) ; accents ignorés, Y voyelle s'il n'est pas à côté d'une voyelle ; **abjad** pour l'arabe (valeur affichée, محمد = 92 → 11) ; **table cyrillique** pour le russe ; autres écritures : invitation à saisir le nom en lettres latines
+- [x] Sens des 12 nombres (mots-clés, phrase), thèmes des 9 années personnelles, 2 bulles (i), présentée comme une tradition symbolique ; 14 langues
 
 ### 🎡 Roue du thème interactive (étape 4c)
 - [x] **Chaque élément de la roue est touchable** : astre, signe, maison, aspect, ascendant et milieu du ciel ouvrent une bulle d'explication (textes du thème natal déjà traduits : domaine, style du signe, maison, liste des aspects ; portrait du signe ; domaine de la maison et astres qu'elle contient ; sens de l'aspect)
@@ -354,14 +362,14 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | 1 (html2canvas CDN) |
 | Poids approximatif | ~460 Ko non minifié (dont ~230 Ko de traductions et ~55 Ko de données du ciel) |
-| Tests automatisés | 67 (dans `zodiac-tests.js`) |
+| Tests automatisés | 68 (dans `zodiac-tests.js`) |
 
 ---
 
 ## 🧪 Comment tester
 
 ### Tests automatiques
-Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 67 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
+Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 68 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
 La version autonome se teste de la même façon : `ZODIAC-standalone.html?test` (la suite y est intégrée ; un test supplémentaire vérifie que sa copie vierge est complète et sans donnée personnelle).
 - le calcul du Soleil, comparé à 40 positions de référence calculées par astropy (1900-2100) ;
 - signes et décans de dates de référence, équinoxes connues, jours de transition, effet de l'heure ;

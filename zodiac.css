@@ -197,6 +197,26 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .nw-hit:focus-visible .nw-hitzone{ stroke:var(--gold); stroke-width:1; }
 .nw-asp-g:hover .nw-asp, .nw-asp-g.nw-on .nw-asp{ stroke-width:1.8; opacity:1; }
 .natal-svg.nw-focusing .nw-asp-g:not(.nw-on){ opacity:.12; }
+/* Numérologie */
+.numbers{ display:grid; gap:1.1rem; }
+.num-card h3{ margin-bottom:.8rem; }
+.num-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:1rem; }
+.num-item{ display:flex; flex-direction:column; gap:.5rem; }
+.num-head{ display:flex; align-items:center; gap:.9rem; }
+.num-value{ flex:none; display:inline-flex; align-items:center; justify-content:center; width:3.2rem; height:3.2rem; border-radius:50%;
+  font-size:1.6rem; font-weight:700; color:var(--gold); border:2px solid var(--gold); box-shadow:0 0 18px var(--glow); }
+.num-value.small{ width:2.4rem; height:2.4rem; font-size:1.15rem; border-width:1.5px; }
+.num-label{ color:var(--text); font-weight:700; font-size:1rem; }
+.num-desc{ color:var(--muted); font-size:.82rem; }
+.num-master{ align-self:flex-start; font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:#c4b0f0;
+  background:rgba(155,126,222,.15); border:1px solid rgba(155,126,222,.35); border-radius:999px; padding:.2rem .7rem; }
+.num-text{ color:var(--muted); font-size:.9rem; line-height:1.55; }
+.num-cycles{ display:grid; grid-template-columns:repeat(3, 1fr); gap:1rem; margin-top:.4rem; }
+.num-cycle{ display:flex; gap:.7rem; align-items:flex-start; }
+.num-missing{ color:var(--text); font-size:.9rem; }
+@media (max-width:640px){
+  .num-cycles{ grid-template-columns:1fr; }
+}
 .app-credit{ flex:1 1 100%; color:var(--muted); font-size:.75rem; opacity:.8; }
 .input-zone input[type=date], .input-zone input[type=time], .input-zone input[type=text]{
   width:100%; background:var(--field-bg);
@@ -562,7 +582,7 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .offline-hint{ color:var(--muted); font-size:.8rem; flex:1 1 260px; }
 
 /* Onglets du résultat : deux grandes cartes côte à côte, bien visibles */
-.view-tabs{ display:grid; grid-template-columns:1fr 1fr; gap:.7rem; width:100%; max-width:760px; margin:.4rem auto 1.4rem; }
+.view-tabs{ display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:.7rem; width:100%; max-width:880px; margin:.4rem auto 1.4rem; }
 .view-tabs button{
   display:flex; align-items:center; gap:.8rem; text-align:start; cursor:pointer;
   background:var(--ov-04); border:1px solid var(--ov-15); border-radius:18px; padding:.85rem 1.1rem;
@@ -783,3 +803,11 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 /* Écritures dont les lettres se lient ou se combinent (arabe, devanagari, thaï) : aucun espacement entre les lettres,
    sinon les liaisons se cassent — à l'écran comme dans l'image exportée, où chaque lettre serait dessinée isolément */
 :root:is([lang="ar"], [lang="hi"], [lang="th"]) *{ letter-spacing:0 !important; }
+
+/* Onglets du résultat sur petit écran (en fin de fichier : doit passer après la règle générale des onglets).
+   Trois onglets côte à côte sont trop serrés pour les mots longs de certaines langues : empilés en une colonne. */
+@media (max-width:640px){
+  .view-tabs{ grid-template-columns:1fr; gap:.35rem; }
+  .view-tabs button{ padding:.5rem .8rem; gap:.6rem; }
+  .vt-sub{ display:none; } .vt-title{ font-size:.92rem; }
+}

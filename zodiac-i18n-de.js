@@ -706,7 +706,9 @@ I18N.de = deepMerge(I18N.fr, {
     night: "Die volle Dunkelheit beginnt, wenn die Sonne mehr als 18° unter dem Horizont steht (Ende der astronomischen Dämmerung), und endet in der Morgendämmerung. Der Mond erhellt den Himmel und verdeckt schwache Sterne: Am besten ist volle Dunkelheit bei untergegangenem Mond. Ein Planet gilt als gut sichtbar ab 10° Höhe, wenn die Sonne mehr als 6° unter dem Horizont steht.",
     solarEclipse: "Berechnung für diesen Ort, auf eine halbe Minute genau. Der Prozentwert ist der Anteil der Sonnenfläche, den der Mond verdeckt; die Zeiten reichen vom ersten bis zum letzten Kontakt der beiden Scheiben, begrenzt auf die Zeit, in der die Sonne über dem Horizont steht. Eine totale oder ringförmige Finsternis ist nur in einem schmalen Streifen als solche zu sehen; anderswo ist sie partiell.",
     natalTransits: "Transite vergleichen die heutige Stellung der Planeten mit der bei deiner Geburt: Ein Planet in Konjunktion, Sextil, Quadrat, Trigon oder Opposition zu einem Punkt deines Horoskops färbt dessen Bereich. Der Orbis beträgt 1° für schnelle und 1,5° für langsame Planeten; die Daten zeigen den Wirkungszeitraum und den Tag, an dem der Aspekt exakt ist. Der Geburtsmond wird nur bei bekannter Geburtszeit verwendet, Aszendent und Himmelsmitte nur bei bekannter Zeit und bekanntem Ort.",
-    synastry: "Die Synastrie vergleicht zwei Geburtshoroskope: Jeder Planet des einen wird jedem Planeten des anderen gegenübergestellt. Trigone und Sextile gelten als harmonisch, Quadrate und Oppositionen als spannungsreich; eine Konjunktion ist harmonisch, außer mit Saturn oder mit Mars (außer mit Venus – Venus–Mars steht für Anziehung). Orben: 6° für Konjunktionen und Oppositionen, 5° für Quadrate und Trigone, 4° für Sextile. Verbindungen zwischen Sonne, Mond, Venus, Mars und Aszendent stehen vorn. Es ist eine traditionelle, symbolische Deutung, keine Vorhersage."
+    synastry: "Die Synastrie vergleicht zwei Geburtshoroskope: Jeder Planet des einen wird jedem Planeten des anderen gegenübergestellt. Trigone und Sextile gelten als harmonisch, Quadrate und Oppositionen als spannungsreich; eine Konjunktion ist harmonisch, außer mit Saturn oder mit Mars (außer mit Venus – Venus–Mars steht für Anziehung). Orben: 6° für Konjunktionen und Oppositionen, 5° für Quadrate und Trigone, 4° für Sextile. Verbindungen zwischen Sonne, Mond, Venus, Mars und Aszendent stehen vorn. Es ist eine traditionelle, symbolische Deutung, keine Vorhersage.",
+    numerology: "Die Numerologie reduziert Daten und Namen durch Addieren ihrer Ziffern auf eine Zahl von 1 bis 9 – außer den Meisterzahlen 11, 22 und 33, die erhalten bleiben. Lebensweg: Tag, Monat und Jahr der Geburt werden einzeln reduziert und dann addiert. Namenszahlen: Jeder Buchstabe hat einen Wert (A = 1, B = 2 … I = 9, dann J = 1 …); alle Buchstaben ergeben die Ausdruckszahl, die Vokale die Seelenzahl, die Konsonanten die Persönlichkeitszahl. Im Arabischen gelten die Abdschad-Werte (ا = 1 … غ = 1000), im Russischen die entsprechende kyrillische Tabelle.",
+    personalYear: "Das persönliche Jahr addiert deinen Geburtstag und -monat zum laufenden Jahr; es folgt einem Zyklus von 9 Jahren. Der persönliche Monat fügt den laufenden Monat hinzu, der persönliche Tag den Tag des Monats. Die Zyklen gelten für das Lesedatum des Horoskops."
   },
   placePlaceholder: "Stadtnamen eingeben …",
   placeNoMatch: "Keine Stadt gefunden. Versuche die nächstgelegene.",
@@ -733,5 +735,79 @@ I18N.de = deepMerge(I18N.fr, {
     polarNight: "Die Sonne geht nicht auf: Polarnacht.",
     noAstroNight: "Zu dieser Jahreszeit keine volle Dunkelheit: Die Sonne bleibt zu nah am Horizont.",
     note: "Ortszeiten des gewählten Ortes, bei freiem Horizont. Wetter und Lichtverschmutzung werden nicht berücksichtigt."
+  },
+  num: {
+    tab: "Numerologie",
+    tabSub: "Die Zahlen deines Lebens",
+    dateCard: "Geburtsdatum",
+    cyclesCard: "Persönliche Zyklen",
+    nameCard: "Name",
+    lifePath: "Lebensweg",
+    lifePathDesc: "Dein Weg und die großen Lektionen deines Lebens.",
+    expression: "Ausdruckszahl",
+    expressionDesc: "Deine Talente und deine Art zu handeln (alle Buchstaben des Namens).",
+    soul: "Seelenzahl",
+    soulDesc: "Deine tiefsten Wünsche (Vokale des Namens).",
+    personality: "Persönlichkeitszahl",
+    personalityDesc: "Das Bild, das du nach außen vermittelst (Konsonanten des Namens).",
+    personalYear: "Persönliches Jahr",
+    personalMonth: "Persönlicher Monat",
+    personalDay: "Persönlicher Tag",
+    master: "Meisterzahl",
+    nameMissing: "Gib deinen Namen im Formular ein (am besten den vollständigen Geburtsnamen), um die Namenszahlen zu berechnen.",
+    nameScript: "Die Namenszahlen werden aus lateinischen, arabischen (Abdschad) oder kyrillischen Buchstaben berechnet: Gib deinen Namen in einer dieser Schriften ein.",
+    abjad: "Abdschad-Wert: {v}",
+    note: "Numerologie ist eine symbolische Tradition ohne wissenschaftliche Grundlage: Ihre Zahlen laden zum Nachdenken ein.",
+    numbers: {
+      1: {
+        keywords: ["Unabhängigkeit", "Initiative", "Führung"],
+        text: "Die 1 geht voran: Aufbruchsenergie, der Wille, selbst zu handeln und eigene Wege zu gehen."
+      },
+      2: {
+        keywords: ["Zusammenarbeit", "Feingefühl", "Diplomatie"],
+        text: "Die 2 verbindet: Zuhören, Geduld und Sinn für Partnerschaft im Dienst der Harmonie."
+      },
+      3: {
+        keywords: ["Ausdruck", "Kreativität", "Freude"],
+        text: "Die 3 kommuniziert: Fantasie, Leichtigkeit im Umgang mit anderen, Lust am Schaffen und Teilen."
+      },
+      4: {
+        keywords: ["Stabilität", "Arbeit", "Methode"],
+        text: "Die 4 baut: Gründlichkeit, Ausdauer und Freude an soliden Fundamenten."
+      },
+      5: {
+        keywords: ["Freiheit", "Wandel", "Neugier"],
+        text: "Die 5 erkundet: Bewegung, Anpassungsfähigkeit und Durst nach neuen Erfahrungen."
+      },
+      6: {
+        keywords: ["Verantwortung", "Liebe", "Harmonie"],
+        text: "Die 6 sorgt: Sinn für Zuhause, Pflicht und die Schönheit von Beziehungen."
+      },
+      7: {
+        keywords: ["Nachdenken", "Intuition", "Weisheit"],
+        text: "Die 7 sucht: Selbstbesinnung, Analyse und Suche nach Sinn hinter dem Schein."
+      },
+      8: {
+        keywords: ["Ehrgeiz", "Autorität", "Verwirklichung"],
+        text: "Die 8 vollbringt: Geschäftssinn, Autorität und die Fähigkeit, Pläne umzusetzen."
+      },
+      9: {
+        keywords: ["Nächstenliebe", "Ideal", "Vollendung"],
+        text: "Die 9 vereint: Großzügigkeit, Weltoffenheit und Sinn für das Abschließen."
+      },
+      11: {
+        keywords: ["Inspiration", "Intuition", "Ideal"],
+        text: "Meisterzahl 11: eine verstärkte 2; wache Intuition, Inspiration und die Rolle eines Boten."
+      },
+      22: {
+        keywords: ["Baumeister", "Vision", "Umsetzung"],
+        text: "Meisterzahl 22: eine verstärkte 4; die Fähigkeit, große, dauerhafte Projekte zu errichten."
+      },
+      33: {
+        keywords: ["Mitgefühl", "Heilung", "Hingabe"],
+        text: "Meisterzahl 33: eine verstärkte 6; Hingabe, Güte und Sinn für den Dienst an anderen."
+      }
+    },
+    years: ["Ein Jahr des Neubeginns: säen, wagen, Projekte starten.", "Ein Jahr der Geduld und Zusammenarbeit: Bindungen knüpfen, reifen lassen.", "Ein Jahr des Ausdrucks und der Kreativität: kommunizieren, sich zeigen, genießen.", "Ein Jahr der Arbeit und der Fundamente: ordnen, festigen, durchhalten.", "Ein Jahr des Wandels und der Freiheit: aufbrechen, sich anpassen, entdecken.", "Ein Jahr der Verantwortung und des Herzens: Zuhause, Familie, Verpflichtungen.", "Ein Jahr des Rückzugs und der Selbstbesinnung: lernen, nachdenken, Kraft tanken.", "Ein Jahr der Verwirklichung: Ziele, Finanzen, Anerkennung.", "Ein Jahr der Bilanz und des Abschlusses: beenden, aussortieren, den nächsten Zyklus vorbereiten."]
   }
 });

@@ -702,7 +702,9 @@ I18N.tr = deepMerge(I18N.fr, {
     night: "Tam karanlık, Güneş ufkun 18°'den fazla altına indiğinde (astronomik alacakaranlığın sonu) başlar ve şafakta biter. Ay gökyüzünü aydınlatır ve sönük yıldızları gizler: en iyi zaman, tam karanlık ile Ay'ın batmış olduğu andır. Bir gezegen, Güneş ufkun 6°'den fazla altındayken 10°'den yüksekte ise iyi görünür sayılır.",
     solarEclipse: "Bu yer için yarım dakika hassasiyetle hesaplanmıştır. Yüzde, Güneş yüzeyinin Ay tarafından örtülen kısmıdır; saatler iki diskin ilk temasından son temasına kadardır ve Güneş'in ufkun üstünde olduğu süreyle sınırlıdır. Tam veya halkalı tutulma ancak dar bir şeritte böyle görülür; başka yerlerde parçalıdır.",
     natalTransits: "Transitler, gezegenlerin bugünkü konumunu doğumunuzdaki konumlarla karşılaştırır: haritanızdaki bir noktayla kavuşum, altmışlık, kare, üçgen ya da karşıt açı yapan bir gezegen o alanı renklendirir. Hızlı gezegenler için 1°, yavaşlar için 1,5° orb kullanılır; tarihler etki dönemini ve açının tam olduğu günü gösterir. Doğum Ay'ı yalnızca doğum saati biliniyorsa, yükselen ve tepe noktası yalnızca saat ve yer biliniyorsa kullanılır.",
-    synastry: "Sinastri iki doğum haritasını karşılaştırır: birinin her gezegeni diğerinin her gezegeniyle ele alınır. Üçgen ve altmışlık açılar uyum, kare ve karşıt açılar gerilim noktalarıdır; kavuşum uyumludur, ancak Satürn ile ya da (Venüs dışında) Mars ile değildir (Venüs–Mars çekimi simgeler). Orblar: kavuşum ve karşıt için 6°, kare ve üçgen için 5°, altmışlık için 4°. Güneş, Ay, Venüs, Mars ve yükselen arasındaki bağlar önce gelir. Bu, geleneksel ve sembolik bir yorumdur, kehanet değildir."
+    synastry: "Sinastri iki doğum haritasını karşılaştırır: birinin her gezegeni diğerinin her gezegeniyle ele alınır. Üçgen ve altmışlık açılar uyum, kare ve karşıt açılar gerilim noktalarıdır; kavuşum uyumludur, ancak Satürn ile ya da (Venüs dışında) Mars ile değildir (Venüs–Mars çekimi simgeler). Orblar: kavuşum ve karşıt için 6°, kare ve üçgen için 5°, altmışlık için 4°. Güneş, Ay, Venüs, Mars ve yükselen arasındaki bağlar önce gelir. Bu, geleneksel ve sembolik bir yorumdur, kehanet değildir.",
+    numerology: "Numeroloji, tarihleri ve adları rakamlarını toplayarak 1 ile 9 arasında bir sayıya indirger; yalnızca 11, 22 ve 33 usta sayıları olduğu gibi korunur. Yaşam yolu: doğum günü, ayı ve yılı ayrı ayrı indirgenip toplanır. Adın sayıları: her harfin bir değeri vardır (A = 1, B = 2… I = 9, sonra J = 1…); tüm harfler ifade sayısını, ünlüler ruh sayısını, ünsüzler kişilik sayısını verir. Arapçada ebced değerleri (ا = 1… غ = 1000), Rusçada eşdeğer Kiril tablosu kullanılır.",
+    personalYear: "Kişisel yıl, doğum gününüzü ve ayınızı içinde bulunulan yıla ekler; 9 yıllık bir döngü izler. Kişisel ay buna içinde bulunulan ayı, kişisel gün ayın gününü ekler. Döngüler burç yorumunun okuma tarihine göre hesaplanır."
   },
   placePlaceholder: "Bir şehir adı yazın…",
   placeNoMatch: "Şehir bulunamadı. En yakın şehri deneyin.",
@@ -729,5 +731,79 @@ I18N.tr = deepMerge(I18N.fr, {
     polarNight: "Güneş doğmuyor: kutup gecesi.",
     noAstroNight: "Bu mevsimde tam karanlık yok: Güneş ufka fazla yakın kalıyor.",
     note: "Seçilen yerin yerel saatleri, açık bir ufuk için. Hava durumu ve ışık kirliliği hesaba katılmaz."
+  },
+  num: {
+    tab: "Numeroloji",
+    tabSub: "Hayatınızın sayıları",
+    dateCard: "Doğum tarihi",
+    cyclesCard: "Kişisel döngüler",
+    nameCard: "Ad",
+    lifePath: "Yaşam yolu",
+    lifePathDesc: "Yolunuz ve hayatınızın büyük dersleri.",
+    expression: "İfade sayısı",
+    expressionDesc: "Yetenekleriniz ve davranış biçiminiz (adın tüm harfleri).",
+    soul: "Ruh sayısı",
+    soulDesc: "Derin özlemleriniz (adın ünlü harfleri).",
+    personality: "Kişilik sayısı",
+    personalityDesc: "Dışarıya yansıttığınız imaj (adın ünsüz harfleri).",
+    personalYear: "Kişisel yıl",
+    personalMonth: "Kişisel ay",
+    personalDay: "Kişisel gün",
+    master: "Usta sayı",
+    nameMissing: "Adın sayılarını hesaplamak için formda adınızı girin (tercihen doğumdaki tam adınızı).",
+    nameScript: "Adın sayıları Latin, Arap (ebced) veya Kiril harfleriyle hesaplanır: adınızı bu yazılardan biriyle girin.",
+    abjad: "Ebced değeri: {v}",
+    note: "Numeroloji, bilimsel temeli olmayan sembolik bir gelenektir: sayıları düşünmeye bir davettir.",
+    numbers: {
+      1: {
+        keywords: ["Bağımsızlık", "Girişim", "Liderlik"],
+        text: "1 yolu açar: başlangıç enerjisi, kendi başına hareket etme ve farkını ortaya koyma isteği."
+      },
+      2: {
+        keywords: ["İş birliği", "Duyarlılık", "Diplomasi"],
+        text: "2 birleştirir: dinleme, sabır ve uyuma hizmet eden ortaklık duygusu."
+      },
+      3: {
+        keywords: ["İfade", "Yaratıcılık", "Neşe"],
+        text: "3 iletişim kurar: hayal gücü, insanlarla rahatlık, yaratma ve paylaşma ihtiyacı."
+      },
+      4: {
+        keywords: ["İstikrar", "Çalışma", "Yöntem"],
+        text: "4 inşa eder: titizlik, azim ve sağlam temellere duyulan sevgi."
+      },
+      5: {
+        keywords: ["Özgürlük", "Değişim", "Merak"],
+        text: "5 keşfeder: hareket, uyum yeteneği ve yeni deneyimlere susamışlık."
+      },
+      6: {
+        keywords: ["Sorumluluk", "Sevgi", "Uyum"],
+        text: "6 özen gösterir: yuva, görev ve ilişkilerin güzelliği duygusu."
+      },
+      7: {
+        keywords: ["Tefekkür", "Sezgi", "Bilgelik"],
+        text: "7 arar: iç gözlem, analiz ve görünenin ötesinde anlam arayışı."
+      },
+      8: {
+        keywords: ["Hırs", "Otorite", "Başarı"],
+        text: "8 gerçekleştirir: iş zekâsı, otorite ve hayata geçirme yeteneği."
+      },
+      9: {
+        keywords: ["Özgecilik", "İdeal", "Tamamlanma"],
+        text: "9 bir araya getirir: cömertlik, dünyaya açıklık ve tamamlama duygusu."
+      },
+      11: {
+        keywords: ["İlham", "Sezgi", "İdeal"],
+        text: "Usta sayı 11: güçlenmiş bir 2; keskin sezgi, ilham ve haberci rolü."
+      },
+      22: {
+        keywords: ["Kurucu", "Vizyon", "Somutlaştırma"],
+        text: "Usta sayı 22: güçlenmiş bir 4; büyük ve kalıcı projeler kurma yeteneği."
+      },
+      33: {
+        keywords: ["Merhamet", "Şifa", "Adanmışlık"],
+        text: "Usta sayı 33: güçlenmiş bir 6; adanmışlık, iyilikseverlik ve hizmet ruhu."
+      }
+    },
+    years: ["Yeni başlangıçlar yılı: ekmek, cesaret etmek, projeler başlatmak.", "Sabır ve iş birliği yılı: bağlar kurmak, olgunlaşmasını beklemek.", "İfade ve yaratıcılık yılı: iletişim kurmak, kendini göstermek, keyif almak.", "Çalışma ve temel atma yılı: düzenlemek, sağlamlaştırmak, sebat etmek.", "Değişim ve özgürlük yılı: hareket etmek, uyum sağlamak, keşfetmek.", "Sorumluluklar ve gönül yılı: yuva, aile, bağlılıklar.", "Geri çekilme ve iç gözlem yılı: öğrenmek, düşünmek, dinlenmek.", "Başarı yılı: hedefler, para, takdir.", "Muhasebe ve kapanış yılı: bitirmek, ayıklamak, yeni döngüye hazırlanmak."]
   }
 });

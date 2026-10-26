@@ -25,7 +25,9 @@ self.addEventListener('fetch', event => {
   if (request.mode === 'navigate') {
     // La page, quelle que soit l'adresse (?date=…&lang=…) : version en ligne si possible, sinon la copie gardée
     event.respondWith(
-      fetch(request)
+      // « no-cache » : toujours revalider auprès du serveur (sinon le navigateur peut resservir sa copie de la page
+      // jusqu'à 10 minutes après une mise à jour du site)
+      fetch(request.url, { cache: 'no-cache', credentials: 'same-origin' })
         .then(response => {
           if (response.ok) { const copy = response.clone(); caches.open(CACHE).then(cache => cache.put('./index.html', copy)); }
           return response;

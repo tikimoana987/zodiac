@@ -703,7 +703,9 @@ I18N.en = deepMerge(I18N.fr, {
     night: "Full darkness begins when the Sun is more than 18° below the horizon (end of astronomical twilight) and ends at dawn. The Moon brightens the sky and hides faint stars: the best time combines full darkness with the Moon set. A planet counts as well placed when it is more than 10° high with the Sun more than 6° below the horizon.",
     solarEclipse: "Calculated for this place, to within half a minute. The percentage is the share of the Sun's surface hidden by the Moon; the times run from the first to the last contact of the two discs, limited to when the Sun is up. A total or annular eclipse is only seen as such within a narrow band; elsewhere it is partial.",
     natalTransits: "Transits compare where the planets are now with where they were at your birth: a planet in conjunction, sextile, square, trine or opposition with a point of your chart colours that area. The orb is 1° for fast planets and 1.5° for slow ones; the dates give the period of influence and the day the aspect is exact. The natal Moon is used only if the time of birth is known; the ascendant and midheaven only if both time and place are.",
-    synastry: "Synastry compares two birth charts: each planet of one is set against each planet of the other. Trines and sextiles are points of harmony, squares and oppositions points of tension; a conjunction is harmonious, except with Saturn, or with Mars other than with Venus (Venus–Mars stands for attraction). Orbs: 6° for conjunctions and oppositions, 5° for squares and trines, 4° for sextiles. Links between Sun, Moon, Venus, Mars and the ascendant come first. It is a traditional, symbolic reading, not a prediction."
+    synastry: "Synastry compares two birth charts: each planet of one is set against each planet of the other. Trines and sextiles are points of harmony, squares and oppositions points of tension; a conjunction is harmonious, except with Saturn, or with Mars other than with Venus (Venus–Mars stands for attraction). Orbs: 6° for conjunctions and oppositions, 5° for squares and trines, 4° for sextiles. Links between Sun, Moon, Venus, Mars and the ascendant come first. It is a traditional, symbolic reading, not a prediction.",
+    numerology: "Numerology reduces dates and names to a digit from 1 to 9 by adding their digits, except the master numbers 11, 22 and 33, which are kept as they are. Life path: day, month and year of birth reduced separately, then added. Name numbers: each letter has a value (A = 1, B = 2… I = 9, then J = 1…); all letters give the expression, vowels the soul urge, consonants the personality. In Arabic, the abjad values are used (ا = 1… غ = 1000); in Russian, the equivalent Cyrillic table.",
+    personalYear: "Your personal year adds your birth day and month to the current year; it follows a 9-year cycle. The personal month adds the current month, the personal day the day of the month. Cycles are calculated for the horoscope's reading date."
   },
   placePlaceholder: "Type a city name…",
   placeNoMatch: "No city found. Try the nearest town.",
@@ -730,5 +732,79 @@ I18N.en = deepMerge(I18N.fr, {
     polarNight: "The Sun does not rise: polar night.",
     noAstroNight: "No full darkness at this time of year: the Sun stays too close to the horizon.",
     note: "Local times at the chosen place, for a clear horizon. Weather and light pollution are not taken into account."
+  },
+  num: {
+    tab: "Numerology",
+    tabSub: "The numbers of your life",
+    dateCard: "Date of birth",
+    cyclesCard: "Personal cycles",
+    nameCard: "Name",
+    lifePath: "Life path",
+    lifePathDesc: "Your path and your great life lessons.",
+    expression: "Expression number",
+    expressionDesc: "Your talents and way of acting (all the letters of the name).",
+    soul: "Soul urge number",
+    soulDesc: "Your deepest aspirations (vowels of the name).",
+    personality: "Personality number",
+    personalityDesc: "The image you project (consonants of the name).",
+    personalYear: "Personal year",
+    personalMonth: "Personal month",
+    personalDay: "Personal day",
+    master: "Master number",
+    nameMissing: "Enter your name in the form (ideally your full birth name) to calculate the name numbers.",
+    nameScript: "Name numbers are calculated from Latin, Arabic (abjad) or Cyrillic letters: enter your name in one of these scripts.",
+    abjad: "Abjad value: {v}",
+    note: "Numerology is a symbolic tradition with no scientific basis: its numbers are an invitation to reflect.",
+    numbers: {
+      1: {
+        keywords: ["Independence", "Initiative", "Leadership"],
+        text: "The 1 leads the way: starting energy, the will to act on one's own and to stand out."
+      },
+      2: {
+        keywords: ["Cooperation", "Sensitivity", "Diplomacy"],
+        text: "The 2 connects: listening, patience and a sense of partnership, in the service of harmony."
+      },
+      3: {
+        keywords: ["Expression", "Creativity", "Joy"],
+        text: "The 3 communicates: imagination, ease with others, a need to create and share."
+      },
+      4: {
+        keywords: ["Stability", "Work", "Method"],
+        text: "The 4 builds: rigour, perseverance and a taste for solid foundations."
+      },
+      5: {
+        keywords: ["Freedom", "Change", "Curiosity"],
+        text: "The 5 explores: movement, adaptability and a thirst for new experiences."
+      },
+      6: {
+        keywords: ["Responsibility", "Love", "Harmony"],
+        text: "The 6 takes care: a sense of home, of duty and of the beauty of relationships."
+      },
+      7: {
+        keywords: ["Reflection", "Intuition", "Wisdom"],
+        text: "The 7 searches: introspection, analysis and a quest for meaning beyond appearances."
+      },
+      8: {
+        keywords: ["Ambition", "Authority", "Achievement"],
+        text: "The 8 accomplishes: business sense, authority and the ability to make things real."
+      },
+      9: {
+        keywords: ["Altruism", "Ideals", "Completion"],
+        text: "The 9 gathers: generosity, openness to the world and a sense of completion."
+      },
+      11: {
+        keywords: ["Inspiration", "Intuition", "Ideals"],
+        text: "Master number 11: an amplified 2; keen intuition, inspiration and the role of a messenger."
+      },
+      22: {
+        keywords: ["Builder", "Vision", "Realisation"],
+        text: "Master number 22: an amplified 4; the ability to build great, lasting projects."
+      },
+      33: {
+        keywords: ["Compassion", "Healing", "Devotion"],
+        text: "Master number 33: an amplified 6; devotion, kindness and a sense of service."
+      }
+    },
+    years: ["A year of new beginnings: sow, dare, launch projects.", "A year of patience and cooperation: build bonds, let things ripen.", "A year of expression and creativity: communicate, show yourself, enjoy.", "A year of work and foundations: organise, consolidate, persevere.", "A year of change and freedom: move, adapt, discover.", "A year of responsibilities and the heart: home, family, commitments.", "A year of stepping back and introspection: learn, reflect, recharge.", "A year of achievement: ambitions, finances, recognition.", "A year of review and closure: finish, sort out, prepare the next cycle."]
   }
 });

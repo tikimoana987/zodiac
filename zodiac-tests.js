@@ -739,9 +739,9 @@
     }
   });
 
-  test('Bulles d\'information (i) : 26 explications complètes et traduites', () => {
+  test('Bulles d\'information (i) : 28 explications complètes et traduites', () => {
     const keys = Object.keys(I18N.fr.info);
-    assertEq(keys.length, 26, 'nombre d\'explications');
+    assertEq(keys.length, 28, 'nombre d\'explications');
     for (const lang of Object.keys(I18N)) {
       const info = I18N[lang].info;
       assert(keys.every(k => typeof info[k] === 'string' && info[k].length > 20), `${lang} : explication manquante ou trop courte`);   // 20 : le chinois est bien plus dense
@@ -904,6 +904,28 @@
     assert(/Saturne/.test(sat.title) && /Balance/.test(sat.title) && /maison 6/i.test(sat.title), `Saturne : ${sat.title}`);
     const noTime = natalChart({ y: 1982, m: 11, d: 3 }, null, null); box.innerHTML = natalWheelSvg(noTime, I18N.fr);
     assertEq(count('house') + count('angle'), 0, 'sans heure ni lieu : ni maisons ni angles');
+  });
+
+  test('Numérologie : chemin de vie, cycles, nombres du nom (latin, abjad, cyrillique), textes', () => {
+    assertEq(lifePath({ y: 1982, m: 11, d: 3 }), 7, '3/11/1982 : 3 + 11 + 2 = 16 → 7');
+    assertEq(lifePath({ y: 1993, m: 11, d: 29 }), 8, '29/11/1993 : 11 + 11 + 22 = 44 → 8');
+    assertEq(lifePath({ y: 1985, m: 2, d: 9 }), 7, '9/2/1985 : 9 + 2 + 5 = 16 → 7');
+    assertEq(lifePath({ y: 1975, m: 9, d: 15 }), 1, '15/9/1975 : 6 + 9 + 22 (1975 → 22, nombre maître gardé) = 37 → 10 → 1');
+    const cy = personalCycles({ y: 1982, m: 11, d: 3 }, { y: 2026, m: 10, d: 26 });
+    assertEq(JSON.stringify(cy), '{"year":6,"month":7,"day":6}', 'cycles au 26/10/2026');
+    const n = s => nameNumbers(s);
+    assertEq(JSON.stringify([n('Joann').expression, n('Joann').soul, n('Joann').personality]), '[9,7,11]', 'Joann (personnalité 11, nombre maître)');
+    assertEq(n('Yvette').soul, 8, 'Y initial voyelle'); assertEq(n('Yann').soul, 1, 'Y devant voyelle : consonne'); assertEq(n('Sylvie').soul, 3, 'Y entre consonnes');
+    assertEq(n('Éloïse Dupré').expression, n('Eloise Dupre').expression, 'accents ignorés');
+    const m = n('محمد'); assert(m.system === 'abjad' && m.abjadTotal === 92 && m.expression === 11 && m.soul === null, 'محمد : abjad 92 → 11');
+    assertEq(n('مُحَمَّد').abjadTotal, 92, 'voyelles brèves ignorées');
+    const a = n('Анна'); assert(a.system === 'cyrillic' && a.expression === 5 && a.soul === 2 && a.personality === 3, 'Анна');
+    assertEq(n('佐藤'), null, 'écriture non prise en charge'); assertEq(n(''), null, 'nom vide');
+    for (const l of Object.keys(I18N)) {
+      const u = I18N[l].num;
+      assert(u && ['1', '2', '3', '4', '5', '6', '7', '8', '9', '11', '22', '33'].every(k => u.numbers[k] && u.numbers[k].keywords.length === 3 && u.numbers[k].text), `${l} : sens des nombres`);
+      assert(u.years.length === 9 && u.years.every(Boolean) && /\{v\}/.test(u.abjad) && u.tab && u.nameScript, `${l} : textes`);
+    }
   });
 
   /* ---------------- Rapport ---------------- */
