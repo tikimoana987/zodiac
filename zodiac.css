@@ -783,6 +783,7 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
   *, *::before, *::after{
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;   /* pas d'apparition décalée non plus */
     transition-duration: .01ms !important;
   }
   body::before, body::after{ animation:none; }
@@ -838,7 +839,17 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .deck-marseille .ta, .deck-marseille .tb, .deck-marseille .tc{ stroke:var(--tc-ink); stroke-width:1.5; }   /* contours de gravure */
 .offline-btn:disabled{ opacity:.55; cursor:not-allowed; }
 .offline-btn:disabled:hover{ border-color:rgba(255,255,255,.15); }
-@media (max-width:640px){ .tarot-pair{ grid-template-columns:1fr; } }
+/* Tirage à trois cartes */
+.spread-row{ display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1.1rem; margin-top:.8rem; }
+/* Distribution des cartes : glissement seulement, sans jeu d'opacité — une carte reste visible même si l'animation
+   ne se joue pas (économie d'énergie, export immédiat) */
+@keyframes dealIn{ from{ transform:translateY(14px) rotate(-2deg); } to{ transform:none; } }
+.spread-slot{ display:flex; flex-direction:column; align-items:center; gap:.5rem; text-align:center; animation:dealIn .45s ease-out backwards; }
+.spread-slot:nth-child(2){ animation-delay:.15s; } .spread-slot:nth-child(3){ animation-delay:.3s; }
+.spread-slot .traits{ justify-content:center; }
+.spread-pos{ font-size:.75rem; text-transform:uppercase; letter-spacing:.14em; color:var(--gold); font-weight:700; }
+.spread-actions{ display:flex; justify-content:center; margin-top:1rem; }
+@media (max-width:640px){ .tarot-pair{ grid-template-columns:1fr; } .spread-row{ grid-template-columns:1fr; } }
 
 /* Sections du résultat */
 [role="tabpanel"][hidden]{ display:none !important; }   /* une section cachée le reste, quelle que soit sa mise en page (grid, flex…) */

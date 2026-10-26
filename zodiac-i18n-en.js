@@ -707,7 +707,8 @@ I18N.en = deepMerge(I18N.fr, {
     synastry: "Synastry compares two birth charts: each planet of one is set against each planet of the other. Trines and sextiles are points of harmony, squares and oppositions points of tension; a conjunction is harmonious, except with Saturn, or with Mars other than with Venus (Venus–Mars stands for attraction). Orbs: 6° for conjunctions and oppositions, 5° for squares and trines, 4° for sextiles. Links between Sun, Moon, Venus, Mars and the ascendant come first. It is a traditional, symbolic reading, not a prediction.",
     numerology: "Numerology reduces dates and names to a digit from 1 to 9 by adding their digits, except the master numbers 11, 22 and 33, which are kept as they are. Life path: day, month and year of birth reduced separately, then added. Name numbers: each letter has a value (A = 1, B = 2… I = 9, then J = 1…); all letters give the expression, vowels the soul urge, consonants the personality. In Arabic, the abjad values are used (ا = 1… غ = 1000); in Russian, the equivalent Cyrillic table.",
     personalYear: "Your personal year adds your birth day and month to the current year; it follows a 9-year cycle. The personal month adds the current month, the personal day the day of the month. Cycles are calculated for the horoscope's reading date.",
-    tarot: "Birth card: add the day, month and year of birth, then reduce by adding the digits until you get 22 or less; 22 is the Fool. Card of the day: a draw specific to each person and each date, the same all day long. The Tarot de Marseille and the Waite-Smith share the 22 major arcana, but some names differ, and Strength and Justice swap numbers (XI and VIII in Marseille, VIII and XI in Waite-Smith): the same calculation can therefore give one or the other depending on the deck."
+    tarot: "Birth card: add the day, month and year of birth, then reduce by adding the digits until you get 22 or less; 22 is the Fool. Card of the day: a draw specific to each person and each date, the same all day long. The Tarot de Marseille and the Waite-Smith share the 22 major arcana, but some names differ, and Strength and Justice swap numbers (XI and VIII in Marseille, VIII and XI in Waite-Smith): the same calculation can therefore give one or the other depending on the deck.",
+    spread: "The three-card spread sheds light on a question or situation: the past (what led to it), the present (what is at play) and the future (the trend if nothing changes). Cards are drawn at random from the 22 major arcana, with no repeats. Tradition calls for a single spread per question: for another question, use “New question”."
   },
   placePlaceholder: "Type a city name…",
   placeNoMatch: "No city found. Try the nearest town.",
@@ -940,7 +941,15 @@ I18N.en = deepMerge(I18N.fr, {
       wheel: "The Wheel of Fortune",
       death: "The Nameless Arcanum",
       tower: "The House of God"
-    }
+    },
+    spreadTitle: "Three-card spread",
+    spreadIntro: "Think of a question or a situation, then draw the cards.",
+    spreadDraw: "Draw the cards",
+    spreadAgain: "New question",
+    spreadPast: "Past",
+    spreadPresent: "Present",
+    spreadFuture: "Future",
+    spreadNote: "One spread per question: it stays on screen for the day. The future shows a trend, not a fate."
   },
   tabs: {
     sky: "Sky right now",

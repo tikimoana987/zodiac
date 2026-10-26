@@ -114,3 +114,15 @@ function tarotCardSvg(key, deck, name){
     <g transform="translate(10 40)">${TAROT_ART[key]}</g>
     <rect class="t-band" x="7" y="160" width="106" height="33" rx="5"/><text class="t-name" x="60" y="181"${fit}>${esc(banner)}</text></svg>`;
 }
+
+/* ---------- Tirage à trois cartes (passé, présent, avenir) ----------
+   Hasard du navigateur réservé aux usages cryptographiques (repli sur Math.random) ; n arcanes distincts. */
+function secureRandom(){
+  if (typeof crypto !== 'undefined' && crypto.getRandomValues) return crypto.getRandomValues(new Uint32Array(1))[0] / 4294967296;
+  return Math.random();
+}
+function drawCards(n, rnd = secureRandom){
+  const deck = TAROT_KEYS.slice();
+  for (let i = 0; i < n; i++) { const j = i + Math.floor(rnd() * (deck.length - i)); [deck[i], deck[j]] = [deck[j], deck[i]]; }
+  return deck.slice(0, n);
+}

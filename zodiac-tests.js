@@ -739,9 +739,9 @@
     }
   });
 
-  test('Bulles d\'information (i) : 29 explications complètes et traduites', () => {
+  test('Bulles d\'information (i) : 30 explications complètes et traduites', () => {
     const keys = Object.keys(I18N.fr.info);
-    assertEq(keys.length, 29, 'nombre d\'explications');
+    assertEq(keys.length, 30, 'nombre d\'explications');
     for (const lang of Object.keys(I18N)) {
       const info = I18N[lang].info;
       assert(keys.every(k => typeof info[k] === 'string' && info[k].length > 20), `${lang} : explication manquante ou trop courte`);   // 20 : le chinois est bien plus dense
@@ -946,6 +946,23 @@
       const u = I18N[l].tarot;
       assert(u && TAROT_KEYS.every(k => u.cards[k] && u.cards[k].name && u.cards[k].keywords.length === 3 && u.cards[k].text), `${l} : 22 arcanes`);
       assert(Object.keys(u.marseilleNames).length === 8 && u.decks.marseille && u.decks.ws && /\{d\}/.test(u.dayCardDesc) && I18N[l].offline.soon, `${l} : textes`);
+    }
+  });
+
+  test('Tirage à trois cartes : trois arcanes distincts, hasard réparti, textes', () => {
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const counts = Object.fromEntries(TAROT_KEYS.map(k => [k, 0]));
+    for (let i = 0; i < 2200; i++) {
+      const c = drawCards(3, rnd);
+      assert(c.length === 3 && new Set(c).size === 3 && c.every(k => TAROT_KEYS.includes(k)), 'trois arcanes distincts');
+      c.forEach(k => counts[k]++);
+    }
+    const values = Object.values(counts);
+    assert(Math.min(...values) > 200 && Math.max(...values) < 400, `répartition équilibrée (${Math.min(...values)} à ${Math.max(...values)} sur 300 attendus)`);
+    const real = drawCards(3); assert(new Set(real).size === 3, 'hasard du navigateur');
+    for (const l of Object.keys(I18N)) {
+      const u = I18N[l].tarot;
+      assert(['spreadTitle', 'spreadIntro', 'spreadDraw', 'spreadAgain', 'spreadPast', 'spreadPresent', 'spreadFuture', 'spreadNote'].every(k => u[k]), `${l} : textes du tirage`);
     }
   });
 

@@ -86,6 +86,12 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 
 ## ✨ Fonctionnalités implémentées
 
+### 🔮 Tirage à trois cartes (étape 6b)
+- [x] Dans « Numérologie & tarot », sous la carte de naissance et la carte du jour : **Passé · Présent · Avenir**, trois arcanes distincts tirés au hasard (générateur cryptographique du navigateur), avec illustration, mots-clés et explication
+- [x] **Un tirage par question** : rien n'est tiré d'avance ; « Tirer les cartes », puis « Nouvelle question » pour une autre question ; le tirage reste affiché pour la journée et pour la personne (mémorisé sur l'appareil)
+- [x] Les deux jeux s'appliquent (noms, numéros, habillage) ; boutons absents de l'image exportée ; pas de cartes renversées pour l'instant (choix délibéré)
+- [x] Distribution des cartes en glissement sans jeu d'opacité (une carte reste visible même si l'animation ne se joue pas) ; aucun décalage en mode « animations réduites »
+
 ### 🗂️ Résultat organisé en cinq sections
 - [x] **Chaque onglet n'affiche que sa section** (auparavant, compatibilité, horoscope, carte du ciel et nuit s'ajoutaient sous tous les onglets) : ☉ Signe & zodiaque chinois · ✦ Thème natal · ☾ Ciel du moment (horoscope, carte du ciel, éclipses, nuit) · ♡ Compatibilité (formulaire, scores, synastrie) · № Numérologie & tarot (nombres puis tarot, sous deux intertitres)
 - [x] Onglets : cinq côte à côte sur ordinateur (icône au-dessus du titre), grille de deux colonnes sur mobile ; mots très longs coupés plutôt que rognés ; ancien choix « Tarot » repris dans la section commune
@@ -378,14 +384,14 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | 1 (html2canvas CDN) |
 | Poids approximatif | ~460 Ko non minifié (dont ~230 Ko de traductions et ~55 Ko de données du ciel) |
-| Tests automatisés | 69 (dans `zodiac-tests.js`) |
+| Tests automatisés | 70 (dans `zodiac-tests.js`) |
 
 ---
 
 ## 🧪 Comment tester
 
 ### Tests automatiques
-Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 69 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
+Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 70 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
 La version autonome se teste de la même façon : `ZODIAC-standalone.html?test` (la suite y est intégrée ; un test supplémentaire vérifie que sa copie vierge est complète et sans donnée personnelle).
 - le calcul du Soleil, comparé à 40 positions de référence calculées par astropy (1900-2100) ;
 - signes et décans de dates de référence, équinoxes connues, jours de transition, effet de l'heure ;

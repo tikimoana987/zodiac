@@ -1012,6 +1012,27 @@ function renderNumbers(){
 /* ============================================================
    TAROT (quatrième onglet) — carte de naissance et carte du jour (date de lecture de l'horoscope)
    ============================================================ */
+/* Tirage à trois cartes : mémorisé pour la journée et pour la personne ; vide tant qu'on n'a pas tiré */
+function currentSpread(){
+  try {
+    const s = JSON.parse(store.get('zodiac_spread') || 'null');
+    return s && s.day === todayISO() && s.birth === currentDate && Array.isArray(s.cards) && s.cards.length === 3 && s.cards.every(k => TAROT_KEYS.includes(k)) ? s.cards : null;
+  } catch { return null; }
+}
+function spreadHtml(t, deck){
+  const u = t.tarot, cards = currentSpread();
+  const pos = [u.spreadPast, u.spreadPresent, u.spreadFuture];
+  const body = cards ? `<div class="spread-row">${cards.map((key, i) => {
+      const name = tarotName(t, key, deck), num = tarotNumeral(key, deck);
+      return `<div class="spread-slot"><div class="spread-pos">${pos[i]}</div><div class="spread-visual">${tarotCardSvg(key, deck, name)}</div>
+        <div class="tarot-title">${num ? `<span class="tarot-num">${num}</span> ` : ''}${escapeHtml(name)}</div>
+        <div class="traits">${u.cards[key].keywords.map(k => `<span class="trait-tag">${k}</span>`).join('')}</div>
+        <p class="num-text">${u.cards[key].text}</p></div>`;
+    }).join('')}</div><p class="sky-note">${u.spreadNote}</p>` : '';
+  return `<div class="card spread-card"><h3>${u.spreadTitle}${infoBtn('spread', u.spreadTitle)}</h3>
+    ${cards ? '' : `<p class="sky-sub">${u.spreadIntro}</p>`}${body}
+    <div class="spread-actions"><button type="button" class="btn-reveal" id="spreadDraw">${cards ? u.spreadAgain : u.spreadDraw}</button></div></div>`;
+}
 function tarotName(t, key, deck){ return deck === 'marseille' && t.tarot.marseilleNames[key] ? t.tarot.marseilleNames[key] : t.tarot.cards[key].name; }
 function renderTarot(){
   const el = document.getElementById('tarotBody'), birth = parseISODate(currentDate), on = skyDate || todayISO(), d = parseISODate(on);
@@ -1030,7 +1051,14 @@ function renderTarot(){
     <div class="tarot-deck" role="group" aria-label="${escapeHtml(u.deck)}"><span class="tarot-deck-label">${u.deck}${infoBtn('tarot', u.tab)}</span>
       ${TAROT_DECKS.map(k => `<button type="button" class="deck-btn" data-deck="${k}" aria-pressed="${k === deck}">${u.decks[k]}</button>`).join('')}</div>
     <div class="tarot-pair">${slot(tarotByNumber(birthCardNumber(birth), deck), u.birthCard, u.birthCardDesc)}${slot(dayCardKey(currentDate, on), u.dayCard, u.dayCardDesc.replace('{d}', dLabel))}</div>
+    ${spreadHtml(t, deck)}
     <p class="sky-note">${u.note}</p>`;
+  const drawBtn = el.querySelector('#spreadDraw');
+  if (drawBtn) drawBtn.addEventListener('click', () => {
+    store.set('zodiac_spread', JSON.stringify({ day: todayISO(), birth: currentDate, cards: drawCards(3) }));
+    renderTarot();
+    const again = document.getElementById('spreadDraw'); if (again) again.focus();
+  });
   el.querySelectorAll('.deck-btn').forEach(b => b.addEventListener('click', () => {
     tarotDeck = b.dataset.deck; store.set('zodiac_deck', tarotDeck); renderTarot();
     el.querySelector(`.deck-btn[data-deck="${tarotDeck}"]`).focus();
@@ -1480,7 +1508,7 @@ async function exportImage(){
     + `padding:32px;box-sizing:content-box;background:${getComputedStyle(document.documentElement).getPropertyValue('--export-bg').trim()};`;
   for (const part of parts) {
     const copy = part.cloneNode(true);
-    copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .natal-complete, .wheel-hint').forEach(n => n.remove());
+    copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .natal-complete, .wheel-hint, .spread-actions').forEach(n => n.remove());
     copy.querySelectorAll('[id]').forEach(n => n.removeAttribute('id'));
     copy.removeAttribute('id');
     frame.appendChild(copy);

@@ -710,7 +710,8 @@ I18N.de = deepMerge(I18N.fr, {
     synastry: "Die Synastrie vergleicht zwei Geburtshoroskope: Jeder Planet des einen wird jedem Planeten des anderen gegenübergestellt. Trigone und Sextile gelten als harmonisch, Quadrate und Oppositionen als spannungsreich; eine Konjunktion ist harmonisch, außer mit Saturn oder mit Mars (außer mit Venus – Venus–Mars steht für Anziehung). Orben: 6° für Konjunktionen und Oppositionen, 5° für Quadrate und Trigone, 4° für Sextile. Verbindungen zwischen Sonne, Mond, Venus, Mars und Aszendent stehen vorn. Es ist eine traditionelle, symbolische Deutung, keine Vorhersage.",
     numerology: "Die Numerologie reduziert Daten und Namen durch Addieren ihrer Ziffern auf eine Zahl von 1 bis 9 – außer den Meisterzahlen 11, 22 und 33, die erhalten bleiben. Lebensweg: Tag, Monat und Jahr der Geburt werden einzeln reduziert und dann addiert. Namenszahlen: Jeder Buchstabe hat einen Wert (A = 1, B = 2 … I = 9, dann J = 1 …); alle Buchstaben ergeben die Ausdruckszahl, die Vokale die Seelenzahl, die Konsonanten die Persönlichkeitszahl. Im Arabischen gelten die Abdschad-Werte (ا = 1 … غ = 1000), im Russischen die entsprechende kyrillische Tabelle.",
     personalYear: "Das persönliche Jahr addiert deinen Geburtstag und -monat zum laufenden Jahr; es folgt einem Zyklus von 9 Jahren. Der persönliche Monat fügt den laufenden Monat hinzu, der persönliche Tag den Tag des Monats. Die Zyklen gelten für das Lesedatum des Horoskops.",
-    tarot: "Geburtskarte: Tag, Monat und Jahr der Geburt werden addiert und dann durch Addieren der Ziffern reduziert, bis 22 oder weniger herauskommt; 22 entspricht dem Narren. Tageskarte: eine Ziehung für jede Person und jedes Datum, den ganzen Tag dieselbe. Das Tarot de Marseille und das Waite-Smith teilen die 22 großen Arkana, doch manche Namen unterscheiden sich, und Kraft und Gerechtigkeit tauschen ihre Nummern (XI und VIII bei Marseille, VIII und XI bei Waite-Smith): Dieselbe Rechnung kann je nach Deck die eine oder die andere ergeben."
+    tarot: "Geburtskarte: Tag, Monat und Jahr der Geburt werden addiert und dann durch Addieren der Ziffern reduziert, bis 22 oder weniger herauskommt; 22 entspricht dem Narren. Tageskarte: eine Ziehung für jede Person und jedes Datum, den ganzen Tag dieselbe. Das Tarot de Marseille und das Waite-Smith teilen die 22 großen Arkana, doch manche Namen unterscheiden sich, und Kraft und Gerechtigkeit tauschen ihre Nummern (XI und VIII bei Marseille, VIII und XI bei Waite-Smith): Dieselbe Rechnung kann je nach Deck die eine oder die andere ergeben.",
+    spread: "Die Legung mit drei Karten beleuchtet eine Frage oder Situation: die Vergangenheit (was dazu geführt hat), die Gegenwart (was gerade wirkt) und die Zukunft (die Tendenz, wenn sich nichts ändert). Die Karten werden zufällig aus den 22 großen Arkana gezogen, ohne Wiederholung. Die Tradition sieht eine einzige Legung pro Frage vor: Für eine andere Frage nutze „Neue Frage“."
   },
   placePlaceholder: "Stadtnamen eingeben …",
   placeNoMatch: "Keine Stadt gefunden. Versuche die nächstgelegene.",
@@ -943,7 +944,15 @@ I18N.de = deepMerge(I18N.fr, {
       wheel: "Das Glücksrad",
       death: "Das Arkanum ohne Namen",
       tower: "Das Haus Gottes"
-    }
+    },
+    spreadTitle: "Legung mit drei Karten",
+    spreadIntro: "Denk an eine Frage oder eine Situation und ziehe dann die Karten.",
+    spreadDraw: "Karten ziehen",
+    spreadAgain: "Neue Frage",
+    spreadPast: "Vergangenheit",
+    spreadPresent: "Gegenwart",
+    spreadFuture: "Zukunft",
+    spreadNote: "Eine Legung pro Frage: Sie bleibt den ganzen Tag sichtbar. Die Zukunft zeigt eine Tendenz, kein Schicksal."
   },
   tabs: {
     sky: "Der Himmel jetzt",

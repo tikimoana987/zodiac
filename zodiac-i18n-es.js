@@ -710,7 +710,8 @@ I18N.es = deepMerge(I18N.fr, {
     synastry: "La sinastría compara las dos cartas natales: cada planeta de una se confronta con cada planeta de la otra. Trígonos y sextiles son puntos de armonía; cuadraturas y oposiciones, puntos de tensión; una conjunción es armoniosa, salvo con Saturno, o con Marte fuera de Venus (Venus–Marte simboliza la atracción). Márgenes: 6° para conjunciones y oposiciones, 5° para cuadraturas y trígonos, 4° para sextiles. Primero aparecen los vínculos entre Sol, Luna, Venus, Marte y ascendente. Es una lectura tradicional y simbólica, no una predicción.",
     numerology: "La numerología reduce fechas y nombres a una cifra del 1 al 9 sumando sus dígitos, salvo los números maestros 11, 22 y 33, que se conservan. Camino de vida: día, mes y año de nacimiento reducidos por separado y luego sumados. Números del nombre: cada letra vale una cifra (A = 1, B = 2… I = 9, luego J = 1…); todas las letras dan la expresión, las vocales el número del alma, las consonantes la personalidad. En árabe se usan los valores abjad (ا = 1… غ = 1000); en ruso, la tabla cirílica equivalente.",
     personalYear: "El año personal suma tu día y tu mes de nacimiento al año en curso; sigue un ciclo de 9 años. El mes personal añade el mes en curso, y el día personal, el día del mes. Los ciclos se calculan para la fecha de lectura del horóscopo.",
-    tarot: "Carta de nacimiento: se suman el día, el mes y el año de nacimiento y luego se reduce sumando las cifras hasta obtener 22 o menos; el 22 corresponde al Loco. Carta del día: una tirada propia de cada persona y de cada fecha, la misma todo el día. El Tarot de Marsella y el Waite-Smith comparten los 22 arcanos mayores, pero algunos nombres cambian, y la Fuerza y la Justicia intercambian sus números (XI y VIII en Marsella, VIII y XI en Waite-Smith): el mismo cálculo puede dar una u otra según la baraja."
+    tarot: "Carta de nacimiento: se suman el día, el mes y el año de nacimiento y luego se reduce sumando las cifras hasta obtener 22 o menos; el 22 corresponde al Loco. Carta del día: una tirada propia de cada persona y de cada fecha, la misma todo el día. El Tarot de Marsella y el Waite-Smith comparten los 22 arcanos mayores, pero algunos nombres cambian, y la Fuerza y la Justicia intercambian sus números (XI y VIII en Marsella, VIII y XI en Waite-Smith): el mismo cálculo puede dar una u otra según la baraja.",
+    spread: "La tirada de tres cartas ilumina una pregunta o una situación: el pasado (lo que llevó a ella), el presente (lo que está en juego) y el futuro (la tendencia si nada cambia). Las cartas se sacan al azar entre los 22 arcanos mayores, sin repetición. La tradición pide una sola tirada por pregunta: para otra pregunta, usa «Nueva pregunta»."
   },
   placePlaceholder: "Escribe el nombre de una ciudad…",
   placeNoMatch: "No se encontró ninguna ciudad. Prueba con la más cercana.",
@@ -943,7 +944,15 @@ I18N.es = deepMerge(I18N.fr, {
       wheel: "La Rueda de la Fortuna",
       death: "El Arcano sin nombre",
       tower: "La Casa de Dios"
-    }
+    },
+    spreadTitle: "Tirada de tres cartas",
+    spreadIntro: "Piensa en una pregunta o una situación y luego saca las cartas.",
+    spreadDraw: "Sacar las cartas",
+    spreadAgain: "Nueva pregunta",
+    spreadPast: "Pasado",
+    spreadPresent: "Presente",
+    spreadFuture: "Futuro",
+    spreadNote: "Una tirada por pregunta: se queda en pantalla todo el día. El futuro indica una tendencia, no un destino."
   },
   tabs: {
     sky: "El cielo ahora",

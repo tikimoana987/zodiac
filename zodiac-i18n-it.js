@@ -710,7 +710,8 @@ I18N.it = deepMerge(I18N.fr, {
     synastry: "La sinastria confronta i due temi natali: ogni pianeta dell'uno è messo a confronto con ogni pianeta dell'altro. Trigoni e sestili sono punti di armonia, quadrature e opposizioni punti di tensione; una congiunzione è armoniosa, tranne con Saturno, o con Marte se non con Venere (Venere–Marte simboleggia l'attrazione). Scarti: 6° per congiunzioni e opposizioni, 5° per quadrature e trigoni, 4° per sestili. I legami tra Sole, Luna, Venere, Marte e ascendente vengono per primi. È una lettura tradizionale e simbolica, non una previsione.",
     numerology: "La numerologia riduce date e nomi a una cifra da 1 a 9 sommandone le cifre, tranne i numeri maestri 11, 22 e 33, che si conservano. Sentiero di vita: giorno, mese e anno di nascita ridotti separatamente e poi sommati. Numeri del nome: ogni lettera vale una cifra (A = 1, B = 2… I = 9, poi J = 1…); tutte le lettere danno l'espressione, le vocali il numero dell'anima, le consonanti la personalità. In arabo si usano i valori abjad (ا = 1… غ = 1000); in russo, la tabella cirillica equivalente.",
     personalYear: "L'anno personale somma il giorno e il mese di nascita all'anno in corso e segue un ciclo di 9 anni. Il mese personale aggiunge il mese in corso, il giorno personale il giorno del mese. I cicli sono calcolati per la data di lettura dell'oroscopo.",
-    tarot: "Carta di nascita: si sommano giorno, mese e anno di nascita, poi si riduce sommando le cifre fino a ottenere 22 o meno; il 22 corrisponde al Matto. Carta del giorno: un'estrazione propria di ogni persona e di ogni data, la stessa per tutto il giorno. I Tarocchi di Marsiglia e il Waite-Smith condividono i 22 arcani maggiori, ma alcuni nomi cambiano, e la Forza e la Giustizia si scambiano i numeri (XI e VIII a Marsiglia, VIII e XI nel Waite-Smith): lo stesso calcolo può quindi dare l'una o l'altra secondo il mazzo."
+    tarot: "Carta di nascita: si sommano giorno, mese e anno di nascita, poi si riduce sommando le cifre fino a ottenere 22 o meno; il 22 corrisponde al Matto. Carta del giorno: un'estrazione propria di ogni persona e di ogni data, la stessa per tutto il giorno. I Tarocchi di Marsiglia e il Waite-Smith condividono i 22 arcani maggiori, ma alcuni nomi cambiano, e la Forza e la Giustizia si scambiano i numeri (XI e VIII a Marsiglia, VIII e XI nel Waite-Smith): lo stesso calcolo può quindi dare l'una o l'altra secondo il mazzo.",
+    spread: "La stesa a tre carte illumina una domanda o una situazione: il passato (ciò che vi ha condotto), il presente (ciò che è in gioco) e il futuro (la tendenza se nulla cambia). Le carte sono estratte a caso tra i 22 arcani maggiori, senza ripetizioni. La tradizione vuole una sola stesa per domanda: per un'altra domanda, usa «Nuova domanda»."
   },
   placePlaceholder: "Digita il nome di una città…",
   placeNoMatch: "Nessuna città trovata. Prova con la più vicina.",
@@ -943,7 +944,15 @@ I18N.it = deepMerge(I18N.fr, {
       wheel: "La Ruota di Fortuna",
       death: "L'Arcano senza nome",
       tower: "La Casa di Dio"
-    }
+    },
+    spreadTitle: "Stesa a tre carte",
+    spreadIntro: "Pensa a una domanda o a una situazione, poi estrai le carte.",
+    spreadDraw: "Estrai le carte",
+    spreadAgain: "Nuova domanda",
+    spreadPast: "Passato",
+    spreadPresent: "Presente",
+    spreadFuture: "Futuro",
+    spreadNote: "Una stesa per domanda: resta visibile per tutto il giorno. Il futuro indica una tendenza, non un destino."
   },
   tabs: {
     sky: "Il cielo adesso",
