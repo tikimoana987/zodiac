@@ -47,7 +47,7 @@ Les fichiers sont chargés par de simples balises `<script src>` (pas de modules
 | `zodiac-places.js` | Recherche des villes (sans accents, « St » = « Saint », articles ignorés, autres langues), identifiants `Nom|PAYS`, compatibilité des anciens liens |
 | `build-places.py` | Construit `zodiac-places-data.js` depuis GeoNames (`pip install geonamescache`) ; à relancer seulement pour mettre à jour la base |
 | `zodiac-observe.js` | Observation depuis un lieu : positions vues de la surface (parallaxe), **éclipses de Soleil locales** (contacts, phase centrale, part du Soleil cachée, lever ou coucher éclipsé), levers, couchers et crépuscules, programme de la nuit (`nightPlan`) |
-| `zodiac-transits.js` | **Transits sur le thème natal** : aspects des planètes du moment (Soleil à Pluton) aux points du thème (Soleil à Saturne, Lune si l'heure est connue, ascendant et milieu du ciel si heure et lieu le sont), période d'influence et jour exact |
+| `zodiac-transits.js` | **Transits sur le thème natal** : aspects des planètes du moment (Soleil à Pluton) aux points du thème (Soleil à Saturne, Lune si l'heure est connue, ascendant et milieu du ciel si heure et lieu le sont), période d'influence et jour exact ; **synastrie** (aspects entre deux thèmes, harmonie et tension) |
 | `zodiac-natal.js` | Thème natal : heure locale du lieu de naissance → temps universel (`zonedInstant`), ascendant, Milieu du Ciel, maisons Placidus (repli en maisons égales au-delà de 66°), maison de chaque astre, aspects (`natalChart`) |
 | `zodiac-planets.js` | Calculs purs : Lune et planètes (Mercure → Pluton), rétrogradations, phases, transits, Lune natale, compatibilité à deux |
 | `zodiac-app.js` | État, thème, animation, rendu, modale, horoscope, actions, initialisation |
@@ -83,6 +83,12 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 ---
 
 ## ✨ Fonctionnalités implémentées
+
+### 💞 Synastrie (étape 4b)
+- [x] **Analyse approfondie** sous les trois axes de la compatibilité : aspects entre les planètes des deux thèmes natals (Soleil à Saturne, Lune si l'heure est connue, ascendant si heure et lieu le sont)
+- [x] **Points d'harmonie** (trigones, sextiles, conjonctions sauf avec Saturne ou Mars hors Vénus) et **points de tension** (carrés, oppositions, conjonctions difficiles), 5 de chaque au plus, liens Soleil–Lune, Vénus–Mars et ascendant en premier ; bilan « n points d'harmonie · n points de tension »
+- [x] Écarts 6° (conjonction, opposition), 5° (carré, trigone), 4° (sextile) ; textes composés à partir des domaines déjà traduits ; note quand une heure de naissance manque ; 1 nouvelle bulle (i)
+- [x] Le score simple (signes, animaux chinois, Lunes) est inchangé
 
 ### 🔮 Transits personnalisés (étape 4a)
 - [x] Nouveau groupe **« Sur votre thème natal »** en tête de l'horoscope (jour ou semaine) : planète du moment, aspect (conjonction, sextile, carré, trigone, opposition), point du thème touché, **jour où l'aspect est exact** et **période d'influence** (avec l'année quand elle diffère)
@@ -342,14 +348,14 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | 1 (html2canvas CDN) |
 | Poids approximatif | ~460 Ko non minifié (dont ~230 Ko de traductions et ~55 Ko de données du ciel) |
-| Tests automatisés | 65 (dans `zodiac-tests.js`) |
+| Tests automatisés | 66 (dans `zodiac-tests.js`) |
 
 ---
 
 ## 🧪 Comment tester
 
 ### Tests automatiques
-Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 65 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
+Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 66 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
 La version autonome se teste de la même façon : `ZODIAC-standalone.html?test` (la suite y est intégrée ; un test supplémentaire vérifie que sa copie vierge est complète et sans donnée personnelle).
 - le calcul du Soleil, comparé à 40 positions de référence calculées par astropy (1900-2100) ;
 - signes et décans de dates de référence, équinoxes connues, jours de transition, effet de l'heure ;

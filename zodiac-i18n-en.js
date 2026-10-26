@@ -576,7 +576,13 @@ I18N.en = deepMerge(I18N.fr, {
     invalid: "Invalid date of birth.",
     noDate: "Enter the other person's date of birth.",
     note: "Symbolic compatibility, based on the Western and Chinese astrological traditions. Overall harmony is the average of the available axes.",
-    partnerPlace: "Their place of birth"
+    partnerPlace: "Their place of birth",
+    synTitle: "In-depth analysis (synastry)",
+    synHarmony: "Points of harmony",
+    synTension: "Points of tension",
+    synNone: "No notable aspect.",
+    synBalance: "{h} points of harmony · {t} points of tension",
+    synNote: "Without birth times, the Moon and the ascendant are not compared."
   },
   theme: { light: "Light mode" },
   wheel: { title: "Zodiac wheel", today: "Today", birth: "At birth" },
@@ -695,7 +701,8 @@ I18N.en = deepMerge(I18N.fr, {
     signVsConstellation: "Astrological signs are 12 equal 30° sectors counted from the March equinox: this is the tropical zodiac, used here. The constellations of the same name are groups of stars of unequal sizes. Because of the slow wobble of Earth's axis (precession), signs and constellations have drifted apart by about one sign since antiquity: the Sun can be in the sign of Aries while standing in front of the constellation Pisces.",
     night: "Full darkness begins when the Sun is more than 18° below the horizon (end of astronomical twilight) and ends at dawn. The Moon brightens the sky and hides faint stars: the best time combines full darkness with the Moon set. A planet counts as well placed when it is more than 10° high with the Sun more than 6° below the horizon.",
     solarEclipse: "Calculated for this place, to within half a minute. The percentage is the share of the Sun's surface hidden by the Moon; the times run from the first to the last contact of the two discs, limited to when the Sun is up. A total or annular eclipse is only seen as such within a narrow band; elsewhere it is partial.",
-    natalTransits: "Transits compare where the planets are now with where they were at your birth: a planet in conjunction, sextile, square, trine or opposition with a point of your chart colours that area. The orb is 1° for fast planets and 1.5° for slow ones; the dates give the period of influence and the day the aspect is exact. The natal Moon is used only if the time of birth is known; the ascendant and midheaven only if both time and place are."
+    natalTransits: "Transits compare where the planets are now with where they were at your birth: a planet in conjunction, sextile, square, trine or opposition with a point of your chart colours that area. The orb is 1° for fast planets and 1.5° for slow ones; the dates give the period of influence and the day the aspect is exact. The natal Moon is used only if the time of birth is known; the ascendant and midheaven only if both time and place are.",
+    synastry: "Synastry compares two birth charts: each planet of one is set against each planet of the other. Trines and sextiles are points of harmony, squares and oppositions points of tension; a conjunction is harmonious, except with Saturn, or with Mars other than with Venus (Venus–Mars stands for attraction). Orbs: 6° for conjunctions and oppositions, 5° for squares and trines, 4° for sextiles. Links between Sun, Moon, Venus, Mars and the ascendant come first. It is a traditional, symbolic reading, not a prediction."
   },
   placePlaceholder: "Type a city name…",
   placeNoMatch: "No city found. Try the nearest town.",

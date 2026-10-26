@@ -739,9 +739,9 @@
     }
   });
 
-  test('Bulles d\'information (i) : 25 explications complètes et traduites', () => {
+  test('Bulles d\'information (i) : 26 explications complètes et traduites', () => {
     const keys = Object.keys(I18N.fr.info);
-    assertEq(keys.length, 25, 'nombre d\'explications');
+    assertEq(keys.length, 26, 'nombre d\'explications');
     for (const lang of Object.keys(I18N)) {
       const info = I18N[lang].info;
       assert(keys.every(k => typeof info[k] === 'string' && info[k].length > 20), `${lang} : explication manquante ou trop courte`);   // 20 : le chinois est bien plus dense
@@ -871,6 +871,22 @@
     const fp = natalPoints(full, true).map(p => p.point);
     assert(['moon', 'asc', 'mc'].every(k => fp.includes(k)) && !fp.includes('pluto'), 'avec heure et lieu : Lune, ascendant, milieu du ciel ; pas de Pluton natal');
     for (const l of Object.keys(I18N)) assert(I18N[l].horo.groups.natal && /\{d\}/.test(I18N[l].horo.natalExact) && I18N[l].horo.natalNone, `${l} : textes`);
+  });
+
+  test('Synastrie : aspects entre deux thèmes, harmonie et tension, points retenus', () => {
+    const P = (point, lon) => ({ point, lon });
+    const A = [P('sun', 10), P('venus', 100), P('mars', 200), P('moon', 300), P('mc', 50)];
+    const B = [P('moon', 130.5), P('mars', 101), P('saturn', 13), P('sun', 50)];
+    const s = synastry(A, B);
+    const find = (list, a, b) => list.find(x => x.a === a && x.b === b);
+    assert(find(s.harmony, 'sun', 'moon') && find(s.harmony, 'sun', 'moon').type === 'trine', 'Soleil trigone Lune : harmonie');
+    assert(find(s.harmony, 'venus', 'mars') && find(s.harmony, 'venus', 'mars').type === 'conjunction', 'Vénus–Mars conjoints : harmonie (attirance)');
+    assert(find(s.tension, 'sun', 'saturn') && find(s.tension, 'sun', 'saturn').type === 'conjunction', 'conjonction avec Saturne : tension');
+    assert(find(s.tension, 'mars', 'mars') === undefined || find(s.tension, 'mars', 'mars').type !== 'conjunction', 'pas de faux aspect');
+    assert(!s.harmony.concat(s.tension).some(x => x.a === 'mc' || x.b === 'mc'), 'milieu du ciel exclu');
+    assert(s.harmony[0].weight >= s.harmony[s.harmony.length - 1].weight, 'points importants en premier');
+    assertEq(synastryTone('conjunction', 'mars', 'sun'), 'tension', 'Mars–Soleil conjoints'); assertEq(synastryTone('opposition', 'venus', 'jupiter'), 'tension', 'opposition');
+    for (const l of Object.keys(I18N)) assert(/\{h\}/.test(I18N[l].pair.synBalance) && /\{t\}/.test(I18N[l].pair.synBalance) && I18N[l].pair.synTitle, `${l} : textes`);
   });
 
   /* ---------------- Rapport ---------------- */

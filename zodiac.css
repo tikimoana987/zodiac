@@ -171,6 +171,20 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .night-planets{ list-style:none; display:grid; gap:.4rem; color:var(--text); font-size:.92rem; }
 .ecl-safety{ margin-top:.6rem; padding:.5rem .7rem; border-radius:10px; font-size:.82rem; color:var(--text);
   background:rgba(255,167,87,.12); border:1px solid rgba(255,167,87,.4); }
+/* Synastrie */
+.syn{ margin-top:1.2rem; padding-top:1rem; border-top:1px dashed rgba(255,255,255,.1); }
+.syn h4{ font-size:.75rem; text-transform:uppercase; letter-spacing:.12em; color:var(--gold); margin-bottom:.4rem; }
+.syn-balance{ color:var(--text); font-weight:600; margin-bottom:.8rem; }
+.syn-cols{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.syn-col{ background:rgba(255,255,255,.03); border-radius:14px; padding:.8rem 1rem; }
+.syn-col h5{ font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; margin-bottom:.6rem; }
+.syn-col.good h5{ color:var(--green); } .syn-col.bad h5{ color:var(--red); }
+.syn-col ul{ list-style:none; display:grid; gap:.6rem; }
+.syn-pair{ color:var(--text); font-size:.9rem; line-height:1.5; }
+.syn-pair .sub{ color:var(--muted); font-size:.78rem; }
+.syn-asp{ color:var(--gold); white-space:nowrap; }
+.syn-col p{ color:var(--muted); font-size:.82rem; margin-top:.15rem; }
+@media (max-width:640px){ .syn-cols{ grid-template-columns:1fr; } }
 .app-credit{ flex:1 1 100%; color:var(--muted); font-size:.75rem; opacity:.8; }
 .input-zone input[type=date], .input-zone input[type=time], .input-zone input[type=text]{
   width:100%; background:var(--field-bg);

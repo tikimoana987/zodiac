@@ -575,7 +575,13 @@ I18N.tr = deepMerge(I18N.fr, {
     invalid: "Geçersiz doğum tarihi.",
     noDate: "Diğer kişinin doğum tarihini girin.",
     note: "Batı ve Çin astroloji geleneklerine dayanan sembolik bir uyumdur. Genel uyum, mevcut eksenlerin ortalamasıdır.",
-    partnerPlace: "Onun doğum yeri"
+    partnerPlace: "Onun doğum yeri",
+    synTitle: "Ayrıntılı analiz (sinastri)",
+    synHarmony: "Uyum noktaları",
+    synTension: "Gerilim noktaları",
+    synNone: "Belirgin bir açı yok.",
+    synBalance: "{h} uyum noktası · {t} gerilim noktası",
+    synNote: "Doğum saatleri olmadan Ay ve yükselen karşılaştırılmaz."
   },
   theme: { light: "Açık mod" },
   wheel: { title: "Burç çarkı", today: "Bugün", birth: "Doğumda" },
@@ -694,7 +700,8 @@ I18N.tr = deepMerge(I18N.fr, {
     signVsConstellation: "Astrolojik burçlar, ilkbahar ekinoksundan itibaren sayılan 30°'lik 12 eşit dilimdir: burada kullanılan tropikal zodyak budur. Aynı adı taşıyan takımyıldızlar ise farklı büyüklükteki yıldız gruplarıdır. Dünya ekseninin yavaş salınımı (presesyon) nedeniyle burçlar ile takımyıldızlar Antik Çağ'dan bu yana yaklaşık bir burç kaymıştır: Güneş Koç burcundayken aslında Balık takımyıldızının önünde olabilir.",
     night: "Tam karanlık, Güneş ufkun 18°'den fazla altına indiğinde (astronomik alacakaranlığın sonu) başlar ve şafakta biter. Ay gökyüzünü aydınlatır ve sönük yıldızları gizler: en iyi zaman, tam karanlık ile Ay'ın batmış olduğu andır. Bir gezegen, Güneş ufkun 6°'den fazla altındayken 10°'den yüksekte ise iyi görünür sayılır.",
     solarEclipse: "Bu yer için yarım dakika hassasiyetle hesaplanmıştır. Yüzde, Güneş yüzeyinin Ay tarafından örtülen kısmıdır; saatler iki diskin ilk temasından son temasına kadardır ve Güneş'in ufkun üstünde olduğu süreyle sınırlıdır. Tam veya halkalı tutulma ancak dar bir şeritte böyle görülür; başka yerlerde parçalıdır.",
-    natalTransits: "Transitler, gezegenlerin bugünkü konumunu doğumunuzdaki konumlarla karşılaştırır: haritanızdaki bir noktayla kavuşum, altmışlık, kare, üçgen ya da karşıt açı yapan bir gezegen o alanı renklendirir. Hızlı gezegenler için 1°, yavaşlar için 1,5° orb kullanılır; tarihler etki dönemini ve açının tam olduğu günü gösterir. Doğum Ay'ı yalnızca doğum saati biliniyorsa, yükselen ve tepe noktası yalnızca saat ve yer biliniyorsa kullanılır."
+    natalTransits: "Transitler, gezegenlerin bugünkü konumunu doğumunuzdaki konumlarla karşılaştırır: haritanızdaki bir noktayla kavuşum, altmışlık, kare, üçgen ya da karşıt açı yapan bir gezegen o alanı renklendirir. Hızlı gezegenler için 1°, yavaşlar için 1,5° orb kullanılır; tarihler etki dönemini ve açının tam olduğu günü gösterir. Doğum Ay'ı yalnızca doğum saati biliniyorsa, yükselen ve tepe noktası yalnızca saat ve yer biliniyorsa kullanılır.",
+    synastry: "Sinastri iki doğum haritasını karşılaştırır: birinin her gezegeni diğerinin her gezegeniyle ele alınır. Üçgen ve altmışlık açılar uyum, kare ve karşıt açılar gerilim noktalarıdır; kavuşum uyumludur, ancak Satürn ile ya da (Venüs dışında) Mars ile değildir (Venüs–Mars çekimi simgeler). Orblar: kavuşum ve karşıt için 6°, kare ve üçgen için 5°, altmışlık için 4°. Güneş, Ay, Venüs, Mars ve yükselen arasındaki bağlar önce gelir. Bu, geleneksel ve sembolik bir yorumdur, kehanet değildir."
   },
   placePlaceholder: "Bir şehir adı yazın…",
   placeNoMatch: "Şehir bulunamadı. En yakın şehri deneyin.",

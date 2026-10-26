@@ -579,7 +579,13 @@ I18N.es = deepMerge(I18N.fr, {
     invalid: "Fecha de nacimiento no válida.",
     noDate: "Indica la fecha de nacimiento de la otra persona.",
     note: "Compatibilidad simbólica, según las tradiciones astrológicas occidental y china. La armonía global es la media de los ejes disponibles.",
-    partnerPlace: "Su lugar de nacimiento"
+    partnerPlace: "Su lugar de nacimiento",
+    synTitle: "Análisis en profundidad (sinastría)",
+    synHarmony: "Puntos de armonía",
+    synTension: "Puntos de tensión",
+    synNone: "Ningún aspecto destacado.",
+    synBalance: "{h} puntos de armonía · {t} puntos de tensión",
+    synNote: "Sin las horas de nacimiento, no se comparan la Luna ni el ascendente."
   },
   theme: { light: "Modo claro" },
   wheel: { title: "Rueda del zodiaco", today: "Hoy", birth: "Al nacer" },
@@ -698,7 +704,8 @@ I18N.es = deepMerge(I18N.fr, {
     signVsConstellation: "Los signos astrológicos son 12 sectores iguales de 30°, contados desde el equinoccio de marzo: es el zodiaco tropical, el que se usa aquí. Las constelaciones del mismo nombre son grupos de estrellas de tamaños desiguales. Debido al lento bamboleo del eje de la Tierra (la precesión), signos y constelaciones se han desplazado alrededor de un signo desde la Antigüedad: el Sol puede estar en el signo de Aries mientras se encuentra delante de la constelación de Piscis.",
     night: "La noche cerrada empieza cuando el Sol está a más de 18° bajo el horizonte (fin del crepúsculo astronómico) y termina al alba. La Luna ilumina el cielo y oculta las estrellas débiles: el mejor momento combina noche cerrada y Luna puesta. Un planeta se considera bien visible a más de 10° de altura, con el Sol a más de 6° bajo el horizonte.",
     solarEclipse: "Cálculo para este lugar, con medio minuto de precisión. El porcentaje es la parte de la superficie del Sol oculta por la Luna; las horas van del primer al último contacto de los dos discos, limitadas al tiempo en que el Sol está sobre el horizonte. Un eclipse total o anular solo se ve como tal en una franja estrecha; en el resto es parcial.",
-    natalTransits: "Los tránsitos comparan la posición actual de los planetas con la de tu nacimiento: un planeta en conjunción, sextil, cuadratura, trígono u oposición con un punto de tu carta tiñe ese ámbito. Se usa un margen de 1° para los planetas rápidos y de 1,5° para los lentos; las fechas indican el periodo de influencia y el día en que el aspecto es exacto. La Luna natal solo se usa si se conoce la hora de nacimiento; el ascendente y el medio cielo, solo si se conocen la hora y el lugar."
+    natalTransits: "Los tránsitos comparan la posición actual de los planetas con la de tu nacimiento: un planeta en conjunción, sextil, cuadratura, trígono u oposición con un punto de tu carta tiñe ese ámbito. Se usa un margen de 1° para los planetas rápidos y de 1,5° para los lentos; las fechas indican el periodo de influencia y el día en que el aspecto es exacto. La Luna natal solo se usa si se conoce la hora de nacimiento; el ascendente y el medio cielo, solo si se conocen la hora y el lugar.",
+    synastry: "La sinastría compara las dos cartas natales: cada planeta de una se confronta con cada planeta de la otra. Trígonos y sextiles son puntos de armonía; cuadraturas y oposiciones, puntos de tensión; una conjunción es armoniosa, salvo con Saturno, o con Marte fuera de Venus (Venus–Marte simboliza la atracción). Márgenes: 6° para conjunciones y oposiciones, 5° para cuadraturas y trígonos, 4° para sextiles. Primero aparecen los vínculos entre Sol, Luna, Venus, Marte y ascendente. Es una lectura tradicional y simbólica, no una predicción."
   },
   placePlaceholder: "Escribe el nombre de una ciudad…",
   placeNoMatch: "No se encontró ninguna ciudad. Prueba con la más cercana.",

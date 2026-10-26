@@ -579,7 +579,13 @@ I18N.it = deepMerge(I18N.fr, {
     invalid: "Data di nascita non valida.",
     noDate: "Indica la data di nascita dell'altra persona.",
     note: "Compatibilità simbolica, secondo le tradizioni astrologiche occidentale e cinese. L'armonia generale è la media degli assi disponibili.",
-    partnerPlace: "Il suo luogo di nascita"
+    partnerPlace: "Il suo luogo di nascita",
+    synTitle: "Analisi approfondita (sinastria)",
+    synHarmony: "Punti di armonia",
+    synTension: "Punti di tensione",
+    synNone: "Nessun aspetto rilevante.",
+    synBalance: "{h} punti di armonia · {t} punti di tensione",
+    synNote: "Senza gli orari di nascita, la Luna e l'ascendente non vengono confrontati."
   },
   theme: { light: "Modalità chiara" },
   wheel: { title: "Ruota dello zodiaco", today: "Oggi", birth: "Alla nascita" },
@@ -698,7 +704,8 @@ I18N.it = deepMerge(I18N.fr, {
     signVsConstellation: "I segni astrologici sono 12 settori uguali di 30°, contati a partire dall'equinozio di primavera: è lo zodiaco tropicale, usato qui. Le costellazioni con lo stesso nome sono gruppi di stelle di dimensioni diverse. A causa della lenta oscillazione dell'asse terrestre (la precessione), segni e costellazioni si sono sfasati di circa un segno dall'antichità: il Sole può trovarsi nel segno dell'Ariete pur stando davanti alla costellazione dei Pesci.",
     night: "La notte fonda inizia quando il Sole è più di 18° sotto l'orizzonte (fine del crepuscolo astronomico) e finisce all'alba. La Luna rischiara il cielo e nasconde le stelle deboli: il momento migliore unisce notte fonda e Luna tramontata. Un pianeta è considerato ben visibile a più di 10° di altezza, con il Sole più di 6° sotto l'orizzonte.",
     solarEclipse: "Calcolo per questo luogo, con mezzo minuto di precisione. La percentuale è la parte della superficie del Sole nascosta dalla Luna; gli orari vanno dal primo all'ultimo contatto dei due dischi, limitati al periodo in cui il Sole è sopra l'orizzonte. Un'eclissi totale o anulare si vede come tale solo in una fascia stretta; altrove è parziale.",
-    natalTransits: "I transiti confrontano la posizione attuale dei pianeti con quella della tua nascita: un pianeta in congiunzione, sestile, quadratura, trigono od opposizione con un punto del tuo tema ne colora l'ambito. Si considera uno scarto di 1° per i pianeti veloci e di 1,5° per quelli lenti; le date indicano il periodo d'influenza e il giorno in cui l'aspetto è esatto. La Luna natale si usa solo se l'ora di nascita è nota; l'ascendente e il medio cielo solo se lo sono ora e luogo."
+    natalTransits: "I transiti confrontano la posizione attuale dei pianeti con quella della tua nascita: un pianeta in congiunzione, sestile, quadratura, trigono od opposizione con un punto del tuo tema ne colora l'ambito. Si considera uno scarto di 1° per i pianeti veloci e di 1,5° per quelli lenti; le date indicano il periodo d'influenza e il giorno in cui l'aspetto è esatto. La Luna natale si usa solo se l'ora di nascita è nota; l'ascendente e il medio cielo solo se lo sono ora e luogo.",
+    synastry: "La sinastria confronta i due temi natali: ogni pianeta dell'uno è messo a confronto con ogni pianeta dell'altro. Trigoni e sestili sono punti di armonia, quadrature e opposizioni punti di tensione; una congiunzione è armoniosa, tranne con Saturno, o con Marte se non con Venere (Venere–Marte simboleggia l'attrazione). Scarti: 6° per congiunzioni e opposizioni, 5° per quadrature e trigoni, 4° per sestili. I legami tra Sole, Luna, Venere, Marte e ascendente vengono per primi. È una lettura tradizionale e simbolica, non una previsione."
   },
   placePlaceholder: "Digita il nome di una città…",
   placeNoMatch: "Nessuna città trovata. Prova con la più vicina.",

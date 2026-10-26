@@ -579,7 +579,13 @@ I18N.de = deepMerge(I18N.fr, {
     invalid: "Ungültiges Geburtsdatum.",
     noDate: "Gib das Geburtsdatum der anderen Person an.",
     note: "Symbolische Kompatibilität nach westlicher und chinesischer astrologischer Tradition. Die Gesamtharmonie ist der Durchschnitt der verfügbaren Achsen.",
-    partnerPlace: "Geburtsort der anderen Person"
+    partnerPlace: "Geburtsort der anderen Person",
+    synTitle: "Vertiefte Analyse (Synastrie)",
+    synHarmony: "Harmonische Verbindungen",
+    synTension: "Spannungsreiche Verbindungen",
+    synNone: "Kein bedeutender Aspekt.",
+    synBalance: "{h} harmonische · {t} spannungsreiche Verbindungen",
+    synNote: "Ohne Geburtszeiten werden Mond und Aszendent nicht verglichen."
   },
   theme: { light: "Heller Modus" },
   wheel: { title: "Tierkreisrad", today: "Heute", birth: "Bei der Geburt" },
@@ -698,7 +704,8 @@ I18N.de = deepMerge(I18N.fr, {
     signVsConstellation: "Die astrologischen Zeichen sind 12 gleich große Abschnitte von 30°, gezählt ab der Frühlings-Tagundnachtgleiche: der hier verwendete tropische Tierkreis. Die gleichnamigen Sternbilder sind Sterngruppen von ungleicher Größe. Durch die langsame Kreiselbewegung der Erdachse (Präzession) haben sich Zeichen und Sternbilder seit der Antike um etwa ein Zeichen verschoben: Die Sonne kann im Zeichen Widder stehen und sich zugleich vor dem Sternbild Fische befinden.",
     night: "Die volle Dunkelheit beginnt, wenn die Sonne mehr als 18° unter dem Horizont steht (Ende der astronomischen Dämmerung), und endet in der Morgendämmerung. Der Mond erhellt den Himmel und verdeckt schwache Sterne: Am besten ist volle Dunkelheit bei untergegangenem Mond. Ein Planet gilt als gut sichtbar ab 10° Höhe, wenn die Sonne mehr als 6° unter dem Horizont steht.",
     solarEclipse: "Berechnung für diesen Ort, auf eine halbe Minute genau. Der Prozentwert ist der Anteil der Sonnenfläche, den der Mond verdeckt; die Zeiten reichen vom ersten bis zum letzten Kontakt der beiden Scheiben, begrenzt auf die Zeit, in der die Sonne über dem Horizont steht. Eine totale oder ringförmige Finsternis ist nur in einem schmalen Streifen als solche zu sehen; anderswo ist sie partiell.",
-    natalTransits: "Transite vergleichen die heutige Stellung der Planeten mit der bei deiner Geburt: Ein Planet in Konjunktion, Sextil, Quadrat, Trigon oder Opposition zu einem Punkt deines Horoskops färbt dessen Bereich. Der Orbis beträgt 1° für schnelle und 1,5° für langsame Planeten; die Daten zeigen den Wirkungszeitraum und den Tag, an dem der Aspekt exakt ist. Der Geburtsmond wird nur bei bekannter Geburtszeit verwendet, Aszendent und Himmelsmitte nur bei bekannter Zeit und bekanntem Ort."
+    natalTransits: "Transite vergleichen die heutige Stellung der Planeten mit der bei deiner Geburt: Ein Planet in Konjunktion, Sextil, Quadrat, Trigon oder Opposition zu einem Punkt deines Horoskops färbt dessen Bereich. Der Orbis beträgt 1° für schnelle und 1,5° für langsame Planeten; die Daten zeigen den Wirkungszeitraum und den Tag, an dem der Aspekt exakt ist. Der Geburtsmond wird nur bei bekannter Geburtszeit verwendet, Aszendent und Himmelsmitte nur bei bekannter Zeit und bekanntem Ort.",
+    synastry: "Die Synastrie vergleicht zwei Geburtshoroskope: Jeder Planet des einen wird jedem Planeten des anderen gegenübergestellt. Trigone und Sextile gelten als harmonisch, Quadrate und Oppositionen als spannungsreich; eine Konjunktion ist harmonisch, außer mit Saturn oder mit Mars (außer mit Venus – Venus–Mars steht für Anziehung). Orben: 6° für Konjunktionen und Oppositionen, 5° für Quadrate und Trigone, 4° für Sextile. Verbindungen zwischen Sonne, Mond, Venus, Mars und Aszendent stehen vorn. Es ist eine traditionelle, symbolische Deutung, keine Vorhersage."
   },
   placePlaceholder: "Stadtnamen eingeben …",
   placeNoMatch: "Keine Stadt gefunden. Versuche die nächstgelegene.",

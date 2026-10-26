@@ -579,7 +579,13 @@ I18N.fr = {
     invalid: "Date de naissance invalide.",
     noDate: "Indiquez la date de naissance de l'autre personne.",
     note: "Compatibilité symbolique, d'après les traditions astrologiques occidentale et chinoise. L'entente globale est la moyenne des axes disponibles.",
-    partnerPlace: "Son lieu de naissance"
+    partnerPlace: "Son lieu de naissance",
+    synTitle: "Analyse approfondie (synastrie)",
+    synHarmony: "Points d'harmonie",
+    synTension: "Points de tension",
+    synNone: "Aucun aspect marquant.",
+    synBalance: "{h} points d'harmonie · {t} points de tension",
+    synNote: "Sans les heures de naissance, la Lune et l'ascendant ne sont pas comparés."
   },
   theme: { light: "Mode clair" },
   wheel: { title: "Roue du zodiaque", today: "Aujourd'hui", birth: "À la naissance" },
@@ -698,7 +704,8 @@ I18N.fr = {
     signVsConstellation: "Les signes astrologiques sont 12 secteurs égaux de 30°, comptés à partir de l'équinoxe de printemps : c'est le zodiaque tropical, utilisé ici. Les constellations du même nom sont des groupes d'étoiles de tailles inégales. À cause de la lente rotation de l'axe de la Terre (la précession), signes et constellations se sont décalés d'environ un signe depuis l'Antiquité : le Soleil peut être dans le signe du Bélier tout en se trouvant devant la constellation des Poissons.",
     night: "La nuit noire commence quand le Soleil passe à plus de 18° sous l'horizon (fin du crépuscule astronomique) et s'achève à l'aube. La Lune éclaire le ciel et cache les étoiles faibles : le meilleur moment combine nuit noire et Lune couchée. Une planète est jugée bien visible à plus de 10° de hauteur, le Soleil étant à plus de 6° sous l'horizon.",
     solarEclipse: "Calcul pour ce lieu, à une demi-minute près. Le pourcentage est la part de la surface du Soleil cachée par la Lune ; les heures vont du premier au dernier contact des deux disques, limitées au moment où le Soleil est levé. Une éclipse totale ou annulaire n'est visible comme telle que dans une étroite bande ; ailleurs, elle est partielle.",
-    natalTransits: "Les transits comparent la position actuelle des planètes à celle des astres de votre naissance : une planète en conjonction, sextile, carré, trigone ou opposition avec un point de votre thème en colore le domaine. On retient un écart de 1° pour les planètes rapides et de 1,5° pour les lentes ; les dates donnent la période d'influence et le jour où l'aspect est exact. La Lune natale n'est utilisée que si l'heure de naissance est connue ; l'ascendant et le milieu du ciel, que si l'heure et le lieu le sont."
+    natalTransits: "Les transits comparent la position actuelle des planètes à celle des astres de votre naissance : une planète en conjonction, sextile, carré, trigone ou opposition avec un point de votre thème en colore le domaine. On retient un écart de 1° pour les planètes rapides et de 1,5° pour les lentes ; les dates donnent la période d'influence et le jour où l'aspect est exact. La Lune natale n'est utilisée que si l'heure de naissance est connue ; l'ascendant et le milieu du ciel, que si l'heure et le lieu le sont.",
+    synastry: "La synastrie compare les deux thèmes natals : chaque planète de l'un est confrontée à chaque planète de l'autre. Trigones et sextiles sont des points d'harmonie, carrés et oppositions des points de tension ; une conjonction est harmonieuse, sauf avec Saturne, ou avec Mars hors Vénus (Vénus–Mars symbolise l'attirance). Écarts retenus : 6° pour les conjonctions et oppositions, 5° pour les carrés et trigones, 4° pour les sextiles. Les liens entre Soleil, Lune, Vénus, Mars et ascendant sont classés en premier. C'est une lecture traditionnelle et symbolique, pas une prédiction."
   },
   placePlaceholder: "Tapez le nom d'une ville…",
   placeNoMatch: "Aucune ville trouvée. Essayez la ville la plus proche.",

@@ -56,3 +56,28 @@ function natalTransits(points, noons){
   const rank = x => (x.slow ? 0 : 2) + (PERSONAL_POINTS.includes(x.point) ? 0 : 1);
   return out.sort((a, b) => rank(a) - rank(b) || a.gap - b.gap);
 }
+
+/* ---------- Synastrie : aspects entre les planètes de deux thèmes natals ----------
+   Points : ceux de natalPoints (Soleil à Saturne, Lune si l'heure est connue, ascendant si heure et lieu le sont),
+   sans le milieu du ciel. Trigone et sextile : harmonie ; carré et opposition : tension ; conjonction : harmonie,
+   sauf avec Saturne, ou avec Mars hors Vénus (Vénus–Mars : l'attirance). Tri : importance des points, puis écart. */
+const SYN_ORB = { conjunction: 6, opposition: 6, trine: 5, square: 5, sextile: 4 };
+const SYN_WEIGHT = { sun: 3, moon: 3, venus: 3, mars: 2, asc: 2, mercury: 1, jupiter: 1, saturn: 1 };
+function synastryTone(type, a, b){
+  if (type === 'trine' || type === 'sextile') return 'harmony';
+  if (type === 'square' || type === 'opposition') return 'tension';
+  if (a === 'saturn' || b === 'saturn') return 'tension';
+  if ((a === 'mars' || b === 'mars') && a !== 'venus' && b !== 'venus') return 'tension';
+  return 'harmony';
+}
+function synastry(pointsA, pointsB){
+  const out = [];
+  for (const pa of pointsA.filter(p => p.point !== 'mc')) for (const pb of pointsB.filter(p => p.point !== 'mc')) {
+    for (const [type, angle] of TRANSIT_ASPECTS) {
+      const gap = aspectGap(pa.lon, pb.lon, angle);
+      if (gap <= SYN_ORB[type]) { out.push({ a: pa.point, b: pb.point, type, gap, tone: synastryTone(type, pa.point, pb.point), weight: SYN_WEIGHT[pa.point] + SYN_WEIGHT[pb.point] }); break; }
+    }
+  }
+  out.sort((x, y) => y.weight - x.weight || x.gap - y.gap);
+  return { harmony: out.filter(x => x.tone === 'harmony'), tension: out.filter(x => x.tone === 'tension') };
+}

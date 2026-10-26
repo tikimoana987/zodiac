@@ -979,6 +979,23 @@ function renderCompat(){
     axes += axis(q.moon, `☽${SIGN_META[c.moon.a].sym}`, `☽${SIGN_META[c.moon.b].sym}`, t.signNames[c.moon.a], t.signNames[c.moon.b], c.moon.score,
       t.compat.pairs[compatKey(mA, mB)], `${t.elements[mA]} × ${t.elements[mB]}`);
   } else axes += `<div class="pair-axis"><h4>${q.moon}</h4><p>${q.moonUnknown}</p></div>`;
+  // Synastrie : aspects entre les planètes des deux thèmes natals
+  const n = t.natal, bare = s => s.replace(/\s*[（(][^()（）]*[)）]\s*$/, '');
+  const syn = synastry(natalPoints(natalChart(me.date, me.time, birthPlace(currentBirthPlace)), !!me.time),
+                       natalPoints(natalChart(other.date, other.time, op), !!other.time));
+  const pName = p => p === 'asc' ? n.ascendant : t.rulers[p], pSym = p => p === 'asc' ? 'AC' : PLANET_SYM[p];
+  const pDomain = p => bare(p === 'asc' ? n.houses[0] : n.domains[p]);
+  const synLine = x => `<li><div class="syn-pair"><span aria-hidden="true">${pSym(x.a)}</span> <strong>${pName(x.a)}</strong> <span class="sub">${nameA}</span>
+      <span class="syn-asp"><span aria-hidden="true">${ASPECT_SYM[x.type]}</span> ${n.aspectNames[x.type]}</span>
+      <span aria-hidden="true">${pSym(x.b)}</span> <strong>${pName(x.b)}</strong> <span class="sub">${nameB}</span></div>
+      <p>${pDomain(x.a)} ↔ ${pDomain(x.b)}</p></li>`;
+  const synCol = (title, cls, list) => `<div class="syn-col ${cls}"><h5>${title}</h5>${list.length ? `<ul>${list.slice(0, 5).map(synLine).join('')}</ul>` : `<p class="sky-none">${q.synNone}</p>`}</div>`;
+  const synHtml = `<div class="syn">
+      <h4>${q.synTitle}${infoBtn('synastry', q.synTitle)}</h4>
+      <p class="syn-balance">${q.synBalance.replace('{h}', syn.harmony.length).replace('{t}', syn.tension.length)}</p>
+      <div class="syn-cols">${synCol(q.synHarmony, 'good', syn.harmony)}${synCol(q.synTension, 'bad', syn.tension)}</div>
+      ${!me.time || !other.time ? `<p class="sky-note">${q.synNote}</p>` : ''}
+    </div>`;
   const rounded = Math.round(c.avg);
   el.innerHTML = `
     <div class="pair-head">${chip(nameA, c.west.a, cnA)}<span class="pair-x" aria-hidden="true">×</span>${chip(nameB, c.west.b, cnB)}</div>
@@ -989,6 +1006,7 @@ function renderCompat(){
       <span class="modal-level">${t.compat.levels[rounded]}</span>
     </div>
     <div class="pair-axes">${axes}</div>
+    ${synHtml}
     <p class="sky-note">${q.note}</p>`;
 }
 
