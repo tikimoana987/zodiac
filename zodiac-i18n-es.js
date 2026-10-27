@@ -711,7 +711,7 @@ I18N.es = deepMerge(I18N.fr, {
     numerology: "La numerología reduce fechas y nombres a una cifra del 1 al 9 sumando sus dígitos, salvo los números maestros 11, 22 y 33, que se conservan. Camino de vida: día, mes y año de nacimiento reducidos por separado y luego sumados. Números del nombre: cada letra vale una cifra (A = 1, B = 2… I = 9, luego J = 1…); todas las letras dan la expresión, las vocales el número del alma, las consonantes la personalidad. En árabe se usan los valores abjad (ا = 1… غ = 1000); en ruso, la tabla cirílica equivalente.",
     personalYear: "El año personal suma tu día y tu mes de nacimiento al año en curso; sigue un ciclo de 9 años. El mes personal añade el mes en curso, y el día personal, el día del mes. Los ciclos se calculan para la fecha de lectura del horóscopo.",
     tarot: "Carta de nacimiento: se suman el día, el mes y el año de nacimiento y luego se reduce sumando las cifras hasta obtener 22 o menos; el 22 corresponde al Loco. Carta del día: una tirada propia de cada persona y de cada fecha, la misma todo el día. El Tarot de Marsella y el Waite-Smith comparten los 22 arcanos mayores, pero algunos nombres cambian, y la Fuerza y la Justicia intercambian sus números (XI y VIII en Marsella, VIII y XI en Waite-Smith): el mismo cálculo puede dar una u otra según la baraja.",
-    spread: "La tirada de tres cartas ilumina una pregunta o una situación: el pasado (lo que llevó a ella), el presente (lo que está en juego) y el futuro (la tendencia si nada cambia). Las cartas se sacan al azar entre los 22 arcanos mayores, sin repetición. La tradición pide una sola tirada por pregunta: para otra pregunta, usa «Nueva pregunta»."
+    spread: "La tirada de tres cartas ilumina una pregunta: el pasado (lo que llevó a ella), el presente (lo que está en juego) y el futuro (la tendencia si nada cambia). Solo se hace una tirada al día, para una pregunta bien meditada: se queda en pantalla hasta el día siguiente. Las cartas se sacan al azar entre los 22 arcanos mayores, sin repetición. Tu pregunta se queda en tu dispositivo y no aparece en la imagen exportada."
   },
   placePlaceholder: "Escribe el nombre de una ciudad…",
   placeNoMatch: "No se encontró ninguna ciudad. Prueba con la más cercana.",
@@ -946,13 +946,19 @@ I18N.es = deepMerge(I18N.fr, {
       tower: "La Casa de Dios"
     },
     spreadTitle: "Tirada de tres cartas",
-    spreadIntro: "Piensa en una pregunta o una situación y luego saca las cartas.",
+    spreadIntro: "Tómate un momento para formular la pregunta que te importa hoy y luego saca las cartas.",
     spreadDraw: "Sacar las cartas",
     spreadAgain: "Nueva pregunta",
     spreadPast: "Pasado",
     spreadPresent: "Presente",
     spreadFuture: "Futuro",
-    spreadNote: "Una tirada por pregunta: se queda en pantalla todo el día. El futuro indica una tendencia, no un destino."
+    spreadNote: "Una sola tirada al día, guardada hasta mañana. El futuro indica una tendencia, no un destino.",
+    spreadQuestionLabel: "Tu pregunta",
+    spreadQuestionHint: "Por ejemplo: «¿Qué debo comprender de esta situación?»",
+    spreadFlip: "Toca cada carta para darle la vuelta.",
+    spreadFlipAria: "Dar la vuelta a la carta: {pos}",
+    spreadTomorrow: "Tu tirada de hoy está hecha. Próxima tirada: mañana.",
+    artCredit: "Ilustraciones de las cartas generadas con Gemini (Google)."
   },
   tabs: {
     sky: "El cielo ahora",

@@ -26,7 +26,7 @@ L'expérience inclut **une transition cinématique** (viseur balaie le ciel → 
 
 **17 fichiers dans un même dossier**, ~460 Ko, ouverture par double-clic sur `ZODIAC.html` (aucun serveur). **Version autonome** : `ZODIAC-standalone.html`, un seul fichier (~650 Ko), produit par `python3 build-standalone.py`. Chargement par `<script src>` classiques, dans cet ordre :
 `zodiac-data.js` → `zodiac-sky-data.js` → `zodiac-i18n.js` → `zodiac-i18n-fr.js` puis `-en`, `-es`, `-zh`, `-ru`, `-de`, `-it` → `zodiac-astro.js` → `zodiac-planets.js` → `zodiac-skymap.js` → `zodiac-observe.js` → `zodiac-places-data.js` → `zodiac-places.js` → `zodiac-natal.js` → `zodiac-transits.js` → `zodiac-numerology.js` → `zodiac-tarot.js` → `zodiac-app.js`.
-Styles dans `zodiac.css`. Tests dans `zodiac-tests.js` (70 tests, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
+Styles dans `zodiac.css`. Tests dans `zodiac-tests.js` (71 tests, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
 **Aucune ressource en ligne** : `html2canvas` 1.4.1 est une copie locale (`html2canvas.min.js`, licence MIT). Tout fonctionne sans internet.
 
 ### Fonctionnalités en place ✅
@@ -85,7 +85,7 @@ Fiabilité, découpage, nom et date du jour, zodiaque chinois, planètes et horo
 3. ✅ Sources du projet sur GitHub + tests lancés automatiquement à chaque modification + publication automatique (GitHub Pages, source « GitHub Actions »)
 4. ✅ Astrologie approfondie : 4a transits personnalisés sur le thème natal ; 4b synastrie ; 4c roue du thème interactive
 5. ✅ Numérologie : troisième onglet ; chemin de vie, cycles personnels, nombres du nom (latin, abjad, cyrillique)
-6. Tarot : ✅ 6a deux jeux, carte de naissance, carte du jour ; ✅ 6b tirage à trois cartes (un tirage par question, mémorisé pour la journée) ; plus tard : cartes renversées (option), arcanes mineurs, cartes plus belles
+6. Tarot : ✅ 6a deux jeux, carte de naissance, carte du jour ; ✅ 6b tirage à trois cartes ; ✅ cartes illustrées (Gemini) et rendez-vous quotidien (profil rouvert, un tirage par jour avec question, cartes face cachée) ; plus tard : cartes renversées (option), arcanes mineurs
 7. iPhone, en tout dernier
 
 Remarques : chaque nouveau texte coûte 14 traductions — regrouper les textes de chaque étape ; présenter numérologie et tarot comme des traditions symboliques. Pistes de l'audit gardées pour plus tard : coordonnées manuelles + fuseau, version de la PWA et mise à jour proposée, audit du poids, calendrier .ics, comparateur de systèmes de maisons, rapport PDF, profils locaux et sauvegarde JSON.
@@ -127,6 +127,8 @@ Traduit dans les 7 langues, couvert par un test, validé contre une référence 
 ### Organisation du résultat
 - Cinq sections, une par onglet (`VIEW_MODES` : signs, natal, sky, compat, numbers) ; toutes sont dans `#profileContent` (exportée telle quelle : seule la section affichée est visible). La numérologie s'affiche dans `#numbersBody`, le tarot dans `#tarotBody`, tous deux dans la section `numbers`.
 - Les scripts de vérification de Claude doivent ouvrir le bon onglet avant d'agir sur une section (les sections cachées ne sont pas cliquables).
+- Captures d'écran sur une machine de test lente : créer le contexte Playwright avec `reduced_motion='reduce'` (les animations décoratives coupées, la page repasse à ~40 images/s).
+- Illustrations : sources dans le dossier de travail de Claude (`art/`, planches Gemini 2048 × 2048, découpe `art/cut.py`) ; prompts dans la conversation du 26-27 octobre 2026.
 - Piège de l'environnement de Claude : sur une machine de test à un seul processeur (rendu logiciel), la page met plus d'une seconde par image — animations figées, captures d'écran qui expirent. Ce n'est pas une régression : vérifier avec une page minimale (`requestAnimationFrame`) et se fier au circuit GitHub.
 
 ### Bouton « Version hors ligne »

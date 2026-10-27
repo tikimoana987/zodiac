@@ -707,7 +707,7 @@ I18N.tr = deepMerge(I18N.fr, {
     numerology: "Numeroloji, tarihleri ve adları rakamlarını toplayarak 1 ile 9 arasında bir sayıya indirger; yalnızca 11, 22 ve 33 usta sayıları olduğu gibi korunur. Yaşam yolu: doğum günü, ayı ve yılı ayrı ayrı indirgenip toplanır. Adın sayıları: her harfin bir değeri vardır (A = 1, B = 2… I = 9, sonra J = 1…); tüm harfler ifade sayısını, ünlüler ruh sayısını, ünsüzler kişilik sayısını verir. Arapçada ebced değerleri (ا = 1… غ = 1000), Rusçada eşdeğer Kiril tablosu kullanılır.",
     personalYear: "Kişisel yıl, doğum gününüzü ve ayınızı içinde bulunulan yıla ekler; 9 yıllık bir döngü izler. Kişisel ay buna içinde bulunulan ayı, kişisel gün ayın gününü ekler. Döngüler burç yorumunun okuma tarihine göre hesaplanır.",
     tarot: "Doğum kartı: doğum günü, ayı ve yılı toplanır, ardından 22 ya da daha küçük bir sayı elde edilene kadar rakamlar toplanarak indirgenir; 22, Deli kartına karşılık gelir. Günün kartı: her kişiye ve her tarihe özgü, bütün gün aynı kalan bir çekiliş. Marsilya Tarotu ile Waite-Smith aynı 22 büyük arkanayı paylaşır; ancak bazı adlar farklıdır ve Güç ile Adalet numaralarını değiştirir (Marsilya'da XI ve VIII, Waite-Smith'te VIII ve XI): aynı hesap desteye göre birini ya da ötekini verebilir.",
-    spread: "Üç kartlık açılım bir soruyu ya da durumu aydınlatır: geçmiş (ona neyin yol açtığı), şimdi (neyin söz konusu olduğu) ve gelecek (hiçbir şey değişmezse eğilim). Kartlar 22 büyük arkana arasından, tekrar olmadan rastgele çekilir. Gelenek her soru için tek bir açılım ister: başka bir soru için «Yeni soru»yu kullanın."
+    spread: "Üç kartlık açılım bir soruyu aydınlatır: geçmiş (ona neyin yol açtığı), şimdi (neyin söz konusu olduğu) ve gelecek (hiçbir şey değişmezse eğilim). İyice düşünülmüş bir soru için günde yalnızca bir açılım yapılır: ertesi güne kadar ekranda kalır. Kartlar 22 büyük arkana arasından, tekrar olmadan rastgele çekilir. Sorunuz cihazınızda kalır ve dışa aktarılan görselde yer almaz."
   },
   placePlaceholder: "Bir şehir adı yazın…",
   placeNoMatch: "Şehir bulunamadı. En yakın şehri deneyin.",
@@ -942,13 +942,19 @@ I18N.tr = deepMerge(I18N.fr, {
       tower: "Tanrı'nın Evi"
     },
     spreadTitle: "Üç kartlık açılım",
-    spreadIntro: "Bir soru ya da durum düşünün, sonra kartları çekin.",
+    spreadIntro: "Bugün sizin için önemli olan soruyu düşünüp ifade etmek için bir an ayırın, sonra kartları çekin.",
     spreadDraw: "Kartları çek",
     spreadAgain: "Yeni soru",
     spreadPast: "Geçmiş",
     spreadPresent: "Şimdi",
     spreadFuture: "Gelecek",
-    spreadNote: "Her soruya bir açılım: gün boyunca ekranda kalır. Gelecek bir eğilimi gösterir, bir kaderi değil."
+    spreadNote: "Günde tek bir açılım; yarına kadar saklanır. Gelecek bir eğilimi gösterir, bir kaderi değil.",
+    spreadQuestionLabel: "Sorunuz",
+    spreadQuestionHint: "Örneğin: «Bu durumdan ne anlamam gerekiyor?»",
+    spreadFlip: "Çevirmek için her karta dokunun.",
+    spreadFlipAria: "Kartı çevir: {pos}",
+    spreadTomorrow: "Bugünkü açılımınız yapıldı. Sonraki açılım: yarın.",
+    artCredit: "Kart çizimleri Gemini (Google) ile üretilmiştir."
   },
   tabs: {
     sky: "Şu anki gökyüzü",

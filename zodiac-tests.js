@@ -940,7 +940,8 @@
     assertEq(dayCardKey('1982-11-03', '2026-10-26'), dayCardKey('1982-11-03', '2026-10-26'), 'carte du jour stable');
     const days = new Set(); for (let i = 1; i <= 28; i++) days.add(dayCardKey('1982-11-03', `2026-02-${String(i).padStart(2, '0')}`));
     assert(days.size >= 12, `carte du jour variée (${days.size} cartes en 28 jours)`);
-    assert(TAROT_KEYS.every(k => TAROT_ART[k]), 'illustration de chaque arcane');
+    assert(TAROT_KEYS.concat(['back_marseille', 'back_ws']).every(k => /^data:image\/webp;base64,/.test(TAROT_ART_IMG[k])), 'illustration de chaque arcane et des deux dos');
+    assert(tarotCardSvg('sun', 'ws', 'Le Soleil').includes(TAROT_ART_IMG.sun) && tarotBackSvg('marseille', 'x').includes(TAROT_ART_IMG.back_marseille), 'cartes et dos illustrés');
     assert(!/>L'Arcane sans nom</.test(tarotCardSvg('death', 'marseille', "L'Arcane sans nom")) && />La Mort</.test(tarotCardSvg('death', 'ws', 'La Mort')), 'XIII sans nom à Marseille');
     for (const l of Object.keys(I18N)) {
       const u = I18N[l].tarot;
@@ -963,6 +964,36 @@
     for (const l of Object.keys(I18N)) {
       const u = I18N[l].tarot;
       assert(['spreadTitle', 'spreadIntro', 'spreadDraw', 'spreadAgain', 'spreadPast', 'spreadPresent', 'spreadFuture', 'spreadNote'].every(k => u[k]), `${l} : textes du tirage`);
+    }
+  });
+
+  test('Rituel du tirage : un par jour et par personne, question, cartes face cachée', () => {
+    const keepDate = currentDate, keepSpread = store.get('zodiac_spread');
+    try {
+      currentDate = '1982-11-03';
+      store.remove('zodiac_spread');
+      assert(spreadHtml(I18N.fr, 'marseille').includes('id="spreadQuestion"'), 'sans tirage : formulaire de question');
+      saveSpread({ day: todayISO(), birth: '1982-11-03', question: 'Que dois-je comprendre ?', cards: ['sun', 'moon', 'star'], revealed: [true, false, false] });
+      const sp = currentSpread();
+      assert(sp && sp.question === 'Que dois-je comprendre ?' && sp.revealed[0] && !sp.revealed[1], 'tirage du jour retrouvé');
+      const html = spreadHtml(I18N.fr, 'marseille');
+      assert((html.match(/class="spread-flip"/g) || []).length === 2 && html.includes('spread-question') && !html.includes('id="spreadDraw"'), 'deux cartes face cachée, question affichée, pas de second tirage');
+      saveSpread({ ...sp, revealed: [true, true, true] });
+      const done = spreadHtml(I18N.fr, 'ws');
+      assert(done.includes('spread-done') && !done.includes('spread-flip') && !done.includes('id="spreadDraw"'), 'trois cartes retournées : prochain tirage demain');
+      currentDate = '1990-01-01'; assertEq(currentSpread(), null, 'autre personne : pas de tirage');
+      currentDate = '1982-11-03';
+      saveSpread({ day: '2000-01-01', birth: '1982-11-03', question: 'x', cards: ['sun', 'moon', 'star'], revealed: [true, true, true] });
+      assertEq(currentSpread(), null, 'tirage d\'un autre jour : nouveau tirage possible');
+      store.set('zodiac_spread', JSON.stringify({ day: todayISO(), birth: '1982-11-03', cards: ['sun', 'moon', 'star'] }));
+      assert(currentSpread().revealed.every(Boolean) && currentSpread().question === '', 'tirage de l\'ancienne version : affiché retourné');
+      for (const l of Object.keys(I18N)) {
+        const u = I18N[l].tarot;
+        assert(['spreadQuestionLabel', 'spreadQuestionHint', 'spreadFlip', 'spreadTomorrow', 'artCredit'].every(k => u[k]) && /\{pos\}/.test(u.spreadFlipAria), `${l} : textes du rituel`);
+      }
+    } finally {
+      currentDate = keepDate;
+      if (keepSpread === null) store.remove('zodiac_spread'); else store.set('zodiac_spread', keepSpread);
     }
   });
 

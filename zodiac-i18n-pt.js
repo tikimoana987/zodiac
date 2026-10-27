@@ -710,7 +710,7 @@ I18N.pt = deepMerge(I18N.fr, {
     numerology: "A numerologia reduz datas e nomes a um algarismo de 1 a 9 somando seus dígitos, exceto os números mestres 11, 22 e 33, que são mantidos. Caminho de vida: dia, mês e ano de nascimento reduzidos separadamente e depois somados. Números do nome: cada letra vale um algarismo (A = 1, B = 2… I = 9, depois J = 1…); todas as letras dão a expressão, as vogais o número da alma, as consoantes a personalidade. Em árabe, usam-se os valores abjad (ا = 1… غ = 1000); em russo, a tabela cirílica equivalente.",
     personalYear: "O ano pessoal soma o dia e o mês do seu nascimento ao ano em curso; segue um ciclo de 9 anos. O mês pessoal acrescenta o mês em curso, e o dia pessoal, o dia do mês. Os ciclos são calculados para a data de leitura do horóscopo.",
     tarot: "Carta de nascimento: soma-se o dia, o mês e o ano de nascimento e depois reduz-se somando os algarismos até obter 22 ou menos; 22 corresponde ao Louco. Carta do dia: uma tiragem própria de cada pessoa e de cada data, a mesma o dia todo. O Tarô de Marselha e o Waite-Smith têm os mesmos 22 arcanos maiores, mas alguns nomes mudam, e a Força e a Justiça trocam de número (XI e VIII em Marselha, VIII e XI no Waite-Smith): o mesmo cálculo pode dar uma ou outra conforme o baralho.",
-    spread: "A tiragem de três cartas ilumina uma pergunta ou situação: o passado (o que levou a ela), o presente (o que está em jogo) e o futuro (a tendência se nada mudar). As cartas são tiradas ao acaso entre os 22 arcanos maiores, sem repetição. A tradição pede uma só tiragem por pergunta: para outra pergunta, use “Nova pergunta”."
+    spread: "A tiragem de três cartas ilumina uma pergunta: o passado (o que levou a ela), o presente (o que está em jogo) e o futuro (a tendência se nada mudar). Faz-se apenas uma tiragem por dia, para uma pergunta bem pensada: ela fica na tela até o dia seguinte. As cartas são tiradas ao acaso entre os 22 arcanos maiores, sem repetição. Sua pergunta fica no seu aparelho e não aparece na imagem exportada."
   },
   placePlaceholder: "Digite o nome de uma cidade…",
   placeNoMatch: "Nenhuma cidade encontrada. Tente a cidade mais próxima.",
@@ -945,13 +945,19 @@ I18N.pt = deepMerge(I18N.fr, {
       tower: "A Casa de Deus"
     },
     spreadTitle: "Tiragem de três cartas",
-    spreadIntro: "Pense em uma pergunta ou situação e depois tire as cartas.",
+    spreadIntro: "Reserve um momento para formular a pergunta que importa para você hoje e depois tire as cartas.",
     spreadDraw: "Tirar as cartas",
     spreadAgain: "Nova pergunta",
     spreadPast: "Passado",
     spreadPresent: "Presente",
     spreadFuture: "Futuro",
-    spreadNote: "Uma tiragem por pergunta: ela fica na tela o dia todo. O futuro mostra uma tendência, não um destino."
+    spreadNote: "Uma só tiragem por dia, guardada até amanhã. O futuro mostra uma tendência, não um destino.",
+    spreadQuestionLabel: "Sua pergunta",
+    spreadQuestionHint: "Por exemplo: “O que preciso entender desta situação?”",
+    spreadFlip: "Toque em cada carta para virá-la.",
+    spreadFlipAria: "Virar a carta: {pos}",
+    spreadTomorrow: "Sua tiragem de hoje está feita. Próxima tiragem: amanhã.",
+    artCredit: "Ilustrações das cartas geradas com o Gemini (Google)."
   },
   tabs: {
     sky: "O céu agora",

@@ -711,7 +711,7 @@ I18N.de = deepMerge(I18N.fr, {
     numerology: "Die Numerologie reduziert Daten und Namen durch Addieren ihrer Ziffern auf eine Zahl von 1 bis 9 – außer den Meisterzahlen 11, 22 und 33, die erhalten bleiben. Lebensweg: Tag, Monat und Jahr der Geburt werden einzeln reduziert und dann addiert. Namenszahlen: Jeder Buchstabe hat einen Wert (A = 1, B = 2 … I = 9, dann J = 1 …); alle Buchstaben ergeben die Ausdruckszahl, die Vokale die Seelenzahl, die Konsonanten die Persönlichkeitszahl. Im Arabischen gelten die Abdschad-Werte (ا = 1 … غ = 1000), im Russischen die entsprechende kyrillische Tabelle.",
     personalYear: "Das persönliche Jahr addiert deinen Geburtstag und -monat zum laufenden Jahr; es folgt einem Zyklus von 9 Jahren. Der persönliche Monat fügt den laufenden Monat hinzu, der persönliche Tag den Tag des Monats. Die Zyklen gelten für das Lesedatum des Horoskops.",
     tarot: "Geburtskarte: Tag, Monat und Jahr der Geburt werden addiert und dann durch Addieren der Ziffern reduziert, bis 22 oder weniger herauskommt; 22 entspricht dem Narren. Tageskarte: eine Ziehung für jede Person und jedes Datum, den ganzen Tag dieselbe. Das Tarot de Marseille und das Waite-Smith teilen die 22 großen Arkana, doch manche Namen unterscheiden sich, und Kraft und Gerechtigkeit tauschen ihre Nummern (XI und VIII bei Marseille, VIII und XI bei Waite-Smith): Dieselbe Rechnung kann je nach Deck die eine oder die andere ergeben.",
-    spread: "Die Legung mit drei Karten beleuchtet eine Frage oder Situation: die Vergangenheit (was dazu geführt hat), die Gegenwart (was gerade wirkt) und die Zukunft (die Tendenz, wenn sich nichts ändert). Die Karten werden zufällig aus den 22 großen Arkana gezogen, ohne Wiederholung. Die Tradition sieht eine einzige Legung pro Frage vor: Für eine andere Frage nutze „Neue Frage“."
+    spread: "Die Legung mit drei Karten beleuchtet eine Frage: die Vergangenheit (was dazu geführt hat), die Gegenwart (was gerade wirkt) und die Zukunft (die Tendenz, wenn sich nichts ändert). Es gibt nur eine Legung pro Tag, für eine gut überlegte Frage: Sie bleibt bis zum nächsten Tag sichtbar. Die Karten werden zufällig aus den 22 großen Arkana gezogen, ohne Wiederholung. Deine Frage bleibt auf deinem Gerät und erscheint nicht im exportierten Bild."
   },
   placePlaceholder: "Stadtnamen eingeben …",
   placeNoMatch: "Keine Stadt gefunden. Versuche die nächstgelegene.",
@@ -946,13 +946,19 @@ I18N.de = deepMerge(I18N.fr, {
       tower: "Das Haus Gottes"
     },
     spreadTitle: "Legung mit drei Karten",
-    spreadIntro: "Denk an eine Frage oder eine Situation und ziehe dann die Karten.",
+    spreadIntro: "Nimm dir einen Moment, um die Frage zu formulieren, die dir heute wichtig ist, und ziehe dann die Karten.",
     spreadDraw: "Karten ziehen",
     spreadAgain: "Neue Frage",
     spreadPast: "Vergangenheit",
     spreadPresent: "Gegenwart",
     spreadFuture: "Zukunft",
-    spreadNote: "Eine Legung pro Frage: Sie bleibt den ganzen Tag sichtbar. Die Zukunft zeigt eine Tendenz, kein Schicksal."
+    spreadNote: "Nur eine Legung pro Tag, sie bleibt bis morgen erhalten. Die Zukunft zeigt eine Tendenz, kein Schicksal.",
+    spreadQuestionLabel: "Deine Frage",
+    spreadQuestionHint: "Zum Beispiel: „Was soll ich an dieser Situation verstehen?“",
+    spreadFlip: "Tippe auf jede Karte, um sie umzudrehen.",
+    spreadFlipAria: "Karte umdrehen: {pos}",
+    spreadTomorrow: "Deine Legung für heute ist gemacht. Nächste Legung: morgen.",
+    artCredit: "Kartenillustrationen mit Gemini (Google) erstellt."
   },
   tabs: {
     sky: "Der Himmel jetzt",

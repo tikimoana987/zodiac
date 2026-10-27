@@ -711,7 +711,7 @@ I18N.it = deepMerge(I18N.fr, {
     numerology: "La numerologia riduce date e nomi a una cifra da 1 a 9 sommandone le cifre, tranne i numeri maestri 11, 22 e 33, che si conservano. Sentiero di vita: giorno, mese e anno di nascita ridotti separatamente e poi sommati. Numeri del nome: ogni lettera vale una cifra (A = 1, B = 2… I = 9, poi J = 1…); tutte le lettere danno l'espressione, le vocali il numero dell'anima, le consonanti la personalità. In arabo si usano i valori abjad (ا = 1… غ = 1000); in russo, la tabella cirillica equivalente.",
     personalYear: "L'anno personale somma il giorno e il mese di nascita all'anno in corso e segue un ciclo di 9 anni. Il mese personale aggiunge il mese in corso, il giorno personale il giorno del mese. I cicli sono calcolati per la data di lettura dell'oroscopo.",
     tarot: "Carta di nascita: si sommano giorno, mese e anno di nascita, poi si riduce sommando le cifre fino a ottenere 22 o meno; il 22 corrisponde al Matto. Carta del giorno: un'estrazione propria di ogni persona e di ogni data, la stessa per tutto il giorno. I Tarocchi di Marsiglia e il Waite-Smith condividono i 22 arcani maggiori, ma alcuni nomi cambiano, e la Forza e la Giustizia si scambiano i numeri (XI e VIII a Marsiglia, VIII e XI nel Waite-Smith): lo stesso calcolo può quindi dare l'una o l'altra secondo il mazzo.",
-    spread: "La stesa a tre carte illumina una domanda o una situazione: il passato (ciò che vi ha condotto), il presente (ciò che è in gioco) e il futuro (la tendenza se nulla cambia). Le carte sono estratte a caso tra i 22 arcani maggiori, senza ripetizioni. La tradizione vuole una sola stesa per domanda: per un'altra domanda, usa «Nuova domanda»."
+    spread: "La stesa a tre carte illumina una domanda: il passato (ciò che vi ha condotto), il presente (ciò che è in gioco) e il futuro (la tendenza se nulla cambia). Si fa una sola stesa al giorno, per una domanda ben ponderata: resta visibile fino al giorno dopo. Le carte sono estratte a caso tra i 22 arcani maggiori, senza ripetizioni. La tua domanda resta sul tuo dispositivo e non compare nell'immagine esportata."
   },
   placePlaceholder: "Digita il nome di una città…",
   placeNoMatch: "Nessuna città trovata. Prova con la più vicina.",
@@ -946,13 +946,19 @@ I18N.it = deepMerge(I18N.fr, {
       tower: "La Casa di Dio"
     },
     spreadTitle: "Stesa a tre carte",
-    spreadIntro: "Pensa a una domanda o a una situazione, poi estrai le carte.",
+    spreadIntro: "Prenditi un momento per formulare la domanda che oggi conta per te, poi estrai le carte.",
     spreadDraw: "Estrai le carte",
     spreadAgain: "Nuova domanda",
     spreadPast: "Passato",
     spreadPresent: "Presente",
     spreadFuture: "Futuro",
-    spreadNote: "Una stesa per domanda: resta visibile per tutto il giorno. Il futuro indica una tendenza, non un destino."
+    spreadNote: "Una sola stesa al giorno, conservata fino a domani. Il futuro indica una tendenza, non un destino.",
+    spreadQuestionLabel: "La tua domanda",
+    spreadQuestionHint: "Per esempio: «Che cosa devo capire di questa situazione?»",
+    spreadFlip: "Tocca ogni carta per girarla.",
+    spreadFlipAria: "Gira la carta: {pos}",
+    spreadTomorrow: "La tua stesa di oggi è fatta. Prossima stesa: domani.",
+    artCredit: "Illustrazioni delle carte generate con Gemini (Google)."
   },
   tabs: {
     sky: "Il cielo adesso",

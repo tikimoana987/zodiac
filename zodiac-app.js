@@ -101,8 +101,9 @@ function prefersReducedMotion(){
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
+let quickReveal = false;   // réouverture du profil au démarrage : pas d'animation de recherche dans le ciel
 function runSearch(signKey, onDone){
-  if (prefersReducedMotion()) { onDone(); return; }
+  if (prefersReducedMotion() || quickReveal) { quickReveal = false; onDone(); return; }
   const t = I18N[currentLang];
   const overlay = document.getElementById('overlay');
   const crosshair = document.getElementById('crosshair');
@@ -1012,26 +1013,44 @@ function renderNumbers(){
 /* ============================================================
    TAROT (quatrième onglet) — carte de naissance et carte du jour (date de lecture de l'horoscope)
    ============================================================ */
-/* Tirage à trois cartes : mémorisé pour la journée et pour la personne ; vide tant qu'on n'a pas tiré */
+/* ---------- Tirage du jour (rituel) ----------
+   Une question écrite, trois cartes tirées face cachée et retournées une à une ; un seul tirage par jour et par personne,
+   mémorisé sur l'appareil : { day, birth, question, cards, revealed }. La question n'apparaît pas dans l'image exportée. */
+let spreadDraft = '';         // question en cours de saisie (gardée si l'affichage est refait)
+let spreadJustFlipped = -1;   // carte qui vient d'être retournée (animation)
 function currentSpread(){
   try {
     const s = JSON.parse(store.get('zodiac_spread') || 'null');
-    return s && s.day === todayISO() && s.birth === currentDate && Array.isArray(s.cards) && s.cards.length === 3 && s.cards.every(k => TAROT_KEYS.includes(k)) ? s.cards : null;
+    if (!s || s.day !== todayISO() || s.birth !== currentDate || !Array.isArray(s.cards) || s.cards.length !== 3 || !s.cards.every(k => TAROT_KEYS.includes(k))) return null;
+    // Tirages de l'ancienne version (sans question ni cartes face cachée) : affichés retournés
+    return { day: s.day, birth: s.birth, cards: s.cards, question: typeof s.question === 'string' ? s.question : '',
+             revealed: Array.isArray(s.revealed) && s.revealed.length === 3 ? s.revealed.map(Boolean) : [true, true, true] };
   } catch { return null; }
 }
+function saveSpread(s){ store.set('zodiac_spread', JSON.stringify(s)); }
 function spreadHtml(t, deck){
-  const u = t.tarot, cards = currentSpread();
-  const pos = [u.spreadPast, u.spreadPresent, u.spreadFuture];
-  const body = cards ? `<div class="spread-row">${cards.map((key, i) => {
-      const name = tarotName(t, key, deck), num = tarotNumeral(key, deck);
-      return `<div class="spread-slot"><div class="spread-pos">${pos[i]}</div><div class="spread-visual">${tarotCardSvg(key, deck, name)}</div>
-        <div class="tarot-title">${num ? `<span class="tarot-num">${num}</span> ` : ''}${escapeHtml(name)}</div>
-        <div class="traits">${u.cards[key].keywords.map(k => `<span class="trait-tag">${k}</span>`).join('')}</div>
-        <p class="num-text">${u.cards[key].text}</p></div>`;
-    }).join('')}</div><p class="sky-note">${u.spreadNote}</p>` : '';
-  return `<div class="card spread-card"><h3>${u.spreadTitle}${infoBtn('spread', u.spreadTitle)}</h3>
-    ${cards ? '' : `<p class="sky-sub">${u.spreadIntro}</p>`}${body}
-    <div class="spread-actions"><button type="button" class="btn-reveal" id="spreadDraw">${cards ? u.spreadAgain : u.spreadDraw}</button></div></div>`;
+  const u = t.tarot, sp = currentSpread(), pos = [u.spreadPast, u.spreadPresent, u.spreadFuture];
+  const head = `<h3>${u.spreadTitle}${infoBtn('spread', u.spreadTitle)}</h3>`;
+  if (!sp) return `<div class="card spread-card">${head}<p class="sky-sub">${u.spreadIntro}</p>
+    <div class="spread-form"><label for="spreadQuestion" class="spread-label">${u.spreadQuestionLabel}</label>
+      <textarea id="spreadQuestion" rows="2" maxlength="200" placeholder="${escapeHtml(u.spreadQuestionHint)}">${escapeHtml(spreadDraft)}</textarea>
+      <div class="spread-actions"><button type="button" class="btn-reveal" id="spreadDraw"${spreadDraft.trim().length >= 3 ? '' : ' disabled'}>${u.spreadDraw}</button></div></div></div>`;
+  const done = sp.revealed.every(Boolean);
+  const slots = sp.cards.map((key, i) => {
+    if (!sp.revealed[i]) return `<div class="spread-slot"><div class="spread-pos">${pos[i]}</div>
+      <button type="button" class="spread-flip" data-i="${i}" aria-label="${escapeHtml(u.spreadFlipAria.replace('{pos}', pos[i]))}">${tarotBackSvg(deck, pos[i])}</button></div>`;
+    const name = tarotName(t, key, deck), num = tarotNumeral(key, deck);
+    return `<div class="spread-slot${spreadJustFlipped === i ? ' just-flipped' : ''}"><div class="spread-pos">${pos[i]}</div><div class="spread-visual">${tarotCardSvg(key, deck, name)}</div>
+      <div class="tarot-title">${num ? `<span class="tarot-num">${num}</span> ` : ''}${escapeHtml(name)}</div>
+      <div class="traits">${u.cards[key].keywords.map(k => `<span class="trait-tag">${k}</span>`).join('')}</div>
+      <p class="num-text">${u.cards[key].text}</p></div>`;
+  }).join('');
+  return `<div class="card spread-card">${head}
+    ${sp.question ? `<p class="spread-question">${escapeHtml(sp.question)}</p>` : ''}
+    ${done ? '' : `<p class="sky-sub">${u.spreadFlip}</p>`}
+    <div class="spread-row">${slots}</div>
+    ${done ? `<p class="spread-done">${u.spreadTomorrow}</p>` : ''}
+    <p class="sky-note">${u.spreadNote}</p></div>`;
 }
 function tarotName(t, key, deck){ return deck === 'marseille' && t.tarot.marseilleNames[key] ? t.tarot.marseilleNames[key] : t.tarot.cards[key].name; }
 function renderTarot(){
@@ -1052,13 +1071,23 @@ function renderTarot(){
       ${TAROT_DECKS.map(k => `<button type="button" class="deck-btn" data-deck="${k}" aria-pressed="${k === deck}">${u.decks[k]}</button>`).join('')}</div>
     <div class="tarot-pair">${slot(tarotByNumber(birthCardNumber(birth), deck), u.birthCard, u.birthCardDesc)}${slot(dayCardKey(currentDate, on), u.dayCard, u.dayCardDesc.replace('{d}', dLabel))}</div>
     ${spreadHtml(t, deck)}
-    <p class="sky-note">${u.note}</p>`;
-  const drawBtn = el.querySelector('#spreadDraw');
+    <p class="sky-note">${u.note} ${u.artCredit}</p>`;
+  const q = el.querySelector('#spreadQuestion'), drawBtn = el.querySelector('#spreadDraw');
+  if (q) q.addEventListener('input', () => { spreadDraft = q.value; drawBtn.disabled = q.value.trim().length < 3; });
   if (drawBtn) drawBtn.addEventListener('click', () => {
-    store.set('zodiac_spread', JSON.stringify({ day: todayISO(), birth: currentDate, cards: drawCards(3) }));
+    const question = (q ? q.value : '').trim();
+    if (question.length < 3) return;
+    saveSpread({ day: todayISO(), birth: currentDate, question, cards: drawCards(3), revealed: [false, false, false] });
+    spreadDraft = '';
     renderTarot();
-    const again = document.getElementById('spreadDraw'); if (again) again.focus();
+    const first = document.querySelector('.spread-flip'); if (first) first.focus();
   });
+  el.querySelectorAll('.spread-flip').forEach(b => b.addEventListener('click', () => {
+    const sp = currentSpread(); if (!sp) return;
+    sp.revealed[+b.dataset.i] = true; saveSpread(sp);
+    spreadJustFlipped = +b.dataset.i; renderTarot(); spreadJustFlipped = -1;
+    const next = document.querySelector('.spread-flip'); if (next) next.focus();
+  }));
   el.querySelectorAll('.deck-btn').forEach(b => b.addEventListener('click', () => {
     tarotDeck = b.dataset.deck; store.set('zodiac_deck', tarotDeck); renderTarot();
     el.querySelector(`.deck-btn[data-deck="${tarotDeck}"]`).focus();
@@ -1508,7 +1537,7 @@ async function exportImage(){
     + `padding:32px;box-sizing:content-box;background:${getComputedStyle(document.documentElement).getPropertyValue('--export-bg').trim()};`;
   for (const part of parts) {
     const copy = part.cloneNode(true);
-    copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .natal-complete, .wheel-hint, .spread-actions').forEach(n => n.remove());
+    copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .natal-complete, .wheel-hint, .spread-actions, .spread-form, .spread-question, .tarot-deck').forEach(n => n.remove());
     copy.querySelectorAll('[id]').forEach(n => n.removeAttribute('id'));
     copy.removeAttribute('id');
     frame.appendChild(copy);
@@ -1816,6 +1845,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (parseTime(lsTime)) timeInput.value = lsTime;
     const lsPlace = store.get('zodiac_lastPlace');
     if (birthPlace(lsPlace)) birthField.set(lsPlace);
+    // Rendez-vous quotidien : le dernier profil s'ouvre directement sur les résultats du jour (« Nouvelle recherche » pour changer)
+    if (!new URLSearchParams(location.search).has('test')) { quickReveal = true; launchSearch(); }
   }
 
   // 5. Boutons

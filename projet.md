@@ -50,6 +50,7 @@ Les fichiers sont chargés par de simples balises `<script src>` (pas de modules
 | `zodiac-transits.js` | **Transits sur le thème natal** : aspects des planètes du moment (Soleil à Pluton) aux points du thème (Soleil à Saturne, Lune si l'heure est connue, ascendant et milieu du ciel si heure et lieu le sont), période d'influence et jour exact ; **synastrie** (aspects entre deux thèmes, harmonie et tension) |
 | `zodiac-numerology.js` | **Numérologie** : chemin de vie, cycles personnels (année, mois, jour), nombres du nom (expression, intime, personnalité) en alphabet latin (méthode pythagoricienne), arabe (abjad) et cyrillique |
 | `zodiac-tarot.js` | **Tarot** (22 arcanes majeurs) : numérotation des deux jeux (Marseille, Waite-Smith), carte de naissance, carte du jour, 22 illustrations originales et leurs deux habillages |
+| `zodiac-tarot-art.js` | **Illustrations du tarot** : 22 arcanes et 2 dos, générés avec Gemini (Google) à partir de prompts rédigés pour le projet, découpés et convertis en WebP 320 × 512 (≈ 1 Mo), sans texte |
 | `zodiac-natal.js` | Thème natal : heure locale du lieu de naissance → temps universel (`zonedInstant`), ascendant, Milieu du Ciel, maisons Placidus (repli en maisons égales au-delà de 66°), maison de chaque astre, aspects (`natalChart`) |
 | `zodiac-planets.js` | Calculs purs : Lune et planètes (Mercure → Pluton), rétrogradations, phases, transits, Lune natale, compatibilité à deux |
 | `zodiac-app.js` | État, thème, animation, rendu, modale, horoscope, actions, initialisation |
@@ -85,6 +86,13 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 ---
 
 ## ✨ Fonctionnalités implémentées
+
+### 🎴 Nouvelles cartes et rendez-vous quotidien
+- [x] **Cartes illustrées** : 22 illustrations originales générées avec Gemini (style gravure céleste, sans aucun texte), dans un gabarit 120 × 216 ; l'appli ajoute numéro et nom selon la langue et le jeu ; habillages Marseille (parchemin, bandeaux jaunes) et Waite-Smith (ivoire, cadre fin) ; arcane XIII sans nom à Marseille
+- [x] **Dos de cartes** propres à chaque jeu : mandala (Marseille), étoile dans l'anneau violet (Waite-Smith)
+- [x] **Rendez-vous quotidien** : l'appli rouvre directement le dernier profil sur les résultats du jour, sans l'animation de recherche (« Nouvelle recherche » pour changer de personne)
+- [x] **Rituel du tirage** : la question est écrite d'abord (au moins 3 caractères), puis trois cartes tirées **face cachée** et retournées une à une (souris, doigt, clavier) ; **un seul tirage par jour et par personne**, conservé jusqu'au lendemain (« Prochain tirage : demain ») ; question gardée sur l'appareil et absente de l'image exportée ; anciens tirages affichés retournés
+- [x] Mention « Illustrations des cartes générées avec Gemini (Google) » ; 14 langues
 
 ### 🔮 Tirage à trois cartes (étape 6b)
 - [x] Dans « Numérologie & tarot », sous la carte de naissance et la carte du jour : **Passé · Présent · Avenir**, trois arcanes distincts tirés au hasard (générateur cryptographique du navigateur), avec illustration, mots-clés et explication
@@ -384,14 +392,14 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | 1 (html2canvas CDN) |
 | Poids approximatif | ~460 Ko non minifié (dont ~230 Ko de traductions et ~55 Ko de données du ciel) |
-| Tests automatisés | 70 (dans `zodiac-tests.js`) |
+| Tests automatisés | 71 (dans `zodiac-tests.js`) |
 
 ---
 
 ## 🧪 Comment tester
 
 ### Tests automatiques
-Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 70 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
+Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 71 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
 La version autonome se teste de la même façon : `ZODIAC-standalone.html?test` (la suite y est intégrée ; un test supplémentaire vérifie que sa copie vierge est complète et sans donnée personnelle).
 - le calcul du Soleil, comparé à 40 positions de référence calculées par astropy (1900-2100) ;
 - signes et décans de dates de référence, équinoxes connues, jours de transition, effet de l'heure ;

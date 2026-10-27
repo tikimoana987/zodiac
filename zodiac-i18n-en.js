@@ -708,7 +708,7 @@ I18N.en = deepMerge(I18N.fr, {
     numerology: "Numerology reduces dates and names to a digit from 1 to 9 by adding their digits, except the master numbers 11, 22 and 33, which are kept as they are. Life path: day, month and year of birth reduced separately, then added. Name numbers: each letter has a value (A = 1, B = 2… I = 9, then J = 1…); all letters give the expression, vowels the soul urge, consonants the personality. In Arabic, the abjad values are used (ا = 1… غ = 1000); in Russian, the equivalent Cyrillic table.",
     personalYear: "Your personal year adds your birth day and month to the current year; it follows a 9-year cycle. The personal month adds the current month, the personal day the day of the month. Cycles are calculated for the horoscope's reading date.",
     tarot: "Birth card: add the day, month and year of birth, then reduce by adding the digits until you get 22 or less; 22 is the Fool. Card of the day: a draw specific to each person and each date, the same all day long. The Tarot de Marseille and the Waite-Smith share the 22 major arcana, but some names differ, and Strength and Justice swap numbers (XI and VIII in Marseille, VIII and XI in Waite-Smith): the same calculation can therefore give one or the other depending on the deck.",
-    spread: "The three-card spread sheds light on a question or situation: the past (what led to it), the present (what is at play) and the future (the trend if nothing changes). Cards are drawn at random from the 22 major arcana, with no repeats. Tradition calls for a single spread per question: for another question, use “New question”."
+    spread: "The three-card spread sheds light on a question: the past (what led to it), the present (what is at play) and the future (the trend if nothing changes). There is only one spread per day, for a carefully considered question: it stays on screen until the next day. Cards are drawn at random from the 22 major arcana, with no repeats. Your question stays on your device and does not appear in the exported image."
   },
   placePlaceholder: "Type a city name…",
   placeNoMatch: "No city found. Try the nearest town.",
@@ -943,13 +943,19 @@ I18N.en = deepMerge(I18N.fr, {
       tower: "The House of God"
     },
     spreadTitle: "Three-card spread",
-    spreadIntro: "Think of a question or a situation, then draw the cards.",
+    spreadIntro: "Take a moment to put into words the question that matters to you today, then draw the cards.",
     spreadDraw: "Draw the cards",
     spreadAgain: "New question",
     spreadPast: "Past",
     spreadPresent: "Present",
     spreadFuture: "Future",
-    spreadNote: "One spread per question: it stays on screen for the day. The future shows a trend, not a fate."
+    spreadNote: "One spread per day, kept until tomorrow. The future shows a trend, not a fate.",
+    spreadQuestionLabel: "Your question",
+    spreadQuestionHint: "For example: “What do I need to understand about this situation?”",
+    spreadFlip: "Tap each card to turn it over.",
+    spreadFlipAria: "Turn over the card: {pos}",
+    spreadTomorrow: "Your spread for today is done. Next spread: tomorrow.",
+    artCredit: "Card illustrations generated with Gemini (Google)."
   },
   tabs: {
     sky: "Sky right now",
