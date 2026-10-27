@@ -997,6 +997,19 @@
     }
   });
 
+  test('« C\'est mon profil » : profil désigné, comparaison, textes', () => {
+    const keep = store.get('zodiac_me');
+    try {
+      store.remove('zodiac_me'); assertEq(readMe(), null, 'aucun profil désigné');
+      store.set('zodiac_me', JSON.stringify({ name: 'Joann', date: '1982-11-03', time: '19:00', place: 'Paris|FR' }));
+      assert(readMe() && readMe().date === '1982-11-03', 'profil désigné lu');
+      assertEq(profileKey({ name: ' joann ', date: '1982-11-03', time: '19:00', place: 'Paris|FR' }), profileKey(readMe()), 'même profil malgré la casse et les espaces du nom');
+      assert(profileKey({ name: 'Joann', date: '1983-06-03', time: '10:05', place: 'Paris|FR' }) !== profileKey(readMe()), 'autre personne');
+      store.set('zodiac_me', '{"date":"pas une date"}'); assertEq(readMe(), null, 'profil invalide ignoré');
+      for (const l of Object.keys(I18N)) assert(['set', 'is', 'saved', 'removed'].every(k => I18N[l].me && I18N[l].me[k]), `${l} : textes`);
+    } finally { if (keep === null) store.remove('zodiac_me'); else store.set('zodiac_me', keep); }
+  });
+
   /* ---------------- Rapport ---------------- */
   const failed = results.filter(r => !r.ok);
   window.__testResults = results;

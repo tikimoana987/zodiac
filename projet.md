@@ -90,7 +90,8 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 ### 🎴 Nouvelles cartes et rendez-vous quotidien
 - [x] **Cartes illustrées** : 22 illustrations originales générées avec Gemini (style gravure céleste, sans aucun texte), dans un gabarit 120 × 216 ; l'appli ajoute numéro et nom selon la langue et le jeu ; habillages Marseille (parchemin, bandeaux jaunes) et Waite-Smith (ivoire, cadre fin) ; arcane XIII sans nom à Marseille
 - [x] **Dos de cartes** propres à chaque jeu : mandala (Marseille), étoile dans l'anneau violet (Waite-Smith)
-- [x] **Rendez-vous quotidien** : l'appli rouvre directement le dernier profil sur les résultats du jour, sans l'animation de recherche (« Nouvelle recherche » pour changer de personne)
+- [x] **Rendez-vous quotidien** : bouton **« ☆ C'est mon profil »** sur la page de résultat ; le profil désigné (nom, date, heure, lieu) s'ouvre directement sur les résultats du jour à chaque visite, sans l'animation de recherche, quelles que soient les personnes consultées entre-temps ; second appui sur sa fiche pour retirer la désignation ; sans profil désigné, le formulaire s'affiche comme avant
+- [x] **Listes déroulantes lisibles partout** (menu des langues, ville de la carte…) : mode de couleur déclaré pour toute la page et couleurs explicites des options (Chrome sous Windows dessinait la liste en blanc avec le texte clair du thème sombre)
 - [x] **Rituel du tirage** : la question est écrite d'abord (au moins 3 caractères), puis trois cartes tirées **face cachée** et retournées une à une (souris, doigt, clavier) ; **un seul tirage par jour et par personne**, conservé jusqu'au lendemain (« Prochain tirage : demain ») ; question gardée sur l'appareil et absente de l'image exportée ; anciens tirages affichés retournés
 - [x] Mention « Illustrations des cartes générées avec Gemini (Google) » ; 14 langues
 
@@ -392,14 +393,14 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | 1 (html2canvas CDN) |
 | Poids approximatif | ~460 Ko non minifié (dont ~230 Ko de traductions et ~55 Ko de données du ciel) |
-| Tests automatisés | 71 (dans `zodiac-tests.js`) |
+| Tests automatisés | 72 (dans `zodiac-tests.js`) |
 
 ---
 
 ## 🧪 Comment tester
 
 ### Tests automatiques
-Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 71 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
+Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 72 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
 La version autonome se teste de la même façon : `ZODIAC-standalone.html?test` (la suite y est intégrée ; un test supplémentaire vérifie que sa copie vierge est complète et sans donnée personnelle).
 - le calcul du Soleil, comparé à 40 positions de référence calculées par astropy (1900-2100) ;
 - signes et décans de dates de référence, équinoxes connues, jours de transition, effet de l'heure ;

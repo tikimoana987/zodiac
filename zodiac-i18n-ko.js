@@ -843,5 +843,11 @@ I18N.ko = deepMerge(I18N.fr, {
     compatSub: "다른 사람과",
     numTarot: "수비학과 타로",
     numTarotSub: "숫자와 아르카나"
+  },
+  me: {
+    set: "내 프로필로 지정",
+    is: "내 프로필",
+    saved: "방문할 때마다 이 프로필이 바로 열립니다.",
+    removed: "이 프로필은 더 이상 자동으로 열리지 않습니다."
   }
 });

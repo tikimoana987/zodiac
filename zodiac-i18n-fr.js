@@ -967,5 +967,11 @@ I18N.fr = {
     compatSub: "Avec une autre personne",
     numTarot: "Numérologie & tarot",
     numTarotSub: "Nombres et arcanes"
+  },
+  me: {
+    set: "C'est mon profil",
+    is: "Mon profil",
+    saved: "Ce profil s'ouvrira directement à chaque visite.",
+    removed: "Ce profil ne s'ouvrira plus automatiquement."
   }
 };

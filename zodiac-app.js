@@ -186,8 +186,8 @@ function renderOwner(){
   const el = document.getElementById('profileOwner');
   if (!el) return;
   const name = currentName ? `<div class="owner-name">${escapeHtml(currentName)}</div>` : '';
-  const yr = parseISODate(currentDate).y;
-  const warn = yr < 1900 || yr > 2100 ? `<p class="range-warn" role="note">${I18N[currentLang].rangeWarning}</p>` : '';
+  const born = parseISODate(currentDate), yr = born ? born.y : null;   // aucune date chargée (ex. : nom tapé après « Nouvelle recherche »)
+  const warn = yr && (yr < 1900 || yr > 2100) ? `<p class="range-warn" role="note">${I18N[currentLang].rangeWarning}</p>` : '';
   el.innerHTML = name + `<div class="owner-birth">${formatBirth(currentDate, currentTime, currentLang)}${birthPlace(currentBirthPlace) ? ' · ' + escapeHtml(placeName(birthPlace(currentBirthPlace), currentLang)) : ''}</div>` + warn;
 }
 
@@ -337,6 +337,7 @@ function renderResult(signKey, decanIdx){
       <button class="btn-secondary" id="btnShare">🔗 ${t.btnShare}</button>
       <button class="btn-secondary" id="btnExport">📷 ${t.btnExport}</button>
       <button class="btn-secondary" id="btnReset">↺ ${t.btnReset}</button>
+      <button class="btn-secondary btn-me" id="btnMe" aria-pressed="false"></button>
     </div>
     <div class="view-tabs" role="tablist" aria-label="${t.natal.tabsLabel}">
       <button type="button" role="tab" id="tabSigns" aria-controls="viewSigns"><span class="vt-icon" aria-hidden="true">☉</span><span class="vt-txt"><span class="vt-title">${t.natal.tabSigns}</span><span class="vt-sub">${t.natal.tabSignsSub}</span></span></button>
@@ -413,6 +414,8 @@ function renderResult(signKey, decanIdx){
   document.getElementById('btnReset').addEventListener('click', reset);
   document.getElementById('btnShare').addEventListener('click', shareProfile);
   document.getElementById('btnExport').addEventListener('click', exportImage);
+  document.getElementById('btnMe').addEventListener('click', toggleMe);
+  renderMeButton();
 
   closeInfo(false);
   setView(viewMode);
@@ -1637,6 +1640,27 @@ function downloadOffline(){
   a.remove();
 }
 
+/* ---------- « C'est mon profil » : le profil désigné s'ouvre directement à chaque visite ----------
+   Mémorisé sur l'appareil ({ name, date, time, place }) ; les autres consultations ne le remplacent pas. */
+function profileKey(p){ return `${p.date}|${p.time || ''}|${p.place || ''}|${(p.name || '').trim().toLowerCase()}`; }
+function readMe(){
+  try { const m = JSON.parse(store.get('zodiac_me') || 'null'); return m && parseISODate(m.date) ? m : null; } catch { return null; }
+}
+function currentProfile(){ return { name: currentName || '', date: currentDate, time: currentTime || '', place: currentBirthPlace || '' }; }
+function isMeShown(){ const m = readMe(); return !!(m && currentDate && profileKey(m) === profileKey(currentProfile())); }
+function renderMeButton(){
+  const b = document.getElementById('btnMe'); if (!b) return;
+  const t = I18N[currentLang], on = isMeShown();
+  b.textContent = `${on ? '★' : '☆'} ${on ? t.me.is : t.me.set}`;
+  b.setAttribute('aria-pressed', String(on));
+}
+function toggleMe(){
+  const t = I18N[currentLang];
+  if (isMeShown()) { store.remove('zodiac_me'); showToast(t.me.removed, 3000); }
+  else { store.set('zodiac_me', JSON.stringify(currentProfile())); showToast(t.me.saved, 3000); }
+  renderMeButton();
+}
+
 function showToast(msg, duration = 1800){
   const t = document.createElement('div');
   t.className = 'toast';
@@ -1845,8 +1869,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (parseTime(lsTime)) timeInput.value = lsTime;
     const lsPlace = store.get('zodiac_lastPlace');
     if (birthPlace(lsPlace)) birthField.set(lsPlace);
-    // Rendez-vous quotidien : le dernier profil s'ouvre directement sur les résultats du jour (« Nouvelle recherche » pour changer)
-    if (!new URLSearchParams(location.search).has('test')) { quickReveal = true; launchSearch(); }
+  }
+  // Rendez-vous quotidien : le profil désigné (« C'est mon profil ») s'ouvre directement sur les résultats du jour,
+  // quelles que soient les personnes consultées entre-temps ; sans profil désigné, le formulaire s'affiche comme avant
+  const me = readMe();
+  if (!urlDate && me && !new URLSearchParams(location.search).has('test')) {
+    input.value = me.date;
+    timeInput.value = parseTime(me.time) ? me.time : '';
+    birthField.set(birthPlace(me.place) ? me.place : '');
+    document.getElementById('userName').value = me.name || '';
+    quickReveal = true; launchSearch();
   }
 
   // 5. Boutons

@@ -829,5 +829,11 @@ I18N.ja = deepMerge(I18N.fr, {
     compatSub: "ほかの人と",
     numTarot: "数秘術とタロット",
     numTarotSub: "数とアルカナ"
+  },
+  me: {
+    set: "これは私のプロフィール",
+    is: "私のプロフィール",
+    saved: "次回から、このプロフィールが直接開きます。",
+    removed: "このプロフィールは自動では開かなくなります。"
   }
 });

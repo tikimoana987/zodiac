@@ -7,7 +7,7 @@
   --ov-03:rgba(255,255,255,.03); --ov-04:rgba(255,255,255,.04); --ov-05:rgba(255,255,255,.05); --ov-06:rgba(255,255,255,.06);
   --ov-08:rgba(255,255,255,.08); --ov-12:rgba(255,255,255,.12); --ov-15:rgba(255,255,255,.15); --ov-30:rgba(255,255,255,.3);
   --pop-bg:#1b1738;
-  --field-bg:rgba(10,8,25,.7); --scheme:dark; --on-gold:#1a1435; --on-purple:#0b0a1a; --purple-ink:#c4b0f0; --h1-mid:#f5e6b8;
+  --field-bg:rgba(10,8,25,.7); --scheme:dark; --option-bg:#1a1435; --on-gold:#1a1435; --on-purple:#0b0a1a; --purple-ink:#c4b0f0; --h1-mid:#f5e6b8;
   --modal-bg:linear-gradient(160deg,#1a1435,#0f0c24); --toast-bg:rgba(20,18,45,.95); --export-bg:#0b0a1a;
   --gold-bright:#e8c36a; --stars-opacity:.7; --stars2-opacity:.4;
   --star-5:#f8d677; --star-5-glow:0 0 8px rgba(248,214,119,.7); --star-4:#e8c269; --star-4-glow:0 0 5px rgba(232,194,105,.4);
@@ -28,7 +28,7 @@
   --ov-03:rgba(40,28,90,.035); --ov-04:rgba(40,28,90,.045); --ov-05:rgba(40,28,90,.06); --ov-06:rgba(40,28,90,.08);
   --ov-08:rgba(40,28,90,.11); --ov-12:rgba(40,28,90,.14); --ov-15:rgba(40,28,90,.2); --ov-30:rgba(40,28,90,.3);
   --pop-bg:#ffffff;
-  --field-bg:#ffffff; --scheme:light; --on-gold:#ffffff; --on-purple:#ffffff; --purple-ink:#5a3fa8; --h1-mid:#b08a2e;
+  --field-bg:#ffffff; --scheme:light; --option-bg:#ffffff; --on-gold:#ffffff; --on-purple:#ffffff; --purple-ink:#5a3fa8; --h1-mid:#b08a2e;
   --modal-bg:linear-gradient(160deg,#ffffff,#f1edfb); --toast-bg:rgba(255,255,255,.97); --export-bg:#f4f1fb;
   --stars-opacity:.35; --stars2-opacity:.2;
   --star-5:#b8860b; --star-5-glow:none; --star-4:#c49a3a; --star-4-glow:none;
@@ -887,3 +887,12 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
   .vt-txt{ align-items:flex-start; min-width:0; } .vt-title{ font-size:.85rem; max-width:100%; overflow-wrap:break-word; hyphens:auto; }   /* mots très longs (allemand) : coupés plutôt que rognés */
   .view-tabs button:last-child:nth-child(odd){ grid-column:1 / -1; }
 }
+
+/* Listes déroulantes (langue, ville de la carte…) : Chrome sous Windows dessine la liste selon le mode de couleur de la page
+   entière ; sans réglage explicite, fond blanc et texte clair du thème sombre = illisible. Mode déclaré pour toute la page,
+   et fond et texte explicites pour chaque option, lisibles quel que soit le navigateur. */
+:root{ color-scheme:var(--scheme); }
+select option, select optgroup{ background-color:var(--option-bg); color:var(--text); }
+
+/* « C'est mon profil » */
+.btn-me[aria-pressed="true"]{ border-color:var(--gold); color:var(--gold); box-shadow:0 0 14px var(--glow); }

@@ -813,5 +813,6 @@ I18N.zh = deepMerge(I18N.fr, {
     compatSub: "与另一个人",
     numTarot: "数字命理与塔罗",
     numTarotSub: "数字与阿尔卡那"
-  }
+  },
+  me: { set: "这是我的资料", is: "我的资料", saved: "每次打开时都会直接显示此资料。", removed: "此资料将不再自动打开。" }
 });

@@ -966,5 +966,11 @@ I18N.pt = deepMerge(I18N.fr, {
     compatSub: "Com outra pessoa",
     numTarot: "Numerologia e tarô",
     numTarotSub: "Números e arcanos"
+  },
+  me: {
+    set: "É o meu perfil",
+    is: "Meu perfil",
+    saved: "Este perfil será aberto diretamente a cada visita.",
+    removed: "Este perfil não será mais aberto automaticamente."
   }
 });

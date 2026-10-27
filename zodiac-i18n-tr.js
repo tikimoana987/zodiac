@@ -963,5 +963,11 @@ I18N.tr = deepMerge(I18N.fr, {
     compatSub: "Bir başka kişiyle",
     numTarot: "Numeroloji ve tarot",
     numTarotSub: "Sayılar ve arkanalar"
+  },
+  me: {
+    set: "Bu benim profilim",
+    is: "Profilim",
+    saved: "Bu profil her ziyarette doğrudan açılacak.",
+    removed: "Bu profil artık otomatik olarak açılmayacak."
   }
 });

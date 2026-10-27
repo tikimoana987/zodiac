@@ -967,5 +967,11 @@ I18N.de = deepMerge(I18N.fr, {
     compatSub: "Mit einer anderen Person",
     numTarot: "Numerologie & Tarot",
     numTarotSub: "Zahlen und Arkana"
+  },
+  me: {
+    set: "Das bin ich",
+    is: "Mein Profil",
+    saved: "Dieses Profil öffnet sich bei jedem Besuch direkt.",
+    removed: "Dieses Profil öffnet sich nicht mehr automatisch."
   }
 });
