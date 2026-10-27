@@ -294,3 +294,10 @@ L'ajouter dans **les 7 fichiers** `zodiac-i18n-xx.js`. Si une langue l'oublie, `
 
 ### Ajouter une langue
 Créer `zodiac-i18n-xx.js` avec `I18N.xx = deepMerge(I18N.fr, { … })`, l'ajouter dans `ZODIAC.html` après les autres langues, ajouter le bouton dans `#langs`, et traduire au minimum : interface (dont `labelName`, `labelBirthTime`, `optional`, `cuspSign`, `cuspDecan`, `labels.sunPosition`), `signNames`, `summaries`, `decanTraits`, `strengths`, `weaknesses`, `love`, `career`, `rulers`, `colors`, `stones`, `modalities`, `elements`, `compat`, `exportError`, `close`, `langSelector`. Puis ouvrir `ZODIAC.html?test` : les tests de traduction signalent toute clé manquante ou restée en français.
+
+### Outils et documents de passation (27 octobre 2026)
+- `tools/regen_i18n.js` : ajoute ou remplace des textes dans les 14 fichiers de langue à partir d'un JSON `{ "fr": {...}, "en": {...}, ... }` (usage : `node tools/regen_i18n.js textes.json`). Ne jamais modifier les fichiers de langue à la main.
+- `tools/cut_sheets.py` : découpe une planche Gemini 2048 × 2048 (3 × 2) en 6 cartes, avec image de contrôle.
+- `docs/cahier-arcanes-mineurs.md` : cahier des charges des textes des 56 arcanes mineurs (sous-traités à ChatGPT, 14 fichiers `minors-xx.json`).
+- `docs/prompts-gemini-arcanes-mineurs.md` : 10 prompts Gemini prêts à copier (illustrations des mineurs, même style que les majeurs).
+- `docs/prompt-reprise.md` : message à coller pour reprendre le projet dans une nouvelle conversation Claude.
