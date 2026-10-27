@@ -844,22 +844,44 @@ function birthTz(){ const p = birthPlace(currentBirthPlace); return p ? p.tz : n
 /* ---------- Champ de recherche de ville (~34 000 villes) ----------
    Composant réutilisable : lieu de naissance, et lieu de naissance de la 2e personne (compatibilité).
    Suggestions au fil de la frappe, flèches, Entrée, Échap, bouton ×. */
-function placeLabel(p){ return `${placeName(p, currentLang)} (${regionName(p.country)})`; }
+/* Distance en km, « < 1 » quand le point tombe sur la ville */
+function kmLabel(km){ return km < 0.5 ? '< 1' : new Intl.NumberFormat(loc(currentLang)).format(Math.round(km)); }
+function placeLabel(p){
+  if (p.coords) return `${p.name} (${I18N[currentLang].placeNear.replace('{city}', placeName(p.ref, currentLang))})`;   // coordonnées saisies
+  return `${placeName(p, currentLang)} (${regionName(p.country)})`;
+}
 function makePlaceField(inputId, listId, clearId, onEnter){
   const input = document.getElementById(inputId), list = document.getElementById(listId), clear = document.getElementById(clearId);
   let key = '', results = [], active = -1, timer = null;
+  // Ligne « Fuseau horaire » sous le champ, pour un lieu donné par ses coordonnées (choix parmi les fuseaux des environs)
+  const tzLine = document.createElement('div'); tzLine.className = 'coord-tz'; tzLine.hidden = true;
+  input.closest('.place-box').insertAdjacentElement('afterend', tzLine);
+  const renderTz = p => {
+    tzLine.hidden = !(p && p.coords);
+    if (tzLine.hidden) { tzLine.innerHTML = ''; return; }
+    const t = I18N[currentLang], from = t.placeTzFrom.replace('{city}', escapeHtml(placeLabel(p.ref))).replace('{km}', kmLabel(p.refKm));
+    tzLine.innerHTML = `<label for="${inputId}Tz">${t.placeTz}</label> ` + (p.tzChoices.length > 1
+      ? `<select id="${inputId}Tz">${p.tzChoices.map(z => `<option value="${escapeHtml(z)}"${z === p.tz ? ' selected' : ''}>${escapeHtml(z.replace(/_/g, ' '))}</option>`).join('')}</select>`
+      : `<strong id="${inputId}Tz">${escapeHtml(p.tz.replace(/_/g, ' '))}</strong>`) + ` <span class="coord-tz-from">${from}</span>`;
+    const sel = tzLine.querySelector('select');
+    if (sel) sel.addEventListener('change', () => set(`@${p.lat},${p.lon},${sel.value}`));
+  };
   const close = () => { list.hidden = true; input.setAttribute('aria-expanded', 'false'); input.removeAttribute('aria-activedescendant'); active = -1; };
   const set = k => {
     const p = birthPlace(k);
     key = p ? p.key : '';
     input.value = p ? placeLabel(p) : '';
     clear.hidden = !input.value;
+    renderTz(p);
     close();
   };
   const render = () => {
     const t = I18N[currentLang], q = normPlace(input.value).replace(PLACE_ARTICLES, '');
-    if (!results.length) list.innerHTML = `<li class="po-empty" role="presentation">${t.placeNoMatch}</li>`;
-    else {
+    if (!results.length) list.innerHTML = `<li class="po-empty" role="presentation">${t.placeNoMatch}<br><span class="po-hint">${t.placeCoordsHint}</span></li>`;
+    else if (results[0].coords) {   // coordonnées collées : un seul choix, le point lui-même
+      const p = results[0], km = kmLabel(p.refKm);
+      list.innerHTML = `<li role="option" id="${listId}Opt0" data-i="0" aria-selected="true"><span class="po-name">📍 ${ltr(escapeHtml(p.name))}</span><span class="po-country">${escapeHtml(t.placeNear.replace('{city}', placeLabel(p.ref)))} · ${ltr(km + ' km')}</span></li>`;
+    } else {
       const dupes = new Set(), seen = new Set();
       for (const p of results) { const k = p.name + '|' + p.country; if (seen.has(k)) dupes.add(k); seen.add(k); }
       const nf = new Intl.NumberFormat(loc(currentLang), { maximumFractionDigits: 2 }), dir = t.map.directions;
@@ -878,6 +900,8 @@ function makePlaceField(inputId, listId, clearId, onEnter){
   const update = () => {
     const v = input.value.trim();
     clear.hidden = !v;
+    const c = parseCoords(v);   // coordonnées GPS ou lien de carte collés
+    if (c) { results = [coordsPlace(c.lat, c.lon)]; active = 0; render(); return; }
     // 2 lettres minimum en alphabet latin, 1 caractère pour les écritures où un signe vaut une syllabe ou un mot
     const enough = v.length >= 2 || /[\u0e00-\u0e7f\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]/.test(v);
     if (!enough) { results = []; close(); return; }
@@ -889,6 +913,8 @@ function makePlaceField(inputId, listId, clearId, onEnter){
   const resolve = () => {
     const v = input.value.trim();
     if (!v || key) return true;
+    const c = parseCoords(v);
+    if (c) { set(coordsPlace(c.lat, c.lon).key); return true; }
     const first = searchPlaces(v, 1)[0];
     if (first && (normPlace(first.name) === normPlace(v) || placeLabel(first) === v || first.normAlts.includes(normPlace(v)) || first.alts.some(a => `${a} (${regionName(first.country)})` === v))) { set(first.key); return true; }
     return false;

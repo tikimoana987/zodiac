@@ -714,7 +714,7 @@ I18N.it = deepMerge(I18N.fr, {
     spread: "La stesa a tre carte illumina una domanda: il passato (ciò che vi ha condotto), il presente (ciò che è in gioco) e il futuro (la tendenza se nulla cambia). Si fa una sola stesa al giorno, per una domanda ben ponderata: resta visibile fino al giorno dopo. Le carte sono estratte a caso tra i 22 arcani maggiori, senza ripetizioni. La tua domanda resta sul tuo dispositivo e non compare nell'immagine esportata. La tradizione vuole una domanda chiara e sincera, posta una sola volta: una domanda vaga, o ripetuta per ottenere un'altra risposta, toglie senso alla stesa.",
     fieldName: "Il tuo nome personalizza l'app. La numerologia tradizionale si basa sul nome completo di nascita: tutti i tuoi nomi e il cognome, come all'anagrafe. Con il solo nome di battesimo, i numeri del nome riflettono solo una parte del tuo nome.",
     fieldTime: "Permette di calcolare l'ascendente e le case, di collocare con precisione la Luna (che cambia segno ogni due giorni e mezzo) e di trovare l'animale della tua ora nell'astrologia cinese. Senza, questi elementi mancano o possono essere sbagliati e il ritratto resta incompleto. Spesso è indicata sull'atto di nascita; anche approssimativa, aiuta.",
-    fieldPlace: "Fornisce il fuso orario esatto della tua nascita, ora legale compresa, e le sue coordinate. Senza luogo, ascendente e case non possono essere calcolati. Basta la città più vicina.",
+    fieldPlace: "Fornisce il fuso orario esatto della tua nascita, ora legale compresa, e le sue coordinate. Senza luogo, ascendente e case non possono essere calcolati. Basta la città più vicina. Luogo non trovato? Incolla le coordinate GPS o un link di una mappa (Google Maps, OpenStreetMap, Mappe di Apple): il fuso orario è quello della città più vicina e puoi cambiarlo.",
     privacy: "Tutto ciò che inserisci (nome, data, ora, luogo, cronologia, domanda dei tarocchi) è salvato solo nella memoria del tuo browser, su questo dispositivo. Nessun dato viene inviato a un server e l'app non contiene strumenti di statistica o di tracciamento. Cancellare i dati di questo sito nel browser elimina tutto. Solo il pulsante «Condividi» crea un link con la tua data di nascita, che invii tu stesso."
   },
   placePlaceholder: "Digita il nome di una città…",
@@ -984,5 +984,9 @@ I18N.it = deepMerge(I18N.fr, {
     label: "Versione {v}",
     available: "È disponibile una nuova versione dell'app.",
     reload: "Ricarica"
-  }
+  },
+  placeCoordsHint: "Luogo non trovato? Incolla le sue coordinate GPS (per esempio 48.8566, 2.3522) o un link di una mappa.",
+  placeNear: "vicino a {city}",
+  placeTz: "Fuso orario",
+  placeTzFrom: "secondo {city}, a {km} km"
 });

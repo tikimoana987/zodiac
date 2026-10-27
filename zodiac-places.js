@@ -76,6 +76,11 @@ function searchPlaces(query, limit = 8){
    rattaché à la ville la plus proche de la base dans le même pays. Renvoie null si inconnu. */
 function birthPlace(key){
   if (!key) return null;
+  if (String(key)[0] === '@') {   // coordonnées saisies : « @lat,lon,fuseau »
+    const [la, lo, ...tz] = String(key).slice(1).split(',');
+    const c = parseCoords(`${la}, ${lo}`);
+    return c ? coordsPlace(c.lat, c.lon, tz.join(',')) : null;
+  }
   const parts = String(key).split('|');
   if (parts.length >= 2 && /^[A-Z]{2}$/.test(parts[1])) {
     const [name, cc, la, lo] = parts;
@@ -119,4 +124,70 @@ function placeName(p, lang){
     if (ok.length) return ok[0];
   }
   return p.name;
+}
+
+/* ---------- Coordonnées GPS saisies (lieu absent de la base) ----------
+   Formats lus : décimal « 48.8566, 2.3522 », « 48,8566 ; 2,3522 », « -33.87 151.21 », avec lettres « 40.71° N, 74.01° W »
+   (O = ouest), degrés-minutes-secondes « 48°51'24"N 2°21'08"E », liens Google Maps (!3d…!4d…, @lat,lon, q=lat,lon),
+   OpenStreetMap (mlat/mlon, #map=z/lat/lon) et Apple Plans (ll=lat,lon). Retour : { lat, lon } ou null. */
+function parseCoords(text){
+  const s0 = String(text || '').trim();
+  if (!s0) return null;
+  const ok = (la, lo) => Number.isFinite(la) && Number.isFinite(lo) && Math.abs(la) <= 90 && Math.abs(lo) <= 180 && !(la === 0 && lo === 0)
+    ? { lat: Math.round(la * 1e4) / 1e4, lon: Math.round(lo * 1e4) / 1e4 } : null;
+  // Liens de cartes
+  if (/^https?:\/\/|maps\.|openstreetmap|goo\.gl/i.test(s0)) {
+    const pats = [/!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/, /[?&]mlat=(-?\d+(?:\.\d+)?)&mlon=(-?\d+(?:\.\d+)?)/,
+      /#map=\d+(?:\.\d+)?\/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/, /[?&](?:q|query|ll|sll|daddr|center|destination)=(-?\d+(?:\.\d+)?)(?:,|%2C)\s*(-?\d+(?:\.\d+)?)/i,
+      /@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/];
+    for (const p of pats) { const m = s0.match(p); if (m) return ok(parseFloat(m[1]), parseFloat(m[2])); }
+    return null;
+  }
+  // Texte : symboles unifiés, espaces superflus retirés autour des symboles et des lettres d'hémisphère
+  let s = s0.replace(/[′’‘`´]/g, "'").replace(/[″”“]|''/g, '"').replace(/º/g, '°')
+            .replace(/\s+([°'"])/g, '$1')                          // pas d'espace avant un symbole
+            .replace(/°\s+(?=\d+(?:[.,]\d+)?')/g, '°')              // « 48° 51' » : minutes rattachées aux degrés
+            .replace(/'\s+(?=\d+(?:[.,]\d+)?")/g, "'");             // « 51' 24" » : secondes rattachées aux minutes
+  s = /^[NSEWO]\s*[-+]?\d/i.test(s)
+    ? s.replace(/([NSEWO])\s+(?=[-+]?\d)/gi, '$1')                 // lettre devant : « N 48°… E 2°… »
+    : s.replace(/([\d°'"])\s+([NSEWO])\b/gi, '$1$2');              // lettre derrière : « 48.85 N, 2.35 E »
+  const one = part => {
+    const m = part.trim().match(/^([NSEWO])?([-+]?\d+(?:[.,]\d+)?)(?:°(?:(\d+(?:[.,]\d+)?)')?(?:(\d+(?:[.,]\d+)?)")?)?([NSEWO])?$/i);
+    if (!m || (m[1] && m[5])) return null;
+    const num = x => x ? parseFloat(x.replace(',', '.')) : 0;
+    let v = Math.abs(num(m[2])) + num(m[3]) / 60 + num(m[4]) / 3600;
+    const hemi = (m[1] || m[5] || '').toUpperCase();
+    if (m[2].startsWith('-') || 'SWO'.includes(hemi) && hemi) v = -v;
+    return { v, axis: hemi ? ('NS'.includes(hemi) ? 'lat' : 'lon') : '' };
+  };
+  const splits = [/\s*;\s*/, /,\s+/, /\s*,\s*/, /\s+/];
+  for (const rx of splits) {
+    const parts = s.split(rx).filter(Boolean);
+    if (parts.length !== 2) continue;
+    const a = one(parts[0]), b = one(parts[1]);
+    if (!a || !b) continue;
+    if (a.axis && a.axis === b.axis) return null;
+    const [la, lo] = a.axis === 'lon' || b.axis === 'lat' ? [b.v, a.v] : [a.v, b.v];
+    return ok(la, lo);
+  }
+  return null;
+}
+/* Villes les plus proches d'un point (distance en km, approximation équirectangulaire suffisante à cette échelle) */
+function nearestPlaces(lat, lon, n = 12){
+  const k = Math.PI / 180, out = [];
+  for (const p of loadPlaces()) {
+    const dx = (p.lon - lon) * Math.cos((p.lat + lat) / 2 * k), dy = p.lat - lat;
+    out.push([Math.hypot(dx > 180 ? 360 - dx : dx < -180 ? 360 + dx : dx, dy) * 111.2, p]);
+  }
+  return out.sort((a, b) => a[0] - b[0]).slice(0, n).map(([km, p]) => ({ km, p }));
+}
+/* Lieu défini par ses coordonnées : fuseau donné, sinon celui de la ville la plus proche ; fuseaux des environs proposés */
+function coordsPlace(lat, lon, tz){
+  const near = nearestPlaces(lat, lon, 12), ref = near[0];
+  const choices = [...new Set(near.map(x => x.p.tz))];
+  const zone = tz && PLACE_TZ.includes(tz) ? tz : ref.p.tz;
+  if (!choices.includes(zone)) choices.unshift(zone);
+  const fmt = (v, pos, neg) => `${Math.abs(v).toFixed(4)}°${v >= 0 ? pos : neg}`;
+  return { name: `${fmt(lat, 'N', 'S')} ${fmt(lon, 'E', 'W')}`, country: ref.p.country, lat, lon, tz: zone, key: `@${lat},${lon},${zone}`,
+           coords: true, ref: ref.p, refKm: ref.km, tzChoices: choices, alts: [], norm: '', normAlts: [] };
 }

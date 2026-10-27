@@ -910,3 +910,10 @@ select option, select optgroup{ background-color:var(--option-bg); color:var(--t
   display:flex; align-items:center; gap:.9rem; flex-wrap:wrap; justify-content:center; max-width:calc(100% - 2rem);
   background:var(--bg-card, rgba(20,18,45,.96)); border:1px solid var(--gold); border-radius:14px; padding:.75rem 1rem;
   color:var(--text); font-size:.9rem; box-shadow:0 10px 30px rgba(0,0,0,.5); backdrop-filter:blur(10px); }
+
+/* Lieu donné par ses coordonnées GPS : fuseau horaire sous le champ */
+.coord-tz{ display:flex; flex-wrap:wrap; align-items:center; gap:.35rem .5rem; margin-top:.4rem; font-size:.82rem; color:var(--muted); }
+.coord-tz label{ color:var(--text); font-weight:600; }
+.coord-tz select{ background:var(--field-bg); color:var(--text); border:1px solid var(--ov-15); border-radius:10px; padding:.3rem .5rem; font-size:.82rem; color-scheme:var(--scheme); max-width:100%; }
+.coord-tz strong{ color:var(--text); }
+.po-hint{ display:inline-block; margin-top:.3rem; color:var(--gold); font-size:.82rem; }

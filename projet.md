@@ -87,6 +87,11 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 
 ## ✨ Fonctionnalités implémentées
 
+### 📍 Lieu par coordonnées GPS
+- [x] **Lieu introuvable parmi les 34 000 villes** : on colle ses coordonnées dans le champ Lieu (décimal, virgules décimales, degrés-minutes-secondes, lettres N/S/E/O devant ou derrière) ou un **lien de carte** (Google Maps, OpenStreetMap, Plans d'Apple) ; la liste propose « 📍 48.8584°N 2.2945°E — près de … · 3 km »
+- [x] **Fuseau horaire** déduit de la ville la plus proche ; ligne « Fuseau horaire » sous le champ, avec le choix des fuseaux des environs (frontières) et la ville de référence avec sa distance
+- [x] Identifiant `@lat,lon,fuseau` : fonctionne partout (thème natal, compatibilité, profil, historique, adresse en « # ») ; aide affichée quand aucune ville ne correspond ; bulle (i) du champ Lieu complétée ; 14 langues
+
 ### 🔒 Confidentialité, aide à la saisie, version
 - [x] **Rien n'est envoyé en ligne** : les données de l'adresse passent après « # » (jamais transmises au serveur) ; les anciens liens en « ? » sont lus puis aussitôt convertis ; l'appli installée retire la partie « ? » de toute adresse avant de demander la page au serveur ; le lien de « Partager » est lui aussi en « # »
 - [x] Ligne **« 🔒 Vos informations restent sur votre appareil : rien n'est envoyé ni enregistré en ligne »** sous le formulaire, avec une bulle (i) détaillée (mémoire du navigateur, aucun serveur, aucun outil de statistiques ni de pistage, effacement, exception du lien « Partager »)
@@ -399,14 +404,14 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | 1 (html2canvas CDN) |
 | Poids approximatif | ~460 Ko non minifié (dont ~230 Ko de traductions et ~55 Ko de données du ciel) |
-| Tests automatisés | 73 (dans `zodiac-tests.js`) |
+| Tests automatisés | 74 (dans `zodiac-tests.js`) |
 
 ---
 
 ## 🧪 Comment tester
 
 ### Tests automatiques
-Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 73 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
+Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 74 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
 La version autonome se teste de la même façon : `ZODIAC-standalone.html?test` (la suite y est intégrée ; un test supplémentaire vérifie que sa copie vierge est complète et sans donnée personnelle).
 - le calcul du Soleil, comparé à 40 positions de référence calculées par astropy (1900-2100) ;
 - signes et décans de dates de référence, équinoxes connues, jours de transition, effet de l'heure ;

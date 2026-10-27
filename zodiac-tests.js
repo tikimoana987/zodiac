@@ -1029,6 +1029,24 @@
     }
   });
 
+  test('Lieu par coordonnées GPS : formats, liens de cartes, fuseau de la ville la plus proche, identifiant', () => {
+    const P = s => { const c = parseCoords(s); return c ? `${c.lat},${c.lon}` : null; };
+    assertEq(P('48.8566, 2.3522'), '48.8566,2.3522', 'décimal'); assertEq(P('48,8566 ; 2,3522'), '48.8566,2.3522', 'virgules décimales');
+    assertEq(P('48°51\'24"N 2°21\'08"E'), '48.8567,2.3522', 'degrés-minutes-secondes'); assertEq(P('40.7128° N, 74.0060° W'), '40.7128,-74.006', 'lettres, ouest négatif');
+    assertEq(P('2.35 E 48.85 N'), '48.85,2.35', 'longitude en premier'); assertEq(P('S 33° 52\' E 151° 12\''), '-33.8667,151.2', 'lettre devant, minutes');
+    assertEq(P('https://www.google.com/maps/place/X/@48.858,2.294,17z/data=!3d48.8583701!4d2.2944813'), '48.8584,2.2945', 'lien Google Maps (épingle)');
+    assertEq(P('https://www.openstreetmap.org/?mlat=48.8566&mlon=2.3522#map=15/48.8566/2.3522'), '48.8566,2.3522', 'lien OpenStreetMap');
+    assertEq(P('https://maps.apple.com/?ll=-22.9068,-43.1729'), '-22.9068,-43.1729', 'lien Apple Plans');
+    for (const bad of ['Paris', '1982', '95, 200', '48.85 N 2.35 N', '12 rue de Paris', '']) assertEq(parseCoords(bad), null, `refusé : « ${bad} »`);
+    const kehl = birthPlace('@48.5708,7.8136,');
+    assert(kehl.coords && kehl.tz === 'Europe/Berlin' && kehl.ref.country === 'DE' && kehl.tzChoices.includes('Europe/Paris'), 'frontière : fuseau de la ville la plus proche, fuseau voisin proposé');
+    const choisi = birthPlace('@48.5708,7.8136,Europe/Paris');
+    assert(choisi.tz === 'Europe/Paris' && birthPlace(choisi.key).tz === 'Europe/Paris', 'fuseau choisi conservé dans l\'identifiant');
+    const c = natalChart({ y: 1982, m: 11, d: 3 }, { h: 19, min: 0 }, birthPlace('@48.8566,2.3522,Europe/Paris')), ref = natalChart({ y: 1982, m: 11, d: 3 }, { h: 19, min: 0 }, birthPlace('Paris|FR'));
+    assert(c.exact && Math.abs(c.asc - ref.asc) < 0.1, `thème natal avec coordonnées ≈ Paris (${c.asc.toFixed(2)} / ${ref.asc.toFixed(2)})`);
+    for (const l of Object.keys(I18N)) assert(/\{city\}/.test(I18N[l].placeNear) && /\{km\}/.test(I18N[l].placeTzFrom) && I18N[l].placeCoordsHint && I18N[l].placeTz, `${l} : textes`);
+  });
+
   /* ---------------- Rapport ---------------- */
   const failed = results.filter(r => !r.ok);
   window.__testResults = results;

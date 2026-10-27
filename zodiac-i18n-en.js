@@ -711,7 +711,7 @@ I18N.en = deepMerge(I18N.fr, {
     spread: "The three-card spread sheds light on a question: the past (what led to it), the present (what is at play) and the future (the trend if nothing changes). There is only one spread per day, for a carefully considered question: it stays on screen until the next day. Cards are drawn at random from the 22 major arcana, with no repeats. Your question stays on your device and does not appear in the exported image. Tradition calls for a clear and sincere question, asked only once: a vague question, or one asked again to get a different answer, takes the meaning out of the spread.",
     fieldName: "Your first name personalises the app. Traditional numerology relies on your full birth name: all your first names and your surname, as on your birth certificate. With a first name alone, your name numbers reflect only part of your name.",
     fieldTime: "It lets the app calculate your ascendant and houses, place the Moon precisely (it changes sign every two and a half days) and find the animal of your birth hour in Chinese astrology. Without it, these elements are missing or may be wrong, and your portrait remains incomplete. It is often on the birth certificate; even an approximate time helps.",
-    fieldPlace: "It gives the exact time zone of your birth, daylight saving time included, and its coordinates. Without a place, the ascendant and houses cannot be calculated. The nearest town is enough.",
+    fieldPlace: "It gives the exact time zone of your birth, daylight saving time included, and its coordinates. Without a place, the ascendant and houses cannot be calculated. The nearest town is enough. Place not found? Paste its GPS coordinates or a map link (Google Maps, OpenStreetMap, Apple Maps): the time zone is taken from the nearest town, and you can change it.",
     privacy: "Everything you enter (name, date, time, place, history, tarot question) is stored only in your browser's memory, on this device. No data is sent to any server, and the app contains no analytics or tracking tools. Clearing this site's data in your browser deletes everything. Only the “Share” button creates a link containing your date of birth, which you send yourself."
   },
   placePlaceholder: "Type a city name…",
@@ -977,5 +977,9 @@ I18N.en = deepMerge(I18N.fr, {
   },
   privacyLine: "Your details stay on your device: nothing is sent or stored online.",
   privacyTitle: "Privacy",
-  version: { label: "Version {v}", available: "A new version of the app is available.", reload: "Reload" }
+  version: { label: "Version {v}", available: "A new version of the app is available.", reload: "Reload" },
+  placeCoordsHint: "Place not found? Paste its GPS coordinates (for example 48.8566, 2.3522) or a map link.",
+  placeNear: "near {city}",
+  placeTz: "Time zone",
+  placeTzFrom: "from {city}, {km} km away"
 });

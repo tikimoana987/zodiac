@@ -714,7 +714,7 @@ I18N.fr = {
     spread: "Le tirage en trois cartes éclaire une question : le passé (ce qui y a conduit), le présent (ce qui se joue) et l'avenir (la tendance si rien ne change). On ne fait qu'un tirage par jour, pour une question mûrement réfléchie : il reste affiché jusqu'au lendemain. Les cartes sont tirées au hasard parmi les 22 arcanes majeurs, sans répétition. Votre question reste sur votre appareil et n'apparaît pas dans l'image exportée. La tradition veut une question claire et sincère, posée une seule fois : une question vague, ou posée à nouveau pour obtenir une autre réponse, enlève son sens au tirage.",
     fieldName: "Votre prénom personnalise l'appli. La numérologie traditionnelle s'appuie sur le nom complet de naissance : tous vos prénoms et votre nom de famille, comme à l'état civil. Avec un prénom seul, vos nombres du nom ne reflètent qu'une partie de votre nom.",
     fieldTime: "Elle permet de calculer votre ascendant et vos maisons, de situer précisément la Lune (qui change de signe tous les deux jours et demi) et de trouver l'animal de votre heure en astrologie chinoise. Sans heure, ces éléments manquent ou peuvent être faux : votre portrait reste incomplet. Elle figure souvent sur l'acte de naissance ; même approximative, elle aide.",
-    fieldPlace: "Il donne le fuseau horaire exact de votre naissance, heure d'été comprise, et ses coordonnées. Sans lieu, l'ascendant et les maisons ne peuvent pas être calculés. La ville la plus proche suffit.",
+    fieldPlace: "Il donne le fuseau horaire exact de votre naissance, heure d'été comprise, et ses coordonnées. Sans lieu, l'ascendant et les maisons ne peuvent pas être calculés. La ville la plus proche suffit. Lieu introuvable ? Collez ses coordonnées GPS ou un lien de carte (Google Maps, OpenStreetMap, Plans) : le fuseau horaire est déduit de la ville la plus proche, et vous pouvez le changer.",
     privacy: "Tout ce que vous saisissez (nom, date, heure, lieu, historique, question de tarot) est enregistré uniquement dans la mémoire de votre navigateur, sur cet appareil. Aucune donnée n'est envoyée à un serveur, et l'appli ne contient aucun outil de statistiques ou de pistage. Effacer les données du site dans votre navigateur supprime tout. Seul le bouton « Partager » crée un lien contenant votre date de naissance, que vous envoyez vous-même."
   },
   placePlaceholder: "Tapez le nom d'une ville…",
@@ -984,5 +984,9 @@ I18N.fr = {
     label: "Version {v}",
     available: "Une nouvelle version de l'appli est disponible.",
     reload: "Recharger"
-  }
+  },
+  placeCoordsHint: "Lieu introuvable ? Collez ses coordonnées GPS (par exemple 48.8566, 2.3522) ou un lien de carte.",
+  placeNear: "près de {city}",
+  placeTz: "Fuseau horaire",
+  placeTzFrom: "d'après {city}, à {km} km"
 };

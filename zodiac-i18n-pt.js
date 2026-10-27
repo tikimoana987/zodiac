@@ -713,7 +713,7 @@ I18N.pt = deepMerge(I18N.fr, {
     spread: "A tiragem de três cartas ilumina uma pergunta: o passado (o que levou a ela), o presente (o que está em jogo) e o futuro (a tendência se nada mudar). Faz-se apenas uma tiragem por dia, para uma pergunta bem pensada: ela fica na tela até o dia seguinte. As cartas são tiradas ao acaso entre os 22 arcanos maiores, sem repetição. Sua pergunta fica no seu aparelho e não aparece na imagem exportada. A tradição pede uma pergunta clara e sincera, feita uma única vez: uma pergunta vaga, ou repetida para obter outra resposta, tira o sentido da tiragem.",
     fieldName: "Seu primeiro nome personaliza o app. A numerologia tradicional se baseia no nome completo de nascimento: todos os seus nomes e sobrenomes, como na certidão. Só com o primeiro nome, seus números do nome refletem apenas parte do seu nome.",
     fieldTime: "Ela permite calcular seu ascendente e suas casas, situar com precisão a Lua (que muda de signo a cada dois dias e meio) e encontrar o animal da sua hora na astrologia chinesa. Sem ela, esses elementos faltam ou podem estar errados, e seu retrato fica incompleto. Ela costuma constar na certidão de nascimento; mesmo aproximada, ajuda.",
-    fieldPlace: "Ele dá o fuso horário exato do seu nascimento, horário de verão incluído, e suas coordenadas. Sem local, o ascendente e as casas não podem ser calculados. A cidade mais próxima basta.",
+    fieldPlace: "Ele dá o fuso horário exato do seu nascimento, horário de verão incluído, e suas coordenadas. Sem local, o ascendente e as casas não podem ser calculados. A cidade mais próxima basta. Não encontrou o local? Cole as coordenadas GPS ou um link de mapa (Google Maps, OpenStreetMap, Mapas da Apple): o fuso horário vem da cidade mais próxima, e você pode alterá-lo.",
     privacy: "Tudo o que você digita (nome, data, hora, local, histórico, pergunta do tarô) fica salvo apenas na memória do seu navegador, neste aparelho. Nenhum dado é enviado a servidor algum, e o app não tem ferramentas de estatística nem de rastreamento. Apagar os dados deste site no navegador apaga tudo. Só o botão “Compartilhar” cria um link com sua data de nascimento, que você mesmo envia."
   },
   placePlaceholder: "Digite o nome de uma cidade…",
@@ -979,5 +979,9 @@ I18N.pt = deepMerge(I18N.fr, {
   },
   privacyLine: "Suas informações ficam no seu aparelho: nada é enviado nem salvo on-line.",
   privacyTitle: "Privacidade",
-  version: { label: "Versão {v}", available: "Uma nova versão do app está disponível.", reload: "Recarregar" }
+  version: { label: "Versão {v}", available: "Uma nova versão do app está disponível.", reload: "Recarregar" },
+  placeCoordsHint: "Não encontrou o local? Cole as coordenadas GPS (por exemplo 48.8566, 2.3522) ou um link de mapa.",
+  placeNear: "perto de {city}",
+  placeTz: "Fuso horário",
+  placeTzFrom: "segundo {city}, a {km} km"
 });

@@ -710,7 +710,7 @@ I18N.tr = deepMerge(I18N.fr, {
     spread: "Üç kartlık açılım bir soruyu aydınlatır: geçmiş (ona neyin yol açtığı), şimdi (neyin söz konusu olduğu) ve gelecek (hiçbir şey değişmezse eğilim). İyice düşünülmüş bir soru için günde yalnızca bir açılım yapılır: ertesi güne kadar ekranda kalır. Kartlar 22 büyük arkana arasından, tekrar olmadan rastgele çekilir. Sorunuz cihazınızda kalır ve dışa aktarılan görselde yer almaz. Gelenek, yalnızca bir kez sorulan açık ve içten bir soru ister: belirsiz bir soru ya da başka bir cevap almak için yeniden sorulan bir soru açılımı anlamsız kılar.",
     fieldName: "Adınız uygulamayı kişiselleştirir. Geleneksel numeroloji, doğumdaki tam adınıza dayanır: nüfus kaydındaki gibi tüm adlarınız ve soyadınız. Yalnızca adınızla, adın sayıları adınızın sadece bir bölümünü yansıtır.",
     fieldTime: "Yükseleninizi ve evlerinizi hesaplamayı, iki buçuk günde bir burç değiştiren Ay'ın konumunu kesinleştirmeyi ve Çin astrolojisinde doğum saatinizin hayvanını bulmayı sağlar. Saat olmadan bu öğeler eksik kalır ya da yanlış olabilir ve portreniz eksik kalır. Genellikle doğum belgesinde yazar; yaklaşık bile olsa işe yarar.",
-    fieldPlace: "Doğumunuzun yaz saati dahil tam saat dilimini ve koordinatlarını verir. Yer olmadan yükselen ve evler hesaplanamaz. En yakın şehir yeterlidir.",
+    fieldPlace: "Doğumunuzun yaz saati dahil tam saat dilimini ve koordinatlarını verir. Yer olmadan yükselen ve evler hesaplanamaz. En yakın şehir yeterlidir. Yer bulunamadı mı? GPS koordinatlarını ya da bir harita bağlantısını (Google Maps, OpenStreetMap, Apple Haritalar) yapıştırın: saat dilimi en yakın şehirden alınır ve değiştirebilirsiniz.",
     privacy: "Girdiğiniz her şey (ad, tarih, saat, yer, geçmiş, tarot sorusu) yalnızca bu cihazdaki tarayıcınızın belleğinde saklanır. Hiçbir veri bir sunucuya gönderilmez ve uygulamada istatistik ya da izleme aracı yoktur. Tarayıcınızda bu sitenin verilerini silmek her şeyi siler. Yalnızca «Paylaş» düğmesi doğum tarihinizi içeren bir bağlantı oluşturur; onu siz gönderirsiniz."
   },
   placePlaceholder: "Bir şehir adı yazın…",
@@ -976,5 +976,9 @@ I18N.tr = deepMerge(I18N.fr, {
   },
   privacyLine: "Bilgileriniz cihazınızda kalır: hiçbir şey çevrim içi gönderilmez veya kaydedilmez.",
   privacyTitle: "Gizlilik",
-  version: { label: "Sürüm {v}", available: "Uygulamanın yeni bir sürümü var.", reload: "Yeniden yükle" }
+  version: { label: "Sürüm {v}", available: "Uygulamanın yeni bir sürümü var.", reload: "Yeniden yükle" },
+  placeCoordsHint: "Yer bulunamadı mı? GPS koordinatlarını (örneğin 48.8566, 2.3522) ya da bir harita bağlantısını yapıştırın.",
+  placeNear: "{city} yakınında",
+  placeTz: "Saat dilimi",
+  placeTzFrom: "{city} esas alındı, {km} km uzakta"
 });

@@ -714,7 +714,7 @@ I18N.de = deepMerge(I18N.fr, {
     spread: "Die Legung mit drei Karten beleuchtet eine Frage: die Vergangenheit (was dazu geführt hat), die Gegenwart (was gerade wirkt) und die Zukunft (die Tendenz, wenn sich nichts ändert). Es gibt nur eine Legung pro Tag, für eine gut überlegte Frage: Sie bleibt bis zum nächsten Tag sichtbar. Die Karten werden zufällig aus den 22 großen Arkana gezogen, ohne Wiederholung. Deine Frage bleibt auf deinem Gerät und erscheint nicht im exportierten Bild. Die Tradition verlangt eine klare und aufrichtige Frage, die nur einmal gestellt wird: Eine vage Frage oder eine, die wiederholt wird, um eine andere Antwort zu bekommen, nimmt der Legung ihren Sinn.",
     fieldName: "Dein Vorname personalisiert die App. Die klassische Numerologie stützt sich auf den vollständigen Geburtsnamen: alle Vornamen und den Familiennamen, wie in der Geburtsurkunde. Mit dem Vornamen allein spiegeln deine Namenszahlen nur einen Teil deines Namens wider.",
     fieldTime: "Mit ihr lassen sich Aszendent und Häuser berechnen, der Mond genau bestimmen (er wechselt alle zweieinhalb Tage das Zeichen) und das Tier deiner Geburtsstunde in der chinesischen Astrologie finden. Ohne sie fehlen diese Elemente oder können falsch sein, und dein Porträt bleibt unvollständig. Sie steht oft in der Geburtsurkunde; auch ungefähr hilft sie.",
-    fieldPlace: "Er liefert die genaue Zeitzone deiner Geburt, Sommerzeit inbegriffen, und ihre Koordinaten. Ohne Ort lassen sich Aszendent und Häuser nicht berechnen. Die nächstgelegene Stadt genügt.",
+    fieldPlace: "Er liefert die genaue Zeitzone deiner Geburt, Sommerzeit inbegriffen, und ihre Koordinaten. Ohne Ort lassen sich Aszendent und Häuser nicht berechnen. Die nächstgelegene Stadt genügt. Ort nicht gefunden? Füge seine GPS-Koordinaten oder einen Kartenlink ein (Google Maps, OpenStreetMap, Apple Karten): Die Zeitzone wird von der nächstgelegenen Stadt übernommen, und du kannst sie ändern.",
     privacy: "Alles, was du eingibst (Name, Datum, Uhrzeit, Ort, Verlauf, Tarot-Frage), wird nur im Speicher deines Browsers auf diesem Gerät abgelegt. Es werden keine Daten an einen Server gesendet, und die App enthält keine Statistik- oder Tracking-Werkzeuge. Wenn du die Daten dieser Website in deinem Browser löschst, ist alles gelöscht. Nur die Schaltfläche „Teilen“ erstellt einen Link mit deinem Geburtsdatum, den du selbst verschickst."
   },
   placePlaceholder: "Stadtnamen eingeben …",
@@ -980,5 +980,9 @@ I18N.de = deepMerge(I18N.fr, {
   },
   privacyLine: "Deine Angaben bleiben auf deinem Gerät: Nichts wird online gesendet oder gespeichert.",
   privacyTitle: "Datenschutz",
-  version: { label: "Version {v}", available: "Eine neue Version der App ist verfügbar.", reload: "Neu laden" }
+  version: { label: "Version {v}", available: "Eine neue Version der App ist verfügbar.", reload: "Neu laden" },
+  placeCoordsHint: "Ort nicht gefunden? Füge seine GPS-Koordinaten ein (zum Beispiel 48.8566, 2.3522) oder einen Kartenlink.",
+  placeNear: "nahe {city}",
+  placeTz: "Zeitzone",
+  placeTzFrom: "nach {city}, {km} km entfernt"
 });
