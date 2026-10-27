@@ -711,7 +711,8 @@ I18N.tr = deepMerge(I18N.fr, {
     fieldName: "Adınız uygulamayı kişiselleştirir. Geleneksel numeroloji, doğumdaki tam adınıza dayanır: nüfus kaydındaki gibi tüm adlarınız ve soyadınız. Yalnızca adınızla, adın sayıları adınızın sadece bir bölümünü yansıtır.",
     fieldTime: "Yükseleninizi ve evlerinizi hesaplamayı, iki buçuk günde bir burç değiştiren Ay'ın konumunu kesinleştirmeyi ve Çin astrolojisinde doğum saatinizin hayvanını bulmayı sağlar. Saat olmadan bu öğeler eksik kalır ya da yanlış olabilir ve portreniz eksik kalır. Genellikle doğum belgesinde yazar; yaklaşık bile olsa işe yarar.",
     fieldPlace: "Doğumunuzun yaz saati dahil tam saat dilimini ve koordinatlarını verir. Yer olmadan yükselen ve evler hesaplanamaz. En yakın şehir yeterlidir. Yer bulunamadı mı? GPS koordinatlarını ya da bir harita bağlantısını (Google Maps, OpenStreetMap, Apple Haritalar) yapıştırın: saat dilimi en yakın şehirden alınır ve değiştirebilirsiniz.",
-    privacy: "Girdiğiniz her şey (ad, tarih, saat, yer, geçmiş, tarot sorusu) yalnızca bu cihazdaki tarayıcınızın belleğinde saklanır. Hiçbir veri bir sunucuya gönderilmez ve uygulamada istatistik ya da izleme aracı yoktur. Tarayıcınızda bu sitenin verilerini silmek her şeyi siler. Yalnızca «Paylaş» düğmesi doğum tarihinizi içeren bir bağlantı oluşturur; onu siz gönderirsiniz."
+    privacy: "Girdiğiniz her şey (ad, tarih, saat, yer, geçmiş, tarot sorusu) yalnızca bu cihazdaki tarayıcınızın belleğinde saklanır. Hiçbir veri bir sunucuya gönderilmez ve uygulamada istatistik ya da izleme aracı yoktur. Tarayıcınızda bu sitenin verilerini silmek her şeyi siler. Yalnızca «Paylaş» düğmesi doğum tarihinizi içeren bir bağlantı oluşturur; onu siz gönderirsiniz.",
+    reversed: "Gerçek bir destede bazı kartlar ters çıkar: gelenek onlara, kartın enerjisinin engellendiği, geciktiği, içe döndüğü ya da aşırıya kaçtığı nüanslı bir anlam verir. Bu seçenek varsayılan olarak kapalıdır; açıldığında günün açılımındaki her kartın ters çıkma olasılığı ikide birdir. Bir sonraki açılım için geçerlidir: daha önce yapılmış bir açılım değişmez."
   },
   placePlaceholder: "Bir şehir adı yazın…",
   placeNoMatch: "Şehir bulunamadı. En yakın şehri deneyin.",
@@ -958,7 +959,99 @@ I18N.tr = deepMerge(I18N.fr, {
     spreadFlip: "Çevirmek için her karta dokunun.",
     spreadFlipAria: "Kartı çevir: {pos}",
     spreadTomorrow: "Bugünkü açılımınız yapıldı. Sonraki açılım: yarın.",
-    artCredit: "Kart çizimleri Gemini (Google) ile üretilmiştir."
+    artCredit: "Kart çizimleri Gemini (Google) ile üretilmiştir.",
+    reversedToggle: "Ters kartlar",
+    reversedBadge: "Ters",
+    reversed: {
+      fool: {
+        keywords: ["Pervasızlık", "Tereddüt", "Dağınıklık"],
+        text: "Coşku, pervasızlığa ya da atlama korkusuna çarpıyor: adımını nereye attığına bakmak için zaman ayır."
+      },
+      magician: {
+        keywords: ["Kendinden şüphe", "Manipülasyon", "Kullanılmayan yetenekler"],
+        text: "Araçlar orada ama yanlış kullanılıyor: şüphe, dağınıklık ya da aldatma isteği; doğru bir niyete geri dön."
+      },
+      priestess: {
+        keywords: ["Sırlar", "Duyulmayan sezgi", "İçe kapanma"],
+        text: "Sezgi bastırılıyor ya da gerçek gizli kalıyor: içinde duymak istemediğin şeyi dinle."
+      },
+      empress: {
+        keywords: ["Yaratıcı tıkanıklık", "Bağımlılık", "Aşırılık"],
+        text: "Yaratım duraksıyor ya da fazla vererek kendini unutuyorsun: başkalarına ve kendine gösterdiğin özeni dengele."
+      },
+      emperor: {
+        keywords: ["Katılık", "Baskıcılık", "Düzensizlik"],
+        text: "Çerçeve kafese dönüşüyor ya da elden kayıyor: ne fazla ne az, doğru kararlılığı ara."
+      },
+      hierophant: {
+        keywords: ["Sorgulama", "Dogmatizm", "Özgürlük"],
+        text: "Yerleşik kurallar ağır geliyor ya da sorgulanıyor: aktarılan tüm bilgeliği reddetmeden kendi yolunu bul."
+      },
+      lovers: {
+        keywords: ["Anlaşmazlık", "Kararsızlık", "Dengesizlik"],
+        text: "Zor bir seçim ya da sallantılı bir ilişki: bağlanmadan önce kalbini ve değerlerini uyumlu hale getir."
+      },
+      chariot: {
+        keywords: ["Yön kaybı", "Dağınıklık", "Engeller"],
+        text: "Güçler zıt yönlere çekiyor: ilerlemeden önce dizginleri yeniden ele al."
+      },
+      strength: {
+        keywords: ["Kendinden şüphe", "Sabırsızlık", "Öfke"],
+        text: "Güven sarsılıyor ya da dürtüsellik ağır basıyor: kendine karşı yumuşaklık ve sabırla yeniden bağ kur."
+      },
+      hermit: {
+        keywords: ["Yalnızlaşma", "Aşırı içe kapanma", "Öğüt reddi"],
+        text: "Yalnızlık tecride dönüşüyor: ışığını paylaşma ve başkalarınınkini kabul etme zamanı."
+      },
+      wheel: {
+        keywords: ["Aksilikler", "Değişime direnç", "Tekrar"],
+        text: "Döngü takılmış ya da ters işliyor gibi: akıntıya karşı savaşmak yerine değişime eşlik et."
+      },
+      justice: {
+        keywords: ["Taraflılık", "Dengesizlik", "İnkâr"],
+        text: "Çarpık bir karar ya da bir dengesizlik: sorumluluktaki payına dürüstçe bak."
+      },
+      hangedman: {
+        keywords: ["Durgunluk", "Gereksiz fedakârlık", "Direnç"],
+        text: "Bekleyiş hareketsizliğe dönüşüyor: gerçekten bırak ya da sonunda harekete geçmeye karar ver."
+      },
+      death: {
+        keywords: ["Direnç", "Bırakma korkusu", "Yavaşlık"],
+        text: "Bir son, bırakma korkusuyla erteleniyor: yenilenme, sayfayı çevirmeni bekliyor."
+      },
+      temperance: {
+        keywords: ["Aşırılık", "Dengesizlik", "Acele"],
+        text: "Orta yol kaybolmuş: aşırılık, acele ya da gerginlik; ölçülülüğe geri dön."
+      },
+      devil: {
+        keywords: ["Kurtuluş", "Farkındalık", "Kopuş"],
+        text: "Bağlar gevşiyor: bir farkındalık anı ve seni tutan şeyden kurtulma fırsatı."
+      },
+      tower: {
+        keywords: ["İç kriz", "Ertelenen değişim", "Sarsıntı korkusu"],
+        text: "Altüst oluş erteleniyor ya da içeride yaşanıyor: değişime katlanmaktansa ona eşlik etmek daha iyi."
+      },
+      star: {
+        keywords: ["Cesaretsizlik", "Kuşku", "Örtülü umut"],
+        text: "Umut bir süre soluyor: ışık hâlâ orada, ona yer aç."
+      },
+      moon: {
+        keywords: ["Netleşme", "Dağılan korkular", "Açığa çıkan gerçek"],
+        text: "Yanılsamalar yavaş yavaş dağılıyor: karışık olan netleşmeye başlıyor."
+      },
+      sun: {
+        keywords: ["Örtülü neşe", "Gecikmiş başarı", "Aşırı iyimserlik"],
+        text: "Işık örtülü ya da gecikiyor: biraz sabır ve açık görüşle başarı hâlâ mümkün."
+      },
+      judgement: {
+        keywords: ["Tereddüt", "Sert yargı", "Duyulmayan çağrı"],
+        text: "Çağrıya yanıt vermekte tereddüt ediyor ya da kendini çok sert yargılıyorsun: ilerlemek için kendini bağışla."
+      },
+      world: {
+        keywords: ["Yarım kalan", "Gecikme", "Son adım"],
+        text: "Döngü kapanmakta zorlanıyor: tamamlanmadan önce bitirilecek son bir şey kaldı."
+      }
+    }
   },
   tabs: {
     sky: "Şu anki gökyüzü",

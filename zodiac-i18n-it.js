@@ -715,7 +715,8 @@ I18N.it = deepMerge(I18N.fr, {
     fieldName: "Il tuo nome personalizza l'app. La numerologia tradizionale si basa sul nome completo di nascita: tutti i tuoi nomi e il cognome, come all'anagrafe. Con il solo nome di battesimo, i numeri del nome riflettono solo una parte del tuo nome.",
     fieldTime: "Permette di calcolare l'ascendente e le case, di collocare con precisione la Luna (che cambia segno ogni due giorni e mezzo) e di trovare l'animale della tua ora nell'astrologia cinese. Senza, questi elementi mancano o possono essere sbagliati e il ritratto resta incompleto. Spesso è indicata sull'atto di nascita; anche approssimativa, aiuta.",
     fieldPlace: "Fornisce il fuso orario esatto della tua nascita, ora legale compresa, e le sue coordinate. Senza luogo, ascendente e case non possono essere calcolati. Basta la città più vicina. Luogo non trovato? Incolla le coordinate GPS o un link di una mappa (Google Maps, OpenStreetMap, Mappe di Apple): il fuso orario è quello della città più vicina e puoi cambiarlo.",
-    privacy: "Tutto ciò che inserisci (nome, data, ora, luogo, cronologia, domanda dei tarocchi) è salvato solo nella memoria del tuo browser, su questo dispositivo. Nessun dato viene inviato a un server e l'app non contiene strumenti di statistica o di tracciamento. Cancellare i dati di questo sito nel browser elimina tutto. Solo il pulsante «Condividi» crea un link con la tua data di nascita, che invii tu stesso."
+    privacy: "Tutto ciò che inserisci (nome, data, ora, luogo, cronologia, domanda dei tarocchi) è salvato solo nella memoria del tuo browser, su questo dispositivo. Nessun dato viene inviato a un server e l'app non contiene strumenti di statistica o di tracciamento. Cancellare i dati di questo sito nel browser elimina tutto. Solo il pulsante «Condividi» crea un link con la tua data di nascita, che invii tu stesso.",
+    reversed: "Con un mazzo vero, alcune carte escono capovolte: la tradizione dà loro un senso sfumato, in cui l'energia della carta è bloccata, ritardata, interiorizzata o eccessiva. Questa opzione è disattivata per impostazione predefinita; se attivata, ogni carta della stesa del giorno ha una probabilità su due di uscire rovesciata. Vale per la stesa successiva: una stesa già fatta non cambia."
   },
   placePlaceholder: "Digita il nome di una città…",
   placeNoMatch: "Nessuna città trovata. Prova con la più vicina.",
@@ -962,7 +963,99 @@ I18N.it = deepMerge(I18N.fr, {
     spreadFlip: "Tocca ogni carta per girarla.",
     spreadFlipAria: "Gira la carta: {pos}",
     spreadTomorrow: "La tua stesa di oggi è fatta. Prossima stesa: domani.",
-    artCredit: "Illustrazioni delle carte generate con Gemini (Google)."
+    artCredit: "Illustrazioni delle carte generate con Gemini (Google).",
+    reversedToggle: "Carte rovesciate",
+    reversedBadge: "Rovesciata",
+    reversed: {
+      fool: {
+        keywords: ["Imprudenza", "Esitazione", "Dispersione"],
+        text: "Lo slancio si scontra con l'imprudenza o con la paura di saltare: prenditi il tempo di guardare dove metti i piedi."
+      },
+      magician: {
+        keywords: ["Insicurezza", "Manipolazione", "Talenti inespressi"],
+        text: "Gli strumenti ci sono ma sono usati male: dubbio, dispersione o tentazione di ingannare; torna a un'intenzione giusta."
+      },
+      priestess: {
+        keywords: ["Segreti", "Intuizione ignorata", "Chiusura"],
+        text: "L'intuizione è soffocata o la verità resta nascosta: ascolta ciò che rifiuti di sentire dentro di te."
+      },
+      empress: {
+        keywords: ["Blocco creativo", "Dipendenza", "Eccesso"],
+        text: "La creazione si inceppa o ti dimentichi di te dando troppo: riequilibra la cura degli altri e di te stesso."
+      },
+      emperor: {
+        keywords: ["Rigidità", "Dominio", "Disordine"],
+        text: "Il quadro diventa una gabbia o viene meno: cerca la giusta fermezza, né troppa né troppo poca."
+      },
+      hierophant: {
+        keywords: ["Messa in discussione", "Dogmatismo", "Libertà"],
+        text: "Le regole stabilite pesano o vengono messe in dubbio: trova la tua via senza rifiutare ogni saggezza tramandata."
+      },
+      lovers: {
+        keywords: ["Disaccordo", "Indecisione", "Squilibrio"],
+        text: "Una scelta difficile o una relazione instabile: allinea cuore e valori prima di impegnarti."
+      },
+      chariot: {
+        keywords: ["Direzione perduta", "Dispersione", "Ostacoli"],
+        text: "Le forze tirano in direzioni opposte: riprendi le redini prima di avanzare."
+      },
+      strength: {
+        keywords: ["Insicurezza", "Impazienza", "Rabbia"],
+        text: "La fiducia vacilla o prevale l'impulsività: ritrova dolcezza e pazienza verso te stesso."
+      },
+      hermit: {
+        keywords: ["Isolamento", "Chiusura eccessiva", "Rifiuto dei consigli"],
+        text: "La solitudine diventa isolamento: è tempo di condividere la tua luce e accettare quella degli altri."
+      },
+      wheel: {
+        keywords: ["Contrattempi", "Resistenza al cambiamento", "Ripetizione"],
+        text: "Il ciclo sembra bloccato o contrario: accompagna il cambiamento invece di lottare contro corrente."
+      },
+      justice: {
+        keywords: ["Parzialità", "Squilibrio", "Negazione"],
+        text: "Una decisione distorta o uno squilibrio: guarda con onestà la tua parte di responsabilità."
+      },
+      hangedman: {
+        keywords: ["Stagnazione", "Sacrificio inutile", "Resistenza"],
+        text: "L'attesa diventa immobilità: lascia andare davvero, o deciditi finalmente a muoverti."
+      },
+      death: {
+        keywords: ["Resistenza", "Paura di lasciare", "Lentezza"],
+        text: "Una fine è rimandata per paura di lasciare andare: il rinnovamento aspetta che tu volti pagina."
+      },
+      temperance: {
+        keywords: ["Eccesso", "Squilibrio", "Fretta"],
+        text: "La giusta misura è perduta: eccesso, fretta o tensioni; torna alla moderazione."
+      },
+      devil: {
+        keywords: ["Liberazione", "Presa di coscienza", "Distacco"],
+        text: "I legami si allentano: presa di coscienza e occasione per liberarti di ciò che ti tratteneva."
+      },
+      tower: {
+        keywords: ["Crisi interiore", "Cambiamento rimandato", "Paura dello scossone"],
+        text: "Lo sconvolgimento è rimandato o vissuto dentro di sé: meglio accompagnare il cambiamento che subirlo."
+      },
+      star: {
+        keywords: ["Scoraggiamento", "Dubbio", "Speranza velata"],
+        text: "La speranza impallidisce per un po': la luce c'è ancora, lasciale spazio."
+      },
+      moon: {
+        keywords: ["Chiarimento", "Paure che svaniscono", "Verità rivelata"],
+        text: "Le illusioni si dissolvono a poco a poco: ciò che era confuso comincia a schiarirsi."
+      },
+      sun: {
+        keywords: ["Gioia velata", "Successo rimandato", "Ottimismo eccessivo"],
+        text: "La luce è velata o tarda ad arrivare: il successo resta possibile con un po' di pazienza e lucidità."
+      },
+      judgement: {
+        keywords: ["Esitazione", "Giudizio severo", "Chiamata ignorata"],
+        text: "Esiti a rispondere alla chiamata o ti giudichi troppo duramente: perdonati per andare avanti."
+      },
+      world: {
+        keywords: ["Incompiuto", "Ritardo", "Ultimo passo"],
+        text: "Il ciclo fatica a chiudersi: resta un'ultima cosa da completare prima del compimento."
+      }
+    }
   },
   tabs: {
     sky: "Il cielo adesso",

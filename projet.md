@@ -87,6 +87,11 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 
 ## ✨ Fonctionnalités implémentées
 
+### ↻ Cartes renversées (option)
+- [x] Réglage **« ↻ Cartes renversées »** à côté du choix du jeu, désactivé par défaut, retenu sur l'appareil, avec une bulle (i)
+- [x] Activé : chaque carte du tirage du jour a une chance sur deux de sortir renversée (hasard du navigateur) ; le sens est tiré et mémorisé avec le tirage (un tirage déjà fait ne change pas si l'on modifie le réglage)
+- [x] Carte renversée affichée **tête en bas**, mention « Renversée », **sens propre** (3 mots-clés et une explication) pour les 22 arcanes, ton nuancé (énergie bloquée, retardée, intériorisée ou excessive) ; 14 langues
+
 ### 📍 Lieu par coordonnées GPS
 - [x] **Lieu introuvable parmi les 34 000 villes** : on colle ses coordonnées dans le champ Lieu (décimal, virgules décimales, degrés-minutes-secondes, lettres N/S/E/O devant ou derrière) ou un **lien de carte** (Google Maps, OpenStreetMap, Plans d'Apple) ; la liste propose « 📍 48.8584°N 2.2945°E — près de … · 3 km »
 - [x] **Fuseau horaire** déduit de la ville la plus proche ; ligne « Fuseau horaire » sous le champ, avec le choix des fuseaux des environs (frontières) et la ville de référence avec sa distance
@@ -404,14 +409,14 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | 1 (html2canvas CDN) |
 | Poids approximatif | ~460 Ko non minifié (dont ~230 Ko de traductions et ~55 Ko de données du ciel) |
-| Tests automatisés | 74 (dans `zodiac-tests.js`) |
+| Tests automatisés | 75 (dans `zodiac-tests.js`) |
 
 ---
 
 ## 🧪 Comment tester
 
 ### Tests automatiques
-Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 74 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
+Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 75 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
 La version autonome se teste de la même façon : `ZODIAC-standalone.html?test` (la suite y est intégrée ; un test supplémentaire vérifie que sa copie vierge est complète et sans donnée personnelle).
 - le calcul du Soleil, comparé à 40 positions de référence calculées par astropy (1900-2100) ;
 - signes et décans de dates de référence, équinoxes connues, jours de transition, effet de l'heure ;

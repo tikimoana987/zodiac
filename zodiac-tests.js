@@ -739,9 +739,9 @@
     }
   });
 
-  test('Bulles d\'information (i) : 34 explications complètes et traduites', () => {
+  test('Bulles d\'information (i) : 35 explications complètes et traduites', () => {
     const keys = Object.keys(I18N.fr.info);
-    assertEq(keys.length, 34, 'nombre d\'explications');
+    assertEq(keys.length, 35, 'nombre d\'explications');
     for (const lang of Object.keys(I18N)) {
       const info = I18N[lang].info;
       assert(keys.every(k => typeof info[k] === 'string' && info[k].length > 20), `${lang} : explication manquante ou trop courte`);   // 20 : le chinois est bien plus dense
@@ -1045,6 +1045,27 @@
     const c = natalChart({ y: 1982, m: 11, d: 3 }, { h: 19, min: 0 }, birthPlace('@48.8566,2.3522,Europe/Paris')), ref = natalChart({ y: 1982, m: 11, d: 3 }, { h: 19, min: 0 }, birthPlace('Paris|FR'));
     assert(c.exact && Math.abs(c.asc - ref.asc) < 0.1, `thème natal avec coordonnées ≈ Paris (${c.asc.toFixed(2)} / ${ref.asc.toFixed(2)})`);
     for (const l of Object.keys(I18N)) assert(/\{city\}/.test(I18N[l].placeNear) && /\{km\}/.test(I18N[l].placeTzFrom) && I18N[l].placeCoordsHint && I18N[l].placeTz, `${l} : textes`);
+  });
+
+  test('Cartes renversées : carte tête en bas, sens renversé, anciens tirages droits, textes', () => {
+    const keepDate = currentDate, keepSpread = store.get('zodiac_spread');
+    try {
+      currentDate = '1982-11-03';
+      saveSpread({ day: todayISO(), birth: '1982-11-03', question: 'Que dois-je comprendre ?', cards: ['sun', 'moon', 'star'], revealed: [true, true, true], reversed: [false, true, false] });
+      const html = spreadHtml(I18N.fr, 'marseille');
+      assertEq((html.match(/is-reversed/g) || []).length, 1, 'une seule carte tête en bas');
+      assert(html.includes(I18N.fr.tarot.reversed.moon.text) && html.includes(I18N.fr.tarot.cards.sun.text) && html.includes(I18N.fr.tarot.reversedBadge), 'sens renversé de la Lune, sens droit du Soleil, mention « Renversée »');
+      store.set('zodiac_spread', JSON.stringify({ day: todayISO(), birth: '1982-11-03', question: 'x', cards: ['sun', 'moon', 'star'], revealed: [true, true, true] }));
+      assert(!spreadHtml(I18N.fr, 'ws').includes('is-reversed'), 'tirage sans indication de sens : cartes droites');
+      assert(tarotCardSvg('sun', 'ws', 'Le Soleil', true).includes('is-reversed') && !tarotCardSvg('sun', 'ws', 'Le Soleil').includes('is-reversed'), 'gabarit de carte');
+      for (const l of Object.keys(I18N)) {
+        const u = I18N[l].tarot;
+        assert(u.reversedToggle && u.reversedBadge && TAROT_KEYS.every(k => u.reversed[k] && u.reversed[k].keywords.length === 3 && u.reversed[k].text), `${l} : 22 sens renversés`);
+      }
+    } finally {
+      currentDate = keepDate;
+      if (keepSpread === null) store.remove('zodiac_spread'); else store.set('zodiac_spread', keepSpread);
+    }
   });
 
   /* ---------------- Rapport ---------------- */

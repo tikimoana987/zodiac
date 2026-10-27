@@ -715,7 +715,8 @@ I18N.fr = {
     fieldName: "Votre prénom personnalise l'appli. La numérologie traditionnelle s'appuie sur le nom complet de naissance : tous vos prénoms et votre nom de famille, comme à l'état civil. Avec un prénom seul, vos nombres du nom ne reflètent qu'une partie de votre nom.",
     fieldTime: "Elle permet de calculer votre ascendant et vos maisons, de situer précisément la Lune (qui change de signe tous les deux jours et demi) et de trouver l'animal de votre heure en astrologie chinoise. Sans heure, ces éléments manquent ou peuvent être faux : votre portrait reste incomplet. Elle figure souvent sur l'acte de naissance ; même approximative, elle aide.",
     fieldPlace: "Il donne le fuseau horaire exact de votre naissance, heure d'été comprise, et ses coordonnées. Sans lieu, l'ascendant et les maisons ne peuvent pas être calculés. La ville la plus proche suffit. Lieu introuvable ? Collez ses coordonnées GPS ou un lien de carte (Google Maps, OpenStreetMap, Plans) : le fuseau horaire est déduit de la ville la plus proche, et vous pouvez le changer.",
-    privacy: "Tout ce que vous saisissez (nom, date, heure, lieu, historique, question de tarot) est enregistré uniquement dans la mémoire de votre navigateur, sur cet appareil. Aucune donnée n'est envoyée à un serveur, et l'appli ne contient aucun outil de statistiques ou de pistage. Effacer les données du site dans votre navigateur supprime tout. Seul le bouton « Partager » crée un lien contenant votre date de naissance, que vous envoyez vous-même."
+    privacy: "Tout ce que vous saisissez (nom, date, heure, lieu, historique, question de tarot) est enregistré uniquement dans la mémoire de votre navigateur, sur cet appareil. Aucune donnée n'est envoyée à un serveur, et l'appli ne contient aucun outil de statistiques ou de pistage. Effacer les données du site dans votre navigateur supprime tout. Seul le bouton « Partager » crée un lien contenant votre date de naissance, que vous envoyez vous-même.",
+    reversed: "Avec un vrai jeu, certaines cartes sortent à l'envers : la tradition leur donne un sens nuancé, où l'énergie de la carte est bloquée, retardée, intériorisée ou excessive. Cette option est désactivée par défaut ; activée, chaque carte du tirage du jour a une chance sur deux de sortir renversée. Elle s'applique au tirage suivant : un tirage déjà fait ne change pas."
   },
   placePlaceholder: "Tapez le nom d'une ville…",
   placeNoMatch: "Aucune ville trouvée. Essayez la ville la plus proche.",
@@ -962,7 +963,99 @@ I18N.fr = {
     spreadFlip: "Touchez chaque carte pour la retourner.",
     spreadFlipAria: "Retourner la carte : {pos}",
     spreadTomorrow: "Votre tirage du jour est fait. Prochain tirage : demain.",
-    artCredit: "Illustrations des cartes générées avec Gemini (Google)."
+    artCredit: "Illustrations des cartes générées avec Gemini (Google).",
+    reversedToggle: "Cartes renversées",
+    reversedBadge: "Renversée",
+    reversed: {
+      fool: {
+        keywords: ["Imprudence", "Hésitation", "Dispersion"],
+        text: "L'élan se heurte à l'imprudence ou à la peur de sauter : prendre le temps de regarder où l'on met les pieds."
+      },
+      magician: {
+        keywords: ["Doute de soi", "Manipulation", "Talents inexploités"],
+        text: "Les outils sont là mais mal employés : doute, dispersion ou tentation de tromper ; revenir à une intention juste."
+      },
+      priestess: {
+        keywords: ["Secrets", "Intuition ignorée", "Repli"],
+        text: "L'intuition est étouffée ou la vérité reste cachée : écouter ce que l'on refuse d'entendre en soi."
+      },
+      empress: {
+        keywords: ["Blocage créatif", "Dépendance", "Excès"],
+        text: "La création piétine ou l'on s'oublie à trop donner : retrouver l'équilibre entre le soin des autres et celui de soi."
+      },
+      emperor: {
+        keywords: ["Rigidité", "Domination", "Désordre"],
+        text: "Le cadre devient carcan ou se dérobe : chercher la juste fermeté, ni trop ni trop peu."
+      },
+      hierophant: {
+        keywords: ["Remise en question", "Dogmatisme", "Liberté"],
+        text: "Les règles établies pèsent ou sont questionnées : trouver sa propre voie sans rejeter toute sagesse transmise."
+      },
+      lovers: {
+        keywords: ["Désaccord", "Indécision", "Déséquilibre"],
+        text: "Un choix difficile ou une relation qui tangue : accorder le cœur et les valeurs avant de s'engager."
+      },
+      chariot: {
+        keywords: ["Perte de direction", "Dispersion", "Obstacles"],
+        text: "Les forces tirent dans des sens opposés : reprendre les rênes avant d'avancer."
+      },
+      strength: {
+        keywords: ["Doute de soi", "Impatience", "Colère"],
+        text: "La confiance vacille ou l'impulsivité l'emporte : renouer avec la douceur et la patience envers soi."
+      },
+      hermit: {
+        keywords: ["Isolement", "Repli excessif", "Refus de conseils"],
+        text: "La solitude devient isolement : il est temps de partager sa lumière et d'accepter celle des autres."
+      },
+      wheel: {
+        keywords: ["Contretemps", "Résistance au changement", "Répétition"],
+        text: "Le cycle semble bloqué ou contraire : accompagner ce qui change plutôt que lutter contre le courant."
+      },
+      justice: {
+        keywords: ["Partialité", "Déséquilibre", "Déni"],
+        text: "Une décision faussée ou un déséquilibre : regarder honnêtement sa part de responsabilité."
+      },
+      hangedman: {
+        keywords: ["Stagnation", "Sacrifice inutile", "Résistance"],
+        text: "L'attente devient immobilisme : lâcher prise vraiment, ou se décider enfin à bouger."
+      },
+      death: {
+        keywords: ["Résistance", "Peur de lâcher", "Lenteur"],
+        text: "Une fin est retardée par peur de lâcher : le renouveau attend que l'on accepte de tourner la page."
+      },
+      temperance: {
+        keywords: ["Excès", "Déséquilibre", "Précipitation"],
+        text: "Le juste milieu est perdu : excès, hâte ou tensions ; revenir à la mesure."
+      },
+      devil: {
+        keywords: ["Libération", "Prise de conscience", "Détachement"],
+        text: "Les liens se desserrent : prise de conscience et occasion de se libérer de ce qui retenait."
+      },
+      tower: {
+        keywords: ["Crise intérieure", "Changement retardé", "Peur du choc"],
+        text: "Le bouleversement est retardé ou vécu de l'intérieur : mieux vaut accompagner le changement que le subir."
+      },
+      star: {
+        keywords: ["Découragement", "Doute", "Espoir voilé"],
+        text: "L'espoir pâlit un moment : la lumière est toujours là, il faut lui laisser une place."
+      },
+      moon: {
+        keywords: ["Clarification", "Peurs qui se dissipent", "Vérité révélée"],
+        text: "Les illusions se dissipent peu à peu : ce qui était confus commence à s'éclairer."
+      },
+      sun: {
+        keywords: ["Joie voilée", "Succès retardé", "Optimisme excessif"],
+        text: "La lumière est voilée ou tarde : la réussite reste possible, avec un peu de patience et de lucidité."
+      },
+      judgement: {
+        keywords: ["Hésitation", "Jugement sévère", "Appel ignoré"],
+        text: "On hésite à répondre à l'appel ou l'on se juge trop durement : s'accorder le pardon pour avancer."
+      },
+      world: {
+        keywords: ["Inachèvement", "Retard", "Dernier pas"],
+        text: "Le cycle peine à se clore : une dernière chose reste à terminer avant l'accomplissement."
+      }
+    }
   },
   tabs: {
     sky: "Ciel du moment",

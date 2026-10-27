@@ -52,13 +52,13 @@ function dayCardKey(birthISO, dayISO){
    Illustration (zodiac-tarot-art.js) encadrée par le numéro en haut et le nom en bas, habillage selon le jeu
    (Marseille : parchemin et bandeaux jaunes ; Waite-Smith : ivoire et cadre fin). Arcane XIII sans nom à Marseille. */
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
-function tarotCardSvg(key, deck, name){
+function tarotCardSvg(key, deck, name, reversed = false){
   const numeral = tarotNumeral(key, deck), banner = deck === 'marseille' && key === 'death' ? '' : name;
   // Taille du nom adaptée à sa longueur (0,56 em par caractère, 100 unités) ; compression seulement en dernier recours
   const fs = Math.min(9.5, 100 / (Math.max(banner.length, 1) * 0.56));
   const fit = fs < 6.5 ? ` style="font-size:6.5px" textLength="100" lengthAdjust="spacingAndGlyphs"` : fs < 9.5 ? ` style="font-size:${fs.toFixed(1)}px"` : '';
   const art = typeof TAROT_ART_IMG !== 'undefined' ? TAROT_ART_IMG[key] : '';
-  return `<svg class="tarot-card deck-${deck}" viewBox="0 0 120 216" role="img" aria-label="${esc(name)}">
+  return `<svg class="tarot-card deck-${deck}${reversed ? ' is-reversed' : ''}" viewBox="0 0 120 216" role="img" aria-label="${esc(name)}">
     <rect class="t-face" x="2" y="2" width="116" height="212" rx="8"/>
     <image href="${art}" x="8" y="26" width="104" height="166" preserveAspectRatio="xMidYMid slice"/>
     <rect class="t-art-frame" x="8" y="26" width="104" height="166"/>

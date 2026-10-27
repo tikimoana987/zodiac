@@ -712,7 +712,8 @@ I18N.en = deepMerge(I18N.fr, {
     fieldName: "Your first name personalises the app. Traditional numerology relies on your full birth name: all your first names and your surname, as on your birth certificate. With a first name alone, your name numbers reflect only part of your name.",
     fieldTime: "It lets the app calculate your ascendant and houses, place the Moon precisely (it changes sign every two and a half days) and find the animal of your birth hour in Chinese astrology. Without it, these elements are missing or may be wrong, and your portrait remains incomplete. It is often on the birth certificate; even an approximate time helps.",
     fieldPlace: "It gives the exact time zone of your birth, daylight saving time included, and its coordinates. Without a place, the ascendant and houses cannot be calculated. The nearest town is enough. Place not found? Paste its GPS coordinates or a map link (Google Maps, OpenStreetMap, Apple Maps): the time zone is taken from the nearest town, and you can change it.",
-    privacy: "Everything you enter (name, date, time, place, history, tarot question) is stored only in your browser's memory, on this device. No data is sent to any server, and the app contains no analytics or tracking tools. Clearing this site's data in your browser deletes everything. Only the “Share” button creates a link containing your date of birth, which you send yourself."
+    privacy: "Everything you enter (name, date, time, place, history, tarot question) is stored only in your browser's memory, on this device. No data is sent to any server, and the app contains no analytics or tracking tools. Clearing this site's data in your browser deletes everything. Only the “Share” button creates a link containing your date of birth, which you send yourself.",
+    reversed: "With a real deck, some cards come out upside down: tradition gives them a nuanced meaning, where the card's energy is blocked, delayed, turned inward or excessive. This option is off by default; when on, each card of the daily spread has a one-in-two chance of coming out reversed. It applies to the next spread: a spread already drawn does not change."
   },
   placePlaceholder: "Type a city name…",
   placeNoMatch: "No city found. Try the nearest town.",
@@ -959,7 +960,99 @@ I18N.en = deepMerge(I18N.fr, {
     spreadFlip: "Tap each card to turn it over.",
     spreadFlipAria: "Turn over the card: {pos}",
     spreadTomorrow: "Your spread for today is done. Next spread: tomorrow.",
-    artCredit: "Card illustrations generated with Gemini (Google)."
+    artCredit: "Card illustrations generated with Gemini (Google).",
+    reversedToggle: "Reversed cards",
+    reversedBadge: "Reversed",
+    reversed: {
+      fool: {
+        keywords: ["Recklessness", "Hesitation", "Scattering"],
+        text: "Momentum meets recklessness or the fear of leaping: take time to look where you step."
+      },
+      magician: {
+        keywords: ["Self-doubt", "Manipulation", "Untapped talents"],
+        text: "The tools are there but misused: doubt, scattering or the temptation to deceive; return to a sound intention."
+      },
+      priestess: {
+        keywords: ["Secrets", "Ignored intuition", "Withdrawal"],
+        text: "Intuition is stifled or the truth stays hidden: listen to what you refuse to hear within."
+      },
+      empress: {
+        keywords: ["Creative block", "Dependence", "Excess"],
+        text: "Creation stalls or you forget yourself by giving too much: rebalance caring for others and for yourself."
+      },
+      emperor: {
+        keywords: ["Rigidity", "Domination", "Disorder"],
+        text: "The framework becomes a cage or slips away: look for the right firmness, neither too much nor too little."
+      },
+      hierophant: {
+        keywords: ["Questioning", "Dogmatism", "Freedom"],
+        text: "Established rules weigh heavy or are questioned: find your own path without rejecting all inherited wisdom."
+      },
+      lovers: {
+        keywords: ["Disagreement", "Indecision", "Imbalance"],
+        text: "A hard choice or a rocky relationship: align heart and values before committing."
+      },
+      chariot: {
+        keywords: ["Lost direction", "Scattering", "Obstacles"],
+        text: "Forces pull in opposite directions: take back the reins before moving on."
+      },
+      strength: {
+        keywords: ["Self-doubt", "Impatience", "Anger"],
+        text: "Confidence wavers or impulsiveness wins: reconnect with gentleness and patience towards yourself."
+      },
+      hermit: {
+        keywords: ["Isolation", "Excessive withdrawal", "Refusing advice"],
+        text: "Solitude turns into isolation: it is time to share your light and accept that of others."
+      },
+      wheel: {
+        keywords: ["Setbacks", "Resisting change", "Repetition"],
+        text: "The cycle seems stuck or contrary: go along with change rather than fighting the current."
+      },
+      justice: {
+        keywords: ["Bias", "Imbalance", "Denial"],
+        text: "A skewed decision or an imbalance: look honestly at your share of responsibility."
+      },
+      hangedman: {
+        keywords: ["Stagnation", "Needless sacrifice", "Resistance"],
+        text: "Waiting turns into standstill: truly let go, or finally decide to move."
+      },
+      death: {
+        keywords: ["Resistance", "Fear of letting go", "Slowness"],
+        text: "An ending is delayed by the fear of letting go: renewal waits for you to turn the page."
+      },
+      temperance: {
+        keywords: ["Excess", "Imbalance", "Haste"],
+        text: "The middle way is lost: excess, haste or tension; come back to moderation."
+      },
+      devil: {
+        keywords: ["Release", "Awareness", "Detachment"],
+        text: "The ties loosen: a moment of awareness and a chance to free yourself from what held you back."
+      },
+      tower: {
+        keywords: ["Inner crisis", "Delayed change", "Fear of upheaval"],
+        text: "The upheaval is delayed or lived inwardly: better to go along with change than to endure it."
+      },
+      star: {
+        keywords: ["Discouragement", "Doubt", "Veiled hope"],
+        text: "Hope fades for a while: the light is still there, make room for it."
+      },
+      moon: {
+        keywords: ["Clarification", "Fears fading", "Truth revealed"],
+        text: "Illusions slowly dissolve: what was confused begins to clear."
+      },
+      sun: {
+        keywords: ["Veiled joy", "Delayed success", "Overconfidence"],
+        text: "The light is veiled or slow to come: success is still possible with a little patience and clarity."
+      },
+      judgement: {
+        keywords: ["Hesitation", "Harsh judgement", "Ignored calling"],
+        text: "You hesitate to answer the call or judge yourself too harshly: forgive yourself to move forward."
+      },
+      world: {
+        keywords: ["Unfinished business", "Delay", "Last step"],
+        text: "The cycle struggles to close: one last thing remains to be completed before fulfilment."
+      }
+    }
   },
   tabs: {
     sky: "Sky right now",

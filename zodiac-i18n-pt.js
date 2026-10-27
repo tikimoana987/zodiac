@@ -714,7 +714,8 @@ I18N.pt = deepMerge(I18N.fr, {
     fieldName: "Seu primeiro nome personaliza o app. A numerologia tradicional se baseia no nome completo de nascimento: todos os seus nomes e sobrenomes, como na certidão. Só com o primeiro nome, seus números do nome refletem apenas parte do seu nome.",
     fieldTime: "Ela permite calcular seu ascendente e suas casas, situar com precisão a Lua (que muda de signo a cada dois dias e meio) e encontrar o animal da sua hora na astrologia chinesa. Sem ela, esses elementos faltam ou podem estar errados, e seu retrato fica incompleto. Ela costuma constar na certidão de nascimento; mesmo aproximada, ajuda.",
     fieldPlace: "Ele dá o fuso horário exato do seu nascimento, horário de verão incluído, e suas coordenadas. Sem local, o ascendente e as casas não podem ser calculados. A cidade mais próxima basta. Não encontrou o local? Cole as coordenadas GPS ou um link de mapa (Google Maps, OpenStreetMap, Mapas da Apple): o fuso horário vem da cidade mais próxima, e você pode alterá-lo.",
-    privacy: "Tudo o que você digita (nome, data, hora, local, histórico, pergunta do tarô) fica salvo apenas na memória do seu navegador, neste aparelho. Nenhum dado é enviado a servidor algum, e o app não tem ferramentas de estatística nem de rastreamento. Apagar os dados deste site no navegador apaga tudo. Só o botão “Compartilhar” cria um link com sua data de nascimento, que você mesmo envia."
+    privacy: "Tudo o que você digita (nome, data, hora, local, histórico, pergunta do tarô) fica salvo apenas na memória do seu navegador, neste aparelho. Nenhum dado é enviado a servidor algum, e o app não tem ferramentas de estatística nem de rastreamento. Apagar os dados deste site no navegador apaga tudo. Só o botão “Compartilhar” cria um link com sua data de nascimento, que você mesmo envia.",
+    reversed: "Num baralho de verdade, algumas cartas saem de cabeça para baixo: a tradição lhes dá um sentido matizado, em que a energia da carta está bloqueada, atrasada, interiorizada ou em excesso. Esta opção vem desativada; ativada, cada carta da tiragem do dia tem uma chance em duas de sair invertida. Ela vale para a próxima tiragem: uma tiragem já feita não muda."
   },
   placePlaceholder: "Digite o nome de uma cidade…",
   placeNoMatch: "Nenhuma cidade encontrada. Tente a cidade mais próxima.",
@@ -961,7 +962,99 @@ I18N.pt = deepMerge(I18N.fr, {
     spreadFlip: "Toque em cada carta para virá-la.",
     spreadFlipAria: "Virar a carta: {pos}",
     spreadTomorrow: "Sua tiragem de hoje está feita. Próxima tiragem: amanhã.",
-    artCredit: "Ilustrações das cartas geradas com o Gemini (Google)."
+    artCredit: "Ilustrações das cartas geradas com o Gemini (Google).",
+    reversedToggle: "Cartas invertidas",
+    reversedBadge: "Invertida",
+    reversed: {
+      fool: {
+        keywords: ["Imprudência", "Hesitação", "Dispersão"],
+        text: "O impulso esbarra na imprudência ou no medo de saltar: tome tempo para ver onde pisa."
+      },
+      magician: {
+        keywords: ["Insegurança", "Manipulação", "Talentos inexplorados"],
+        text: "As ferramentas estão ali, mas mal usadas: dúvida, dispersão ou tentação de enganar; volte a uma intenção justa."
+      },
+      priestess: {
+        keywords: ["Segredos", "Intuição ignorada", "Recolhimento"],
+        text: "A intuição está abafada ou a verdade continua oculta: ouça o que você se recusa a ouvir em si."
+      },
+      empress: {
+        keywords: ["Bloqueio criativo", "Dependência", "Excesso"],
+        text: "A criação empaca ou você se esquece de si ao dar demais: equilibre o cuidado com os outros e consigo."
+      },
+      emperor: {
+        keywords: ["Rigidez", "Dominação", "Desordem"],
+        text: "A estrutura vira prisão ou se desfaz: busque a firmeza certa, nem demais nem de menos."
+      },
+      hierophant: {
+        keywords: ["Questionamento", "Dogmatismo", "Liberdade"],
+        text: "As regras estabelecidas pesam ou são questionadas: encontre seu caminho sem rejeitar toda sabedoria herdada."
+      },
+      lovers: {
+        keywords: ["Desacordo", "Indecisão", "Desequilíbrio"],
+        text: "Uma escolha difícil ou uma relação instável: alinhe coração e valores antes de se comprometer."
+      },
+      chariot: {
+        keywords: ["Rumo perdido", "Dispersão", "Obstáculos"],
+        text: "As forças puxam em direções opostas: retome as rédeas antes de avançar."
+      },
+      strength: {
+        keywords: ["Insegurança", "Impaciência", "Raiva"],
+        text: "A confiança vacila ou a impulsividade vence: reencontre a doçura e a paciência consigo."
+      },
+      hermit: {
+        keywords: ["Isolamento", "Recolhimento excessivo", "Recusa de conselhos"],
+        text: "A solidão vira isolamento: é hora de partilhar sua luz e aceitar a dos outros."
+      },
+      wheel: {
+        keywords: ["Contratempos", "Resistência à mudança", "Repetição"],
+        text: "O ciclo parece travado ou contrário: acompanhe a mudança em vez de lutar contra a corrente."
+      },
+      justice: {
+        keywords: ["Parcialidade", "Desequilíbrio", "Negação"],
+        text: "Uma decisão enviesada ou um desequilíbrio: olhe com honestidade sua parte de responsabilidade."
+      },
+      hangedman: {
+        keywords: ["Estagnação", "Sacrifício inútil", "Resistência"],
+        text: "A espera vira imobilidade: solte de verdade, ou decida-se enfim a se mover."
+      },
+      death: {
+        keywords: ["Resistência", "Medo de soltar", "Lentidão"],
+        text: "Um fim é adiado pelo medo de soltar: a renovação espera que você vire a página."
+      },
+      temperance: {
+        keywords: ["Excesso", "Desequilíbrio", "Pressa"],
+        text: "O meio-termo se perdeu: excesso, pressa ou tensões; volte à medida."
+      },
+      devil: {
+        keywords: ["Libertação", "Tomada de consciência", "Desapego"],
+        text: "Os laços se afrouxam: tomada de consciência e chance de se libertar do que prendia."
+      },
+      tower: {
+        keywords: ["Crise interior", "Mudança adiada", "Medo do choque"],
+        text: "A reviravolta é adiada ou vivida por dentro: melhor acompanhar a mudança do que sofrê-la."
+      },
+      star: {
+        keywords: ["Desânimo", "Dúvida", "Esperança velada"],
+        text: "A esperança empalidece por um tempo: a luz continua ali, deixe um lugar para ela."
+      },
+      moon: {
+        keywords: ["Esclarecimento", "Medos que se dissipam", "Verdade revelada"],
+        text: "As ilusões se dissipam aos poucos: o que estava confuso começa a clarear."
+      },
+      sun: {
+        keywords: ["Alegria velada", "Sucesso adiado", "Otimismo excessivo"],
+        text: "A luz está velada ou demora: o sucesso continua possível com um pouco de paciência e lucidez."
+      },
+      judgement: {
+        keywords: ["Hesitação", "Julgamento severo", "Chamado ignorado"],
+        text: "Você hesita em responder ao chamado ou se julga com dureza: perdoe-se para seguir em frente."
+      },
+      world: {
+        keywords: ["Inacabado", "Atraso", "Último passo"],
+        text: "O ciclo custa a se fechar: falta concluir uma última coisa antes da realização."
+      }
+    }
   },
   tabs: {
     sky: "O céu agora",

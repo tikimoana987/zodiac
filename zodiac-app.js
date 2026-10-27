@@ -795,6 +795,7 @@ let viewMode = 'signs';       // onglet affiché : 'signs' (signe & zodiaque chi
 const VIEW_MODES = ['signs', 'natal', 'sky', 'compat', 'numbers'];   // une section par onglet ; 'numbers' : numérologie et tarot
 const VIEW_TABS = { signs: 'tabSigns', natal: 'tabNatal', sky: 'tabSky', compat: 'tabCompat', numbers: 'tabNumbers' };
 let tarotDeck = 'marseille';  // jeu de tarot : 'marseille' (par défaut) ou 'ws' (Waite-Smith) ; retenu sur l'appareil
+let tarotReversed = false;     // cartes renversées dans le tirage du jour (option, désactivée par défaut ; retenue sur l'appareil)
 const OFFLINE_ENABLED = false;  // bouton « Version hors ligne » : désactivé pour le moment (true pour le réactiver)
 const ASPECT_SYM = { conjunction: '☌', sextile: '⚹', square: '□', trine: '△', opposition: '☍' };
 let currentChart = null;   // thème affiché (roue interactive)
@@ -1073,7 +1074,8 @@ function currentSpread(){
     if (!s || s.day !== todayISO() || s.birth !== currentDate || !Array.isArray(s.cards) || s.cards.length !== 3 || !s.cards.every(k => TAROT_KEYS.includes(k))) return null;
     // Tirages de l'ancienne version (sans question ni cartes face cachée) : affichés retournés
     return { day: s.day, birth: s.birth, cards: s.cards, question: typeof s.question === 'string' ? s.question : '',
-             revealed: Array.isArray(s.revealed) && s.revealed.length === 3 ? s.revealed.map(Boolean) : [true, true, true] };
+             revealed: Array.isArray(s.revealed) && s.revealed.length === 3 ? s.revealed.map(Boolean) : [true, true, true],
+             reversed: Array.isArray(s.reversed) && s.reversed.length === 3 ? s.reversed.map(Boolean) : [false, false, false] };
   } catch { return null; }
 }
 function saveSpread(s){ store.set('zodiac_spread', JSON.stringify(s)); }
@@ -1088,11 +1090,11 @@ function spreadHtml(t, deck){
   const slots = sp.cards.map((key, i) => {
     if (!sp.revealed[i]) return `<div class="spread-slot"><div class="spread-pos">${pos[i]}</div>
       <button type="button" class="spread-flip" data-i="${i}" aria-label="${escapeHtml(u.spreadFlipAria.replace('{pos}', pos[i]))}">${tarotBackSvg(deck, pos[i])}</button></div>`;
-    const name = tarotName(t, key, deck), num = tarotNumeral(key, deck);
-    return `<div class="spread-slot${spreadJustFlipped === i ? ' just-flipped' : ''}"><div class="spread-pos">${pos[i]}</div><div class="spread-visual">${tarotCardSvg(key, deck, name)}</div>
-      <div class="tarot-title">${num ? `<span class="tarot-num">${num}</span> ` : ''}${escapeHtml(name)}</div>
-      <div class="traits">${u.cards[key].keywords.map(k => `<span class="trait-tag">${k}</span>`).join('')}</div>
-      <p class="num-text">${u.cards[key].text}</p></div>`;
+    const name = tarotName(t, key, deck), num = tarotNumeral(key, deck), rev = sp.reversed[i], m = rev ? u.reversed[key] : u.cards[key];
+    return `<div class="spread-slot${spreadJustFlipped === i ? ' just-flipped' : ''}${rev ? ' is-rev' : ''}"><div class="spread-pos">${pos[i]}</div><div class="spread-visual">${tarotCardSvg(key, deck, name, rev)}</div>
+      <div class="tarot-title">${num ? `<span class="tarot-num">${num}</span> ` : ''}${escapeHtml(name)}${rev ? ` <span class="rev-badge">${u.reversedBadge}</span>` : ''}</div>
+      <div class="traits">${m.keywords.map(k => `<span class="trait-tag">${k}</span>`).join('')}</div>
+      <p class="num-text">${m.text}</p></div>`;
   }).join('');
   return `<div class="card spread-card">${head}
     ${sp.question ? `<p class="spread-question">${escapeHtml(sp.question)}</p>` : ''}
@@ -1117,7 +1119,8 @@ function renderTarot(){
   const dLabel = new Intl.DateTimeFormat(loc(currentLang), { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(d.y, d.m - 1, d.d));
   el.innerHTML = `
     <div class="tarot-deck" role="group" aria-label="${escapeHtml(u.deck)}"><span class="tarot-deck-label">${u.deck}${infoBtn('tarot', u.tab)}</span>
-      ${TAROT_DECKS.map(k => `<button type="button" class="deck-btn" data-deck="${k}" aria-pressed="${k === deck}">${u.decks[k]}</button>`).join('')}</div>
+      ${TAROT_DECKS.map(k => `<button type="button" class="deck-btn" data-deck="${k}" aria-pressed="${k === deck}">${u.decks[k]}</button>`).join('')}
+      <span class="rev-toggle"><button type="button" class="deck-btn rev-btn" id="revToggle" aria-pressed="${tarotReversed}">↻ ${u.reversedToggle}</button>${infoBtn('reversed', u.reversedToggle)}</span></div>
     <div class="tarot-pair">${slot(tarotByNumber(birthCardNumber(birth), deck), u.birthCard, u.birthCardDesc)}${slot(dayCardKey(currentDate, on), u.dayCard, u.dayCardDesc.replace('{d}', dLabel))}</div>
     ${spreadHtml(t, deck)}
     <p class="sky-note">${u.note} ${u.artCredit}</p>`;
@@ -1126,7 +1129,9 @@ function renderTarot(){
   if (drawBtn) drawBtn.addEventListener('click', () => {
     const question = (q ? q.value : '').trim();
     if (question.length < 3) return;
-    saveSpread({ day: todayISO(), birth: currentDate, question, cards: drawCards(3), revealed: [false, false, false] });
+    const cards = drawCards(3);
+    saveSpread({ day: todayISO(), birth: currentDate, question, cards, revealed: [false, false, false],
+                 reversed: cards.map(() => tarotReversed && secureRandom() < 0.5) });   // une chance sur deux par carte, si l'option est active
     spreadDraft = '';
     renderTarot();
     const first = document.querySelector('.spread-flip'); if (first) first.focus();
@@ -1137,7 +1142,11 @@ function renderTarot(){
     spreadJustFlipped = +b.dataset.i; renderTarot(); spreadJustFlipped = -1;
     const next = document.querySelector('.spread-flip'); if (next) next.focus();
   }));
-  el.querySelectorAll('.deck-btn').forEach(b => b.addEventListener('click', () => {
+  el.querySelector('#revToggle').addEventListener('click', () => {
+    tarotReversed = !tarotReversed; store.set('zodiac_reversed', tarotReversed ? '1' : '0');   // s'applique au tirage suivant
+    renderTarot(); document.getElementById('revToggle').focus();
+  });
+  el.querySelectorAll('.deck-btn[data-deck]').forEach(b => b.addEventListener('click', () => {
     tarotDeck = b.dataset.deck; store.set('zodiac_deck', tarotDeck); renderTarot();
     el.querySelector(`.deck-btn[data-deck="${tarotDeck}"]`).focus();
   }));
@@ -1862,6 +1871,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedView = store.get('zodiac_view') === 'tarot' ? 'numbers' : store.get('zodiac_view');   // ancien onglet « Tarot » : section commune
   viewMode = VIEW_MODES.includes(savedView) ? savedView : 'signs';
   tarotDeck = TAROT_DECKS.includes(store.get('zodiac_deck')) ? store.get('zodiac_deck') : 'marseille';
+  tarotReversed = store.get('zodiac_reversed') === '1';
   const lsLang = store.get('zodiac_lang');
   const lsDate = store.get('zodiac_lastDate');
   const lsTime = store.get('zodiac_lastTime');

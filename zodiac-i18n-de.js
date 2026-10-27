@@ -715,7 +715,8 @@ I18N.de = deepMerge(I18N.fr, {
     fieldName: "Dein Vorname personalisiert die App. Die klassische Numerologie stützt sich auf den vollständigen Geburtsnamen: alle Vornamen und den Familiennamen, wie in der Geburtsurkunde. Mit dem Vornamen allein spiegeln deine Namenszahlen nur einen Teil deines Namens wider.",
     fieldTime: "Mit ihr lassen sich Aszendent und Häuser berechnen, der Mond genau bestimmen (er wechselt alle zweieinhalb Tage das Zeichen) und das Tier deiner Geburtsstunde in der chinesischen Astrologie finden. Ohne sie fehlen diese Elemente oder können falsch sein, und dein Porträt bleibt unvollständig. Sie steht oft in der Geburtsurkunde; auch ungefähr hilft sie.",
     fieldPlace: "Er liefert die genaue Zeitzone deiner Geburt, Sommerzeit inbegriffen, und ihre Koordinaten. Ohne Ort lassen sich Aszendent und Häuser nicht berechnen. Die nächstgelegene Stadt genügt. Ort nicht gefunden? Füge seine GPS-Koordinaten oder einen Kartenlink ein (Google Maps, OpenStreetMap, Apple Karten): Die Zeitzone wird von der nächstgelegenen Stadt übernommen, und du kannst sie ändern.",
-    privacy: "Alles, was du eingibst (Name, Datum, Uhrzeit, Ort, Verlauf, Tarot-Frage), wird nur im Speicher deines Browsers auf diesem Gerät abgelegt. Es werden keine Daten an einen Server gesendet, und die App enthält keine Statistik- oder Tracking-Werkzeuge. Wenn du die Daten dieser Website in deinem Browser löschst, ist alles gelöscht. Nur die Schaltfläche „Teilen“ erstellt einen Link mit deinem Geburtsdatum, den du selbst verschickst."
+    privacy: "Alles, was du eingibst (Name, Datum, Uhrzeit, Ort, Verlauf, Tarot-Frage), wird nur im Speicher deines Browsers auf diesem Gerät abgelegt. Es werden keine Daten an einen Server gesendet, und die App enthält keine Statistik- oder Tracking-Werkzeuge. Wenn du die Daten dieser Website in deinem Browser löschst, ist alles gelöscht. Nur die Schaltfläche „Teilen“ erstellt einen Link mit deinem Geburtsdatum, den du selbst verschickst.",
+    reversed: "Bei einem echten Deck kommen manche Karten verkehrt herum: Die Tradition gibt ihnen eine nuancierte Bedeutung, bei der die Energie der Karte blockiert, verzögert, nach innen gewendet oder übersteigert ist. Diese Option ist standardmäßig aus; ist sie an, kommt jede Karte der Tageslegung mit einer Wahrscheinlichkeit von eins zu zwei umgekehrt. Sie gilt für die nächste Legung: Eine bereits gezogene Legung ändert sich nicht."
   },
   placePlaceholder: "Stadtnamen eingeben …",
   placeNoMatch: "Keine Stadt gefunden. Versuche die nächstgelegene.",
@@ -962,7 +963,99 @@ I18N.de = deepMerge(I18N.fr, {
     spreadFlip: "Tippe auf jede Karte, um sie umzudrehen.",
     spreadFlipAria: "Karte umdrehen: {pos}",
     spreadTomorrow: "Deine Legung für heute ist gemacht. Nächste Legung: morgen.",
-    artCredit: "Kartenillustrationen mit Gemini (Google) erstellt."
+    artCredit: "Kartenillustrationen mit Gemini (Google) erstellt.",
+    reversedToggle: "Umgekehrte Karten",
+    reversedBadge: "Umgekehrt",
+    reversed: {
+      fool: {
+        keywords: ["Leichtsinn", "Zögern", "Zerstreuung"],
+        text: "Der Schwung stößt auf Leichtsinn oder die Angst vor dem Sprung: Nimm dir Zeit, um zu sehen, wohin du trittst."
+      },
+      magician: {
+        keywords: ["Selbstzweifel", "Manipulation", "Ungenutzte Talente"],
+        text: "Die Werkzeuge sind da, aber schlecht eingesetzt: Zweifel, Zerstreuung oder die Versuchung zu täuschen; kehre zu einer klaren Absicht zurück."
+      },
+      priestess: {
+        keywords: ["Geheimnisse", "Überhörte Intuition", "Rückzug"],
+        text: "Die Intuition wird erstickt oder die Wahrheit bleibt verborgen: Hör auf das, was du in dir nicht hören willst."
+      },
+      empress: {
+        keywords: ["Kreative Blockade", "Abhängigkeit", "Übermaß"],
+        text: "Das Schaffen stockt oder du vergisst dich vor lauter Geben: Bring die Fürsorge für andere und für dich ins Gleichgewicht."
+      },
+      emperor: {
+        keywords: ["Starrheit", "Herrschsucht", "Unordnung"],
+        text: "Der Rahmen wird zum Käfig oder entgleitet: Such die richtige Festigkeit, weder zu viel noch zu wenig."
+      },
+      hierophant: {
+        keywords: ["Infragestellung", "Dogmatismus", "Freiheit"],
+        text: "Die geltenden Regeln lasten schwer oder werden hinterfragt: Finde deinen eigenen Weg, ohne alle überlieferte Weisheit zu verwerfen."
+      },
+      lovers: {
+        keywords: ["Uneinigkeit", "Unentschlossenheit", "Ungleichgewicht"],
+        text: "Eine schwierige Wahl oder eine wackelige Beziehung: Bring Herz und Werte in Einklang, bevor du dich bindest."
+      },
+      chariot: {
+        keywords: ["Richtungslosigkeit", "Zerstreuung", "Hindernisse"],
+        text: "Die Kräfte ziehen in entgegengesetzte Richtungen: Nimm die Zügel wieder in die Hand, bevor du weitergehst."
+      },
+      strength: {
+        keywords: ["Selbstzweifel", "Ungeduld", "Wut"],
+        text: "Das Vertrauen wankt oder die Impulsivität siegt: Finde zu Sanftheit und Geduld mit dir selbst zurück."
+      },
+      hermit: {
+        keywords: ["Isolation", "Übermäßiger Rückzug", "Ratschläge ablehnen"],
+        text: "Aus Alleinsein wird Isolation: Es ist Zeit, dein Licht zu teilen und das der anderen anzunehmen."
+      },
+      wheel: {
+        keywords: ["Rückschläge", "Widerstand gegen Wandel", "Wiederholung"],
+        text: "Der Zyklus scheint festzustecken oder gegen dich zu laufen: Geh mit dem Wandel, statt gegen den Strom zu kämpfen."
+      },
+      justice: {
+        keywords: ["Voreingenommenheit", "Ungleichgewicht", "Verleugnung"],
+        text: "Eine verzerrte Entscheidung oder ein Ungleichgewicht: Sieh ehrlich auf deinen Teil der Verantwortung."
+      },
+      hangedman: {
+        keywords: ["Stillstand", "Unnötiges Opfer", "Widerstand"],
+        text: "Aus Warten wird Stillstand: Lass wirklich los oder entschließ dich endlich, dich zu bewegen."
+      },
+      death: {
+        keywords: ["Widerstand", "Angst vor dem Loslassen", "Langsamkeit"],
+        text: "Ein Ende wird aus Angst vor dem Loslassen hinausgezögert: Die Erneuerung wartet darauf, dass du die Seite umblätterst."
+      },
+      temperance: {
+        keywords: ["Übermaß", "Ungleichgewicht", "Hast"],
+        text: "Das rechte Maß ist verloren: Übermaß, Hast oder Spannungen; kehre zur Mäßigung zurück."
+      },
+      devil: {
+        keywords: ["Befreiung", "Erkenntnis", "Loslösung"],
+        text: "Die Fesseln lockern sich: ein Moment der Erkenntnis und die Chance, dich von dem zu befreien, was dich festhielt."
+      },
+      tower: {
+        keywords: ["Innere Krise", "Aufgeschobener Wandel", "Angst vor dem Umbruch"],
+        text: "Der Umbruch wird hinausgezögert oder innerlich erlebt: Besser den Wandel begleiten, als ihn zu erleiden."
+      },
+      star: {
+        keywords: ["Entmutigung", "Zweifel", "Verschleierte Hoffnung"],
+        text: "Die Hoffnung verblasst für eine Weile: Das Licht ist noch da, gib ihm Raum."
+      },
+      moon: {
+        keywords: ["Klärung", "Weichende Ängste", "Enthüllte Wahrheit"],
+        text: "Die Illusionen lösen sich allmählich auf: Was verworren war, beginnt sich zu klären."
+      },
+      sun: {
+        keywords: ["Getrübte Freude", "Verzögerter Erfolg", "Übermut"],
+        text: "Das Licht ist verschleiert oder lässt auf sich warten: Erfolg bleibt möglich, mit etwas Geduld und Klarheit."
+      },
+      judgement: {
+        keywords: ["Zögern", "Strenges Urteil", "Überhörter Ruf"],
+        text: "Du zögerst, dem Ruf zu folgen, oder urteilst zu hart über dich: Vergib dir, um weiterzugehen."
+      },
+      world: {
+        keywords: ["Unvollendetes", "Verzögerung", "Letzter Schritt"],
+        text: "Der Zyklus schließt sich nur mühsam: Eine letzte Sache bleibt noch zu vollenden."
+      }
+    }
   },
   tabs: {
     sky: "Der Himmel jetzt",

@@ -917,3 +917,9 @@ select option, select optgroup{ background-color:var(--option-bg); color:var(--t
 .coord-tz select{ background:var(--field-bg); color:var(--text); border:1px solid var(--ov-15); border-radius:10px; padding:.3rem .5rem; font-size:.82rem; color-scheme:var(--scheme); max-width:100%; }
 .coord-tz strong{ color:var(--text); }
 .po-hint{ display:inline-block; margin-top:.3rem; color:var(--gold); font-size:.82rem; }
+
+/* Cartes renversées : carte tête en bas (comme sur la table), mention « Renversée » */
+.tarot-card.is-reversed{ transform:rotate(180deg); }
+.rev-badge{ display:inline-block; vertical-align:middle; font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--purple-ink);
+  background:rgba(155,126,222,.15); border:1px solid rgba(155,126,222,.35); border-radius:999px; padding:.1rem .55rem; }
+.rev-toggle{ display:inline-flex; align-items:center; gap:.3rem; }
