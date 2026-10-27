@@ -45,7 +45,29 @@ Gemini a refusé de générer des images pendant l'intégration (« plan sans g�
 
 ---
 
-## 2. 🟡 Frise annuelle des événements (en image)
+## 2. 🔴 Portrait symbolique (prochain chantier)
+
+Idée d'une testeuse (27 octobre 2026), approuvée : aller au-delà des textes courts actuels et **relier les traditions entre elles** à partir de la date de naissance, pour un portrait plus approfondi. Toujours présenté comme une lecture symbolique (jamais comme un destin).
+
+### 2.1 Contenu envisagé
+- **Arcane du chemin de vie** (chemin de vie 4 → IV L'Empereur), avec un portrait détaillé : énergie personnelle, forces, défis, mission, leçon (quelques phrases par rubrique).
+- **Correspondances de la Golden Dawn** (tradition ésotérique de la fin du XIXe siècle) : arcane majeur du signe (Bélier → L'Empereur, Scorpion → La Mort…) et de la planète maîtresse (Vénus → L'Impératrice…) ; **carte mineure du décan** : les 36 décans correspondent aux cartes 2 à 10 des mineurs (1er décan du Bélier → Deux de Bâtons). Lien naturel avec le nom de l'appli et les mineurs déjà intégrés.
+- Un court **texte de synthèse** qui relie ces éléments.
+
+### 2.2 Décisions à prendre ❓
+- [ ] Arcane du chemin de vie et **carte de naissance actuelle** (calculée autrement : jour + mois + année réduits à 22) : les deux, expliqués, ou une seule.
+- [ ] **Nombres maîtres** : 11 (la Force à Marseille, la Justice chez Waite-Smith : suivre le jeu choisi ?), 22 (Le Mat), 33 (pas d'arcane 33 : réduire à 6, L'Amoureux ?).
+- [ ] **Planètes des décans** : la Golden Dawn suit les « faces » chaldéennes (Mars, Soleil, Vénus pour le Bélier), l'appli les triplicités (Mars, Soleil, Jupiter). Montrer la carte du décan sans changer nos planètes, avec une bulle (i) qui l'explique ⭐.
+- [ ] **Emplacement** : dans « Numérologie & tarot » ⭐, ou une sixième section ; inclus dans l'image exportée.
+- [ ] **Rubriques** du portrait (4 à 6) et longueur des textes.
+
+### 2.3 Travail à prévoir
+- [ ] Cahier des charges pour ChatGPT (comme pour les mineurs) : portraits des 22 arcanes (≈ 130 textes) et textes de liaison, dans les 14 langues ; vérification par Claude.
+- [ ] Tables de correspondances (signes, planètes, décans), logique, affichage, bulles (i), tests, documentation. Poids : du texte seulement (quelques centaines de Ko).
+
+---
+
+## 3. 🟡 Frise annuelle des événements (en image)
 
 Idée notée le 27 octobre : visualiser l'année du ciel sous forme d'une frise stylisée, belle à regarder et à partager.
 
@@ -57,7 +79,7 @@ Idée notée le 27 octobre : visualiser l'année du ciel sous forme d'une frise 
 
 ---
 
-## 3. 🟡 Console d'administration locale (non publiée)
+## 4. 🟡 Console d'administration locale (non publiée)
 
 Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serveur, donc une section « admin » cachée dans le site ne serait jamais vraiment protégée. ⭐ D'où **une console à part, présente dans le dépôt mais exclue du site en ligne**, que tu ouvres sur ton ordinateur.
 
@@ -65,12 +87,12 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 - [ ] **Dos de cartes** : choix par jeu, et ❓ selon les saisons ou les périodes de l'année (par exemple un dos par saison, ou pour les solstices et équinoxes).
 - [ ] **Habillages de l'appli (skins)** : palettes, fonds, typographies ; aperçu en direct.
 - [ ] **Fichier de réglages** (`zodiac-config.js`) produit par la console, à déposer sur GitHub comme une mise à jour ; le site en tient compte à la publication suivante.
-- [ ] Éventuellement : génération de la frise annuelle (§ 2) pour un profil, aperçu des nouvelles cartes avant publication.
+- [ ] Éventuellement : génération de la frise annuelle (§ 3) pour un profil, aperçu des nouvelles cartes avant publication.
 - [ ] Technique : la console réutilise les modules de l'appli ; `build-standalone.py` l'exclut du dossier `site/` ; ses propres tests.
 
 ---
 
-## 4. 🔴 iPhone et version hors ligne (en dernier)
+## 5. 🔴 iPhone et version hors ligne (en dernier)
 
 - [ ] **Bouton « Version hors ligne »** : il est grisé (« bientôt disponible ») ; ❓ décider s'il est réactivé, et pour quels appareils. Une seule ligne suffit : `OFFLINE_ENABLED = true` dans `zodiac-app.js`.
 - [ ] **Appli installée sur iPhone** (« Sur l'écran d'accueil ») : vérifier le fonctionnement hors ligne, la conservation des données (Safari peut effacer les données d'un site non utilisé pendant plusieurs semaines ; c'est moins vrai pour une appli installée, à vérifier), le bandeau de mise à jour, les zones sûres (encoche, barre d'accueil).
@@ -81,18 +103,19 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 
 ---
 
-## 5. 🟢 Améliorations notées en cours de route (à valider)
+## 6. 🟢 Améliorations notées en cours de route (à valider)
 
 - [ ] **Numérologie** : « nombre actif » (prénom usuel) et « nombre héréditaire » (nom de famille), en plus des nombres actuels.
 - [ ] **Tarot** : autres tirages (oui ou non, croix celtique…), si le tirage à trois cartes plaît.
-- [ ] **Dos de cartes** : le n° 6 (rose des vents) reste en réserve, par exemple pour un troisième jeu ou une saison (§ 3).
+- [ ] **Dos de cartes** : le n° 6 (rose des vents) reste en réserve, par exemple pour un troisième jeu ou une saison (§ 4).
 - [ ] **Page d'aide ou foire aux questions** : installer l'appli, importer le calendrier, enregistrer en PDF, effacer ses données, confidentialité.
+- [ ] **Turc** : les sens des 22 arcanes majeurs tutoient (sen), alors que l'interface et les arcanes mineurs vouvoient (siz) ; harmoniser au vouvoiement.
 - [ ] **Relecture des traductions** par des personnes dont c'est la langue maternelle, en priorité arabe, hindi, thaï, chinois, japonais et coréen. Les textes ont été écrits avec soin, mais une relecture humaine reste préférable.
 - [ ] **Performance sur les appareils modestes** : le flou et les étoiles animées du fond coûtent cher en dessin. Le mode « animations réduites » les coupe déjà ; ❓ envisager un allègement automatique sur les petits appareils.
 
 ---
 
-## 6. 🟢 Qualité, maintenance, technique
+## 7. 🟢 Qualité, maintenance, technique
 
 - [ ] **Licence du projet** ❓ : le dépôt est public mais sans licence, ce qui veut dire « tous droits réservés » par défaut. À décider : garder ainsi, ou choisir une licence (MIT, CC BY-NC…). Les crédits des données sont déjà dans le README, y compris la mention des illustrations générées avec Gemini.
 - [ ] **Versions à surveiller** dans le circuit GitHub : Ubuntu fixé à 24.04, Playwright 1.56, actions (checkout v7, setup-python v7, upload-pages-artifact v5, deploy-pages v5). À mettre à jour de temps en temps, quand GitHub prévient d'une fin de prise en charge.
@@ -103,24 +126,26 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 
 ---
 
-## 7. Décisions en attente (récapitulatif)
+## 8. Décisions en attente (récapitulatif)
 
 | # | Sujet | Options | ⭐ Recommandation |
 |---|---|---|---|
 | 1 | Arcanes mineurs : où ? | ✅ décidé et fait | tirage du jour, en option « jeu complet » |
 | 2 | Arcanes mineurs : illustrations | ✅ décidé et fait | un jeu scénique commun, deux habillages |
 | 3 | Arcanes mineurs : chargement | ✅ décidé et fait | tout au démarrage (plus simple hors ligne) |
-| 4 | Frise annuelle | pour tous · dans la console d'administration | à décider après les mineurs |
-| 5 | Console d'administration | périmètre exact | export 12 mois, dos de cartes, habillages, fichier de réglages |
-| 6 | Version hors ligne | réactiver · laisser grisé | à trancher avec l'étape iPhone |
-| 7 | Licence du dépôt | aucune · MIT · CC BY-NC | à discuter |
+| 4 | Portrait symbolique | voir § 2.2 (chemin de vie et carte de naissance, nombres maîtres, planètes des décans, emplacement, rubriques) | à décider ensemble avant le cahier des charges |
+| 5 | Frise annuelle | pour tous · dans la console d'administration | à décider après le portrait |
+| 6 | Console d'administration | périmètre exact | export 12 mois, dos de cartes, habillages, fichier de réglages |
+| 7 | Version hors ligne | réactiver · laisser grisé | à trancher avec l'étape iPhone |
+| 8 | Licence du dépôt | aucune · MIT · CC BY-NC | à discuter |
 
 ---
 
-## 8. Ordre proposé
+## 9. Ordre proposé
 
-1. ✅ **Arcanes mineurs** (§ 1) ; reste les 9 illustrations à refaire avec Gemini (§ 1.1).
-2. **Améliorations rapides** (§ 5) au fil de l'eau, selon tes envies.
-3. **Frise annuelle** (§ 2) et **console d'administration** (§ 3), éventuellement ensemble, puisque la console peut produire la frise.
-4. **Qualité et maintenance** (§ 6), en continu.
-5. **iPhone et version hors ligne** (§ 4), en dernier.
+1. ✅ **Arcanes mineurs** (§ 1) ; reste les 9 illustrations à refaire avec Gemini (§ 1.1), quand il refonctionnera.
+2. **Portrait symbolique** (§ 2) : décisions, cahier des charges pour ChatGPT, puis intégration.
+3. **Améliorations rapides** (§ 6) au fil de l'eau, selon tes envies.
+4. **Frise annuelle** (§ 3) et **console d'administration** (§ 4), éventuellement ensemble, puisque la console peut produire la frise.
+5. **Qualité et maintenance** (§ 7), en continu.
+6. **iPhone et version hors ligne** (§ 5), en dernier.
