@@ -714,7 +714,7 @@ I18N.en = deepMerge(I18N.fr, {
     fieldPlace: "It gives the exact time zone of your birth, daylight saving time included, and its coordinates. Without a place, the ascendant and houses cannot be calculated. The nearest town is enough. Place not found? Paste its GPS coordinates or a map link (Google Maps, OpenStreetMap, Apple Maps): the time zone is taken from the nearest town, and you can change it.",
     privacy: "Everything you enter (name, date, time, place, history, tarot question) is stored only in your browser's memory, on this device. No data is sent to any server, and the app contains no analytics or tracking tools. Clearing this site's data in your browser deletes everything. Only the “Share” button creates a link containing your date of birth, which you send yourself.",
     reversed: "With a real deck, some cards come out upside down: tradition gives them a nuanced meaning, where the card's energy is blocked, delayed, turned inward or excessive. This option is off by default; when on, each card of the daily spread has a one-in-two chance of coming out reversed. It applies to the next spread: a spread already drawn does not change.",
-    calendar: "The calendar gathers the sky events of the chosen period: new and full moons, eclipses (with their visibility from the sky map's location), starts and ends of retrograde motion, sign changes of the Sun and planets, and the exact dates of slow-planet transits (Jupiter to Pluto) on your birth chart. The .ics file imports into most calendars: open it, or use “Import” in Google Calendar or Outlook. Your calendar shows each event in your local time."
+    calendar: "The list shows the sky's appointments for the next 30 days, recalculated every day: new and full moons, eclipses (with their visibility from the sky map's location), starts and ends of retrograde motion, sign changes, and the exact dates of slow-planet transits (Jupiter to Pluto) on your birth chart. You can add those of the next 7 days to your calendar: Apple, Outlook and most calendars receive an .ics file; Google Calendar receives the events one by one (its app cannot open .ics files). A reminder at the end of the week invites you to come back and add the next one."
   },
   placePlaceholder: "Type a city name…",
   placeNoMatch: "No city found. Try the nearest town.",
@@ -1078,7 +1078,7 @@ I18N.en = deepMerge(I18N.fr, {
   placeTzFrom: "from {city}, {km} km away",
   cal: {
     title: "Sky calendar",
-    intro: "The sky's appointments for the coming months, to import into your calendar (Google Calendar, Outlook, your phone's calendar…).",
+    intro: "The sky's appointments for the next 30 days, updated every day. Add this week's to your calendar.",
     period: "Period",
     months: "{n} months",
     catMoon: "New and full moons",
@@ -1088,8 +1088,26 @@ I18N.en = deepMerge(I18N.fr, {
     catTransits: "Transits on your chart",
     button: "Download the calendar",
     count: "{n} events",
-    note: "The file is created on your device: nothing is sent online.",
+    note: "The file is created on your device: nothing is sent online, except the events you add to Google Calendar yourself.",
     direct: "direct",
-    calName: "Sky calendar — {name}"
+    calName: "Sky calendar — {name}",
+    thisWeek: "This week",
+    nextWeek: "Next week",
+    later: "Later",
+    none: "No sky appointment in the next 30 days.",
+    addWeek: "Add the next 7 days to:",
+    toolGoogle: "Google Calendar",
+    toolApple: "Apple",
+    toolOutlook: "Outlook",
+    toolOther: "Other (.ics)",
+    hintApple: "Open the downloaded file: your iPhone, iPad or Mac offers to add all the events.",
+    hintOutlook: "Open the downloaded file: Outlook adds the events to your calendar.",
+    hintOther: "Open the downloaded file, or import it into your calendar (Samsung Calendar, Thunderbird…).",
+    hintGoogle: "Tap ＋ to add an event to Google Calendar: it is then sent to Google, at your request.",
+    googleImport: "On a computer, import the whole week at once",
+    addOne: "Add to Google Calendar",
+    weekEmpty: "No sky appointment in the next 7 days: come back next week!",
+    reminder: "📅 Sky calendar: add the following week",
+    reminderDesc: "Open Zodiac & Decans to add the sky's appointments for the following week."
   }
 });

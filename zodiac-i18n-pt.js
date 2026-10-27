@@ -716,7 +716,7 @@ I18N.pt = deepMerge(I18N.fr, {
     fieldPlace: "Ele dá o fuso horário exato do seu nascimento, horário de verão incluído, e suas coordenadas. Sem local, o ascendente e as casas não podem ser calculados. A cidade mais próxima basta. Não encontrou o local? Cole as coordenadas GPS ou um link de mapa (Google Maps, OpenStreetMap, Mapas da Apple): o fuso horário vem da cidade mais próxima, e você pode alterá-lo.",
     privacy: "Tudo o que você digita (nome, data, hora, local, histórico, pergunta do tarô) fica salvo apenas na memória do seu navegador, neste aparelho. Nenhum dado é enviado a servidor algum, e o app não tem ferramentas de estatística nem de rastreamento. Apagar os dados deste site no navegador apaga tudo. Só o botão “Compartilhar” cria um link com sua data de nascimento, que você mesmo envia.",
     reversed: "Num baralho de verdade, algumas cartas saem de cabeça para baixo: a tradição lhes dá um sentido matizado, em que a energia da carta está bloqueada, atrasada, interiorizada ou em excesso. Esta opção vem desativada; ativada, cada carta da tiragem do dia tem uma chance em duas de sair invertida. Ela vale para a próxima tiragem: uma tiragem já feita não muda.",
-    calendar: "O calendário reúne os eventos do céu do período escolhido: luas novas e cheias, eclipses (com sua visibilidade a partir do local do mapa do céu), inícios e fins de retrogradação, mudanças de signo do Sol e dos planetas, e datas exatas dos trânsitos dos planetas lentos (de Júpiter a Plutão) no seu mapa natal. O arquivo .ics pode ser importado na maioria das agendas: abra-o ou use “Importar” no Google Agenda ou no Outlook. Sua agenda mostra cada evento no seu horário local."
+    calendar: "A lista mostra os encontros do céu dos próximos 30 dias, recalculados todos os dias: luas novas e cheias, eclipses (com sua visibilidade a partir do local do mapa do céu), inícios e fins de retrogradação, mudanças de signo e datas exatas dos trânsitos dos planetas lentos (de Júpiter a Plutão) no seu mapa natal. Você pode adicionar os dos próximos 7 dias à sua agenda: Apple, Outlook e a maioria das agendas recebem um arquivo .ics; o Google Agenda recebe os eventos um por um (o app dele não abre arquivos .ics). Um lembrete no fim da semana convida você a voltar para adicionar a seguinte."
   },
   placePlaceholder: "Digite o nome de uma cidade…",
   placeNoMatch: "Nenhuma cidade encontrada. Tente a cidade mais próxima.",
@@ -1080,7 +1080,7 @@ I18N.pt = deepMerge(I18N.fr, {
   placeTzFrom: "segundo {city}, a {km} km",
   cal: {
     title: "Calendário do céu",
-    intro: "Os encontros do céu dos próximos meses, para importar na sua agenda (Google Agenda, Outlook, calendário do celular…).",
+    intro: "Os encontros do céu dos próximos 30 dias, atualizados todos os dias. Adicione os da semana à sua agenda.",
     period: "Período",
     months: "{n} meses",
     catMoon: "Luas novas e cheias",
@@ -1090,8 +1090,26 @@ I18N.pt = deepMerge(I18N.fr, {
     catTransits: "Trânsitos no seu mapa",
     button: "Baixar o calendário",
     count: "{n} eventos",
-    note: "O arquivo é criado no seu aparelho: nada é enviado on-line.",
+    note: "O arquivo é criado no seu aparelho: nada é enviado on-line, exceto os eventos que você mesmo adicionar ao Google Agenda.",
     direct: "direto",
-    calName: "Calendário do céu — {name}"
+    calName: "Calendário do céu — {name}",
+    thisWeek: "Esta semana",
+    nextWeek: "Próxima semana",
+    later: "Mais adiante",
+    none: "Nenhum encontro do céu nos próximos 30 dias.",
+    addWeek: "Adicionar os próximos 7 dias a:",
+    toolGoogle: "Google Agenda",
+    toolApple: "Apple",
+    toolOutlook: "Outlook",
+    toolOther: "Outro (.ics)",
+    hintApple: "Abra o arquivo baixado: seu iPhone, iPad ou Mac propõe adicionar todos os eventos.",
+    hintOutlook: "Abra o arquivo baixado: o Outlook adiciona os eventos à sua agenda.",
+    hintOther: "Abra o arquivo baixado ou importe-o na sua agenda (Agenda Samsung, Thunderbird…).",
+    hintGoogle: "Toque em ＋ para adicionar um evento ao Google Agenda: ele é então enviado ao Google, a seu pedido.",
+    googleImport: "No computador, importar a semana inteira de uma vez",
+    addOne: "Adicionar ao Google Agenda",
+    weekEmpty: "Nenhum encontro do céu nos próximos 7 dias: volte na semana que vem!",
+    reminder: "📅 Calendário do céu: adicione a semana seguinte",
+    reminderDesc: "Abra o Zodíaco e Decanatos para adicionar os encontros do céu da semana seguinte."
   }
 });

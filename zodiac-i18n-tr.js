@@ -713,7 +713,7 @@ I18N.tr = deepMerge(I18N.fr, {
     fieldPlace: "Doğumunuzun yaz saati dahil tam saat dilimini ve koordinatlarını verir. Yer olmadan yükselen ve evler hesaplanamaz. En yakın şehir yeterlidir. Yer bulunamadı mı? GPS koordinatlarını ya da bir harita bağlantısını (Google Maps, OpenStreetMap, Apple Haritalar) yapıştırın: saat dilimi en yakın şehirden alınır ve değiştirebilirsiniz.",
     privacy: "Girdiğiniz her şey (ad, tarih, saat, yer, geçmiş, tarot sorusu) yalnızca bu cihazdaki tarayıcınızın belleğinde saklanır. Hiçbir veri bir sunucuya gönderilmez ve uygulamada istatistik ya da izleme aracı yoktur. Tarayıcınızda bu sitenin verilerini silmek her şeyi siler. Yalnızca «Paylaş» düğmesi doğum tarihinizi içeren bir bağlantı oluşturur; onu siz gönderirsiniz.",
     reversed: "Gerçek bir destede bazı kartlar ters çıkar: gelenek onlara, kartın enerjisinin engellendiği, geciktiği, içe döndüğü ya da aşırıya kaçtığı nüanslı bir anlam verir. Bu seçenek varsayılan olarak kapalıdır; açıldığında günün açılımındaki her kartın ters çıkma olasılığı ikide birdir. Bir sonraki açılım için geçerlidir: daha önce yapılmış bir açılım değişmez.",
-    calendar: "Takvim, seçilen dönemin gökyüzü olaylarını bir araya getirir: yeni ay ve dolunaylar, tutulmalar (gökyüzü haritasının konumundan görünürlükleriyle), retroların başlangıç ve bitişleri, Güneş'in ve gezegenlerin burç değişimleri ve yavaş gezegenlerin (Jüpiter'den Plüton'a) doğum haritanızdaki transitlerinin tam tarihleri. .ics dosyası çoğu ajandaya aktarılabilir: dosyayı açın ya da Google Takvim veya Outlook'ta «İçe aktar»ı kullanın. Ajandanız her olayı yerel saatinizde gösterir."
+    calendar: "Liste, her gün yeniden hesaplanan önümüzdeki 30 günün gökyüzü buluşmalarını gösterir: yeni ay ve dolunaylar, tutulmalar (gökyüzü haritasının konumundan görünürlükleriyle), retroların başlangıç ve bitişleri, burç değişimleri ve yavaş gezegenlerin (Jüpiter'den Plüton'a) doğum haritanızdaki transitlerinin tam tarihleri. Önümüzdeki 7 günün buluşmalarını ajandanıza ekleyebilirsiniz: Apple, Outlook ve çoğu ajanda bir .ics dosyası alır; Google Takvim olayları tek tek alır (uygulaması .ics dosyalarını açamaz). Hafta sonundaki bir hatırlatma, sonraki haftayı eklemek için geri gelmenizi önerir."
   },
   placePlaceholder: "Bir şehir adı yazın…",
   placeNoMatch: "Şehir bulunamadı. En yakın şehri deneyin.",
@@ -1077,7 +1077,7 @@ I18N.tr = deepMerge(I18N.fr, {
   placeTzFrom: "{city} esas alındı, {km} km uzakta",
   cal: {
     title: "Gökyüzü takvimi",
-    intro: "Önümüzdeki ayların gökyüzü buluşmaları, ajandanıza aktarmak için (Google Takvim, Outlook, telefonunuzun takvimi…).",
+    intro: "Önümüzdeki 30 günün gökyüzü buluşmaları, her gün güncellenir. Bu haftanınkileri ajandanıza ekleyin.",
     period: "Dönem",
     months: "{n} ay",
     catMoon: "Yeni ay ve dolunaylar",
@@ -1087,8 +1087,26 @@ I18N.tr = deepMerge(I18N.fr, {
     catTransits: "Haritanızdaki transitler",
     button: "Takvimi indir",
     count: "{n} olay",
-    note: "Dosya cihazınızda oluşturulur: hiçbir şey çevrim içi gönderilmez.",
+    note: "Dosya cihazınızda oluşturulur: Google Takvim'e kendiniz eklediğiniz olaylar dışında hiçbir şey çevrim içi gönderilmez.",
     direct: "düz",
-    calName: "Gökyüzü takvimi — {name}"
+    calName: "Gökyüzü takvimi — {name}",
+    thisWeek: "Bu hafta",
+    nextWeek: "Gelecek hafta",
+    later: "Daha sonra",
+    none: "Önümüzdeki 30 günde gökyüzü buluşması yok.",
+    addWeek: "Önümüzdeki 7 günü şuraya ekle:",
+    toolGoogle: "Google Takvim",
+    toolApple: "Apple",
+    toolOutlook: "Outlook",
+    toolOther: "Diğer (.ics)",
+    hintApple: "İndirilen dosyayı açın: iPhone, iPad veya Mac'iniz tüm olayları eklemeyi önerir.",
+    hintOutlook: "İndirilen dosyayı açın: Outlook olayları ajandanıza ekler.",
+    hintOther: "İndirilen dosyayı açın ya da ajandanıza aktarın (Samsung Takvim, Thunderbird…).",
+    hintGoogle: "Bir olayı Google Takvim'e eklemek için ＋'ya dokunun: olay o zaman isteğiniz üzerine Google'a gönderilir.",
+    googleImport: "Bilgisayarda tüm haftayı tek seferde içe aktar",
+    addOne: "Google Takvim'e ekle",
+    weekEmpty: "Önümüzdeki 7 günde gökyüzü buluşması yok: gelecek hafta tekrar gelin!",
+    reminder: "📅 Gökyüzü takvimi: sonraki haftayı ekleyin",
+    reminderDesc: "Sonraki haftanın gökyüzü buluşmalarını eklemek için Zodyak ve Dekanlar'ı açın."
   }
 });

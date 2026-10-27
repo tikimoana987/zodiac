@@ -717,7 +717,7 @@ I18N.it = deepMerge(I18N.fr, {
     fieldPlace: "Fornisce il fuso orario esatto della tua nascita, ora legale compresa, e le sue coordinate. Senza luogo, ascendente e case non possono essere calcolati. Basta la città più vicina. Luogo non trovato? Incolla le coordinate GPS o un link di una mappa (Google Maps, OpenStreetMap, Mappe di Apple): il fuso orario è quello della città più vicina e puoi cambiarlo.",
     privacy: "Tutto ciò che inserisci (nome, data, ora, luogo, cronologia, domanda dei tarocchi) è salvato solo nella memoria del tuo browser, su questo dispositivo. Nessun dato viene inviato a un server e l'app non contiene strumenti di statistica o di tracciamento. Cancellare i dati di questo sito nel browser elimina tutto. Solo il pulsante «Condividi» crea un link con la tua data di nascita, che invii tu stesso.",
     reversed: "Con un mazzo vero, alcune carte escono capovolte: la tradizione dà loro un senso sfumato, in cui l'energia della carta è bloccata, ritardata, interiorizzata o eccessiva. Questa opzione è disattivata per impostazione predefinita; se attivata, ogni carta della stesa del giorno ha una probabilità su due di uscire rovesciata. Vale per la stesa successiva: una stesa già fatta non cambia.",
-    calendar: "Il calendario raccoglie gli eventi del cielo del periodo scelto: lune nuove e piene, eclissi (con la loro visibilità dal luogo della mappa del cielo), inizi e fini dei moti retrogradi, cambi di segno del Sole e dei pianeti, e date esatte dei transiti dei pianeti lenti (da Giove a Plutone) sul tuo tema natale. Il file .ics si importa nella maggior parte delle agende: aprilo, oppure usa «Importa» in Google Calendar o Outlook. La tua agenda mostra ogni evento nella tua ora locale."
+    calendar: "L'elenco mostra gli appuntamenti del cielo dei prossimi 30 giorni, ricalcolati ogni giorno: lune nuove e piene, eclissi (con la loro visibilità dal luogo della mappa del cielo), inizi e fini dei moti retrogradi, cambi di segno e date esatte dei transiti dei pianeti lenti (da Giove a Plutone) sul tuo tema natale. Puoi aggiungere quelli dei prossimi 7 giorni alla tua agenda: Apple, Outlook e la maggior parte delle agende ricevono un file .ics; Google Calendar riceve gli eventi uno alla volta (la sua app non apre i file .ics). Un promemoria a fine settimana ti invita a tornare per aggiungere la successiva."
   },
   placePlaceholder: "Digita il nome di una città…",
   placeNoMatch: "Nessuna città trovata. Prova con la più vicina.",
@@ -1085,7 +1085,7 @@ I18N.it = deepMerge(I18N.fr, {
   placeTzFrom: "secondo {city}, a {km} km",
   cal: {
     title: "Calendario del cielo",
-    intro: "Gli appuntamenti del cielo dei prossimi mesi, da importare nella tua agenda (Google Calendar, Outlook, calendario del telefono…).",
+    intro: "Gli appuntamenti del cielo dei prossimi 30 giorni, aggiornati ogni giorno. Aggiungi quelli della settimana alla tua agenda.",
     period: "Periodo",
     months: "{n} mesi",
     catMoon: "Lune nuove e piene",
@@ -1095,8 +1095,26 @@ I18N.it = deepMerge(I18N.fr, {
     catTransits: "Transiti sul tuo tema",
     button: "Scarica il calendario",
     count: "{n} eventi",
-    note: "Il file viene creato sul tuo dispositivo: nulla viene inviato online.",
+    note: "Il file viene creato sul tuo dispositivo: nulla viene inviato online, tranne gli eventi che aggiungi tu stesso a Google Calendar.",
     direct: "diretto",
-    calName: "Calendario del cielo — {name}"
+    calName: "Calendario del cielo — {name}",
+    thisWeek: "Questa settimana",
+    nextWeek: "La settimana prossima",
+    later: "Più avanti",
+    none: "Nessun appuntamento del cielo nei prossimi 30 giorni.",
+    addWeek: "Aggiungi i prossimi 7 giorni a:",
+    toolGoogle: "Google Calendar",
+    toolApple: "Apple",
+    toolOutlook: "Outlook",
+    toolOther: "Altro (.ics)",
+    hintApple: "Apri il file scaricato: il tuo iPhone, iPad o Mac propone di aggiungere tutti gli eventi.",
+    hintOutlook: "Apri il file scaricato: Outlook aggiunge gli eventi alla tua agenda.",
+    hintOther: "Apri il file scaricato oppure importalo nella tua agenda (Calendario Samsung, Thunderbird…).",
+    hintGoogle: "Tocca ＋ per aggiungere un evento a Google Calendar: viene allora inviato a Google, su tua richiesta.",
+    googleImport: "Su computer, importa tutta la settimana in una volta",
+    addOne: "Aggiungi a Google Calendar",
+    weekEmpty: "Nessun appuntamento del cielo nei prossimi 7 giorni: torna la settimana prossima!",
+    reminder: "📅 Calendario del cielo: aggiungi la settimana successiva",
+    reminderDesc: "Apri Zodiaco e Decani per aggiungere gli appuntamenti del cielo della settimana successiva."
   }
 });

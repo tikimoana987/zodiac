@@ -88,10 +88,12 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 
 ## ✨ Fonctionnalités implémentées
 
-### 📅 Calendrier du ciel (.ics)
-- [x] Carte **« Calendrier du ciel »** dans « Ciel du moment » : période (3, 6 ou 12 mois), catégories à cocher (nouvelles et pleines lunes, éclipses, rétrogradations, changements de signe, transits sur votre thème), nombre d'événements, bouton « Télécharger le calendrier »
-- [x] Événements calculés sur l'appareil, instants affinés à la minute : stations de Mercure à Pluton, entrées dans un signe du Soleil à Saturne, éclipses avec leur visibilité depuis le lieu de la carte du ciel, transits exacts (< 0,05°) de Jupiter à Pluton sur les points du thème
-- [x] Fichier .ics importable dans Google Agenda, Outlook, Calendrier de l'iPhone… (heures en temps universel, transits en journée entière, lignes pliées à 75 octets) ; titres composés à partir des textes déjà traduits ; 14 langues ; absent de l'image exportée
+### 📅 Calendrier du ciel
+- [x] Carte **« Calendrier du ciel »** dans « Ciel du moment » : **liste des 30 prochains jours**, recalculée chaque jour, groupée en « Cette semaine », « Semaine prochaine », « Plus tard » ; catégories à cocher (nouvelles et pleines lunes, éclipses, rétrogradations, changements de signe, transits sur votre thème — toutes cochées par défaut)
+- [x] **Ajout des 7 prochains jours à un agenda** (pour revenir chaque semaine) : boutons **Google Agenda · Apple · Outlook · Autre (.ics)**, celui de l'appareil mis en avant (déduit sur place, sans pistage) ; Apple, Outlook et Autre téléchargent un fichier .ics ; **Google** (dont l'application ne sait pas ouvrir les .ics) : bouton **＋** sur chaque événement de la semaine (événement transmis à Google à la demande de l'utilisateur, mention affichée) et, sur ordinateur, lien d'importation de la semaine entière
+- [x] Rappel le dernier jour (« ajoutez la semaine suivante ») ; semaine vide : message au lieu d'un fichier vide ; identifiants stables (pas de doublons en cas de nouvel export)
+- [x] Événements calculés sur l'appareil, instants affinés à la minute (stations de Mercure à Pluton, entrées dans un signe du Soleil à Saturne, éclipses avec leur visibilité depuis le lieu de la carte du ciel, transits exacts de Jupiter à Pluton) ; fichier iCalendar conforme RFC 5545 ; 14 langues ; absent de l'image exportée
+- Plus tard : frise annuelle des événements en image ; console d'administration locale (non publiée) pour exporter 12 mois pour un profil, choisir les dos de cartes et les habillages
 
 ### ↻ Cartes renversées (option)
 - [x] Réglage **« ↻ Cartes renversées »** à côté du choix du jeu, désactivé par défaut, retenu sur l'appareil, avec une bulle (i)

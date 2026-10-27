@@ -1087,6 +1087,13 @@
     assert(lines[0] === 'BEGIN:VCALENDAR' && lines.includes('END:VCALENDAR') && lines.filter(l => l === 'BEGIN:VEVENT').length === 2, 'structure');
     assert(lines.every(l => new TextEncoder().encode(l).length <= 75), 'lignes de 75 octets au plus');
     assert(ics.includes('Gémeaux\\; test\\, virgule') && ics.includes('Ligne 1\\nLigne 2') && ics.includes('DTSTART;VALUE=DATE:'), 'échappements et journée entière');
+    const s2 = Date.UTC(2026, 10, 8), week = calendarWeekItems(I18N.fr, calendarEvents(s2, s2 + 30 * 864e5, { moon: true, retro: true }, []), s2);   // 8-15 nov. : Nouvelle Lune, Mercure direct
+    assert(week.length >= 3 && week.every(it => it.ms < s2 + 7 * 864e5) && week[week.length - 1].title === I18N.fr.cal.reminder && week[week.length - 1].allDay, '7 prochains jours, puis le rappel le dernier jour');
+    assertEq(calendarWeekItems(I18N.fr, [], start).length, 0, 'semaine vide : rien à exporter (pas de fichier vide)');
+    const g = googleCalLink({ ms: Date.UTC(2026, 10, 24, 14, 54), allDay: false, title: '🌕 Pleine Lune · ♊ Gémeaux', description: 'x' });
+    assert(g.startsWith('https://calendar.google.com/calendar/render?action=TEMPLATE&text=') && g.includes('dates=20261124T145400Z/20261124T152400Z'), `lien Google : ${g}`);
+    assert(googleCalLink({ ms: new Date(2026, 10, 24, 12).getTime(), allDay: true, title: 'T' }).includes('dates=20261124/20261125'), 'lien Google, journée entière');
+    for (const l of Object.keys(I18N)) { const c = I18N[l].cal; assert(c.thisWeek && c.toolGoogle && c.hintGoogle && c.weekEmpty && c.reminder && c.addOne, `${l} : textes de la liste et des outils`); }
     for (const l of Object.keys(I18N)) { const c = I18N[l].cal; assert(c && /\{n\}/.test(c.months) && /\{n\}/.test(c.count) && /\{name\}/.test(c.calName) && c.catTransits && c.direct, `${l} : textes`); }
   });
 

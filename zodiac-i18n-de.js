@@ -717,7 +717,7 @@ I18N.de = deepMerge(I18N.fr, {
     fieldPlace: "Er liefert die genaue Zeitzone deiner Geburt, Sommerzeit inbegriffen, und ihre Koordinaten. Ohne Ort lassen sich Aszendent und Häuser nicht berechnen. Die nächstgelegene Stadt genügt. Ort nicht gefunden? Füge seine GPS-Koordinaten oder einen Kartenlink ein (Google Maps, OpenStreetMap, Apple Karten): Die Zeitzone wird von der nächstgelegenen Stadt übernommen, und du kannst sie ändern.",
     privacy: "Alles, was du eingibst (Name, Datum, Uhrzeit, Ort, Verlauf, Tarot-Frage), wird nur im Speicher deines Browsers auf diesem Gerät abgelegt. Es werden keine Daten an einen Server gesendet, und die App enthält keine Statistik- oder Tracking-Werkzeuge. Wenn du die Daten dieser Website in deinem Browser löschst, ist alles gelöscht. Nur die Schaltfläche „Teilen“ erstellt einen Link mit deinem Geburtsdatum, den du selbst verschickst.",
     reversed: "Bei einem echten Deck kommen manche Karten verkehrt herum: Die Tradition gibt ihnen eine nuancierte Bedeutung, bei der die Energie der Karte blockiert, verzögert, nach innen gewendet oder übersteigert ist. Diese Option ist standardmäßig aus; ist sie an, kommt jede Karte der Tageslegung mit einer Wahrscheinlichkeit von eins zu zwei umgekehrt. Sie gilt für die nächste Legung: Eine bereits gezogene Legung ändert sich nicht.",
-    calendar: "Der Kalender vereint die Himmelsereignisse des gewählten Zeitraums: Neu- und Vollmonde, Finsternisse (mit ihrer Sichtbarkeit vom Ort der Himmelskarte), Beginn und Ende von Rückläufigkeiten, Zeichenwechsel der Sonne und der Planeten sowie die exakten Daten der Transite der langsamen Planeten (Jupiter bis Pluto) auf dein Geburtshoroskop. Die .ics-Datei lässt sich in die meisten Kalender importieren: Öffne sie oder nutze „Importieren“ in Google Kalender oder Outlook. Dein Kalender zeigt jedes Ereignis in deiner Ortszeit."
+    calendar: "Die Liste zeigt die Himmelstermine der nächsten 30 Tage, täglich neu berechnet: Neu- und Vollmonde, Finsternisse (mit ihrer Sichtbarkeit vom Ort der Himmelskarte), Beginn und Ende von Rückläufigkeiten, Zeichenwechsel sowie die exakten Daten der Transite der langsamen Planeten (Jupiter bis Pluto) auf dein Geburtshoroskop. Die Termine der nächsten 7 Tage kannst du deinem Kalender hinzufügen: Apple, Outlook und die meisten Kalender erhalten eine .ics-Datei; Google Kalender erhält die Ereignisse einzeln (seine App kann keine .ics-Dateien öffnen). Eine Erinnerung am Ende der Woche lädt dich ein, die nächste hinzuzufügen."
   },
   placePlaceholder: "Stadtnamen eingeben …",
   placeNoMatch: "Keine Stadt gefunden. Versuche die nächstgelegene.",
@@ -1081,7 +1081,7 @@ I18N.de = deepMerge(I18N.fr, {
   placeTzFrom: "nach {city}, {km} km entfernt",
   cal: {
     title: "Himmelskalender",
-    intro: "Die Himmelstermine der kommenden Monate, zum Import in deinen Kalender (Google Kalender, Outlook, Kalender des Handys …).",
+    intro: "Die Himmelstermine der nächsten 30 Tage, täglich aktualisiert. Füge die dieser Woche deinem Kalender hinzu.",
     period: "Zeitraum",
     months: "{n} Monate",
     catMoon: "Neu- und Vollmonde",
@@ -1091,8 +1091,26 @@ I18N.de = deepMerge(I18N.fr, {
     catTransits: "Transite auf dein Horoskop",
     button: "Kalender herunterladen",
     count: "{n} Ereignisse",
-    note: "Die Datei wird auf deinem Gerät erstellt: Nichts wird online gesendet.",
+    note: "Die Datei wird auf deinem Gerät erstellt: Nichts wird online gesendet, außer den Ereignissen, die du selbst zu Google Kalender hinzufügst.",
     direct: "direktläufig",
-    calName: "Himmelskalender — {name}"
+    calName: "Himmelskalender — {name}",
+    thisWeek: "Diese Woche",
+    nextWeek: "Nächste Woche",
+    later: "Später",
+    none: "Keine Himmelstermine in den nächsten 30 Tagen.",
+    addWeek: "Die nächsten 7 Tage hinzufügen zu:",
+    toolGoogle: "Google Kalender",
+    toolApple: "Apple",
+    toolOutlook: "Outlook",
+    toolOther: "Andere (.ics)",
+    hintApple: "Öffne die heruntergeladene Datei: Dein iPhone, iPad oder Mac bietet an, alle Ereignisse hinzuzufügen.",
+    hintOutlook: "Öffne die heruntergeladene Datei: Outlook fügt die Ereignisse deinem Kalender hinzu.",
+    hintOther: "Öffne die heruntergeladene Datei oder importiere sie in deinen Kalender (Samsung Kalender, Thunderbird …).",
+    hintGoogle: "Tippe auf ＋, um ein Ereignis zu Google Kalender hinzuzufügen: Es wird dann auf deinen Wunsch an Google gesendet.",
+    googleImport: "Am Computer die ganze Woche auf einmal importieren",
+    addOne: "Zu Google Kalender hinzufügen",
+    weekEmpty: "Keine Himmelstermine in den nächsten 7 Tagen: Schau nächste Woche wieder vorbei!",
+    reminder: "📅 Himmelskalender: Füge die nächste Woche hinzu",
+    reminderDesc: "Öffne Zodiak & Dekane, um die Himmelstermine der nächsten Woche hinzuzufügen."
   }
 });

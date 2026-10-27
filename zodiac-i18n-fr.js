@@ -717,7 +717,7 @@ I18N.fr = {
     fieldPlace: "Il donne le fuseau horaire exact de votre naissance, heure d'été comprise, et ses coordonnées. Sans lieu, l'ascendant et les maisons ne peuvent pas être calculés. La ville la plus proche suffit. Lieu introuvable ? Collez ses coordonnées GPS ou un lien de carte (Google Maps, OpenStreetMap, Plans) : le fuseau horaire est déduit de la ville la plus proche, et vous pouvez le changer.",
     privacy: "Tout ce que vous saisissez (nom, date, heure, lieu, historique, question de tarot) est enregistré uniquement dans la mémoire de votre navigateur, sur cet appareil. Aucune donnée n'est envoyée à un serveur, et l'appli ne contient aucun outil de statistiques ou de pistage. Effacer les données du site dans votre navigateur supprime tout. Seul le bouton « Partager » crée un lien contenant votre date de naissance, que vous envoyez vous-même.",
     reversed: "Avec un vrai jeu, certaines cartes sortent à l'envers : la tradition leur donne un sens nuancé, où l'énergie de la carte est bloquée, retardée, intériorisée ou excessive. Cette option est désactivée par défaut ; activée, chaque carte du tirage du jour a une chance sur deux de sortir renversée. Elle s'applique au tirage suivant : un tirage déjà fait ne change pas.",
-    calendar: "Le calendrier rassemble les événements du ciel de la période choisie : nouvelles et pleines lunes, éclipses (avec leur visibilité depuis le lieu de la carte du ciel), débuts et fins de rétrogradation, changements de signe du Soleil et des planètes, et dates exactes des transits des planètes lentes (Jupiter à Pluton) sur votre thème natal. Le fichier .ics s'importe dans la plupart des agendas : ouvrez-le, ou utilisez « Importer » dans Google Agenda ou Outlook. Votre agenda affiche chaque événement à votre heure locale."
+    calendar: "La liste montre les rendez-vous du ciel des 30 prochains jours, recalculés chaque jour : nouvelles et pleines lunes, éclipses (avec leur visibilité depuis le lieu de la carte du ciel), débuts et fins de rétrogradation, changements de signe, et dates exactes des transits des planètes lentes (Jupiter à Pluton) sur votre thème natal. Vous pouvez ajouter ceux des 7 prochains jours à votre agenda : Apple, Outlook et la plupart des agendas reçoivent un fichier .ics ; Google Agenda reçoit les événements un par un (son application ne sait pas ouvrir les fichiers .ics). Un rappel en fin de semaine vous invite à revenir ajouter la suivante."
   },
   placePlaceholder: "Tapez le nom d'une ville…",
   placeNoMatch: "Aucune ville trouvée. Essayez la ville la plus proche.",
@@ -1085,7 +1085,7 @@ I18N.fr = {
   placeTzFrom: "d'après {city}, à {km} km",
   cal: {
     title: "Calendrier du ciel",
-    intro: "Les rendez-vous du ciel des prochains mois, à importer dans votre agenda (Google Agenda, Outlook, Calendrier du téléphone…).",
+    intro: "Les rendez-vous du ciel des 30 prochains jours, mis à jour chaque jour. Ajoutez ceux de la semaine à votre agenda.",
     period: "Période",
     months: "{n} mois",
     catMoon: "Nouvelles et pleines lunes",
@@ -1095,8 +1095,26 @@ I18N.fr = {
     catTransits: "Transits sur votre thème",
     button: "Télécharger le calendrier",
     count: "{n} événements",
-    note: "Le fichier est créé sur votre appareil : rien n'est envoyé en ligne.",
+    note: "Le fichier est créé sur votre appareil : rien n'est envoyé en ligne, sauf les événements que vous ajoutez vous-même à Google Agenda.",
     direct: "direct",
-    calName: "Calendrier du ciel — {name}"
+    calName: "Calendrier du ciel — {name}",
+    thisWeek: "Cette semaine",
+    nextWeek: "Semaine prochaine",
+    later: "Plus tard",
+    none: "Aucun rendez-vous du ciel dans les 30 prochains jours.",
+    addWeek: "Ajouter les 7 prochains jours à :",
+    toolGoogle: "Google Agenda",
+    toolApple: "Apple",
+    toolOutlook: "Outlook",
+    toolOther: "Autre (.ics)",
+    hintApple: "Ouvrez le fichier téléchargé : votre iPhone, iPad ou Mac propose d'ajouter tous les événements.",
+    hintOutlook: "Ouvrez le fichier téléchargé : Outlook ajoute les événements à votre agenda.",
+    hintOther: "Ouvrez le fichier téléchargé, ou importez-le dans votre agenda (Agenda Samsung, Thunderbird…).",
+    hintGoogle: "Touchez ＋ pour ajouter un événement à Google Agenda : il est alors transmis à Google, à votre demande.",
+    googleImport: "Sur ordinateur, importer toute la semaine d'un coup",
+    addOne: "Ajouter à Google Agenda",
+    weekEmpty: "Aucun rendez-vous du ciel dans les 7 prochains jours : revenez la semaine prochaine !",
+    reminder: "📅 Calendrier du ciel : ajoutez la semaine suivante",
+    reminderDesc: "Ouvrez Zodiaque & Décans pour ajouter les rendez-vous du ciel de la semaine suivante."
   }
 };

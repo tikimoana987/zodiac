@@ -1065,16 +1065,21 @@ function renderNumbers(){
 /* ============================================================
    TAROT (quatrième onglet) — carte de naissance et carte du jour (date de lecture de l'horoscope)
    ============================================================ */
-/* ---------- Calendrier du ciel (fichier .ics) ----------
-   Période et catégories choisies ; événements calculés sur l'appareil ; titres composés à partir des textes existants. */
-let calMonths = 3;
-const calCats = { moon: true, eclipses: true, retro: true, ingress: false, transits: true };
-let calCountTimer = null, calCountKey = '';
-function calendarSpan(){ const start = Date.now(); return [start, start + calMonths * 30.44 * 864e5]; }
-function calendarItems(){
-  const [start, end] = calendarSpan();
-  const points = natalPoints(natalChart(parseISODate(currentDate), parseTime(currentTime), birthPlace(currentBirthPlace)), !!parseTime(currentTime));
-  return calendarEvents(start, end, calCats, points);
+/* ---------- Calendrier du ciel ----------
+   Liste des 30 prochains jours (recalculée chaque jour) ; ajout des 7 prochains jours à un agenda : fichier .ics (Apple,
+   Outlook, autres) ou événement par événement pour Google Agenda (son application ne sait pas ouvrir les .ics). */
+const CAL_LIST_DAYS = 30, CAL_EXPORT_DAYS = 7, CAL_TOOLS = ['google', 'apple', 'outlook', 'other'];
+const calCats = { moon: true, eclipses: true, retro: true, ingress: true, transits: true };
+let calTool = '', calCache = null;
+/* Événements des 30 prochains jours (mis en mémoire pour la journée, la personne et les catégories) */
+function calendarEventsNow(){
+  const key = `${currentDate}|${currentTime}|${currentBirthPlace}|${JSON.stringify(calCats)}|${todayISO()}`;
+  if (!calCache || calCache.key !== key) {
+    const start = Date.now(), t = parseTime(currentTime);
+    const points = natalPoints(natalChart(parseISODate(currentDate), t, birthPlace(currentBirthPlace)), !!t);
+    calCache = { key, start, events: calendarEvents(start, start + CAL_LIST_DAYS * CAL_DAY, calCats, points) };
+  }
+  return calCache;
 }
 /* Titre et description d'un événement, dans la langue choisie */
 function calendarText(t, e){
@@ -1096,43 +1101,81 @@ function calendarText(t, e){
   return { title: `${pl(e.body)} ${ASPECT_SYM[e.type]} ${n.aspectNames[e.type]} ${pSym(e.point)} ${pName(e.point)}`,
            description: `${capitalize(n.aspectMeanings[e.type])} — ${t.rulers[e.body]} (${bare(n.domains[e.body])}) ↔ ${pName(e.point)} (${pDom(e.point)})` };
 }
-function downloadCalendar(){
-  const t = I18N[currentLang], events = calendarItems();
-  const items = events.map(e => ({ uid: `${e.kind}-${e.body || e.type || e.phase || ''}-${e.point || ''}-${Math.round(e.ms / 60000)}`,
-                                   ms: e.ms, allDay: e.kind === 'transit', ...calendarText(t, e) }));
+function calendarItem(t, e){
+  return { uid: `${e.kind}-${e.body || e.type || e.phase || ''}-${e.point || ''}-${Math.round(e.ms / 60000)}`, ms: e.ms, allDay: e.kind === 'transit', ...calendarText(t, e) };
+}
+/* Événements des 7 prochains jours, suivis du rappel « ajoutez la semaine suivante » le dernier jour */
+function calendarWeekItems(t, events, start){
+  const items = events.filter(e => e.ms < start + CAL_EXPORT_DAYS * CAL_DAY).map(e => calendarItem(t, e));
+  if (items.length) items.push({ uid: `reminder-${icsDay(start)}`, ms: start + (CAL_EXPORT_DAYS - 1) * CAL_DAY, allDay: true, title: t.cal.reminder, description: t.cal.reminderDesc });
+  return items;
+}
+/* Lien Google Agenda pour un événement (l'événement est transmis à Google quand l'utilisateur le suit) */
+function googleCalLink(it){
+  const dates = it.allDay ? `${icsDay(it.ms)}/${icsDay(it.ms + CAL_DAY)}` : `${icsStamp(it.ms)}/${icsStamp(it.ms + 30 * 60e3)}`;
+  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(it.title)}&dates=${dates}&details=${encodeURIComponent(it.description || '')}`;
+}
+/* Outil probable selon l'appareil (déduit sur place, sans pistage) */
+function suggestedCalTool(){
+  const ua = navigator.userAgent || '';
+  return /Android/i.test(ua) ? 'google' : /iPhone|iPad|iPod|Macintosh/i.test(ua) ? 'apple' : /Windows/i.test(ua) ? 'outlook' : 'other';
+}
+const isPhone = () => /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
+/* Téléchargement du fichier .ics des 7 prochains jours ; rien si la semaine est vide */
+function downloadWeek(){
+  const t = I18N[currentLang], { events, start } = calendarEventsNow(), items = calendarWeekItems(t, events, start);
+  if (!items.length) { showToast(t.cal.weekEmpty, 3500); return false; }
   const name = t.cal.calName.replace('{name}', currentName || formatBirth(currentDate, null, currentLang));
   const url = URL.createObjectURL(new Blob([buildIcs(name, items)], { type: 'text/calendar;charset=utf-8' }));
   const a = document.createElement('a'); a.href = url; a.download = 'zodiac-sky-calendar.ics';
   document.body.appendChild(a); a.click();
   setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 2000);
-  showToast(t.cal.count.replace('{n}', items.length), 2500);
+  return true;
 }
 function renderCalendar(){
   const el = document.getElementById('calCard'); if (!el || !currentDate) return;
-  const c = I18N[currentLang].cal;
+  const c = I18N[currentLang].cal, sugg = suggestedCalTool();
   const cat = (k, label) => `<label class="cal-cat"><input type="checkbox" data-cat="${k}"${calCats[k] ? ' checked' : ''}> ${label}</label>`;
+  const toolLabel = { google: c.toolGoogle, apple: c.toolApple, outlook: c.toolOutlook, other: c.toolOther };
+  const hint = { google: c.hintGoogle, apple: c.hintApple, outlook: c.hintOutlook, other: c.hintOther }[calTool] || '';
   el.innerHTML = `<h3>📅 ${c.title}${infoBtn('calendar', c.title)}</h3><p class="sky-sub">${c.intro}</p>
-    <div class="cal-form">
-      <label class="cal-period">${c.period} <select id="calMonths">${[3, 6, 12].map(n => `<option value="${n}"${n === calMonths ? ' selected' : ''}>${c.months.replace('{n}', n)}</option>`).join('')}</select></label>
-      <div class="cal-cats">${cat('moon', c.catMoon)}${cat('eclipses', c.catEclipses)}${cat('retro', c.catRetro)}${cat('ingress', c.catIngress)}${cat('transits', c.catTransits)}</div>
-      <div class="cal-actions"><button type="button" class="btn-reveal" id="calBtn">${c.button}</button><span class="cal-count" id="calCount" aria-live="polite"></span></div>
-    </div>
+    <div class="cal-cats">${cat('moon', c.catMoon)}${cat('eclipses', c.catEclipses)}${cat('retro', c.catRetro)}${cat('ingress', c.catIngress)}${cat('transits', c.catTransits)}</div>
+    <div class="cal-list" id="calList" aria-live="polite"></div>
+    <div class="cal-tools"><span class="cal-tools-label">${c.addWeek}</span>
+      ${CAL_TOOLS.map(k => `<button type="button" class="deck-btn cal-tool${k === sugg ? ' suggested' : ''}" data-tool="${k}" aria-pressed="${calTool === k}">${toolLabel[k]}</button>`).join('')}</div>
+    ${hint ? `<p class="cal-hint">${hint}${calTool === 'google' && !isPhone() ? ` <a href="#" id="calGoogleImport">${c.googleImport}</a>` : ''}</p>` : ''}
     <p class="sky-note">${c.note}</p>`;
-  el.querySelector('#calMonths').addEventListener('change', e => { calMonths = +e.target.value; scheduleCalendarCount(); });
-  el.querySelectorAll('.cal-cat input').forEach(i => i.addEventListener('change', () => { calCats[i.dataset.cat] = i.checked; scheduleCalendarCount(); }));
-  el.querySelector('#calBtn').addEventListener('click', downloadCalendar);
-  calCountKey = ''; scheduleCalendarCount();
+  el.querySelectorAll('.cal-cat input').forEach(i => i.addEventListener('change', () => { calCats[i.dataset.cat] = i.checked; fillCalendarList(); }));
+  el.querySelectorAll('.cal-tool').forEach(b => b.addEventListener('click', () => {
+    calTool = b.dataset.tool;
+    if (calTool !== 'google') downloadWeek();
+    renderCalendar(); el.querySelector(`.cal-tool[data-tool="${calTool}"]`).focus();
+  }));
+  const imp = el.querySelector('#calGoogleImport');
+  if (imp) imp.addEventListener('click', e => {
+    e.preventDefault();
+    if (downloadWeek()) window.open('https://calendar.google.com/calendar/r/settings/export', '_blank', 'noopener');
+  });
+  setTimeout(fillCalendarList, 30);   // calcul juste après l'affichage
 }
-/* Nombre d'événements, calculé juste après l'affichage (sans le ralentir) */
-function scheduleCalendarCount(){
-  clearTimeout(calCountTimer);
-  calCountTimer = setTimeout(() => {
-    const out = document.getElementById('calCount'); if (!out) return;
-    const key = `${currentDate}|${currentTime}|${currentBirthPlace}|${calMonths}|${JSON.stringify(calCats)}|${new Date().toDateString()}`;
-    if (key === calCountKey) return;
-    calCountKey = key;
-    out.textContent = I18N[currentLang].cal.count.replace('{n}', calendarItems().length);
-  }, 150);
+/* Liste groupée : cette semaine, semaine prochaine, plus tard ; boutons ＋ (Google) sur les événements de la semaine */
+function fillCalendarList(){
+  const box = document.getElementById('calList'); if (!box) return;
+  const t = I18N[currentLang], c = t.cal, { events, start } = calendarEventsNow();
+  if (!events.length) { box.innerHTML = `<p class="sky-none">${c.none}</p>`; return; }
+  const fmtDay = new Intl.DateTimeFormat(loc(currentLang), { weekday: 'short', day: 'numeric', month: 'short' });
+  const fmtTime = new Intl.DateTimeFormat(loc(currentLang), { hour: '2-digit', minute: '2-digit' });
+  const groups = [[c.thisWeek, 0, 7], [c.nextWeek, 7, 14], [c.later, 14, CAL_LIST_DAYS]];
+  box.innerHTML = groups.map(([label, a, b]) => {
+    const list = events.filter(e => e.ms >= start + a * CAL_DAY && e.ms < start + b * CAL_DAY);
+    if (!list.length) return '';
+    return `<h4 class="cal-group">${label}</h4><ul class="cal-items">${list.map(e => {
+      const it = calendarItem(t, e), d = new Date(e.ms);
+      const when = it.allDay ? fmtDay.format(d) : `${fmtDay.format(d)} · ${fmtTime.format(d)}`;
+      const plus = calTool === 'google' && a === 0 ? `<a class="cal-add" href="${escapeHtml(googleCalLink(it))}" target="_blank" rel="noopener" aria-label="${escapeHtml(c.addOne + ' : ' + it.title)}" title="${escapeHtml(c.addOne)}">＋</a>` : '';
+      return `<li class="cal-item"><span class="cal-when">${when}</span><span class="cal-what">${escapeHtml(it.title)}</span>${plus}</li>`;
+    }).join('')}</ul>`;
+  }).join('');
 }
 
 /* ---------- Tirage du jour (rituel) ----------

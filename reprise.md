@@ -128,7 +128,7 @@ Traduit dans les 7 langues, couvert par un test, validé contre une référence 
 - Paramètres de l'adresse après « # » (`readUrlParams`, `updateURL`) : `date`, `time`, `place`, `lang`. Le mode test reste `?test` (lu sur `location.search`). Promesse affichée à l'utilisateur : rien n'est envoyé en ligne — ne jamais ajouter d'appel réseau, de statistiques ou de pistage.
 - `APP_VERSION` est remplacé par build-standalone.py (« date · empreinte ») ; bandeau de mise à jour sur `controllerchange` (seulement si un service worker contrôlait déjà la page).
 - Lieu par coordonnées : `parseCoords`, `nearestPlaces`, `coordsPlace` (zodiac-places.js), identifiant `@lat,lon,fuseau` lu par `birthPlace`.
-- Pistes restantes (dans l'ordre validé) : ✅ 1 version et bandeau ; ✅ 3 lieux absents (coordonnées GPS) ; ✅ 2 cartes renversées (option) ; ✅ 4 calendrier .ics ; 5 fiche du thème à imprimer ; 6 arcanes mineurs ; puis iPhone / version hors ligne en dernier.
+- Pistes restantes (dans l'ordre validé) : ✅ 1 version et bandeau ; ✅ 3 lieux absents (coordonnées GPS) ; ✅ 2 cartes renversées (option) ; ✅ 4 calendrier du ciel (liste 30 jours, export 7 jours, Google événement par événement) ; 5 fiche du thème à imprimer ; 6 arcanes mineurs ; plus tard : frise annuelle, console d'administration locale non publiée (export 12 mois par profil, dos de cartes, habillages, fichier de réglages déposé sur GitHub) ; puis iPhone / version hors ligne en dernier.
 
 ### Organisation du résultat
 - Cinq sections, une par onglet (`VIEW_MODES` : signs, natal, sky, compat, numbers) ; toutes sont dans `#profileContent` (exportée telle quelle : seule la section affichée est visible). La numérologie s'affiche dans `#numbersBody`, le tarot dans `#tarotBody`, tous deux dans la section `numbers`.

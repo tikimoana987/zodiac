@@ -925,11 +925,20 @@ select option, select optgroup{ background-color:var(--option-bg); color:var(--t
 .rev-toggle{ display:inline-flex; align-items:center; gap:.3rem; }
 
 /* Calendrier du ciel */
-.cal-form{ display:grid; gap:.8rem; margin-top:.6rem; }
-.cal-period{ color:var(--muted); font-size:.88rem; display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; }
-.cal-period select{ background:var(--field-bg); color:var(--text); border:1px solid var(--ov-15); border-radius:10px; padding:.4rem .6rem; color-scheme:var(--scheme); }
-.cal-cats{ display:flex; flex-wrap:wrap; gap:.4rem 1rem; }
+.cal-cats{ display:flex; flex-wrap:wrap; gap:.4rem 1rem; margin:.6rem 0 .4rem; }
 .cal-cat{ display:inline-flex; align-items:center; gap:.4rem; color:var(--text); font-size:.9rem; cursor:pointer; }
 .cal-cat input{ accent-color:var(--gold); width:1.05rem; height:1.05rem; }
-.cal-actions{ display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
-.cal-count{ color:var(--muted); font-size:.85rem; }
+.cal-group{ font-size:.75rem; text-transform:uppercase; letter-spacing:.12em; color:var(--gold); margin:.9rem 0 .4rem; }
+.cal-items{ list-style:none; display:grid; gap:.35rem; }
+.cal-item{ display:grid; grid-template-columns:minmax(7.5rem, auto) 1fr auto; gap:.3rem .8rem; align-items:center; padding:.45rem .7rem; border-radius:10px; background:rgba(255,255,255,.03); }
+.cal-when{ color:var(--muted); font-size:.82rem; white-space:nowrap; }
+.cal-what{ color:var(--text); font-size:.9rem; }
+.cal-add{ display:inline-flex; align-items:center; justify-content:center; width:2rem; height:2rem; border-radius:50%; border:1px solid var(--gold);
+  color:var(--gold); text-decoration:none; font-size:1.1rem; font-weight:700; }
+.cal-add:hover, .cal-add:focus-visible{ background:var(--gold); color:var(--on-gold); outline:none; }
+.cal-tools{ display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; margin-top:1rem; }
+.cal-tools-label{ color:var(--muted); font-size:.88rem; margin-inline-end:.2rem; }
+.cal-tool.suggested{ border-color:var(--gold); }
+.cal-hint{ color:var(--text); font-size:.86rem; margin-top:.6rem; }
+.cal-hint a{ color:var(--gold); }
+@media (max-width:640px){ .cal-item{ grid-template-columns:1fr auto; } .cal-when{ grid-column:1 / -1; } }
