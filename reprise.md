@@ -25,8 +25,8 @@ L'expérience inclut **une transition cinématique** (viseur balaie le ciel → 
 ## 📦 État actuel du code
 
 **17 fichiers dans un même dossier**, ~460 Ko, ouverture par double-clic sur `ZODIAC.html` (aucun serveur). **Version autonome** : `ZODIAC-standalone.html`, un seul fichier (~650 Ko), produit par `python3 build-standalone.py`. Chargement par `<script src>` classiques, dans cet ordre :
-`zodiac-data.js` → `zodiac-sky-data.js` → `zodiac-i18n.js` → `zodiac-i18n-fr.js` puis `-en`, `-es`, `-zh`, `-ru`, `-de`, `-it` → `zodiac-astro.js` → `zodiac-planets.js` → `zodiac-skymap.js` → `zodiac-observe.js` → `zodiac-places-data.js` → `zodiac-places.js` → `zodiac-natal.js` → `zodiac-transits.js` → `zodiac-calendar.js` → `zodiac-numerology.js` → `zodiac-tarot.js` → `zodiac-app.js`.
-Styles dans `zodiac.css`. Tests dans `zodiac-tests.js` (77 tests, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
+`zodiac-data.js` → `zodiac-sky-data.js` → `zodiac-i18n.js` → `zodiac-i18n-fr.js` puis `-en`, `-es`, `-zh`, `-ru`, `-de`, `-it` → `zodiac-astro.js` → `zodiac-planets.js` → `zodiac-skymap.js` → `zodiac-observe.js` → `zodiac-places-data.js` → `zodiac-places.js` → `zodiac-natal.js` → `zodiac-transits.js` → `zodiac-calendar.js` → `zodiac-numerology.js` → `zodiac-tarot-art.js` → `zodiac-tarot-minors-art.js` → `zodiac-tarot.js` → `zodiac-app.js`.
+Styles dans `zodiac.css`. Tests dans `zodiac-tests.js` (79 tests, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
 **Aucune ressource en ligne** : `html2canvas` 1.4.1 est une copie locale (`html2canvas.min.js`, licence MIT). Tout fonctionne sans internet.
 
 ### Fonctionnalités en place ✅
@@ -85,7 +85,7 @@ Fiabilité, découpage, nom et date du jour, zodiaque chinois, planètes et horo
 3. ✅ Sources du projet sur GitHub + tests lancés automatiquement à chaque modification + publication automatique (GitHub Pages, source « GitHub Actions »)
 4. ✅ Astrologie approfondie : 4a transits personnalisés sur le thème natal ; 4b synastrie ; 4c roue du thème interactive
 5. ✅ Numérologie : troisième onglet ; chemin de vie, cycles personnels, nombres du nom (latin, abjad, cyrillique)
-6. Tarot : ✅ 6a deux jeux, carte de naissance, carte du jour ; ✅ 6b tirage à trois cartes ; ✅ cartes illustrées (Gemini) et rendez-vous quotidien (« C'est mon profil » rouvert à chaque visite, un tirage par jour avec question, cartes face cachée) ; plus tard : cartes renversées (option), arcanes mineurs
+6. Tarot : ✅ 6a deux jeux, carte de naissance, carte du jour ; ✅ 6b tirage à trois cartes ; ✅ cartes illustrées (Gemini) et rendez-vous quotidien (« C'est mon profil » rouvert à chaque visite, un tirage par jour avec question, cartes face cachée) ; ✅ cartes renversées (option) ; ✅ 6c arcanes mineurs (option « jeu complet, 78 cartes » du tirage du jour)
 7. iPhone, en tout dernier
 
 Remarques : chaque nouveau texte coûte 14 traductions — regrouper les textes de chaque étape ; présenter numérologie et tarot comme des traditions symboliques. Pistes de l'audit gardées pour plus tard : coordonnées manuelles + fuseau, version de la PWA et mise à jour proposée, audit du poids, calendrier .ics, comparateur de systèmes de maisons, rapport PDF, profils locaux et sauvegarde JSON.
@@ -128,7 +128,7 @@ Traduit dans les 7 langues, couvert par un test, validé contre une référence 
 - Paramètres de l'adresse après « # » (`readUrlParams`, `updateURL`) : `date`, `time`, `place`, `lang`. Le mode test reste `?test` (lu sur `location.search`). Promesse affichée à l'utilisateur : rien n'est envoyé en ligne — ne jamais ajouter d'appel réseau, de statistiques ou de pistage.
 - `APP_VERSION` est remplacé par build-standalone.py (« date · empreinte ») ; bandeau de mise à jour sur `controllerchange` (seulement si un service worker contrôlait déjà la page).
 - Lieu par coordonnées : `parseCoords`, `nearestPlaces`, `coordsPlace` (zodiac-places.js), identifiant `@lat,lon,fuseau` lu par `birthPlace`.
-- Pistes restantes (dans l'ordre validé) : ✅ 1 version et bandeau ; ✅ 3 lieux absents (coordonnées GPS) ; ✅ 2 cartes renversées (option) ; ✅ 4 calendrier du ciel (liste 30 jours, export 7 jours, Google événement par événement) ; ✅ 5 fiche du thème à imprimer ou en PDF ; 6 arcanes mineurs ; plus tard : frise annuelle, console d'administration locale non publiée (export 12 mois par profil, dos de cartes, habillages, fichier de réglages déposé sur GitHub) ; puis iPhone / version hors ligne en dernier.
+- Pistes restantes (dans l'ordre validé) : ✅ 1 version et bandeau ; ✅ 3 lieux absents (coordonnées GPS) ; ✅ 2 cartes renversées (option) ; ✅ 4 calendrier du ciel (liste 30 jours, export 7 jours, Google événement par événement) ; ✅ 5 fiche du thème à imprimer ou en PDF ; ✅ 6 arcanes mineurs (9 illustrations à refaire avec Gemini) ; plus tard : frise annuelle, console d'administration locale non publiée (export 12 mois par profil, dos de cartes, habillages, fichier de réglages déposé sur GitHub) ; puis iPhone / version hors ligne en dernier.
 
 ### Organisation du résultat
 - Cinq sections, une par onglet (`VIEW_MODES` : signs, natal, sky, compat, numbers) ; toutes sont dans `#profileContent` (exportée telle quelle : seule la section affichée est visible). La numérologie s'affiche dans `#numbersBody`, le tarot dans `#tarotBody`, tous deux dans la section `numbers`.
@@ -295,9 +295,17 @@ L'ajouter dans **les 7 fichiers** `zodiac-i18n-xx.js`. Si une langue l'oublie, `
 ### Ajouter une langue
 Créer `zodiac-i18n-xx.js` avec `I18N.xx = deepMerge(I18N.fr, { … })`, l'ajouter dans `ZODIAC.html` après les autres langues, ajouter le bouton dans `#langs`, et traduire au minimum : interface (dont `labelName`, `labelBirthTime`, `optional`, `cuspSign`, `cuspDecan`, `labels.sunPosition`), `signNames`, `summaries`, `decanTraits`, `strengths`, `weaknesses`, `love`, `career`, `rulers`, `colors`, `stones`, `modalities`, `elements`, `compat`, `exportError`, `close`, `langSelector`. Puis ouvrir `ZODIAC.html?test` : les tests de traduction signalent toute clé manquante ou restée en français.
 
+### Arcanes mineurs (`zodiac-tarot.js`, `zodiac-tarot-minors-art.js`)
+- Clés `couleur_rang` : `MINOR_SUITS` (wands, cups, swords, pentacles) × `MINOR_RANKS` (ace, 2 … 10, page, knight, queen, king) = `TAROT_MINOR_KEYS` (56) ; `TAROT_ALL_KEYS` = 22 majeurs + 56 mineurs. `isMinorKey()`, `minorParts()`. `TAROT_KEYS` reste la liste des 22 majeurs (carte de naissance, carte du jour, tests existants).
+- Textes : `I18N[l].tarot.minors` = `{ fullDeck, badge, suits: { wands: { marseille, ws, element } … }, cards: { clé: { name: { marseille, ws }, keywords, text } }, reversed: { clé: { keywords, text } } }` ; bulle `info.tarotMinors` (37 bulles en tout). Les noms des mineurs dépendent du jeu (`name.marseille` / `name.ws`), contrairement aux majeurs (`marseilleNames`, 8 entrées, que le test attend toujours).
+- Textes importés des fichiers ChatGPT `minors-xx.json` (cahier `docs/cahier-arcanes-mineurs.md`) par `tools/regen_i18n.js`, après normalisation : apostrophes droites (comme le reste de l'appli), thaï sans deux-points (le thaï sépare les idées par un espace, comme dans les majeurs). `majorsOnly` et `suits.*.theme` n'ont pas été importés (inutiles à l'affichage).
+- Affichage (`zodiac-app.js`) : `tarotName()` (noms par jeu), `tarotTitleNum()` (pas de numéro devant le nom d'un mineur), `tarotMeaning()` (sens à l'endroit ou renversé, majeur ou mineur), `minorBadge()` (« Arcane mineur · couleur · élément »). Sur la carte : I (As) à X en haut, rien pour les figures (`tarotNumeral`).
+- Option « Jeu complet (78 cartes) » : `tarotFull`, clé d'appareil `zodiac_fulldeck` ('1' / '0'), désactivée par défaut ; `drawCards(3, secureRandom, tarotFull)`. Le tirage enregistre ses cartes : `currentSpread()` accepte `TAROT_ALL_KEYS`, un tirage fait ne change pas si l'on modifie l'option.
+- Illustrations : `zodiac-tarot-minors-art.js` complète `TAROT_ART_IMG` par `Object.assign` (fichier généré, ≈ 2 Mo) ; 38 cartes Gemini, 18 ChatGPT (liste en tête du fichier). 9 cartes ont un objet de trop ou de moins (Six et Dix de Coupes ; Cinq, Six, Sept, Neuf et Dix d'Épées ; Cinq et Neuf de Deniers) : à refaire avec Gemini, puis découper, convertir (WebP 320 × 512, qualité 74) et régénérer ce fichier.
+
 ### Outils et documents de passation (27 octobre 2026)
 - `tools/regen_i18n.js` : ajoute ou remplace des textes dans les 14 fichiers de langue à partir d'un JSON `{ "fr": {...}, "en": {...}, ... }` (usage : `node tools/regen_i18n.js textes.json`). Ne jamais modifier les fichiers de langue à la main.
-- `tools/cut_sheets.py` : découpe une planche Gemini 2048 × 2048 (3 × 2) en 6 cartes, avec image de contrôle.
+- `tools/cut_sheets.py` : découpe une planche Gemini carrée (2048 ou 1092 px, 3 × 2) en 6 cartes, avec image de contrôle ; la grille de référence est mise à l'échelle de la planche. Les planches ChatGPT ont un autre tracé (liserés à 16-357, 377-715, 736-1077 px en largeur ; 16-536 et 556-1076 en hauteur, pour 1092 px) : les découper sur ces liserés, pas avec la grille de Gemini.
 - `docs/cahier-arcanes-mineurs.md` : cahier des charges des textes des 56 arcanes mineurs (sous-traités à ChatGPT, 14 fichiers `minors-xx.json`).
-- `docs/prompts-gemini-arcanes-mineurs.md` : 10 prompts Gemini prêts à copier (illustrations des mineurs, même style que les majeurs).
+- `docs/prompts-gemini-arcanes-mineurs.md` : 11 prompts Gemini prêts à copier (illustrations des mineurs, même style que les majeurs ; planches 10 et 11 : retouches, consignes de comptage renforcées). Dans Gemini, choisir « Aspect ratio » 1:1, sinon la planche sort en paysage.
 - `docs/prompt-reprise.md` : message à coller pour reprendre le projet dans une nouvelle conversation Claude.

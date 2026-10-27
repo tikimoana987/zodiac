@@ -50,8 +50,9 @@ Les fichiers sont chargés par de simples balises `<script src>` (pas de modules
 | `zodiac-transits.js` | **Transits sur le thème natal** : aspects des planètes du moment (Soleil à Pluton) aux points du thème (Soleil à Saturne, Lune si l'heure est connue, ascendant et milieu du ciel si heure et lieu le sont), période d'influence et jour exact ; **synastrie** (aspects entre deux thèmes, harmonie et tension) |
 | `zodiac-calendar.js` | **Calendrier du ciel** : nouvelles et pleines lunes, éclipses, stations (rétrogradations), changements de signe, transits exacts des planètes lentes sur le thème ; fichier iCalendar (.ics) conforme RFC 5545 |
 | `zodiac-numerology.js` | **Numérologie** : chemin de vie, cycles personnels (année, mois, jour), nombres du nom (expression, intime, personnalité) en alphabet latin (méthode pythagoricienne), arabe (abjad) et cyrillique |
-| `zodiac-tarot.js` | **Tarot** (22 arcanes majeurs) : numérotation des deux jeux (Marseille, Waite-Smith), carte de naissance, carte du jour, 22 illustrations originales et leurs deux habillages |
+| `zodiac-tarot.js` | **Tarot** (22 arcanes majeurs, 56 arcanes mineurs) : numérotation des deux jeux (Marseille, Waite-Smith), carte de naissance, carte du jour, tirage dans 22 ou 78 cartes, gabarit des cartes et leurs deux habillages |
 | `zodiac-tarot-art.js` | **Illustrations du tarot** : 22 arcanes et 2 dos, générés avec Gemini (Google) à partir de prompts rédigés pour le projet, découpés et convertis en WebP 320 × 512 (≈ 1 Mo), sans texte |
+| `zodiac-tarot-minors-art.js` | **Illustrations des 56 arcanes mineurs** (≈ 2 Mo, chargées au démarrage) : 38 générées avec Gemini, 18 avec ChatGPT (OpenAI) en dépannage ; même format, sans texte ; ajoutées à `TAROT_ART_IMG` |
 | `zodiac-natal.js` | Thème natal : heure locale du lieu de naissance → temps universel (`zonedInstant`), ascendant, Milieu du Ciel, maisons Placidus (repli en maisons égales au-delà de 66°), maison de chaque astre, aspects (`natalChart`) |
 | `zodiac-planets.js` | Calculs purs : Lune et planètes (Mercure → Pluton), rétrogradations, phases, transits, Lune natale, compatibilité à deux |
 | `zodiac-app.js` | État, thème, animation, rendu, modale, horoscope, actions, initialisation |
@@ -88,6 +89,14 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 
 ## ✨ Fonctionnalités implémentées
 
+### 🃏 Arcanes mineurs (jeu complet de 78 cartes)
+- [x] Option **« Jeu complet (78 cartes) »** à côté du choix du jeu et de « Cartes renversées » : désactivée par défaut, retenue sur l'appareil, avec une bulle (i) (les quatre couleurs et leur élément) ; activée, le tirage du jour se fait parmi les 78 cartes ; un tirage déjà fait ne change pas. La carte de naissance et la carte du jour restent des arcanes majeurs
+- [x] **56 arcanes mineurs** (Bâtons, Coupes, Épées, Deniers ; As à Dix, puis quatre figures) avec les **noms de chaque jeu** : Marseille *Valet, Cavalier, Reine, Roi* et *Deniers* ; Waite-Smith *Page, Chevalier, Reine, Roi* et *Pentacles* (usage établi de chaque langue)
+- [x] Pour chaque carte : 3 mots-clés et une explication à l'endroit, 3 mots-clés et une explication **renversée** (option « Cartes renversées ») ; 14 langues (textes rédigés avec ChatGPT selon `docs/cahier-arcanes-mineurs.md`, vérifiés par Claude)
+- [x] Gabarit commun : numéro I (As) à X en haut, rien pour les figures ; nom en bas ; sous le nom, mention « Arcane mineur · couleur · élément »
+- [x] **56 illustrations** dans le style des majeurs (gravure céleste, sans texte) : 38 générées avec Gemini, 18 avec ChatGPT ; mention des deux outils sous le tarot ; 9 cartes ont un objet de trop ou de moins, à refaire plus tard (voir `feuille-de-route.md`)
+- [x] 2 tests : 78 cartes, noms des deux jeux, numéros, illustrations, textes complets et traduits dans les 14 langues ; tirage équilibré dans le jeu complet, anciens tirages relus, carte mineure renversée
+
 ### 🖨 Fiche du thème natal à imprimer ou en PDF
 - [x] Bouton **« 🖨 Imprimer ou enregistrer en PDF »** dans la section Thème natal : fenêtre d'impression du navigateur (« Enregistrer au format PDF » sur ordinateur, Android et iPhone), aucun outil supplémentaire, rien n'est envoyé en ligne
 - [x] Mise en page dédiée (feuille de style d'impression, A4) : fond blanc et thème clair le temps de l'impression (le thème choisi est rétabli ensuite, sans toucher aux réglages), nom et naissance en tête, roue en couleurs et tableau des positions côte à côte, lecture du thème, aspects, mention de bas de page datée ; boutons et bulles masqués ; cartes non coupées entre deux pages ; fonctionne depuis n'importe quel onglet ; droite à gauche en arabe
@@ -122,12 +131,12 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 - [x] **Rendez-vous quotidien** : bouton **« ☆ C'est mon profil »** sur la page de résultat ; le profil désigné (nom, date, heure, lieu) s'ouvre directement sur les résultats du jour à chaque visite, sans l'animation de recherche, quelles que soient les personnes consultées entre-temps ; second appui sur sa fiche pour retirer la désignation ; sans profil désigné, le formulaire s'affiche comme avant
 - [x] **Listes déroulantes lisibles partout** (menu des langues, ville de la carte…) : mode de couleur déclaré pour toute la page et couleurs explicites des options (Chrome sous Windows dessinait la liste en blanc avec le texte clair du thème sombre)
 - [x] **Rituel du tirage** : la question est écrite d'abord (au moins 3 caractères), puis trois cartes tirées **face cachée** et retournées une à une (souris, doigt, clavier) ; **un seul tirage par jour et par personne**, conservé jusqu'au lendemain (« Prochain tirage : demain ») ; question gardée sur l'appareil et absente de l'image exportée ; anciens tirages affichés retournés
-- [x] Mention « Illustrations des cartes générées avec Gemini (Google) » ; 14 langues
+- [x] Mention « Illustrations des cartes générées avec Gemini (Google) » (avec ChatGPT (OpenAI) depuis les arcanes mineurs) ; 14 langues
 
 ### 🔮 Tirage à trois cartes (étape 6b)
 - [x] Dans « Numérologie & tarot », sous la carte de naissance et la carte du jour : **Passé · Présent · Avenir**, trois arcanes distincts tirés au hasard (générateur cryptographique du navigateur), avec illustration, mots-clés et explication
 - [x] **Un tirage par question** : rien n'est tiré d'avance ; « Tirer les cartes », puis « Nouvelle question » pour une autre question ; le tirage reste affiché pour la journée et pour la personne (mémorisé sur l'appareil)
-- [x] Les deux jeux s'appliquent (noms, numéros, habillage) ; boutons absents de l'image exportée ; pas de cartes renversées pour l'instant (choix délibéré)
+- [x] Les deux jeux s'appliquent (noms, numéros, habillage) ; boutons absents de l'image exportée ; cartes renversées et jeu complet (78 cartes) ajoutés ensuite en option
 - [x] Distribution des cartes en glissement sans jeu d'opacité (une carte reste visible même si l'animation ne se joue pas) ; aucun décalage en mode « animations réduites »
 
 ### 🗂️ Résultat organisé en cinq sections
@@ -415,21 +424,21 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 
 | Métrique | Valeur |
 |---|---|
-| Fichiers | 17 fichiers de l'appli (1 HTML, 1 CSS, 15 JS) + `html2canvas.min.js` + `build-standalone.py` + `ZODIAC-standalone.html` |
+| Fichiers | 34 fichiers de l'appli (1 HTML, 1 CSS, 32 JS dont 15 de traductions et 2 d'illustrations) + `html2canvas.min.js` + `build-standalone.py` + `ZODIAC-standalone.html` |
 | Langues supportées | 14 |
 | Signes × décans | 12 × 3 = 36 profils |
 | Combinaisons d'affinités | 12 × 12 = 144 |
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
-| Dépendances externes | 1 (html2canvas CDN) |
-| Poids approximatif | ~460 Ko non minifié (dont ~230 Ko de traductions et ~55 Ko de données du ciel) |
-| Tests automatisés | 77 (dans `zodiac-tests.js`) |
+| Dépendances externes | aucune en ligne (html2canvas en copie locale) |
+| Poids approximatif | version autonome ≈ 6,2 Mo (dont ≈ 3,1 Mo d'illustrations du tarot, ≈ 1 Mo de villes et ≈ 1,6 Mo de traductions) |
+| Tests automatisés | 79 (dans `zodiac-tests.js`) |
 
 ---
 
 ## 🧪 Comment tester
 
 ### Tests automatiques
-Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 77 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
+Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 79 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
 La version autonome se teste de la même façon : `ZODIAC-standalone.html?test` (la suite y est intégrée ; un test supplémentaire vérifie que sa copie vierge est complète et sans donnée personnelle).
 - le calcul du Soleil, comparé à 40 positions de référence calculées par astropy (1900-2100) ;
 - signes et décans de dates de référence, équinoxes connues, jours de transition, effet de l'heure ;

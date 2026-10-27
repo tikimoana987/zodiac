@@ -823,6 +823,7 @@ const VIEW_MODES = ['signs', 'natal', 'sky', 'compat', 'numbers'];   // une sect
 const VIEW_TABS = { signs: 'tabSigns', natal: 'tabNatal', sky: 'tabSky', compat: 'tabCompat', numbers: 'tabNumbers' };
 let tarotDeck = 'marseille';  // jeu de tarot : 'marseille' (par défaut) ou 'ws' (Waite-Smith) ; retenu sur l'appareil
 let tarotReversed = false;     // cartes renversées dans le tirage du jour (option, désactivée par défaut ; retenue sur l'appareil)
+let tarotFull = false;         // jeu complet (78 cartes, arcanes mineurs compris) dans le tirage du jour (option, désactivée par défaut ; retenue sur l'appareil)
 const OFFLINE_ENABLED = false;  // bouton « Version hors ligne » : désactivé pour le moment (true pour le réactiver)
 const ASPECT_SYM = { conjunction: '☌', sextile: '⚹', square: '□', trine: '△', opposition: '☍' };
 let currentChart = null;   // thème affiché (roue interactive)
@@ -1207,13 +1208,14 @@ function fillCalendarList(){
 
 /* ---------- Tirage du jour (rituel) ----------
    Une question écrite, trois cartes tirées face cachée et retournées une à une ; un seul tirage par jour et par personne,
-   mémorisé sur l'appareil : { day, birth, question, cards, revealed }. La question n'apparaît pas dans l'image exportée. */
+   mémorisé sur l'appareil : { day, birth, question, cards, revealed, reversed }. La question n'apparaît pas dans l'image exportée.
+   Avec l'option « jeu complet », les cartes sont tirées parmi les 78 (arcanes mineurs compris) ; un tirage déjà fait ne change pas. */
 let spreadDraft = '';         // question en cours de saisie (gardée si l'affichage est refait)
 let spreadJustFlipped = -1;   // carte qui vient d'être retournée (animation)
 function currentSpread(){
   try {
     const s = JSON.parse(store.get('zodiac_spread') || 'null');
-    if (!s || s.day !== todayISO() || s.birth !== currentDate || !Array.isArray(s.cards) || s.cards.length !== 3 || !s.cards.every(k => TAROT_KEYS.includes(k))) return null;
+    if (!s || s.day !== todayISO() || s.birth !== currentDate || !Array.isArray(s.cards) || s.cards.length !== 3 || !s.cards.every(k => TAROT_ALL_KEYS.includes(k))) return null;
     // Tirages de l'ancienne version (sans question ni cartes face cachée) : affichés retournés
     return { day: s.day, birth: s.birth, cards: s.cards, question: typeof s.question === 'string' ? s.question : '',
              revealed: Array.isArray(s.revealed) && s.revealed.length === 3 ? s.revealed.map(Boolean) : [true, true, true],
@@ -1232,10 +1234,10 @@ function spreadHtml(t, deck){
   const slots = sp.cards.map((key, i) => {
     if (!sp.revealed[i]) return `<div class="spread-slot"><div class="spread-pos">${pos[i]}</div>
       <button type="button" class="spread-flip" data-i="${i}" aria-label="${escapeHtml(u.spreadFlipAria.replace('{pos}', pos[i]))}">${tarotBackSvg(deck, pos[i])}</button></div>`;
-    const name = tarotName(t, key, deck), num = tarotNumeral(key, deck), rev = sp.reversed[i], m = rev ? u.reversed[key] : u.cards[key];
+    const name = tarotName(t, key, deck), num = tarotTitleNum(key, deck), rev = sp.reversed[i], m = tarotMeaning(t, key, rev);
     return `<div class="spread-slot${spreadJustFlipped === i ? ' just-flipped' : ''}${rev ? ' is-rev' : ''}"><div class="spread-pos">${pos[i]}</div><div class="spread-visual">${tarotCardSvg(key, deck, name, rev)}</div>
       <div class="tarot-title">${num ? `<span class="tarot-num">${num}</span> ` : ''}${escapeHtml(name)}${rev ? ` <span class="rev-badge">${u.reversedBadge}</span>` : ''}</div>
-      <div class="traits">${m.keywords.map(k => `<span class="trait-tag">${k}</span>`).join('')}</div>
+      ${isMinorKey(key) ? minorBadge(t, key, deck) : ''}<div class="traits">${m.keywords.map(k => `<span class="trait-tag">${k}</span>`).join('')}</div>
       <p class="num-text">${m.text}</p></div>`;
   }).join('');
   return `<div class="card spread-card">${head}
@@ -1245,7 +1247,22 @@ function spreadHtml(t, deck){
     ${done ? `<p class="spread-done">${u.spreadTomorrow}</p>` : ''}
     <p class="sky-note">${u.spreadNote}</p></div>`;
 }
-function tarotName(t, key, deck){ return deck === 'marseille' && t.tarot.marseilleNames[key] ? t.tarot.marseilleNames[key] : t.tarot.cards[key].name; }
+function tarotName(t, key, deck){
+  if (isMinorKey(key)) return t.tarot.minors.cards[key].name[deck];   // noms des mineurs propres à chaque jeu (Valet / Page, Deniers / Pentacles…)
+  return deck === 'marseille' && t.tarot.marseilleNames[key] ? t.tarot.marseilleNames[key] : t.tarot.cards[key].name;
+}
+/* Numéro affiché devant le nom : arcanes majeurs seulement (le nom d'un mineur dit déjà son rang) */
+function tarotTitleNum(key, deck){ return isMinorKey(key) ? '' : tarotNumeral(key, deck); }
+/* Sens d'une carte, à l'endroit ou renversée : { keywords, text } */
+function tarotMeaning(t, key, rev){
+  const src = isMinorKey(key) ? t.tarot.minors : t.tarot;
+  return rev ? src.reversed[key] : src.cards[key];
+}
+/* Mention d'un arcane mineur : « Arcane mineur · Bâtons · Feu » (nom de la couleur selon le jeu) */
+function minorBadge(t, key, deck){
+  const m = t.tarot.minors, s = m.suits[minorParts(key).suit];
+  return `<div class="minor-badge">${m.badge} · ${s[deck]} · ${s.element}</div>`;
+}
 function renderTarot(){
   const el = document.getElementById('tarotBody'), birth = parseISODate(currentDate), on = skyDate || todayISO(), d = parseISODate(on);
   if (!el || !birth || !d) return;
@@ -1262,7 +1279,8 @@ function renderTarot(){
   el.innerHTML = `
     <div class="tarot-deck" role="group" aria-label="${escapeHtml(u.deck)}"><span class="tarot-deck-label">${u.deck}${infoBtn('tarot', u.tab)}</span>
       ${TAROT_DECKS.map(k => `<button type="button" class="deck-btn" data-deck="${k}" aria-pressed="${k === deck}">${u.decks[k]}</button>`).join('')}
-      <span class="rev-toggle"><button type="button" class="deck-btn rev-btn" id="revToggle" aria-pressed="${tarotReversed}">↻ ${u.reversedToggle}</button>${infoBtn('reversed', u.reversedToggle)}</span></div>
+      <span class="rev-toggle"><button type="button" class="deck-btn rev-btn" id="revToggle" aria-pressed="${tarotReversed}">↻ ${u.reversedToggle}</button>${infoBtn('reversed', u.reversedToggle)}</span>
+      <span class="rev-toggle"><button type="button" class="deck-btn rev-btn" id="fullToggle" aria-pressed="${tarotFull}">${u.minors.fullDeck}</button>${infoBtn('tarotMinors', u.minors.fullDeck)}</span></div>
     <div class="tarot-pair">${slot(tarotByNumber(birthCardNumber(birth), deck), u.birthCard, u.birthCardDesc)}${slot(dayCardKey(currentDate, on), u.dayCard, u.dayCardDesc.replace('{d}', dLabel))}</div>
     ${spreadHtml(t, deck)}
     <p class="sky-note">${u.note} ${u.artCredit}</p>`;
@@ -1271,7 +1289,7 @@ function renderTarot(){
   if (drawBtn) drawBtn.addEventListener('click', () => {
     const question = (q ? q.value : '').trim();
     if (question.length < 3) return;
-    const cards = drawCards(3);
+    const cards = drawCards(3, secureRandom, tarotFull);   // 22 arcanes majeurs, ou 78 cartes avec l'option « jeu complet »
     saveSpread({ day: todayISO(), birth: currentDate, question, cards, revealed: [false, false, false],
                  reversed: cards.map(() => tarotReversed && secureRandom() < 0.5) });   // une chance sur deux par carte, si l'option est active
     spreadDraft = '';
@@ -1287,6 +1305,10 @@ function renderTarot(){
   el.querySelector('#revToggle').addEventListener('click', () => {
     tarotReversed = !tarotReversed; store.set('zodiac_reversed', tarotReversed ? '1' : '0');   // s'applique au tirage suivant
     renderTarot(); document.getElementById('revToggle').focus();
+  });
+  el.querySelector('#fullToggle').addEventListener('click', () => {
+    tarotFull = !tarotFull; store.set('zodiac_fulldeck', tarotFull ? '1' : '0');   // s'applique au tirage suivant
+    renderTarot(); document.getElementById('fullToggle').focus();
   });
   el.querySelectorAll('.deck-btn[data-deck]').forEach(b => b.addEventListener('click', () => {
     tarotDeck = b.dataset.deck; store.set('zodiac_deck', tarotDeck); renderTarot();
@@ -2014,6 +2036,7 @@ document.addEventListener('DOMContentLoaded', () => {
   viewMode = VIEW_MODES.includes(savedView) ? savedView : 'signs';
   tarotDeck = TAROT_DECKS.includes(store.get('zodiac_deck')) ? store.get('zodiac_deck') : 'marseille';
   tarotReversed = store.get('zodiac_reversed') === '1';
+  tarotFull = store.get('zodiac_fulldeck') === '1';
   const lsLang = store.get('zodiac_lang');
   const lsDate = store.get('zodiac_lastDate');
   const lsTime = store.get('zodiac_lastTime');

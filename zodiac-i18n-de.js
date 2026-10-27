@@ -717,7 +717,8 @@ I18N.de = deepMerge(I18N.fr, {
     fieldPlace: "Er liefert die genaue Zeitzone deiner Geburt, Sommerzeit inbegriffen, und ihre Koordinaten. Ohne Ort lassen sich Aszendent und Häuser nicht berechnen. Die nächstgelegene Stadt genügt. Ort nicht gefunden? Füge seine GPS-Koordinaten oder einen Kartenlink ein (Google Maps, OpenStreetMap, Apple Karten): Die Zeitzone wird von der nächstgelegenen Stadt übernommen, und du kannst sie ändern.",
     privacy: "Alles, was du eingibst (Name, Datum, Uhrzeit, Ort, Verlauf, Tarot-Frage), wird nur im Speicher deines Browsers auf diesem Gerät abgelegt. Es werden keine Daten an einen Server gesendet, und die App enthält keine Statistik- oder Tracking-Werkzeuge. Wenn du die Daten dieser Website in deinem Browser löschst, ist alles gelöscht. Nur die Schaltfläche „Teilen“ erstellt einen Link mit deinem Geburtsdatum, den du selbst verschickst.",
     reversed: "Bei einem echten Deck kommen manche Karten verkehrt herum: Die Tradition gibt ihnen eine nuancierte Bedeutung, bei der die Energie der Karte blockiert, verzögert, nach innen gewendet oder übersteigert ist. Diese Option ist standardmäßig aus; ist sie an, kommt jede Karte der Tageslegung mit einer Wahrscheinlichkeit von eins zu zwei umgekehrt. Sie gilt für die nächste Legung: Eine bereits gezogene Legung ändert sich nicht.",
-    calendar: "Die Liste zeigt die Himmelstermine der nächsten 30 Tage, täglich neu berechnet: Neu- und Vollmonde, Finsternisse (mit ihrer Sichtbarkeit vom Ort der Himmelskarte), Beginn und Ende von Rückläufigkeiten, Zeichenwechsel sowie die exakten Daten der Transite der langsamen Planeten (Jupiter bis Pluto) auf dein Geburtshoroskop. Die Termine der nächsten 7 Tage kannst du deinem Kalender hinzufügen: Apple, Outlook und die meisten Kalender erhalten eine .ics-Datei; Google Kalender erhält die Ereignisse einzeln (seine App kann keine .ics-Dateien öffnen). Eine Erinnerung am Ende der Woche lädt dich ein, die nächste hinzuzufügen."
+    calendar: "Die Liste zeigt die Himmelstermine der nächsten 30 Tage, täglich neu berechnet: Neu- und Vollmonde, Finsternisse (mit ihrer Sichtbarkeit vom Ort der Himmelskarte), Beginn und Ende von Rückläufigkeiten, Zeichenwechsel sowie die exakten Daten der Transite der langsamen Planeten (Jupiter bis Pluto) auf dein Geburtshoroskop. Die Termine der nächsten 7 Tage kannst du deinem Kalender hinzufügen: Apple, Outlook und die meisten Kalender erhalten eine .ics-Datei; Google Kalender erhält die Ereignisse einzeln (seine App kann keine .ics-Dateien öffnen). Eine Erinnerung am Ende der Woche lädt dich ein, die nächste hinzuzufügen.",
+    tarotMinors: "Die 56 Karten der Kleinen Arkana spiegeln symbolisch alltägliche Erfahrungen in vier Farben. Die Stäbe stehen für Feuer, Tatkraft und Kreativität, die Kelche für Wasser, Gefühle und Beziehungen. Die Schwerter verbinden sich mit Luft und Denken, die Münzen oder Pentakel mit Erde und dem greifbaren Leben. Für die Tageslegung kannst du das vollständige Deck mit 78 Karten wählen."
   },
   placePlaceholder: "Stadtnamen eingeben …",
   placeNoMatch: "Keine Stadt gefunden. Versuche die nächstgelegene.",
@@ -964,7 +965,7 @@ I18N.de = deepMerge(I18N.fr, {
     spreadFlip: "Tippe auf jede Karte, um sie umzudrehen.",
     spreadFlipAria: "Karte umdrehen: {pos}",
     spreadTomorrow: "Deine Legung für heute ist gemacht. Nächste Legung: morgen.",
-    artCredit: "Kartenillustrationen mit Gemini (Google) erstellt.",
+    artCredit: "Kartenillustrationen mit Gemini (Google) und ChatGPT (OpenAI) erstellt.",
     reversedToggle: "Umgekehrte Karten",
     reversedBadge: "Umgekehrt",
     reversed: {
@@ -1055,6 +1056,524 @@ I18N.de = deepMerge(I18N.fr, {
       world: {
         keywords: ["Unvollendetes", "Verzögerung", "Letzter Schritt"],
         text: "Der Zyklus schließt sich nur mühsam: Eine letzte Sache bleibt noch zu vollenden."
+      }
+    },
+    minors: {
+      fullDeck: "Vollständiges Deck (78 Karten)",
+      badge: "Kleine Arkana",
+      suits: {
+        wands: { marseille: "Stäbe", ws: "Stäbe", element: "Feuer" },
+        cups: { marseille: "Kelche", ws: "Kelche", element: "Wasser" },
+        swords: { marseille: "Schwerter", ws: "Schwerter", element: "Luft" },
+        pentacles: { marseille: "Münzen", ws: "Pentakel", element: "Erde" }
+      },
+      cards: {
+        wands_ace: {
+          name: { marseille: "Ass der Stäbe", ws: "Ass der Stäbe" },
+          keywords: ["Aufbruch", "Inspiration", "Initiative"],
+          text: "Ein kreativer Funke erwacht: Nimm diesen Impuls auf und gib deiner Lust am Handeln eine erste Form."
+        },
+        wands_2: {
+          name: { marseille: "Zwei der Stäbe", ws: "Zwei der Stäbe" },
+          keywords: ["Weitblick", "Planung", "Entscheidung"],
+          text: "Zwei Wege öffnen sich am Horizont: Wähle eine Richtung, ohne deine eigenen Wünsche aus den Augen zu verlieren."
+        },
+        wands_3: {
+          name: { marseille: "Drei der Stäbe", ws: "Drei der Stäbe" },
+          keywords: ["Entfaltung", "Perspektive", "Gemeinsamer Schwung"],
+          text: "Der Blick reicht über die ersten Schritte hinaus: Sei offen für Begegnungen, die dein Vorhaben erweitern."
+        },
+        wands_4: {
+          name: { marseille: "Vier der Stäbe", ws: "Vier der Stäbe" },
+          keywords: ["Feier", "Geborgenheit", "Harmonie"],
+          text: "Ein einladender Raum entsteht: Würdige die erreichten Schritte und die Freude an gemeinsam verbrachter Zeit."
+        },
+        wands_5: {
+          name: { marseille: "Fünf der Stäbe", ws: "Fünf der Stäbe" },
+          keywords: ["Auseinandersetzung", "Ansporn", "Vielfalt"],
+          text: "Unterschiedliche Willen treffen aufeinander: Mach aus Rivalität einen lebendigen Austausch statt einen Machtkampf."
+        },
+        wands_6: {
+          name: { marseille: "Sechs der Stäbe", ws: "Sechs der Stäbe" },
+          keywords: ["Anerkennung", "Selbstvertrauen", "Erfolg"],
+          text: "Deine Mühe findet Widerhall: Nimm Zuspruch an, ohne das Urteil anderer zu deinem inneren Kompass zu machen."
+        },
+        wands_7: {
+          name: { marseille: "Sieben der Stäbe", ws: "Sieben der Stäbe" },
+          keywords: ["Mut", "Haltung", "Beharrlichkeit"],
+          text: "Dein Standpunkt verlangt Rückgrat: Setze ruhig deine Grenzen, ohne dich vor anderen zu verschließen."
+        },
+        wands_8: {
+          name: { marseille: "Acht der Stäbe", ws: "Acht der Stäbe" },
+          keywords: ["Bewegung", "Leichtigkeit", "Botschaft"],
+          text: "Alles nimmt an Tempo zu wie Pfeile im Flug: Nutze den Schwung, ohne die Richtung aus den Augen zu verlieren."
+        },
+        wands_9: {
+          name: { marseille: "Neun der Stäbe", ws: "Neun der Stäbe" },
+          keywords: ["Ausdauer", "Wachsamkeit", "Widerstandskraft"],
+          text: "Eine letzte Etappe fordert deine Beständigkeit: Schütze deine Kräfte, ohne Misstrauen überhandnehmen zu lassen."
+        },
+        wands_10: {
+          name: { marseille: "Zehn der Stäbe", ws: "Zehn der Stäbe" },
+          keywords: ["Verantwortung", "Belastung", "Verbindlichkeit"],
+          text: "Die Stäbe werden zur Last: Verteile Aufgaben und unterscheide eigene Pflichten von fremden Erwartungen."
+        },
+        wands_page: {
+          name: { marseille: "Bube der Stäbe", ws: "Page der Stäbe" },
+          keywords: ["Neugier", "Entdeckung", "Wagemut"],
+          text: "Ein neugieriger Bote erkundet eine neue Idee: Probiere etwas aus, bevor du alles beherrschst."
+        },
+        wands_knight: {
+          name: { marseille: "Ritter der Stäbe", ws: "Ritter der Stäbe" },
+          keywords: ["Begeisterung", "Tatendrang", "Wagemut"],
+          text: "Ein Reiter folgt voller Feuer seinem Antrieb: Geh auf das zu, was dich bewegt, und bedenke die Folgen."
+        },
+        wands_queen: {
+          name: { marseille: "Königin der Stäbe", ws: "Königin der Stäbe" },
+          keywords: ["Ausstrahlung", "Selbstsicherheit", "Schöpferkraft"],
+          text: "Eine warmherzige Präsenz inspiriert andere: Vertraue deiner Kreativität und teile deine Begeisterung."
+        },
+        wands_king: {
+          name: { marseille: "König der Stäbe", ws: "König der Stäbe" },
+          keywords: ["Führungskraft", "Weitblick", "Initiative"],
+          text: "Ein klarer Wille gibt die Richtung vor: Leite deine Vorhaben mutig und lass anderen ihren Raum."
+        },
+        cups_ace: {
+          name: { marseille: "Ass der Kelche", ws: "Ass der Kelche" },
+          keywords: ["Herzensöffnung", "Feinfühligkeit", "Neues Gefühl"],
+          text: "Ein Kelch fließt über vor frischem Wasser: Empfange aufkommende Gefühle, ohne sie festhalten zu wollen."
+        },
+        cups_2: {
+          name: { marseille: "Zwei der Kelche", ws: "Zwei der Kelche" },
+          keywords: ["Begegnung", "Gegenseitigkeit", "Einvernehmen"],
+          text: "Zwei Kelche antworten einander: Pflege eine Verbindung, in der beide gehört und gesehen werden."
+        },
+        cups_3: {
+          name: { marseille: "Drei der Kelche", ws: "Drei der Kelche" },
+          keywords: ["Freundschaft", "Teilen", "Gemeinsame Freude"],
+          text: "Die Kelche werden gemeinsam erhoben: Feiere einen Kreis, in dem Freude durch Teilen wächst."
+        },
+        cups_4: {
+          name: { marseille: "Vier der Kelche", ws: "Vier der Kelche" },
+          keywords: ["Innenschau", "Überdruss", "Abstand"],
+          text: "Ein Kelch bleibt in Sichtweite: Nimm dir Zeit zu spüren, was dich innerlich noch wirklich berührt."
+        },
+        cups_5: {
+          name: { marseille: "Fünf der Kelche", ws: "Fünf der Kelche" },
+          keywords: ["Enttäuschung", "Bedauern", "Annahme"],
+          text: "Der Blick hängt am Verlorenen: Gib deinem Kummer Raum, ohne die verbliebenen Verbindungen zu vergessen."
+        },
+        cups_6: {
+          name: { marseille: "Sechs der Kelche", ws: "Sechs der Kelche" },
+          keywords: ["Erinnerung", "Sanftheit", "Großzügigkeit"],
+          text: "Eine zarte Erinnerung kehrt wie ein vertrauter Duft zurück: Schöpfe aus der Vergangenheit, ohne dort zu verharren."
+        },
+        cups_7: {
+          name: { marseille: "Sieben der Kelche", ws: "Sieben der Kelche" },
+          keywords: ["Möglichkeiten", "Fantasie", "Unterscheidung"],
+          text: "Sieben Kelche zeigen viele Gesichter der Sehnsucht: Trenne tiefe Wünsche von verlockenden Trugbildern."
+        },
+        cups_8: {
+          name: { marseille: "Acht der Kelche", ws: "Acht der Kelche" },
+          keywords: ["Loslassen", "Sinnsuche", "Bewusster Aufbruch"],
+          text: "Trotz der Fülle fehlt etwas Wesentliches: Höre auf den Wunsch nach Sinn, der zum Loslassen einlädt."
+        },
+        cups_9: {
+          name: { marseille: "Neun der Kelche", ws: "Neun der Kelche" },
+          keywords: ["Zufriedenheit", "Dankbarkeit", "Genuss"],
+          text: "Die aufgereihten Kelche spiegeln stille Freude: Genieße Erreichtes, ohne Bequemlichkeit mit Erfüllung zu verwechseln."
+        },
+        cups_10: {
+          name: { marseille: "Zehn der Kelche", ws: "Zehn der Kelche" },
+          keywords: ["Harmonie", "Zugehörigkeit", "Geteiltes Glück"],
+          text: "Ein Kreis des Vertrauens steht für gemeinsame Freude: Pflege Beziehungen, die jedem Eigenart lassen."
+        },
+        cups_page: {
+          name: { marseille: "Bube der Kelche", ws: "Page der Kelche" },
+          keywords: ["Intuition", "Feingefühl", "Staunen"],
+          text: "Eine Überraschung steigt aus dem Kelch empor: Achte auf deine Gefühle und auf unerwartete Einfälle."
+        },
+        cups_knight: {
+          name: { marseille: "Ritter der Kelche", ws: "Ritter der Kelche" },
+          keywords: ["Romantik", "Herzensdrang", "Angebot"],
+          text: "Ein Reiter trägt seinen Kelch voran: Folge deinem Gefühl, ohne die Wirklichkeit des Gegenübers zu übersehen."
+        },
+        cups_queen: {
+          name: { marseille: "Königin der Kelche", ws: "Königin der Kelche" },
+          keywords: ["Mitgefühl", "Intuition", "Zuwendung"],
+          text: "Ein kostbarer Kelch lädt zum Zuhören ein: Nimm Gefühle wahr, ohne die Last aller anderen zu übernehmen."
+        },
+        cups_king: {
+          name: { marseille: "König der Kelche", ws: "König der Kelche" },
+          keywords: ["Emotionale Reife", "Ausgleich", "Güte"],
+          text: "Der Thron bleibt nahe den Wellen ruhig: Lass Gefühle fließen, ohne ihnen das Steuer zu überlassen."
+        },
+        swords_ace: {
+          name: { marseille: "Ass der Schwerter", ws: "Ass der Schwerter" },
+          keywords: ["Klarheit", "Scharfsinn", "Wahrheit"],
+          text: "Eine Klinge teilt den Nebel der Gedanken: Benenne Tatsachen genau, bevor du Stellung beziehst."
+        },
+        swords_2: {
+          name: { marseille: "Zwei der Schwerter", ws: "Zwei der Schwerter" },
+          keywords: ["Zwiespalt", "Innehalten", "Ausgleich"],
+          text: "Zwei gekreuzte Schwerter halten die Entscheidung auf: Höre beide Seiten, ohne ewig abzuwarten."
+        },
+        swords_3: {
+          name: { marseille: "Drei der Schwerter", ws: "Drei der Schwerter" },
+          keywords: ["Kummer", "Ernüchterung", "Schmerzhafte Einsicht"],
+          text: "Eine schmerzliche Wahrheit berührt das Herz: Gib der Trauer Platz und behalte deine Kräfte im Blick."
+        },
+        swords_4: {
+          name: { marseille: "Vier der Schwerter", ws: "Vier der Schwerter" },
+          keywords: ["Ruhe", "Abstand", "Erholung"],
+          text: "Die Stille um die Schwerter lädt zum Ruhen ein: Lass deine Gedanken sinken, bevor du weitergehst."
+        },
+        swords_5: {
+          name: { marseille: "Fünf der Schwerter", ws: "Fünf der Schwerter" },
+          keywords: ["Streit", "Machtgefälle", "Nüchternheit"],
+          text: "Ein Sieg kann bitter schmecken: Frage nach dem Preis eines Streits, bevor du unbedingt recht behalten willst."
+        },
+        swords_6: {
+          name: { marseille: "Sechs der Schwerter", ws: "Sechs der Schwerter" },
+          keywords: ["Übergang", "Abstand", "Beruhigung"],
+          text: "Der Weg von einem inneren Ufer zum anderen braucht Zeit: Nimm an, was dich beim Weitergehen stützt."
+        },
+        swords_7: {
+          name: { marseille: "Sieben der Schwerter", ws: "Sieben der Schwerter" },
+          keywords: ["Strategie", "Zurückhaltung", "Eigenständigkeit"],
+          text: "Ein Umweg wirkt leichter als ein offenes Wort: Handle überlegt und behalte Aufrichtigkeit im Blick."
+        },
+        swords_8: {
+          name: { marseille: "Acht der Schwerter", ws: "Acht der Schwerter" },
+          keywords: ["Empfundene Grenzen", "Zweifel", "Perspektive"],
+          text: "Gedanken zeichnen unsichtbare Mauern: Hinterfrage die Grenzen, die dir ausweglos erscheinen."
+        },
+        swords_9: {
+          name: { marseille: "Neun der Schwerter", ws: "Neun der Schwerter" },
+          keywords: ["Sorge", "Grübeln", "Verletzlichkeit"],
+          text: "Sorgen wecken alte Befürchtungen: Teile, was dich belastet, statt gedankliche Szenarien zu verstärken."
+        },
+        swords_10: {
+          name: { marseille: "Zehn der Schwerter", ws: "Zehn der Schwerter" },
+          keywords: ["Zyklusende", "Erschöpfung", "Loslassen"],
+          text: "Ein Abschnitt ist an seine Grenze gelangt: Erkenne an, was so nicht weitergehen kann."
+        },
+        swords_page: {
+          name: { marseille: "Bube der Schwerter", ws: "Page der Schwerter" },
+          keywords: ["Geistige Neugier", "Beobachtung", "Offenheit"],
+          text: "Eine junge Gestalt prüft den Wind der Ideen: Stelle Fragen und schärfe dein kritisches Denken."
+        },
+        swords_knight: {
+          name: { marseille: "Ritter der Schwerter", ws: "Ritter der Schwerter" },
+          keywords: ["Entschlossenheit", "Direktheit", "Tatkraft"],
+          text: "Ein Reiter durchschneidet den Wind: Nutze deinen klaren Blick für besonnenes Handeln."
+        },
+        swords_queen: {
+          name: { marseille: "Königin der Schwerter", ws: "Königin der Schwerter" },
+          keywords: ["Urteilsvermögen", "Unabhängigkeit", "Klare Grenzen"],
+          text: "Eine Königin hält ihr Schwert mit fester Hand: Sprich deine Wahrheit bestimmt und bleibe offen."
+        },
+        swords_king: {
+          name: { marseille: "König der Schwerter", ws: "König der Schwerter" },
+          keywords: ["Innere Gerechtigkeit", "Vernunft", "Verantwortung"],
+          text: "Ein König prüft die Fakten, bevor er entscheidet: Gründe deine Wahl auf Nachdenken statt auf Laune."
+        },
+        pentacles_ace: {
+          name: { marseille: "Ass der Münzen", ws: "Ass der Pentakel" },
+          keywords: ["Greifbare Chance", "Mittel", "Bodenständigkeit"],
+          text: "Eine Münze ruht in einer offenen Hand: Gib einer verheißungsvollen Idee einen ersten konkreten Schritt."
+        },
+        pentacles_2: {
+          name: { marseille: "Zwei der Münzen", ws: "Zwei der Pentakel" },
+          keywords: ["Beweglichkeit", "Balance", "Anpassung"],
+          text: "Zwei Münzen kreisen in ständiger Bewegung: Stimme dein Tempo auf die Anforderungen des Alltags ab."
+        },
+        pentacles_3: {
+          name: { marseille: "Drei der Münzen", ws: "Drei der Pentakel" },
+          keywords: ["Zusammenarbeit", "Können", "Aufbau"],
+          text: "Ein Werk entsteht durch mehrere Hände: Würdige das Wissen und Können, das jede Person einbringt."
+        },
+        pentacles_4: {
+          name: { marseille: "Vier der Münzen", ws: "Vier der Pentakel" },
+          keywords: ["Sicherheit", "Bewahrung", "Kontrolle"],
+          text: "Vier Münzen werden sorgfältig gehütet: Schütze Erreichtes und vergiss dabei nicht das Teilen."
+        },
+        pentacles_5: {
+          name: { marseille: "Fünf der Münzen", ws: "Fünf der Pentakel" },
+          keywords: ["Empfundener Mangel", "Isolation", "Hilfsbereitschaft"],
+          text: "Ein Gefühl des Mangels kann einsam machen: Denk daran, dass du um Unterstützung bitten darfst."
+        },
+        pentacles_6: {
+          name: { marseille: "Sechs der Münzen", ws: "Sechs der Pentakel" },
+          keywords: ["Großzügigkeit", "Austausch", "Fairness"],
+          text: "Eine Hand gibt und eine andere empfängt: Strebe nach einem Teilen, das alle Bedürfnisse achtet."
+        },
+        pentacles_7: {
+          name: { marseille: "Sieben der Münzen", ws: "Sieben der Pentakel" },
+          keywords: ["Geduld", "Bestandsaufnahme", "Reifung"],
+          text: "Die Ernte wächst noch langsam: Betrachte deinen bisherigen Weg, bevor du die Ergebnisse bewertest."
+        },
+        pentacles_8: {
+          name: { marseille: "Acht der Münzen", ws: "Acht der Pentakel" },
+          keywords: ["Sorgfalt", "Lernen", "Meisterschaft"],
+          text: "Jede geformte Münze verfeinert den Handgriff: Pflege dein Können mit Geduld und Neugier."
+        },
+        pentacles_9: {
+          name: { marseille: "Neun der Münzen", ws: "Neun der Pentakel" },
+          keywords: ["Eigenständigkeit", "Maßvoller Wohlstand", "Gelassenheit"],
+          text: "Geduldige Mühe schafft ein Gefühl von Fülle: Schätze deine Unabhängigkeit und die kleinen Freuden."
+        },
+        pentacles_10: {
+          name: { marseille: "Zehn der Münzen", ws: "Zehn der Pentakel" },
+          keywords: ["Weitergabe", "Beständigkeit", "Kontinuität"],
+          text: "Ein Erbe reicht über Generationen hinweg: Kümmere dich um das, was über den Besitz hinaus bleibt."
+        },
+        pentacles_page: {
+          name: { marseille: "Bube der Münzen", ws: "Page der Pentakel" },
+          keywords: ["Studium", "Praxisnähe", "Potenzial"],
+          text: "Eine junge Gestalt betrachtet eine Münze: Erforsche eine Fähigkeit mit Zeit und einer klaren Methode."
+        },
+        pentacles_knight: {
+          name: { marseille: "Ritter der Münzen", ws: "Ritter der Pentakel" },
+          keywords: ["Zuverlässigkeit", "Beständigkeit", "Methode"],
+          text: "Ein Reiter bewegt sich im Rhythmus der Erde: Vertraue auf kleine, gut durchdachte Schritte."
+        },
+        pentacles_queen: {
+          name: { marseille: "Königin der Münzen", ws: "Königin der Pentakel" },
+          keywords: ["Alltagsfürsorge", "Großzügigkeit", "Praxisnähe"],
+          text: "Eine Königin hütet einen fruchtbaren Garten: Pflege deine Mittel und deinen Lebensraum mit Bedacht."
+        },
+        pentacles_king: {
+          name: { marseille: "König der Münzen", ws: "König der Pentakel" },
+          keywords: ["Stabilität", "Verantwortung", "Kluger Umgang"],
+          text: "Ein König betrachtet sein beständiges Werk: Setze deine Mittel maßvoll und im Geist des Teilens ein."
+        }
+      },
+      reversed: {
+        wands_ace: {
+          keywords: ["Gebremster Antrieb", "Zögern", "Zerstreuung"],
+          text: "Die Flamme will noch nicht brennen: Nimm dir Zeit, um zu erkennen, wofür sich deine Energie wirklich lohnt."
+        },
+        wands_2: {
+          keywords: ["Enger Blick", "Abwarten", "Entscheidungsangst"],
+          text: "Der Horizont wirkt enger: Dein Zögern lädt dazu ein, die eigenen Prioritäten vor dem Aufbruch zu klären."
+        },
+        wands_3: {
+          keywords: ["Verzögerung", "Ungeduld", "Unklare Aussicht"],
+          text: "Ergebnisse lassen auf sich warten: Passe deine Erwartungen an, statt das weitere Vorankommen zu erzwingen."
+        },
+        wands_4: {
+          keywords: ["Vertagte Feier", "Wacklige Stützen", "Unstimmigkeit"],
+          text: "Die Feier fühlt sich unvollständig an: Stärke erst deine Beziehungen oder den Rahmen, bevor du alles feierst."
+        },
+        wands_5: {
+          keywords: ["Verdeckte Spannung", "Fruchtlose Rivalität", "Ausweichen"],
+          text: "Die Debatte stockt oder verstummt: Sprich Differenzen an, ohne den Wettbewerb alle Kräfte kosten zu lassen."
+        },
+        wands_6: {
+          keywords: ["Bestätigungsbedürfnis", "Zweifel", "Stiller Erfolg"],
+          text: "Anerkennung fehlt oder wiegt zu schwer: Miss deinen Weg an eigenen Werten statt am Beifall anderer."
+        },
+        wands_7: {
+          keywords: ["Erschöpfung", "Übertriebene Abwehr", "Rückzug"],
+          text: "Ständige Wachsamkeit kostet Kraft: Wähle deine wichtigen Anliegen und lass anderes ruhen."
+        },
+        wands_8: {
+          keywords: ["Stockung", "Hast", "Verwirrung"],
+          text: "Signale kreuzen sich und der Takt gerät durcheinander: Etwas langsamer handeln kann wieder Klarheit bringen."
+        },
+        wands_9: {
+          keywords: ["Angesammelte Müdigkeit", "Starre Abwehr", "Nachlassen"],
+          text: "Das Wachehalten wird zur Last: Deine Müdigkeit anzuerkennen kann dir helfen, gesunden Abstand zu gewinnen."
+        },
+        wands_10: {
+          keywords: ["Überlastung", "Delegation", "Entlastung"],
+          text: "Die Pflichten werden zu schwer: Gib ab, was möglich ist, statt jede Erwartung allein zu tragen."
+        },
+        wands_page: {
+          keywords: ["Zerstreute Begeisterung", "Verspäteter Start", "Unbeständigkeit"],
+          text: "Die Entdeckerlust verzettelt sich: Gib deiner Neugier einen greifbaren Raum, in dem sie wachsen kann."
+        },
+        wands_knight: {
+          keywords: ["Impulsivität", "Unruhe", "Frustration"],
+          text: "Tatendrang kippt in Übereilung: Gönne dir eine Pause, bevor dein Schwung dich mitreißt."
+        },
+        wands_queen: {
+          keywords: ["Vergleich", "Gehemmte Energie", "Empfindlichkeit"],
+          text: "Das innere Licht schwankt unter fremden Blicken: Pflege dein Selbstvertrauen jenseits aller Vergleiche."
+        },
+        wands_king: {
+          keywords: ["Starre Autorität", "Ungeduld", "Kontrolle"],
+          text: "Der Wunsch zu führen nimmt zu viel Platz ein: Zuhören kann deiner Autorität mehr Tiefe verleihen."
+        },
+        cups_ace: {
+          keywords: ["Zurückgehaltene Gefühle", "Rückzug", "Verletzlichkeit"],
+          text: "Der Kelch scheint verschlossen: Gib deinen Gefühlen Zeit, einen sicheren Ausdruck zu finden."
+        },
+        cups_2: {
+          keywords: ["Ungleichgewicht", "Brüchiger Dialog", "Distanz"],
+          text: "Das Spiegelbild zwischen zwei Kelchen trübt sich: Suche das Gespräch, ohne eigene Bedürfnisse zu verleugnen."
+        },
+        cups_3: {
+          keywords: ["Zerstreuung", "Vereinsamung", "Übermaß"],
+          text: "Die Gruppe findet keinen gemeinsamen Klang: Suche ehrlichen Austausch statt Feiern um jeden Preis."
+        },
+        cups_4: {
+          keywords: ["Verschlossenheit", "Unzufriedenheit", "Inneres Erwachen"],
+          text: "Der Rückzug dauert an oder beginnt zu bröckeln: Ein neuer Blick auf ein Angebot kann die Sehnsucht wecken."
+        },
+        cups_5: {
+          keywords: ["Linderung", "Neuer Blick", "Versöhnung"],
+          text: "Der Blick löst sich langsam vom Mangel: Es entsteht Platz für das, was sich noch versöhnen oder heilen lässt."
+        },
+        cups_6: {
+          keywords: ["Schwere Nostalgie", "Verklärung", "Vergessene Gegenwart"],
+          text: "Erinnerungen nehmen zu viel Raum ein: Bewahre ihre Wärme und heiße zugleich das Heute willkommen."
+        },
+        cups_7: {
+          keywords: ["Täuschung", "Unentschlossenheit", "Übermäßige Träumerei"],
+          text: "Verlockende Bilder erschweren die Wahl: Einfache Bedürfnisse können deinen Blick auf das Wirkliche zurückführen."
+        },
+        cups_8: {
+          keywords: ["Festhalten", "Vertagter Abschied", "Zögern"],
+          text: "Ein Schritt bleibt auf dem Weg in der Schwebe: Erforsche, was dich zurückhält, bevor du weitergehst."
+        },
+        cups_9: {
+          keywords: ["Unzufriedenheit", "Übermaß", "Oberflächliche Freude"],
+          text: "Hinter den Kelchen wirkt das Lächeln bemüht: Frage, was dich jenseits des schönen Scheins wirklich nährt."
+        },
+        cups_10: {
+          keywords: ["Überhöhte Erwartungen", "Familiäre Spannung", "Versöhnungsbedarf"],
+          text: "Das Bild vollkommenen Glücks bekommt Risse: Setze auf echte Nähe statt auf eine Fassade der Harmonie."
+        },
+        cups_page: {
+          keywords: ["Schüchternheit", "Träumerei", "Verhaltene Gefühle"],
+          text: "Die Botschaft des Herzens bleibt unausgesprochen: Ein einfaches Gefühl zu benennen kann Unsicherheit mildern."
+        },
+        cups_knight: {
+          keywords: ["Idealisierung", "Vage Versprechen", "Enttäuschung"],
+          text: "Der Traum nimmt allen Raum ein: Gleiche deine Erwartungen behutsam mit Taten und Tatsachen ab."
+        },
+        cups_queen: {
+          keywords: ["Überempfindlichkeit", "Unscharfe Grenzen", "Emotionaler Rückzug"],
+          text: "Die Sensibilität schwappt über oder zieht sich zurück: Sanfte Grenzen bewahren deine Offenheit."
+        },
+        cups_king: {
+          keywords: ["Verborgene Gefühle", "Distanz", "Gefühlskontrolle"],
+          text: "Gelassenheit wird zur starren Maske: Ein Gefühl auszusprechen kann Nähe schaffen, ohne Halt zu verlieren."
+        },
+        swords_ace: {
+          keywords: ["Verwirrung", "Voreiliges Urteil", "Verhüllte Wahrheit"],
+          text: "Das Denken verliert den Faden oder wird schneidend: Prüfe Gewissheiten, bevor du urteilst."
+        },
+        swords_2: {
+          keywords: ["Unentschlossenheit", "Vermeidung", "Innere Anspannung"],
+          text: "Die vertagte Wahl nimmt immer mehr Raum ein: Benenne deine Angst, um die Entscheidung klarer zu sehen."
+        },
+        swords_3: {
+          keywords: ["Innere Heilung", "Linderung", "Nachlassender Kummer"],
+          text: "Die Wolken beginnen sich zu lichten: Erlaube dir allmähliche Erleichterung, ohne dein Tempo zu erzwingen."
+        },
+        swords_4: {
+          keywords: ["Unruhe", "Vertagte Ruhe", "Überlastung"],
+          text: "Der Geist findet keine Pause: Kleine stille Momente können wieder Raum für klare Gedanken schaffen."
+        },
+        swords_5: {
+          keywords: ["Anhaltender Konflikt", "Groll", "Deeskalation"],
+          text: "Das Beharren auf Recht erschöpft die Beziehung: Ein Schritt zur Seite kann einen friedlicheren Weg öffnen."
+        },
+        swords_6: {
+          keywords: ["Wandelwiderstand", "Festhalten", "Langsamer Übergang"],
+          text: "Die Überfahrt scheint stillzustehen: Geh in deinem Tempo weiter, ohne sofortige Gewissheit zu fordern."
+        },
+        swords_7: {
+          keywords: ["Umwege", "Misstrauen", "Wiedergewonnene Wahrheit"],
+          text: "Unausgesprochenes macht den Weg schwer: Mehr Offenheit kann helfen, offene Fragen leichter zu klären."
+        },
+        swords_8: {
+          keywords: ["Befreiung", "Neues Vertrauen", "Weiter Blick"],
+          text: "Die Fesseln beginnen sich zu lösen: Ein anderer Blick auf die Lage kann neue Bewegung ermöglichen."
+        },
+        swords_9: {
+          keywords: ["Langsame Beruhigung", "Abstand", "Leichtere Gedanken"],
+          text: "Die Gedanken werden allmählich leichter: Unterscheide reale Fakten von beängstigenden Vorstellungen."
+        },
+        swords_10: {
+          keywords: ["Wiederaufbau", "Erleichterung", "Neuer Blick"],
+          text: "Nach einer schweren Zeit zeigt sich ein Lichtstreif: Geh weiter, ohne dich zur Eile zu drängen."
+        },
+        swords_page: {
+          keywords: ["Verdacht", "Vorschnelle Worte", "Nervosität"],
+          text: "Neugier wird zu Misstrauen: Höre erst aufmerksam zu, bevor du reagierst oder etwas deutest."
+        },
+        swords_knight: {
+          keywords: ["Übereilung", "Starrsinn", "Scharfe Worte"],
+          text: "Der Gedanke galoppiert dem Zuhören davon: Verlangsame, bevor Gewissheit jedes Gespräch verschließt."
+        },
+        swords_queen: {
+          keywords: ["Kühle", "Überzogene Ansprüche", "Distanz"],
+          text: "Klarheit wird zu schneidend: Bewahre Freundlichkeit in den Grenzen, die du setzt."
+        },
+        swords_king: {
+          keywords: ["Dogmatismus", "Gedankenkontrolle", "Starres Urteil"],
+          text: "Grundsätze verhärten sich zu Gewissheiten: Ziehe andere Sichtweisen für deine Entscheidung heran."
+        },
+        pentacles_ace: {
+          keywords: ["Vertagte Chance", "Trägheit", "Unklare Prioritäten"],
+          text: "Eine Möglichkeit bleibt nur ein Entwurf: Prüfe deine Mittel und beginne mit einem machbaren Schritt."
+        },
+        pentacles_2: {
+          keywords: ["Zerstreuung", "Ungleichgewicht", "Überlastung"],
+          text: "Aufgaben wirbeln durcheinander wie Münzen: Vereinfache deine Prioritäten, um wieder Luft zu bekommen."
+        },
+        pentacles_3: {
+          keywords: ["Schwierige Abstimmung", "Einzelkampf", "Missverständnis"],
+          text: "Die gemeinsame Arbeit gerät aus dem Takt: Kläre Rollen und würdige jeden Beitrag."
+        },
+        pentacles_4: {
+          keywords: ["Verkrampfung", "Mangelangst", "Loslassen"],
+          text: "Sicherheit wird zum Schutzpanzer: Lockere deinen Griff auf das, was du unbedingt bewahren willst."
+        },
+        pentacles_5: {
+          keywords: ["Neue Unterstützung", "Öffnung", "Wiederaufbau"],
+          text: "Eine zuvor verborgene Tür scheint erreichbar: Hilfe anzunehmen kann den weiteren Weg erleichtern."
+        },
+        pentacles_6: {
+          keywords: ["Ungleichgewicht", "Gefühlte Schuld", "Bedingtes Geben"],
+          text: "Der Austausch trägt unausgesprochene Erwartungen: Kläre, was frei gegeben oder angenommen werden kann."
+        },
+        pentacles_7: {
+          keywords: ["Ungeduld", "Zweifel am Aufwand", "Neubewertung"],
+          text: "Die Früchte brauchen noch Zeit: Überdenke deine Methode, ohne bisherige Arbeit kleinzureden."
+        },
+        pentacles_8: {
+          keywords: ["Perfektionismus", "Routine", "Sinkende Motivation"],
+          text: "Die wiederholte Arbeit verliert ihren Sinn: Finde Freude am Lernen, ohne Perfektion zu verlangen."
+        },
+        pentacles_9: {
+          keywords: ["Gewählte Einsamkeit", "Komfortabhängigkeit", "Unzufriedenheit"],
+          text: "Komfort allein schenkt keine Freude mehr: Frage, wie viel Platz du deinen Beziehungen gibst."
+        },
+        pentacles_10: {
+          keywords: ["Drückendes Erbe", "Familiäre Erwartungen", "Brüchige Sicherheit"],
+          text: "Übernommene Gewohnheiten engen ein: Wähle bewusst, was du bewahren oder verändern möchtest."
+        },
+        pentacles_page: {
+          keywords: ["Fehlende Methode", "Ablenkung", "Aufgeschobenes Vorhaben"],
+          text: "Die Lust am Lernen verzettelt sich: Ein bescheidenes Ziel kann deinen Bemühungen wieder Richtung geben."
+        },
+        pentacles_knight: {
+          keywords: ["Trägheit", "Starrheit", "Eintönige Arbeit"],
+          text: "Vorsicht bremst jeden Schritt: Lass etwas Beweglichkeit zu, ohne deine Sorgfalt aufzugeben."
+        },
+        pentacles_queen: {
+          keywords: ["Selbstüberforderung", "Selbstvergessenheit", "Materielle Sorge"],
+          text: "Für alles zu sorgen wird schwer: Schenke auch deinen eigenen Bedürfnissen Aufmerksamkeit."
+        },
+        pentacles_king: {
+          keywords: ["Besitzdenken", "Starrheit", "Materielle Bindung"],
+          text: "Das Streben nach Sicherheit wird zu eng: Lass Raum für Veränderung und Großzügigkeit."
+        }
       }
     }
   },

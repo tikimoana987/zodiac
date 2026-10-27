@@ -713,7 +713,8 @@ I18N.tr = deepMerge(I18N.fr, {
     fieldPlace: "Doğumunuzun yaz saati dahil tam saat dilimini ve koordinatlarını verir. Yer olmadan yükselen ve evler hesaplanamaz. En yakın şehir yeterlidir. Yer bulunamadı mı? GPS koordinatlarını ya da bir harita bağlantısını (Google Maps, OpenStreetMap, Apple Haritalar) yapıştırın: saat dilimi en yakın şehirden alınır ve değiştirebilirsiniz.",
     privacy: "Girdiğiniz her şey (ad, tarih, saat, yer, geçmiş, tarot sorusu) yalnızca bu cihazdaki tarayıcınızın belleğinde saklanır. Hiçbir veri bir sunucuya gönderilmez ve uygulamada istatistik ya da izleme aracı yoktur. Tarayıcınızda bu sitenin verilerini silmek her şeyi siler. Yalnızca «Paylaş» düğmesi doğum tarihinizi içeren bir bağlantı oluşturur; onu siz gönderirsiniz.",
     reversed: "Gerçek bir destede bazı kartlar ters çıkar: gelenek onlara, kartın enerjisinin engellendiği, geciktiği, içe döndüğü ya da aşırıya kaçtığı nüanslı bir anlam verir. Bu seçenek varsayılan olarak kapalıdır; açıldığında günün açılımındaki her kartın ters çıkma olasılığı ikide birdir. Bir sonraki açılım için geçerlidir: daha önce yapılmış bir açılım değişmez.",
-    calendar: "Liste, her gün yeniden hesaplanan önümüzdeki 30 günün gökyüzü buluşmalarını gösterir: yeni ay ve dolunaylar, tutulmalar (gökyüzü haritasının konumundan görünürlükleriyle), retroların başlangıç ve bitişleri, burç değişimleri ve yavaş gezegenlerin (Jüpiter'den Plüton'a) doğum haritanızdaki transitlerinin tam tarihleri. Önümüzdeki 7 günün buluşmalarını ajandanıza ekleyebilirsiniz: Apple, Outlook ve çoğu ajanda bir .ics dosyası alır; Google Takvim olayları tek tek alır (uygulaması .ics dosyalarını açamaz). Hafta sonundaki bir hatırlatma, sonraki haftayı eklemek için geri gelmenizi önerir."
+    calendar: "Liste, her gün yeniden hesaplanan önümüzdeki 30 günün gökyüzü buluşmalarını gösterir: yeni ay ve dolunaylar, tutulmalar (gökyüzü haritasının konumundan görünürlükleriyle), retroların başlangıç ve bitişleri, burç değişimleri ve yavaş gezegenlerin (Jüpiter'den Plüton'a) doğum haritanızdaki transitlerinin tam tarihleri. Önümüzdeki 7 günün buluşmalarını ajandanıza ekleyebilirsiniz: Apple, Outlook ve çoğu ajanda bir .ics dosyası alır; Google Takvim olayları tek tek alır (uygulaması .ics dosyalarını açamaz). Hafta sonundaki bir hatırlatma, sonraki haftayı eklemek için geri gelmenizi önerir.",
+    tarotMinors: "56 küçük arkana kartı, gündelik deneyimleri dört takım üzerinden simgesel olarak ele alır. Değnekler Ateş ve yaratıcılıkla, Kupalar Su ve duygularla ilişkilidir. Kılıçlar Hava ve düşünceyi, Paralar ya da Tılsımlar ise Toprak ve somut yaşamı temsil eder. Günlük açılımda tam desteyi seçerek bu kartları 78 kartlık açılıma katabilirsiniz."
   },
   placePlaceholder: "Bir şehir adı yazın…",
   placeNoMatch: "Şehir bulunamadı. En yakın şehri deneyin.",
@@ -960,7 +961,7 @@ I18N.tr = deepMerge(I18N.fr, {
     spreadFlip: "Çevirmek için her karta dokunun.",
     spreadFlipAria: "Kartı çevir: {pos}",
     spreadTomorrow: "Bugünkü açılımınız yapıldı. Sonraki açılım: yarın.",
-    artCredit: "Kart çizimleri Gemini (Google) ile üretilmiştir.",
+    artCredit: "Kart çizimleri Gemini (Google) ve ChatGPT (OpenAI) ile üretilmiştir.",
     reversedToggle: "Ters kartlar",
     reversedBadge: "Ters",
     reversed: {
@@ -1051,6 +1052,524 @@ I18N.tr = deepMerge(I18N.fr, {
       world: {
         keywords: ["Yarım kalan", "Gecikme", "Son adım"],
         text: "Döngü kapanmakta zorlanıyor: tamamlanmadan önce bitirilecek son bir şey kaldı."
+      }
+    },
+    minors: {
+      fullDeck: "Tam deste (78 kart)",
+      badge: "Küçük arkana",
+      suits: {
+        wands: { marseille: "Değnekler", ws: "Değnekler", element: "Ateş" },
+        cups: { marseille: "Kupalar", ws: "Kupalar", element: "Su" },
+        swords: { marseille: "Kılıçlar", ws: "Kılıçlar", element: "Hava" },
+        pentacles: { marseille: "Paralar", ws: "Tılsımlar", element: "Toprak" }
+      },
+      cards: {
+        wands_ace: {
+          name: { marseille: "Değnek Ası", ws: "Değnek Ası" },
+          keywords: ["Atılım", "İlham", "Girişim"],
+          text: "Yaratıcı bir kıvılcım beliriyor: Bu dürtüyü kabul edin ve harekete geçme isteğinize küçük bir biçim verin."
+        },
+        wands_2: {
+          name: { marseille: "Değnek İkilisi", ws: "Değnek İkilisi" },
+          keywords: ["Öngörü", "Planlama", "Seçim"],
+          text: "Ufukta iki yol beliriyor: Kendi arzularınızı gözden kaçırmadan bir yön seçmeye cesaret edin."
+        },
+        wands_3: {
+          name: { marseille: "Değnek Üçlüsü", ws: "Değnek Üçlüsü" },
+          keywords: ["Genişleme", "Yeni ufuk", "Ortak heyecan"],
+          text: "Bakışınız ilk adımların ötesine uzanıyor: Projenize yeni bir boyut katabilecek paylaşımlara açık olun."
+        },
+        wands_4: {
+          name: { marseille: "Değnek Dörtlüsü", ws: "Değnek Dörtlüsü" },
+          keywords: ["Kutlama", "Güvenli alan", "Uyum"],
+          text: "Davetkâr bir alan şekilleniyor: Katettiğiniz yolu ve birlikte olmanın verdiği sevinci takdir edin."
+        },
+        wands_5: {
+          name: { marseille: "Değnek Beşlisi", ws: "Değnek Beşlisi" },
+          keywords: ["Yüzleşme", "Rekabet", "Çeşitlilik"],
+          text: "Farklı istekler karşı karşıya geliyor: Rekabeti bir ego savaşına değil, canlı bir fikir alışverişine dönüştürün."
+        },
+        wands_6: {
+          name: { marseille: "Değnek Altılısı", ws: "Değnek Altılısı" },
+          keywords: ["Takdir", "Özgüven", "Başarı"],
+          text: "Emekleriniz karşılık buluyor: Başkalarının beğenisini kendi pusulanız hâline getirmeden teşvikleri kabul edin."
+        },
+        wands_7: {
+          name: { marseille: "Değnek Yedilisi", ws: "Değnek Yedilisi" },
+          keywords: ["Cesaret", "Duruş", "Sebat"],
+          text: "Yeriniz için kararlı durmanız gerekiyor: Başkalarına kapanmadan sınırlarınızı sakinlikle savunun."
+        },
+        wands_8: {
+          name: { marseille: "Değnek Sekizlisi", ws: "Değnek Sekizlisi" },
+          keywords: ["Hareket", "Akıcılık", "Haber"],
+          text: "Olaylar havada uçan oklar gibi hızlanıyor: Açık bir yön duygusunu koruyarak bu ivmeden yararlanın."
+        },
+        wands_9: {
+          name: { marseille: "Değnek Dokuzlusu", ws: "Değnek Dokuzlusu" },
+          keywords: ["Dayanıklılık", "Dikkat", "Direnç"],
+          text: "Son bir aşama kararlılığınızı sınayabilir: Kuşkunun her yanı kaplamasına izin vermeden gücünüzü koruyun."
+        },
+        wands_10: {
+          name: { marseille: "Değnek Onlusu", ws: "Değnek Onlusu" },
+          keywords: ["Sorumluluk", "Yük", "Bağlılık"],
+          text: "Değnekler bir yük hâline geliyor: Görevleri paylaşın ve kendi sorumluluklarınızı başkalarının beklentilerinden ayırın."
+        },
+        wands_page: {
+          name: { marseille: "Değnek Valesi", ws: "Değnek Uşağı" },
+          keywords: ["Merak", "Keşif", "Atılganlık"],
+          text: "Meraklı bir haberci yeni bir fikri araştırıyor: Her şeyi öğrenmeyi beklemeden denemeye cesaret edin."
+        },
+        wands_knight: {
+          name: { marseille: "Değnek Şövalyesi", ws: "Değnek Şövalyesi" },
+          keywords: ["Heyecan", "Hareket", "Atılganlık"],
+          text: "Bir şövalye coşkusuyla ilerliyor: Sizi harekete geçiren şeyin peşinden giderken sonuçlarını da düşünün."
+        },
+        wands_queen: {
+          name: { marseille: "Değnek Kraliçesi", ws: "Değnek Kraliçesi" },
+          keywords: ["Işıltı", "Özgüven", "Yaratıcılık"],
+          text: "Sıcak bir varlık çevresine ilham veriyor: Yaratıcılığınıza güvenin ve içinizdeki heyecanı paylaşın."
+        },
+        wands_king: {
+          name: { marseille: "Değnek Kralı", ws: "Değnek Kralı" },
+          keywords: ["Önderlik", "Vizyon", "Girişim"],
+          text: "Açık bir irade yön gösteriyor: Başkalarına da alan bırakarak girişimlerinizi cesaretle yönlendirin."
+        },
+        cups_ace: {
+          name: { marseille: "Kupa Ası", ws: "Kupa Ası" },
+          keywords: ["Kalp açıklığı", "Duyarlılık", "Yeni duygu"],
+          text: "Bir kupa taze suyla dolup taşıyor: Beliren duyguları sıkıca tutmaya çalışmadan karşılayın."
+        },
+        cups_2: {
+          name: { marseille: "Kupa İkilisi", ws: "Kupa İkilisi" },
+          keywords: ["Karşılaşma", "Karşılıklılık", "Uzlaşma"],
+          text: "İki kupa birbirine karşılık veriyor: Her iki kişinin de duyulduğu ve değer gördüğü bir bağı besleyin."
+        },
+        cups_3: {
+          name: { marseille: "Kupa Üçlüsü", ws: "Kupa Üçlüsü" },
+          keywords: ["Dostluk", "Paylaşım", "Ortak sevinç"],
+          text: "Kupalar birlikte havaya kalkıyor: Paylaşıldıkça büyüyen sevinci ve dostluk bağlarını kutlayın."
+        },
+        cups_4: {
+          name: { marseille: "Kupa Dörtlüsü", ws: "Kupa Dörtlüsü" },
+          keywords: ["İçe bakış", "Bezginlik", "Geri durma"],
+          text: "Bir kupa hâlâ gözünüzün önünde duruyor: İçten içe sizi neyin etkilediğini hissetmek için zaman ayırın."
+        },
+        cups_5: {
+          name: { marseille: "Kupa Beşlisi", ws: "Kupa Beşlisi" },
+          keywords: ["Hayal kırıklığı", "Pişmanlık", "Kabullenme"],
+          text: "Kaybedilen şey dikkatinizi çekiyor: Kalan bağları unutmadan üzüntünüze de yer açın."
+        },
+        cups_6: {
+          name: { marseille: "Kupa Altılısı", ws: "Kupa Altılısı" },
+          keywords: ["Anılar", "Şefkat", "Cömertlik"],
+          text: "Tatlı bir anı tanıdık bir koku gibi dönüyor: Geçmişten güç alın ama orada sıkışıp kalmayın."
+        },
+        cups_7: {
+          name: { marseille: "Kupa Yedilisi", ws: "Kupa Yedilisi" },
+          keywords: ["Olasılıklar", "Hayal gücü", "Ayırt etme"],
+          text: "Yedi kupa arzunun farklı yüzlerini gösteriyor: Derin isteklerinizi çekici yanılsamalardan ayırın."
+        },
+        cups_8: {
+          name: { marseille: "Kupa Sekizlisi", ws: "Kupa Sekizlisi" },
+          keywords: ["Bağı bırakma", "Anlam arayışı", "Bilinçli ayrılış"],
+          text: "Bolluğun içinde bile bir eksiklik hissediliyor: Alışkanlıklardan uzaklaşmaya çağıran anlam arayışını dinleyin."
+        },
+        cups_9: {
+          name: { marseille: "Kupa Dokuzlusu", ws: "Kupa Dokuzlusu" },
+          keywords: ["Memnuniyet", "Şükran", "Haz"],
+          text: "Yan yana kupalar dingin bir sevinci çağrıştırıyor: Rahatlığı tam bir doyumla karıştırmadan kazanımlarınızı tadın."
+        },
+        cups_10: {
+          name: { marseille: "Kupa Onlusu", ws: "Kupa Onlusu" },
+          keywords: ["Uyum", "Aidiyet", "Paylaşılan mutluluk"],
+          text: "Güven dolu bir çevre ortak sevinci simgeliyor: Herkesin kendisi olabildiği ilişkileri özenle koruyun."
+        },
+        cups_page: {
+          name: { marseille: "Kupa Valesi", ws: "Kupa Uşağı" },
+          keywords: ["Sezgi", "Duyarlılık", "Hayranlık"],
+          text: "Kupanın içinden beklenmedik bir sürpriz beliriyor: Duygularınıza ve aklınıza gelen yeni fikirlere dikkat edin."
+        },
+        cups_knight: {
+          name: { marseille: "Kupa Şövalyesi", ws: "Kupa Şövalyesi" },
+          keywords: ["Romantizm", "Kalbin çağrısı", "Teklif"],
+          text: "Bir şövalye kupasını taşıyarak ilerliyor: Karşınızdakinin gerçekliğini unutmadan duygularınıza kulak verin."
+        },
+        cups_queen: {
+          name: { marseille: "Kupa Kraliçesi", ws: "Kupa Kraliçesi" },
+          keywords: ["Empati", "Sezgi", "Şefkat"],
+          text: "Değerli bir kupa dinlemeye davet ediyor: Herkesin yükünü üstlenmeden duygulara alan açın."
+        },
+        cups_king: {
+          name: { marseille: "Kupa Kralı", ws: "Kupa Kralı" },
+          keywords: ["Duygusal olgunluk", "Denge", "İyilikseverlik"],
+          text: "Taht dalgaların yanında sarsılmadan duruyor: Duygularınızı yaşayın ama yönetimi bütünüyle onlara bırakmayın."
+        },
+        swords_ace: {
+          name: { marseille: "Kılıç Ası", ws: "Kılıç Ası" },
+          keywords: ["Berraklık", "Sağduyu", "Gerçek"],
+          text: "Bir kılıç düşüncelerin sisini yarıyor: Bir tavır almadan önce gerçekleri açıkça adlandırın."
+        },
+        swords_2: {
+          name: { marseille: "Kılıç İkilisi", ws: "Kılıç İkilisi" },
+          keywords: ["İkilem", "Duraklama", "Denge"],
+          text: "Çapraz iki kılıç kararı bekletiyor: Kararsızlığı uzatmadan her iki tarafı da dinleyin."
+        },
+        swords_3: {
+          name: { marseille: "Kılıç Üçlüsü", ws: "Kılıç Üçlüsü" },
+          keywords: ["Üzüntü", "Düş kırıklığı", "Hassas gerçek"],
+          text: "Acı veren bir gerçek kalbe dokunuyor: Sahip olduğunuz gücü unutmadan üzüntünüze yer açın."
+        },
+        swords_4: {
+          name: { marseille: "Kılıç Dörtlüsü", ws: "Kılıç Dörtlüsü" },
+          keywords: ["Dinlenme", "Geri çekilme", "Toparlanma"],
+          text: "Kılıçların çevresindeki sessizlik dinlenmeye çağırıyor: Yeniden başlamadan önce düşüncelerinizin durulmasını bekleyin."
+        },
+        swords_5: {
+          name: { marseille: "Kılıç Beşlisi", ws: "Kılıç Beşlisi" },
+          keywords: ["Anlaşmazlık", "Güç çekişmesi", "Farkındalık"],
+          text: "Bir zafer geride burukluk bırakabilir: Haklı çıkmaya çalışmadan önce tartışmanın bedelini düşünün."
+        },
+        swords_6: {
+          name: { marseille: "Kılıç Altılısı", ws: "Kılıç Altılısı" },
+          keywords: ["Geçiş", "Uzaklaşma", "Sakinleşme"],
+          text: "İçsel bir kıyıdan ötekine geçmek zaman alıyor: İlerlemenizi kolaylaştıran desteklere açık olun."
+        },
+        swords_7: {
+          name: { marseille: "Kılıç Yedilisi", ws: "Kılıç Yedilisi" },
+          keywords: ["Strateji", "Gizlilik", "Bağımsızlık"],
+          text: "Dolambaçlı yol açık konuşmaktan kolay görünebilir: Dürüstlükten uzaklaşmadan düşünülmüş bir yol seçin."
+        },
+        swords_8: {
+          name: { marseille: "Kılıç Sekizlisi", ws: "Kılıç Sekizlisi" },
+          keywords: ["Algılanan sınırlar", "Şüphe", "Bakış açısı"],
+          text: "Düşünceler görünmez engeller çiziyor: Çıkışsız görünen sınırları yeniden sorgulayın."
+        },
+        swords_9: {
+          name: { marseille: "Kılıç Dokuzlusu", ws: "Kılıç Dokuzlusu" },
+          keywords: ["Kaygı", "Tekrarlanan düşünceler", "Kırılganlık"],
+          text: "Endişeler eski senaryoları canlandırıyor: Kaygılarınızı büyütmek yerine güvendiğiniz biriyle paylaşın."
+        },
+        swords_10: {
+          name: { marseille: "Kılıç Onlusu", ws: "Kılıç Onlusu" },
+          keywords: ["Döngünün sonu", "Tükenmişlik", "Bırakabilme"],
+          text: "Bir dönemin gücü tükenmiş görünüyor: Artık aynı biçimde süremeyecek olanı kabul edin."
+        },
+        swords_page: {
+          name: { marseille: "Kılıç Valesi", ws: "Kılıç Uşağı" },
+          keywords: ["Zihinsel merak", "Gözlem", "Açıklık"],
+          text: "Genç bir figür fikirlerin rüzgârını izliyor: Sorular sorun ve eleştirel düşüncenizi geliştirin."
+        },
+        swords_knight: {
+          name: { marseille: "Kılıç Şövalyesi", ws: "Kılıç Şövalyesi" },
+          keywords: ["Kararlılık", "Açık sözlülük", "Azim"],
+          text: "Bir şövalye rüzgârı yarıp ilerliyor: Berrak düşüncenizi ölçülü bir eylemin hizmetine verin."
+        },
+        swords_queen: {
+          name: { marseille: "Kılıç Kraliçesi", ws: "Kılıç Kraliçesi" },
+          keywords: ["Ayırt etme", "Bağımsızlık", "Net sınırlar"],
+          text: "Bir kraliçe kılıcını güvenle tutuyor: Gerçeğinizi kararlılıkla ama başkalarına açık kalarak dile getirin."
+        },
+        swords_king: {
+          name: { marseille: "Kılıç Kralı", ws: "Kılıç Kralı" },
+          keywords: ["İçsel adalet", "Akıl", "Sorumluluk"],
+          text: "Bir kral karar vermeden önce gerçekleri değerlendiriyor: Seçimlerinizi anlık ruh hâline değil, düşünceye dayandırın."
+        },
+        pentacles_ace: {
+          name: { marseille: "Para Ası", ws: "Tılsım Ası" },
+          keywords: ["Somut fırsat", "Kaynaklar", "Sağlam temel"],
+          text: "Açık bir avuçta para duruyor: Umut veren bir fikre küçük ve somut bir başlangıç kazandırın."
+        },
+        pentacles_2: {
+          name: { marseille: "Para İkilisi", ws: "Tılsım İkilisi" },
+          keywords: ["Esneklik", "Denge", "Uyum sağlama"],
+          text: "İki para sürekli hareket ediyor: Günlük yaşamın talepleri arasında kendi ritminizi ayarlayın."
+        },
+        pentacles_3: {
+          name: { marseille: "Para Üçlüsü", ws: "Tılsım Üçlüsü" },
+          keywords: ["İş birliği", "Beceri", "İnşa"],
+          text: "Bir eser birçok elin katkısıyla şekilleniyor: Herkesin projeye kattığı beceriyi takdir edin."
+        },
+        pentacles_4: {
+          name: { marseille: "Para Dörtlüsü", ws: "Tılsım Dörtlüsü" },
+          keywords: ["Güvenlik", "Koruma", "Kontrol"],
+          text: "Dört para özenle saklanıyor: Kazanımlarınızı korurken paylaşma özgürlüğünü unutmayın."
+        },
+        pentacles_5: {
+          name: { marseille: "Para Beşlisi", ws: "Tılsım Beşlisi" },
+          keywords: ["Eksiklik hissi", "Yalnızlık", "Dayanışma"],
+          text: "Eksiklik duygusu insanı yalnızlaştırabiliyor: Destek istemenin hâlâ mümkün olduğunu hatırlayın."
+        },
+        pentacles_6: {
+          name: { marseille: "Para Altılısı", ws: "Tılsım Altılısı" },
+          keywords: ["Cömertlik", "Paylaşım", "Hakkaniyet"],
+          text: "Bir el verirken diğeri alıyor: Herkesin ihtiyaçlarına saygılı bir paylaşım gözetin."
+        },
+        pentacles_7: {
+          name: { marseille: "Para Yedilisi", ws: "Tılsım Yedilisi" },
+          keywords: ["Sabır", "Değerlendirme", "Olgunlaşma"],
+          text: "Hasat henüz yavaşça büyüyor: Sonuçları yargılamadan önce geçtiğiniz yolu değerlendirin."
+        },
+        pentacles_8: {
+          name: { marseille: "Para Sekizlisi", ws: "Tılsım Sekizlisi" },
+          keywords: ["Özen", "Öğrenme", "Ustalık"],
+          text: "İşlenen her para eli biraz daha ustalaştırıyor: Becerinizi sabır ve merakla geliştirin."
+        },
+        pentacles_9: {
+          name: { marseille: "Para Dokuzlusu", ws: "Tılsım Dokuzlusu" },
+          keywords: ["Bağımsızlık", "Ölçülü bolluk", "Huzur"],
+          text: "Sabırlı emek rahatlık duygusunu besliyor: Bağımsızlığınızı ve yaşamın küçük zevklerini takdir edin."
+        },
+        pentacles_10: {
+          name: { marseille: "Para Onlusu", ws: "Tılsım Onlusu" },
+          keywords: ["Miras", "Sağlamlık", "Süreklilik"],
+          text: "Bir miras kuşaklar boyunca taşınıyor: Eşyaların ötesinde aktarılabilen değerlere özen gösterin."
+        },
+        pentacles_page: {
+          name: { marseille: "Para Valesi", ws: "Tılsım Uşağı" },
+          keywords: ["Öğrenim", "Pratiklik", "Potansiyel"],
+          text: "Genç bir figür elindeki paraya bakıyor: Yeni bir beceriye zaman ve yöntem ayırarak yaklaşın."
+        },
+        pentacles_knight: {
+          name: { marseille: "Para Şövalyesi", ws: "Tılsım Şövalyesi" },
+          keywords: ["Güvenilirlik", "İstikrar", "Yöntem"],
+          text: "Bir şövalye toprağın ritmiyle ilerliyor: İyi düşünülmüş küçük ve düzenli adımlara güvenin."
+        },
+        pentacles_queen: {
+          name: { marseille: "Para Kraliçesi", ws: "Tılsım Kraliçesi" },
+          keywords: ["Günlük özen", "Cömertlik", "Pratiklik"],
+          text: "Bir kraliçe verimli bir bahçeye bakıyor: Kaynaklarınıza ve yaşam alanınıza dikkatle özen gösterin."
+        },
+        pentacles_king: {
+          name: { marseille: "Para Kralı", ws: "Tılsım Kralı" },
+          keywords: ["İstikrar", "Sorumluluk", "Akıllı yönetim"],
+          text: "Bir kral kalıcı bir esere bakıyor: Kaynaklarınızı ölçülü ve paylaşmaya açık bir anlayışla kullanın."
+        }
+      },
+      reversed: {
+        wands_ace: {
+          keywords: ["Engellenen heves", "Tereddüt", "Dağınıklık"],
+          text: "Alev henüz güçlenmiyor: Enerjinizi gerçekten neye ayırmak istediğinizi anlamak için kendinize zaman tanıyın."
+        },
+        wands_2: {
+          keywords: ["Daralan bakış", "Bekleyiş", "Seçim korkusu"],
+          text: "Ufuk biraz daralmış görünüyor: Yola çıkmadan önce önceliklerinizi belirlemek tereddüdünüzü hafifletebilir."
+        },
+        wands_3: {
+          keywords: ["Gecikme", "Sabırsızlık", "Belirsiz ufuk"],
+          text: "Sonuçlar henüz görünmüyor: İlerlemenizi zorlamak yerine beklentilerinizi yeniden gözden geçirin."
+        },
+        wands_4: {
+          keywords: ["Ertelenen kutlama", "Kırılgan destek", "Anlaşmazlık"],
+          text: "Kutlamada bir eksiklik hissediliyor: Her şeyi kutlamadan önce ilişkilerinize ve ortak zemine özen gösterin."
+        },
+        wands_5: {
+          keywords: ["Gizli gerilim", "Kısır çekişme", "Kaçınma"],
+          text: "Tartışma uzuyor ya da suskunluğa dönüşüyor: Farklılıkları dile getirin ve rekabetin sizi tüketmesine izin vermeyin."
+        },
+        wands_6: {
+          keywords: ["Onay arayışı", "Şüphe", "Sessiz başarı"],
+          text: "Takdir ya eksik kalıyor ya da fazla önem kazanıyor: Yolunuzu alkışlarla değil, değerlerinizle ölçün."
+        },
+        wands_7: {
+          keywords: ["Yorgunluk", "Aşırı savunma", "İçe çekilme"],
+          text: "Sürekli tetikte olmak yorucu hâle geliyor: Gücünüzü hak eden konuları seçin ve gerisini bırakın."
+        },
+        wands_8: {
+          keywords: ["Aksama", "Acelecilik", "Karmaşa"],
+          text: "İşaretler karışıyor ve ritim bozuluyor: Biraz yavaşlamak adımlarınızı daha yerinde kılabilir."
+        },
+        wands_9: {
+          keywords: ["Birikmiş yorgunluk", "Katı savunma", "Gevşeme"],
+          text: "Nöbet tutmak ağırlaşıyor: Yorgunluğunuzu kabul etmek daha sağlıklı bir mesafe kurmanıza yardımcı olabilir."
+        },
+        wands_10: {
+          keywords: ["Aşırı yük", "Görev paylaşımı", "Rahatlama"],
+          text: "Yükümlülükler ağırlaşıyor: Her beklentiyi tek başınıza taşımak yerine paylaşılabilecek yükleri hafifletin."
+        },
+        wands_page: {
+          keywords: ["Dağınık heyecan", "Geciken başlangıç", "Tutarsızlık"],
+          text: "Keşfetme isteğiniz farklı yönlere dağılıyor: Merakınızın gelişebileceği somut bir alan belirleyin."
+        },
+        wands_knight: {
+          keywords: ["Dürtüsellik", "İstikrarsızlık", "Hayal kırıklığı"],
+          text: "Coşku aceleciliğe dönüşüyor: Bu hızın sizi sürüklemesine izin vermeden kısa bir ara verin."
+        },
+        wands_queen: {
+          keywords: ["Kıyaslama", "Bastırılmış enerji", "Alınganlık"],
+          text: "İçinizdeki ışık başkalarının bakışıyla dalgalanıyor: Özgüveninizi karşılaştırmaların dışında besleyin."
+        },
+        wands_king: {
+          keywords: ["Katı otorite", "Sabırsızlık", "Denetim"],
+          text: "Yönetme arzusu fazla yer kaplıyor: Başkalarını dinlemek gerçek etkinizi güçlendirebilir."
+        },
+        cups_ace: {
+          keywords: ["Bastırılmış duygular", "Geri çekilme", "Kırılganlık"],
+          text: "Kupa kapalı görünüyor: Duygularınıza ifade bulabilecekleri güvenli bir alan ve zaman tanıyın."
+        },
+        cups_2: {
+          keywords: ["Dengesizlik", "Kırılgan diyalog", "Mesafe"],
+          text: "İki kupanın yansıması bulanıklaşıyor: Kendi ihtiyaçlarınızdan vazgeçmeden diyaloğu yeniden kurun."
+        },
+        cups_3: {
+          keywords: ["Dağınıklık", "Yalnızlaşma", "Aşırılık"],
+          text: "Grubun uyumu zayıflamış görünüyor: Ne pahasına olursa olsun eğlenmek yerine içten sohbetleri arayın."
+        },
+        cups_4: {
+          keywords: ["Kapanma", "Hoşnutsuzluk", "İçsel uyanış"],
+          text: "İçe kapanma sürüyor ya da çözülüyor: Bir teklife farklı bakmak isteğinizi yeniden canlandırabilir."
+        },
+        cups_5: {
+          keywords: ["Hafifleme", "Yeni bakış", "Barışma"],
+          text: "Bakışınız yavaşça eksik olandan uzaklaşıyor: Onarılabilecek şeyler için yeni bir alan açılabilir."
+        },
+        cups_6: {
+          keywords: ["Ağır nostalji", "İdealleştirme", "Unutulan bugün"],
+          text: "Anılar fazla yer kaplıyor: Onların sıcaklığını korurken bugünün sunduklarını da karşılayın."
+        },
+        cups_7: {
+          keywords: ["Yanılsama", "Kararsızlık", "Aşırı düş kurma"],
+          text: "Çekici görüntüler seçiminizi bulandırıyor: Basit ihtiyaçlarınıza dönmek gerçeği görmenizi kolaylaştırabilir."
+        },
+        cups_8: {
+          keywords: ["Bağlılık", "Ertelenen ayrılık", "Tereddüt"],
+          text: "Yolda atılacak adım askıda kalıyor: Yeni bir sayfa açmadan önce sizi neyin tuttuğunu araştırın."
+        },
+        cups_9: {
+          keywords: ["Hoşnutsuzluk", "Aşırılık", "Yüzeysel sevinç"],
+          text: "Kupaların ardındaki gülümseme zorlama görünüyor: Görünüşlerin ötesinde sizi neyin beslediğini düşünün."
+        },
+        cups_10: {
+          keywords: ["Mükemmellik beklentisi", "Aile gerilimi", "Onarım ihtiyacı"],
+          text: "Kusursuz mutluluk görüntüsü çatlıyor: Görünürdeki uyum yerine samimi ilişkileri önemseyin."
+        },
+        cups_page: {
+          keywords: ["Çekingenlik", "Hayalcilik", "Saklanan duygular"],
+          text: "Kalbin mesajı yarım kalıyor: Basit bir duyguyu dile getirmek tereddütlerinizi yumuşatabilir."
+        },
+        cups_knight: {
+          keywords: ["İdealleştirme", "Belirsiz vaatler", "Düş kırıklığı"],
+          text: "Hayal bütün alanı kaplıyor: Beklentilerinizi davranışlar ve gerçeklerle nazikçe karşılaştırın."
+        },
+        cups_queen: {
+          keywords: ["Aşırı hassasiyet", "Belirsiz sınırlar", "Duygusal kapanma"],
+          text: "Duyarlılık taşıyor ya da içe çekiliyor: Yumuşak sınırlar koyarak açıklığınızı koruyun."
+        },
+        cups_king: {
+          keywords: ["Gizlenen duygular", "Mesafe", "Duygu denetimi"],
+          text: "Sakinlik katı bir maskeye dönüşüyor: Bir duyguyu adlandırmak yakınlığı güçlendirebilir."
+        },
+        swords_ace: {
+          keywords: ["Karmaşa", "Acele yargı", "Gizlenen gerçek"],
+          text: "Düşünceler dağılabiliyor ya da sertleşebiliyor: Sonuca varmadan önce inançlarınızı yeniden gözden geçirin."
+        },
+        swords_2: {
+          keywords: ["Kararsızlık", "Kaçınma", "İç gerilim"],
+          text: "Ertelenen seçim zihninizde büyüyor: Sizi korkutan şeyi tanımak kararı aydınlatabilir."
+        },
+        swords_3: {
+          keywords: ["İçsel iyileşme", "Hafifleme", "Azalan keder"],
+          text: "Bulutlar yavaşça dağılmaya başlıyor: Kendinizi aceleye getirmeden gelen huzura izin verin."
+        },
+        swords_4: {
+          keywords: ["Huzursuzluk", "Ertelenen dinlenme", "Bunalmışlık"],
+          text: "Zihin bir türlü dinlenemiyor: Küçük sakin anlar düşüncelerinize yeniden alan açabilir."
+        },
+        swords_5: {
+          keywords: ["Uzayan çatışma", "Kırgınlık", "Gerilimi azaltma"],
+          text: "Haklı çıkma isteği ilişkiyi tüketiyor: Geriye atılan bir adım daha sakin bir yol açabilir."
+        },
+        swords_6: {
+          keywords: ["Değişime direnç", "Bağlılık", "Yavaş geçiş"],
+          text: "Yolculuk durmuş gibi görünüyor: Hemen kesinlik aramadan kendi hızınızda ilerleyin."
+        },
+        swords_7: {
+          keywords: ["Dolambaçlı yollar", "Güvensizlik", "Gerçeğe dönüş"],
+          text: "Söylenmeyenler yolu zorlaştırıyor: Daha fazla açıklık çözülmemiş konuları hafifletebilir."
+        },
+        swords_8: {
+          keywords: ["Engellerin çözülmesi", "Tazelenen güven", "Geniş bakış"],
+          text: "Bağlar yavaşça gevşiyor: Duruma başka açıdan bakmak hareket alanınızı genişletebilir."
+        },
+        swords_9: {
+          keywords: ["Yavaş hafifleme", "Mesafe", "Sakinleşen düşünceler"],
+          text: "Düşüncelerin yükü azalmaya başlıyor: Gerçekleri sizi korkutan varsayımlardan ayırın."
+        },
+        swords_10: {
+          keywords: ["Yeniden kurma", "Rahatlama", "Yeni bakış"],
+          text: "Zorlu bir sürecin ardından ufuk aydınlanıyor: Kendinizi hızlanmaya zorlamadan ilerleyin."
+        },
+        swords_page: {
+          keywords: ["Kuşku", "Acele sözler", "Gerginlik"],
+          text: "Merak kuşkuya dönüşüyor: Yanıt vermeden ya da yorum yapmadan önce sonuna kadar dinleyin."
+        },
+        swords_knight: {
+          keywords: ["Acelecilik", "Katılık", "Sert sözler"],
+          text: "Düşünceler dinlemenin önüne geçiyor: Kesin kanaatler diyaloğu kapatmadan biraz yavaşlayın."
+        },
+        swords_queen: {
+          keywords: ["Soğukluk", "Aşırı beklenti", "Mesafe"],
+          text: "Sağduyu keskin bir tavra dönüşüyor: Çizdiğiniz sınırlarda nezakete de yer bırakın."
+        },
+        swords_king: {
+          keywords: ["Dogmatizm", "Zihinsel denetim", "Katı yargı"],
+          text: "İlkeler tartışılmaz doğrulara dönüşüyor: Kararınızı başka görüşlerle yumuşatmayı deneyin."
+        },
+        pentacles_ace: {
+          keywords: ["Ertelenen fırsat", "Durağanlık", "Belirsiz öncelikler"],
+          text: "Olasılık henüz tasarı olarak duruyor: İmkânlarınızı gözden geçirip uygulanabilir bir adım seçin."
+        },
+        pentacles_2: {
+          keywords: ["Dağınıklık", "Dengesizlik", "Aşırı yük"],
+          text: "İşler hareket eden paralar gibi birbirine karışıyor: Önceliklerinizi sadeleştirip biraz nefes alın."
+        },
+        pentacles_3: {
+          keywords: ["Uyum sorunu", "Yalnız çaba", "Yanlış anlama"],
+          text: "Ortak çalışma uyumunu kaybediyor: Rolleri netleştirin ve her katkıya hak ettiği yeri verin."
+        },
+        pentacles_4: {
+          keywords: ["Sıkı tutunma", "Yoksunluk korkusu", "Bırakabilme"],
+          text: "Güvenlik bir zırha dönüşüyor: Elinizde tutmaya çalıştığınız şeylere biraz daha esnek yaklaşın."
+        },
+        pentacles_5: {
+          keywords: ["Yeniden destek", "Açılma", "Toparlanma"],
+          text: "Önceden görünmeyen bir kapı erişilebilir görünüyor: Yardımı kabul etmek yolu hafifletebilir."
+        },
+        pentacles_6: {
+          keywords: ["Dengesizlik", "Manevi borç", "Koşullu yardım"],
+          text: "Verme ve alma söylenmeyen beklentilerle ağırlaşıyor: Özgürce neyin verilip alınabileceğini yeniden belirleyin."
+        },
+        pentacles_7: {
+          keywords: ["Sabırsızlık", "Sorgulanan emek", "Yeniden değerlendirme"],
+          text: "Meyvelerin olgunlaşması zaman alıyor: Önceki emeğinizi küçümsemeden yönteminizi yeniden gözden geçirin."
+        },
+        pentacles_8: {
+          keywords: ["Mükemmeliyetçilik", "Tekdüzelik", "Azalan istek"],
+          text: "Tekrarlanan iş anlamını yitiriyor: Kusursuzluk aramadan öğrenmenin keyfini yeniden bulun."
+        },
+        pentacles_9: {
+          keywords: ["Seçilen yalnızlık", "Konfora bağımlılık", "Hoşnutsuzluk"],
+          text: "Rahatlık artık sevinç vermeye yetmiyor: İlişkilerinize hayatınızda ne kadar yer ayırdığınızı düşünün."
+        },
+        pentacles_10: {
+          keywords: ["Ağır miras", "Aile beklentileri", "Kırılgan düzen"],
+          text: "Miras kalan alışkanlıklar daraltıcı olabiliyor: Neyi koruyup neyi değiştirmek istediğinizi seçin."
+        },
+        pentacles_page: {
+          keywords: ["Yöntem eksikliği", "Dikkat dağılması", "Bekleyen proje"],
+          text: "Öğrenme isteği dağılıyor: Küçük bir hedef emeklerinize yeniden yön verebilir."
+        },
+        pentacles_knight: {
+          keywords: ["Durağanlık", "Katılık", "Tekrarlı iş"],
+          text: "Tedbir her adımı yavaşlatıyor: Özeninizi kaybetmeden biraz esneklik katın."
+        },
+        pentacles_queen: {
+          keywords: ["Aşırı yüklenme", "Kendini unutma", "Maddi kaygı"],
+          text: "Her şeyle ilgilenmek ağırlaşıyor: Kendi ihtiyaçlarınıza da ilgi göstermeyi unutmayın."
+        },
+        pentacles_king: {
+          keywords: ["Sahiplenme", "Katılık", "Maddi bağlılık"],
+          text: "Güvenlik arayışı kendini sınırlıyor: Değişime ve cömertliğe de yer açın."
+        }
       }
     }
   },

@@ -717,7 +717,8 @@ I18N.es = deepMerge(I18N.fr, {
     fieldPlace: "Da el huso horario exacto de tu nacimiento, horario de verano incluido, y sus coordenadas. Sin lugar, no se pueden calcular el ascendente ni las casas. Basta con la ciudad más cercana. ¿No encuentras el lugar? Pega sus coordenadas GPS o un enlace de mapa (Google Maps, OpenStreetMap, Mapas de Apple): el huso horario se toma de la ciudad más cercana y puedes cambiarlo.",
     privacy: "Todo lo que introduces (nombre, fecha, hora, lugar, historial, pregunta del tarot) se guarda solo en la memoria de tu navegador, en este dispositivo. No se envía ningún dato a ningún servidor y la app no contiene herramientas de estadísticas ni de seguimiento. Borrar los datos de este sitio en tu navegador lo elimina todo. Solo el botón «Compartir» crea un enlace con tu fecha de nacimiento, que envías tú mismo.",
     reversed: "Con una baraja real, algunas cartas salen al revés: la tradición les da un sentido matizado, en el que la energía de la carta está bloqueada, retrasada, interiorizada o es excesiva. Esta opción está desactivada por defecto; activada, cada carta de la tirada del día tiene una posibilidad entre dos de salir invertida. Se aplica a la tirada siguiente: una tirada ya hecha no cambia.",
-    calendar: "La lista muestra las citas del cielo de los próximos 30 días, recalculadas cada día: lunas nuevas y llenas, eclipses (con su visibilidad desde el lugar del mapa del cielo), inicios y finales de retrogradación, cambios de signo y fechas exactas de los tránsitos de los planetas lentos (de Júpiter a Plutón) sobre tu carta natal. Puedes añadir las de los próximos 7 días a tu agenda: Apple, Outlook y la mayoría de agendas reciben un archivo .ics; Google Calendar recibe los eventos uno a uno (su aplicación no sabe abrir archivos .ics). Un recordatorio al final de la semana te invita a volver para añadir la siguiente."
+    calendar: "La lista muestra las citas del cielo de los próximos 30 días, recalculadas cada día: lunas nuevas y llenas, eclipses (con su visibilidad desde el lugar del mapa del cielo), inicios y finales de retrogradación, cambios de signo y fechas exactas de los tránsitos de los planetas lentos (de Júpiter a Plutón) sobre tu carta natal. Puedes añadir las de los próximos 7 días a tu agenda: Apple, Outlook y la mayoría de agendas reciben un archivo .ics; Google Calendar recibe los eventos uno a uno (su aplicación no sabe abrir archivos .ics). Un recordatorio al final de la semana te invita a volver para añadir la siguiente.",
+    tarotMinors: "Los 56 arcanos menores exploran de forma simbólica las experiencias cotidianas a través de cuatro palos. Los Bastos se asocian al Fuego y la acción, y las Copas al Agua y las emociones. Las Espadas corresponden al Aire y al pensamiento, y los Oros o Pentáculos a la Tierra y al mundo material. Puedes incluirlos en tu tirada del día seleccionando la baraja completa de 78 cartas."
   },
   placePlaceholder: "Escribe el nombre de una ciudad…",
   placeNoMatch: "No se encontró ninguna ciudad. Prueba con la más cercana.",
@@ -964,7 +965,7 @@ I18N.es = deepMerge(I18N.fr, {
     spreadFlip: "Toca cada carta para darle la vuelta.",
     spreadFlipAria: "Dar la vuelta a la carta: {pos}",
     spreadTomorrow: "Tu tirada de hoy está hecha. Próxima tirada: mañana.",
-    artCredit: "Ilustraciones de las cartas generadas con Gemini (Google).",
+    artCredit: "Ilustraciones de las cartas generadas con Gemini (Google) y ChatGPT (OpenAI).",
     reversedToggle: "Cartas invertidas",
     reversedBadge: "Invertida",
     reversed: {
@@ -1055,6 +1056,524 @@ I18N.es = deepMerge(I18N.fr, {
       world: {
         keywords: ["Inacabado", "Retraso", "Último paso"],
         text: "Al ciclo le cuesta cerrarse: queda una última cosa por terminar antes de la plenitud."
+      }
+    },
+    minors: {
+      fullDeck: "Baraja completa (78 cartas)",
+      badge: "Arcano menor",
+      suits: {
+        wands: { marseille: "Bastos", ws: "Bastos", element: "Fuego" },
+        cups: { marseille: "Copas", ws: "Copas", element: "Agua" },
+        swords: { marseille: "Espadas", ws: "Espadas", element: "Aire" },
+        pentacles: { marseille: "Oros", ws: "Pentáculos", element: "Tierra" }
+      },
+      cards: {
+        wands_ace: {
+          name: { marseille: "As de Bastos", ws: "As de Bastos" },
+          keywords: ["Impulso", "Inspiración", "Iniciativa"],
+          text: "Una chispa creativa se enciende: acoge ese impulso y da una forma sencilla a tus ganas de actuar."
+        },
+        wands_2: {
+          name: { marseille: "Dos de Bastos", ws: "Dos de Bastos" },
+          keywords: ["Visión", "Planificación", "Elección"],
+          text: "Dos caminos se dibujan en el horizonte: elige una dirección sin perder de vista tus aspiraciones."
+        },
+        wands_3: {
+          name: { marseille: "Tres de Bastos", ws: "Tres de Bastos" },
+          keywords: ["Expansión", "Perspectiva", "Impulso compartido"],
+          text: "La mirada va más allá de los primeros pasos: ábrete a intercambios que amplíen tu proyecto."
+        },
+        wands_4: {
+          name: { marseille: "Cuatro de Bastos", ws: "Cuatro de Bastos" },
+          keywords: ["Celebración", "Arraigo", "Armonía"],
+          text: "Un espacio acogedor va tomando forma: disfruta de lo logrado y de la alegría de compartir con los demás."
+        },
+        wands_5: {
+          name: { marseille: "Cinco de Bastos", ws: "Cinco de Bastos" },
+          keywords: ["Confrontación", "Emulación", "Diversidad"],
+          text: "Se cruzan voluntades diferentes: convierte la rivalidad en un diálogo vivo, no en una lucha de egos."
+        },
+        wands_6: {
+          name: { marseille: "Seis de Bastos", ws: "Seis de Bastos" },
+          keywords: ["Reconocimiento", "Confianza", "Logro"],
+          text: "Tus esfuerzos encuentran eco: recibe los ánimos sin hacer de la aprobación ajena tu brújula."
+        },
+        wands_7: {
+          name: { marseille: "Siete de Bastos", ws: "Siete de Bastos" },
+          keywords: ["Valor", "Firmeza", "Perseverancia"],
+          text: "Tu posición pide ser defendida: afirma tus límites con calma sin cerrarte a los demás."
+        },
+        wands_8: {
+          name: { marseille: "Ocho de Bastos", ws: "Ocho de Bastos" },
+          keywords: ["Movimiento", "Fluidez", "Mensajes"],
+          text: "Los acontecimientos se aceleran como flechas en vuelo: aprovecha el impulso sin perder el rumbo."
+        },
+        wands_9: {
+          name: { marseille: "Nueve de Bastos", ws: "Nueve de Bastos" },
+          keywords: ["Resistencia", "Vigilancia", "Resiliencia"],
+          text: "Un último tramo pone a prueba tu constancia: protege tus fuerzas sin dejar que la desconfianza lo invada todo."
+        },
+        wands_10: {
+          name: { marseille: "Diez de Bastos", ws: "Diez de Bastos" },
+          keywords: ["Responsabilidades", "Carga", "Compromiso"],
+          text: "Los bastos se vuelven una carga: reparte las tareas y distingue tus compromisos de los ajenos."
+        },
+        wands_page: {
+          name: { marseille: "Sota de Bastos", ws: "Paje de Bastos" },
+          keywords: ["Curiosidad", "Descubrimiento", "Audacia"],
+          text: "Un mensajero curioso explora una idea nueva: atrévete a probar antes de querer dominarlo todo."
+        },
+        wands_knight: {
+          name: { marseille: "Caballero de Bastos", ws: "Caballero de Bastos" },
+          keywords: ["Entusiasmo", "Movimiento", "Audacia"],
+          text: "Un caballero sigue su impulso con ardor: avanza hacia lo que te mueve sin ignorar las consecuencias."
+        },
+        wands_queen: {
+          name: { marseille: "Reina de Bastos", ws: "Reina de Bastos" },
+          keywords: ["Carisma", "Seguridad", "Creatividad"],
+          text: "Una presencia cálida inspira a su entorno: confía en tu creatividad y comparte tu entusiasmo."
+        },
+        wands_king: {
+          name: { marseille: "Rey de Bastos", ws: "Rey de Bastos" },
+          keywords: ["Liderazgo", "Visión", "Iniciativa"],
+          text: "Una voluntad clara marca el rumbo: guía tus proyectos con audacia y deja espacio a otras voces."
+        },
+        cups_ace: {
+          name: { marseille: "As de Copas", ws: "As de Copas" },
+          keywords: ["Apertura emocional", "Sensibilidad", "Emoción nueva"],
+          text: "Una copa rebosa agua fresca: acoge las emociones que surgen sin intentar retenerlas."
+        },
+        cups_2: {
+          name: { marseille: "Dos de Copas", ws: "Dos de Copas" },
+          keywords: ["Encuentro", "Reciprocidad", "Acuerdo"],
+          text: "Dos copas se responden: cuida un vínculo en el que ambas personas puedan sentirse escuchadas y valoradas."
+        },
+        cups_3: {
+          name: { marseille: "Tres de Copas", ws: "Tres de Copas" },
+          keywords: ["Amistad", "Compartir", "Alegría común"],
+          text: "Las copas se alzan juntas: celebra la fuerza de un círculo donde la alegría crece al compartirse."
+        },
+        cups_4: {
+          name: { marseille: "Cuatro de Copas", ws: "Cuatro de Copas" },
+          keywords: ["Introspección", "Desgana", "Distancia"],
+          text: "Una copa permanece a la vista: tómate tiempo para descubrir qué sigue conmoviéndote de verdad."
+        },
+        cups_5: {
+          name: { marseille: "Cinco de Copas", ws: "Cinco de Copas" },
+          keywords: ["Decepción", "Pesar", "Aceptación"],
+          text: "Lo perdido atrae tu mirada: acoge la tristeza sin olvidar los vínculos que siguen presentes."
+        },
+        cups_6: {
+          name: { marseille: "Seis de Copas", ws: "Seis de Copas" },
+          keywords: ["Recuerdos", "Ternura", "Generosidad"],
+          text: "Un recuerdo tierno vuelve como un aroma familiar: toma fuerza del pasado sin quedarte atrapado en él."
+        },
+        cups_7: {
+          name: { marseille: "Siete de Copas", ws: "Siete de Copas" },
+          keywords: ["Posibilidades", "Imaginación", "Discernimiento"],
+          text: "Siete copas muestran mil caras del deseo: distingue tus anhelos profundos de los espejismos seductores."
+        },
+        cups_8: {
+          name: { marseille: "Ocho de Copas", ws: "Ocho de Copas" },
+          keywords: ["Desapego", "Búsqueda de sentido", "Partida elegida"],
+          text: "Algo falta pese a la abundancia: escucha la necesidad de sentido que te invita a dejar una costumbre."
+        },
+        cups_9: {
+          name: { marseille: "Nueve de Copas", ws: "Nueve de Copas" },
+          keywords: ["Satisfacción", "Gratitud", "Placer"],
+          text: "Las copas alineadas evocan una alegría serena: disfruta de tus logros sin confundir comodidad y plenitud."
+        },
+        cups_10: {
+          name: { marseille: "Diez de Copas", ws: "Diez de Copas" },
+          keywords: ["Armonía", "Pertenencia", "Felicidad compartida"],
+          text: "Un círculo de confianza evoca la alegría compartida: cultiva vínculos donde cada cual conserve su identidad."
+        },
+        cups_page: {
+          name: { marseille: "Sota de Copas", ws: "Paje de Copas" },
+          keywords: ["Intuición", "Sensibilidad", "Asombro"],
+          text: "Una sorpresa surge dentro de la copa: presta atención a tus emociones y a las ideas inesperadas."
+        },
+        cups_knight: {
+          name: { marseille: "Caballero de Copas", ws: "Caballero de Copas" },
+          keywords: ["Romanticismo", "Impulso afectivo", "Propuesta"],
+          text: "Un caballero avanza con su copa: sigue tus impulsos afectivos sin olvidar la realidad de la otra persona."
+        },
+        cups_queen: {
+          name: { marseille: "Reina de Copas", ws: "Reina de Copas" },
+          keywords: ["Empatía", "Intuición", "Acogida"],
+          text: "Una copa preciosa invita a escuchar: acoge las emociones sin cargar con las de todo el mundo."
+        },
+        cups_king: {
+          name: { marseille: "Rey de Copas", ws: "Rey de Copas" },
+          keywords: ["Madurez emocional", "Equilibrio", "Benevolencia"],
+          text: "El trono permanece firme junto a las olas: deja fluir tus emociones sin cederles todo el control."
+        },
+        swords_ace: {
+          name: { marseille: "As de Espadas", ws: "As de Espadas" },
+          keywords: ["Claridad", "Lucidez", "Verdad"],
+          text: "Una hoja atraviesa la niebla de las ideas: identifica los hechos con precisión antes de tomar postura."
+        },
+        swords_2: {
+          name: { marseille: "Dos de Espadas", ws: "Dos de Espadas" },
+          keywords: ["Dilema", "Pausa", "Equilibrio"],
+          text: "Dos espadas cruzadas detienen la decisión: escucha ambas partes sin alargar la espera indefinidamente."
+        },
+        swords_3: {
+          name: { marseille: "Tres de Espadas", ws: "Tres de Espadas" },
+          keywords: ["Pena", "Desilusión", "Verdad dolorosa"],
+          text: "Una verdad dolorosa atraviesa el corazón: da espacio a la pena sin negar tus recursos interiores."
+        },
+        swords_4: {
+          name: { marseille: "Cuatro de Espadas", ws: "Cuatro de Espadas" },
+          keywords: ["Descanso", "Perspectiva", "Recuperación"],
+          text: "El silencio que rodea las espadas invita a parar: deja reposar tus ideas antes de retomar el camino."
+        },
+        swords_5: {
+          name: { marseille: "Cinco de Espadas", ws: "Cinco de Espadas" },
+          keywords: ["Desacuerdo", "Pulso de poder", "Lucidez"],
+          text: "Una victoria puede dejar un sabor amargo: considera el precio del enfrentamiento antes de querer convencer."
+        },
+        swords_6: {
+          name: { marseille: "Seis de Espadas", ws: "Seis de Espadas" },
+          keywords: ["Transición", "Distanciamiento", "Alivio"],
+          text: "Pasar de una orilla interior a otra lleva tiempo: acoge aquello que te ayude a avanzar."
+        },
+        swords_7: {
+          name: { marseille: "Siete de Espadas", ws: "Siete de Espadas" },
+          keywords: ["Estrategia", "Discreción", "Autonomía"],
+          text: "Un rodeo parece más fácil que hablar con franqueza: elige una estrategia reflexiva sin olvidar la honestidad."
+        },
+        swords_8: {
+          name: { marseille: "Ocho de Espadas", ws: "Ocho de Espadas" },
+          keywords: ["Límites percibidos", "Duda", "Perspectiva"],
+          text: "Los pensamientos dibujan barreras invisibles: cuestiona los límites que parecen no tener salida."
+        },
+        swords_9: {
+          name: { marseille: "Nueve de Espadas", ws: "Nueve de Espadas" },
+          keywords: ["Preocupación", "Rumiación", "Vulnerabilidad"],
+          text: "Las preocupaciones despiertan viejos escenarios: comparte lo que te inquieta en vez de amplificarlo."
+        },
+        swords_10: {
+          name: { marseille: "Diez de Espadas", ws: "Diez de Espadas" },
+          keywords: ["Fin de ciclo", "Agotamiento", "Desapego"],
+          text: "Un ciclo llega al límite de sus fuerzas: reconoce lo que ya no puede continuar de la misma manera."
+        },
+        swords_page: {
+          name: { marseille: "Sota de Espadas", ws: "Paje de Espadas" },
+          keywords: ["Curiosidad intelectual", "Observación", "Franqueza"],
+          text: "Una figura joven observa el viento de las ideas: haz preguntas y afina tu espíritu crítico."
+        },
+        swords_knight: {
+          name: { marseille: "Caballero de Espadas", ws: "Caballero de Espadas" },
+          keywords: ["Decisión", "Franqueza", "Determinación"],
+          text: "Un caballero corta el viento sin rodeos: pon tu claridad al servicio de una acción mesurada."
+        },
+        swords_queen: {
+          name: { marseille: "Reina de Espadas", ws: "Reina de Espadas" },
+          keywords: ["Discernimiento", "Independencia", "Límites claros"],
+          text: "Una reina sostiene su espada con firmeza: expresa tu verdad con claridad y apertura."
+        },
+        swords_king: {
+          name: { marseille: "Rey de Espadas", ws: "Rey de Espadas" },
+          keywords: ["Juicio sensato", "Razón", "Responsabilidad"],
+          text: "Un rey examina los hechos antes de decidir: apoya tus elecciones en la reflexión, no en tu estado de ánimo."
+        },
+        pentacles_ace: {
+          name: { marseille: "As de Oros", ws: "As de Pentáculos" },
+          keywords: ["Oportunidad concreta", "Recursos", "Arraigo"],
+          text: "Una moneda descansa en una mano abierta: da un primer paso concreto hacia una idea prometedora."
+        },
+        pentacles_2: {
+          name: { marseille: "Dos de Oros", ws: "Dos de Pentáculos" },
+          keywords: ["Flexibilidad", "Equilibrio", "Adaptación"],
+          text: "Dos monedas dibujan un movimiento continuo: ajusta tu ritmo entre las exigencias de la vida diaria."
+        },
+        pentacles_3: {
+          name: { marseille: "Tres de Oros", ws: "Tres de Pentáculos" },
+          keywords: ["Cooperación", "Destreza", "Construcción"],
+          text: "Una obra toma forma entre varias manos: reconoce las habilidades que cada persona aporta al proyecto."
+        },
+        pentacles_4: {
+          name: { marseille: "Cuatro de Oros", ws: "Cuatro de Pentáculos" },
+          keywords: ["Seguridad", "Conservación", "Control"],
+          text: "Cuatro monedas se guardan con cuidado: protege lo conseguido sin olvidar la libertad de compartir."
+        },
+        pentacles_5: {
+          name: { marseille: "Cinco de Oros", ws: "Cinco de Pentáculos" },
+          keywords: ["Carencia percibida", "Aislamiento", "Apoyo mutuo"],
+          text: "La sensación de carencia puede aislarte: recuerda que pedir apoyo sigue siendo una posibilidad."
+        },
+        pentacles_6: {
+          name: { marseille: "Seis de Oros", ws: "Seis de Pentáculos" },
+          keywords: ["Generosidad", "Intercambio", "Equidad"],
+          text: "Una mano da mientras otra recibe: busca un reparto respetuoso con las necesidades de todos."
+        },
+        pentacles_7: {
+          name: { marseille: "Siete de Oros", ws: "Siete de Pentáculos" },
+          keywords: ["Paciencia", "Balance", "Maduración"],
+          text: "La cosecha todavía crece despacio: contempla el camino recorrido antes de juzgar los resultados."
+        },
+        pentacles_8: {
+          name: { marseille: "Ocho de Oros", ws: "Ocho de Pentáculos" },
+          keywords: ["Dedicación", "Aprendizaje", "Maestría"],
+          text: "Cada moneda trabajada perfecciona el gesto: cultiva tu habilidad con paciencia y curiosidad."
+        },
+        pentacles_9: {
+          name: { marseille: "Nueve de Oros", ws: "Nueve de Pentáculos" },
+          keywords: ["Autonomía", "Abundancia moderada", "Serenidad"],
+          text: "Los esfuerzos pacientes alimentan una sensación de bienestar: aprecia tu autonomía y los placeres sencillos."
+        },
+        pentacles_10: {
+          name: { marseille: "Diez de Oros", ws: "Diez de Pentáculos" },
+          keywords: ["Legado", "Solidez", "Continuidad"],
+          text: "Un legado atraviesa generaciones: cuida lo que se transmite más allá de los bienes materiales."
+        },
+        pentacles_page: {
+          name: { marseille: "Sota de Oros", ws: "Paje de Pentáculos" },
+          keywords: ["Estudio", "Pragmatismo", "Potencial"],
+          text: "Una figura joven contempla una moneda: explora una habilidad dedicándole tiempo y método."
+        },
+        pentacles_knight: {
+          name: { marseille: "Caballero de Oros", ws: "Caballero de Pentáculos" },
+          keywords: ["Fiabilidad", "Constancia", "Método"],
+          text: "Un caballero avanza al ritmo de la tierra: confía en los pequeños gestos regulares y bien meditados."
+        },
+        pentacles_queen: {
+          name: { marseille: "Reina de Oros", ws: "Reina de Pentáculos" },
+          keywords: ["Cuidado cotidiano", "Generosidad", "Sentido práctico"],
+          text: "Una reina cuida un jardín fértil: atiende tus recursos y el entorno en el que vives."
+        },
+        pentacles_king: {
+          name: { marseille: "Rey de Oros", ws: "Rey de Pentáculos" },
+          keywords: ["Estabilidad", "Responsabilidad", "Gestión prudente"],
+          text: "Un rey contempla una obra duradera: usa tus recursos con mesura y espíritu de compartir."
+        }
+      },
+      reversed: {
+        wands_ace: {
+          keywords: ["Impulso frenado", "Vacilación", "Dispersión"],
+          text: "La llama tarda en prender: date tiempo para descubrir qué merece realmente tu energía."
+        },
+        wands_2: {
+          keywords: ["Visión limitada", "Espera", "Temor a elegir"],
+          text: "El horizonte parece menos abierto: la duda te invita a aclarar tus prioridades antes de partir."
+        },
+        wands_3: {
+          keywords: ["Retraso", "Impaciencia", "Horizonte confuso"],
+          text: "Los resultados tardan en aparecer: ajusta tus expectativas en vez de forzar el avance."
+        },
+        wands_4: {
+          keywords: ["Celebración aplazada", "Apoyos frágiles", "Desacuerdo"],
+          text: "La celebración parece incompleta: cuida los vínculos o las bases antes de festejarlo todo."
+        },
+        wands_5: {
+          keywords: ["Tensión contenida", "Rivalidad estéril", "Evasión"],
+          text: "El debate se atasca o se silencia: expresa los desacuerdos sin dejar que la competencia agote al grupo."
+        },
+        wands_6: {
+          keywords: ["Búsqueda de aprobación", "Duda", "Éxito discreto"],
+          text: "Falta reconocimiento o pesa demasiado: mide tu camino por tus valores, no por los aplausos."
+        },
+        wands_7: {
+          keywords: ["Agotamiento", "Defensa excesiva", "Retraimiento"],
+          text: "Mantener la guardia cansa: elige qué causas merecen tu energía y suelta las demás."
+        },
+        wands_8: {
+          keywords: ["Contratiempos", "Precipitación", "Confusión"],
+          text: "Las señales se cruzan y el ritmo se desordena: bajar la velocidad puede ayudarte a actuar mejor."
+        },
+        wands_9: {
+          keywords: ["Cansancio acumulado", "Defensas rígidas", "Relajación"],
+          text: "Mantener la guardia se vuelve pesado: reconocer el cansancio puede devolverte una distancia saludable."
+        },
+        wands_10: {
+          keywords: ["Sobrecarga", "Delegación", "Liberación"],
+          text: "Las obligaciones desbordan: aligera lo posible en lugar de cargar con todas las expectativas."
+        },
+        wands_page: {
+          keywords: ["Entusiasmo disperso", "Inicio aplazado", "Inconstancia"],
+          text: "Las ganas de explorar se dispersan: ofrece a tu curiosidad un terreno concreto donde crecer."
+        },
+        wands_knight: {
+          keywords: ["Impulsividad", "Inestabilidad", "Frustración"],
+          text: "El entusiasmo se convierte en prisa: haz una pausa antes de que el impulso te arrastre."
+        },
+        wands_queen: {
+          keywords: ["Comparación", "Energía contenida", "Susceptibilidad"],
+          text: "La luz interior vacila ante la mirada ajena: cultiva tu confianza lejos de las comparaciones."
+        },
+        wands_king: {
+          keywords: ["Autoridad rígida", "Impaciencia", "Control"],
+          text: "El deseo de dirigir se vuelve dominante: escuchar a otros puede reforzar tu verdadera autoridad."
+        },
+        cups_ace: {
+          keywords: ["Emociones contenidas", "Retraimiento", "Vulnerabilidad"],
+          text: "La copa parece cerrada: deja que tus sentimientos encuentren su momento y su espacio para expresarse."
+        },
+        cups_2: {
+          keywords: ["Desequilibrio", "Diálogo frágil", "Distancia"],
+          text: "El reflejo entre dos copas se enturbia: recupera el diálogo respetando las necesidades de cada cual."
+        },
+        cups_3: {
+          keywords: ["Dispersión", "Aislamiento", "Exceso"],
+          text: "El grupo parece menos unido: busca encuentros sinceros en lugar de festejar a cualquier precio."
+        },
+        cups_4: {
+          keywords: ["Cierre emocional", "Insatisfacción", "Despertar interior"],
+          text: "El aislamiento persiste o empieza a ceder: mirar una propuesta de otro modo puede reavivar el deseo."
+        },
+        cups_5: {
+          keywords: ["Alivio", "Nueva perspectiva", "Reconciliación"],
+          text: "La mirada se aparta poco a poco de la pérdida: se abre espacio para lo que aún puede repararse."
+        },
+        cups_6: {
+          keywords: ["Nostalgia pesada", "Idealización", "Presente descuidado"],
+          text: "Los recuerdos ocupan demasiado espacio: conserva su ternura y acoge lo que ofrece el presente."
+        },
+        cups_7: {
+          keywords: ["Ilusión", "Indecisión", "Fantasía excesiva"],
+          text: "Las imágenes atractivas confunden la elección: volver a lo esencial puede acercarte a la realidad."
+        },
+        cups_8: {
+          keywords: ["Apego", "Partida aplazada", "Vacilación"],
+          text: "Un paso queda suspendido en el camino: explora qué te retiene antes de pasar página."
+        },
+        cups_9: {
+          keywords: ["Insatisfacción", "Exceso", "Alegría superficial"],
+          text: "La sonrisa detrás de las copas parece forzada: busca lo que te nutre más allá de las apariencias."
+        },
+        cups_10: {
+          keywords: ["Expectativas ideales", "Tensiones familiares", "Vínculo por reparar"],
+          text: "La imagen de la felicidad perfecta se agrieta: elige vínculos auténticos antes que una armonía aparente."
+        },
+        cups_page: {
+          keywords: ["Timidez", "Ensoñación", "Emociones contenidas"],
+          text: "El mensaje del corazón queda a medio decir: expresar un sentimiento sencillo puede aliviar las dudas."
+        },
+        cups_knight: {
+          keywords: ["Idealización", "Promesas vagas", "Decepción"],
+          text: "El sueño ocupa todo el espacio: compara con delicadeza tus expectativas con los hechos y los gestos."
+        },
+        cups_queen: {
+          keywords: ["Hipersensibilidad", "Límites difusos", "Retraimiento afectivo"],
+          text: "La sensibilidad desborda o se cierra: pon límites amables para conservar tu disposición a escuchar."
+        },
+        cups_king: {
+          keywords: ["Emociones ocultas", "Distancia", "Control afectivo"],
+          text: "La calma se vuelve una máscara rígida: nombrar lo que sientes puede acercarte sin perder el equilibrio."
+        },
+        swords_ace: {
+          keywords: ["Confusión", "Juicio apresurado", "Verdad velada"],
+          text: "El pensamiento pierde el hilo o se vuelve cortante: revisa tus certezas antes de concluir."
+        },
+        swords_2: {
+          keywords: ["Indecisión", "Evasión", "Tensión interior"],
+          text: "La elección aplazada lo ocupa todo: reconocer tus temores puede aclarar la decisión."
+        },
+        swords_3: {
+          keywords: ["Sanación interior", "Alivio", "Tristeza menguante"],
+          text: "Las nubes empiezan a disiparse: acoge un alivio gradual sin exigirte recuperarte demasiado pronto."
+        },
+        swords_4: {
+          keywords: ["Inquietud", "Descanso aplazado", "Saturación"],
+          text: "La mente se resiste a descansar: unos momentos de calma pueden devolver espacio a la reflexión."
+        },
+        swords_5: {
+          keywords: ["Conflicto prolongado", "Resentimiento", "Distensión"],
+          text: "La necesidad de tener razón desgasta el vínculo: dar un paso al lado puede abrir una salida más serena."
+        },
+        swords_6: {
+          keywords: ["Resistencia al cambio", "Apego", "Tránsito lento"],
+          text: "La travesía parece suspendida: avanza a tu ritmo sin exigirte una certeza inmediata."
+        },
+        swords_7: {
+          keywords: ["Evasivas", "Desconfianza", "Verdad recuperada"],
+          text: "Lo que no se dice complica el camino: una mayor transparencia puede aliviar lo que queda por resolver."
+        },
+        swords_8: {
+          keywords: ["Desbloqueo", "Confianza renovada", "Mirada amplia"],
+          text: "Las ataduras empiezan a aflojarse: otra lectura de la situación puede devolverte libertad de movimiento."
+        },
+        swords_9: {
+          keywords: ["Alivio gradual", "Perspectiva", "Pensamientos ligeros"],
+          text: "El peso de las ideas empieza a disminuir: distingue los hechos de los escenarios que te preocupan."
+        },
+        swords_10: {
+          keywords: ["Reconstrucción", "Alivio", "Nueva mirada"],
+          text: "Tras la etapa más dura, asoma un claro: avanza sin exigirte ir demasiado deprisa."
+        },
+        swords_page: {
+          keywords: ["Sospecha", "Palabras precipitadas", "Nerviosismo"],
+          text: "La curiosidad se vuelve sospecha: escucha hasta el final antes de responder o interpretar."
+        },
+        swords_knight: {
+          keywords: ["Precipitación", "Rigidez", "Palabras bruscas"],
+          text: "El pensamiento corre más que la escucha: frena antes de que una certeza cierre el diálogo."
+        },
+        swords_queen: {
+          keywords: ["Frialdad", "Exigencia excesiva", "Distancia"],
+          text: "La lucidez se vuelve demasiado cortante: conserva la delicadeza al marcar tus límites."
+        },
+        swords_king: {
+          keywords: ["Dogmatismo", "Control mental", "Juicio rígido"],
+          text: "Los principios se endurecen en certezas: acoge otras perspectivas para matizar tus decisiones."
+        },
+        pentacles_ace: {
+          keywords: ["Oportunidad aplazada", "Inercia", "Prioridades confusas"],
+          text: "La posibilidad sigue siendo un proyecto: revisa tus medios y empieza por una etapa realista."
+        },
+        pentacles_2: {
+          keywords: ["Dispersión", "Desequilibrio", "Sobrecarga"],
+          text: "Las tareas se amontonan como monedas en movimiento: simplifica tus prioridades para recuperar el aire."
+        },
+        pentacles_3: {
+          keywords: ["Mala coordinación", "Esfuerzo aislado", "Malentendido"],
+          text: "El trabajo conjunto carece de armonía: aclara las funciones y valora cada aportación."
+        },
+        pentacles_4: {
+          keywords: ["Aferramiento", "Miedo a perder", "Desapego"],
+          text: "La seguridad se convierte en armadura: afloja el control sobre aquello que deseas conservar."
+        },
+        pentacles_5: {
+          keywords: ["Apoyo recuperado", "Apertura", "Reconstrucción"],
+          text: "Una puerta antes invisible parece accesible: aceptar ayuda puede hacer menos pesado el camino."
+        },
+        pentacles_6: {
+          keywords: ["Desequilibrio", "Deuda simbólica", "Don condicionado"],
+          text: "El intercambio parece cargado de expectativas: redefine qué puedes dar o recibir libremente."
+        },
+        pentacles_7: {
+          keywords: ["Impaciencia", "Esfuerzos cuestionados", "Reevaluación"],
+          text: "Los frutos tardan en madurar: revisa tu método sin menospreciar el trabajo ya realizado."
+        },
+        pentacles_8: {
+          keywords: ["Perfeccionismo", "Rutina", "Motivación debilitada"],
+          text: "El gesto repetido pierde su sentido: recupera el placer de aprender sin exigir perfección."
+        },
+        pentacles_9: {
+          keywords: ["Soledad elegida", "Dependencia del confort", "Insatisfacción"],
+          text: "La comodidad ya no basta para nutrir la alegría: reflexiona sobre el lugar que dejas a los vínculos."
+        },
+        pentacles_10: {
+          keywords: ["Herencia pesada", "Expectativas familiares", "Estabilidad frágil"],
+          text: "Los hábitos heredados se vuelven estrechos: elige qué deseas conservar y qué transformar."
+        },
+        pentacles_page: {
+          keywords: ["Falta de método", "Distracción", "Proyecto pendiente"],
+          text: "Las ganas de aprender se dispersan: un objetivo modesto puede devolver dirección a tus esfuerzos."
+        },
+        pentacles_knight: {
+          keywords: ["Inercia", "Rigidez", "Trabajo repetitivo"],
+          text: "La prudencia ralentiza cada paso: introduce algo de flexibilidad sin perder tu rigor."
+        },
+        pentacles_queen: {
+          keywords: ["Dedicación excesiva", "Olvido de sí", "Preocupación material"],
+          text: "Cuidarlo todo empieza a pesar: dedica también atención a tus propias necesidades."
+        },
+        pentacles_king: {
+          keywords: ["Posesividad", "Rigidez", "Apego material"],
+          text: "La búsqueda de seguridad se cierra sobre sí misma: deja espacio al cambio y a la generosidad."
+        }
       }
     }
   },

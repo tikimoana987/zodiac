@@ -924,6 +924,9 @@ select option, select optgroup{ background-color:var(--option-bg); color:var(--t
   background:rgba(155,126,222,.15); border:1px solid rgba(155,126,222,.35); border-radius:999px; padding:.1rem .55rem; }
 .rev-toggle{ display:inline-flex; align-items:center; gap:.3rem; }
 
+/* Arcanes mineurs (option « jeu complet » du tirage du jour) : mention de la couleur sous le nom */
+.minor-badge{ color:var(--purple-ink); font-size:.78rem; font-weight:600; margin:.2rem 0 .1rem; }
+
 /* Calendrier du ciel */
 .cal-cats{ display:flex; flex-wrap:wrap; gap:.4rem 1rem; margin:.6rem 0 .4rem; }
 .cal-cat{ display:inline-flex; align-items:center; gap:.4rem; color:var(--text); font-size:.9rem; cursor:pointer; }

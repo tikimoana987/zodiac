@@ -1,4 +1,4 @@
-"""Zodiaque & Décans — découpe d'une planche Gemini (2048 × 2048, grille 3 × 2) en 6 cartes.
+"""Zodiaque & Décans — découpe d'une planche Gemini carrée (2048 ou 1092 px, grille 3 × 2) en 6 cartes.
 Usage : python tools/cut_sheets.py planche.jpg NOM cle1,cle2,cle3,cle4,cle5,cle6 [dossier_sortie]
 Détecte les gouttières sombres (repli sur la grille de référence), retire le liseré doré (3,5 %), enregistre chaque carte
 en JPEG et une image de contrôle. Utiliser « - » à la place d'une clé pour ignorer une case. Conversion WebP 320 × 512 :
@@ -23,11 +23,13 @@ def cut(sheet, keys, prefix):
             else: merged.append(b)
         return [(merged[i][1] + 1, merged[i + 1][0] - 1) for i in range(len(merged) - 1)][:n]
     cols, rows = spans(runs(dark.mean(axis=0)), 3), spans(runs(dark.mean(axis=1)), 2)
-    # Grille de référence (planche 1, 2048 px) : préférée quand la détection en diffère de peu
-    # (un ciel très sombre en bord de carte se confond avec la gouttière)
-    REF_C, REF_R = [(33, 647), (716, 1331), (1400, 2015)], [(32, 989), (1058, 2014)]
-    if (w, h) == (2048, 2048):
-        near = lambda d, r: all(abs(a0 - b0) < 30 and abs(a1 - b1) < 30 for (a0, a1), (b0, b1) in zip(d, r))
+    # Grille de référence (planche 1, 2048 px), mise à l'échelle de toute planche carrée (Gemini livre aussi du 1092 px) :
+    # préférée quand la détection en diffère de peu (un ciel très sombre en bord de carte se confond avec la gouttière)
+    if w == h:
+        k = w / 2048; sc = lambda g: [(round(a * k), round(b * k)) for a, b in g]
+        REF_C, REF_R = sc([(33, 647), (716, 1331), (1400, 2015)]), sc([(32, 989), (1058, 2014)])
+        tol = 0.03 * w
+        near = lambda d, r: len(d) == len(r) and all(abs(a0 - b0) < tol and abs(a1 - b1) < tol for (a0, a1), (b0, b1) in zip(d, r))
         cols = REF_C if near(cols, REF_C) else cols; rows = REF_R if near(rows, REF_R) else rows
     print(sheet, '| colonnes', cols, '| lignes', rows)
     os.makedirs(OUT, exist_ok=True); thumbs = []

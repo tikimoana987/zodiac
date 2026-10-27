@@ -1,15 +1,25 @@
 /* ============================================================
-   Zodiaque & Décans — tarot (arcanes majeurs)
+   Zodiaque & Décans — tarot (22 arcanes majeurs, 56 arcanes mineurs)
    Deux jeux : tarot de Marseille (par défaut) et Waite-Smith. Mêmes 22 arcanes ; noms en partie différents,
    Force et Justice échangent leurs numéros (XI et VIII à Marseille, VIII et XI chez Waite-Smith),
    Le Mat n'a pas de numéro à Marseille (0 chez Waite-Smith), l'arcane XIII n'y porte pas de nom.
-   Illustrations : zodiac-tarot-art.js (générées avec Gemini), habillées différemment selon le jeu. Fonctions pures, sans DOM.
+   Arcanes mineurs (option « jeu complet » du tirage du jour) : 4 couleurs × 14 cartes, clés « couleur_rang » (wands_ace … pentacles_king) ;
+   noms selon le jeu (Valet, Cavalier, Deniers à Marseille ; Page, Chevalier, Pentacles chez Waite-Smith) dans I18N[l].tarot.minors.
+   Illustrations : zodiac-tarot-art.js et zodiac-tarot-minors-art.js, habillées différemment selon le jeu. Fonctions pures, sans DOM.
    Dépend de zodiac-numerology.js (digitSum).
    ============================================================ */
 
 const TAROT_KEYS = ['fool', 'magician', 'priestess', 'empress', 'emperor', 'hierophant', 'lovers', 'chariot', 'strength', 'hermit', 'wheel',
   'justice', 'hangedman', 'death', 'temperance', 'devil', 'tower', 'star', 'moon', 'sun', 'judgement', 'world'];   // ordre Waite-Smith, 0 à 21
 const TAROT_DECKS = ['marseille', 'ws'];
+const MINOR_SUITS = ['wands', 'cups', 'swords', 'pentacles'];   // Bâtons (Feu), Coupes (Eau), Épées (Air), Deniers / Pentacles (Terre)
+const MINOR_RANKS = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'page', 'knight', 'queen', 'king'];
+const TAROT_MINOR_KEYS = MINOR_SUITS.flatMap(s => MINOR_RANKS.map(r => `${s}_${r}`));   // 56 cartes
+const TAROT_ALL_KEYS = TAROT_KEYS.concat(TAROT_MINOR_KEYS);                              // jeu complet : 78 cartes
+const MINOR_SET = new Set(TAROT_MINOR_KEYS);
+function isMinorKey(key){ return MINOR_SET.has(key); }
+/* Couleur et rang d'un arcane mineur ('cups_7' → { suit: 'cups', rank: '7' }) */
+function minorParts(key){ const i = key.indexOf('_'); return { suit: key.slice(0, i), rank: key.slice(i + 1) }; }
 
 /* Numéro d'un arcane dans un jeu (0 pour Le Fou) */
 function tarotNumber(key, deck){
@@ -30,8 +40,10 @@ function romanNumeral(n){
   for (const [v, s] of table) while (n >= v) { out += s; n -= v; }
   return out;
 }
-/* Numéro inscrit sur la carte : rien pour Le Mat à Marseille, « 0 » pour Le Fou chez Waite-Smith */
+/* Numéro inscrit sur la carte : rien pour Le Mat à Marseille, « 0 » pour Le Fou chez Waite-Smith ;
+   arcanes mineurs : I (As) à X, rien pour les figures (Valet, Cavalier, Reine, Roi) */
 function tarotNumeral(key, deck){
+  if (isMinorKey(key)) { const r = minorParts(key).rank; return r === 'ace' ? 'I' : /^\d+$/.test(r) ? romanNumeral(+r) : ''; }
   const n = tarotNumber(key, deck);
   return n === 0 ? (deck === 'marseille' ? '' : '0') : romanNumeral(n);
 }
@@ -74,13 +86,14 @@ function tarotBackSvg(deck, label){
 }
 
 /* ---------- Tirage à trois cartes (passé, présent, avenir) ----------
-   Hasard du navigateur réservé aux usages cryptographiques (repli sur Math.random) ; n arcanes distincts. */
+   Hasard du navigateur réservé aux usages cryptographiques (repli sur Math.random) ; n cartes distinctes,
+   parmi les 22 arcanes majeurs ou, en option, parmi les 78 cartes du jeu complet. */
 function secureRandom(){
   if (typeof crypto !== 'undefined' && crypto.getRandomValues) return crypto.getRandomValues(new Uint32Array(1))[0] / 4294967296;
   return Math.random();
 }
-function drawCards(n, rnd = secureRandom){
-  const deck = TAROT_KEYS.slice();
+function drawCards(n, rnd = secureRandom, full = false){   // full : jeu complet (78 cartes) au lieu des 22 arcanes majeurs
+  const deck = (full ? TAROT_ALL_KEYS : TAROT_KEYS).slice();
   for (let i = 0; i < n; i++) { const j = i + Math.floor(rnd() * (deck.length - i)); [deck[i], deck[j]] = [deck[j], deck[i]]; }
   return deck.slice(0, n);
 }

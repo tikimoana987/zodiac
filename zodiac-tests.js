@@ -739,9 +739,9 @@
     }
   });
 
-  test('Bulles d\'information (i) : 36 explications complètes et traduites', () => {
+  test('Bulles d\'information (i) : 37 explications complètes et traduites', () => {
     const keys = Object.keys(I18N.fr.info);
-    assertEq(keys.length, 36, 'nombre d\'explications');
+    assertEq(keys.length, 37, 'nombre d\'explications');
     for (const lang of Object.keys(I18N)) {
       const info = I18N[lang].info;
       assert(keys.every(k => typeof info[k] === 'string' && info[k].length > 20), `${lang} : explication manquante ou trop courte`);   // 20 : le chinois est bien plus dense
@@ -1062,6 +1062,65 @@
         const u = I18N[l].tarot;
         assert(u.reversedToggle && u.reversedBadge && TAROT_KEYS.every(k => u.reversed[k] && u.reversed[k].keywords.length === 3 && u.reversed[k].text), `${l} : 22 sens renversés`);
       }
+    } finally {
+      currentDate = keepDate;
+      if (keepSpread === null) store.remove('zodiac_spread'); else store.set('zodiac_spread', keepSpread);
+    }
+  });
+
+  test('Arcanes mineurs : 78 cartes, noms des deux jeux, numéros, illustrations, textes', () => {
+    assertEq(TAROT_MINOR_KEYS.length, 56, '4 couleurs × 14 cartes');
+    assertEq(new Set(TAROT_ALL_KEYS).size, 78, 'jeu complet : 78 cartes distinctes');
+    assert(TAROT_KEYS.every(k => !isMinorKey(k)) && TAROT_MINOR_KEYS.every(isMinorKey), 'majeurs et mineurs bien séparés');
+    assert(minorParts('pentacles_10').suit === 'pentacles' && minorParts('pentacles_10').rank === '10', 'couleur et rang');
+    assertEq(tarotNumeral('cups_ace', 'marseille'), 'I', 'As : I'); assertEq(tarotNumeral('swords_7', 'ws'), 'VII', 'Sept : VII');
+    assertEq(tarotNumeral('wands_10', 'ws'), 'X', 'Dix : X'); assertEq(tarotNumeral('pentacles_queen', 'marseille'), '', 'figure sans numéro');
+    assertEq(tarotTitleNum('cups_7', 'ws'), '', 'pas de numéro devant le nom d\'un mineur'); assertEq(tarotTitleNum('sun', 'ws'), 'XIX', 'numéro devant le nom d\'un majeur');
+    assert(TAROT_MINOR_KEYS.every(k => /^data:image\/webp;base64,/.test(TAROT_ART_IMG[k])), 'illustration de chaque arcane mineur');
+    assertEq(new Set(TAROT_ALL_KEYS.map(k => TAROT_ART_IMG[k])).size, 78, '78 illustrations différentes');
+    assert(tarotCardSvg('cups_9', 'marseille', 'Neuf de Coupes').includes(TAROT_ART_IMG.cups_9) && />IX</.test(tarotCardSvg('cups_9', 'ws', 'Neuf de Coupes')), 'carte illustrée et numérotée');
+    const fr = I18N.fr;
+    assertEq(tarotName(fr, 'wands_page', 'marseille'), 'Valet de Bâtons', 'Marseille : Valet'); assertEq(tarotName(fr, 'wands_page', 'ws'), 'Page de Bâtons', 'Waite-Smith : Page');
+    assertEq(tarotName(fr, 'swords_knight', 'marseille'), "Cavalier d'Épées", 'Marseille : Cavalier'); assertEq(tarotName(fr, 'pentacles_ace', 'ws'), 'As de Pentacles', 'Waite-Smith : Pentacles');
+    assertEq(tarotName(I18N.en, 'pentacles_ace', 'marseille'), 'Ace of Coins', 'anglais, Marseille : Coins'); assertEq(tarotName(fr, 'sun', 'marseille'), fr.tarot.cards.sun.name, 'majeurs inchangés');
+    assert(minorBadge(fr, 'pentacles_3', 'marseille').includes('Deniers') && minorBadge(fr, 'pentacles_3', 'ws').includes('Pentacles') && minorBadge(fr, 'cups_2', 'ws').includes('Eau'), 'mention de la couleur et de l\'élément');
+    for (const l of Object.keys(I18N)) {
+      const m = I18N[l].tarot.minors, ok = s => typeof s === 'string' && s.trim().length > 0;
+      assert(m && ok(m.fullDeck) && ok(m.badge) && /78/.test(m.fullDeck), `${l} : option et mention`);
+      assert(MINOR_SUITS.every(s => m.suits[s] && ok(m.suits[s].marseille) && ok(m.suits[s].ws) && ok(m.suits[s].element)), `${l} : 4 couleurs`);
+      assert(TAROT_MINOR_KEYS.every(k => m.cards[k] && ok(m.cards[k].name.marseille) && ok(m.cards[k].name.ws) && m.cards[k].keywords.length === 3 && m.cards[k].keywords.every(ok) && ok(m.cards[k].text)), `${l} : 56 cartes à l'endroit`);
+      assert(TAROT_MINOR_KEYS.every(k => m.reversed[k] && m.reversed[k].keywords.length === 3 && m.reversed[k].keywords.every(ok) && ok(m.reversed[k].text)), `${l} : 56 sens renversés`);
+      const texts = TAROT_MINOR_KEYS.flatMap(k => [m.cards[k].text, m.reversed[k].text]);
+      assertEq(new Set(texts).size, 112, `${l} : 112 textes tous différents`);
+      for (const d of TAROT_DECKS) assertEq(new Set(TAROT_MINOR_KEYS.map(k => m.cards[k].name[d])).size, 56, `${l} : 56 noms différents (${d})`);
+      if (l !== 'fr') assert(TAROT_MINOR_KEYS.every(k => m.cards[k].text !== I18N.fr.tarot.minors.cards[k].text && m.reversed[k].text !== I18N.fr.tarot.minors.reversed[k].text), `${l} : textes traduits`);
+      assert(!/[’‘]/.test(JSON.stringify(m)), `${l} : apostrophes droites`);
+    }
+  });
+
+  test('Tirage du jeu complet : 78 cartes en option, anciens tirages, carte mineure renversée', () => {
+    let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const counts = Object.fromEntries(TAROT_ALL_KEYS.map(k => [k, 0]));
+    for (let i = 0; i < 2600; i++) {
+      const c = drawCards(3, rnd, true);
+      assert(c.length === 3 && new Set(c).size === 3 && c.every(k => TAROT_ALL_KEYS.includes(k)), 'trois cartes distinctes du jeu complet');
+      c.forEach(k => counts[k]++);
+    }
+    const values = Object.values(counts);
+    assert(Math.min(...values) > 50 && Math.max(...values) < 160, `répartition équilibrée (${Math.min(...values)} à ${Math.max(...values)} sur 100 attendus)`);
+    for (let i = 0; i < 300; i++) assert(drawCards(3, rnd).every(k => TAROT_KEYS.includes(k)), 'sans l\'option : arcanes majeurs seuls');
+    const keepDate = currentDate, keepSpread = store.get('zodiac_spread');
+    try {
+      currentDate = '1982-11-03';
+      saveSpread({ day: todayISO(), birth: '1982-11-03', question: 'Que dois-je comprendre ?', cards: ['cups_7', 'sun', 'swords_page'], revealed: [true, true, true], reversed: [false, false, true] });
+      assert(currentSpread() && currentSpread().cards[0] === 'cups_7', 'tirage avec des arcanes mineurs retrouvé');
+      const m = I18N.fr.tarot.minors, mar = spreadHtml(I18N.fr, 'marseille'), ws = spreadHtml(I18N.en, 'ws');
+      assert(mar.includes('Sept de Coupes') && mar.includes(m.cards.cups_7.text) && mar.includes(m.reversed.swords_page.text) && mar.includes(escapeHtml("Valet d'Épées")), 'noms et sens des mineurs, sens renversé');
+      assert(!mar.includes(m.cards.swords_page.text) && (mar.match(/is-reversed/g) || []).length === 1 && (mar.match(/minor-badge/g) || []).length === 2, 'une carte renversée, deux mentions « arcane mineur »');
+      assert(ws.includes(I18N.en.tarot.minors.cards.swords_page.name.ws) && ws.includes(I18N.en.tarot.cards.sun.text), 'Waite-Smith en anglais');
+      saveSpread({ day: todayISO(), birth: '1982-11-03', question: 'x', cards: ['sun', 'moon', 'nope_1'], revealed: [true, true, true] });
+      assertEq(currentSpread(), null, 'carte inconnue : tirage ignoré');
+      for (const l of Object.keys(I18N)) assert(I18N[l].info.tarotMinors && I18N[l].info.tarotMinors.length > 20, `${l} : bulle (i) du jeu complet`);
     } finally {
       currentDate = keepDate;
       if (keepSpread === null) store.remove('zodiac_spread'); else store.set('zodiac_spread', keepSpread);

@@ -33,6 +33,7 @@ On peut aussi ouvrir `ZODIAC.html?test` dans un navigateur : le rapport des test
 - Étoiles et constellations : [d3-celestial](https://github.com/ofrohn/d3-celestial) (O. Frohn, licence BSD), catalogue Hipparcos
 - Villes : [GeoNames](https://www.geonames.org) (licence CC BY 4.0)
 - Export en image : [html2canvas](https://html2canvas.hertzen.com) (N. von Hertzen, licence MIT)
+- Illustrations du tarot : générées avec Gemini (Google) et ChatGPT (OpenAI) à partir de prompts rédigés pour le projet, sans texte
 - Fuseaux horaires : base IANA (domaine public), intégrée aux navigateurs
 - Positions des astres : formules de J. Meeus et du JPL, corrections ajustées sur l'éphéméride d'astropy ; validations contre astropy et la Swiss Ephemeris
 

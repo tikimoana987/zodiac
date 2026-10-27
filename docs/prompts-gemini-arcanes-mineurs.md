@@ -1,8 +1,10 @@
-# Prompts Gemini — 56 arcanes mineurs (10 planches)
+# Prompts Gemini — 56 arcanes mineurs (10 planches + 1 de retouches)
 
 > Pour chaque planche : **joindre l'image de la planche 1 des arcanes majeurs** (modèle de style), puis coller le prompt. Vérifier ensuite : aucun texte ni chiffre, nombre exact d'objets, fonds nocturnes.
 
 > Découpe : `python tools/cut_sheets.py planche.jpg NOM cle1,…,cle6` avec les clés indiquées sous chaque titre (ordre de lecture).
+
+> Retours du premier essai (27 octobre 2026) : Gemini a livré trois planches en paysage (4, 6 et 10) et sept cartes avec un mauvais nombre d'objets ; les planches 10 et 11 ont été réécrites pour les retouches (consignes de comptage renforcées). Gemini ayant ensuite refusé de générer des images, les planches 4, 6, 10 et 11 ont été faites avec ChatGPT : 9 cartes restent à refaire (liste dans `feuille-de-route.md`, § 1.1). Dans Gemini, choisir « Aspect ratio » 1:1 et joindre une planche carrée comme modèle.
 
 
 ## Planche 1
@@ -12,7 +14,7 @@ Clés : `wands_ace,wands_2,wands_3,wands_4,wands_5,wands_6`
 ```
 Use the attached image as the exact style reference: same celestial engraving style, same fine gold line work, same jewel-tone palette, same thin gold line framing each panel, same deep navy gutters, same proportions and level of detail. Create a NEW sheet that matches it perfectly.
 
-Create ONE square image (1:1): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
+Create ONE square image (1:1 aspect ratio: exactly as wide as it is tall, like the attached reference; never landscape): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
 
 LAYOUT (very important)
 - Six equal portrait panels (2:3), separated by thin, perfectly straight gutters of plain deep navy (#0b0a1a), with the same gutter around the outer edge, exactly like the reference.
@@ -52,7 +54,7 @@ Clés : `wands_7,wands_8,wands_9,wands_10,wands_page,wands_knight`
 ```
 Use the attached image as the exact style reference: same celestial engraving style, same fine gold line work, same jewel-tone palette, same thin gold line framing each panel, same deep navy gutters, same proportions and level of detail. Create a NEW sheet that matches it perfectly.
 
-Create ONE square image (1:1): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
+Create ONE square image (1:1 aspect ratio: exactly as wide as it is tall, like the attached reference; never landscape): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
 
 LAYOUT (very important)
 - Six equal portrait panels (2:3), separated by thin, perfectly straight gutters of plain deep navy (#0b0a1a), with the same gutter around the outer edge, exactly like the reference.
@@ -92,7 +94,7 @@ Clés : `wands_queen,wands_king,cups_ace,cups_2,cups_3,cups_4`
 ```
 Use the attached image as the exact style reference: same celestial engraving style, same fine gold line work, same jewel-tone palette, same thin gold line framing each panel, same deep navy gutters, same proportions and level of detail. Create a NEW sheet that matches it perfectly.
 
-Create ONE square image (1:1): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
+Create ONE square image (1:1 aspect ratio: exactly as wide as it is tall, like the attached reference; never landscape): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
 
 LAYOUT (very important)
 - Six equal portrait panels (2:3), separated by thin, perfectly straight gutters of plain deep navy (#0b0a1a), with the same gutter around the outer edge, exactly like the reference.
@@ -132,7 +134,7 @@ Clés : `cups_5,cups_6,cups_7,cups_8,cups_9,cups_10`
 ```
 Use the attached image as the exact style reference: same celestial engraving style, same fine gold line work, same jewel-tone palette, same thin gold line framing each panel, same deep navy gutters, same proportions and level of detail. Create a NEW sheet that matches it perfectly.
 
-Create ONE square image (1:1): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
+Create ONE square image (1:1 aspect ratio: exactly as wide as it is tall, like the attached reference; never landscape): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
 
 LAYOUT (very important)
 - Six equal portrait panels (2:3), separated by thin, perfectly straight gutters of plain deep navy (#0b0a1a), with the same gutter around the outer edge, exactly like the reference.
@@ -172,7 +174,7 @@ Clés : `cups_page,cups_knight,cups_queen,cups_king,swords_ace,swords_2`
 ```
 Use the attached image as the exact style reference: same celestial engraving style, same fine gold line work, same jewel-tone palette, same thin gold line framing each panel, same deep navy gutters, same proportions and level of detail. Create a NEW sheet that matches it perfectly.
 
-Create ONE square image (1:1): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
+Create ONE square image (1:1 aspect ratio: exactly as wide as it is tall, like the attached reference; never landscape): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
 
 LAYOUT (very important)
 - Six equal portrait panels (2:3), separated by thin, perfectly straight gutters of plain deep navy (#0b0a1a), with the same gutter around the outer edge, exactly like the reference.
@@ -212,7 +214,7 @@ Clés : `swords_3,swords_4,swords_5,swords_6,swords_7,swords_8`
 ```
 Use the attached image as the exact style reference: same celestial engraving style, same fine gold line work, same jewel-tone palette, same thin gold line framing each panel, same deep navy gutters, same proportions and level of detail. Create a NEW sheet that matches it perfectly.
 
-Create ONE square image (1:1): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
+Create ONE square image (1:1 aspect ratio: exactly as wide as it is tall, like the attached reference; never landscape): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
 
 LAYOUT (very important)
 - Six equal portrait panels (2:3), separated by thin, perfectly straight gutters of plain deep navy (#0b0a1a), with the same gutter around the outer edge, exactly like the reference.
@@ -252,7 +254,7 @@ Clés : `swords_9,swords_10,swords_page,swords_knight,swords_queen,swords_king`
 ```
 Use the attached image as the exact style reference: same celestial engraving style, same fine gold line work, same jewel-tone palette, same thin gold line framing each panel, same deep navy gutters, same proportions and level of detail. Create a NEW sheet that matches it perfectly.
 
-Create ONE square image (1:1): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
+Create ONE square image (1:1 aspect ratio: exactly as wide as it is tall, like the attached reference; never landscape): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
 
 LAYOUT (very important)
 - Six equal portrait panels (2:3), separated by thin, perfectly straight gutters of plain deep navy (#0b0a1a), with the same gutter around the outer edge, exactly like the reference.
@@ -292,7 +294,7 @@ Clés : `pentacles_ace,pentacles_2,pentacles_3,pentacles_4,pentacles_5,pentacles
 ```
 Use the attached image as the exact style reference: same celestial engraving style, same fine gold line work, same jewel-tone palette, same thin gold line framing each panel, same deep navy gutters, same proportions and level of detail. Create a NEW sheet that matches it perfectly.
 
-Create ONE square image (1:1): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
+Create ONE square image (1:1 aspect ratio: exactly as wide as it is tall, like the attached reference; never landscape): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
 
 LAYOUT (very important)
 - Six equal portrait panels (2:3), separated by thin, perfectly straight gutters of plain deep navy (#0b0a1a), with the same gutter around the outer edge, exactly like the reference.
@@ -332,7 +334,7 @@ Clés : `pentacles_7,pentacles_8,pentacles_9,pentacles_10,pentacles_page,pentacl
 ```
 Use the attached image as the exact style reference: same celestial engraving style, same fine gold line work, same jewel-tone palette, same thin gold line framing each panel, same deep navy gutters, same proportions and level of detail. Create a NEW sheet that matches it perfectly.
 
-Create ONE square image (1:1): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
+Create ONE square image (1:1 aspect ratio: exactly as wide as it is tall, like the attached reference; never landscape): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
 
 LAYOUT (very important)
 - Six equal portrait panels (2:3), separated by thin, perfectly straight gutters of plain deep navy (#0b0a1a), with the same gutter around the outer edge, exactly like the reference.
@@ -367,12 +369,12 @@ FINAL CHECK
 
 ## Planche 10
 
-Clés : `pentacles_queen,pentacles_king,-,-,-,-`
+Clés : `pentacles_queen,pentacles_king,wands_3,wands_5,swords_9,swords_10`
 
 ```
 Use the attached image as the exact style reference: same celestial engraving style, same fine gold line work, same jewel-tone palette, same thin gold line framing each panel, same deep navy gutters, same proportions and level of detail. Create a NEW sheet that matches it perfectly.
 
-Create ONE square image (1:1): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
+Create ONE square image (1:1 aspect ratio: exactly as wide as it is tall, like the attached reference; never landscape): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
 
 LAYOUT (very important)
 - Six equal portrait panels (2:3), separated by thin, perfectly straight gutters of plain deep navy (#0b0a1a), with the same gutter around the outer edge, exactly like the reference.
@@ -395,11 +397,52 @@ STYLE
 THE SIX PANELS
 1. Queen of Pentacles (top left): a queen on a throne in a blooming garden holds a coin in her lap, a small rabbit nearby.
 2. King of Pentacles (top centre): a king on a throne adorned with bull heads in a vineyard holds a coin and a sceptre, a castle behind.
-3. Empty panel (top right): only the midnight-blue starry sky inside the gold frame, nothing else.
+3. Three of Wands (top right): a figure seen from behind on a cliff, watching ships sail on a golden sea. EXACTLY THREE wands in total: two wands planted upright to the left of the figure and one wand held in the figure's right hand. No other wand, stick, mast or pole anywhere in the panel.
+4. Five of Wands (bottom left): five young people in colourful tunics playfully crossing wands in a friendly contest, no injury. EXACTLY FIVE wands in total: each person holds exactly one wand, and there is no other wand, stick or pole anywhere in the panel.
+5. Nine of Swords (bottom centre): a person sitting up in bed, hands over the face, no blood. On the dark wall behind, EXACTLY NINE complete swords (each with hilt and blade) hang horizontally in nine evenly spaced rows. No other sword or blade anywhere in the panel.
+6. Ten of Swords (bottom right): a figure lying face down on a quiet shore at dawn, a golden sunrise over a calm sea. EXACTLY TEN swords planted upright in the sand in one row: five to the left and five to the right of the rising sun, all well inside the panel. No blood, no wounds, no other sword anywhere.
+
+FINAL CHECK
+- Exactly six panels, same size and framing as the reference, midnight-blue backgrounds everywhere, exact object counts, consistent style, and no text, letters, glyphs or numerals of any kind.
+- Count again before finishing: Three of Wands = 3 wands, Five of Wands = 5 wands, Nine of Swords = 9 swords, Ten of Swords = 10 swords. Keep every counted object fully visible, at least 10% away from the panel edges.
+```
+
+## Planche 11
+
+Clés : `pentacles_5,pentacles_7,pentacles_9,-,-,-`
+
+```
+Use the attached image as the exact style reference: same celestial engraving style, same fine gold line work, same jewel-tone palette, same thin gold line framing each panel, same deep navy gutters, same proportions and level of detail. Create a NEW sheet that matches it perfectly.
+
+Create ONE square image (1:1 aspect ratio: exactly as wide as it is tall, like the attached reference; never landscape): a sheet of six tarot card illustrations arranged in a grid of 3 columns × 2 rows.
+
+LAYOUT (very important)
+- Six equal portrait panels (2:3), separated by thin, perfectly straight gutters of plain deep navy (#0b0a1a), with the same gutter around the outer edge, exactly like the reference.
+- Each panel framed only by the same thin gold line as in the reference; no title band, no rounded corners.
+- Keep the main subject centred, with a safe margin of about 8% inside each panel.
+- Reading order: left to right, top row first.
+
+ABSOLUTELY NO TEXT
+- No letters, words, names, numbers, Roman numerals, signatures, captions, labels or watermarks anywhere. No writing, letter-like glyphs or numerals on banners, coins, cups, swords, wands, stones or clothing: use only plain shapes, dots, stars or simple flowers as ornaments.
+- The number of wands, cups, swords or coins in each panel must be exactly the number stated.
+
+BACKGROUNDS
+- Every panel uses the same deep midnight-blue night sky (#0b0a1a to #1a1435) with a few small, delicate stars, as in the reference. No gold or yellow backgrounds.
+
+STYLE
+- Palette: antique gold (#e8c36a), crimson (#c8102e), sapphire blue (#1c4fa1), amber (#f2b705), soft violet (#9b7ede), warm ivory (#f3e6c4).
+- Calm, timeless, elegant; soft glow around the main symbol; no photorealism, no 3D render, no anime or cartoon style. No gore, no blood, no nudity: all figures are clothed.
+- Draw on traditional tarot symbolism with original compositions; do not copy or imitate any existing tarot deck or artist.
+
+THE SIX PANELS
+1. Five of Pentacles (top left): two figures walking through falling snow past a warmly lit stained-glass window. The window shows EXACTLY FIVE coins, arranged like the five dots on a die (one in each corner, one in the centre). No other coin anywhere in the panel.
+2. Seven of Pentacles (top centre): a farmer leaning on a hoe contemplates a lush green bush bearing EXACTLY SEVEN coins, arranged in three rows: two, then three, then two. No other coin anywhere in the panel.
+3. Nine of Pentacles (top right): an elegant figure in a vineyard garden with a hooded falcon on a gloved hand. EXACTLY NINE coins among the vines: four on the left vine and five on the right vine, all fully inside the panel. No other coin anywhere.
 4. Empty panel (bottom left): only the midnight-blue starry sky inside the gold frame, nothing else.
 5. Empty panel (bottom centre): only the midnight-blue starry sky inside the gold frame, nothing else.
 6. Empty panel (bottom right): only the midnight-blue starry sky inside the gold frame, nothing else.
 
 FINAL CHECK
 - Exactly six panels, same size and framing as the reference, midnight-blue backgrounds everywhere, exact object counts, consistent style, and no text, letters, glyphs or numerals of any kind.
+- Count again before finishing: Five of Pentacles = 5 coins, Seven of Pentacles = 7 coins, Nine of Pentacles = 9 coins. Keep every coin fully visible, at least 10% away from the panel edges.
 ```
