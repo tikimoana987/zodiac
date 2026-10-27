@@ -5,7 +5,7 @@
 
 I18N.fr = {
   appTitle: "Zodiaque & Décans",
-  labelName: "Prénom ou nom",
+  labelName: "Prénom et nom",
   labelBirthDate: "Date de naissance",
   labelBirthTime: "Heure de naissance",
   optional: "(facultatif)",
@@ -680,7 +680,7 @@ I18N.fr = {
     wheelHint: "Touchez une planète, un signe, une maison ou un aspect pour en lire l'explication."
   },
   infoLabel: "Plus d'informations",
-  timePlaceHint: "L'heure et le lieu de naissance sont nécessaires pour le thème natal (ascendant et maisons).",
+  timePlaceHint: "Plus vos informations sont complètes et exactes, plus votre portrait est précis et fidèle aux traditions.",
   info: {
     sunPosition: "Position exacte du Soleil sur le zodiaque à la naissance, en degrés dans le signe (de 0 à 30°). C'est elle qui détermine le signe et le décan : elle est calculée astronomiquement, et non d'après des dates fixes.",
     natalMoon: "Le signe où se trouvait la Lune à la naissance ; en astrologie, il représente la vie émotionnelle. La Lune change de signe environ tous les deux jours et demi : sans l'heure de naissance, deux signes sont parfois possibles.",
@@ -711,7 +711,11 @@ I18N.fr = {
     numerology: "La numérologie réduit dates et noms à un chiffre de 1 à 9 en additionnant leurs chiffres, sauf les nombres maîtres 11, 22 et 33, gardés tels quels. Chemin de vie : jour, mois et année de naissance réduits séparément, puis additionnés. Nombres du nom : chaque lettre vaut un chiffre (A = 1, B = 2… I = 9, puis J = 1…) ; toutes les lettres donnent l'expression, les voyelles le nombre intime, les consonnes la personnalité. En arabe, on utilise les valeurs abjad (ا = 1… غ = 1000) ; en russe, la table cyrillique équivalente.",
     personalYear: "L'année personnelle additionne votre jour et votre mois de naissance à l'année en cours ; elle suit un cycle de 9 ans. Le mois personnel y ajoute le mois en cours, le jour personnel le jour du mois. Les cycles sont calculés pour la date de lecture de l'horoscope.",
     tarot: "Carte de naissance : on additionne le jour, le mois et l'année de naissance, puis on réduit en additionnant les chiffres jusqu'à obtenir 22 ou moins ; 22 correspond au Fou. Carte du jour : un tirage propre à chaque personne et à chaque date, le même toute la journée. Le tarot de Marseille et le Waite-Smith partagent les 22 arcanes majeurs, mais certains noms diffèrent, et la Force et la Justice échangent leurs numéros (XI et VIII à Marseille, VIII et XI chez Waite-Smith) : un même calcul peut donc donner l'une ou l'autre selon le jeu.",
-    spread: "Le tirage en trois cartes éclaire une question : le passé (ce qui y a conduit), le présent (ce qui se joue) et l'avenir (la tendance si rien ne change). On ne fait qu'un tirage par jour, pour une question mûrement réfléchie : il reste affiché jusqu'au lendemain. Les cartes sont tirées au hasard parmi les 22 arcanes majeurs, sans répétition. Votre question reste sur votre appareil et n'apparaît pas dans l'image exportée."
+    spread: "Le tirage en trois cartes éclaire une question : le passé (ce qui y a conduit), le présent (ce qui se joue) et l'avenir (la tendance si rien ne change). On ne fait qu'un tirage par jour, pour une question mûrement réfléchie : il reste affiché jusqu'au lendemain. Les cartes sont tirées au hasard parmi les 22 arcanes majeurs, sans répétition. Votre question reste sur votre appareil et n'apparaît pas dans l'image exportée. La tradition veut une question claire et sincère, posée une seule fois : une question vague, ou posée à nouveau pour obtenir une autre réponse, enlève son sens au tirage.",
+    fieldName: "Votre prénom personnalise l'appli. La numérologie traditionnelle s'appuie sur le nom complet de naissance : tous vos prénoms et votre nom de famille, comme à l'état civil. Avec un prénom seul, vos nombres du nom ne reflètent qu'une partie de votre nom.",
+    fieldTime: "Elle permet de calculer votre ascendant et vos maisons, de situer précisément la Lune (qui change de signe tous les deux jours et demi) et de trouver l'animal de votre heure en astrologie chinoise. Sans heure, ces éléments manquent ou peuvent être faux : votre portrait reste incomplet. Elle figure souvent sur l'acte de naissance ; même approximative, elle aide.",
+    fieldPlace: "Il donne le fuseau horaire exact de votre naissance, heure d'été comprise, et ses coordonnées. Sans lieu, l'ascendant et les maisons ne peuvent pas être calculés. La ville la plus proche suffit.",
+    privacy: "Tout ce que vous saisissez (nom, date, heure, lieu, historique, question de tarot) est enregistré uniquement dans la mémoire de votre navigateur, sur cet appareil. Aucune donnée n'est envoyée à un serveur, et l'appli ne contient aucun outil de statistiques ou de pistage. Effacer les données du site dans votre navigateur supprime tout. Seul le bouton « Partager » crée un lien contenant votre date de naissance, que vous envoyez vous-même."
   },
   placePlaceholder: "Tapez le nom d'une ville…",
   placeNoMatch: "Aucune ville trouvée. Essayez la ville la plus proche.",
@@ -973,5 +977,12 @@ I18N.fr = {
     is: "Mon profil",
     saved: "Ce profil s'ouvrira directement à chaque visite.",
     removed: "Ce profil ne s'ouvrira plus automatiquement."
+  },
+  privacyLine: "Vos informations restent sur votre appareil : rien n'est envoyé ni enregistré en ligne.",
+  privacyTitle: "Confidentialité",
+  version: {
+    label: "Version {v}",
+    available: "Une nouvelle version de l'appli est disponible.",
+    reload: "Recharger"
   }
 };

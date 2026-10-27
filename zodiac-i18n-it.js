@@ -5,7 +5,7 @@
 
 I18N.it = deepMerge(I18N.fr, {
   appTitle: "Zodiaco e Decani",
-  labelName: "Nome",
+  labelName: "Nome e cognome",
   labelBirthDate: "Data di nascita",
   labelBirthTime: "Ora di nascita",
   optional: "(facoltativo)",
@@ -680,7 +680,7 @@ I18N.it = deepMerge(I18N.fr, {
     wheelHint: "Tocca un pianeta, un segno, una casa o un aspetto per leggerne la spiegazione."
   },
   infoLabel: "Maggiori informazioni",
-  timePlaceHint: "L'ora e il luogo di nascita sono necessari per il tema natale (ascendente e case).",
+  timePlaceHint: "Più le tue informazioni sono complete ed esatte, più il tuo ritratto è preciso e fedele alle tradizioni.",
   info: {
     sunPosition: "Posizione esatta del Sole nello zodiaco alla nascita, in gradi all'interno del segno (da 0 a 30°). Determina il segno e il decano, ed è calcolata astronomicamente, non in base a date fisse.",
     natalMoon: "Il segno in cui si trovava la Luna alla nascita; in astrologia rappresenta la vita emotiva. La Luna cambia segno circa ogni due giorni e mezzo: senza l'ora di nascita, a volte i segni possibili sono due.",
@@ -711,7 +711,11 @@ I18N.it = deepMerge(I18N.fr, {
     numerology: "La numerologia riduce date e nomi a una cifra da 1 a 9 sommandone le cifre, tranne i numeri maestri 11, 22 e 33, che si conservano. Sentiero di vita: giorno, mese e anno di nascita ridotti separatamente e poi sommati. Numeri del nome: ogni lettera vale una cifra (A = 1, B = 2… I = 9, poi J = 1…); tutte le lettere danno l'espressione, le vocali il numero dell'anima, le consonanti la personalità. In arabo si usano i valori abjad (ا = 1… غ = 1000); in russo, la tabella cirillica equivalente.",
     personalYear: "L'anno personale somma il giorno e il mese di nascita all'anno in corso e segue un ciclo di 9 anni. Il mese personale aggiunge il mese in corso, il giorno personale il giorno del mese. I cicli sono calcolati per la data di lettura dell'oroscopo.",
     tarot: "Carta di nascita: si sommano giorno, mese e anno di nascita, poi si riduce sommando le cifre fino a ottenere 22 o meno; il 22 corrisponde al Matto. Carta del giorno: un'estrazione propria di ogni persona e di ogni data, la stessa per tutto il giorno. I Tarocchi di Marsiglia e il Waite-Smith condividono i 22 arcani maggiori, ma alcuni nomi cambiano, e la Forza e la Giustizia si scambiano i numeri (XI e VIII a Marsiglia, VIII e XI nel Waite-Smith): lo stesso calcolo può quindi dare l'una o l'altra secondo il mazzo.",
-    spread: "La stesa a tre carte illumina una domanda: il passato (ciò che vi ha condotto), il presente (ciò che è in gioco) e il futuro (la tendenza se nulla cambia). Si fa una sola stesa al giorno, per una domanda ben ponderata: resta visibile fino al giorno dopo. Le carte sono estratte a caso tra i 22 arcani maggiori, senza ripetizioni. La tua domanda resta sul tuo dispositivo e non compare nell'immagine esportata."
+    spread: "La stesa a tre carte illumina una domanda: il passato (ciò che vi ha condotto), il presente (ciò che è in gioco) e il futuro (la tendenza se nulla cambia). Si fa una sola stesa al giorno, per una domanda ben ponderata: resta visibile fino al giorno dopo. Le carte sono estratte a caso tra i 22 arcani maggiori, senza ripetizioni. La tua domanda resta sul tuo dispositivo e non compare nell'immagine esportata. La tradizione vuole una domanda chiara e sincera, posta una sola volta: una domanda vaga, o ripetuta per ottenere un'altra risposta, toglie senso alla stesa.",
+    fieldName: "Il tuo nome personalizza l'app. La numerologia tradizionale si basa sul nome completo di nascita: tutti i tuoi nomi e il cognome, come all'anagrafe. Con il solo nome di battesimo, i numeri del nome riflettono solo una parte del tuo nome.",
+    fieldTime: "Permette di calcolare l'ascendente e le case, di collocare con precisione la Luna (che cambia segno ogni due giorni e mezzo) e di trovare l'animale della tua ora nell'astrologia cinese. Senza, questi elementi mancano o possono essere sbagliati e il ritratto resta incompleto. Spesso è indicata sull'atto di nascita; anche approssimativa, aiuta.",
+    fieldPlace: "Fornisce il fuso orario esatto della tua nascita, ora legale compresa, e le sue coordinate. Senza luogo, ascendente e case non possono essere calcolati. Basta la città più vicina.",
+    privacy: "Tutto ciò che inserisci (nome, data, ora, luogo, cronologia, domanda dei tarocchi) è salvato solo nella memoria del tuo browser, su questo dispositivo. Nessun dato viene inviato a un server e l'app non contiene strumenti di statistica o di tracciamento. Cancellare i dati di questo sito nel browser elimina tutto. Solo il pulsante «Condividi» crea un link con la tua data di nascita, che invii tu stesso."
   },
   placePlaceholder: "Digita il nome di una città…",
   placeNoMatch: "Nessuna città trovata. Prova con la più vicina.",
@@ -973,5 +977,12 @@ I18N.it = deepMerge(I18N.fr, {
     is: "Il mio profilo",
     saved: "Questo profilo si aprirà direttamente a ogni visita.",
     removed: "Questo profilo non si aprirà più automaticamente."
+  },
+  privacyLine: "I tuoi dati restano sul tuo dispositivo: nulla viene inviato né salvato online.",
+  privacyTitle: "Privacy",
+  version: {
+    label: "Versione {v}",
+    available: "È disponibile una nuova versione dell'app.",
+    reload: "Ricarica"
   }
 });

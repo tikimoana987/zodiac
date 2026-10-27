@@ -5,7 +5,7 @@
 
 I18N.en = deepMerge(I18N.fr, {
   appTitle: "Zodiac & Decans",
-  labelName: "Name",
+  labelName: "First and last name",
   labelBirthDate: "Date of birth",
   labelBirthTime: "Time of birth",
   optional: "(optional)",
@@ -677,7 +677,7 @@ I18N.en = deepMerge(I18N.fr, {
     wheelHint: "Tap a planet, sign, house or aspect to read about it."
   },
   infoLabel: "More information",
-  timePlaceHint: "The time and place of birth are needed for the birth chart (ascendant and houses).",
+  timePlaceHint: "The more complete and accurate your details, the more precise your portrait and the more faithful to tradition.",
   info: {
     sunPosition: "The Sun's exact position on the zodiac at birth, in degrees within the sign (0 to 30°). It determines the sign and the decan, and it is calculated astronomically rather than from fixed dates.",
     natalMoon: "The sign the Moon was in at birth; in astrology it stands for emotional life. The Moon changes sign about every two and a half days: without the time of birth, two signs are sometimes possible.",
@@ -708,7 +708,11 @@ I18N.en = deepMerge(I18N.fr, {
     numerology: "Numerology reduces dates and names to a digit from 1 to 9 by adding their digits, except the master numbers 11, 22 and 33, which are kept as they are. Life path: day, month and year of birth reduced separately, then added. Name numbers: each letter has a value (A = 1, B = 2… I = 9, then J = 1…); all letters give the expression, vowels the soul urge, consonants the personality. In Arabic, the abjad values are used (ا = 1… غ = 1000); in Russian, the equivalent Cyrillic table.",
     personalYear: "Your personal year adds your birth day and month to the current year; it follows a 9-year cycle. The personal month adds the current month, the personal day the day of the month. Cycles are calculated for the horoscope's reading date.",
     tarot: "Birth card: add the day, month and year of birth, then reduce by adding the digits until you get 22 or less; 22 is the Fool. Card of the day: a draw specific to each person and each date, the same all day long. The Tarot de Marseille and the Waite-Smith share the 22 major arcana, but some names differ, and Strength and Justice swap numbers (XI and VIII in Marseille, VIII and XI in Waite-Smith): the same calculation can therefore give one or the other depending on the deck.",
-    spread: "The three-card spread sheds light on a question: the past (what led to it), the present (what is at play) and the future (the trend if nothing changes). There is only one spread per day, for a carefully considered question: it stays on screen until the next day. Cards are drawn at random from the 22 major arcana, with no repeats. Your question stays on your device and does not appear in the exported image."
+    spread: "The three-card spread sheds light on a question: the past (what led to it), the present (what is at play) and the future (the trend if nothing changes). There is only one spread per day, for a carefully considered question: it stays on screen until the next day. Cards are drawn at random from the 22 major arcana, with no repeats. Your question stays on your device and does not appear in the exported image. Tradition calls for a clear and sincere question, asked only once: a vague question, or one asked again to get a different answer, takes the meaning out of the spread.",
+    fieldName: "Your first name personalises the app. Traditional numerology relies on your full birth name: all your first names and your surname, as on your birth certificate. With a first name alone, your name numbers reflect only part of your name.",
+    fieldTime: "It lets the app calculate your ascendant and houses, place the Moon precisely (it changes sign every two and a half days) and find the animal of your birth hour in Chinese astrology. Without it, these elements are missing or may be wrong, and your portrait remains incomplete. It is often on the birth certificate; even an approximate time helps.",
+    fieldPlace: "It gives the exact time zone of your birth, daylight saving time included, and its coordinates. Without a place, the ascendant and houses cannot be calculated. The nearest town is enough.",
+    privacy: "Everything you enter (name, date, time, place, history, tarot question) is stored only in your browser's memory, on this device. No data is sent to any server, and the app contains no analytics or tracking tools. Clearing this site's data in your browser deletes everything. Only the “Share” button creates a link containing your date of birth, which you send yourself."
   },
   placePlaceholder: "Type a city name…",
   placeNoMatch: "No city found. Try the nearest town.",
@@ -970,5 +974,8 @@ I18N.en = deepMerge(I18N.fr, {
     is: "My profile",
     saved: "This profile will open directly on each visit.",
     removed: "This profile will no longer open automatically."
-  }
+  },
+  privacyLine: "Your details stay on your device: nothing is sent or stored online.",
+  privacyTitle: "Privacy",
+  version: { label: "Version {v}", available: "A new version of the app is available.", reload: "Reload" }
 });

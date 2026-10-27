@@ -4,7 +4,7 @@
    ============================================================ */
 I18N.pt = deepMerge(I18N.fr, {
   appTitle: "Zodíaco e Decanatos",
-  labelName: "Nome",
+  labelName: "Nome e sobrenome",
   labelBirthDate: "Data de nascimento",
   labelBirthTime: "Hora de nascimento",
   optional: "(opcional)",
@@ -679,7 +679,7 @@ I18N.pt = deepMerge(I18N.fr, {
     wheelHint: "Toque em um planeta, signo, casa ou aspecto para ler a explicação."
   },
   infoLabel: "Mais informações",
-  timePlaceHint: "A hora e o local de nascimento são necessários para o mapa astral (ascendente e casas).",
+  timePlaceHint: "Quanto mais completas e exatas forem suas informações, mais preciso será seu retrato e mais fiel às tradições.",
   info: {
     sunPosition: "Posição exata do Sol no zodíaco no nascimento, em graus dentro do signo (de 0 a 30°). É ela que define o signo e o decanato: é calculada astronomicamente, e não a partir de datas fixas.",
     natalMoon: "O signo em que a Lua estava no nascimento; na astrologia, representa a vida emocional. A Lua muda de signo mais ou menos a cada dois dias e meio: sem a hora de nascimento, às vezes dois signos são possíveis.",
@@ -710,7 +710,11 @@ I18N.pt = deepMerge(I18N.fr, {
     numerology: "A numerologia reduz datas e nomes a um algarismo de 1 a 9 somando seus dígitos, exceto os números mestres 11, 22 e 33, que são mantidos. Caminho de vida: dia, mês e ano de nascimento reduzidos separadamente e depois somados. Números do nome: cada letra vale um algarismo (A = 1, B = 2… I = 9, depois J = 1…); todas as letras dão a expressão, as vogais o número da alma, as consoantes a personalidade. Em árabe, usam-se os valores abjad (ا = 1… غ = 1000); em russo, a tabela cirílica equivalente.",
     personalYear: "O ano pessoal soma o dia e o mês do seu nascimento ao ano em curso; segue um ciclo de 9 anos. O mês pessoal acrescenta o mês em curso, e o dia pessoal, o dia do mês. Os ciclos são calculados para a data de leitura do horóscopo.",
     tarot: "Carta de nascimento: soma-se o dia, o mês e o ano de nascimento e depois reduz-se somando os algarismos até obter 22 ou menos; 22 corresponde ao Louco. Carta do dia: uma tiragem própria de cada pessoa e de cada data, a mesma o dia todo. O Tarô de Marselha e o Waite-Smith têm os mesmos 22 arcanos maiores, mas alguns nomes mudam, e a Força e a Justiça trocam de número (XI e VIII em Marselha, VIII e XI no Waite-Smith): o mesmo cálculo pode dar uma ou outra conforme o baralho.",
-    spread: "A tiragem de três cartas ilumina uma pergunta: o passado (o que levou a ela), o presente (o que está em jogo) e o futuro (a tendência se nada mudar). Faz-se apenas uma tiragem por dia, para uma pergunta bem pensada: ela fica na tela até o dia seguinte. As cartas são tiradas ao acaso entre os 22 arcanos maiores, sem repetição. Sua pergunta fica no seu aparelho e não aparece na imagem exportada."
+    spread: "A tiragem de três cartas ilumina uma pergunta: o passado (o que levou a ela), o presente (o que está em jogo) e o futuro (a tendência se nada mudar). Faz-se apenas uma tiragem por dia, para uma pergunta bem pensada: ela fica na tela até o dia seguinte. As cartas são tiradas ao acaso entre os 22 arcanos maiores, sem repetição. Sua pergunta fica no seu aparelho e não aparece na imagem exportada. A tradição pede uma pergunta clara e sincera, feita uma única vez: uma pergunta vaga, ou repetida para obter outra resposta, tira o sentido da tiragem.",
+    fieldName: "Seu primeiro nome personaliza o app. A numerologia tradicional se baseia no nome completo de nascimento: todos os seus nomes e sobrenomes, como na certidão. Só com o primeiro nome, seus números do nome refletem apenas parte do seu nome.",
+    fieldTime: "Ela permite calcular seu ascendente e suas casas, situar com precisão a Lua (que muda de signo a cada dois dias e meio) e encontrar o animal da sua hora na astrologia chinesa. Sem ela, esses elementos faltam ou podem estar errados, e seu retrato fica incompleto. Ela costuma constar na certidão de nascimento; mesmo aproximada, ajuda.",
+    fieldPlace: "Ele dá o fuso horário exato do seu nascimento, horário de verão incluído, e suas coordenadas. Sem local, o ascendente e as casas não podem ser calculados. A cidade mais próxima basta.",
+    privacy: "Tudo o que você digita (nome, data, hora, local, histórico, pergunta do tarô) fica salvo apenas na memória do seu navegador, neste aparelho. Nenhum dado é enviado a servidor algum, e o app não tem ferramentas de estatística nem de rastreamento. Apagar os dados deste site no navegador apaga tudo. Só o botão “Compartilhar” cria um link com sua data de nascimento, que você mesmo envia."
   },
   placePlaceholder: "Digite o nome de uma cidade…",
   placeNoMatch: "Nenhuma cidade encontrada. Tente a cidade mais próxima.",
@@ -972,5 +976,8 @@ I18N.pt = deepMerge(I18N.fr, {
     is: "Meu perfil",
     saved: "Este perfil será aberto diretamente a cada visita.",
     removed: "Este perfil não será mais aberto automaticamente."
-  }
+  },
+  privacyLine: "Suas informações ficam no seu aparelho: nada é enviado nem salvo on-line.",
+  privacyTitle: "Privacidade",
+  version: { label: "Versão {v}", available: "Uma nova versão do app está disponível.", reload: "Recarregar" }
 });

@@ -26,7 +26,7 @@ L'expérience inclut **une transition cinématique** (viseur balaie le ciel → 
 
 **17 fichiers dans un même dossier**, ~460 Ko, ouverture par double-clic sur `ZODIAC.html` (aucun serveur). **Version autonome** : `ZODIAC-standalone.html`, un seul fichier (~650 Ko), produit par `python3 build-standalone.py`. Chargement par `<script src>` classiques, dans cet ordre :
 `zodiac-data.js` → `zodiac-sky-data.js` → `zodiac-i18n.js` → `zodiac-i18n-fr.js` puis `-en`, `-es`, `-zh`, `-ru`, `-de`, `-it` → `zodiac-astro.js` → `zodiac-planets.js` → `zodiac-skymap.js` → `zodiac-observe.js` → `zodiac-places-data.js` → `zodiac-places.js` → `zodiac-natal.js` → `zodiac-transits.js` → `zodiac-numerology.js` → `zodiac-tarot.js` → `zodiac-app.js`.
-Styles dans `zodiac.css`. Tests dans `zodiac-tests.js` (72 tests, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
+Styles dans `zodiac.css`. Tests dans `zodiac-tests.js` (73 tests, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
 **Aucune ressource en ligne** : `html2canvas` 1.4.1 est une copie locale (`html2canvas.min.js`, licence MIT). Tout fonctionne sans internet.
 
 ### Fonctionnalités en place ✅
@@ -123,6 +123,11 @@ Traduit dans les 7 langues, couvert par un test, validé contre une référence 
 - Toute valeur en degrés passe par `ltr()` (`<bdi dir="ltr">`).
 - Arabe, hindi, thaï : `letter-spacing:0` forcé (sinon liaisons cassées, surtout dans l'export html2canvas).
 - Recherche de villes : `normPlace()` normalise aussi l'écriture arabe ; `build-places.py` garde pour chaque ville jusqu'à 3 noms dans l'écriture de son pays (`LOCAL_SCRIPTS`), sans lettres d'autres langues (`FOREIGN_LETTERS`), en cyrillique classés par ressemblance avec le nom principal.
+
+### Adresse, confidentialité, version
+- Paramètres de l'adresse après « # » (`readUrlParams`, `updateURL`) : `date`, `time`, `place`, `lang`. Le mode test reste `?test` (lu sur `location.search`). Promesse affichée à l'utilisateur : rien n'est envoyé en ligne — ne jamais ajouter d'appel réseau, de statistiques ou de pistage.
+- `APP_VERSION` est remplacé par build-standalone.py (« date · empreinte ») ; bandeau de mise à jour sur `controllerchange` (seulement si un service worker contrôlait déjà la page).
+- Pistes restantes (dans l'ordre validé) : 2 cartes renversées (option) ; 3 lieux absents (coordonnées manuelles) ; 4 calendrier .ics ; 5 fiche du thème à imprimer ; 6 arcanes mineurs ; puis iPhone / version hors ligne en dernier.
 
 ### Organisation du résultat
 - Cinq sections, une par onglet (`VIEW_MODES` : signs, natal, sky, compat, numbers) ; toutes sont dans `#profileContent` (exportée telle quelle : seule la section affichée est visible). La numérologie s'affiche dans `#numbersBody`, le tarot dans `#tarotBody`, tous deux dans la section `numbers`.

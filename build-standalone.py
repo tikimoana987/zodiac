@@ -12,6 +12,7 @@ Utilisation, dans le dossier du projet :   python3 build-standalone.py
 Aucune dépendance : Python 3 suffit. À relancer après chaque modification des fichiers sources.
 """
 import hashlib
+import time
 import pathlib
 import re
 import shutil
@@ -70,6 +71,9 @@ def build():
         sys.exit('Balise <html lang="fr"> introuvable dans ZODIAC.html')
     html = html.replace('<html lang="fr">', '<html lang="fr" data-standalone="1">', 1)
 
+    # Numéro de version affiché en bas de page : date d'assemblage (UTC) · empreinte du contenu
+    stamp = time.strftime('%Y-%m-%d', time.gmtime()) + ' · ' + hashlib.sha256(html.encode('utf-8')).hexdigest()[:7]
+    html = html.replace("'__APP_VERSION__'", f"'{stamp}'", 1)
     (HERE / OUTPUT).write_text(html, encoding='utf-8')
     size = (HERE / OUTPUT).stat().st_size
     print(f"{OUTPUT} : {size // 1024} Ko, {len(names)} scripts intégrés + styles + tests")

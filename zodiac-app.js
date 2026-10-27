@@ -36,6 +36,26 @@ function slugify(s){
 }
 
 /* localStorage peut lever une exception (navigation privée, iframe sandboxée, file:// selon le navigateur) */
+/* Numéro de version : remplacé à l'assemblage par « date · empreinte » (version de travail : « dev ») */
+const APP_VERSION = '__APP_VERSION__';
+function appVersionLabel(){ return APP_VERSION.charAt(0) === '_' ? 'dev' : APP_VERSION; }
+/* Bandeau « nouvelle version disponible » (appli installée : une nouvelle version vient de prendre la main) */
+function showUpdateBanner(){
+  if (document.getElementById('updateBanner')) return;
+  const t = I18N[currentLang], d = document.createElement('div');
+  d.id = 'updateBanner'; d.className = 'update-banner'; d.setAttribute('role', 'status');
+  d.innerHTML = `<span>${t.version.available}</span><button type="button" class="btn-secondary" id="updateReload">${t.version.reload}</button>`;
+  document.body.appendChild(d);
+  document.getElementById('updateReload').addEventListener('click', () => location.reload());
+}
+/* Paramètres de l'adresse : après « # », jamais envoyés au serveur (les anciens liens en « ? » restent lus, puis convertis) */
+const URL_KEYS = ['date', 'time', 'place', 'lang'];
+function readUrlParams(){
+  const out = new URLSearchParams(location.hash.slice(1)), q = new URLSearchParams(location.search);
+  for (const k of URL_KEYS) if (q.has(k) && !out.has(k)) out.set(k, q.get(k));
+  return out;
+}
+
 const store = {
   get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
   set(k,v){ try { localStorage.setItem(k, v); } catch(e){} },
@@ -1740,12 +1760,11 @@ function launchSearch(){
 
 function updateURL(date, time, lang){
   try {
-    const url = new URL(window.location);
-    if (date) url.searchParams.set('date', date); else url.searchParams.delete('date');
-    if (date && time) url.searchParams.set('time', time); else url.searchParams.delete('time');
-    if (date && currentBirthPlace) url.searchParams.set('place', currentBirthPlace); else url.searchParams.delete('place');
-    url.searchParams.set('lang', lang);
-    history.replaceState(null, '', url);
+    const p = new URLSearchParams();
+    if (date) { p.set('date', date); if (time) p.set('time', time); if (currentBirthPlace) p.set('place', currentBirthPlace); }
+    p.set('lang', lang);
+    const q = new URLSearchParams(location.search); URL_KEYS.forEach(k => q.delete(k));   // anciens paramètres en « ? » retirés
+    history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q : '') + '#' + p);
   } catch (e) { /* certains contextes (iframe sandboxée) interdisent replaceState */ }
 }
 
@@ -1765,6 +1784,12 @@ function applyUITranslations(){
   document.getElementById('placesCredit').textContent = t.placesCredit;
   if (birthField) birthField.relabel();   // pays affiché dans la nouvelle langue
   document.getElementById('labelName').textContent = t.labelName;
+  document.getElementById('privacyLine').textContent = t.privacyLine;
+  for (const [slot, key, labelId] of [['infoSlotName', 'fieldName', 'labelName'], ['infoSlotTime', 'fieldTime', 'labelBirthTime'], ['infoSlotPlace', 'fieldPlace', 'labelBirthPlace']]) {
+    const el = document.getElementById(slot); if (el) el.innerHTML = infoBtn(key, document.getElementById(labelId).textContent);
+  }
+  document.getElementById('infoSlotPrivacy').innerHTML = infoBtn('privacy', t.privacyTitle);
+  document.getElementById('appVersion').textContent = t.version.label.replace('{v}', appVersionLabel());
   document.getElementById('offlineLabel').textContent = t.offline.button;
   document.getElementById('offlineHint').textContent = t.offline.hint;
   if (!OFFLINE_ENABLED) {   // grisé, avec « bientôt disponible » ; le code du téléchargement reste en place
@@ -1796,7 +1821,14 @@ function applyUITranslations(){
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Déterminer la langue (URL > localStorage > 'fr')
-  const params = new URLSearchParams(window.location.search);
+  const params = readUrlParams();
+  if (URL_KEYS.some(k => new URLSearchParams(location.search).has(k))) {   // ancien lien en « ? » : aussitôt converti en « # »
+    try {
+      const q = new URLSearchParams(location.search); URL_KEYS.forEach(k => q.delete(k));
+      history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q : '') + '#' + params);
+    } catch (e) {}
+  }
+  window.addEventListener('hashchange', () => location.reload());   // lien partagé ouvert dans un onglet déjà ouvert
   const urlLang = params.get('lang');
   const urlDate = params.get('date');
   const urlTime = params.get('time');
@@ -1820,7 +1852,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Application installable (site en ligne, page avec manifeste) : le service worker garde l'outil
   // en mémoire pour qu'il fonctionne hors ligne une fois ajouté à l'écran d'accueil (iPhone compris)
   if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol) && document.querySelector('link[rel="manifest"]')) {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
+    const hadController = !!navigator.serviceWorker.controller;   // première installation : pas de bandeau
+    navigator.serviceWorker.register('sw.js').then(reg => {
+      const check = () => reg.update().catch(() => {});
+      document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') check(); });   // retour sur l'appli
+      setInterval(check, 3600e3);                                                                                     // onglet resté ouvert
+    }).catch(() => {});
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if (hadController) showUpdateBanner(); });
   }
 
   // Mode clair / sombre, roue du zodiaque
@@ -1900,7 +1938,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 7. Mode test : ZODIAC.html?test charge zodiac-tests.js (même dossier) et affiche le rapport
-  if (params.has('test')) {
+  if (new URLSearchParams(location.search).has('test')) {   // mode test : paramètre « ?test » (pas une donnée personnelle)
     // Version autonome : la suite est intégrée à la page (non exécutée tant qu'on ne demande pas ?test)
     const inline = document.getElementById('zodiacTests');
     if (inline) { new Function(inline.textContent)(); return; }

@@ -5,7 +5,7 @@
 
 I18N.de = deepMerge(I18N.fr, {
   appTitle: "Zodiak & Dekane",
-  labelName: "Name",
+  labelName: "Vor- und Nachname",
   labelBirthDate: "Geburtsdatum",
   labelBirthTime: "Geburtszeit",
   optional: "(optional)",
@@ -680,7 +680,7 @@ I18N.de = deepMerge(I18N.fr, {
     wheelHint: "Tippe auf einen Planeten, ein Zeichen, ein Haus oder einen Aspekt, um die Erklärung zu lesen."
   },
   infoLabel: "Mehr Informationen",
-  timePlaceHint: "Für das Geburtshoroskop (Aszendent und Häuser) werden Geburtszeit und Geburtsort benötigt.",
+  timePlaceHint: "Je vollständiger und genauer deine Angaben, desto präziser dein Porträt und desto treuer der Tradition.",
   info: {
     sunPosition: "Die genaue Stellung der Sonne im Tierkreis bei der Geburt, in Grad innerhalb des Zeichens (0 bis 30°). Sie bestimmt Zeichen und Dekan und wird astronomisch berechnet, nicht nach festen Daten.",
     natalMoon: "Das Zeichen, in dem der Mond bei der Geburt stand; in der Astrologie steht es für das Gefühlsleben. Der Mond wechselt etwa alle zweieinhalb Tage das Zeichen: Ohne Geburtszeit sind manchmal zwei Zeichen möglich.",
@@ -711,7 +711,11 @@ I18N.de = deepMerge(I18N.fr, {
     numerology: "Die Numerologie reduziert Daten und Namen durch Addieren ihrer Ziffern auf eine Zahl von 1 bis 9 – außer den Meisterzahlen 11, 22 und 33, die erhalten bleiben. Lebensweg: Tag, Monat und Jahr der Geburt werden einzeln reduziert und dann addiert. Namenszahlen: Jeder Buchstabe hat einen Wert (A = 1, B = 2 … I = 9, dann J = 1 …); alle Buchstaben ergeben die Ausdruckszahl, die Vokale die Seelenzahl, die Konsonanten die Persönlichkeitszahl. Im Arabischen gelten die Abdschad-Werte (ا = 1 … غ = 1000), im Russischen die entsprechende kyrillische Tabelle.",
     personalYear: "Das persönliche Jahr addiert deinen Geburtstag und -monat zum laufenden Jahr; es folgt einem Zyklus von 9 Jahren. Der persönliche Monat fügt den laufenden Monat hinzu, der persönliche Tag den Tag des Monats. Die Zyklen gelten für das Lesedatum des Horoskops.",
     tarot: "Geburtskarte: Tag, Monat und Jahr der Geburt werden addiert und dann durch Addieren der Ziffern reduziert, bis 22 oder weniger herauskommt; 22 entspricht dem Narren. Tageskarte: eine Ziehung für jede Person und jedes Datum, den ganzen Tag dieselbe. Das Tarot de Marseille und das Waite-Smith teilen die 22 großen Arkana, doch manche Namen unterscheiden sich, und Kraft und Gerechtigkeit tauschen ihre Nummern (XI und VIII bei Marseille, VIII und XI bei Waite-Smith): Dieselbe Rechnung kann je nach Deck die eine oder die andere ergeben.",
-    spread: "Die Legung mit drei Karten beleuchtet eine Frage: die Vergangenheit (was dazu geführt hat), die Gegenwart (was gerade wirkt) und die Zukunft (die Tendenz, wenn sich nichts ändert). Es gibt nur eine Legung pro Tag, für eine gut überlegte Frage: Sie bleibt bis zum nächsten Tag sichtbar. Die Karten werden zufällig aus den 22 großen Arkana gezogen, ohne Wiederholung. Deine Frage bleibt auf deinem Gerät und erscheint nicht im exportierten Bild."
+    spread: "Die Legung mit drei Karten beleuchtet eine Frage: die Vergangenheit (was dazu geführt hat), die Gegenwart (was gerade wirkt) und die Zukunft (die Tendenz, wenn sich nichts ändert). Es gibt nur eine Legung pro Tag, für eine gut überlegte Frage: Sie bleibt bis zum nächsten Tag sichtbar. Die Karten werden zufällig aus den 22 großen Arkana gezogen, ohne Wiederholung. Deine Frage bleibt auf deinem Gerät und erscheint nicht im exportierten Bild. Die Tradition verlangt eine klare und aufrichtige Frage, die nur einmal gestellt wird: Eine vage Frage oder eine, die wiederholt wird, um eine andere Antwort zu bekommen, nimmt der Legung ihren Sinn.",
+    fieldName: "Dein Vorname personalisiert die App. Die klassische Numerologie stützt sich auf den vollständigen Geburtsnamen: alle Vornamen und den Familiennamen, wie in der Geburtsurkunde. Mit dem Vornamen allein spiegeln deine Namenszahlen nur einen Teil deines Namens wider.",
+    fieldTime: "Mit ihr lassen sich Aszendent und Häuser berechnen, der Mond genau bestimmen (er wechselt alle zweieinhalb Tage das Zeichen) und das Tier deiner Geburtsstunde in der chinesischen Astrologie finden. Ohne sie fehlen diese Elemente oder können falsch sein, und dein Porträt bleibt unvollständig. Sie steht oft in der Geburtsurkunde; auch ungefähr hilft sie.",
+    fieldPlace: "Er liefert die genaue Zeitzone deiner Geburt, Sommerzeit inbegriffen, und ihre Koordinaten. Ohne Ort lassen sich Aszendent und Häuser nicht berechnen. Die nächstgelegene Stadt genügt.",
+    privacy: "Alles, was du eingibst (Name, Datum, Uhrzeit, Ort, Verlauf, Tarot-Frage), wird nur im Speicher deines Browsers auf diesem Gerät abgelegt. Es werden keine Daten an einen Server gesendet, und die App enthält keine Statistik- oder Tracking-Werkzeuge. Wenn du die Daten dieser Website in deinem Browser löschst, ist alles gelöscht. Nur die Schaltfläche „Teilen“ erstellt einen Link mit deinem Geburtsdatum, den du selbst verschickst."
   },
   placePlaceholder: "Stadtnamen eingeben …",
   placeNoMatch: "Keine Stadt gefunden. Versuche die nächstgelegene.",
@@ -973,5 +977,8 @@ I18N.de = deepMerge(I18N.fr, {
     is: "Mein Profil",
     saved: "Dieses Profil öffnet sich bei jedem Besuch direkt.",
     removed: "Dieses Profil öffnet sich nicht mehr automatisch."
-  }
+  },
+  privacyLine: "Deine Angaben bleiben auf deinem Gerät: Nichts wird online gesendet oder gespeichert.",
+  privacyTitle: "Datenschutz",
+  version: { label: "Version {v}", available: "Eine neue Version der App ist verfügbar.", reload: "Neu laden" }
 });

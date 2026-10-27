@@ -4,7 +4,7 @@
    ============================================================ */
 I18N.tr = deepMerge(I18N.fr, {
   appTitle: "Burçlar ve Dekanlar",
-  labelName: "Ad",
+  labelName: "Ad ve soyad",
   labelBirthDate: "Doğum tarihi",
   labelBirthTime: "Doğum saati",
   optional: "(isteğe bağlı)",
@@ -676,7 +676,7 @@ I18N.tr = deepMerge(I18N.fr, {
     wheelHint: "Açıklamasını okumak için bir gezegene, burca, eve ya da açıya dokunun."
   },
   infoLabel: "Daha fazla bilgi",
-  timePlaceHint: "Doğum haritası (yükselen ve evler) için doğum saati ve doğum yeri gereklidir.",
+  timePlaceHint: "Bilgileriniz ne kadar eksiksiz ve doğru olursa portreniz o kadar kesin ve geleneklere sadık olur.",
   info: {
     sunPosition: "Doğum anında Güneş'in zodyaktaki tam konumu; burç içindeki derece olarak (0–30°) gösterilir. Burcu ve dekanı belirleyen budur: sabit tarihlere göre değil, astronomik olarak hesaplanır.",
     natalMoon: "Doğum anında Ay'ın bulunduğu burç; astrolojide duygusal yaşamı temsil eder. Ay yaklaşık iki buçuk günde bir burç değiştirir: doğum saati olmadan bazen iki burç mümkündür.",
@@ -707,7 +707,11 @@ I18N.tr = deepMerge(I18N.fr, {
     numerology: "Numeroloji, tarihleri ve adları rakamlarını toplayarak 1 ile 9 arasında bir sayıya indirger; yalnızca 11, 22 ve 33 usta sayıları olduğu gibi korunur. Yaşam yolu: doğum günü, ayı ve yılı ayrı ayrı indirgenip toplanır. Adın sayıları: her harfin bir değeri vardır (A = 1, B = 2… I = 9, sonra J = 1…); tüm harfler ifade sayısını, ünlüler ruh sayısını, ünsüzler kişilik sayısını verir. Arapçada ebced değerleri (ا = 1… غ = 1000), Rusçada eşdeğer Kiril tablosu kullanılır.",
     personalYear: "Kişisel yıl, doğum gününüzü ve ayınızı içinde bulunulan yıla ekler; 9 yıllık bir döngü izler. Kişisel ay buna içinde bulunulan ayı, kişisel gün ayın gününü ekler. Döngüler burç yorumunun okuma tarihine göre hesaplanır.",
     tarot: "Doğum kartı: doğum günü, ayı ve yılı toplanır, ardından 22 ya da daha küçük bir sayı elde edilene kadar rakamlar toplanarak indirgenir; 22, Deli kartına karşılık gelir. Günün kartı: her kişiye ve her tarihe özgü, bütün gün aynı kalan bir çekiliş. Marsilya Tarotu ile Waite-Smith aynı 22 büyük arkanayı paylaşır; ancak bazı adlar farklıdır ve Güç ile Adalet numaralarını değiştirir (Marsilya'da XI ve VIII, Waite-Smith'te VIII ve XI): aynı hesap desteye göre birini ya da ötekini verebilir.",
-    spread: "Üç kartlık açılım bir soruyu aydınlatır: geçmiş (ona neyin yol açtığı), şimdi (neyin söz konusu olduğu) ve gelecek (hiçbir şey değişmezse eğilim). İyice düşünülmüş bir soru için günde yalnızca bir açılım yapılır: ertesi güne kadar ekranda kalır. Kartlar 22 büyük arkana arasından, tekrar olmadan rastgele çekilir. Sorunuz cihazınızda kalır ve dışa aktarılan görselde yer almaz."
+    spread: "Üç kartlık açılım bir soruyu aydınlatır: geçmiş (ona neyin yol açtığı), şimdi (neyin söz konusu olduğu) ve gelecek (hiçbir şey değişmezse eğilim). İyice düşünülmüş bir soru için günde yalnızca bir açılım yapılır: ertesi güne kadar ekranda kalır. Kartlar 22 büyük arkana arasından, tekrar olmadan rastgele çekilir. Sorunuz cihazınızda kalır ve dışa aktarılan görselde yer almaz. Gelenek, yalnızca bir kez sorulan açık ve içten bir soru ister: belirsiz bir soru ya da başka bir cevap almak için yeniden sorulan bir soru açılımı anlamsız kılar.",
+    fieldName: "Adınız uygulamayı kişiselleştirir. Geleneksel numeroloji, doğumdaki tam adınıza dayanır: nüfus kaydındaki gibi tüm adlarınız ve soyadınız. Yalnızca adınızla, adın sayıları adınızın sadece bir bölümünü yansıtır.",
+    fieldTime: "Yükseleninizi ve evlerinizi hesaplamayı, iki buçuk günde bir burç değiştiren Ay'ın konumunu kesinleştirmeyi ve Çin astrolojisinde doğum saatinizin hayvanını bulmayı sağlar. Saat olmadan bu öğeler eksik kalır ya da yanlış olabilir ve portreniz eksik kalır. Genellikle doğum belgesinde yazar; yaklaşık bile olsa işe yarar.",
+    fieldPlace: "Doğumunuzun yaz saati dahil tam saat dilimini ve koordinatlarını verir. Yer olmadan yükselen ve evler hesaplanamaz. En yakın şehir yeterlidir.",
+    privacy: "Girdiğiniz her şey (ad, tarih, saat, yer, geçmiş, tarot sorusu) yalnızca bu cihazdaki tarayıcınızın belleğinde saklanır. Hiçbir veri bir sunucuya gönderilmez ve uygulamada istatistik ya da izleme aracı yoktur. Tarayıcınızda bu sitenin verilerini silmek her şeyi siler. Yalnızca «Paylaş» düğmesi doğum tarihinizi içeren bir bağlantı oluşturur; onu siz gönderirsiniz."
   },
   placePlaceholder: "Bir şehir adı yazın…",
   placeNoMatch: "Şehir bulunamadı. En yakın şehri deneyin.",
@@ -969,5 +973,8 @@ I18N.tr = deepMerge(I18N.fr, {
     is: "Profilim",
     saved: "Bu profil her ziyarette doğrudan açılacak.",
     removed: "Bu profil artık otomatik olarak açılmayacak."
-  }
+  },
+  privacyLine: "Bilgileriniz cihazınızda kalır: hiçbir şey çevrim içi gönderilmez veya kaydedilmez.",
+  privacyTitle: "Gizlilik",
+  version: { label: "Sürüm {v}", available: "Uygulamanın yeni bir sürümü var.", reload: "Yeniden yükle" }
 });

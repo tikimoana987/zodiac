@@ -27,7 +27,8 @@ self.addEventListener('fetch', event => {
     event.respondWith(
       // « no-cache » : toujours revalider auprès du serveur (sinon le navigateur peut resservir sa copie de la page
       // jusqu'à 10 minutes après une mise à jour du site)
-      fetch(request.url, { cache: 'no-cache', credentials: 'same-origin' })
+      // Sans la partie « ?… » de l'adresse : les données d'un ancien lien (?date=…) ne partent jamais vers le serveur
+      fetch((u => { u.search = ''; return u.href; })(new URL(request.url)), { cache: 'no-cache', credentials: 'same-origin' })
         .then(response => {
           if (response.ok) { const copy = response.clone(); caches.open(CACHE).then(cache => cache.put('./index.html', copy)); }
           return response;

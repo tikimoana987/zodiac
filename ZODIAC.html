@@ -35,7 +35,7 @@
 
   <div class="input-zone">
     <div class="field field-name">
-      <label for="userName"><span id="labelName">Prénom ou nom</span> <span class="opt">(facultatif)</span></label>
+      <div class="label-row"><label for="userName"><span id="labelName">Prénom et nom</span> <span class="opt">(facultatif)</span></label><span class="info-slot" id="infoSlotName"></span></div>
       <input type="text" id="userName" maxlength="40" autocomplete="name" spellcheck="false">
     </div>
     <div class="field">
@@ -43,11 +43,11 @@
       <input type="date" id="birthDate" required aria-describedby="errorMsg">
     </div>
     <div class="field field-time">
-      <label for="birthTime"><span id="labelBirthTime">Heure de naissance</span> <span class="opt">(facultatif)</span></label>
+      <div class="label-row"><label for="birthTime"><span id="labelBirthTime">Heure de naissance</span> <span class="opt">(facultatif)</span></label><span class="info-slot" id="infoSlotTime"></span></div>
       <input type="time" id="birthTime">
     </div>
     <div class="field field-place">
-      <label for="birthPlace"><span id="labelBirthPlace">Lieu de naissance</span> <span class="opt">(facultatif)</span></label>
+      <div class="label-row"><label for="birthPlace"><span id="labelBirthPlace">Lieu de naissance</span> <span class="opt">(facultatif)</span></label><span class="info-slot" id="infoSlotPlace"></span></div>
       <div class="place-box">
         <input type="text" id="birthPlace" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="placeList" autocomplete="off" spellcheck="false">
         <button type="button" class="place-clear" id="placeClear" hidden>×</button>
@@ -55,7 +55,8 @@
       </div>
     </div>
     <button class="btn-reveal" id="btnReveal">Révéler mon signe</button>
-    <p class="field-hint"><span class="field-hint-icon" aria-hidden="true">i</span> <span id="timePlaceHint">L'heure et le lieu de naissance sont nécessaires pour le thème natal (ascendant et maisons).</span></p>
+    <p class="field-hint"><span class="field-hint-icon" aria-hidden="true">i</span> <span id="timePlaceHint"></span></p>
+    <p class="privacy-line"><span aria-hidden="true">🔒</span> <span id="privacyLine"></span> <span class="info-slot" id="infoSlotPrivacy"></span></p>
   </div>
   <div id="errorMsg" class="error-msg hidden" role="alert"></div>
   <div class="history" id="history" hidden></div>
@@ -66,6 +67,7 @@
     <button type="button" class="offline-btn" id="offlineBtn"><span aria-hidden="true">⬇</span> <span id="offlineLabel">Version hors ligne</span></button>
     <p class="offline-hint" id="offlineHint"></p>
     <p class="app-credit" id="placesCredit"></p>
+    <p class="app-version" id="appVersion"></p>
   </footer>
 </div>
 

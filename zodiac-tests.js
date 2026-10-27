@@ -739,9 +739,9 @@
     }
   });
 
-  test('Bulles d\'information (i) : 30 explications complètes et traduites', () => {
+  test('Bulles d\'information (i) : 34 explications complètes et traduites', () => {
     const keys = Object.keys(I18N.fr.info);
-    assertEq(keys.length, 30, 'nombre d\'explications');
+    assertEq(keys.length, 34, 'nombre d\'explications');
     for (const lang of Object.keys(I18N)) {
       const info = I18N[lang].info;
       assert(keys.every(k => typeof info[k] === 'string' && info[k].length > 20), `${lang} : explication manquante ou trop courte`);   // 20 : le chinois est bien plus dense
@@ -1008,6 +1008,25 @@
       store.set('zodiac_me', '{"date":"pas une date"}'); assertEq(readMe(), null, 'profil invalide ignoré');
       for (const l of Object.keys(I18N)) assert(['set', 'is', 'saved', 'removed'].every(k => I18N[l].me && I18N[l].me[k]), `${l} : textes`);
     } finally { if (keep === null) store.remove('zodiac_me'); else store.set('zodiac_me', keep); }
+  });
+
+  test('Adresse en « # » (rien d\'envoyé au serveur), version, bandeau de mise à jour, textes', () => {
+    assert(appVersionLabel() === 'dev' || /^\d{4}-\d{2}-\d{2} · [0-9a-f]{7}$/.test(appVersionLabel()), `version : ${appVersionLabel()}`);
+    const keep = location.pathname + location.search + location.hash;
+    try {
+      history.replaceState(null, '', location.pathname + '?test&date=1990-01-01&place=Paris%7CFR#lang=en');
+      const p = readUrlParams();
+      assert(p.get('date') === '1990-01-01' && p.get('place') === 'Paris|FR' && p.get('lang') === 'en', 'ancien lien en « ? » et « # » lus ensemble');
+      const keepPlace = currentBirthPlace; currentBirthPlace = 'Paris|FR';
+      updateURL('1990-01-01', '10:05', 'fr'); currentBirthPlace = keepPlace;
+      assert(!/date=|place=|time=/.test(location.search) && /date=1990-01-01/.test(location.hash) && /time=10%3A05/.test(location.hash) && /test/.test(location.search), `données après « # » seulement : ${location.search} ${location.hash}`);
+    } finally { history.replaceState(null, '', keep); }
+    showUpdateBanner(); const b = document.getElementById('updateBanner');
+    assert(b && b.textContent.includes(I18N[currentLang].version.reload), 'bandeau de mise à jour'); b.remove();
+    for (const l of Object.keys(I18N)) {
+      const t = I18N[l];
+      assert(/\{v\}/.test(t.version.label) && t.version.available && t.privacyLine && t.privacyTitle && t.info.fieldName && t.info.fieldTime && t.info.fieldPlace && t.info.privacy, `${l} : textes`);
+    }
   });
 
   /* ---------------- Rapport ---------------- */
