@@ -716,7 +716,8 @@ I18N.es = deepMerge(I18N.fr, {
     fieldTime: "Permite calcular tu ascendente y tus casas, situar con precisión la Luna (que cambia de signo cada dos días y medio) y conocer el animal de tu hora en la astrología china. Sin ella, estos elementos faltan o pueden ser erróneos, y tu retrato queda incompleto. Suele figurar en el acta de nacimiento; incluso aproximada, ayuda.",
     fieldPlace: "Da el huso horario exacto de tu nacimiento, horario de verano incluido, y sus coordenadas. Sin lugar, no se pueden calcular el ascendente ni las casas. Basta con la ciudad más cercana. ¿No encuentras el lugar? Pega sus coordenadas GPS o un enlace de mapa (Google Maps, OpenStreetMap, Mapas de Apple): el huso horario se toma de la ciudad más cercana y puedes cambiarlo.",
     privacy: "Todo lo que introduces (nombre, fecha, hora, lugar, historial, pregunta del tarot) se guarda solo en la memoria de tu navegador, en este dispositivo. No se envía ningún dato a ningún servidor y la app no contiene herramientas de estadísticas ni de seguimiento. Borrar los datos de este sitio en tu navegador lo elimina todo. Solo el botón «Compartir» crea un enlace con tu fecha de nacimiento, que envías tú mismo.",
-    reversed: "Con una baraja real, algunas cartas salen al revés: la tradición les da un sentido matizado, en el que la energía de la carta está bloqueada, retrasada, interiorizada o es excesiva. Esta opción está desactivada por defecto; activada, cada carta de la tirada del día tiene una posibilidad entre dos de salir invertida. Se aplica a la tirada siguiente: una tirada ya hecha no cambia."
+    reversed: "Con una baraja real, algunas cartas salen al revés: la tradición les da un sentido matizado, en el que la energía de la carta está bloqueada, retrasada, interiorizada o es excesiva. Esta opción está desactivada por defecto; activada, cada carta de la tirada del día tiene una posibilidad entre dos de salir invertida. Se aplica a la tirada siguiente: una tirada ya hecha no cambia.",
+    calendar: "El calendario reúne los eventos del cielo del período elegido: lunas nuevas y llenas, eclipses (con su visibilidad desde el lugar del mapa del cielo), inicios y finales de retrogradación, cambios de signo del Sol y de los planetas, y fechas exactas de los tránsitos de los planetas lentos (de Júpiter a Plutón) sobre tu carta natal. El archivo .ics se importa en la mayoría de las agendas: ábrelo o usa «Importar» en Google Calendar u Outlook. Tu agenda muestra cada evento en tu hora local."
   },
   placePlaceholder: "Escribe el nombre de una ciudad…",
   placeNoMatch: "No se encontró ninguna ciudad. Prueba con la más cercana.",
@@ -1081,5 +1082,21 @@ I18N.es = deepMerge(I18N.fr, {
   placeCoordsHint: "¿No encuentras el lugar? Pega sus coordenadas GPS (por ejemplo 48.8566, 2.3522) o un enlace de mapa.",
   placeNear: "cerca de {city}",
   placeTz: "Huso horario",
-  placeTzFrom: "según {city}, a {km} km"
+  placeTzFrom: "según {city}, a {km} km",
+  cal: {
+    title: "Calendario del cielo",
+    intro: "Las citas del cielo de los próximos meses, para importar en tu agenda (Google Calendar, Outlook, el calendario del teléfono…).",
+    period: "Período",
+    months: "{n} meses",
+    catMoon: "Lunas nuevas y llenas",
+    catEclipses: "Eclipses",
+    catRetro: "Retrogradaciones",
+    catIngress: "Cambios de signo",
+    catTransits: "Tránsitos sobre tu carta",
+    button: "Descargar el calendario",
+    count: "{n} eventos",
+    note: "El archivo se crea en tu dispositivo: no se envía nada en línea.",
+    direct: "directo",
+    calName: "Calendario del cielo — {name}"
+  }
 });

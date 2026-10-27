@@ -716,7 +716,8 @@ I18N.it = deepMerge(I18N.fr, {
     fieldTime: "Permette di calcolare l'ascendente e le case, di collocare con precisione la Luna (che cambia segno ogni due giorni e mezzo) e di trovare l'animale della tua ora nell'astrologia cinese. Senza, questi elementi mancano o possono essere sbagliati e il ritratto resta incompleto. Spesso è indicata sull'atto di nascita; anche approssimativa, aiuta.",
     fieldPlace: "Fornisce il fuso orario esatto della tua nascita, ora legale compresa, e le sue coordinate. Senza luogo, ascendente e case non possono essere calcolati. Basta la città più vicina. Luogo non trovato? Incolla le coordinate GPS o un link di una mappa (Google Maps, OpenStreetMap, Mappe di Apple): il fuso orario è quello della città più vicina e puoi cambiarlo.",
     privacy: "Tutto ciò che inserisci (nome, data, ora, luogo, cronologia, domanda dei tarocchi) è salvato solo nella memoria del tuo browser, su questo dispositivo. Nessun dato viene inviato a un server e l'app non contiene strumenti di statistica o di tracciamento. Cancellare i dati di questo sito nel browser elimina tutto. Solo il pulsante «Condividi» crea un link con la tua data di nascita, che invii tu stesso.",
-    reversed: "Con un mazzo vero, alcune carte escono capovolte: la tradizione dà loro un senso sfumato, in cui l'energia della carta è bloccata, ritardata, interiorizzata o eccessiva. Questa opzione è disattivata per impostazione predefinita; se attivata, ogni carta della stesa del giorno ha una probabilità su due di uscire rovesciata. Vale per la stesa successiva: una stesa già fatta non cambia."
+    reversed: "Con un mazzo vero, alcune carte escono capovolte: la tradizione dà loro un senso sfumato, in cui l'energia della carta è bloccata, ritardata, interiorizzata o eccessiva. Questa opzione è disattivata per impostazione predefinita; se attivata, ogni carta della stesa del giorno ha una probabilità su due di uscire rovesciata. Vale per la stesa successiva: una stesa già fatta non cambia.",
+    calendar: "Il calendario raccoglie gli eventi del cielo del periodo scelto: lune nuove e piene, eclissi (con la loro visibilità dal luogo della mappa del cielo), inizi e fini dei moti retrogradi, cambi di segno del Sole e dei pianeti, e date esatte dei transiti dei pianeti lenti (da Giove a Plutone) sul tuo tema natale. Il file .ics si importa nella maggior parte delle agende: aprilo, oppure usa «Importa» in Google Calendar o Outlook. La tua agenda mostra ogni evento nella tua ora locale."
   },
   placePlaceholder: "Digita il nome di una città…",
   placeNoMatch: "Nessuna città trovata. Prova con la più vicina.",
@@ -1081,5 +1082,21 @@ I18N.it = deepMerge(I18N.fr, {
   placeCoordsHint: "Luogo non trovato? Incolla le sue coordinate GPS (per esempio 48.8566, 2.3522) o un link di una mappa.",
   placeNear: "vicino a {city}",
   placeTz: "Fuso orario",
-  placeTzFrom: "secondo {city}, a {km} km"
+  placeTzFrom: "secondo {city}, a {km} km",
+  cal: {
+    title: "Calendario del cielo",
+    intro: "Gli appuntamenti del cielo dei prossimi mesi, da importare nella tua agenda (Google Calendar, Outlook, calendario del telefono…).",
+    period: "Periodo",
+    months: "{n} mesi",
+    catMoon: "Lune nuove e piene",
+    catEclipses: "Eclissi",
+    catRetro: "Moti retrogradi",
+    catIngress: "Cambi di segno",
+    catTransits: "Transiti sul tuo tema",
+    button: "Scarica il calendario",
+    count: "{n} eventi",
+    note: "Il file viene creato sul tuo dispositivo: nulla viene inviato online.",
+    direct: "diretto",
+    calName: "Calendario del cielo — {name}"
+  }
 });

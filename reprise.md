@@ -25,8 +25,8 @@ L'expérience inclut **une transition cinématique** (viseur balaie le ciel → 
 ## 📦 État actuel du code
 
 **17 fichiers dans un même dossier**, ~460 Ko, ouverture par double-clic sur `ZODIAC.html` (aucun serveur). **Version autonome** : `ZODIAC-standalone.html`, un seul fichier (~650 Ko), produit par `python3 build-standalone.py`. Chargement par `<script src>` classiques, dans cet ordre :
-`zodiac-data.js` → `zodiac-sky-data.js` → `zodiac-i18n.js` → `zodiac-i18n-fr.js` puis `-en`, `-es`, `-zh`, `-ru`, `-de`, `-it` → `zodiac-astro.js` → `zodiac-planets.js` → `zodiac-skymap.js` → `zodiac-observe.js` → `zodiac-places-data.js` → `zodiac-places.js` → `zodiac-natal.js` → `zodiac-transits.js` → `zodiac-numerology.js` → `zodiac-tarot.js` → `zodiac-app.js`.
-Styles dans `zodiac.css`. Tests dans `zodiac-tests.js` (75 tests, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
+`zodiac-data.js` → `zodiac-sky-data.js` → `zodiac-i18n.js` → `zodiac-i18n-fr.js` puis `-en`, `-es`, `-zh`, `-ru`, `-de`, `-it` → `zodiac-astro.js` → `zodiac-planets.js` → `zodiac-skymap.js` → `zodiac-observe.js` → `zodiac-places-data.js` → `zodiac-places.js` → `zodiac-natal.js` → `zodiac-transits.js` → `zodiac-calendar.js` → `zodiac-numerology.js` → `zodiac-tarot.js` → `zodiac-app.js`.
+Styles dans `zodiac.css`. Tests dans `zodiac-tests.js` (76 tests, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
 **Aucune ressource en ligne** : `html2canvas` 1.4.1 est une copie locale (`html2canvas.min.js`, licence MIT). Tout fonctionne sans internet.
 
 ### Fonctionnalités en place ✅
@@ -128,7 +128,7 @@ Traduit dans les 7 langues, couvert par un test, validé contre une référence 
 - Paramètres de l'adresse après « # » (`readUrlParams`, `updateURL`) : `date`, `time`, `place`, `lang`. Le mode test reste `?test` (lu sur `location.search`). Promesse affichée à l'utilisateur : rien n'est envoyé en ligne — ne jamais ajouter d'appel réseau, de statistiques ou de pistage.
 - `APP_VERSION` est remplacé par build-standalone.py (« date · empreinte ») ; bandeau de mise à jour sur `controllerchange` (seulement si un service worker contrôlait déjà la page).
 - Lieu par coordonnées : `parseCoords`, `nearestPlaces`, `coordsPlace` (zodiac-places.js), identifiant `@lat,lon,fuseau` lu par `birthPlace`.
-- Pistes restantes (dans l'ordre validé) : ✅ 1 version et bandeau ; ✅ 3 lieux absents (coordonnées GPS) ; ✅ 2 cartes renversées (option) ; 4 calendrier .ics ; 5 fiche du thème à imprimer ; 6 arcanes mineurs ; puis iPhone / version hors ligne en dernier.
+- Pistes restantes (dans l'ordre validé) : ✅ 1 version et bandeau ; ✅ 3 lieux absents (coordonnées GPS) ; ✅ 2 cartes renversées (option) ; ✅ 4 calendrier .ics ; 5 fiche du thème à imprimer ; 6 arcanes mineurs ; puis iPhone / version hors ligne en dernier.
 
 ### Organisation du résultat
 - Cinq sections, une par onglet (`VIEW_MODES` : signs, natal, sky, compat, numbers) ; toutes sont dans `#profileContent` (exportée telle quelle : seule la section affichée est visible). La numérologie s'affiche dans `#numbersBody`, le tarot dans `#tarotBody`, tous deux dans la section `numbers`.

@@ -716,7 +716,8 @@ I18N.de = deepMerge(I18N.fr, {
     fieldTime: "Mit ihr lassen sich Aszendent und Häuser berechnen, der Mond genau bestimmen (er wechselt alle zweieinhalb Tage das Zeichen) und das Tier deiner Geburtsstunde in der chinesischen Astrologie finden. Ohne sie fehlen diese Elemente oder können falsch sein, und dein Porträt bleibt unvollständig. Sie steht oft in der Geburtsurkunde; auch ungefähr hilft sie.",
     fieldPlace: "Er liefert die genaue Zeitzone deiner Geburt, Sommerzeit inbegriffen, und ihre Koordinaten. Ohne Ort lassen sich Aszendent und Häuser nicht berechnen. Die nächstgelegene Stadt genügt. Ort nicht gefunden? Füge seine GPS-Koordinaten oder einen Kartenlink ein (Google Maps, OpenStreetMap, Apple Karten): Die Zeitzone wird von der nächstgelegenen Stadt übernommen, und du kannst sie ändern.",
     privacy: "Alles, was du eingibst (Name, Datum, Uhrzeit, Ort, Verlauf, Tarot-Frage), wird nur im Speicher deines Browsers auf diesem Gerät abgelegt. Es werden keine Daten an einen Server gesendet, und die App enthält keine Statistik- oder Tracking-Werkzeuge. Wenn du die Daten dieser Website in deinem Browser löschst, ist alles gelöscht. Nur die Schaltfläche „Teilen“ erstellt einen Link mit deinem Geburtsdatum, den du selbst verschickst.",
-    reversed: "Bei einem echten Deck kommen manche Karten verkehrt herum: Die Tradition gibt ihnen eine nuancierte Bedeutung, bei der die Energie der Karte blockiert, verzögert, nach innen gewendet oder übersteigert ist. Diese Option ist standardmäßig aus; ist sie an, kommt jede Karte der Tageslegung mit einer Wahrscheinlichkeit von eins zu zwei umgekehrt. Sie gilt für die nächste Legung: Eine bereits gezogene Legung ändert sich nicht."
+    reversed: "Bei einem echten Deck kommen manche Karten verkehrt herum: Die Tradition gibt ihnen eine nuancierte Bedeutung, bei der die Energie der Karte blockiert, verzögert, nach innen gewendet oder übersteigert ist. Diese Option ist standardmäßig aus; ist sie an, kommt jede Karte der Tageslegung mit einer Wahrscheinlichkeit von eins zu zwei umgekehrt. Sie gilt für die nächste Legung: Eine bereits gezogene Legung ändert sich nicht.",
+    calendar: "Der Kalender vereint die Himmelsereignisse des gewählten Zeitraums: Neu- und Vollmonde, Finsternisse (mit ihrer Sichtbarkeit vom Ort der Himmelskarte), Beginn und Ende von Rückläufigkeiten, Zeichenwechsel der Sonne und der Planeten sowie die exakten Daten der Transite der langsamen Planeten (Jupiter bis Pluto) auf dein Geburtshoroskop. Die .ics-Datei lässt sich in die meisten Kalender importieren: Öffne sie oder nutze „Importieren“ in Google Kalender oder Outlook. Dein Kalender zeigt jedes Ereignis in deiner Ortszeit."
   },
   placePlaceholder: "Stadtnamen eingeben …",
   placeNoMatch: "Keine Stadt gefunden. Versuche die nächstgelegene.",
@@ -1077,5 +1078,21 @@ I18N.de = deepMerge(I18N.fr, {
   placeCoordsHint: "Ort nicht gefunden? Füge seine GPS-Koordinaten ein (zum Beispiel 48.8566, 2.3522) oder einen Kartenlink.",
   placeNear: "nahe {city}",
   placeTz: "Zeitzone",
-  placeTzFrom: "nach {city}, {km} km entfernt"
+  placeTzFrom: "nach {city}, {km} km entfernt",
+  cal: {
+    title: "Himmelskalender",
+    intro: "Die Himmelstermine der kommenden Monate, zum Import in deinen Kalender (Google Kalender, Outlook, Kalender des Handys …).",
+    period: "Zeitraum",
+    months: "{n} Monate",
+    catMoon: "Neu- und Vollmonde",
+    catEclipses: "Finsternisse",
+    catRetro: "Rückläufigkeiten",
+    catIngress: "Zeichenwechsel",
+    catTransits: "Transite auf dein Horoskop",
+    button: "Kalender herunterladen",
+    count: "{n} Ereignisse",
+    note: "Die Datei wird auf deinem Gerät erstellt: Nichts wird online gesendet.",
+    direct: "direktläufig",
+    calName: "Himmelskalender — {name}"
+  }
 });

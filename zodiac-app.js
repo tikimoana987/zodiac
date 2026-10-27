@@ -415,6 +415,7 @@ function renderResult(signKey, decanIdx){
       <div id="nightBody"></div>
       <p class="sky-note">${t.night.note}</p>
     </section>
+      <section class="card cal-card" id="calCard"></section>
       </div>
       <div class="compat-view" id="viewCompat" role="tabpanel" aria-labelledby="tabCompat">${compatCardHtml(t)}</div>
       <div class="numtarot" id="viewNumbers" role="tabpanel" aria-labelledby="tabNumbers">
@@ -459,6 +460,7 @@ function renderResult(signKey, decanIdx){
   if (!skyDate) skyDate = todayISO();
   renderNumbers();
   renderTarot();
+  renderCalendar();
   document.getElementById('skyDate').addEventListener('change', e => {
     if (parseISODate(e.target.value)) { skyDate = e.target.value; mapMinutes = null; renderSky(); renderMap(); renderNumbers(); renderTarot(); }
   });
@@ -1063,6 +1065,76 @@ function renderNumbers(){
 /* ============================================================
    TAROT (quatrième onglet) — carte de naissance et carte du jour (date de lecture de l'horoscope)
    ============================================================ */
+/* ---------- Calendrier du ciel (fichier .ics) ----------
+   Période et catégories choisies ; événements calculés sur l'appareil ; titres composés à partir des textes existants. */
+let calMonths = 3;
+const calCats = { moon: true, eclipses: true, retro: true, ingress: false, transits: true };
+let calCountTimer = null, calCountKey = '';
+function calendarSpan(){ const start = Date.now(); return [start, start + calMonths * 30.44 * 864e5]; }
+function calendarItems(){
+  const [start, end] = calendarSpan();
+  const points = natalPoints(natalChart(parseISODate(currentDate), parseTime(currentTime), birthPlace(currentBirthPlace)), !!parseTime(currentTime));
+  return calendarEvents(start, end, calCats, points);
+}
+/* Titre et description d'un événement, dans la langue choisie */
+function calendarText(t, e){
+  const n = t.natal, sg = k => `${SIGN_META[k].sym} ${t.signNames[k]}`, pl = b => `${PLANET_SYM[b]} ${t.rulers[b]}`;
+  const bare = s => s.replace(/\s*[（(][^()（）]*[)）]\s*$/, '');
+  if (e.kind === 'moon') return { title: `${e.phase === 'new' ? '🌑' : '🌕'} ${t.horo.phases[e.phase === 'new' ? 0 : 4]} · ${sg(e.sign)}` };
+  if (e.kind === 'station') return e.retro ? { title: `${pl(e.body)} ℞ ${t.horo.retrograde} · ${sg(e.sign)}`, description: t.horo.retroTexts[e.body] }
+                                           : { title: `${pl(e.body)} ${t.cal.direct} · ${sg(e.sign)}` };
+  if (e.kind === 'ingress') return { title: `${pl(e.body)} → ${sg(e.sign)}` };
+  if (e.kind === 'eclipse') {
+    const place = currentPlace(), tz = mapTz(place);
+    const where = e.solar ? solarLocalText(eclipseLocal(e.ms, place.lat, place.lon), t.map, tz)
+                          : lunarEclipseVisible(e.ms, place.lat, place.lon) ? t.map.visibleHere : t.map.notVisibleHere;
+    return { title: `${e.solar ? '🌘' : '🌒'} ${t.map.eclipseTypes[e.type]} · ${where}` };
+  }
+  const pName = p => p === 'asc' ? n.ascendant : p === 'mc' ? n.midheaven : t.rulers[p];
+  const pSym = p => p === 'asc' ? 'AC' : p === 'mc' ? 'MC' : PLANET_SYM[p];
+  const pDom = p => bare(p === 'asc' ? n.houses[0] : p === 'mc' ? n.houses[9] : n.domains[p]);
+  return { title: `${pl(e.body)} ${ASPECT_SYM[e.type]} ${n.aspectNames[e.type]} ${pSym(e.point)} ${pName(e.point)}`,
+           description: `${capitalize(n.aspectMeanings[e.type])} — ${t.rulers[e.body]} (${bare(n.domains[e.body])}) ↔ ${pName(e.point)} (${pDom(e.point)})` };
+}
+function downloadCalendar(){
+  const t = I18N[currentLang], events = calendarItems();
+  const items = events.map(e => ({ uid: `${e.kind}-${e.body || e.type || e.phase || ''}-${e.point || ''}-${Math.round(e.ms / 60000)}`,
+                                   ms: e.ms, allDay: e.kind === 'transit', ...calendarText(t, e) }));
+  const name = t.cal.calName.replace('{name}', currentName || formatBirth(currentDate, null, currentLang));
+  const url = URL.createObjectURL(new Blob([buildIcs(name, items)], { type: 'text/calendar;charset=utf-8' }));
+  const a = document.createElement('a'); a.href = url; a.download = 'zodiac-sky-calendar.ics';
+  document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 2000);
+  showToast(t.cal.count.replace('{n}', items.length), 2500);
+}
+function renderCalendar(){
+  const el = document.getElementById('calCard'); if (!el || !currentDate) return;
+  const c = I18N[currentLang].cal;
+  const cat = (k, label) => `<label class="cal-cat"><input type="checkbox" data-cat="${k}"${calCats[k] ? ' checked' : ''}> ${label}</label>`;
+  el.innerHTML = `<h3>📅 ${c.title}${infoBtn('calendar', c.title)}</h3><p class="sky-sub">${c.intro}</p>
+    <div class="cal-form">
+      <label class="cal-period">${c.period} <select id="calMonths">${[3, 6, 12].map(n => `<option value="${n}"${n === calMonths ? ' selected' : ''}>${c.months.replace('{n}', n)}</option>`).join('')}</select></label>
+      <div class="cal-cats">${cat('moon', c.catMoon)}${cat('eclipses', c.catEclipses)}${cat('retro', c.catRetro)}${cat('ingress', c.catIngress)}${cat('transits', c.catTransits)}</div>
+      <div class="cal-actions"><button type="button" class="btn-reveal" id="calBtn">${c.button}</button><span class="cal-count" id="calCount" aria-live="polite"></span></div>
+    </div>
+    <p class="sky-note">${c.note}</p>`;
+  el.querySelector('#calMonths').addEventListener('change', e => { calMonths = +e.target.value; scheduleCalendarCount(); });
+  el.querySelectorAll('.cal-cat input').forEach(i => i.addEventListener('change', () => { calCats[i.dataset.cat] = i.checked; scheduleCalendarCount(); }));
+  el.querySelector('#calBtn').addEventListener('click', downloadCalendar);
+  calCountKey = ''; scheduleCalendarCount();
+}
+/* Nombre d'événements, calculé juste après l'affichage (sans le ralentir) */
+function scheduleCalendarCount(){
+  clearTimeout(calCountTimer);
+  calCountTimer = setTimeout(() => {
+    const out = document.getElementById('calCount'); if (!out) return;
+    const key = `${currentDate}|${currentTime}|${currentBirthPlace}|${calMonths}|${JSON.stringify(calCats)}|${new Date().toDateString()}`;
+    if (key === calCountKey) return;
+    calCountKey = key;
+    out.textContent = I18N[currentLang].cal.count.replace('{n}', calendarItems().length);
+  }, 150);
+}
+
 /* ---------- Tirage du jour (rituel) ----------
    Une question écrite, trois cartes tirées face cachée et retournées une à une ; un seul tirage par jour et par personne,
    mémorisé sur l'appareil : { day, birth, question, cards, revealed }. La question n'apparaît pas dans l'image exportée. */
@@ -1595,7 +1667,7 @@ async function exportImage(){
     + `padding:32px;box-sizing:content-box;background:${getComputedStyle(document.documentElement).getPropertyValue('--export-bg').trim()};`;
   for (const part of parts) {
     const copy = part.cloneNode(true);
-    copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .natal-complete, .wheel-hint, .spread-actions, .spread-form, .spread-question, .tarot-deck').forEach(n => n.remove());
+    copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .natal-complete, .wheel-hint, .spread-actions, .spread-form, .spread-question, .tarot-deck, .cal-card').forEach(n => n.remove());
     copy.querySelectorAll('[id]').forEach(n => n.removeAttribute('id'));
     copy.removeAttribute('id');
     frame.appendChild(copy);

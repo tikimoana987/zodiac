@@ -716,7 +716,8 @@ I18N.fr = {
     fieldTime: "Elle permet de calculer votre ascendant et vos maisons, de situer précisément la Lune (qui change de signe tous les deux jours et demi) et de trouver l'animal de votre heure en astrologie chinoise. Sans heure, ces éléments manquent ou peuvent être faux : votre portrait reste incomplet. Elle figure souvent sur l'acte de naissance ; même approximative, elle aide.",
     fieldPlace: "Il donne le fuseau horaire exact de votre naissance, heure d'été comprise, et ses coordonnées. Sans lieu, l'ascendant et les maisons ne peuvent pas être calculés. La ville la plus proche suffit. Lieu introuvable ? Collez ses coordonnées GPS ou un lien de carte (Google Maps, OpenStreetMap, Plans) : le fuseau horaire est déduit de la ville la plus proche, et vous pouvez le changer.",
     privacy: "Tout ce que vous saisissez (nom, date, heure, lieu, historique, question de tarot) est enregistré uniquement dans la mémoire de votre navigateur, sur cet appareil. Aucune donnée n'est envoyée à un serveur, et l'appli ne contient aucun outil de statistiques ou de pistage. Effacer les données du site dans votre navigateur supprime tout. Seul le bouton « Partager » crée un lien contenant votre date de naissance, que vous envoyez vous-même.",
-    reversed: "Avec un vrai jeu, certaines cartes sortent à l'envers : la tradition leur donne un sens nuancé, où l'énergie de la carte est bloquée, retardée, intériorisée ou excessive. Cette option est désactivée par défaut ; activée, chaque carte du tirage du jour a une chance sur deux de sortir renversée. Elle s'applique au tirage suivant : un tirage déjà fait ne change pas."
+    reversed: "Avec un vrai jeu, certaines cartes sortent à l'envers : la tradition leur donne un sens nuancé, où l'énergie de la carte est bloquée, retardée, intériorisée ou excessive. Cette option est désactivée par défaut ; activée, chaque carte du tirage du jour a une chance sur deux de sortir renversée. Elle s'applique au tirage suivant : un tirage déjà fait ne change pas.",
+    calendar: "Le calendrier rassemble les événements du ciel de la période choisie : nouvelles et pleines lunes, éclipses (avec leur visibilité depuis le lieu de la carte du ciel), débuts et fins de rétrogradation, changements de signe du Soleil et des planètes, et dates exactes des transits des planètes lentes (Jupiter à Pluton) sur votre thème natal. Le fichier .ics s'importe dans la plupart des agendas : ouvrez-le, ou utilisez « Importer » dans Google Agenda ou Outlook. Votre agenda affiche chaque événement à votre heure locale."
   },
   placePlaceholder: "Tapez le nom d'une ville…",
   placeNoMatch: "Aucune ville trouvée. Essayez la ville la plus proche.",
@@ -1081,5 +1082,21 @@ I18N.fr = {
   placeCoordsHint: "Lieu introuvable ? Collez ses coordonnées GPS (par exemple 48.8566, 2.3522) ou un lien de carte.",
   placeNear: "près de {city}",
   placeTz: "Fuseau horaire",
-  placeTzFrom: "d'après {city}, à {km} km"
+  placeTzFrom: "d'après {city}, à {km} km",
+  cal: {
+    title: "Calendrier du ciel",
+    intro: "Les rendez-vous du ciel des prochains mois, à importer dans votre agenda (Google Agenda, Outlook, Calendrier du téléphone…).",
+    period: "Période",
+    months: "{n} mois",
+    catMoon: "Nouvelles et pleines lunes",
+    catEclipses: "Éclipses",
+    catRetro: "Rétrogradations",
+    catIngress: "Changements de signe",
+    catTransits: "Transits sur votre thème",
+    button: "Télécharger le calendrier",
+    count: "{n} événements",
+    note: "Le fichier est créé sur votre appareil : rien n'est envoyé en ligne.",
+    direct: "direct",
+    calName: "Calendrier du ciel — {name}"
+  }
 };

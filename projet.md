@@ -48,6 +48,7 @@ Les fichiers sont chargés par de simples balises `<script src>` (pas de modules
 | `build-places.py` | Construit `zodiac-places-data.js` depuis GeoNames (`pip install geonamescache`) ; à relancer seulement pour mettre à jour la base |
 | `zodiac-observe.js` | Observation depuis un lieu : positions vues de la surface (parallaxe), **éclipses de Soleil locales** (contacts, phase centrale, part du Soleil cachée, lever ou coucher éclipsé), levers, couchers et crépuscules, programme de la nuit (`nightPlan`) |
 | `zodiac-transits.js` | **Transits sur le thème natal** : aspects des planètes du moment (Soleil à Pluton) aux points du thème (Soleil à Saturne, Lune si l'heure est connue, ascendant et milieu du ciel si heure et lieu le sont), période d'influence et jour exact ; **synastrie** (aspects entre deux thèmes, harmonie et tension) |
+| `zodiac-calendar.js` | **Calendrier du ciel** : nouvelles et pleines lunes, éclipses, stations (rétrogradations), changements de signe, transits exacts des planètes lentes sur le thème ; fichier iCalendar (.ics) conforme RFC 5545 |
 | `zodiac-numerology.js` | **Numérologie** : chemin de vie, cycles personnels (année, mois, jour), nombres du nom (expression, intime, personnalité) en alphabet latin (méthode pythagoricienne), arabe (abjad) et cyrillique |
 | `zodiac-tarot.js` | **Tarot** (22 arcanes majeurs) : numérotation des deux jeux (Marseille, Waite-Smith), carte de naissance, carte du jour, 22 illustrations originales et leurs deux habillages |
 | `zodiac-tarot-art.js` | **Illustrations du tarot** : 22 arcanes et 2 dos, générés avec Gemini (Google) à partir de prompts rédigés pour le projet, découpés et convertis en WebP 320 × 512 (≈ 1 Mo), sans texte |
@@ -86,6 +87,11 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 ---
 
 ## ✨ Fonctionnalités implémentées
+
+### 📅 Calendrier du ciel (.ics)
+- [x] Carte **« Calendrier du ciel »** dans « Ciel du moment » : période (3, 6 ou 12 mois), catégories à cocher (nouvelles et pleines lunes, éclipses, rétrogradations, changements de signe, transits sur votre thème), nombre d'événements, bouton « Télécharger le calendrier »
+- [x] Événements calculés sur l'appareil, instants affinés à la minute : stations de Mercure à Pluton, entrées dans un signe du Soleil à Saturne, éclipses avec leur visibilité depuis le lieu de la carte du ciel, transits exacts (< 0,05°) de Jupiter à Pluton sur les points du thème
+- [x] Fichier .ics importable dans Google Agenda, Outlook, Calendrier de l'iPhone… (heures en temps universel, transits en journée entière, lignes pliées à 75 octets) ; titres composés à partir des textes déjà traduits ; 14 langues ; absent de l'image exportée
 
 ### ↻ Cartes renversées (option)
 - [x] Réglage **« ↻ Cartes renversées »** à côté du choix du jeu, désactivé par défaut, retenu sur l'appareil, avec une bulle (i)
@@ -409,14 +415,14 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | 1 (html2canvas CDN) |
 | Poids approximatif | ~460 Ko non minifié (dont ~230 Ko de traductions et ~55 Ko de données du ciel) |
-| Tests automatisés | 75 (dans `zodiac-tests.js`) |
+| Tests automatisés | 76 (dans `zodiac-tests.js`) |
 
 ---
 
 ## 🧪 Comment tester
 
 ### Tests automatiques
-Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 75 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
+Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 76 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
 La version autonome se teste de la même façon : `ZODIAC-standalone.html?test` (la suite y est intégrée ; un test supplémentaire vérifie que sa copie vierge est complète et sans donnée personnelle).
 - le calcul du Soleil, comparé à 40 positions de référence calculées par astropy (1900-2100) ;
 - signes et décans de dates de référence, équinoxes connues, jours de transition, effet de l'heure ;

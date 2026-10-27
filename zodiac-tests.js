@@ -739,9 +739,9 @@
     }
   });
 
-  test('Bulles d\'information (i) : 35 explications complètes et traduites', () => {
+  test('Bulles d\'information (i) : 36 explications complètes et traduites', () => {
     const keys = Object.keys(I18N.fr.info);
-    assertEq(keys.length, 35, 'nombre d\'explications');
+    assertEq(keys.length, 36, 'nombre d\'explications');
     for (const lang of Object.keys(I18N)) {
       const info = I18N[lang].info;
       assert(keys.every(k => typeof info[k] === 'string' && info[k].length > 20), `${lang} : explication manquante ou trop courte`);   // 20 : le chinois est bien plus dense
@@ -1066,6 +1066,28 @@
       currentDate = keepDate;
       if (keepSpread === null) store.remove('zodiac_spread'); else store.set('zodiac_spread', keepSpread);
     }
+  });
+
+  test('Calendrier du ciel : stations, lunes, entrées, transits, fichier .ics conforme', () => {
+    const start = Date.UTC(2026, 9, 27), end = Date.UTC(2027, 0, 27);
+    const ev = calendarEvents(start, end, { moon: true, eclipses: true, retro: true, ingress: true, transits: false }, []);
+    const near = (e, iso, days) => Math.abs(e.ms - Date.parse(iso)) < days * 864e5;
+    const st = (b, r) => ev.find(e => e.kind === 'station' && e.body === b && e.retro === r);
+    assert(st('mercury', false) && near(st('mercury', false), '2026-11-13T16:00Z', 1), 'Mercure redevient direct le 13 novembre 2026');
+    assert(st('mars', true) && near(st('mars', true), '2027-01-10T14:00Z', 1) && st('mars', true).sign === 'virgo', 'Mars devient rétrograde le 10 janvier 2027, en Vierge');
+    const full = ev.find(e => e.kind === 'moon' && e.phase === 'full');
+    assert(full && near(full, '2026-11-24T15:00Z', 0.1) && full.sign === 'gemini', 'Pleine Lune du 24 novembre 2026 en Gémeaux');
+    const sag = ev.find(e => e.kind === 'ingress' && e.body === 'sun' && e.sign === 'sagittarius');
+    assert(sag && near(sag, '2026-11-22T07:00Z', 0.1), 'Soleil en Sagittaire le 22 novembre 2026');
+    const pts = natalPoints(natalChart({ y: 1982, m: 11, d: 3 }, { h: 19, min: 0 }, birthPlace('Paris|FR')), true);
+    const tr = calendarEvents(start, end, { transits: true }, pts);
+    assert(tr.length && tr.every(e => e.kind === 'transit' && aspectGap(bodyLongitude(e.body, e.ms), pts.find(p => p.point === e.point).lon, TRANSIT_ASPECTS.find(a => a[0] === e.type)[1]) < 0.05), 'transits exacts à moins de 0,05°');
+    const ics = buildIcs('Calendrier du ciel — Joann', [{ uid: 'x1', ms: start, allDay: false, title: '🌕 Pleine Lune · ♊ Gémeaux; test, virgule', description: 'Ligne 1\nLigne 2 ' + 'longue '.repeat(20) }, { uid: 'x2', ms: start, allDay: true, title: 'Transit' }]);
+    const lines = ics.split('\r\n');
+    assert(lines[0] === 'BEGIN:VCALENDAR' && lines.includes('END:VCALENDAR') && lines.filter(l => l === 'BEGIN:VEVENT').length === 2, 'structure');
+    assert(lines.every(l => new TextEncoder().encode(l).length <= 75), 'lignes de 75 octets au plus');
+    assert(ics.includes('Gémeaux\\; test\\, virgule') && ics.includes('Ligne 1\\nLigne 2') && ics.includes('DTSTART;VALUE=DATE:'), 'échappements et journée entière');
+    for (const l of Object.keys(I18N)) { const c = I18N[l].cal; assert(c && /\{n\}/.test(c.months) && /\{n\}/.test(c.count) && /\{name\}/.test(c.calName) && c.catTransits && c.direct, `${l} : textes`); }
   });
 
   /* ---------------- Rapport ---------------- */

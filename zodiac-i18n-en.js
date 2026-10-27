@@ -713,7 +713,8 @@ I18N.en = deepMerge(I18N.fr, {
     fieldTime: "It lets the app calculate your ascendant and houses, place the Moon precisely (it changes sign every two and a half days) and find the animal of your birth hour in Chinese astrology. Without it, these elements are missing or may be wrong, and your portrait remains incomplete. It is often on the birth certificate; even an approximate time helps.",
     fieldPlace: "It gives the exact time zone of your birth, daylight saving time included, and its coordinates. Without a place, the ascendant and houses cannot be calculated. The nearest town is enough. Place not found? Paste its GPS coordinates or a map link (Google Maps, OpenStreetMap, Apple Maps): the time zone is taken from the nearest town, and you can change it.",
     privacy: "Everything you enter (name, date, time, place, history, tarot question) is stored only in your browser's memory, on this device. No data is sent to any server, and the app contains no analytics or tracking tools. Clearing this site's data in your browser deletes everything. Only the “Share” button creates a link containing your date of birth, which you send yourself.",
-    reversed: "With a real deck, some cards come out upside down: tradition gives them a nuanced meaning, where the card's energy is blocked, delayed, turned inward or excessive. This option is off by default; when on, each card of the daily spread has a one-in-two chance of coming out reversed. It applies to the next spread: a spread already drawn does not change."
+    reversed: "With a real deck, some cards come out upside down: tradition gives them a nuanced meaning, where the card's energy is blocked, delayed, turned inward or excessive. This option is off by default; when on, each card of the daily spread has a one-in-two chance of coming out reversed. It applies to the next spread: a spread already drawn does not change.",
+    calendar: "The calendar gathers the sky events of the chosen period: new and full moons, eclipses (with their visibility from the sky map's location), starts and ends of retrograde motion, sign changes of the Sun and planets, and the exact dates of slow-planet transits (Jupiter to Pluto) on your birth chart. The .ics file imports into most calendars: open it, or use “Import” in Google Calendar or Outlook. Your calendar shows each event in your local time."
   },
   placePlaceholder: "Type a city name…",
   placeNoMatch: "No city found. Try the nearest town.",
@@ -1074,5 +1075,21 @@ I18N.en = deepMerge(I18N.fr, {
   placeCoordsHint: "Place not found? Paste its GPS coordinates (for example 48.8566, 2.3522) or a map link.",
   placeNear: "near {city}",
   placeTz: "Time zone",
-  placeTzFrom: "from {city}, {km} km away"
+  placeTzFrom: "from {city}, {km} km away",
+  cal: {
+    title: "Sky calendar",
+    intro: "The sky's appointments for the coming months, to import into your calendar (Google Calendar, Outlook, your phone's calendar…).",
+    period: "Period",
+    months: "{n} months",
+    catMoon: "New and full moons",
+    catEclipses: "Eclipses",
+    catRetro: "Retrogrades",
+    catIngress: "Sign changes",
+    catTransits: "Transits on your chart",
+    button: "Download the calendar",
+    count: "{n} events",
+    note: "The file is created on your device: nothing is sent online.",
+    direct: "direct",
+    calName: "Sky calendar — {name}"
+  }
 });

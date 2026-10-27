@@ -712,7 +712,8 @@ I18N.tr = deepMerge(I18N.fr, {
     fieldTime: "Yükseleninizi ve evlerinizi hesaplamayı, iki buçuk günde bir burç değiştiren Ay'ın konumunu kesinleştirmeyi ve Çin astrolojisinde doğum saatinizin hayvanını bulmayı sağlar. Saat olmadan bu öğeler eksik kalır ya da yanlış olabilir ve portreniz eksik kalır. Genellikle doğum belgesinde yazar; yaklaşık bile olsa işe yarar.",
     fieldPlace: "Doğumunuzun yaz saati dahil tam saat dilimini ve koordinatlarını verir. Yer olmadan yükselen ve evler hesaplanamaz. En yakın şehir yeterlidir. Yer bulunamadı mı? GPS koordinatlarını ya da bir harita bağlantısını (Google Maps, OpenStreetMap, Apple Haritalar) yapıştırın: saat dilimi en yakın şehirden alınır ve değiştirebilirsiniz.",
     privacy: "Girdiğiniz her şey (ad, tarih, saat, yer, geçmiş, tarot sorusu) yalnızca bu cihazdaki tarayıcınızın belleğinde saklanır. Hiçbir veri bir sunucuya gönderilmez ve uygulamada istatistik ya da izleme aracı yoktur. Tarayıcınızda bu sitenin verilerini silmek her şeyi siler. Yalnızca «Paylaş» düğmesi doğum tarihinizi içeren bir bağlantı oluşturur; onu siz gönderirsiniz.",
-    reversed: "Gerçek bir destede bazı kartlar ters çıkar: gelenek onlara, kartın enerjisinin engellendiği, geciktiği, içe döndüğü ya da aşırıya kaçtığı nüanslı bir anlam verir. Bu seçenek varsayılan olarak kapalıdır; açıldığında günün açılımındaki her kartın ters çıkma olasılığı ikide birdir. Bir sonraki açılım için geçerlidir: daha önce yapılmış bir açılım değişmez."
+    reversed: "Gerçek bir destede bazı kartlar ters çıkar: gelenek onlara, kartın enerjisinin engellendiği, geciktiği, içe döndüğü ya da aşırıya kaçtığı nüanslı bir anlam verir. Bu seçenek varsayılan olarak kapalıdır; açıldığında günün açılımındaki her kartın ters çıkma olasılığı ikide birdir. Bir sonraki açılım için geçerlidir: daha önce yapılmış bir açılım değişmez.",
+    calendar: "Takvim, seçilen dönemin gökyüzü olaylarını bir araya getirir: yeni ay ve dolunaylar, tutulmalar (gökyüzü haritasının konumundan görünürlükleriyle), retroların başlangıç ve bitişleri, Güneş'in ve gezegenlerin burç değişimleri ve yavaş gezegenlerin (Jüpiter'den Plüton'a) doğum haritanızdaki transitlerinin tam tarihleri. .ics dosyası çoğu ajandaya aktarılabilir: dosyayı açın ya da Google Takvim veya Outlook'ta «İçe aktar»ı kullanın. Ajandanız her olayı yerel saatinizde gösterir."
   },
   placePlaceholder: "Bir şehir adı yazın…",
   placeNoMatch: "Şehir bulunamadı. En yakın şehri deneyin.",
@@ -1073,5 +1074,21 @@ I18N.tr = deepMerge(I18N.fr, {
   placeCoordsHint: "Yer bulunamadı mı? GPS koordinatlarını (örneğin 48.8566, 2.3522) ya da bir harita bağlantısını yapıştırın.",
   placeNear: "{city} yakınında",
   placeTz: "Saat dilimi",
-  placeTzFrom: "{city} esas alındı, {km} km uzakta"
+  placeTzFrom: "{city} esas alındı, {km} km uzakta",
+  cal: {
+    title: "Gökyüzü takvimi",
+    intro: "Önümüzdeki ayların gökyüzü buluşmaları, ajandanıza aktarmak için (Google Takvim, Outlook, telefonunuzun takvimi…).",
+    period: "Dönem",
+    months: "{n} ay",
+    catMoon: "Yeni ay ve dolunaylar",
+    catEclipses: "Tutulmalar",
+    catRetro: "Retrolar",
+    catIngress: "Burç değişimleri",
+    catTransits: "Haritanızdaki transitler",
+    button: "Takvimi indir",
+    count: "{n} olay",
+    note: "Dosya cihazınızda oluşturulur: hiçbir şey çevrim içi gönderilmez.",
+    direct: "düz",
+    calName: "Gökyüzü takvimi — {name}"
+  }
 });

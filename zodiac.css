@@ -923,3 +923,13 @@ select option, select optgroup{ background-color:var(--option-bg); color:var(--t
 .rev-badge{ display:inline-block; vertical-align:middle; font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--purple-ink);
   background:rgba(155,126,222,.15); border:1px solid rgba(155,126,222,.35); border-radius:999px; padding:.1rem .55rem; }
 .rev-toggle{ display:inline-flex; align-items:center; gap:.3rem; }
+
+/* Calendrier du ciel */
+.cal-form{ display:grid; gap:.8rem; margin-top:.6rem; }
+.cal-period{ color:var(--muted); font-size:.88rem; display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; }
+.cal-period select{ background:var(--field-bg); color:var(--text); border:1px solid var(--ov-15); border-radius:10px; padding:.4rem .6rem; color-scheme:var(--scheme); }
+.cal-cats{ display:flex; flex-wrap:wrap; gap:.4rem 1rem; }
+.cal-cat{ display:inline-flex; align-items:center; gap:.4rem; color:var(--text); font-size:.9rem; cursor:pointer; }
+.cal-cat input{ accent-color:var(--gold); width:1.05rem; height:1.05rem; }
+.cal-actions{ display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+.cal-count{ color:var(--muted); font-size:.85rem; }
