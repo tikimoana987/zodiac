@@ -102,6 +102,29 @@ function setMode(mode){
   void root.offsetHeight;   // force le recalcul des styles avant de rétablir les transitions
   requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('theme-switching')));
 }
+/* ---------- Fiche du thème natal à imprimer ou enregistrer en PDF ----------
+   Fenêtre d'impression du navigateur (« Enregistrer au format PDF » sur ordinateur, Android et iPhone) ; mise en page dédiée
+   (feuille de style « print » : fond blanc, thème clair, seule la section Thème natal) ; le thème d'origine est rétabli ensuite,
+   sans être modifié dans les réglages. Le titre du document devient le nom proposé pour le fichier PDF. */
+function printNatal(){
+  const t = I18N[currentLang], root = document.documentElement, wasLight = root.dataset.theme === 'light', title = document.title;
+  closeInfo(false);
+  if (!wasLight) { root.dataset.theme = 'light'; paintTheme(); }
+  document.body.classList.add('print-natal'); root.classList.add('printing');
+  document.title = t.print.title.replace('{name}', currentName || formatBirth(currentDate, null, currentLang));
+  document.getElementById('printFooter').textContent = t.print.footer.replace('{date}', new Intl.DateTimeFormat(loc(currentLang), { dateStyle: 'long' }).format(new Date()));
+  let restored = false;
+  const restore = () => {
+    if (restored) return; restored = true;
+    document.body.classList.remove('print-natal'); root.classList.remove('printing');
+    if (!wasLight) { delete root.dataset.theme; paintTheme(); }
+    document.title = title;
+    window.removeEventListener('afterprint', restore);
+  };
+  window.addEventListener('afterprint', restore);
+  showToast(t.print.hint, 5000);
+  setTimeout(() => { window.print(); setTimeout(restore, 1000); }, 60);   // print() bloque jusqu'à la fermeture de la fenêtre sur la plupart des navigateurs
+}
 function updateThemeButton(){
   const btn = document.getElementById('themeBtn'), t = I18N[currentLang];
   btn.setAttribute('aria-pressed', String(isLight()));
@@ -440,6 +463,8 @@ function renderResult(signKey, decanIdx){
 
   closeInfo(false);
   setView(viewMode);
+  const printBtn = document.getElementById('natalPrint');
+  if (printBtn) printBtn.addEventListener('click', printNatal);
   const complete = document.getElementById('natalComplete');
   if (complete) complete.addEventListener('click', () => {
     const target = document.getElementById(document.getElementById('birthTime').value ? 'birthPlace' : 'birthTime');
@@ -1017,6 +1042,7 @@ function natalHtml(t){
         <div class="big-three">${chip(PLANET_SYM.sun, t.rulers.sun, sun.sign)}${chip(PLANET_SYM.moon, t.rulers.moon, moon.sign)}${ascSign ? chip('AC', n.ascendant, ascSign) : ''}</div>
         ${notes.map(x => `<p class="natal-note">${x}</p>`).join('')}
         ${chart.exact ? '' : `<button type="button" class="btn-secondary natal-complete" id="natalComplete">${n.completeFields}</button>`}
+        <button type="button" class="btn-secondary natal-print" id="natalPrint">🖨 ${t.print.button}</button>
         <div class="natal-grid">
           <div class="natal-wheel">${natalWheelSvg(chart, t)}<p class="wheel-hint">${n.wheelHint}</p></div>
           <div class="natal-table"><h4>${n.positions}</h4><table>${head}<tbody>${rows}${angles}</tbody></table></div>
@@ -1032,7 +1058,8 @@ function natalHtml(t){
       <div class="card natal-aspects">
         <h3>${n.aspects}${infoBtn('aspects', n.aspects)}</h3>
         ${aspects ? `<ul class="natal-asp-list">${aspects}</ul>` : `<p class="natal-note">${n.noAspects}</p>`}
-      </div>`;
+      </div>
+      <p class="print-footer" id="printFooter"></p>`;
 }
 
 /* ============================================================

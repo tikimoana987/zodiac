@@ -1097,6 +1097,14 @@
     for (const l of Object.keys(I18N)) { const c = I18N[l].cal; assert(c && /\{n\}/.test(c.months) && /\{n\}/.test(c.count) && /\{name\}/.test(c.calName) && c.catTransits && c.direct, `${l} : textes`); }
   });
 
+  test('Fiche du thème natal à imprimer : bouton, mention de bas de page, textes', () => {
+    const keep = currentDate; currentDate = '1982-11-03';
+    let html; try { html = natalHtml(I18N.fr); } finally { currentDate = keep; }
+    assert(html.includes('id="natalPrint"') && html.includes('id="printFooter"'), 'bouton et mention de bas de page');
+    assert(typeof printNatal === 'function', 'fonction d\'impression');
+    for (const l of Object.keys(I18N)) { const p = I18N[l].print; assert(p && p.button && p.hint && /\{name\}/.test(p.title) && /\{date\}/.test(p.footer), `${l} : textes`); }
+  });
+
   /* ---------------- Rapport ---------------- */
   const failed = results.filter(r => !r.ok);
   window.__testResults = results;

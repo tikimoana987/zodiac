@@ -1109,5 +1109,11 @@ I18N.en = deepMerge(I18N.fr, {
     weekEmpty: "No sky appointment in the next 7 days: come back next week!",
     reminder: "📅 Sky calendar: add the following week",
     reminderDesc: "Open Zodiac & Decans to add the sky's appointments for the following week."
+  },
+  print: {
+    button: "Print or save as PDF",
+    hint: "In the print window, choose “Save as PDF” to get a file.",
+    title: "Birth chart — {name}",
+    footer: "Sheet created with Zodiac & Decans on {date}. Positions calculated from ephemerides; symbolic interpretations from the astrological tradition."
   }
 });

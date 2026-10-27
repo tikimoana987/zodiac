@@ -88,6 +88,11 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 
 ## ✨ Fonctionnalités implémentées
 
+### 🖨 Fiche du thème natal à imprimer ou en PDF
+- [x] Bouton **« 🖨 Imprimer ou enregistrer en PDF »** dans la section Thème natal : fenêtre d'impression du navigateur (« Enregistrer au format PDF » sur ordinateur, Android et iPhone), aucun outil supplémentaire, rien n'est envoyé en ligne
+- [x] Mise en page dédiée (feuille de style d'impression, A4) : fond blanc et thème clair le temps de l'impression (le thème choisi est rétabli ensuite, sans toucher aux réglages), nom et naissance en tête, roue en couleurs et tableau des positions côte à côte, lecture du thème, aspects, mention de bas de page datée ; boutons et bulles masqués ; cartes non coupées entre deux pages ; fonctionne depuis n'importe quel onglet ; droite à gauche en arabe
+- [x] Le titre du document (« Thème natal — Joann ») devient le nom proposé pour le fichier PDF ; 14 langues
+
 ### 📅 Calendrier du ciel
 - [x] Carte **« Calendrier du ciel »** dans « Ciel du moment » : **liste des 30 prochains jours**, recalculée chaque jour, groupée en « Cette semaine », « Semaine prochaine », « Plus tard » ; catégories à cocher (nouvelles et pleines lunes, éclipses, rétrogradations, changements de signe, transits sur votre thème — toutes cochées par défaut)
 - [x] **Ajout des 7 prochains jours à un agenda** (pour revenir chaque semaine) : boutons **Google Agenda · Apple · Outlook · Autre (.ics)**, celui de l'appareil mis en avant (déduit sur place, sans pistage) ; Apple, Outlook et Autre téléchargent un fichier .ics ; **Google** (dont l'application ne sait pas ouvrir les .ics) : bouton **＋** sur chaque événement de la semaine (événement transmis à Google à la demande de l'utilisateur, mention affichée) et, sur ordinateur, lien d'importation de la semaine entière
@@ -417,14 +422,14 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | 1 (html2canvas CDN) |
 | Poids approximatif | ~460 Ko non minifié (dont ~230 Ko de traductions et ~55 Ko de données du ciel) |
-| Tests automatisés | 76 (dans `zodiac-tests.js`) |
+| Tests automatisés | 77 (dans `zodiac-tests.js`) |
 
 ---
 
 ## 🧪 Comment tester
 
 ### Tests automatiques
-Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 76 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
+Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 77 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
 La version autonome se teste de la même façon : `ZODIAC-standalone.html?test` (la suite y est intégrée ; un test supplémentaire vérifie que sa copie vierge est complète et sans donnée personnelle).
 - le calcul du Soleil, comparé à 40 positions de référence calculées par astropy (1900-2100) ;
 - signes et décans de dates de référence, équinoxes connues, jours de transition, effet de l'heure ;

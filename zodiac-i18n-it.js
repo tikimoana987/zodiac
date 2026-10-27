@@ -1116,5 +1116,11 @@ I18N.it = deepMerge(I18N.fr, {
     weekEmpty: "Nessun appuntamento del cielo nei prossimi 7 giorni: torna la settimana prossima!",
     reminder: "📅 Calendario del cielo: aggiungi la settimana successiva",
     reminderDesc: "Apri Zodiaco e Decani per aggiungere gli appuntamenti del cielo della settimana successiva."
+  },
+  print: {
+    button: "Stampa o salva in PDF",
+    hint: "Nella finestra di stampa, scegli «Salva come PDF» per ottenere un file.",
+    title: "Tema natale — {name}",
+    footer: "Scheda creata con Zodiaco e Decani il {date}. Posizioni calcolate dalle effemeridi; interpretazioni simboliche della tradizione astrologica."
   }
 });

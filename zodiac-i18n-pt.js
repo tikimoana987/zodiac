@@ -1111,5 +1111,11 @@ I18N.pt = deepMerge(I18N.fr, {
     weekEmpty: "Nenhum encontro do céu nos próximos 7 dias: volte na semana que vem!",
     reminder: "📅 Calendário do céu: adicione a semana seguinte",
     reminderDesc: "Abra o Zodíaco e Decanatos para adicionar os encontros do céu da semana seguinte."
+  },
+  print: {
+    button: "Imprimir ou salvar em PDF",
+    hint: "Na janela de impressão, escolha “Salvar como PDF” para obter um arquivo.",
+    title: "Mapa natal — {name}",
+    footer: "Ficha criada com Zodíaco e Decanatos em {date}. Posições calculadas a partir de efemérides; interpretações simbólicas da tradição astrológica."
   }
 });

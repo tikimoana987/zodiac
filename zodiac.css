@@ -942,3 +942,30 @@ select option, select optgroup{ background-color:var(--option-bg); color:var(--t
 .cal-hint{ color:var(--text); font-size:.86rem; margin-top:.6rem; }
 .cal-hint a{ color:var(--gold); }
 @media (max-width:640px){ .cal-item{ grid-template-columns:1fr auto; } .cal-when{ grid-column:1 / -1; } }
+
+/* Fiche du thème natal à imprimer ou enregistrer en PDF (seulement après le bouton : classe « print-natal ») */
+.print-footer{ display:none; }
+.natal-print{ margin-top:.6rem; }
+@media print {
+  @page{ size:A4; margin:12mm; }
+  html.printing{ background:#fff !important; }
+  body.print-natal{ background:#fff !important; padding:0 !important; display:block !important; min-height:0 !important;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body.print-natal::before, body.print-natal::after{ display:none !important; }
+  body.print-natal *{ animation:none !important; transition:none !important; box-shadow:none !important; text-shadow:none !important; }
+  body.print-natal > *:not(.app){ display:none !important; }
+  body.print-natal .app{ max-width:none !important; width:100% !important; margin:0 !important; padding:0 !important; border:0 !important;
+    background:#fff !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; border-radius:0 !important; }
+  body.print-natal .app > *:not(#result){ display:none !important; }
+  body.print-natal #result > *:not(#profileContent){ display:none !important; }
+  body.print-natal #profileContent > *:not(#profileOwner):not(#viewNatal){ display:none !important; }
+  body.print-natal #viewNatal, body.print-natal #viewNatal[hidden]{ display:block !important; }
+  body.print-natal .card{ background:#fff !important; border:1px solid #d8d2c4 !important; break-inside:avoid; page-break-inside:avoid; margin:0 0 5mm !important; }
+  body.print-natal .card:hover{ transform:none !important; }
+  body.print-natal .info-btn, body.print-natal .wheel-hint, body.print-natal .natal-complete, body.print-natal .natal-print{ display:none !important; }
+  body.print-natal .natal-grid{ display:grid !important; grid-template-columns:44% 1fr !important; gap:6mm !important; align-items:start; }
+  body.print-natal .natal-wheel svg{ width:100% !important; max-width:80mm !important; height:auto !important; }
+  body.print-natal .natal-reading, body.print-natal .natal-aspects{ break-inside:auto; page-break-inside:auto; }
+  body.print-natal .natal-lines li, body.print-natal .natal-asp-list li{ break-inside:avoid; page-break-inside:avoid; }
+  body.print-natal .print-footer{ display:block !important; font-size:8.5pt; color:#555 !important; border-top:1px solid #ccc; padding-top:2mm; margin-top:4mm; }
+}

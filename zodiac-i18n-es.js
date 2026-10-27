@@ -1116,5 +1116,11 @@ I18N.es = deepMerge(I18N.fr, {
     weekEmpty: "Ninguna cita del cielo en los próximos 7 días: ¡vuelve la semana que viene!",
     reminder: "📅 Calendario del cielo: añade la semana siguiente",
     reminderDesc: "Abre Zodiaco y Decanos para añadir las citas del cielo de la semana siguiente."
+  },
+  print: {
+    button: "Imprimir o guardar en PDF",
+    hint: "En la ventana de impresión, elige «Guardar como PDF» para obtener un archivo.",
+    title: "Carta natal — {name}",
+    footer: "Ficha creada con Zodiaco y Decanos el {date}. Posiciones calculadas a partir de efemérides; interpretaciones simbólicas de la tradición astrológica."
   }
 });

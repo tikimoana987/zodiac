@@ -1116,5 +1116,11 @@ I18N.fr = {
     weekEmpty: "Aucun rendez-vous du ciel dans les 7 prochains jours : revenez la semaine prochaine !",
     reminder: "📅 Calendrier du ciel : ajoutez la semaine suivante",
     reminderDesc: "Ouvrez Zodiaque & Décans pour ajouter les rendez-vous du ciel de la semaine suivante."
+  },
+  print: {
+    button: "Imprimer ou enregistrer en PDF",
+    hint: "Dans la fenêtre d'impression, choisissez « Enregistrer au format PDF » pour obtenir un fichier.",
+    title: "Thème natal — {name}",
+    footer: "Fiche créée avec Zodiaque & Décans le {date}. Positions calculées d'après les éphémérides ; interprétations symboliques issues de la tradition astrologique."
   }
 };

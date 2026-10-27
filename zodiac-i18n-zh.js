@@ -887,5 +887,11 @@ I18N.zh = deepMerge(I18N.fr, {
     weekEmpty: "未来 7 天没有天象事件：下周再来吧！",
     reminder: "📅 天象日历：添加下一周",
     reminderDesc: "打开“星座与旬星”，添加下一周的天象事件。"
+  },
+  print: {
+    button: "打印或保存为 PDF",
+    hint: "在打印窗口中选择“另存为 PDF”即可得到文件。",
+    title: "本命盘 — {name}",
+    footer: "本页由“星座与旬星”于 {date} 生成。行星位置依据星历计算；解读为占星传统中的象征性诠释。"
   }
 });

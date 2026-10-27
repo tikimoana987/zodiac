@@ -1108,5 +1108,11 @@ I18N.tr = deepMerge(I18N.fr, {
     weekEmpty: "Önümüzdeki 7 günde gökyüzü buluşması yok: gelecek hafta tekrar gelin!",
     reminder: "📅 Gökyüzü takvimi: sonraki haftayı ekleyin",
     reminderDesc: "Sonraki haftanın gökyüzü buluşmalarını eklemek için Zodyak ve Dekanlar'ı açın."
+  },
+  print: {
+    button: "Yazdır veya PDF olarak kaydet",
+    hint: "Bir dosya elde etmek için yazdırma penceresinde «PDF olarak kaydet»i seçin.",
+    title: "Doğum haritası — {name}",
+    footer: "Bu sayfa {date} tarihinde Zodyak ve Dekanlar ile oluşturuldu. Konumlar efemeritlere göre hesaplanmıştır; yorumlar astroloji geleneğinden gelen sembolik yorumlardır."
   }
 });

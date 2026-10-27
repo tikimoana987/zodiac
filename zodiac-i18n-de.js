@@ -1112,5 +1112,11 @@ I18N.de = deepMerge(I18N.fr, {
     weekEmpty: "Keine Himmelstermine in den nächsten 7 Tagen: Schau nächste Woche wieder vorbei!",
     reminder: "📅 Himmelskalender: Füge die nächste Woche hinzu",
     reminderDesc: "Öffne Zodiak & Dekane, um die Himmelstermine der nächsten Woche hinzuzufügen."
+  },
+  print: {
+    button: "Drucken oder als PDF speichern",
+    hint: "Wähle im Druckfenster „Als PDF speichern“, um eine Datei zu erhalten.",
+    title: "Geburtshoroskop — {name}",
+    footer: "Blatt erstellt mit Zodiak & Dekane am {date}. Positionen nach Ephemeriden berechnet; symbolische Deutungen aus der astrologischen Tradition."
   }
 });
