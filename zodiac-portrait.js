@@ -1,5 +1,5 @@
 /* ============================================================
-   Portrait symbolique V0.3.1 — module local, sans réseau ni stockage.
+   Portrait symbolique V0.3.2 — module local, sans réseau ni stockage.
    Réutilise uniquement les fonctions publiques du projet (numérologie, tarot, astro).
    Inclut une intégration non destructive pour éviter d'altérer zodiac-app.js.
    ============================================================ */
@@ -57,7 +57,7 @@ const ZODIAC_PORTRAIT = (() => {
   }
   // Ponctuation de libellés techniques (indépendante des textes narratifs validés).
   function labelSeparator(lang){
-    return lang === 'th' ? ' ' : lang === 'fr' ? ' : ' : ': ';
+    return lang === 'th' ? ' ' : lang === 'fr' ? ' : ' : (lang === 'ja' || lang === 'zh') ? '：' : ': ';
   }
   // Modèle pur pour tests : n'accède pas au DOM et ne touche à aucune donnée de l'utilisateur.
   function model(birth, sign, decan, cusp='none', deck='marseille', lang='fr'){
@@ -80,7 +80,7 @@ const ZODIAC_PORTRAIT = (() => {
     const skyRows = [
       { kind:'sign', key:signKey, identity:t.signNames[sign], name:tarotName(t,signKey,deck), num:tarotNumeral(signKey,deck), keywords:t.tarot.cards[signKey].keywords },
       { kind:'planet', key:planetKey, identity:t.rulers[owner], name:tarotName(t,planetKey,deck), num:tarotNumeral(planetKey,deck), keywords:t.tarot.cards[planetKey].keywords },
-      { kind:'decan', key:minor, identity:`${t.decanLabel[decan]} · ZODIAC${labelSeparator(lang)}${t.rulers[zodiacDecanPlanet]} · Golden Dawn${labelSeparator(lang)}${t.rulers[gdPlanet]}`,
+      { kind:'decan', key:minor, identity:`ZODIAC${labelSeparator(lang)}${t.rulers[zodiacDecanPlanet]} · Golden Dawn${labelSeparator(lang)}${t.rulers[gdPlanet]}`,
         name:t.tarot.minors.cards[minor].name[deck], num:tarotNumeral(minor,deck), keywords:t.tarot.minors.cards[minor].keywords }
     ];
     if (cusp === 'sign') skyRows.forEach(row => {row.uncertain = true;});
@@ -93,8 +93,8 @@ const ZODIAC_PORTRAIT = (() => {
     return `${n ? `<span class="portrait-roman">${html(n)}</span> ` : ''}${html(tarotName(t,key,deck))}`;
   }
   function skyLine(m,row){
-    const label = m.labels[row.kind], uncertain = row.uncertain ? ` <span class="portrait-uncertain">(${html(m.labels.uncertain)})</span>` : '';
-    return `<div class="portrait-sky-row"><div class="portrait-sky-head"><strong>${html(label)}</strong>${labelSeparator(m.lang)}${html(row.identity)}${uncertain}</div>
+    const label = row.kind==='decan' ? I18N[m.lang].decanLabel[m.decan] : m.labels[row.kind], uncertain = row.uncertain ? ` <span class="portrait-uncertain">(${html(m.labels.uncertain)})</span>` : '';
+    return `<div class="portrait-sky-row"><div class="portrait-sky-head"><strong>${html(label)}</strong>${row.kind==='decan' ? ' · ' : labelSeparator(m.lang)}${html(row.identity)}${uncertain}</div>
       <div class="portrait-sky-arcana">${row.num ? `<span class="portrait-roman">${html(row.num)}</span> ` : ''}${html(row.name)}</div>
       <div class="traits">${row.keywords.map(k=>`<span class="trait-tag">${html(k)}</span>`).join('')}</div></div>`;
   }

@@ -2,6 +2,7 @@
 
 > **Mise à jour du 28 octobre 2026 — portrait symbolique V0.3.1 (base main `999bd9c`).**
 > Correctif V0.3.1 : décans traduits, ponctuation locale des libellés techniques, réduction complète sans étapes fictives ; trois tests unitaires supplémentaires et un contrôle réel de l’intégration dans le parcours GitHub Actions.
+> Correctif V0.3.2 : ordinal du décan en gras sans répétition, deux-points pleine chasse en japonais et chinois, test multilingue renforcé et précision du contrôle CI dans projet.md.
 > Bloc repliable dans « Numérologie & tarot » : 6 rubriques, arcane de naissance distinct de celui du chemin de vie, 11/22/33, correspondances signe / maître moderne / 36 décans Golden Dawn. Textes approuvés dans `data/portraits/portrait-xx.json` (14 langues). `zodiac-portrait-data.js` est généré via `node tools/regen_portraits.js`, `zodiac-portrait.js` assure le calcul et l’affichage, `zodiac-portrait.css` les styles et `zodiac-portrait-tests.js` les tests. Le fichier `ZODIAC.html` référence ces modules locaux, et `build-standalone.py` les incorpore dans la version autonome et le site installable. Référence : `docs/ZODIAC_Cahier_Portrait_Symbolique_V0_3_FINAL_POUR_VALIDATION.md`. Aucun transfert de données personnelles lié au portrait. En cas de divergence avec une section historique ci-dessous, **ce complément et le code actuel font foi**.
 
 > Copie-colle ce prompt dans une nouvelle conversation pour reprendre le projet exactement où il en est, avec tout le contexte nécessaire.

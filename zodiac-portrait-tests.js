@@ -1,4 +1,4 @@
-/* Tests spécifiques portrait V0.3.1. ?test uniquement ; résultat exposé à la CI. */
+/* Tests spécifiques portrait V0.3.2. ?test uniquement ; résultat exposé à la CI. */
 (function(){
   if (!new URLSearchParams(location.search).has('test')) return;
   document.addEventListener('DOMContentLoaded', () => {
@@ -110,7 +110,7 @@
         fake.remove();
       }
     });
-    test('Décans traduits et ponctuation FR / EN / DE / TH',()=>{
+    test('Décans traduits et ponctuation FR / EN / DE / TH / JA / ZH',()=>{
       const fake=document.createElement('div');fake.id='numbersBody';document.body.append(fake);
       const saved={date:currentDate,name:currentName,time:currentTime,place:currentBirthPlace,sign:currentSignKey,
         decan:currentDecanIdx,sky:currentSky,deck:tarotDeck,lang:currentLang};
@@ -121,7 +121,11 @@
           currentLang=lang;ZODIAC_PORTRAIT.render();
           const h=fake.querySelectorAll('.portrait-sky-head');
           ok(h.length===3,`${lang} : lignes du ciel`);
-          ok(h[2].textContent.includes(I18N[lang].decanLabel[1]),`${lang} : ordinal du décan`);
+          const ordinal=I18N[lang].decanLabel[1], suffix=h[2].textContent.slice(ordinal.length);
+          ok(h[2].querySelector('strong')?.textContent===ordinal,`${lang} : libellé fort du décan`);
+          ok(h[2].textContent.startsWith(ordinal),`${lang} : début de ligne du décan`);
+          ok(suffix===` · ZODIAC${lang==='fr'?' : ':lang==='th'?' ':(lang==='ja'||lang==='zh')?'：':': '}${I18N[lang].rulers.neptune} · Golden Dawn${lang==='fr'?' : ':lang==='th'?' ':(lang==='ja'||lang==='zh')?'：':': '}${I18N[lang].rulers.sun}`,`${lang} : décan sans répétition`);
+          if(lang==='ja' || lang==='zh') ok([...h].every(n=>n.textContent.includes('：') && !n.textContent.includes(':')),`${lang} : deux-points pleine chasse`);
           if(lang==='fr') ok(h[0].textContent.includes(' : ') && h[2].textContent.includes('ZODIAC : '),'FR : ponctuation');
           if(lang==='en' || lang==='de') ok(h[0].textContent.includes(': ') && !h[0].textContent.includes(' : ')
             && h[2].textContent.includes('ZODIAC: '),`${lang} : ponctuation`);

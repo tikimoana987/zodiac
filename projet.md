@@ -168,7 +168,7 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 - [x] **Deux méthodes affichées séparément** : carte de naissance (somme jour + mois + année réduite jusqu’à 22) et chemin de vie (réductions par partie avec conservation des maîtres 11/22/33) ; les étapes intermédiaires sont visibles, sans réduction répétée artificielle.
 - [x] **Correspondances signe/maître/décan** : maître moderne de ZODIAC, arcanes majeurs et mineurs de Golden Dawn ; les décans utilisent le libellé déjà traduit dans chaque langue. Deux bulles (i) donnent le contexte, et la ponctuation des libellés techniques respecte la langue (sans deux-points en thaï).
 - [x] **14 langues, sans appel réseau**, changement de jeu Marseille / Waite-Smith, cas sans heure incertains et export PNG toujours déplié.
-- [x] **Protection CI de bout en bout** : le parcours navigateur vérifie l’apparition réelle du bloc, les six sections et sa mise à jour après changement de jeu dans les versions de travail et autonome ; GitHub Actions bloque la publication en cas d’échec.
+- [x] **Protection CI de bout en bout** : le parcours navigateur vérifie l’apparition réelle du bloc, les six sections et sa mise à jour après changement de jeu dans la version de travail (ZODIAC.html) ; la version autonome passe la suite de tests complète, réseau coupé ; GitHub Actions bloque la publication en cas d’échec.
 
 ### 🔢 Numérologie (étape 5)
 - [x] Section **« Numérologie & tarot »** (d'abord un troisième onglet « Numérologie ») à côté de « Signe & zodiaque chinois » et « Thème natal » (retenu d'une recherche à l'autre ; flèches du clavier ; sur mobile, les trois onglets s'empilent pour que les titres longs tiennent dans toutes les langues)
