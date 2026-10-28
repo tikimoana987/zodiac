@@ -1,5 +1,5 @@
 /* ============================================================
-   Portrait symbolique V0.3 — module local, sans réseau ni stockage.
+   Portrait symbolique V0.3.1 — module local, sans réseau ni stockage.
    Réutilise uniquement les fonctions publiques du projet (numérologie, tarot, astro).
    Inclut une intégration non destructive pour éviter d'altérer zodiac-app.js.
    ============================================================ */
@@ -40,12 +40,24 @@ const ZODIAC_PORTRAIT = (() => {
     const m = SIGN_META[sign];
     return `${SUITS[m.element]}_${RANK_START[m.modality] + idx}`;
   }
+  // Afficher toutes les réductions réellement effectuées, sans étape fictive (22 → 22).
+  // La carte de naissance s'arrête à 22 ; le chemin de vie conserve 11/22/33.
+  function reductionSteps(initial, stop){
+    const steps = [initial];
+    while (!stop(steps[steps.length - 1])) steps.push(digitSum(steps[steps.length - 1]));
+    return steps.join(' → ');
+  }
   function formBirth(birth){
-    return `${birth.d} + ${birth.m} + ${birth.y} = ${birth.d + birth.m + birth.y} → ${birthCardNumber(birth)}`;
+    const total = birth.d + birth.m + birth.y;
+    return `${birth.d} + ${birth.m} + ${birth.y} = ${reductionSteps(total, n => n <= 22)}`;
   }
   function formPath(birth){
     const a = reduceNumber(birth.d), b = reduceNumber(birth.m), c = reduceNumber(digitSum(birth.y));
-    return `${a} + ${b} + ${c} = ${a+b+c} → ${lifePath(birth)}`;
+    return `${a} + ${b} + ${c} = ${reductionSteps(a+b+c, n => n <= 9 || MASTER_NUMBERS.includes(n))}`;
+  }
+  // Ponctuation de libellés techniques (indépendante des textes narratifs validés).
+  function labelSeparator(lang){
+    return lang === 'th' ? ' ' : lang === 'fr' ? ' : ' : ': ';
   }
   // Modèle pur pour tests : n'accède pas au DOM et ne touche à aucune donnée de l'utilisateur.
   function model(birth, sign, decan, cusp='none', deck='marseille', lang='fr'){
@@ -68,7 +80,7 @@ const ZODIAC_PORTRAIT = (() => {
     const skyRows = [
       { kind:'sign', key:signKey, identity:t.signNames[sign], name:tarotName(t,signKey,deck), num:tarotNumeral(signKey,deck), keywords:t.tarot.cards[signKey].keywords },
       { kind:'planet', key:planetKey, identity:t.rulers[owner], name:tarotName(t,planetKey,deck), num:tarotNumeral(planetKey,deck), keywords:t.tarot.cards[planetKey].keywords },
-      { kind:'decan', key:minor, identity:`${decan+1} · ZODIAC: ${t.rulers[zodiacDecanPlanet]} · Golden Dawn: ${t.rulers[gdPlanet]}`,
+      { kind:'decan', key:minor, identity:`${t.decanLabel[decan]} · ZODIAC${labelSeparator(lang)}${t.rulers[zodiacDecanPlanet]} · Golden Dawn${labelSeparator(lang)}${t.rulers[gdPlanet]}`,
         name:t.tarot.minors.cards[minor].name[deck], num:tarotNumeral(minor,deck), keywords:t.tarot.minors.cards[minor].keywords }
     ];
     if (cusp === 'sign') skyRows.forEach(row => {row.uncertain = true;});
@@ -82,7 +94,7 @@ const ZODIAC_PORTRAIT = (() => {
   }
   function skyLine(m,row){
     const label = m.labels[row.kind], uncertain = row.uncertain ? ` <span class="portrait-uncertain">(${html(m.labels.uncertain)})</span>` : '';
-    return `<div class="portrait-sky-row"><div class="portrait-sky-head"><strong>${html(label)}</strong> : ${html(row.identity)}${uncertain}</div>
+    return `<div class="portrait-sky-row"><div class="portrait-sky-head"><strong>${html(label)}</strong>${labelSeparator(m.lang)}${html(row.identity)}${uncertain}</div>
       <div class="portrait-sky-arcana">${row.num ? `<span class="portrait-roman">${html(row.num)}</span> ` : ''}${html(row.name)}</div>
       <div class="traits">${row.keywords.map(k=>`<span class="trait-tag">${html(k)}</span>`).join('')}</div></div>`;
   }

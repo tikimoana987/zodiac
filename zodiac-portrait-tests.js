@@ -1,4 +1,4 @@
-/* Tests spécifiques portrait V0.3. ?test uniquement ; résultat exposé à la CI. */
+/* Tests spécifiques portrait V0.3.1. ?test uniquement ; résultat exposé à la CI. */
 (function(){
   if (!new URLSearchParams(location.search).has('test')) return;
   document.addEventListener('DOMContentLoaded', () => {
@@ -74,6 +74,64 @@
       const decan=specimen('1990-04-17','aries',2,'marseille','decan');
       ok(sign.skyRows.every(r=>r.uncertain),'frontière de signe');
       ok(!decan.skyRows[0].uncertain && !decan.skyRows[1].uncertain && decan.skyRows[2].uncertain,'frontière décan');
+    });
+    test('Formule naissance : chaque étape intermédiaire est visible',()=>{
+      const fake=document.createElement('div');fake.id='numbersBody';document.body.append(fake);
+      const saved={date:currentDate,name:currentName,time:currentTime,place:currentBirthPlace,sign:currentSignKey,
+        decan:currentDecanIdx,sky:currentSky,deck:tarotDeck,lang:currentLang};
+      try {
+        currentDate='1982-11-03';currentName='';currentTime=null;currentBirthPlace='';
+        currentSignKey='scorpio';currentDecanIdx=1;currentSky={cusp:null};tarotDeck='marseille';currentLang='fr';
+        ZODIAC_PORTRAIT.render();
+        const text=fake.querySelector('.portrait-formula').textContent;
+        ok(text.includes('1996 → 25 → 7'),`étape intermédiaire manquante : ${text}`);
+        ok(!text.includes('7 → 7'),'réduction fictive');
+      } finally {
+        currentDate=saved.date;currentName=saved.name;currentTime=saved.time;currentBirthPlace=saved.place;
+        currentSignKey=saved.sign;currentDecanIdx=saved.decan;currentSky=saved.sky;tarotDeck=saved.deck;currentLang=saved.lang;
+        fake.remove();
+      }
+    });
+    test('Formule chemin maître 22 : conserver le maître sans 22 → 22',()=>{
+      const fake=document.createElement('div');fake.id='numbersBody';document.body.append(fake);
+      const saved={date:currentDate,name:currentName,time:currentTime,place:currentBirthPlace,sign:currentSignKey,
+        decan:currentDecanIdx,sky:currentSky,deck:tarotDeck,lang:currentLang};
+      try {
+        currentDate='1976-08-18';currentName='';currentTime=null;currentBirthPlace='';
+        currentSignKey='leo';currentDecanIdx=2;currentSky={cusp:null};tarotDeck='marseille';currentLang='fr';
+        ZODIAC_PORTRAIT.render();
+        const text=fake.querySelectorAll('.portrait-formula')[1].textContent;
+        ok(text.includes('9 + 8 + 5 = 22'),`somme attendue : ${text}`);
+        ok(!text.includes('22 → 22'),`réduction fictive : ${text}`);
+        ok(text.includes('(22/4)'),`lecture secondaire : ${text}`);
+      } finally {
+        currentDate=saved.date;currentName=saved.name;currentTime=saved.time;currentBirthPlace=saved.place;
+        currentSignKey=saved.sign;currentDecanIdx=saved.decan;currentSky=saved.sky;tarotDeck=saved.deck;currentLang=saved.lang;
+        fake.remove();
+      }
+    });
+    test('Décans traduits et ponctuation FR / EN / DE / TH',()=>{
+      const fake=document.createElement('div');fake.id='numbersBody';document.body.append(fake);
+      const saved={date:currentDate,name:currentName,time:currentTime,place:currentBirthPlace,sign:currentSignKey,
+        decan:currentDecanIdx,sky:currentSky,deck:tarotDeck,lang:currentLang};
+      try {
+        currentDate='1982-11-03';currentName='';currentTime=null;currentBirthPlace='';
+        currentSignKey='scorpio';currentDecanIdx=1;currentSky={cusp:null};tarotDeck='marseille';
+        for(const lang of Object.keys(PORTRAIT_I18N)) {
+          currentLang=lang;ZODIAC_PORTRAIT.render();
+          const h=fake.querySelectorAll('.portrait-sky-head');
+          ok(h.length===3,`${lang} : lignes du ciel`);
+          ok(h[2].textContent.includes(I18N[lang].decanLabel[1]),`${lang} : ordinal du décan`);
+          if(lang==='fr') ok(h[0].textContent.includes(' : ') && h[2].textContent.includes('ZODIAC : '),'FR : ponctuation');
+          if(lang==='en' || lang==='de') ok(h[0].textContent.includes(': ') && !h[0].textContent.includes(' : ')
+            && h[2].textContent.includes('ZODIAC: '),`${lang} : ponctuation`);
+          if(lang==='th') ok([...h].every(n=>!n.textContent.includes(':')),`TH : deux-points interdits`);
+        }
+      } finally {
+        currentDate=saved.date;currentName=saved.name;currentTime=saved.time;currentBirthPlace=saved.place;
+        currentSignKey=saved.sign;currentDecanIdx=saved.decan;currentSky=saved.sky;tarotDeck=saved.deck;currentLang=saved.lang;
+        fake.remove();
+      }
     });
     test('Export : copie dépliée, aperçu et bouton retirés',()=>{
       const frame=document.createElement('div');

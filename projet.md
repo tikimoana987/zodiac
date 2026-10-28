@@ -1,6 +1,6 @@
 # 🌌 Zodiaque & Décans · Cosmic Interface
 
-> **28/10/2026 — Portrait symbolique V0.3 intégré (sur la base GitHub main `999bd9c`).** Dans l’onglet « Numérologie & tarot », carte de naissance et arcane du chemin de vie distingués, cas maîtres 11/22/33, aperçu + six rubriques dépliables, trois correspondances célestes et deux bulles (i), export de la copie dépliée. 14 traductions approuvées, données locales ; ajout de tests sur les six dates du cahier et les 36 décans. Le cahier est copié dans `docs/`. Les calculs numériques, astrologiques et tarot existants sont réutilisés sans changement.
+> **28/10/2026 — Portrait symbolique V0.3.1 (correctif de présentation et tests) intégré (sur la base GitHub main `999bd9c`).** Dans l’onglet « Numérologie & tarot », carte de naissance et arcane du chemin de vie distingués, cas maîtres 11/22/33, aperçu + six rubriques dépliables, trois correspondances célestes et deux bulles (i), export de la copie dépliée. 14 traductions approuvées, données locales ; ajout de tests sur les six dates du cahier et les 36 décans. Le cahier est copié dans `docs/`. Les calculs numériques, astrologiques et tarot existants sont réutilisés sans changement.
 
 > Interface web immersive et multilingue qui calcule le signe astrologique, le décan et les affinités à partir d'une date de naissance, avec transition cinématique de recherche dans le ciel et tracé animé de constellation.
 
@@ -53,6 +53,13 @@ Les fichiers sont chargés par de simples balises `<script src>` (pas de modules
 | `zodiac-calendar.js` | **Calendrier du ciel** : nouvelles et pleines lunes, éclipses, stations (rétrogradations), changements de signe, transits exacts des planètes lentes sur le thème ; fichier iCalendar (.ics) conforme RFC 5545 |
 | `zodiac-numerology.js` | **Numérologie** : chemin de vie, cycles personnels (année, mois, jour), nombres du nom (expression, intime, personnalité) en alphabet latin (méthode pythagoricienne), arabe (abjad) et cyrillique |
 | `zodiac-tarot.js` | **Tarot** (22 arcanes majeurs, 56 arcanes mineurs) : numérotation des deux jeux (Marseille, Waite-Smith), carte de naissance, carte du jour, tirage dans 22 ou 78 cartes, gabarit des cartes et leurs deux habillages |
+| `data/portraits/portrait-xx.json` | **14 corpus validés** (FR, EN, ES, PT, DE, IT, RU, TR, AR, HI, ZH, JA, KO, TH) : essences des arcanes, textes de chemins de vie, trois phrases, deux bulles et libellés ; ces sources n’envoient aucune donnée en ligne |
+| `zodiac-portrait-data.js` | Données des 14 langues intégrées en JavaScript local, générées à partir des JSON sources avec `node tools/regen_portraits.js` |
+| `zodiac-portrait.js` | **Portrait symbolique** : deux arcanes, maîtres 11/22/33, correspondances signe/maître/décan Golden Dawn, six rubriques repliables, formules détaillées et ponctuation adaptée aux 14 langues ; export déplié |
+| `zodiac-portrait.css` | Styles indépendants du portrait (mobile, thèmes et export) |
+| `zodiac-portrait-tests.js` | Tests automatiques du portrait : six dates, 36 décans, 14 langues, formules, ponctuation, interface et export |
+| `tools/regen_portraits.js` | Regénère `zodiac-portrait-data.js` depuis les fichiers `data/portraits/` sans dépendance ni accès réseau |
+| `docs/ZODIAC_Cahier_Portrait_Symbolique_V0_3_FINAL_POUR_VALIDATION.md` | Cahier fonctionnel de référence : décisions, tableaux Golden Dawn, règles et six cas d’acceptation |
 | `zodiac-tarot-art.js` | **Illustrations du tarot** : 22 arcanes et 2 dos, générés avec Gemini (Google) à partir de prompts rédigés pour le projet, découpés et convertis en WebP 320 × 512 (≈ 1 Mo), sans texte |
 | `zodiac-tarot-minors-art.js` | **Illustrations des 56 arcanes mineurs** (≈ 2 Mo, chargées au démarrage) : 38 générées avec Gemini, 18 avec ChatGPT (OpenAI) en dépannage ; même format, sans texte ; ajoutées à `TAROT_ART_IMG` |
 | `zodiac-natal.js` | Thème natal : heure locale du lieu de naissance → temps universel (`zonedInstant`), ascendant, Milieu du Ciel, maisons Placidus (repli en maisons égales au-delà de 66°), maison de chaque astre, aspects (`natalChart`) |
@@ -155,6 +162,13 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 - [x] **22 illustrations originales** (symboles), deux habillages : Marseille (couleurs franches, contours de gravure, bandeaux) et Waite-Smith (palette douce, cadre fin)
 - [x] Pour chaque arcane : noms, 3 mots-clés, une explication ; 14 langues ; 1 bulle (i) sur la méthode et les deux jeux
 - [x] **Bouton « Version hors ligne » grisé** (« bientôt disponible ») : `OFFLINE_ENABLED = false` dans zodiac-app.js, code du téléchargement conservé
+
+### ✧ Portrait symbolique (V0.3.1)
+- [x] **Dans « Numérologie & tarot »** : un aperçu replié par défaut, six rubriques dépliables (arcanes, énergie, forces, défis, ciel symbolique, fil conducteur), portrait français de 250 à 350 mots selon les six cas de référence.
+- [x] **Deux méthodes affichées séparément** : carte de naissance (somme jour + mois + année réduite jusqu’à 22) et chemin de vie (réductions par partie avec conservation des maîtres 11/22/33) ; les étapes intermédiaires sont visibles, sans réduction répétée artificielle.
+- [x] **Correspondances signe/maître/décan** : maître moderne de ZODIAC, arcanes majeurs et mineurs de Golden Dawn ; les décans utilisent le libellé déjà traduit dans chaque langue. Deux bulles (i) donnent le contexte, et la ponctuation des libellés techniques respecte la langue (sans deux-points en thaï).
+- [x] **14 langues, sans appel réseau**, changement de jeu Marseille / Waite-Smith, cas sans heure incertains et export PNG toujours déplié.
+- [x] **Protection CI de bout en bout** : le parcours navigateur vérifie l’apparition réelle du bloc, les six sections et sa mise à jour après changement de jeu dans les versions de travail et autonome ; GitHub Actions bloque la publication en cas d’échec.
 
 ### 🔢 Numérologie (étape 5)
 - [x] Section **« Numérologie & tarot »** (d'abord un troisième onglet « Numérologie ») à côté de « Signe & zodiaque chinois » et « Thème natal » (retenu d'une recherche à l'autre ; flèches du clavier ; sur mobile, les trois onglets s'empilent pour que les titres longs tiennent dans toutes les langues)
@@ -433,7 +447,7 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | aucune en ligne (html2canvas en copie locale) |
 | Poids approximatif | version autonome ≈ 6,2 Mo (dont ≈ 3,1 Mo d'illustrations du tarot, ≈ 1 Mo de villes et ≈ 1,6 Mo de traductions) |
-| Tests automatisés | 93 (79 historiques + 14 du portrait) |
+| Tests automatisés | 96 (79 historiques + 17 portrait, dont 3 nouveaux en V0.3.1) ; parcours réel protégé en CI |
 
 ---
 

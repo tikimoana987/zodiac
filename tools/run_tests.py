@@ -79,6 +79,26 @@ async def journey(browser, file):
         direction = await page.evaluate('document.documentElement.dir')
         ok = natal == 1 and night == 1 and not errors and (direction == 'rtl') == (lang == 'ar')
         report(ok, f'{lang} : thème natal, nuit, sens d\'écriture {direction}' + (f' | {errors}' if errors else ''))
+
+        # Protection d'intégration réelle : ne se contente PAS d'appeler le module directement.
+        # Si le branchement à renderNumbers/renderTarot est supprimé, GitHub Actions doit échouer.
+        try:
+            await page.locator('#tabNumbers').click(timeout=10000)
+            portrait = page.locator('#numbersBody #portraitCard')
+            await portrait.wait_for(state='visible', timeout=15000)
+            sections = await portrait.locator('.portrait-section').count()
+            preview = await portrait.locator('.portrait-preview').is_visible()
+            toggle = portrait.locator('.portrait-toggle')
+            await toggle.click(timeout=10000)
+            opened = await portrait.locator('.portrait-detail').is_visible()
+            await page.locator('.tarot-deck .deck-btn[data-deck="ws"]').click(timeout=10000)
+            after_deck = await page.locator('#numbersBody #portraitCard').count() == 1
+            selected = await page.locator('.tarot-deck .deck-btn[data-deck="ws"]').get_attribute('aria-pressed')
+            visible_after = await page.locator('#numbersBody #portraitCard .portrait-detail').is_visible()
+            report(sections == 6 and preview and opened and after_deck and selected == 'true' and visible_after and not errors,
+                   f'{lang} : portrait présent, 6 rubriques, repli, changement de jeu' + (f' | {errors}' if errors else ''))
+        except Exception as exc:
+            report(False, f'{lang} : portrait absent ou non interactif — {str(exc)[:350]}')
         await ctx.close()
 
 

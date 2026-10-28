@@ -1,6 +1,7 @@
 # 🔄 Prompt de reprise — Zodiaque & Décans · Cosmic Interface
 
-> **Mise à jour du 28 octobre 2026 — portrait symbolique V0.3 (base main `999bd9c`).**
+> **Mise à jour du 28 octobre 2026 — portrait symbolique V0.3.1 (base main `999bd9c`).**
+> Correctif V0.3.1 : décans traduits, ponctuation locale des libellés techniques, réduction complète sans étapes fictives ; trois tests unitaires supplémentaires et un contrôle réel de l’intégration dans le parcours GitHub Actions.
 > Bloc repliable dans « Numérologie & tarot » : 6 rubriques, arcane de naissance distinct de celui du chemin de vie, 11/22/33, correspondances signe / maître moderne / 36 décans Golden Dawn. Textes approuvés dans `data/portraits/portrait-xx.json` (14 langues). `zodiac-portrait-data.js` est généré via `node tools/regen_portraits.js`, `zodiac-portrait.js` assure le calcul et l’affichage, `zodiac-portrait.css` les styles et `zodiac-portrait-tests.js` les tests. Le fichier `ZODIAC.html` référence ces modules locaux, et `build-standalone.py` les incorpore dans la version autonome et le site installable. Référence : `docs/ZODIAC_Cahier_Portrait_Symbolique_V0_3_FINAL_POUR_VALIDATION.md`. Aucun transfert de données personnelles lié au portrait. En cas de divergence avec une section historique ci-dessous, **ce complément et le code actuel font foi**.
 
 > Copie-colle ce prompt dans une nouvelle conversation pour reprendre le projet exactement où il en est, avec tout le contexte nécessaire.
@@ -28,7 +29,7 @@ L'expérience inclut **une transition cinématique** (viseur balaie le ciel → 
 ## 📦 État actuel du code
 
 **Code local modulaire**, ouverture par double-clic sur `ZODIAC.html` (aucun serveur). **Version autonome** : `ZODIAC-standalone.html`, un seul fichier d'environ 6,8 Mo, produit par `python3 build-standalone.py`. La page charge les sources et les 14 traductions par fichiers JavaScript locaux ; le portrait charge `zodiac-portrait-data.js` puis `zodiac-portrait.js` et `zodiac-portrait-tests.js` après `zodiac-app.js`.
-Styles dans `zodiac.css` et `zodiac-portrait.css`. Tests : 79 historiques dans `zodiac-tests.js` + 14 nouveaux dans `zodiac-portrait-tests.js` (93 au total, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
+Styles dans `zodiac.css` et `zodiac-portrait.css`. Tests : 79 historiques dans `zodiac-tests.js` + 17 nouveaux dans `zodiac-portrait-tests.js` (96 au total, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
 **Aucune ressource en ligne** : `html2canvas` 1.4.1 est une copie locale (`html2canvas.min.js`, licence MIT). Tout fonctionne sans internet.
 
 ### Fonctionnalités en place ✅

@@ -12,7 +12,7 @@
 | Feuille de route d'origine (étapes 1 à 6) | ✅ terminée, sauf l'iPhone (gardé pour la fin) |
 | Pistes 1 à 6 | ✅ version et bandeau de mise à jour · ✅ cartes renversées · ✅ lieux par coordonnées GPS · ✅ calendrier du ciel · ✅ fiche du thème natal à imprimer ou en PDF · ✅ arcanes mineurs (jeu complet de 78 cartes) |
 | Langues | 14 (FR, EN, ES, PT, IT, DE, TR, RU, AR, HI, TH, ZH, JA, KO) |
-| Tests automatiques | 93 (79 historiques + 14 nouveaux), dans 5 fuseaux horaires, plus la version autonome hors ligne et le site installable |
+| Tests automatiques | 96 (79 historiques + 17 portrait, dont 3 en V0.3.1), dans 5 fuseaux horaires, plus la version autonome hors ligne et le site installable |
 | Publication | automatique sur GitHub Pages, après les tests (circuit GitHub Actions) |
 | Poids | version autonome ≈ 6,2 Mo, dont ≈ 3,1 Mo d'illustrations du tarot |
 | Confidentialité | aucune donnée envoyée en ligne (adresse en « # », pas de serveur, pas de statistiques) ; seule exception : les événements ajoutés à Google Agenda à la demande de l'utilisateur |
@@ -66,7 +66,7 @@ Idée d'une testeuse (27 octobre 2026), approuvée : aller au-delà des textes c
 ### 2.3 Livrables intégrés
 - [x] **14 traductions** : 77 unités narratives, 3 phrases, 2 bulles, libellés par langue ; sources `data/portraits/`.
 - [x] **Code indépendant** : `zodiac-portrait.js`, `zodiac-portrait-data.js` (généré), `zodiac-portrait.css` ; intégration sans modifier les calculs existants.
-- [x] **Tests** : six cas du cahier, 36 décans, deux jeux, 14 langues, repli, export et frontières incertaines dans `zodiac-portrait-tests.js`.
+- [x] **Tests** : six cas du cahier, 36 décans, deux jeux, 14 langues, repli, export, frontières incertaines, libellés, ponctuation et formules dans `zodiac-portrait-tests.js` ; test de bout en bout dans `tools/run_tests.py`.
 - [x] **Documentation** : cahier V0.3 copié dans `docs/`, notes `reprise.md` et `projet.md` mises à jour.
 
 ---
