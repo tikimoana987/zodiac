@@ -739,9 +739,9 @@
     }
   });
 
-  test('Bulles d\'information (i) : 37 explications complètes et traduites', () => {
+  test('Bulles d\'information (i) : 39 explications complètes et traduites', () => {
     const keys = Object.keys(I18N.fr.info);
-    assertEq(keys.length, 37, 'nombre d\'explications');
+    assertEq(keys.length, 39, 'nombre d\'explications');
     for (const lang of Object.keys(I18N)) {
       const info = I18N[lang].info;
       assert(keys.every(k => typeof info[k] === 'string' && info[k].length > 20), `${lang} : explication manquante ou trop courte`);   // 20 : le chinois est bien plus dense

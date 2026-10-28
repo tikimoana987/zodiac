@@ -12,7 +12,7 @@
 | Feuille de route d'origine (étapes 1 à 6) | ✅ terminée, sauf l'iPhone (gardé pour la fin) |
 | Pistes 1 à 6 | ✅ version et bandeau de mise à jour · ✅ cartes renversées · ✅ lieux par coordonnées GPS · ✅ calendrier du ciel · ✅ fiche du thème natal à imprimer ou en PDF · ✅ arcanes mineurs (jeu complet de 78 cartes) |
 | Langues | 14 (FR, EN, ES, PT, IT, DE, TR, RU, AR, HI, TH, ZH, JA, KO) |
-| Tests automatiques | 79, dans 5 fuseaux horaires, plus la version autonome hors ligne et le site installable |
+| Tests automatiques | 93 (79 historiques + 14 nouveaux), dans 5 fuseaux horaires, plus la version autonome hors ligne et le site installable |
 | Publication | automatique sur GitHub Pages, après les tests (circuit GitHub Actions) |
 | Poids | version autonome ≈ 6,2 Mo, dont ≈ 3,1 Mo d'illustrations du tarot |
 | Confidentialité | aucune donnée envoyée en ligne (adresse en « # », pas de serveur, pas de statistiques) ; seule exception : les événements ajoutés à Google Agenda à la demande de l'utilisateur |
@@ -45,25 +45,29 @@ Gemini a refusé de générer des images pendant l'intégration (« plan sans g�
 
 ---
 
-## 2. 🔴 Portrait symbolique (prochain chantier)
+## 2. ✅ Portrait symbolique V0.3 (intégré le 28 octobre 2026)
+
+> **Statut actualisé :** décisions fixées par le cahier V0.3, 14 JSON traduits et validés, module local et bloc repliable, aperçu et six rubriques, formules distinctes, cas maîtres 11/22/33, 36 décans Golden Dawn, bulles explicatives, export déplié et tests. Référence : `docs/ZODIAC_Cahier_Portrait_Symbolique_V0_3_FINAL_POUR_VALIDATION.md`. Les choix ci-dessous sont conservés comme historique de conception ; **ils ne sont plus en attente**.
 
 Idée d'une testeuse (27 octobre 2026), approuvée : aller au-delà des textes courts actuels et **relier les traditions entre elles** à partir de la date de naissance, pour un portrait plus approfondi. Toujours présenté comme une lecture symbolique (jamais comme un destin).
 
-### 2.1 Contenu envisagé
+### 2.1 Contenu réalisé
 - **Arcane du chemin de vie** (chemin de vie 4 → IV L'Empereur), avec un portrait détaillé : énergie personnelle, forces, défis, mission, leçon (quelques phrases par rubrique).
 - **Correspondances de la Golden Dawn** (tradition ésotérique de la fin du XIXe siècle) : arcane majeur du signe (Bélier → L'Empereur, Scorpion → La Mort…) et de la planète maîtresse (Vénus → L'Impératrice…) ; **carte mineure du décan** : les 36 décans correspondent aux cartes 2 à 10 des mineurs (1er décan du Bélier → Deux de Bâtons). Lien naturel avec le nom de l'appli et les mineurs déjà intégrés.
 - Un court **texte de synthèse** qui relie ces éléments.
 
-### 2.2 Décisions à prendre ❓
-- [ ] Arcane du chemin de vie et **carte de naissance actuelle** (calculée autrement : jour + mois + année réduits à 22) : les deux, expliqués, ou une seule.
-- [ ] **Nombres maîtres** : 11 (la Force à Marseille, la Justice chez Waite-Smith : suivre le jeu choisi ?), 22 (Le Mat), 33 (pas d'arcane 33 : réduire à 6, L'Amoureux ?).
-- [ ] **Planètes des décans** : la Golden Dawn suit les « faces » chaldéennes (Mars, Soleil, Vénus pour le Bélier), l'appli les triplicités (Mars, Soleil, Jupiter). Montrer la carte du décan sans changer nos planètes, avec une bulle (i) qui l'explique ⭐.
-- [ ] **Emplacement** : dans « Numérologie & tarot » ⭐, ou une sixième section ; inclus dans l'image exportée.
-- [ ] **Rubriques** du portrait (4 à 6) et longueur des textes.
+### 2.2 Décisions validées ✅
+- [x] **Deux arcanes** : carte de naissance et arcane du chemin de vie, calculs et formules distincts ; texte de convergence si identiques.
+- [x] **Nombres maîtres** : 11 → Force à Marseille / Justice chez Waite-Smith, secondaire 11/2 ; 22 → Mat/Fou, 22/4 ; 33 → VI, 33/6.
+- [x] **Décans** : planète ZODIAC inchangée, arcane mineur Golden Dawn, attribution historique distincte ; bulle explicative.
+- [x] **Maîtres modernes** : Pluton / Uranus / Neptune conservés selon le signe, présentés comme extensions modernes.
+- [x] **Interface** : bloc replié, aperçu 35–50 mots et six rubriques, portrait français assemblé 250–350 mots ; export déplié.
 
-### 2.3 Travail à prévoir
-- [ ] Cahier des charges pour ChatGPT (comme pour les mineurs) : portraits des 22 arcanes (≈ 130 textes) et textes de liaison, dans les 14 langues ; vérification par Claude.
-- [ ] Tables de correspondances (signes, planètes, décans), logique, affichage, bulles (i), tests, documentation. Poids : du texte seulement (quelques centaines de Ko).
+### 2.3 Livrables intégrés
+- [x] **14 traductions** : 77 unités narratives, 3 phrases, 2 bulles, libellés par langue ; sources `data/portraits/`.
+- [x] **Code indépendant** : `zodiac-portrait.js`, `zodiac-portrait-data.js` (généré), `zodiac-portrait.css` ; intégration sans modifier les calculs existants.
+- [x] **Tests** : six cas du cahier, 36 décans, deux jeux, 14 langues, repli, export et frontières incertaines dans `zodiac-portrait-tests.js`.
+- [x] **Documentation** : cahier V0.3 copié dans `docs/`, notes `reprise.md` et `projet.md` mises à jour.
 
 ---
 
@@ -133,7 +137,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 | 1 | Arcanes mineurs : où ? | ✅ décidé et fait | tirage du jour, en option « jeu complet » |
 | 2 | Arcanes mineurs : illustrations | ✅ décidé et fait | un jeu scénique commun, deux habillages |
 | 3 | Arcanes mineurs : chargement | ✅ décidé et fait | tout au démarrage (plus simple hors ligne) |
-| 4 | Portrait symbolique | voir § 2.2 (chemin de vie et carte de naissance, nombres maîtres, planètes des décans, emplacement, rubriques) | à décider ensemble avant le cahier des charges |
+| 4 | Portrait symbolique | ✅ décisions du cahier V0.3 intégrées | contrôle de la publication après dépôt |
 | 5 | Frise annuelle | pour tous · dans la console d'administration | à décider après le portrait |
 | 6 | Console d'administration | périmètre exact | export 12 mois, dos de cartes, habillages, fichier de réglages |
 | 7 | Version hors ligne | réactiver · laisser grisé | à trancher avec l'étape iPhone |
@@ -144,7 +148,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 ## 9. Ordre proposé
 
 1. ✅ **Arcanes mineurs** (§ 1) ; reste les 9 illustrations à refaire avec Gemini (§ 1.1), quand il refonctionnera.
-2. **Portrait symbolique** (§ 2) : décisions, cahier des charges pour ChatGPT, puis intégration.
+2. ✅ **Portrait symbolique** (§ 2) : rédaction des 14 langues, intégration et tests ; contrôle final de la publication après dépôt.
 3. **Améliorations rapides** (§ 6) au fil de l'eau, selon tes envies.
 4. **Frise annuelle** (§ 3) et **console d'administration** (§ 4), éventuellement ensemble, puisque la console peut produire la frise.
 5. **Qualité et maintenance** (§ 7), en continu.

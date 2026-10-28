@@ -57,6 +57,8 @@ async def suite(browser, file, cut_network):
         await page.goto(file.as_uri() + '?test')
         await page.wait_for_function('window.__testResults', timeout=120000)
         results = await page.evaluate('window.__testResults')
+        await page.wait_for_function('window.__portraitTestResults', timeout=120000)
+        results += await page.evaluate('window.__portraitTestResults')
         failed = [r['name'] + ' — ' + str(r.get('info', '')) for r in results if not r['ok']]
         report(not failed and not errors, f'{tz:20s} {len(results) - len(failed)}/{len(results)}' + (f' | {failed + errors}' if failed or errors else ''))
         await ctx.close()

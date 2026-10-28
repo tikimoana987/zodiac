@@ -1,12 +1,15 @@
 # 🔄 Prompt de reprise — Zodiaque & Décans · Cosmic Interface
 
+> **Mise à jour du 28 octobre 2026 — portrait symbolique V0.3 (base main `999bd9c`).**
+> Bloc repliable dans « Numérologie & tarot » : 6 rubriques, arcane de naissance distinct de celui du chemin de vie, 11/22/33, correspondances signe / maître moderne / 36 décans Golden Dawn. Textes approuvés dans `data/portraits/portrait-xx.json` (14 langues). `zodiac-portrait-data.js` est généré via `node tools/regen_portraits.js`, `zodiac-portrait.js` assure le calcul et l’affichage, `zodiac-portrait.css` les styles et `zodiac-portrait-tests.js` les tests. Le fichier `ZODIAC.html` référence ces modules locaux, et `build-standalone.py` les incorpore dans la version autonome et le site installable. Référence : `docs/ZODIAC_Cahier_Portrait_Symbolique_V0_3_FINAL_POUR_VALIDATION.md`. Aucun transfert de données personnelles lié au portrait. En cas de divergence avec une section historique ci-dessous, **ce complément et le code actuel font foi**.
+
 > Copie-colle ce prompt dans une nouvelle conversation pour reprendre le projet exactement où il en est, avec tout le contexte nécessaire.
 
 ---
 
 ## 🎯 Contexte du projet
 
-Nous développons **"Zodiaque & Décans · Cosmic Interface"**, une interface web immersive et multilingue sur le thème du zodiaque, en 7 langues (FR, EN, ES, ZH, RU, DE, IT).
+Nous développons **"Zodiaque & Décans · Cosmic Interface"**, une interface web immersive et multilingue sur le thème du zodiaque, en 14 langues (FR, EN, ES, PT, IT, DE, TR, RU, AR, HI, TH, ZH, JA, KO).
 
 **L'utilisateur saisit sa date de naissance** (et, s'il le souhaite, son heure et son nom) et découvre :
 - Son signe solaire et son décan (sur 3), calculés à partir de la position réelle du Soleil
@@ -24,9 +27,8 @@ L'expérience inclut **une transition cinématique** (viseur balaie le ciel → 
 
 ## 📦 État actuel du code
 
-**17 fichiers dans un même dossier**, ~460 Ko, ouverture par double-clic sur `ZODIAC.html` (aucun serveur). **Version autonome** : `ZODIAC-standalone.html`, un seul fichier (~650 Ko), produit par `python3 build-standalone.py`. Chargement par `<script src>` classiques, dans cet ordre :
-`zodiac-data.js` → `zodiac-sky-data.js` → `zodiac-i18n.js` → `zodiac-i18n-fr.js` puis `-en`, `-es`, `-zh`, `-ru`, `-de`, `-it` → `zodiac-astro.js` → `zodiac-planets.js` → `zodiac-skymap.js` → `zodiac-observe.js` → `zodiac-places-data.js` → `zodiac-places.js` → `zodiac-natal.js` → `zodiac-transits.js` → `zodiac-calendar.js` → `zodiac-numerology.js` → `zodiac-tarot-art.js` → `zodiac-tarot-minors-art.js` → `zodiac-tarot.js` → `zodiac-app.js`.
-Styles dans `zodiac.css`. Tests dans `zodiac-tests.js` (79 tests, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
+**Code local modulaire**, ouverture par double-clic sur `ZODIAC.html` (aucun serveur). **Version autonome** : `ZODIAC-standalone.html`, un seul fichier d'environ 6,8 Mo, produit par `python3 build-standalone.py`. La page charge les sources et les 14 traductions par fichiers JavaScript locaux ; le portrait charge `zodiac-portrait-data.js` puis `zodiac-portrait.js` et `zodiac-portrait-tests.js` après `zodiac-app.js`.
+Styles dans `zodiac.css` et `zodiac-portrait.css`. Tests : 79 historiques dans `zodiac-tests.js` + 14 nouveaux dans `zodiac-portrait-tests.js` (93 au total, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
 **Aucune ressource en ligne** : `html2canvas` 1.4.1 est une copie locale (`html2canvas.min.js`, licence MIT). Tout fonctionne sans internet.
 
 ### Fonctionnalités en place ✅

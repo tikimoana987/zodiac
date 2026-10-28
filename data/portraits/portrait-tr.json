@@ -1,0 +1,178 @@
+{
+  "lang": "tr",
+  "labels": {
+    "title": "Sembolik portre",
+    "more": "Portreyi tamamen okuyun",
+    "less": "Portreyi daraltın",
+    "sections": {
+      "arcana": "İki büyük arkananız",
+      "energy": "Kişisel enerjiniz",
+      "strengths": "Güçlü yanlarınız ve kaynaklarınız",
+      "challenges": "Zorluklarınız ve dersleriniz",
+      "sky": "Gökyüzünüz ve tarotla sembolik bağlantıları",
+      "thread": "Yolculuğunuzun ana izleği"
+    },
+    "birthCard": "Doğum kartı",
+    "lifePathArcana": "Yaşam yolu arkanası",
+    "sign": "Burç",
+    "planet": "Yönetici gezegen",
+    "decan": "Dekan",
+    "uncertain": "doğum saati olmadan kesin değil"
+  },
+  "phrases": {
+    "convergence": "İki hesaplama aynı arketipte buluştuğunda ortak bir temaya iki farklı bakış sunar; ancak bu yakınlık, hikâyenizi daha kesin kılmaz veya onu tek bir yoruma hapsetmez.",
+    "master": "Usta sayı yolunuzdaki yerini korur; {n} sayısına yapılan ikincil indirgeme, ilk anlamı silmeden ona farklı bir yorum katmanı ekler.",
+    "skyIntro": "Golden Dawn geleneği, gökyüzü ve tarot kartları arasında sembolik karşılıklar önerir; bunlar burada düşünmeye açık yorum olanakları olarak sunulur."
+  },
+  "arcana": {
+    "fool": {
+      "essence": "Bilinmeyene açık olmak, sınırları henüz çizilmemiş bir özgürlüğü simgeler. Bu imge, olasılıklar çoğaldığında içinizdeki yön duygusunu koruyarak merakla ilerlemeyi ve yeni deneyimlere kendinize özgü bir yer açmayı önerir."
+    },
+    "magician": {
+      "essence": "Eldeki imkânlar açık bir niyetle buluştuğunda girişim gücü belirginleşir. Bu arketip, denemeler yapmaya ve harekete geçme isteğinizi acele etmeden, adım adım somut bir başlangıca dönüştürmeye davet eder."
+    },
+    "priestess": {
+      "essence": "Sessizlik ve gözlem, içinizde yavaşça olgunlaşanları fark etmek için alan açar. Bu figür, derin izlenimlerinizi dinlerken sağduyudan, gerçekleri sınamaktan ve başkalarıyla düşünce alışverişinden vazgeçmemenizi önerir."
+    },
+    "empress": {
+      "essence": "Fikirlerin bereketi ve üretmenin sevinci bu arketipe hayat verir. Duyarlılığı, kendinizi ifade etme isteğini ve çevrenizdekilere gösterdiğiniz özeni bir araya getirerek önem verdiğiniz şeyleri büyütmeye davet eder."
+    },
+    "emperor": {
+      "essence": "Düzen arayışı, niyetlerinize kalıcı bir biçim kazandırabilir. Bu figür sorumluluk ve istikrarı ele alırken yararlı bir çerçevenin aynı zamanda esnek, kapsayıcı ve yeni koşullara açık kalabileceğini hatırlatır."
+    },
+    "hierophant": {
+      "essence": "Bilginin aktarılması ve geleneklerle kurulan diyalog, öğrenmeye yeni bir yol açar. Bu arketip, devraldığınız kuralları anlamaya ve ardından bugün hâlâ anlam taşıyanları bilinçli biçimde seçmeye davet eder."
+    },
+    "lovers": {
+      "essence": "Bir seçim, hem bağları hem de kişisel değerleri gözettiğinde daha anlaşılır hâle gelir. Bu figür, yalnızca başkalarının beklediği yanıtı vermek yerine samimi bir uyum ve içten bir yön aramayı önerir."
+    },
+    "chariot": {
+      "essence": "İlerleme isteği, zaman zaman birbiriyle çelişen güçleri bir araya getirmeyi gerektirir. Bu arketip, kararlılığın yanında sınırları dinleyerek oluşturulan, bilinçli biçimde seçilmiş bir yönü simgeler."
+    },
+    "strength": {
+      "essence": "Cesaret bazen baskı yerine yumuşaklıkla kendini gösterebilir. Bu imge sabrı, yavaş yavaş gelişen güveni ve yoğun duygularla savaşmak yerine onlarla daha sakin bir ilişki kurmayı değerli bulur."
+    },
+    "hermit": {
+      "essence": "Gönüllü olarak geri çekilmek, önemli olanı gündelik gürültüden ayırmaya yardımcı olabilir. Bu figür, kendi yargınızı geliştirirken size iyi gelen insanlarla bağlarınızı bütünüyle kapatmamanızı önerir."
+    },
+    "wheel": {
+      "essence": "Değişimler, her yolculuğun farklı ritimlerden ve dönemlerden geçtiğini hatırlatır. Bu arketip, ortaya çıkan fırsatları karşılarken uyum sağlamayı kendi önceliklerinizden vazgeçmekle karıştırmamaya davet eder."
+    },
+    "justice": {
+      "essence": "Denge arayışı, seçimleri onların sonuçlarıyla yüzleştirir. Bu figür, durumlara dürüstçe bakmaya, farklı bakış açılarını dinlemeye ve gerektiğinde kararlarınızı daha dikkatli biçimde yeniden değerlendirmeye davet eder."
+    },
+    "hangedman": {
+      "essence": "Bir süre durmak, beklenmedik bir bakış açısının ortaya çıkmasını sağlayabilir. Bu arketip, aceleyi bırakmayı ve olaylara başka bir yerden bakınca nelerin değiştiğini fark etmeyi önerir."
+    },
+    "death": {
+      "essence": "Bir dönemin sona ermesi, başka bir şeye yer açabilir. Bu imge içsel dönüşümü, yavaşça bırakabilmeyi ve hayattaki geçişlerin gerektirdiği özeni anlatır; hiçbir değişimin tek biçimde yaşanmadığını hatırlatır."
+    },
+    "temperance": {
+      "essence": "Farklı unsurları bir araya getirme sanatı, yaşayan bir dengeyi destekler. Bu figür ölçülü düzenlemeleri, duyguların daha sakin akışını ve kalıcı değişimler için gereken sabrı öne çıkarır."
+    },
+    "devil": {
+      "essence": "Güçlü bağlanmalar, arzularınızı ve sizi sınırlayan alışkanlıkları aynı anda görünür kılabilir. Bu arketip, sembolik bağımlılıkları utanç, yargılama ya da kaçınılmazlık düşüncesi olmadan açıklıkla değerlendirmeye davet eder."
+    },
+    "tower": {
+      "essence": "Sarsılan bir kesinlik, daha nüanslı bir gerçeğe yer açabilir. Bu imge, artık dar gelen yapıları sorgulamayı ve ardından kendi imkânlarınıza uygun, sürdürülebilir bir tempoyla yeniden kurmayı önerir."
+    },
+    "star": {
+      "essence": "Şüpheli dönemlerin ardından sessiz bir güven yeniden filizlenebilir. Bu figür ilhamı, yeniden bulunan sadeliği ve mutlak güvenceler beklemeden adım atabilme olasılığını simgeler."
+    },
+    "moon": {
+      "essence": "Duygular ve iç dünyadaki imgeler, her şeyi açıklamasalar da anlayışı zenginleştirebilir. Bu arketip, belirsizliği duyarlılıkla keşfederken sezgilerinizi ve ilk izlenimlerinizi gerçeklerle karşılaştırmanızı önerir."
+    },
+    "sun": {
+      "essence": "Sıcak bir açıklık, kendinizi ifade etmeyi ve sade ilişkiler kurmayı kolaylaştırır. Bu figür, sürekli ve kusursuz bir mutluluk beklemeksizin sahip olduğunuz imkânları cömertlikle paylaşmaya davet eder."
+    },
+    "judgement": {
+      "essence": "Bir farkındalık, dağınık görünen deneyimlere yeniden anlam kazandırabilir. Bu arketip, içten gelen bir çağrıyı dinlemeyi ve ardından neye karşılık vereceğinizi özgürce seçmeyi önerir."
+    },
+    "world": {
+      "essence": "Tamamlanma hissi, öğrendiklerinizi daha geniş bir bakışla birleştirebilir. Bu imge, geride bıraktığınız yolu tanımaya ve her dengenin zamanla değişip gelişebileceğini unutmamaya davet eder."
+    }
+  },
+  "lifePath": {
+    "magician": {
+      "energy": "Sembolik yolculuğunuz, bazen sınırlı araçlarla yeni bir olasılık ortaya çıkarma isteğiyle başlar. Başlangıçlar, denemeler ve yeni kapılar açan karşılaşmalar size canlılık verebilir. Buradaki mesele, merakın birçok yöne dağılmaması için yeterince açık bir niyet seçmek ve ardından bu niyeti sabırla, kendi ritminizde sürdürülebilir bir yola dönüştürmektir. Küçük fakat tutarlı denemeler, seçtiğiniz yönü zamanla daha görünür kılabilir.",
+      "strengths": "Yaratıcılığınızdan, gözlem gücünüzden ve farklı fikirleri hızla birbirine bağlama yeteneğinizden yararlanabilirsiniz. Adımlarınızı hazırlamaya ve geri bildirimleri dinlemeye alan açtığınızda bu kaynaklar derinlik kazanır. Sembolik anlamda başarı, dışarıda bıraktığınız etkiden çok elinizdeki yetenekleri ne kadar dikkatli, yerinde ve anlamlı kullandığınızla ilgili olabilir. Böylece başlangıçtaki heyecan, kalıcı bir öğrenme sürecine dönüşebilir.",
+      "challenges": "Sabırsızlık ya da bir şeyleri kanıtlama ihtiyacı, çabalarınızı farklı yönlere dağıtabilir. Aynı anda çok sayıda projeye başlamak, değerli bir niyetin gerçekten gelişmesi için gereken alanı daraltabilir. Kısa bir duraklama, önceliklerinizi yeniden görmenize yardımcı olabilir.",
+      "lesson": "Bu okumanın önerdiği ders, içten bir ilk adım seçmek ve onun olgunlaşması için gereken zamanı cömertçe tanımaktır.",
+      "thread": "Başlama arzusu ile kalıcılık ihtiyacı arasında uzanan ana izlek, olasılıklarınıza biçim vermeyi anlatır. Bu yorumu, her zaman harekete geçme zorunluluğu olarak değil; hayal gücünü, hazırlığı ve kararların sonuçlarına gösterilen özeni bir araya getirme daveti olarak değerlendirebilirsiniz. Tek bir doğru yöntem aramanız gerekmez; denemek de değerlidir."
+    },
+    "priestess": {
+      "energy": "Sembolik yolunuz dinlemeye, derin sorulara ve sessiz keşiflere önem verir. Başkalarının kolayca fark etmediği ipuçlarını toplayıp anlamlarının zamanla belirginleşmesine izin verebilirsiniz. Bu ilerleme biçimi, sezgilerinizin gerçeklerle ve insanlarla yapılan konuşmalarla buluşmasına alan açtığınızda daha dengeli ve zengin bir yön kazanabilir. Böylece sessizlik, dünyadan kopmak yerine farklı bir dinleme biçimine dönüşebilir.",
+      "strengths": "İnce ayrıntıları fark eden bir dikkat, nüansları hatırlama yeteneği ve karmaşık durumlarda sabır sizin için değerli kaynaklar olabilir. Başkalarının anlattıklarına yer verirken bütün yükü üstlenmemek, derin ilişkileri destekleyebilir. Asıl güç, mesafenin ardına saklanmak yerine sessizliği özenli bir yakınlığa dönüştürebilmenizde ortaya çıkabilir. Bu dikkat, belirsizliğe hemen yanıt verme baskısını da azaltabilir.",
+      "challenges": "Tamamen açık bir işaret bekleme ihtiyacı kararlarınızı geciktirebilir. Çok fazla şeyi içinizde tutmak da koruyucu bir sınırı gereksiz yalnızlığa dönüştürebilir. Başkalarıyla konuşmak, kendi sezgilerinizi küçümsemeden yeni bir bakış açısı sağlayabilir.",
+      "lesson": "Bu yol, içsel dinleyişinize güvenmeyi ancak onun her doğrulamanın ve her somut eylemin yerini almasını beklememeyi önerir.",
+      "thread": "Ana izleğiniz, içeride anlaşılanlarla incelikle paylaşılabilecek olanları birbirine bağlar. Bu yorum, sessizliğe yer ayırmaya ve ardından başkalarına uzanan yollar açmaya davet eder. Duyarlılığınızın ne saklanması gereken bir sır ne de tartışılmaz bir kesinlik olması gerekir. İçsel derinlik ile paylaşım birbirini dışlamak zorunda değildir."
+    },
+    "empress": {
+      "energy": "Sembolik yolculuğunuz, büyümeyi, kendinizi ifade etmeyi ve çevrenizdeki şeyleri besleme isteğini görünür kılar. Bir düşünceye ya da ilişkiye güven veren küçük davranışlarda kendinizden bir şeyler bulabilirsiniz. Bu enerji, yaratıcılığınız başkalarının bütün beklentilerine yetişmeye çalışmak yerine kendi ritminize saygı duyduğunda daha rahat gelişebilir. Küçük ve düzenli adımlar, yüksek beklentilerin baskısından daha besleyici olabilir.",
+      "strengths": "Hayal gücü, biçimlere duyarlılık ve somut ihtiyaçlara gösterdiğiniz özen verimli dayanaklar olabilir. Fikirlerin dolaşabildiği ve yavaşça şekil alabildiği bir ortam oluşturma yeteneğiniz bulunabilir. Bu cömertlik, destek almanıza ve kendinize sınır koymanıza da izin verdiğinizde gücünü korur; vermek kadar almak da değerlidir. Önemsediğiniz şeylere gösterdiğiniz bakım, kendi ihtiyaçlarınızı da kapsayabilir.",
+      "challenges": "Her şeyi aynı anda büyütmeye çalışmak sizi yorabilir ya da önceliklerinizi belirsizleştirebilir. Başkalarının bakışı bazen üretmekten aldığınız kişisel sevincin önüne geçebilir. Neye alan açacağınızı seçmek, yaratıcılığınıza yeniden nefes aldırabilir.",
+      "lesson": "Buradaki ders, kendinizi tüketmeden özen göstermek ve her projenin kendi zamanını ve ölçüsünü bulmasına izin vermektir.",
+      "thread": "Ana izleğiniz, sevincin ve ölçülülüğün birlikte yer bulduğu bir yaratıcılığa işaret eder. Semboller, hangi fikri büyütmek istediğinizi seçmeye, kişisel alanınızı korumaya ve sessiz gelişmeleri de önemsemeye davet eder. Değerli olan her şeyin hızla görünür hâle gelmesi gerekmez. Büyümek bazen dinlenme alanı açmakla başlar."
+    },
+    "emperor": {
+      "energy": "Sembolik yolunuz, güvenilir dayanaklar oluşturma ihtiyacı çevresinde şekillenir. Açık taahhütlere, sürdürülen çabalara ve projeleri mümkün kılan bir istikrara önem verebilirsiniz. Bu enerji, her şeyi denetlemenizi istemez; kurduğunuz düzen, hedefleri desteklerken insanları da koruduğunda daha anlamlı bir hâl alabilir. Esnek sınırlar, güven duygusunu korurken beklenmedik imkânları da görünür kılabilir.",
+      "strengths": "Kararlılık, düzen kurma becerisi ve sorumluluk duygusu sağlam bir temel oluşturabilir. Belirsiz bir düşünceyi anlaşılır aşamalara dönüştürmek ve varlığınızla güven vermek sizin için mümkün olabilir. Bu özellikler, alıştığınız yöntemlerden farklı yolları da kabul ettiğinizde daha değerli hâle gelir ve çevrenizle iş birliğini güçlendirebilir. Süreklilik arayışınız, değişime bütünüyle kapalı olmanızı gerektirmez.",
+      "challenges": "Güvenlik arayışı katı bir kontrole ya da değişimi reddetmeye dönüşebilir. Çok fazla kural, ilişkilerin ve çalışmaların ihtiyaç duyduğu esnekliği azaltabilir. Küçük bir hareket alanı, düzen ile güven arasında yeniden denge kurmayı kolaylaştırabilir.",
+      "lesson": "Bu okumanın dersi, sağlam çerçeveler kurarken güvenin, dinlemenin ve beklenmedik gelişmelerin de içeride yer bulmasına izin vermektir.",
+      "thread": "Ana izleğiniz, dayatılacak bir düzenden çok birlikte kurulacak bir istikrarı anlatır. Bu yorum, sorumlulukla açıklığı ve kararlılıkla uyumu birleştirmeye davet eder. Böylece ortaya koyduğunuz yapı canlı kalabilir; sembolik otorite bir amaç olmaktan çıkıp başkalarına da yarar sağlayan bir araca dönüşebilir. Güven, gerektiğinde yeniden düzenlenebilen bir yapıyla da büyüyebilir."
+    },
+    "hierophant": {
+      "energy": "Sembolik yolculuğunuz, aktarılan bilgiyle, paylaşılan değerlerle ve kuşaklar arasında bağ kuran davranışlarla ilgilenir. Bir uygulamanın bazı insanlar için neden önemli olduğunu anlamak, ardından ona bugünde nasıl yer açılacağını araştırmak isteyebilirsiniz. Bu enerji, miras alınan bilgiler zorunlu yanıtlar yerine bir konuşma başlangıcına dönüştüğünde gelişir. Bu yaklaşım, geçmişe saygıyla bugünün sorularını yan yana tutabilir.",
+      "strengths": "Dinleme beceriniz, açıklama yapma isteğiniz ve ortak dayanaklara verdiğiniz önem yapıcı görüşmeleri destekleyebilir. Karmaşık konuları aşırı basitleştirmeden anlaşılır hâle getirmeye yardımcı olabilirsiniz. Gücünüz, yaşayan bir geleneğe herkesin farklı bir katkı sunduğunu fark edip bu katkılara saygıyla yer açtığınızda da belirginleşebilir. Bilginin değeri, aktarıldığı kadar yeniden düşünülebildiğinde de artar.",
+      "challenges": "Ortak bir kurala duyulan ihtiyaç, kişisel yolların çeşitliliğini daraltabilir. Öte yandan bir topluluğu hayal kırıklığına uğratma korkusu, kendi anlam arayışınızı sınırlayabilir. Yapıcı bir kuşku, ilişkileri değersizleştirmeden yeni sorulara kapı açabilir.",
+      "lesson": "Bu yol, gelenekten gelenleri onurlandırırken onların bugünkü yaşamınızda ne kadar anlam taşıdığını özgürce sorgulama hakkınızı korumanızı önerir.",
+      "thread": "Ana izleğiniz, aidiyet ile bağımsızlığı, başkalarının birikimi ile kendi yargınızı buluşturur. Bu portre aktarımı canlı bir alışveriş olarak görmeye davet eder: öğrenmek, sorgulamak, paylaşmak ve ardından herkesin kendine uygun bir yanıt geliştirmesine alan açmak. Böylece sizin bakışınız da gelişebilir. Farklı deneyimlerin yan yana durmasına yer açabilirsiniz."
+    },
+    "lovers": {
+      "energy": "Sembolik yolunuz, değerlerinizi ve ilişkilerinizi etkileyen seçimlere önemli bir yer verir. İstekleriniz, verdiğiniz sözler ve başkalarının beklentileri arasındaki uzaklığı yoğun biçimde hissedebilirsiniz. Bu enerji kusursuz bir uyumdan çok, farklılıkları inkâr etmeden dürüstçe ilerlemenin mümkün olduğu bir yön arar. Küçük tercihlerin bile hangi değerlere öncelik verdiğinizi gösterdiğini fark edebilirsiniz.",
+      "strengths": "İnce farkları sezmek, konuşmaya açık olmak ve ortak anlayış kurmak değerli kaynaklarınız olabilir. Bir ikilemin farklı yönlerini, ilgili insanların ihtiyaçlarını göz ardı etmeden fark edebilirsiniz. Bu açıklık, kendi gereksinimlerinizi de başkalarınınki kadar meşru gördüğünüzde güçlenir; karşılıklı saygı böylece daha dengeli bir zeminde gelişebilir. Bir başkasını anlamak, kendi sesinizi geri plana atmak anlamına gelmez.",
+      "challenges": "Başkalarını memnun edememe korkusu kararsızlığı uzatıp seçimleri ağırlaştırabilir. Her koşulda uzlaşma aramak, aslında konuşulması gereken anlaşmazlıkları görünmez kılabilir. Açık ve nazik bir ifade, kendi yerinizi yeniden bulmanıza yardımcı olabilir.",
+      "lesson": "Bu okumanın dersi, samimiyetle seçim yapmak ve canlı ilişkilerin gerçek farklılıklara da yer açması gerektiğini kabul etmektir.",
+      "thread": "Ana izleğiniz, kişisel isteklerle ilişkilerdeki sorumlulukların buluştuğu yerde uzanır. Bu yorum, bağları besleyen ama kendinizi geri plana itmenizi gerektirmeyen seçimleri fark etmeye davet eder. Aranan şey kusursuz bir yanıt değil, değerlerinizle uyumlu biçimde yaşayabileceğiniz bir yöndür. Yakınlık ile kişisel alan birlikte var olabilir."
+    },
+    "chariot": {
+      "energy": "Sembolik yolculuğunuz hareketi, seçilen yönü ve farklı istekleri bir araya getirmek için gereken çabayı anlatır. Hızla ilerleme isteği duyarken enerjinizi gerçekten neye ayırmanız gerektiğini de araştırabilirsiniz. Bu hareket, yönün hız kadar ve duraklamaların ilerlemeler kadar önemli olduğunu kabul ettiğinizde daha verimli olabilir. Bazen en anlamlı ilerleme, yeni bir yön seçebilmekten de doğar.",
+      "strengths": "Azim, karar verme yeteneği ve yeni bir aşamaya geçme cesareti gelişiminizi destekleyebilir. Dikkat dağıtan şeylere rağmen bir hedefi göz önünde tutabilirsiniz. En kalıcı gücünüz, farklı isteklerinizi uyum içinde yönetirken dinlenme, başkalarını dinleme ve iş birliği ihtiyaçlarını ezip geçmemenizde ortaya çıkabilir. Dinlenmek de amaca bilinçli ve özenli biçimde yaklaşmanın parçasıdır.",
+      "challenges": "İlerleme isteği, yorgunluğun işaretlerinden veya yararlı görüşlerden uzaklaşmanıza neden olabilir. Çok hızlı kovalanan bir başarı, başlangıçtaki anlamını yitirebilir. Dikkatli bir duraklama, içinizdeki hareketi daha doğru bir yöne çevirebilir.",
+      "lesson": "Buradaki ders, kararlılıkla ilerlerken yönünüzü ve hızınızı yeniden değerlendirme hakkınızı daima kendinize tanımak olabilir.",
+      "thread": "Ana izleğiniz, hareketle ayırt etme gücünü ve aşama kaydetmenin sevincini geride kalan yola gösterilen özenle birleştirir. Bu yorum, içsel gerilimleri yenilmesi gereken düşmanlar olarak değil, uyumlanabilecek güçler olarak görmeye davet eder. Böylece ilerlemek yalnızca hızlanmak değil, anlamı korumak da olabilir. Ritminizi başkalarının ölçüsüne uydurmanız gerekmez."
+    },
+    "strength": {
+      "energy": "Sembolik yolunuz, yoğun duygularla bunlara verilebilecek yumuşak tepkiler arasındaki ilişkiyi araştırır. Sertleşmeden cesaret ya da vazgeçmeden sabır isteyen durumlara özellikle duyarlı olabilirsiniz. Bu enerji, güçlü duyguları susturulacak düşmanlar yerine tanımayı öğrenebileceğiniz işaretler olarak görmenizi önerir. Böylece duyarlılık, kontrol edilmesi gereken bir engel olmaktan çıkabilir.",
+      "strengths": "Sakinliğiniz, duygusal dayanıklılığınız ve başkalarına güven verebilme beceriniz zor anlarda dayanak olabilir. Kendi ihtiyaçlarınızı yok saymadan herkese alan açarak gerilimi yumuşatabilirsiniz. Bu güç, yardım isteme hakkınızı da içerdiğinde gerçek değerini bulur; her şeyi tek başınıza taşımak zorunda olmadığınızı hatırlatır. Sakin bir tepki, duygunun önemini azaltmadan ilişkileri koruyabilir.",
+      "challenges": "Her koşulda güçlü görünmek istemek, kendi ihtiyaçlarınızı dile getirmenizi engelleyebilir. Her duyguyu denetlemeye çalışmak da onu anlamayı zorlaştırabilir. Bir gereksinimi açıkça ifade etmek, cesaretin sakin ve destekleyici bir biçimi olabilir.",
+      "lesson": "Bu okuma, kırılganlığı güvenin karşıtı değil, insanlarla kurulan güvenin değerli ve doğal bir parçası olarak görmeyi önerir.",
+      "thread": "Ana izleğiniz içsel güç ile davranışlardaki inceliği konuşturur. Bu portre, var olmak için üstünlük kurmaya ihtiyaç duymayan bir cesaret geliştirmeye davet eder. Sınırlarınızı kabul ettikçe sabırlı, paylaşılabilen ve başkalarıyla birlikte büyüyen bir güvene daha fazla alan açabilirsiniz. Sabır, duyguların anlaşılması için değerli alan yaratabilir."
+    },
+    "justice": {
+      "energy": "Sembolik yolculuğunuz, niyetler, eylemler ve bunların sonuçları arasındaki dengeyi sorgular. Kararlarda tutarlılığı, karşılıklı saygıyı ve açık sözlü olmayı doğal biçimde arayabilirsiniz. Bu enerji, farklı bakışların samimi olabileceğini ve yine de aynı sonuca götürmeyebileceğini kabul ettiğinizde daha esnek hâle gelebilir. Karar vermek, her belirsizliğin tamamen ortadan kalkmasını gerektirmeyebilir.",
+      "strengths": "Hakkaniyet duygunuz, ayrıntılara dikkatiniz ve durumları tartabilme beceriniz güvenilir dayanaklar sunabilir. Olguları, izlenimleri ve tercihleri ayırarak bir tartışmayı daha anlaşılır kılabilirsiniz. Bu kaynak, kesinlik arayışının yanında şefkate ve insanların farklı koşullarına da yer açtığınızda daha zengin bir hâl alabilir. Adalet duygunuz, farklı deneyimleri dinledikçe daha incelikli hâle gelebilir.",
+      "challenges": "Tutarlılık beklentisi, kendinize veya başkalarına karşı fazla katılaşabilir. Karar vermeden önce kusursuz bilgi beklemek de belirsiz bir durumu gereksiz yere uzatabilir. Açık bir diyalog, seçimleri hem daha insani hem de daha paylaşılabilir kılabilir.",
+      "lesson": "Bu yol, titizlikle adil olanı ararken insanların ve içinde bulundukları koşulların karmaşıklığını da unutmamayı önerir.",
+      "thread": "Ana izleğiniz, açıklıkla insanlığı ve tutarlılık ihtiyacıyla bir yargıyı gözden geçirme esnekliğini birleştirir. Bu yorum, dengeyi değişmez bir kural yerine dikkatli bir uygulama olarak görmeye davet eder. İnce ayrımlar, tam bir kesinlik gerektirmeden sorumlu seçimler yapmanıza yardımcı olabilir. Dengeli yaklaşım, gerektiğinde fikrinizi değiştirmeyi de kapsar."
+    },
+    "hermit": {
+      "energy": "Sembolik yolunuz, uzun süre düşünülen sorulara, kişisel anlam arayışına ve gündelik gürültüden uzaklaşma anlarına değer verir. Kendinizi ortaya koymadan önce anlamayı ya da grubun hızına uyum sağlamak yerine kendi ritminizde ilerlemeyi seçebilirsiniz. Bu enerji, seçilmiş yalnızlığı besleyen görüşmelerle bağını sürdürdüğünde daha verimli olur. Düşüncelerinizin olgunlaşması için seçtiğiniz süre de değerli olabilir.",
+      "strengths": "Gözlem gücünüz, sabrınız ve bir konuyu derinleştirme yeteneğiniz incelikli fikirler ortaya çıkarabilir. Her şey karmaşık göründüğünde anlamlı bir ayrıntıyı fark edebilirsiniz. Bu kaynaklar, henüz tamamlanmamış düşüncelerinizi bile onları özenle dinleyebilecek insanlarla paylaştığınızda daha verimli hâle gelebilir ve yeni bakışlarla genişleyebilir. Paylaşılan bir soru, kişisel derinliği kaybetmeden yeni anlamlar kazanabilir.",
+      "challenges": "Koruyucu geri çekilme, faydalı karşılaşmalardan uzaklaştıran bir alışkanlığa dönüşebilir. Her yanıtı tek başınıza aramak, paylaşılabilecek soruları gereğinden ağır hissettirebilir. Dışarıdan gelen bir bakış, kişisel arayışınızın değerini azaltmadan bu yükü hafifletebilir.",
+      "lesson": "Bu ders, iç dünyanıza ait alanı korurken başka insanların farklı bakışlarının da arayışınıza eşlik etmesine izin vermeyi önerir.",
+      "thread": "Ana izleğiniz, dikkatle gelişen ve gürültü çıkarmadan paylaşılabilen sakin bir ışığı andırır. Bu portre, kendi hızınıza güvenmeye ve dış dünyaya açılan kapıları kapatmamaya davet eder. Başkalarıyla karşılaşmak, kişisel arayışınızın özgünlüğünü yok etmeden onu daha derin ve anlamlı kılabilir. Yalnızlık ile yakınlık arasında kendi ölçünüzü bulabilirsiniz."
+    },
+    "fool": {
+      "energy": "Sembolik yolculuğunuz beklenmedik başlangıçlara, açık olasılıklara ve özgürce keşfetme ihtiyacına geniş yer bırakır. Yollar henüz bütünüyle çizilmediğinde kendinizi daha canlı hissedebilirsiniz. Bu enerji, neşeli merakın kararları destekleyen fakat hareketi sınırlamayan, bilinçli olarak seçilmiş birkaç dayanakla buluştuğunda gelişebilir. Bu açıklık, her yolu aynı anda denemenizi zorunlu kılmaz.",
+      "strengths": "Kendiliğinden davranabilmeniz, farklı bakış açınız ve keşfetme sevinciniz yeni olasılıklara kapı açabilir. Bir karşılaşmayı ya da fikri hemen bir kalıba sokmadan karşılayabilirsiniz. Bu özellikler, her yeni deneyimin istediği zamanı, özeni ve sorumluluğu da değerlendirdiğinizde daha sağlam hâle gelir ve özgürlüğünüzü destekleyebilir. Özgür bir seçim, olasılıkların yanında sonuçlarını da görmeyi içerir.",
+      "challenges": "Yeniliklerin çekiciliği, bağlılıklarınızı dağıtabilir veya istikrar ihtiyacını görünmez kılabilir. Her sınırı hızla reddetmek, aslında özgürce seçebileceğiniz dayanaklardan uzaklaşmanıza yol açabilir. Kendi isteğinizle belirlediğiniz bir temel, hareket alanınızı daraltmadan sizi destekleyebilir.",
+      "lesson": "Bu yol, güvenle keşfetmeyi ve aynı zamanda içsel özgürlüğünüzü gerçekten besleyen bağlılıkları ayırt etmeyi öğrenmenizi önerir.",
+      "thread": "Ana izleğiniz, bilinmeyene yönelen istek ile kendinize sadık kalma arzusunu birleştirir. Bu yorum, her yeniliği zorunluluk hâline getirmeden başlangıçlara açık olmayı önerir. Özgürlük bazen duraklamalardan, güvenilir ilişkilerden ve zaman içinde yeniden seçebileceğiniz kararlardan da beslenir. Kendi ritminiz, yeni deneyimlere sağlamlık katabilir."
+    }
+  },
+  "info": {
+    "portrait": "Doğum kartı ile yaşam yolu arkanası aynı doğum tarihinden yola çıkar, ancak farklı yöntemlerle hesaplanır. İlki, ZODIAC uygulamasında büyük arkanalar için zaten kullanılan yöntemi izler. İkincisi, usta sayıları koruyan numerolojik indirgemeyi kullanır. Aralarındaki benzerlikler düşünmeye yönelik sembolik bağlantılardır; kişiliğinizi kesin biçimde tanımlamaz ve kaderinizi belirlemez.",
+    "portraitDecan": "ZODIAC, dekanların gezegenlerini üçlü gruplara dayalı astrolojik sisteme göre belirlerken küçük arkana karşılıklarını Golden Dawn geleneğinin Keldani atamalarına göre sunar. Bu yüzden Koç burcunun üçüncü dekanı için ZODIAC Jüpiter gezegenini gösterirken Golden Dawn sistemi Venüs ile Dört Değnek kartını ilişkilendirir. Bir burcun yönetici gezegeni ile dekanın gezegeni farklı kavramlardır. Tarihsel Golden Dawn yedi gezegeni kullanıyordu; Uranüs, Neptün ve Plüton ile arkanalar arasında kurulan ilişkiler özgün tarihsel atamalar değil, modern genişletmelerdir."
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "lang": "pt",
+  "labels": {
+    "title": "Retrato simbólico",
+    "more": "Ler o retrato completo",
+    "less": "Recolher o retrato",
+    "sections": {
+      "arcana": "Seus dois arcanos",
+      "energy": "Sua energia pessoal",
+      "strengths": "Suas forças e recursos",
+      "challenges": "Seus desafios e aprendizados",
+      "sky": "Seu céu e suas correspondências com o tarô",
+      "thread": "Seu fio condutor"
+    },
+    "birthCard": "Carta de nascimento",
+    "lifePathArcana": "Arcano do caminho de vida",
+    "sign": "Signo",
+    "planet": "Planeta regente",
+    "decan": "Decanato",
+    "uncertain": "incerto sem a hora de nascimento"
+  },
+  "phrases": {
+    "convergence": "Quando os dois cálculos chegam ao mesmo arquétipo, oferecem dois olhares sobre um tema comum, sem torná-lo mais certo nem limitar a sua história a uma única interpretação.",
+    "master": "O número mestre mantém seu lugar no seu percurso; sua redução secundária a {n} acrescenta uma nuance, sem apagá-lo.",
+    "skyIntro": "A tradição da Golden Dawn propõe correspondências simbólicas entre o céu e as cartas, apresentadas como possibilidades de interpretação e reflexão."
+  },
+  "arcana": {
+    "fool": {
+      "essence": "A abertura ao desconhecido evoca uma liberdade ainda sem contornos definidos. Esta imagem convida a seguir com curiosidade, preservando uma referência interior quando as possibilidades se multiplicam ."
+    },
+    "magician": {
+      "essence": "A iniciativa ganha forma quando os recursos disponíveis encontram uma intenção clara. Este arquétipo convida a experimentar caminhos e transformar a vontade de agir em um gesto concreto."
+    },
+    "priestess": {
+      "essence": "O silêncio e a observação criam espaço para perceber o que amadurece discretamente. Esta figura sugere escutar impressões profundas sem abandonar o discernimento, o diálogo com outras pessoas."
+    },
+    "empress": {
+      "essence": "A fertilidade das ideias e o prazer de criar alimentam este arquétipo. Ele convida a cultivar o que importa, reunindo sensibilidade, expressão pessoal e atenção às necessidades de outras pessoas."
+    },
+    "emperor": {
+      "essence": "A busca por estrutura dá uma forma duradoura às intenções. Esta figura explora responsabilidade e estabilidade, lembrando também que uma organização útil pode continuar flexível, receptiva e aberta a mudanças."
+    },
+    "hierophant": {
+      "essence": "A transmissão de conhecimentos e o diálogo com tradições abrem caminhos de aprendizado. Este arquétipo convida a compreender as regras recebidas e escolher conscientemente quais ainda fazem sentido ."
+    },
+    "lovers": {
+      "essence": "Uma escolha se torna mais clara quando respeita vínculos e valores pessoais. Esta figura convida a buscar acordos sinceros, em vez de aceitar apenas respostas esperadas por outras pessoas."
+    },
+    "chariot": {
+      "essence": "O impulso de avançar pede que forças às vezes contraditórias encontrem direção comum. Este arquétipo evoca persistência e propósito, construídos tanto pela determinação quanto pela escuta atenta dos próprios limites."
+    },
+    "strength": {
+      "essence": "A coragem também pode se expressar pela delicadeza, não apenas pela imposição. Esta imagem valoriza paciência, confiança construída aos poucos e uma relação mais serena com emoções e impulsos intensos."
+    },
+    "hermit": {
+      "essence": "O recolhimento voluntário às vezes ajuda a separar o essencial do ruído cotidiano. Esta figura convida a cultivar o próprio discernimento sem fechar a porta ao diálogo ."
+    },
+    "wheel": {
+      "essence": "As mudanças lembram que cada percurso atravessa ritmos e ciclos diferentes. Este arquétipo propõe acolher oportunidades emergentes sem confundir capacidade de adaptação com abandono dos próprios valores e prioridades."
+    },
+    "justice": {
+      "essence": "A busca por equilíbrio coloca escolhas e consequências em diálogo. Esta figura convida a observar situações com honestidade, considerar perspectivas diversas e ajustar decisões sem exigir respostas simples para tudo."
+    },
+    "hangedman": {
+      "essence": "Uma pausa pode revelar perspectivas que antes passavam despercebidas. Este arquétipo convida a desacelerar, soltar a urgência e reconhecer as transformações possíveis quando se aprende a olhar de outro modo."
+    },
+    "death": {
+      "essence": "O encerramento de uma etapa pode abrir espaço para algo novo. Esta imagem fala de transformação interior, desprendimento gradual e respeito pelos diferentes ritmos que acompanham cada processo de transição."
+    },
+    "temperance": {
+      "essence": "A arte de unir elementos diferentes favorece um equilíbrio em movimento. Esta figura sugere ajustes graduais, circulação mais tranquila das emoções e paciência diante de transformações que precisam amadurecer."
+    },
+    "devil": {
+      "essence": "Vínculos intensos podem revelar desejos e hábitos que restringem escolhas. Este arquétipo convida a observar dependências simbólicas com lucidez, sem vergonha, julgamentos morais nem a ideia de um destino inevitável."
+    },
+    "tower": {
+      "essence": "Uma certeza abalada às vezes abre espaço para uma verdade mais complexa. Esta imagem sugere questionar estruturas que ficaram estreitas e reconstruir referências em um ritmo possível, sem pressa desnecessária."
+    },
+    "star": {
+      "essence": "Uma confiança discreta pode renascer após momentos de dúvida. Esta figura evoca inspiração, simplicidade reencontrada e a possibilidade de continuar caminhando sem exigir garantias absolutas a cada passo."
+    },
+    "moon": {
+      "essence": "Sentimentos e imagens interiores podem enriquecer a compreensão sem explicar tudo. Este arquétipo convida a explorar incertezas com sensibilidade, mantendo espaço para conferir impressões e considerar outras interpretações."
+    },
+    "sun": {
+      "essence": "Uma clareza acolhedora favorece a expressão pessoal e relações mais simples. Esta figura convida a compartilhar recursos com generosidade, sem esperar alegria permanente, respostas perfeitas ou harmonia constante."
+    },
+    "judgement": {
+      "essence": "Uma tomada de consciência pode reunir o sentido de experiências dispersas. Este arquétipo propõe escutar um chamado interior e escolher com liberdade aquilo que merece atenção, resposta e continuidade."
+    },
+    "world": {
+      "essence": "A sensação de realização conecta aprendizados a uma perspectiva mais ampla. Esta imagem convida a reconhecer o caminho percorrido, lembrando que até os equilíbrios conquistados podem continuar evoluindo ."
+    }
+  },
+  "lifePath": {
+    "magician": {
+      "energy": "Seu percurso simbólico começa com o desejo de fazer surgir possibilidades, mesmo quando os recursos disponíveis parecem modestos. Novos começos, experiências e encontros podem despertar sua curiosidade e ampliar horizontes. O desafio é reconhecer uma intenção suficientemente clara para que tantas ideias não fiquem apenas no entusiasmo inicial, mas encontrem uma direção que possa ser cultivada com constância.",
+      "strengths": "Inventividade, observação e facilidade para conectar ideias podem ser recursos importantes no seu caminho. Essas capacidades se aprofundam quando você prepara suas ações e escuta as respostas recebidas durante o processo. Aqui, uma realização simbólica depende menos de causar impressão e mais de utilizar o que está ao seu alcance com atenção, cuidado e propósito.",
+      "challenges": "A impaciência ou a vontade de provar algo podem dispersar seus esforços. Muitos projetos simultâneos deixam pouco espaço para uma intenção amadurecer. Uma pausa ajuda a reconhecer o que merece continuidade.",
+      "lesson": "Esta leitura propõe escolher um primeiro gesto sincero e conceder a ele o tempo e a atenção de que precisa para amadurecer.",
+      "thread": "Entre a vontade de começar e a necessidade de dar continuidade, seu fio condutor evoca a arte de transformar possibilidades em formas concretas. Receba esta leitura como um convite ao diálogo entre imaginação, preparação e responsabilidade, sem transformar cada impulso em obrigação de agir imediatamente."
+    },
+    "priestess": {
+      "energy": "Seu caminho simbólico valoriza momentos de escuta, perguntas profundas e descobertas discretas. Você pode avançar reunindo sinais e detalhes que passam despercebidos a outras pessoas, deixando que seus significados se revelem aos poucos. Essa maneira de caminhar ganha força quando permanece aberta ao mundo, permitindo que a intuição converse com acontecimentos, informações verificáveis e vozes diferentes.",
+      "strengths": "A atenção às nuances, uma memória sensível e a paciência diante de situações complexas podem sustentar sua trajetória. Ao acolher confidências sem carregar todas elas, você favorece conversas profundas e respeitosas. Sua principal força simbólica aparece quando a discrição se transforma em presença interessada e cuidadosa, em vez de uma distância que impeça encontros e trocas.",
+      "challenges": "Esperar por um sinal perfeitamente claro pode adiar decisões. Guardar sentimentos demais também transforma proteção em isolamento. Uma conversa respeitosa permite conferir percepções e descobrir perspectivas que a observação interior não oferece.",
+      "lesson": "O aprendizado sugerido é confiar na própria escuta sem pedir que ela substitua a verificação dos fatos ou a iniciativa necessária.",
+      "thread": "Seu fio condutor aproxima aquilo que amadurece no interior daquilo que pode ser compartilhado com delicadeza. Esta leitura convida a preservar espaços de silêncio e, ao mesmo tempo, abrir caminhos para o encontro, sem transformar a sensibilidade em segredo permanente ou convicção inquestionável."
+    },
+    "empress": {
+      "energy": "Seu percurso simbólico ilumina crescimento, expressão e vontade de cuidar daquilo que existe ao redor. Gestos capazes de fortalecer uma ideia, uma relação ou um projeto podem despertar interesse. Essa energia floresce quando a criatividade acompanha seu ritmo pessoal, sem exigir que você corresponda a todas as expectativas ou assuma a responsabilidade por tudo o que deseja desenvolver.",
+      "strengths": "Imaginação, sensibilidade para as formas e atenção às necessidades concretas podem se tornar apoios fecundos. Talvez você encontre facilidade para criar ambientes em que ideias circulam e se transformam em iniciativas reais. Essa generosidade conserva sua força quando também há espaço para receber apoio, reconhecer limites e cuidar de si, sem transformar a criação em cobrança constante.",
+      "challenges": "Tentar cultivar tudo ao mesmo tempo pode trazer cansaço e confundir prioridades. A opinião alheia às vezes ocupa o espaço do prazer de criar. Escolher onde investir energia ajuda a recuperar o sentido.",
+      "lesson": "A lição é cultivar sem se esgotar, permitindo que cada projeto encontre sua estação, seu ritmo e uma medida possível.",
+      "thread": "Seu fio condutor fala de uma criatividade mais coerente quando alegria e moderação encontram lugar lado a lado. Os símbolos convidam a escolher o que merece amadurecer, proteger seu espaço pessoal e reconhecer também as formas discretas de crescimento que acontecem sem aplausos."
+    },
+    "emperor": {
+      "energy": "Seu caminho simbólico gira em torno da construção de referências confiáveis. A clareza nos compromissos, a continuidade dos esforços e a estabilidade necessária para realizar projetos podem ter valor para você. Essa energia não exige controle absoluto: encontra sentido quando a estrutura também protege as pessoas envolvidas e oferece espaço para mudanças, imprevistos e diferentes maneiras de participar.",
+      "strengths": "Constância, capacidade de organização e senso de responsabilidade podem oferecer uma base sólida. Talvez você tenha facilidade para transformar uma ideia confusa em etapas possíveis e transmitir segurança por meio de atitudes consistentes. Esses recursos se tornam ainda mais importantes quando você reconhece que existem outros caminhos válidos, mesmo que sejam diferentes das soluções que costuma preferir.",
+      "challenges": "A busca por segurança pode virar controle excessivo ou resistência à mudança. Muitas regras reduzem a flexibilidade necessária nas relações e nos projetos. Abrir espaço para o inesperado ajuda a preservar a utilidade das estruturas.",
+      "lesson": "O aprendizado proposto é construir estruturas firmes que também deixem circular a confiança, a escuta e a possibilidade do inesperado.",
+      "thread": "Seu fio condutor fala de uma estabilidade a ser construída, não de uma ordem a ser imposta. Esta leitura convida a reunir responsabilidade e acolhimento, firmeza e adaptação, para que tudo o que você organiza permaneça vivo. A autoridade simbólica se torna serviço, não objetivo final."
+    },
+    "hierophant": {
+      "energy": "Seu percurso simbólico se interessa pelos conhecimentos transmitidos, pelos valores compartilhados e pelos gestos que aproximam gerações. Você pode querer compreender por que uma prática tem importância para certas pessoas e como ela ganha significado hoje. Essa energia cresce quando a herança recebida inspira perguntas e conversas, em vez de se transformar em um conjunto de respostas obrigatórias.",
+      "strengths": "Sua capacidade de escutar, explicar ideias e reconhecer referências coletivas pode apoiar diálogos construtivos. Você talvez encontre maneiras de tornar questões complexas mais claras e compartilhar conhecimentos sem apagar suas nuances. Essa força inclui reconhecer o que cada pessoa acrescenta a uma tradição viva, na qual aprender não significa apenas repetir, mas também fazer perguntas e renovar sentidos.",
+      "challenges": "A necessidade de regras comuns pode deixar pouco espaço para percursos individuais. O receio de decepcionar um grupo também pode dificultar sua busca de significado. Uma dúvida bem formulada enriquece o diálogo entre expectativas diferentes.",
+      "lesson": "Esta via convida a honrar os conhecimentos recebidos sem abrir mão da liberdade de questionar sua pertinência na própria vida.",
+      "thread": "Seu fio condutor reúne pertencimento e autonomia, memória coletiva e discernimento pessoal. O retrato sugere ver a transmissão como uma troca viva: aprender, questionar, compartilhar e permitir que cada pessoa construa sua própria resposta. Assim, tradição e liberdade não precisam se excluir."
+    },
+    "lovers": {
+      "energy": "Seu percurso simbólico dá espaço especial às escolhas que envolvem valores pessoais e relações. Você pode perceber com intensidade a distância entre desejos, compromissos assumidos e expectativas de outras pessoas. Essa energia não busca necessariamente uma harmonia sem conflitos, mas uma maneira sincera de seguir adiante, reconhecendo diferenças e preservando a dignidade de cada pessoa envolvida nas decisões.",
+      "strengths": "Sensibilidade às nuances, disposição para o diálogo e interesse em construir acordos podem ser recursos valiosos. Talvez você perceba diferentes lados de um dilema sem deixar de considerar quem participa dele. Essa abertura fica mais forte quando suas necessidades têm a mesma legitimidade das necessidades alheias, permitindo relações em que a reciprocidade não dependa de silêncio ou renúncia.",
+      "challenges": "O medo de desagradar pode prolongar hesitações e tornar escolhas pesadas. Procurar consenso a qualquer custo também pode esconder diferenças que precisam ser reconhecidas. Uma conversa clara ajuda a recuperar seu lugar sem transformar discordâncias em fracasso.",
+      "lesson": "O aprendizado é escolher com sinceridade, aceitando que os vínculos vivos também precisam de espaço para diferenças reais e legítimas.",
+      "thread": "Seu fio condutor atravessa o encontro entre desejo pessoal e responsabilidade nos relacionamentos. Esta leitura convida a reconhecer escolhas que sustentem os laços sem apagar sua voz. Não se trata de encontrar uma resposta perfeita, mas de cultivar uma direção que faça sentido para você."
+    },
+    "chariot": {
+      "energy": "Seu percurso simbólico evoca movimento, direção escolhida e esforço para reunir aspirações diferentes. A vontade de avançar rapidamente pode conviver com a necessidade de descobrir o que merece sua energia. Essa dinâmica se torna fértil quando você dá tanta importância ao rumo quanto à velocidade, reconhecendo que pausas e mudanças de estratégia fazem parte de uma trajetória consistente.",
+      "strengths": "Persistência, capacidade de decidir e coragem diante de novas etapas podem apoiar seu desenvolvimento. Talvez você consiga manter objetivos em vista mesmo quando surgem distrações ou dificuldades. Sua força mais duradoura aparece ao coordenar impulsos sem desprezar o descanso, a escuta e a cooperação, para que o caminho não se torne apenas uma corrida em busca de resultados.",
+      "challenges": "A vontade de seguir adiante pode afastar sua atenção dos sinais de cansaço ou de opiniões úteis. Uma conquista buscada depressa demais pode perder o significado inicial. Uma pausa cuidadosa permite rever o rumo sem desistir.",
+      "lesson": "A lição proposta é avançar com determinação, preservando o direito de rever sua direção, sua velocidade e suas prioridades.",
+      "thread": "Seu fio condutor une impulso e discernimento, prazer pelas etapas vencidas e atenção ao trajeto percorrido. Esta leitura propõe receber tensões interiores como energias a coordenar, não como inimigos a derrotar, e escolher um progresso que preserve sentido, vínculos e espaço para respirar."
+    },
+    "strength": {
+      "energy": "Seu caminho simbólico explora o encontro entre emoções intensas e a possibilidade de responder com delicadeza. Você pode se reconhecer em situações que exigem coragem sem rigidez ou paciência sem desistência. Essa energia convida a tratar emoções fortes como informações a compreender e acolher, em vez de adversárias que precisam ser vencidas ou abafadas a qualquer custo.",
+      "strengths": "Serenidade, resistência emocional e capacidade de tranquilizar podem ajudar em períodos difíceis. Talvez você consiga diminuir tensões ao oferecer espaço para cada pessoa, sem negar aquilo que considera importante. Essa força ganha profundidade quando também inclui o direito de pedir apoio, reconhecer necessidades e mostrar vulnerabilidade, sem transformar autocontrole em uma obrigação permanente e solitária.",
+      "challenges": "A vontade de manter a firmeza pode dificultar a expressão das próprias necessidades. Conter toda emoção também pode torná-la mais difícil de compreender. Dar nome a um sentimento ou pedir apoio são possibilidades de cuidado, não fraquezas.",
+      "lesson": "A lição convida a reconhecer a vulnerabilidade como parte da confiança, e não como sua negação ou seu contrário.",
+      "thread": "Seu fio condutor aproxima intensidade interior e delicadeza nos gestos. Este retrato propõe cultivar uma coragem que não precise dominar para existir. Ao acolher limites e necessidades, você abre espaço para uma confiança paciente, partilhada e capaz de enfrentar dificuldades sem endurecer relações."
+    },
+    "justice": {
+      "energy": "Seu percurso simbólico pergunta como equilibrar intenções, ações e consequências. Você pode procurar coerência nas decisões, respeito mútuo e clareza nas palavras. Essa energia se torna mais flexível quando você reconhece que pontos de vista diferentes podem ser sinceros, embora não levem às mesmas conclusões, e que uma resposta justa também precisa considerar os contextos humanos.",
+      "strengths": "Senso de equidade, atenção aos detalhes e capacidade de avaliar situações podem oferecer referências confiáveis. Talvez você consiga tornar discussões mais claras ao distinguir fatos, impressões e preferências. Essa qualidade floresce quando reserva espaço para a compaixão e a dúvida produtiva, lembrando que a compreensão de pessoas e acontecimentos nem sempre cabe em uma regra única.",
+      "challenges": "A exigência de coerência pode se tornar severa com você ou com outras pessoas. Esperar informações perfeitas antes de decidir também pode prolongar a incerteza. O diálogo e a abertura para rever avaliações tornam as escolhas mais humanas.",
+      "lesson": "Esta via propõe buscar o que parece justo com rigor, sem esquecer a complexidade das pessoas e das circunstâncias.",
+      "thread": "Seu fio condutor liga lucidez e humanidade, desejo de coerência e disposição para rever julgamentos. Esta leitura convida a praticar o equilíbrio como atenção contínua, não como padrão fixo. Assim, a nuance pode sustentar escolhas responsáveis sem exigir uma certeza impossível."
+    },
+    "hermit": {
+      "energy": "Seu caminho simbólico valoriza perguntas amadurecidas com tempo, a busca de significado pessoal e intervalos de distância da agitação. Você pode preferir compreender antes de se expor ou avançar no próprio ritmo em vez de acompanhar um grupo. Essa energia cresce quando o recolhimento escolhido permanece conectado a encontros que ampliam perspectivas e trazem outras formas de compreender.",
+      "strengths": "Observação, paciência e disposição para aprofundar questões podem revelar ideias ricas em nuances. Talvez você perceba detalhes importantes onde outras pessoas encontram apenas confusão. Esses recursos se tornam mais fecundos ao compartilhar descobertas, mesmo ainda incompletas, com quem possa acolhê-las e desenvolvê-las em diálogo, sem exigir respostas prontas ou uma exposição maior do que deseja.",
+      "challenges": "O recolhimento protetor pode virar hábito e afastar encontros importantes. Buscar todas as respostas sem companhia torna mais pesadas perguntas que poderiam ser compartilhadas. Um olhar externo às vezes alivia a investigação, sem tirar dela seu caráter pessoal.",
+      "lesson": "A lição sugere preservar seu espaço interior e aceitar que outras perspectivas também possam acompanhar e enriquecer sua busca.",
+      "thread": "Seu fio condutor evoca uma luz discreta, construída pela atenção e transmitida sem alarde. Este retrato convida a confiar no próprio ritmo, mantendo caminhos abertos para o mundo. Uma investigação pessoal pode ganhar profundidade com encontros, sem perder sua singularidade nem sua autonomia."
+    },
+    "fool": {
+      "energy": "Seu percurso simbólico deixa amplo espaço para começos inesperados, possibilidades abertas e desejo de explorar com liberdade. Caminhos ainda indefinidos podem despertar entusiasmo e curiosidade. Essa energia cresce quando a vontade de descobrir vem acompanhada de algumas referências escolhidas por você, capazes de orientar decisões sem aprisionar o movimento nem transformar a novidade em exigência constante.",
+      "strengths": "Espontaneidade, capacidade de observar por outros ângulos e gosto pela descoberta podem revelar novas possibilidades. Talvez você consiga acolher encontros e ideias sem classificá-los imediatamente. Essas qualidades ficam mais sólidas quando existe tempo para considerar o que cada aventura envolve e para distinguir um convite fértil de uma dispersão que afasta prioridades importantes.",
+      "challenges": "O fascínio pela novidade pode dispersar compromissos ou esconder necessidades de estabilidade. Rejeitar qualquer limite com pressa também afasta apoios escolhidos livremente. Um ponto de apoio pode sustentar sua liberdade sem restringi-la.",
+      "lesson": "A lição propõe explorar com confiança, reconhecendo os compromissos que realmente sustentam e ampliam sua liberdade interior.",
+      "thread": "Seu fio condutor atravessa o impulso de descobrir e o desejo de manter fidelidade a si. Esta leitura convida a acolher recomeços sem fazer da novidade uma obrigação. A liberdade também se alimenta de pausas, vínculos confiáveis e escolhas que podem ser renovadas."
+    }
+  },
+  "info": {
+    "portrait": "A carta de nascimento e o arcano do caminho de vida são obtidos a partir da mesma data, mas por dois cálculos diferentes. A primeira segue o método dos Arcanos Maiores já utilizado pelo ZODIAC. O segundo usa a redução numerológica que preserva os números mestres. As relações entre ambos convidam a uma reflexão simbólica; não determinam uma personalidade nem um destino.",
+    "portraitDecan": "O ZODIAC associa os planetas dos decanatos segundo as triplicidades, enquanto as correspondências dos Arcanos Menores seguem a tradição Golden Dawn e suas atribuições caldeias. Assim, no terceiro decanato de Áries, o ZODIAC indica Júpiter, mas a Golden Dawn relaciona Vênus ao Quatro de Bastões. O planeta regente do signo e o planeta do decanato são conceitos diferentes. A Golden Dawn histórica utilizava sete planetas; as associações dos arcanos a Urano, Netuno e Plutão são extensões modernas, não atribuições históricas originais."
+  }
+}

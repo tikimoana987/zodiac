@@ -1,0 +1,178 @@
+{
+  "lang": "fr",
+  "labels": {
+    "title": "Portrait symbolique",
+    "more": "Lire le portrait complet",
+    "less": "Replier le portrait",
+    "sections": {
+      "arcana": "Vos deux arcanes",
+      "energy": "Votre énergie personnelle",
+      "strengths": "Vos forces et ressources",
+      "challenges": "Vos défis et leçons",
+      "sky": "Votre ciel et ses correspondances avec le tarot",
+      "thread": "Votre fil conducteur"
+    },
+    "birthCard": "Carte de naissance",
+    "lifePathArcana": "Arcane du chemin de vie",
+    "sign": "Signe",
+    "planet": "Planète maîtresse",
+    "decan": "Décan",
+    "uncertain": "incertain sans l'heure de naissance"
+  },
+  "phrases": {
+    "convergence": "Lorsque les deux calculs rejoignent un même archétype, ils proposent deux regards sur un thème commun, sans le rendre plus certain ni enfermer votre histoire dans une seule lecture.",
+    "master": "Le nombre maître garde sa place dans votre parcours ; sa réduction secondaire vers {n} ajoute une nuance, sans l'effacer.",
+    "skyIntro": "La tradition de la Golden Dawn propose des correspondances symboliques entre le ciel et les cartes, présentées comme des pistes de lecture."
+  },
+  "arcana": {
+    "fool": {
+      "essence": "L'ouverture à l'inconnu évoque une liberté encore sans contour. Cette image invite à avancer avec curiosité, tout en gardant un repère intérieur lorsque les possibilités se multiplient."
+    },
+    "magician": {
+      "essence": "Une capacité d'initiative se dessine lorsque les ressources disponibles rencontrent une intention claire. Cet archétype invite à expérimenter, puis à transformer l'envie d'agir en geste concret."
+    },
+    "priestess": {
+      "essence": "Le silence et l'observation offrent un espace pour reconnaître ce qui mûrit discrètement. Cette figure suggère d'écouter les impressions profondes sans renoncer au discernement ni aux échanges."
+    },
+    "empress": {
+      "essence": "La fécondité des idées et le plaisir de créer nourrissent cet archétype. Il propose de faire grandir ce qui compte en associant sensibilité, expression personnelle et attention aux autres."
+    },
+    "emperor": {
+      "essence": "La recherche de structure donne une forme durable aux intentions. Cette figure explore la responsabilité et la stabilité, tout en rappelant qu'un cadre utile peut rester souple et accueillant."
+    },
+    "hierophant": {
+      "essence": "La transmission et le dialogue avec les traditions ouvrent un chemin d'apprentissage. Cet archétype invite à comprendre les règles reçues, puis à choisir consciemment celles qui restent vivantes."
+    },
+    "lovers": {
+      "essence": "Un choix devient plus lisible lorsqu'il respecte à la fois les liens et les valeurs personnelles. Cette figure invite à rechercher un accord sincère plutôt qu'une réponse simplement attendue."
+    },
+    "chariot": {
+      "essence": "L'élan de progression demande de réunir plusieurs forces parfois contradictoires. Cet archétype évoque une direction assumée, construite par la persévérance autant que par l'écoute des limites."
+    },
+    "strength": {
+      "essence": "Le courage peut s'exprimer par la douceur plutôt que par la contrainte. Cette image valorise la patience, la confiance progressive et une relation apaisée avec les émotions intenses."
+    },
+    "hermit": {
+      "essence": "Le retrait volontaire permet parfois de distinguer l'essentiel du bruit ambiant. Cette figure invite à cultiver son jugement personnel sans fermer la porte aux présences bienveillantes."
+    },
+    "wheel": {
+      "essence": "Les changements rappellent que tout parcours traverse des rythmes différents. Cet archétype propose d'accueillir les occasions qui émergent, sans confondre adaptation et abandon de ses priorités."
+    },
+    "justice": {
+      "essence": "La recherche d'équilibre confronte les choix à leurs conséquences. Cette figure invite à regarder les situations avec honnêteté, à écouter plusieurs perspectives et à ajuster ses décisions."
+    },
+    "hangedman": {
+      "essence": "Un temps de suspension peut révéler une perspective inattendue. Cet archétype invite à relâcher la précipitation et à reconnaître ce qui se transforme lorsque le regard change."
+    },
+    "death": {
+      "essence": "La fin d'une étape peut dégager une place pour autre chose. Cette image parle de transformation intérieure, de détachement progressif et du respect nécessaire envers les transitions."
+    },
+    "temperance": {
+      "essence": "L'art de relier des éléments différents favorise un équilibre vivant. Cette figure suggère des ajustements mesurés, une circulation apaisée des émotions et la patience des transformations durables."
+    },
+    "devil": {
+      "essence": "Des attachements puissants peuvent éclairer les désirs comme les habitudes qui limitent. Cet archétype invite à regarder ses dépendances symboliques avec lucidité, sans honte ni fatalisme."
+    },
+    "tower": {
+      "essence": "Une certitude ébranlée ouvre parfois un espace de vérité plus nuancé. Cette image suggère de questionner les structures devenues étroites, puis de reconstruire à un rythme soutenable."
+    },
+    "star": {
+      "essence": "Une confiance discrète peut renaître après des périodes de doute. Cette figure évoque l'inspiration, la simplicité retrouvée et la capacité d'avancer sans exiger de garantie absolue."
+    },
+    "moon": {
+      "essence": "Les ressentis et les images intérieures peuvent enrichir la compréhension sans tout expliquer. Cet archétype invite à explorer l'incertitude avec sensibilité, tout en vérifiant ses impressions."
+    },
+    "sun": {
+      "essence": "Une clarté chaleureuse favorise l'expression de soi et les liens simples. Cette figure invite à partager ses ressources avec générosité, sans attendre une joie permanente ni parfaite."
+    },
+    "judgement": {
+      "essence": "Une prise de conscience peut redonner du sens à des expériences dispersées. Cet archétype propose d'écouter un appel intérieur, puis de choisir librement ce qui mérite réponse."
+    },
+    "world": {
+      "essence": "La sensation d'accomplissement relie les apprentissages à une vision plus vaste. Cette image invite à reconnaître le chemin parcouru, sans oublier que tout équilibre demeure évolutif."
+    }
+  },
+  "lifePath": {
+    "magician": {
+      "energy": "Votre parcours symbolique commence par le désir de faire émerger une possibilité à partir de moyens parfois modestes. Vous pourriez vous sentir stimulé par les débuts, les essais et les rencontres qui ouvrent des portes. L'enjeu consiste à choisir une intention assez nette pour que la curiosité trouve une direction suivie.",
+      "strengths": "Vous pouvez puiser dans votre inventivité, votre sens de l'observation et votre capacité à relier rapidement des idées. Ces ressources prennent de la profondeur lorsque vous acceptez de préparer vos gestes et d'écouter les retours. Une réussite symbolique réside moins dans l'effet produit que dans la justesse de l'usage.",
+      "challenges": "L'impatience ou le besoin de prouver quelque chose pourrait disperser vos efforts. À force de multiplier les projets, une intention précieuse risque de manquer d'espace pour se développer vraiment. Une pause peut rendre vos choix plus lisibles.",
+      "lesson": "La leçon proposée est de choisir un premier geste sincère et de lui accorder le temps nécessaire pour mûrir.",
+      "thread": "Entre désir de commencer et besoin de durer, votre fil conducteur évoque l'art de donner une forme à vos possibilités. Prenez cette lecture comme une invitation à faire dialoguer imagination, préparation et attention aux conséquences, plutôt que comme une obligation de toujours agir."
+    },
+    "priestess": {
+      "energy": "Votre chemin symbolique privilégie les temps d'écoute, les questions profondes et les découvertes silencieuses. Vous pourriez avancer en recueillant des indices que d'autres remarquent moins, puis en laissant leur sens se préciser. Cette manière de progresser gagne à rester ouverte au monde, afin que l'intuition dialogue avec des faits et des paroles.",
+      "strengths": "Vous disposez peut-être d'une grande qualité d'attention, d'une mémoire sensible des nuances et d'une patience utile face aux situations complexes. En laissant une place aux confidences sans les absorber toutes, vous pouvez favoriser des échanges profonds. Votre ressource majeure se révèle lorsque la réserve devient présence attentive plutôt que distance.",
+      "challenges": "Le besoin d'attendre un signe parfaitement clair pourrait retarder vos décisions. Garder trop de choses pour vous risque aussi de transformer une protection précieuse en isolement inutile. Le dialogue peut alors apporter un éclairage complémentaire.",
+      "lesson": "Cette voie invite à faire confiance à votre écoute sans lui demander de remplacer toute vérification ou toute action.",
+      "thread": "Votre fil conducteur relie ce qui se comprend intérieurement à ce qui peut se partager avec délicatesse. Cette lecture vous invite à préserver des espaces de silence, puis à ouvrir des passages vers les autres, sans réduire votre sensibilité à un secret ou à une certitude."
+    },
+    "empress": {
+      "energy": "Votre parcours symbolique met en lumière la croissance, l'expression et le désir de nourrir ce qui vous entoure. Vous pourriez vous reconnaître dans les gestes qui donnent confiance à une idée ou à une relation. Cette énergie se déploie pleinement quand la créativité respecte votre propre rythme, au lieu de répondre à toutes les attentes.",
+      "strengths": "L'imagination, le sens des formes et l'attention portée aux besoins concrets peuvent devenir des appuis féconds. Vous avez peut-être le talent de créer une atmosphère où les idées circulent et prennent corps. Cette générosité garde toute sa force lorsque vous acceptez aussi de recevoir du soutien et de poser des limites.",
+      "challenges": "Vouloir tout faire grandir à la fois pourrait vous fatiguer ou brouiller vos priorités. Le regard des autres risque parfois de prendre plus de place que votre plaisir de créer.",
+      "lesson": "La leçon consiste à cultiver sans vous épuiser, en laissant chaque projet trouver sa saison et sa mesure.",
+      "thread": "Votre fil conducteur évoque une créativité qui devient plus juste lorsqu'elle accueille autant la joie que la retenue. Les symboles vous invitent à choisir ce que vous souhaitez faire mûrir, à protéger votre espace personnel et à célébrer les formes de croissance discrètes."
+    },
+    "emperor": {
+      "energy": "Votre chemin symbolique s'organise autour du besoin de construire des repères fiables. Vous pourriez rechercher la clarté des engagements, la continuité des efforts et une stabilité qui rend les projets possibles. Cette énergie ne demande pas de tout maîtriser : elle prend du sens quand le cadre protège les personnes autant qu'il soutient les objectifs.",
+      "strengths": "La constance, la capacité à organiser et le sens des responsabilités peuvent vous offrir une assise solide. Vous savez peut-être transformer une idée confuse en étapes accessibles et rassurer par votre présence. Ces qualités deviennent particulièrement précieuses lorsque vous autorisez d'autres manières de faire, même si elles diffèrent de vos habitudes.",
+      "challenges": "La recherche de sécurité pourrait se durcir en contrôle ou en refus du changement. Trop de règles risquent alors de réduire la souplesse nécessaire aux relations et aux projets. Une marge de jeu peut aider.",
+      "lesson": "La leçon proposée est de bâtir des cadres solides qui laissent pourtant circuler la confiance, l'écoute et l'imprévu.",
+      "thread": "Votre fil conducteur parle d'une stabilité à inventer plutôt que d'un ordre à imposer. Cette lecture invite à conjuguer responsabilité et accueil, fermeté et adaptation, pour que ce que vous construisez demeure vivant. L'autorité symbolique y devient un service rendu, non une fin en soi."
+    },
+    "hierophant": {
+      "energy": "Votre parcours symbolique s'intéresse aux savoirs transmis, aux valeurs partagées et aux gestes qui créent du lien entre générations. Vous pourriez aimer comprendre pourquoi une pratique compte pour certains, puis chercher comment lui donner une place actuelle. Cette énergie grandit quand l'héritage reçu devient matière à dialogue plutôt qu'ensemble de réponses imposées.",
+      "strengths": "Votre écoute, votre sens de la pédagogie et votre goût pour les repères collectifs peuvent soutenir des échanges constructifs. Vous pourriez aider à clarifier des questions complexes et à transmettre sans simplifier à l'excès. Votre force réside aussi dans la capacité de reconnaître ce que chaque personne apporte à une tradition vivante.",
+      "challenges": "Le besoin d'une règle commune pourrait laisser peu de place aux chemins singuliers. À l'inverse, craindre de décevoir un groupe peut freiner votre propre recherche de sens. Un doute constructif peut ouvrir des pistes nouvelles.",
+      "lesson": "Cette voie invite à honorer les héritages tout en gardant la liberté d'interroger leur pertinence pour votre vie.",
+      "thread": "Votre fil conducteur relie l'appartenance et l'autonomie, la mémoire des autres et votre propre jugement. Le portrait propose de voir la transmission comme un échange vivant : apprendre, questionner, partager, puis laisser à chacun la possibilité d'élaborer une réponse qui lui ressemble."
+    },
+    "lovers": {
+      "energy": "Votre parcours symbolique accorde une place importante aux choix qui engagent vos valeurs et vos relations. Vous pourriez ressentir intensément la distance entre ce que vous désirez, ce que vous promettez et ce que les autres attendent. Cette énergie cherche moins une harmonie parfaite qu'une manière sincère d'avancer sans nier les différences.",
+      "strengths": "La sensibilité aux nuances, l'aptitude à dialoguer et le souci de créer des accords peuvent être de véritables ressources. Vous savez peut-être voir plusieurs aspects d'un dilemme sans effacer les personnes concernées. Cette ouverture gagne en force lorsque vos propres besoins disposent de la même légitimité que ceux des autres.",
+      "challenges": "La peur de déplaire pourrait prolonger les hésitations et rendre les décisions pesantes. Chercher un accord à tout prix risque également de masquer des désaccords qui méritent d'être nommés. Une parole claire peut rétablir votre place.",
+      "lesson": "La leçon consiste à choisir avec sincérité, en acceptant qu'un lien vivant laisse place à des différences réelles.",
+      "thread": "Votre fil conducteur traverse la rencontre entre désir personnel et responsabilité relationnelle. Cette lecture vous invite à reconnaître les choix qui nourrissent les liens sans vous effacer. Il ne s'agit pas de rechercher une réponse parfaite, mais une orientation que vous puissiez habiter avec cohérence."
+    },
+    "chariot": {
+      "energy": "Votre parcours symbolique évoque le mouvement, le cap choisi et l'effort nécessaire pour réunir des aspirations différentes. Vous pourriez ressentir l'envie de progresser rapidement, tout en cherchant ce qui mérite vraiment votre énergie. Cette dynamique devient féconde lorsque vous accordez autant d'importance à la direction qu'à la vitesse, et aux pauses qu'aux avancées.",
+      "strengths": "La persévérance, la capacité à décider et le courage de franchir une étape peuvent soutenir votre évolution. Vous avez peut-être le talent de garder un objectif en vue malgré les distractions. Votre ressource la plus durable apparaît lorsque vous coordonnez vos élans sans écraser les besoins de repos, d'écoute ou de coopération.",
+      "challenges": "L'envie d'aller de l'avant pourrait vous éloigner des signaux de fatigue ou des avis utiles. Une réussite poursuivie trop vite risque de perdre le sens qui la motivait. Une halte attentive peut réorienter l'élan.",
+      "lesson": "La leçon proposée est d'avancer avec détermination tout en gardant le droit de réviser votre direction et votre rythme.",
+      "thread": "Votre fil conducteur unit l'élan et le discernement, le goût des étapes franchies et l'attention au chemin parcouru. Cette lecture invite à accueillir les tensions intérieures comme des forces à coordonner, plutôt que comme des obstacles à vaincre, et à choisir une progression qui garde du sens."
+    },
+    "strength": {
+      "energy": "Votre chemin symbolique explore la rencontre entre l'intensité ressentie et la douceur possible dans la réponse. Vous pourriez être particulièrement sensible aux situations qui demandent du courage sans dureté, ou de la patience sans renoncement. Cette énergie invite à reconnaître les émotions puissantes comme des informations à apprivoiser, non comme des ennemies à faire taire.",
+      "strengths": "Votre calme, votre endurance émotionnelle et votre capacité à rassurer peuvent soutenir les moments exigeants. Vous savez peut-être désamorcer une tension en laissant de l'espace à chacun, sans nier ce qui compte pour vous. Cette force prend toute sa valeur lorsqu'elle inclut aussi le droit de demander de l'aide.",
+      "challenges": "Vouloir rester solide en toutes circonstances pourrait vous empêcher de montrer vos besoins. À l'inverse, chercher à contenir chaque émotion risque de la rendre plus difficile à comprendre. Exprimer un besoin peut aussi vous soutenir.",
+      "lesson": "La leçon invite à considérer la vulnérabilité comme une part de la confiance, et non comme son contraire.",
+      "thread": "Votre fil conducteur met en dialogue la puissance intérieure et la délicatesse des gestes. Ce portrait propose de cultiver un courage qui n'a pas besoin de domination pour exister. En accueillant vos limites, vous pouvez donner davantage de place à une confiance patiente et partagée."
+    },
+    "justice": {
+      "energy": "Votre parcours symbolique interroge l'équilibre entre les intentions, les actes et leurs effets. Vous pourriez chercher spontanément la cohérence dans les décisions, le respect mutuel et une parole précise. Cette énergie devient plus souple lorsque vous admettez que plusieurs points de vue peuvent être sincères, même si tous ne conduisent pas à la même conclusion.",
+      "strengths": "Votre sens de l'équité, votre attention aux détails et votre faculté de peser les situations peuvent offrir des repères fiables. Vous savez peut-être rendre un débat plus clair en séparant faits, impressions et préférences. Cette ressource se déploie mieux lorsque vous gardez une place pour la nuance et la compassion.",
+      "challenges": "L'exigence de cohérence pourrait devenir sévère envers vous-même ou autrui. Attendre des informations parfaites avant de trancher risque aussi de prolonger inutilement une situation incertaine. Un dialogue ouvert peut alors rendre les choix moins solitaires et plus humains.",
+      "lesson": "Cette voie propose de rechercher le juste avec rigueur, sans oublier la complexité des personnes et des contextes.",
+      "thread": "Votre fil conducteur relie lucidité et humanité, besoin de cohérence et capacité à réviser un jugement. Cette lecture vous invite à faire de l'équilibre une pratique attentive plutôt qu'une norme figée. La nuance peut alors soutenir des choix responsables sans exiger de certitude totale."
+    },
+    "hermit": {
+      "energy": "Votre chemin symbolique valorise les questions longuement mûries, la recherche d'un sens personnel et les moments d'écart avec l'agitation. Vous pourriez préférer comprendre avant de vous exposer, ou avancer à votre rythme plutôt que suivre celui du groupe. Cette énergie gagne à rester reliée à des échanges qui enrichissent la solitude choisie.",
+      "strengths": "Votre sens de l'observation, votre patience et votre aptitude à approfondir peuvent faire émerger des idées nuancées. Vous savez peut-être repérer un détail significatif là où tout semble confus. Ces ressources deviennent plus fécondes lorsque vous partagez certaines découvertes, même inachevées, avec des personnes capables de les accueillir.",
+      "challenges": "Le retrait protecteur pourrait devenir une habitude qui éloigne des rencontres utiles. Chercher chaque réponse en solitaire risque également de rendre plus lourdes des questions pouvant être partagées. Un regard extérieur peut parfois alléger cette recherche.",
+      "lesson": "La leçon suggère de garder votre espace intérieur tout en acceptant que d'autres éclairages puissent accompagner votre recherche.",
+      "thread": "Votre fil conducteur évoque une lumière discrète qui se construit dans l'attention et se transmet sans bruit. Le portrait vous invite à faire confiance à votre tempo, tout en laissant ouvertes des portes vers le monde. Une recherche personnelle peut s'approfondir grâce aux rencontres, sans perdre sa singularité."
+    },
+    "fool": {
+      "energy": "Votre parcours symbolique laisse une grande place aux départs inattendus, aux possibilités encore ouvertes et au besoin d'explorer librement. Vous pourriez vous sentir vivant lorsque les chemins ne sont pas totalement dessinés. Cette énergie s'épanouit lorsqu'une curiosité joyeuse s'accompagne de quelques repères choisis, capables de soutenir les décisions sans enfermer le mouvement.",
+      "strengths": "Votre spontanéité, votre capacité à regarder autrement et votre goût de la découverte peuvent ouvrir des perspectives nouvelles. Vous savez peut-être accueillir une rencontre ou une idée sans lui imposer immédiatement une étiquette. Ces qualités deviennent plus solides lorsque vous prenez aussi le temps d'évaluer ce que chaque aventure demande.",
+      "challenges": "L'attrait de la nouveauté pourrait disperser vos engagements ou masquer des besoins de stabilité. Refuser trop vite toute contrainte risque de vous priver d'appuis pourtant librement choisis. Un ancrage librement choisi peut vous servir.",
+      "lesson": "La leçon propose d'explorer avec confiance, tout en discernant les engagements qui soutiennent réellement votre liberté intérieure.",
+      "thread": "Votre fil conducteur traverse l'élan vers l'inconnu et le désir de rester fidèle à vous-même. Cette lecture invite à accueillir les commencements sans faire de la nouveauté une obligation. La liberté se nourrit aussi de pauses, de relations fiables et de choix que vous pouvez renouveler."
+    }
+  },
+  "info": {
+    "portrait": "La carte de naissance et l'arcane du chemin de vie sont obtenus à partir de la même date, mais selon deux calculs différents. La première suit la méthode propre aux arcanes majeurs déjà utilisée par ZODIAC. Le second suit la réduction numérologique qui conserve les nombres maîtres. Leurs rapprochements invitent à une réflexion symbolique et ne décrivent ni une personnalité certaine ni un destin.",
+    "portraitDecan": "ZODIAC associe les planètes des décans selon les triplicités, tandis que les correspondances des cartes mineures suivent la tradition de la Golden Dawn et ses attributions chaldéennes. Ainsi, pour le troisième décan du Bélier, ZODIAC indique Jupiter, mais la correspondance Golden Dawn associe Vénus au Quatre de Bâtons. La planète maîtresse du signe et la planète du décan désignent deux notions différentes. La Golden Dawn historique utilisait sept planètes ; les rapprochements des arcanes avec Uranus, Neptune et Pluton sont des extensions modernes, non des attributions historiques originelles."
+  }
+}

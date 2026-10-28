@@ -1,0 +1,178 @@
+{
+  "lang": "de",
+  "labels": {
+    "title": "Symbolisches Porträt",
+    "more": "Vollständiges Porträt lesen",
+    "less": "Porträt einklappen",
+    "sections": {
+      "arcana": "Deine beiden Arkana",
+      "energy": "Deine persönliche Energie",
+      "strengths": "Deine Stärken und Ressourcen",
+      "challenges": "Deine Herausforderungen und Lernaufgaben",
+      "sky": "Dein Himmel und seine Verbindungen zum Tarot",
+      "thread": "Dein roter Faden"
+    },
+    "birthCard": "Geburtskarte",
+    "lifePathArcana": "Arkane des Lebenswegs",
+    "sign": "Sternzeichen",
+    "planet": "Herrscherplanet",
+    "decan": "Dekanat",
+    "uncertain": "ohne Geburtszeit nicht sicher"
+  },
+  "phrases": {
+    "convergence": "Wenn beide Berechnungen zum selben Archetyp führen, eröffnen sie zwei Perspektiven auf ein gemeinsames Thema, ohne deine Geschichte dadurch sicherer zu deuten oder sie auf eine einzige Lesart festzulegen.",
+    "master": "Die Meisterzahl behält ihren Platz auf deinem Weg; ihre zusätzliche Reduktion auf {n} ergänzt eine weitere Bedeutungsebene, ohne sie aufzuheben.",
+    "skyIntro": "Die Tradition der Golden Dawn verbindet Himmelskörper und Karten durch symbolische Entsprechungen, die hier als Anregungen zum Nachdenken dienen."
+  },
+  "arcana": {
+    "fool": {
+      "essence": "Die Offenheit gegenüber dem Unbekannten steht für eine Freiheit, die noch keine feste Form hat. Dieses Bild lädt dich ein, neugierig voranzugehen und zugleich einen inneren Orientierungspunkt zu bewahren, wenn sich viele Möglichkeiten zeigen."
+    },
+    "magician": {
+      "essence": "Eigeninitiative entsteht, wenn verfügbare Mittel auf eine klare Absicht treffen. Dieser Archetyp lädt dich ein, Neues auszuprobieren und den Wunsch, etwas zu beginnen, Schritt für Schritt in konkretes Handeln zu verwandeln."
+    },
+    "priestess": {
+      "essence": "Stille und Beobachtung schaffen Raum, um zu erkennen, was im Verborgenen heranreift. Diese Gestalt regt dich an, auf tiefe Empfindungen zu achten, ohne auf Unterscheidungsvermögen und den Austausch mit anderen zu verzichten."
+    },
+    "empress": {
+      "essence": "Fruchtbare Ideen und die Freude am Gestalten prägen diesen Archetyp. Er ermutigt dich, Wichtiges wachsen zu lassen und dabei Feingefühl, persönlichen Ausdruck und Aufmerksamkeit für andere Menschen miteinander zu verbinden."
+    },
+    "emperor": {
+      "essence": "Die Suche nach Struktur gibt deinen Absichten eine dauerhafte Form. Dieses Sinnbild verbindet Verantwortung und Beständigkeit mit der Erinnerung daran, dass auch ein hilfreicher Rahmen flexibel und einladend bleiben darf."
+    },
+    "hierophant": {
+      "essence": "Überlieferung und das Gespräch mit Traditionen eröffnen neue Wege des Lernens. Dieser Archetyp lädt dich ein, übernommene Regeln zu verstehen und dann bewusst auszuwählen, welche davon heute noch lebendig und sinnvoll sind."
+    },
+    "lovers": {
+      "essence": "Eine Entscheidung wird klarer, wenn sie Beziehungen und persönliche Werte gleichermaßen achtet. Dieses Bild lädt dich ein, eine aufrichtige Übereinstimmung zu suchen, statt lediglich die Antwort zu geben, die andere erwarten."
+    },
+    "chariot": {
+      "essence": "Der Wunsch voranzukommen verlangt, verschiedene und manchmal widersprüchliche Kräfte zu vereinen. Dieser Archetyp steht für eine bewusst gewählte Richtung, die durch Ausdauer ebenso entsteht wie durch das Wahrnehmen eigener Grenzen."
+    },
+    "strength": {
+      "essence": "Mut kann sich durch Sanftheit zeigen, statt durch Zwang und Härte. Dieses Bild würdigt Geduld, allmählich wachsendes Vertrauen und einen gelasseneren Umgang mit starken Gefühlen und inneren Spannungen."
+    },
+    "hermit": {
+      "essence": "Ein freiwilliger Rückzug kann helfen, das Wesentliche vom Lärm des Alltags zu unterscheiden. Diese Gestalt ermutigt dich, dein eigenes Urteil zu entwickeln und zugleich für wohlwollende Begegnungen offen zu bleiben."
+    },
+    "wheel": {
+      "essence": "Wandel erinnert daran, dass jeder Weg verschiedene Rhythmen und Phasen durchläuft. Dieser Archetyp lädt dich ein, neue Gelegenheiten wahrzunehmen, ohne Anpassungsfähigkeit mit dem Verzicht auf deine Prioritäten zu verwechseln."
+    },
+    "justice": {
+      "essence": "Die Suche nach Ausgleich macht die Folgen deiner Entscheidungen sichtbar. Dieses Bild ermutigt dich, Situationen aufrichtig zu betrachten, unterschiedliche Perspektiven anzuhören und deine Urteile bei Bedarf zu überdenken."
+    },
+    "hangedman": {
+      "essence": "Eine Zeit des Innehaltens kann eine unerwartete Sichtweise eröffnen. Dieser Archetyp lädt dich ein, Eile loszulassen und zu erkennen, was sich verändert, sobald du eine Situation anders betrachtest."
+    },
+    "death": {
+      "essence": "Das Ende einer Etappe kann Platz für etwas Neues schaffen. Dieses Bild spricht von innerer Wandlung, schrittweisem Loslassen und der Rücksicht, die Übergänge im eigenen Leben und in Beziehungen verdienen."
+    },
+    "temperance": {
+      "essence": "Die Kunst, Unterschiedliches zu verbinden, fördert ein lebendiges Gleichgewicht. Diese Gestalt steht für behutsame Anpassungen, einen ruhigeren Umgang mit Gefühlen und die Geduld, die nachhaltige Veränderungen brauchen."
+    },
+    "devil": {
+      "essence": "Starke Bindungen können sowohl Wünsche als auch begrenzende Gewohnheiten sichtbar machen. Dieser Archetyp lädt dich ein, symbolische Abhängigkeiten aufmerksam zu betrachten, ohne Scham, vorschnelle Urteile oder Fatalismus."
+    },
+    "tower": {
+      "essence": "Wenn eine Gewissheit ins Wanken gerät, kann Raum für eine differenziertere Wahrheit entstehen. Dieses Bild ermutigt dich, zu eng gewordene Strukturen zu hinterfragen und anschließend in tragbarem Tempo neu aufzubauen."
+    },
+    "star": {
+      "essence": "Nach Zeiten des Zweifels kann ein stilles Vertrauen wieder wachsen. Diese Gestalt steht für Inspiration, wiedergefundene Einfachheit und die Möglichkeit, voranzugehen, ohne absolute Sicherheit verlangen zu müssen."
+    },
+    "moon": {
+      "essence": "Empfindungen und innere Bilder können das Verständnis vertiefen, ohne alles zu erklären. Dieser Archetyp lädt dich ein, Unsicherheit mit Feingefühl zu erkunden und deine Eindrücke zugleich behutsam zu überprüfen."
+    },
+    "sun": {
+      "essence": "Eine warme Klarheit fördert persönlichen Ausdruck und unkomplizierte Beziehungen. Dieses Bild lädt dich ein, deine Möglichkeiten großzügig zu teilen, ohne dauerhafte oder vollkommen ungetrübte Freude von dir zu erwarten."
+    },
+    "judgement": {
+      "essence": "Eine neue Einsicht kann verstreuten Erfahrungen einen Zusammenhang geben. Dieser Archetyp ermutigt dich, einen inneren Ruf wahrzunehmen und frei zu entscheiden, worauf du tatsächlich antworten möchtest."
+    },
+    "world": {
+      "essence": "Ein Gefühl des Ankommens verbindet Gelerntes mit einem weiteren Blick auf das Leben. Dieses Bild lädt dich ein, deinen Weg anzuerkennen und zugleich zu bedenken, dass auch jedes Gleichgewicht sich weiterentwickelt."
+    }
+  },
+  "lifePath": {
+    "magician": {
+      "energy": "Dein symbolischer Weg beginnt mit dem Wunsch, aus manchmal bescheidenen Mitteln neue Möglichkeiten entstehen zu lassen. Anfänge, Versuche und Begegnungen, die Türen öffnen, könnten dir besondere Anregungen geben. Entscheidend ist, eine Absicht so deutlich zu wählen, dass deine Neugier nicht nur viele Richtungen entdeckt, sondern einer davon auch beharrlich folgen kann.",
+      "strengths": "Du kannst aus deinem Einfallsreichtum, deiner Beobachtungsgabe und der Fähigkeit schöpfen, Gedanken rasch miteinander zu verbinden. Diese Stärken gewinnen an Tiefe, wenn du deine Schritte vorbereitest und Rückmeldungen ernst nimmst. Symbolisches Gelingen liegt dann weniger in der Wirkung nach außen als in der Art, wie du deine Fähigkeiten achtsam und passend einsetzt.",
+      "challenges": "Ungeduld oder der Wunsch, etwas beweisen zu müssen, könnten deine Kräfte zerstreuen. Wenn du zu viele Vorhaben gleichzeitig beginnst, fehlt einer wertvollen Absicht womöglich der Raum, sich wirklich zu entfalten. Eine Pause kann dir helfen, deine Entscheidungen wieder klarer zu sehen.",
+      "lesson": "Als Anregung dient, einen ersten aufrichtigen Schritt zu wählen und ihm die Zeit zu geben, die er zum Reifen benötigt.",
+      "thread": "Zwischen Aufbruchslust und dem Wunsch nach Beständigkeit geht es darum, deinen Möglichkeiten eine Form zu geben. Diese Lesart lädt dich ein, Vorstellungskraft, Vorbereitung und Aufmerksamkeit für Folgen miteinander ins Gespräch zu bringen, statt dich zu ständigem Handeln verpflichtet zu fühlen."
+    },
+    "priestess": {
+      "energy": "Dein symbolischer Weg betont aufmerksames Zuhören, tiefgehende Fragen und stille Entdeckungen. Vielleicht sammelst du Eindrücke, die anderen entgehen, und lässt ihre Bedeutung erst allmählich deutlich werden. Diese Weise des Vorankommens bleibt besonders fruchtbar, wenn sie sich der Außenwelt öffnet und Intuition mit überprüfbaren Tatsachen und Gesprächen in Verbindung bringt.",
+      "strengths": "Vielleicht verfügst du über eine ausgeprägte Aufmerksamkeit, ein feines Gespür für Nuancen und Geduld in schwierigen Situationen. Wenn du Vertraulichem Raum gibst, ohne alles auf dich zu nehmen, können tiefgehende Gespräche entstehen. Eine wichtige Ressource zeigt sich dort, wo Zurückhaltung zu aufmerksamer Nähe wird, statt sich in Abstand und Schweigen zu verlieren.",
+      "challenges": "Der Wunsch nach einem vollkommen eindeutigen Zeichen könnte Entscheidungen hinauszögern. Wenn du zu vieles für dich behältst, kann ein wertvoller Schutz in unnötige Isolation übergehen. Der Austausch mit anderen eröffnet möglicherweise eine zusätzliche Sichtweise, ohne deine eigene Wahrnehmung abzuwerten.",
+      "lesson": "Dieser Weg lädt dich ein, deiner Wahrnehmung zu vertrauen, ohne von ihr zu erwarten, dass sie jede Prüfung oder Handlung ersetzt.",
+      "thread": "Dein roter Faden verbindet inneres Verstehen mit dem behutsamen Teilen eigener Einsichten. Diese Lesart lädt dich ein, stille Räume zu bewahren und zugleich Wege zu anderen Menschen zu öffnen. Deine Sensibilität muss weder ein Geheimnis bleiben noch zur unumstößlichen Gewissheit werden."
+    },
+    "empress": {
+      "energy": "Dein symbolischer Weg hebt Wachstum, Ausdruck und den Wunsch hervor, das Umfeld zu bereichern. Vielleicht erkennst du dich in Gesten wieder, die einer Idee oder einer Beziehung Zuversicht geben. Diese Energie entfaltet sich besonders dann, wenn deine Kreativität dem eigenen Rhythmus folgt, statt jede Erwartung gleichzeitig erfüllen zu müssen.",
+      "strengths": "Vorstellungskraft, Sinn für Gestaltung und Aufmerksamkeit für praktische Bedürfnisse können fruchtbare Stützen sein. Vielleicht gelingt es dir, eine Atmosphäre zu schaffen, in der Gedanken sich entfalten und Gestalt annehmen dürfen. Diese Großzügigkeit behält ihre Stärke, wenn du auch Unterstützung annehmen und deinen persönlichen Möglichkeiten klare Grenzen setzen kannst.",
+      "challenges": "Alles gleichzeitig wachsen lassen zu wollen, könnte dich ermüden oder deine Prioritäten verwischen. Manchmal nimmt die Meinung anderer mehr Platz ein als deine eigene Freude am Gestalten. Bewusste Auswahl schafft Raum für das, was dir wirklich wichtig ist.",
+      "lesson": "Die Anregung besteht darin, zu pflegen, ohne dich zu verausgaben, und jedem Vorhaben seine eigene Zeit und sein Maß zu lassen.",
+      "thread": "Dein roter Faden handelt von Kreativität, die aufrichtiger wird, wenn Freude und Zurückhaltung beide Platz haben. Die Symbole laden dich ein, bewusst zu wählen, was heranreifen soll, deinen persönlichen Raum zu schützen und auch leises, langsames Wachstum als wertvoll anzuerkennen."
+    },
+    "emperor": {
+      "energy": "Dein symbolischer Weg dreht sich um das Bedürfnis, verlässliche Orientierung zu schaffen. Vielleicht suchst du klare Zusagen, kontinuierliche Bemühungen und eine Beständigkeit, die Vorhaben möglich macht. Diese Energie verlangt keine vollständige Kontrolle: Diese Energie gewinnt Bedeutung, wenn ein Rahmen Menschen schützt und zugleich gemeinsame Ziele unterstützt.",
+      "strengths": "Beständigkeit, Organisationstalent und Verantwortungsgefühl können dir einen festen Boden geben. Vielleicht kannst du unübersichtliche Ideen in machbare Schritte verwandeln und anderen durch Verlässlichkeit Sicherheit vermitteln. Diese Fähigkeiten werden besonders wertvoll, wenn du auch andere Vorgehensweisen zulässt, selbst wenn sie deinen vertrauten Gewohnheiten nicht entsprechen.",
+      "challenges": "Das Streben nach Sicherheit könnte sich in Kontrolle oder Widerstand gegen Wandel verhärten. Zu viele Regeln nehmen Beziehungen und Projekten mitunter die notwendige Beweglichkeit. Ein wenig Spielraum hilft, Vertrauen und Anpassungsfähigkeit wieder miteinander zu verbinden.",
+      "lesson": "Als Anregung gilt, tragfähige Strukturen zu schaffen, in denen dennoch Vertrauen, Zuhören und Unerwartetes ihren Platz behalten können.",
+      "thread": "Dein roter Faden erzählt von einer Stabilität, die du gestalten kannst, statt Ordnung durchzusetzen. Diese Lesart lädt dich ein, Verantwortung mit Offenheit und Festigkeit mit Anpassung zu verbinden. So kann das, was du aufbaust, lebendig bleiben; symbolische Autorität wird dabei zum Dienst, nicht zum Selbstzweck."
+    },
+    "hierophant": {
+      "energy": "Dein symbolischer Weg beschäftigt sich mit überliefertem Wissen, geteilten Werten und Gesten, die Generationen verbinden. Vielleicht möchtest du verstehen, warum eine Praxis für manche Menschen wichtig ist, und ihr einen heutigen Platz geben. Diese Energie wächst, wenn das Ererbte zum Gesprächsanlass wird statt zu einer Sammlung vorgeschriebener Antworten.",
+      "strengths": "Deine Bereitschaft zuzuhören, dein Sinn für Vermittlung und dein Interesse an gemeinsamen Orientierungspunkten können konstruktive Gespräche fördern. Vielleicht kannst du komplexe Fragen verständlicher machen, ohne sie übermäßig zu vereinfachen. Deine Stärke zeigt sich auch darin, anzuerkennen, welchen eigenen Beitrag unterschiedliche Menschen zu einer lebendigen Tradition leisten.",
+      "challenges": "Das Bedürfnis nach gemeinsamen Regeln könnte ungewöhnlichen Wegen wenig Raum lassen. Umgekehrt kann die Sorge, eine Gruppe zu enttäuschen, deine eigene Sinnsuche bremsen. Ein konstruktiver Zweifel darf neue Möglichkeiten eröffnen, ohne wertvolle Bindungen abzuwerten.",
+      "lesson": "Dieser Weg lädt dich ein, Überliefertes zu achten und zugleich frei zu prüfen, welche Bedeutung es für dein heutiges Leben besitzt.",
+      "thread": "Dein roter Faden verbindet Zugehörigkeit mit Eigenständigkeit, das Gedächtnis anderer mit deinem eigenen Urteil. Dieses Porträt zeigt Weitergabe als lebendigen Austausch: lernen, hinterfragen, teilen und anderen dann ermöglichen, selbst eine passende Antwort zu finden. Dabei darf auch deine persönliche Perspektive wachsen."
+    },
+    "lovers": {
+      "energy": "Dein symbolischer Weg gibt Entscheidungen viel Raum, die deine Werte und Beziehungen berühren. Vielleicht spürst du die Spannung zwischen eigenen Wünschen, gegebenen Versprechen und Erwartungen anderer besonders deutlich. Diese Energie sucht weniger vollkommene Harmonie als eine aufrichtige Möglichkeit, voranzugehen, ohne Unterschiede zu leugnen.",
+      "strengths": "Ein Gespür für Nuancen, Gesprächsbereitschaft und die Fähigkeit, Verständigung zu fördern, können wertvolle Ressourcen sein. Vielleicht erkennst du mehrere Seiten eines Dilemmas, ohne die beteiligten Menschen aus dem Blick zu verlieren. Diese Offenheit wird stärker, wenn deine eigenen Bedürfnisse genauso viel Berechtigung erhalten wie die der anderen.",
+      "challenges": "Die Angst, anderen nicht zu gefallen, könnte das Zögern verlängern und Entscheidungen erschweren. Ein Einverständnis um jeden Preis kann auch Unterschiede verdecken, die ausgesprochen werden sollten. Klare Worte helfen dabei, deinem eigenen Standpunkt wieder Raum zu geben.",
+      "lesson": "Die Anregung lautet, aufrichtig zu wählen und anzuerkennen, dass lebendige Beziehungen Raum für echte Unterschiede lassen müssen.",
+      "thread": "Dein roter Faden bewegt sich zwischen persönlichem Wunsch und Verantwortung in Beziehungen. Diese Lesart lädt dich ein, Entscheidungen zu erkennen, die Nähe fördern, ohne dass du dich selbst zurücknehmen musst. Gesucht wird keine perfekte Antwort, sondern eine Richtung, die du stimmig vertreten kannst."
+    },
+    "chariot": {
+      "energy": "Dein symbolischer Weg steht für Bewegung, eine gewählte Richtung und den Einsatz, den verschiedene Wünsche gemeinsam verlangen. Vielleicht möchtest du rasch vorankommen und zugleich verstehen, was deine Kraft wirklich verdient. Diese Dynamik wird fruchtbar, wenn die Richtung ebenso wichtig bleibt wie das Tempo und Pausen ebenso selbstverständlich werden wie Fortschritte.",
+      "strengths": "Ausdauer, Entscheidungsfähigkeit und der Mut, einen Schritt weiterzugehen, können deine Entwicklung tragen. Vielleicht behältst du ein Ziel auch angesichts vieler Ablenkungen im Blick. Deine dauerhafteste Stärke zeigt sich, wenn du deine Antriebe aufeinander abstimmst, ohne Ruhebedürfnis, Zuhören oder Zusammenarbeit zu übergehen.",
+      "challenges": "Der Wunsch voranzukommen könnte dich von Zeichen der Erschöpfung oder hilfreichen Rückmeldungen entfernen. Wer Erfolge zu schnell sucht, verliert womöglich ihren ursprünglichen Sinn aus dem Blick. Ein aufmerksames Innehalten kann deinem Antrieb eine neue Orientierung geben.",
+      "lesson": "Als Anregung gilt, entschlossen voranzugehen und dir dennoch zu erlauben, Richtung und Tempo jederzeit zu überdenken und anzupassen.",
+      "thread": "Dein roter Faden verbindet Tatkraft mit Unterscheidungsvermögen, Freude an erreichten Etappen mit Aufmerksamkeit für den Weg. Diese Lesart lädt dich ein, innere Spannungen als Kräfte zu verstehen, die abgestimmt werden können, statt sie bekämpfen zu müssen. So bleibt Fortschritt mit Sinn verbunden."
+    },
+    "strength": {
+      "energy": "Dein symbolischer Weg erkundet die Verbindung von intensiven Empfindungen und einer möglichen sanften Antwort. Vielleicht berühren dich Situationen besonders, die Mut ohne Härte und Geduld ohne Aufgeben erfordern. Diese Energie lädt dich ein, starke Gefühle als Hinweise kennenzulernen, mit denen du umgehen kannst, statt sie zu bekämpfen oder zum Schweigen zu bringen.",
+      "strengths": "Deine Ruhe, emotionale Ausdauer und Fähigkeit, Sicherheit zu vermitteln, können in anspruchsvollen Momenten helfen. Vielleicht löst du Spannungen, indem du allen Beteiligten Raum gibst, ohne eigene Anliegen zu verleugnen. Diese Stärke entfaltet sich vollständig, wenn auch das Recht dazugehört, um Hilfe zu bitten und nicht alles allein tragen zu müssen.",
+      "challenges": "Der Wunsch, immer stark zu erscheinen, könnte verhindern, dass du eigene Bedürfnisse zeigst. Wenn du jedes Gefühl kontrollieren möchtest, wird es womöglich schwerer, es zu verstehen. Ein offen ausgesprochenes Bedürfnis kann bereits eine hilfreiche Form von Mut sein.",
+      "lesson": "Diese Lesart lädt dich ein, Verletzlichkeit als Teil des Vertrauens zu betrachten und nicht als dessen Gegenteil oder Schwäche.",
+      "thread": "Dein roter Faden bringt innere Kraft und behutsames Handeln miteinander ins Gespräch. Dieses Porträt lädt dich ein, einen Mut zu pflegen, der keine Überlegenheit braucht. Wenn du deine Grenzen anerkennst, kann geduldiges und gemeinsam getragenes Vertrauen nach und nach mehr Raum gewinnen."
+    },
+    "justice": {
+      "energy": "Dein symbolischer Weg fragt nach dem Gleichgewicht zwischen Absichten, Handlungen und ihren Folgen. Vielleicht suchst du von selbst nach stimmigen Entscheidungen, gegenseitigem Respekt und klarer Sprache. Diese Energie wird beweglicher, wenn du anerkennst, dass mehrere Standpunkte aufrichtig sein können, auch wenn sie nicht zur gleichen Schlussfolgerung führen.",
+      "strengths": "Dein Sinn für Fairness, deine Liebe zum Detail und deine Fähigkeit, Situationen abzuwägen, können verlässliche Orientierung schaffen. Vielleicht bringst du Klarheit in ein Gespräch, indem du Tatsachen, Eindrücke und Vorlieben auseinanderhältst. Diese Stärke entwickelt sich weiter, wenn du neben Genauigkeit auch Mitgefühl und unterschiedliche Lebensumstände berücksichtigst.",
+      "challenges": "Ein hohes Bedürfnis nach Folgerichtigkeit könnte dich selbst oder andere zu streng beurteilen lassen. Auf perfekte Informationen zu warten, kann eine ohnehin unklare Lage unnötig verlängern. Ein offener Austausch macht Entscheidungen möglicherweise weniger einsam und zugleich menschlicher.",
+      "lesson": "Dieser Weg lädt dich ein, sorgfältig nach Fairness zu suchen und dennoch die Vielfalt von Menschen und Lebenslagen zu achten.",
+      "thread": "Dein roter Faden verbindet Klarblick mit Menschlichkeit, das Bedürfnis nach Stimmigkeit mit der Bereitschaft, ein Urteil zu revidieren. Diese Lesart lädt dich ein, Ausgleich als aufmerksame Übung statt als starre Norm zu sehen. Nuancen können verantwortliche Entscheidungen tragen, ohne völlige Gewissheit zu verlangen."
+    },
+    "hermit": {
+      "energy": "Dein symbolischer Weg schätzt gründlich durchdachte Fragen, die persönliche Sinnsuche und Abstand von alltäglicher Unruhe. Vielleicht möchtest du erst verstehen, bevor du dich zeigst, oder lieber deinem eigenen Tempo folgen als dem einer Gruppe. Diese Energie bleibt fruchtbar, wenn Gespräche die bewusst gewählte Zeit für dich ergänzen und bereichern.",
+      "strengths": "Deine Beobachtungsgabe, Geduld und Bereitschaft, in die Tiefe zu gehen, können differenzierte Einsichten hervorbringen. Vielleicht fällt dir ein bedeutsames Detail auf, wo andere nur Unordnung sehen. Diese Fähigkeiten werden fruchtbarer, wenn du manche Entdeckung auch unfertig mit Menschen teilst, die offen und achtsam damit umgehen können.",
+      "challenges": "Schützender Rückzug könnte zur Gewohnheit werden und hilfreiche Begegnungen auf Abstand halten. Jede Antwort allein finden zu wollen, macht Fragen mitunter schwerer, als sie gemeinsam sein müssten. Eine Sicht von außen kann die Suche erleichtern, ohne deinen eigenen Weg infrage zu stellen.",
+      "lesson": "Die Anregung ist, deinen inneren Raum zu bewahren und dennoch zuzulassen, dass andere Blickwinkel deine Suche begleiten dürfen.",
+      "thread": "Dein roter Faden erzählt von einem stillen Licht, das aus Aufmerksamkeit entsteht und ohne große Worte weitergegeben werden kann. Dieses Porträt lädt dich ein, deinem Tempo zu vertrauen und Türen zur Außenwelt offen zu halten. Begegnungen können deine Suche vertiefen, ohne ihr die Eigenart zu nehmen."
+    },
+    "fool": {
+      "energy": "Dein symbolischer Weg lässt viel Raum für überraschende Aufbrüche, offene Möglichkeiten und das Bedürfnis, frei zu erkunden. Vielleicht fühlst du dich besonders lebendig, wenn Wege noch nicht vollständig festgelegt sind. Diese Energie gedeiht, wenn sich freudige Neugier mit einigen selbst gewählten Orientierungspunkten verbindet, die Entscheidungen tragen, ohne deine Beweglichkeit einzuengen.",
+      "strengths": "Deine Spontaneität, dein ungewöhnlicher Blick und deine Freude am Entdecken können neue Perspektiven eröffnen. Vielleicht begegnest du einer Idee oder einem Menschen, ohne sofort eine feste Schublade zu brauchen. Diese Fähigkeiten gewinnen an Halt, wenn du auch prüfst, welche Aufmerksamkeit, Zeit und Verantwortung ein neues Abenteuer von dir verlangt.",
+      "challenges": "Die Anziehung des Neuen könnte deine Vorhaben zerstreuen oder wichtige Bedürfnisse nach Stabilität verdecken. Wer jede Grenze sofort ablehnt, verliert womöglich selbst gewählte Stützen. Ein Anker, für den du dich frei entscheidest, kann deine Möglichkeiten erweitern, statt sie zu begrenzen.",
+      "lesson": "Dieser Weg lädt dich ein, neugierig zu erkunden und zugleich Bindungen zu erkennen, die deine innere Freiheit wirklich stärken.",
+      "thread": "Dein roter Faden verläuft zwischen der Lust auf Unbekanntes und dem Wunsch, dir selbst treu zu bleiben. Diese Lesart lädt dich ein, Anfänge willkommen zu heißen, ohne Neuheit zur Pflicht zu machen. Freiheit wächst auch durch Pausen, verlässliche Beziehungen und Entscheidungen, die du immer wieder erneuern darfst."
+    }
+  },
+  "info": {
+    "portrait": "Deine Geburtskarte und das Arkane des Lebenswegs beruhen auf demselben Geburtsdatum, werden aber unterschiedlich berechnet. Die erste folgt der bisherigen Methode von ZODIAC für die großen Arkana. Das zweite nutzt die numerologische Reduktion, bei der Meisterzahlen erhalten bleiben. Diese Gemeinsamkeiten und Unterschiede laden zur symbolischen Betrachtung ein und legen weder deine Persönlichkeit noch dein Schicksal fest.",
+    "portraitDecan": "ZODIAC ordnet die Planeten der Dekanate nach den Triplizitäten zu, während die Kartenentsprechungen der kleinen Arkana aus der Golden-Dawn-Tradition mit ihren chaldäischen Zuordnungen stammen. Deshalb zeigt ZODIAC beim dritten Dekanat des Widders Jupiter, während die Golden Dawn dort Venus mit den Vier Stäben verbindet. Der Herrscherplanet des Zeichens und der Planet des Dekanats sind zwei unterschiedliche Begriffe. Die historische Golden Dawn arbeitete mit sieben Planeten; Verbindungen der Arkana zu Uranus, Neptun und Pluto sind moderne Erweiterungen und keine ursprünglichen historischen Zuordnungen."
+  }
+}

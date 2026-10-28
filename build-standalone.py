@@ -49,6 +49,10 @@ def build():
     if link not in html:
         sys.exit("Balise <link> de zodiac.css introuvable dans ZODIAC.html")
     html = html.replace(link, '<style>\n' + css.replace('</style', '<\\/style') + '\n</style>')
+    # Portrait symbolique : CSS local intégré également dans la version autonome et PWA.
+    portrait_link = '<link rel="stylesheet" href="zodiac-portrait.css">'
+    if portrait_link in html:
+        html = html.replace(portrait_link, '<style>\n' + read('zodiac-portrait.css').replace('</style', '<\\/style') + '\n</style>')
 
     # 2. Suite de tests intégrée, inerte (type non exécutable) : lancée seulement par ZODIAC-standalone.html?test.
     #    Placée avant les scripts de l'appli pour figurer dans la copie que la page fait d'elle-même.

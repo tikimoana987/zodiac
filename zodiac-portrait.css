@@ -1,0 +1,24 @@
+/* Portrait symbolique — isolé des styles historiques. */
+.portrait-card { margin-block: 14px 22px; }
+.portrait-card h3 { display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+.portrait-pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0; }
+.portrait-arcana-tile { border:1px solid var(--border,rgba(181,158,103,.25));border-radius:12px;padding:12px;min-width:0;background:rgba(150,133,184,.07); }
+.portrait-label { opacity:.75;font-size:.84em;margin-bottom:7px; }
+.portrait-arcana-name { font-weight:700;line-height:1.35;overflow-wrap:anywhere; }
+.portrait-roman { font-variant-numeric:lining-nums;white-space:nowrap; }
+.portrait-formula { opacity:.8;font-size:.76em;margin-top:7px;direction:ltr;text-align:start;white-space:normal;overflow-wrap:anywhere;unicode-bidi:isolate; }
+.portrait-prose { line-height:1.72;margin:8px 0 11px; }
+.portrait-preview { margin:12px 0; }
+.portrait-toggle { display:block;margin:15px auto 3px;max-width:100%;padding:11px 18px;cursor:pointer; }
+.portrait-detail { margin:14px 0; }
+.portrait-detail[hidden],.portrait-preview[hidden] { display:none!important; }
+.portrait-section { margin:19px 0;padding-top:13px;border-top:1px solid var(--border,rgba(181,158,103,.25)); }
+.portrait-section h4 { margin:0 0 8px;font-size:1.04rem;line-height:1.6; }
+.portrait-section h5 { opacity:.85;margin:15px 0 4px;font-size:.92rem; }
+.portrait-sky-row { margin:12px 0 16px;padding:9px 12px;border-inline-start:2px solid var(--gold,#bf9b64); }
+.portrait-sky-head { line-height:1.55;overflow-wrap:anywhere; }
+.portrait-sky-arcana { margin:6px 0; font-weight:600; }
+.portrait-uncertain {font-style:italic;opacity:.8;}
+.portrait-card .traits { display:flex; flex-wrap:wrap;gap:6px; }
+@media (max-width:540px){ .portrait-pair {grid-template-columns:1fr;} .portrait-arcana-tile{padding:11px;} }
+@media print { .portrait-card .portrait-toggle {display:none;} }

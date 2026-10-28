@@ -1,0 +1,178 @@
+{
+  "lang": "en",
+  "labels": {
+    "title": "Symbolic portrait",
+    "more": "Read the full portrait",
+    "less": "Collapse portrait",
+    "sections": {
+      "arcana": "Your two arcana",
+      "energy": "Your personal energy",
+      "strengths": "Your strengths and resources",
+      "challenges": "Your challenges and lessons",
+      "sky": "Your sky and its tarot correspondences",
+      "thread": "Your guiding thread"
+    },
+    "birthCard": "Birth card",
+    "lifePathArcana": "Life path arcana",
+    "sign": "Sign",
+    "planet": "Ruling planet",
+    "decan": "Decan",
+    "uncertain": "uncertain without a birth time"
+  },
+  "phrases": {
+    "convergence": "When both calculations lead to the same archetype, they offer two views of a shared theme, without making it more certain or reducing your story to a single interpretation.",
+    "master": "The master number keeps its place in your journey; its secondary reduction to {n} adds a nuance without replacing it.",
+    "skyIntro": "The Golden Dawn tradition offers symbolic correspondences between the sky and tarot cards, presented here as possibilities for reflection."
+  },
+  "arcana": {
+    "fool": {
+      "essence": "An openness to the unknown suggests freedom without a fixed shape yet. This image invites curious exploration while keeping an inner point of reference as possibilities multiply."
+    },
+    "magician": {
+      "essence": "Initiative becomes possible when the resources at hand meet a clear intention. This archetype encourages experimentation, followed by turning the desire to act into something tangible."
+    },
+    "priestess": {
+      "essence": "Silence and observation create space to recognize what is quietly taking shape. This figure suggests listening to deeper impressions without giving up discernment or meaningful conversation."
+    },
+    "empress": {
+      "essence": "Fertile ideas and the joy of creating nourish this archetype. It invites you to nurture what matters through sensitivity, personal expression, and consideration for others."
+    },
+    "emperor": {
+      "essence": "Seeking structure gives intentions a lasting form. This figure explores responsibility and stability while reminding you that a useful framework can also remain flexible and welcoming."
+    },
+    "hierophant": {
+      "essence": "Sharing knowledge and engaging with traditions can open a path of learning. This archetype invites you to understand inherited rules and consciously choose which ones remain meaningful."
+    },
+    "lovers": {
+      "essence": "A choice becomes clearer when it respects both relationships and personal values. This figure encourages genuine agreement rather than simply giving the response others might expect."
+    },
+    "chariot": {
+      "essence": "Moving forward calls for bringing together forces that may pull in different directions. This archetype suggests deliberate progress built through perseverance as well as respect for limits."
+    },
+    "strength": {
+      "essence": "Courage can speak through gentleness instead of force. This image values patience, confidence built gradually, and a calmer relationship with emotions that sometimes feel intense."
+    },
+    "hermit": {
+      "essence": "Stepping back by choice can help separate what matters from surrounding noise. This figure encourages independent judgment without closing the door to supportive human connections."
+    },
+    "wheel": {
+      "essence": "Change reminds us that every journey moves through different rhythms. This archetype encourages openness to emerging opportunities without confusing adaptability with abandoning what matters most."
+    },
+    "justice": {
+      "essence": "The search for balance brings choices face to face with their consequences. This figure invites honesty, attention to several perspectives, and a willingness to adjust decisions."
+    },
+    "hangedman": {
+      "essence": "A period of stillness can reveal an unexpected perspective. This archetype invites you to ease the rush and notice what changes when you look at things differently."
+    },
+    "death": {
+      "essence": "The end of one chapter can make room for another. This image explores inner transformation, gradual release, and the care that is needed during personal transitions."
+    },
+    "temperance": {
+      "essence": "The art of connecting different elements encourages a living balance. This figure suggests thoughtful adjustments, a calmer flow of feelings, and patience with lasting transformation."
+    },
+    "devil": {
+      "essence": "Strong attachments can illuminate both desires and habits that impose limits. This archetype invites a clear-eyed look at symbolic dependencies, without shame or an assumption of fate."
+    },
+    "tower": {
+      "essence": "A shaken certainty can sometimes create room for a subtler truth. This image suggests questioning structures that have become restrictive and rebuilding at a sustainable pace."
+    },
+    "star": {
+      "essence": "Quiet trust can return after periods of doubt. This figure evokes inspiration, a renewed sense of simplicity, and the ability to proceed without demanding absolute guarantees."
+    },
+    "moon": {
+      "essence": "Feelings and inner images can enrich understanding without explaining everything. This archetype invites sensitive exploration of uncertainty while checking impressions against the wider world."
+    },
+    "sun": {
+      "essence": "Warm clarity encourages self-expression and uncomplicated human connection. This figure invites generous sharing of resources without expecting happiness to be permanent, complete, or flawless."
+    },
+    "judgement": {
+      "essence": "A new awareness can bring meaning to experiences that once seemed scattered. This archetype suggests hearing an inner call and freely choosing what deserves an answer."
+    },
+    "world": {
+      "essence": "A sense of fulfillment connects what has been learned to a broader perspective. This image invites recognition of the journey so far while remembering that balance keeps evolving."
+    }
+  },
+  "lifePath": {
+    "magician": {
+      "energy": "Your symbolic journey begins with the wish to make something possible, sometimes using quite modest resources. Beginnings, experiments, and meetings that open doors may offer particular inspiration. The challenge is to choose an intention clear enough for curiosity to develop into a direction you can follow steadily over time.",
+      "strengths": "Inventiveness, careful observation, and an ability to connect ideas quickly can all become useful resources. These qualities gain depth when you prepare your actions and listen to feedback. Symbolic achievement lies less in making an impressive effect than in finding a thoughtful and responsible way to use what is available.",
+      "challenges": "Impatience or the need to prove something may scatter your efforts. Taking on too many projects could leave too little room for an intention that deserves real attention and time. A pause can clarify your priorities.",
+      "lesson": "The suggested lesson is to choose one sincere first step and allow it the time needed to take shape.",
+      "thread": "Between the wish to begin and the need to persevere, your guiding thread concerns giving shape to your possibilities. Let this reading bring imagination, preparation, and awareness of consequences into dialogue, rather than turning initiative into a constant obligation to act without rest."
+    },
+    "priestess": {
+      "energy": "Your symbolic path favors time for listening, profound questions, and discoveries made quietly. You may move forward by gathering clues that others tend to overlook, allowing their meaning to emerge gradually. This approach benefits from remaining open to the world so that intuition can enter into conversation with facts and other voices.",
+      "strengths": "You may draw on an attentive presence, a sensitive memory for nuance, and patience with complicated situations. By making space for confidences without carrying every burden, you can encourage deeper exchanges. Your strongest resource appears when reserve becomes genuine attention to others instead of a barrier that keeps everyone at a distance.",
+      "challenges": "Waiting for a perfectly clear sign may delay your decisions. Keeping too much to yourself can also turn valuable self-protection into unnecessary isolation. Conversation may then offer an additional perspective worth considering before moving forward.",
+      "lesson": "This path suggests trusting your ability to listen without asking it to replace all verification or action.",
+      "thread": "Your guiding thread connects what can be understood inwardly with what may be shared gently. This reading invites you to preserve spaces for silence and then open paths toward others, without turning your sensitivity into a secret that must remain hidden or a certainty that cannot be questioned."
+    },
+    "empress": {
+      "energy": "Your symbolic journey highlights growth, expression, and the desire to nurture what surrounds you. You may recognize yourself in gestures that help an idea or relationship gain confidence. This energy unfolds most fully when creativity follows your own rhythm instead of trying to satisfy every expectation placed upon you by others.",
+      "strengths": "Imagination, a sense of form, and attention to practical needs can provide fertile support. You may have a gift for shaping an atmosphere in which ideas circulate and find a tangible expression. This generosity remains strongest when you also allow yourself to receive support and to establish limits that protect your energy.",
+      "challenges": "Trying to help everything grow at once may cause fatigue or blur what matters most. Other people's opinions can sometimes take more space than your own joy in creating. An attentive choice can restore balance.",
+      "lesson": "The lesson is to nurture without exhausting yourself, allowing each project to find its own season and measure.",
+      "thread": "Your guiding thread suggests creativity becoming more balanced when it welcomes restraint as well as joy. These symbols invite you to choose what you wish to develop, protect room for your own needs, and celebrate quieter forms of growth that do not ask for applause."
+    },
+    "emperor": {
+      "energy": "Your symbolic path is shaped by the need to build dependable points of reference. You may seek clear commitments, sustained effort, and the kind of stability that makes projects possible. This energy does not demand total control; it becomes meaningful when structure protects people as carefully as it supports shared objectives.",
+      "strengths": "Consistency, organizational ability, and a sense of responsibility can provide a solid foundation. You may know how to turn a confusing idea into manageable steps and offer reassurance through steady presence. These strengths become especially valuable when you make room for other approaches, even when they differ from your own established habits.",
+      "challenges": "A desire for security could harden into control or resistance to change. Too many rules might then reduce the flexibility that relationships and projects need to thrive. Leaving some room for spontaneity may help.",
+      "lesson": "The proposed lesson is to build strong frameworks that still leave space for trust, listening, and the unexpected.",
+      "thread": "Your guiding thread concerns inventing a reliable stability rather than imposing a fixed order. This reading invites you to combine responsibility with welcome, firmness with adaptability, so that what you build remains alive. Symbolic authority becomes a form of service here, not an end in itself."
+    },
+    "hierophant": {
+      "energy": "Your symbolic journey is interested in knowledge passed down, shared values, and gestures that connect generations. You may enjoy understanding why a practice matters to certain people and considering how it might remain relevant today. This energy grows when inherited wisdom becomes a subject for dialogue rather than a collection of compulsory answers.",
+      "strengths": "Attentive listening, a sense of teaching, and appreciation for shared reference points may support constructive exchanges. You might help clarify complicated questions and pass on knowledge without oversimplifying it. Another strength lies in recognizing what each person contributes to a living tradition, which can evolve through respectful conversation and experience.",
+      "challenges": "The wish for common rules may leave too little space for individual paths. Conversely, concern about disappointing a group could limit your own search for meaning. Constructive doubt can open fresh possibilities for everyone.",
+      "lesson": "This path invites respect for inherited wisdom alongside the freedom to question its relevance to your own life.",
+      "thread": "Your guiding thread connects belonging with independence, collective memory with personal judgment. This portrait suggests treating transmission as a living exchange: learning, questioning, sharing, and then allowing everyone to develop a response of their own. A tradition can offer roots without dictating the direction of every branch."
+    },
+    "lovers": {
+      "energy": "Your symbolic journey gives special importance to choices that involve your values and relationships. You may feel the distance between what you desire, what you promise, and what others expect. This energy seeks not perfect harmony but a sincere way of moving ahead without denying genuine differences or diminishing the needs of anyone involved.",
+      "strengths": "Sensitivity to nuance, an ability to communicate, and a desire to create agreements can become real resources. You may see several sides of a dilemma without overlooking the people affected. This openness grows stronger when your own needs receive the same legitimacy as those of others, even during difficult conversations.",
+      "challenges": "Fear of disappointing others could prolong hesitation and make decisions feel heavy. Seeking agreement at any price might also conceal differences that deserve to be expressed clearly. Honest words can help you reclaim your place.",
+      "lesson": "The lesson is to choose sincerely while accepting that living connections leave room for real differences between people.",
+      "thread": "Your guiding thread crosses the meeting point between personal desire and responsibility within relationships. This reading invites you to recognize choices that nourish connection without erasing your own needs. The aim is not a perfect answer, but a direction that you can inhabit with care and consistency."
+    },
+    "chariot": {
+      "energy": "Your symbolic journey evokes movement, a chosen course, and the effort of bringing different aspirations together. You may want to advance quickly while asking what truly deserves your energy. This dynamic becomes fruitful when direction matters as much as speed, and pauses receive as much respect as the milestones you reach.",
+      "strengths": "Perseverance, decisiveness, and the courage to take the next step may support your development. You might have a gift for keeping an aim in sight despite distractions. Your most lasting resource emerges when you coordinate competing impulses without ignoring the need for rest, listening, or cooperation with other people.",
+      "challenges": "The urge to move forward could distance you from signs of fatigue or useful advice. Success pursued too quickly may lose the very meaning that first inspired it. An attentive pause can redirect momentum.",
+      "lesson": "The proposed lesson is to advance with determination while keeping the freedom to revise both direction and pace.",
+      "thread": "Your guiding thread joins momentum with discernment, satisfaction in steps completed with attention to the road itself. This reading invites you to welcome inner tensions as forces that can be coordinated, rather than enemies to defeat, and choose progress that continues to hold personal meaning."
+    },
+    "strength": {
+      "energy": "Your symbolic path explores the meeting of intense feelings with the possibility of responding gently. You may be especially attentive to situations calling for courage without harshness, or patience without surrender. This energy invites recognition of strong emotions as information to understand and work with, not as enemies that must be silenced.",
+      "strengths": "Calm, emotional endurance, and the ability to reassure others may support demanding moments. You might ease tensions by allowing everyone some space without denying what matters to you. This strength gains its full value when it also includes permission to ask for help rather than carrying everything alone.",
+      "challenges": "Wanting to remain strong in every situation could keep you from expressing your needs. Conversely, trying to contain each emotion may make it harder to understand. Naming a need can also be an act of courage.",
+      "lesson": "The lesson invites you to see vulnerability as part of trust rather than its opposite or a weakness.",
+      "thread": "Your guiding thread brings inner power into conversation with gentle action. This portrait suggests cultivating courage that does not need domination in order to exist. By respecting your limits, you may leave more room for patient, shared confidence and for relationships that do not demand constant strength."
+    },
+    "justice": {
+      "energy": "Your symbolic journey explores the balance between intentions, actions, and their consequences. You may naturally look for coherence in decisions, mutual respect, and precise communication. This energy becomes more flexible when you accept that different viewpoints may each be sincere even though they do not necessarily lead everyone to the same conclusion.",
+      "strengths": "A sense of fairness, attention to detail, and an ability to weigh situations can offer dependable guidance. You may clarify a debate by separating facts, impressions, and preferences. This resource works best when you also keep room for nuance and compassion, especially when circumstances do not fit a straightforward rule.",
+      "challenges": "High standards of consistency could become severe toward yourself or others. Waiting for perfect information before deciding may also prolong an uncertain situation unnecessarily. Open dialogue can make choices feel more human and less solitary.",
+      "lesson": "This path suggests seeking fairness with rigor while remembering the complexity of people and the situations they face.",
+      "thread": "Your guiding thread connects clear judgment with humanity, a need for coherence with the ability to reconsider. This reading invites you to treat balance as an attentive practice rather than a fixed standard. Nuance may then sustain responsible choices without demanding a certainty no one can possess."
+    },
+    "hermit": {
+      "energy": "Your symbolic path values questions considered over time, a personal search for meaning, and moments away from noise. You may prefer to understand before speaking publicly or to move at your own pace instead of following a crowd. This energy benefits from conversations that enrich solitude freely chosen rather than replacing it completely.",
+      "strengths": "Observation, patience, and a willingness to explore deeply may bring nuanced ideas to light. You might notice a meaningful detail where everything initially seems confused. These resources become more fruitful when you share selected discoveries, even unfinished ones, with people able to receive them without rushing to judge or dismiss.",
+      "challenges": "Protective withdrawal could become a habit that distances you from helpful encounters. Seeking every answer in solitude may also make shared questions feel unnecessarily heavy. Another perspective can sometimes ease the weight of your search.",
+      "lesson": "The lesson suggests preserving your inner space while allowing other insights to accompany the questions you explore.",
+      "thread": "Your guiding thread suggests a quiet light built through attention and passed on without fanfare. This portrait invites trust in your own pace while leaving doors open to the wider world. A personal search can deepen through connection without losing the uniqueness of its path."
+    },
+    "fool": {
+      "energy": "Your symbolic path makes room for unexpected departures, open possibilities, and the need to explore freely. You may feel more alive when the route has not been completely mapped. This energy thrives when joyful curiosity comes with a few deliberately chosen reference points that support decisions without enclosing movement in rigid limits.",
+      "strengths": "Spontaneity, an ability to see things differently, and a love of discovery may open new perspectives. You might welcome a meeting or an idea without immediately assigning it a label. These qualities become more reliable when you also take time to consider what each adventure asks of you and others.",
+      "challenges": "Attraction to novelty could scatter your commitments or hide a need for stability. Rejecting every constraint too quickly might deprive you of useful support that you could freely choose. A chosen anchor may serve you.",
+      "lesson": "The lesson suggests exploring with trust while discerning which commitments genuinely support your inner freedom and sense of purpose.",
+      "thread": "Your guiding thread moves between the pull of the unknown and the wish to stay true to yourself. This reading invites you to welcome beginnings without making novelty a duty. Freedom also grows through pauses, reliable relationships, and choices you retain the power to renew."
+    }
+  },
+  "info": {
+    "portrait": "The birth card and the life path arcana both come from the same birth date, but use different calculations. The first follows the method for major arcana already used by ZODIAC. The second follows numerological reduction while preserving master numbers. Their connections invite symbolic reflection, not certainty about a personality or destiny.",
+    "portraitDecan": "ZODIAC assigns decan planets through the triplicity system, while its minor-arcana correspondences follow the Golden Dawn and its Chaldean planetary attributions. For example, ZODIAC assigns Jupiter to the third decan of Aries, while the Golden Dawn associates Venus with the Four of Wands. A sign's ruling planet and a decan planet are different concepts. The historical Golden Dawn used seven planets; correspondences involving Uranus, Neptune and Pluto are modern extensions rather than original historical attributions."
+  }
+}

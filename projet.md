@@ -1,5 +1,7 @@
 # 🌌 Zodiaque & Décans · Cosmic Interface
 
+> **28/10/2026 — Portrait symbolique V0.3 intégré (sur la base GitHub main `999bd9c`).** Dans l’onglet « Numérologie & tarot », carte de naissance et arcane du chemin de vie distingués, cas maîtres 11/22/33, aperçu + six rubriques dépliables, trois correspondances célestes et deux bulles (i), export de la copie dépliée. 14 traductions approuvées, données locales ; ajout de tests sur les six dates du cahier et les 36 décans. Le cahier est copié dans `docs/`. Les calculs numériques, astrologiques et tarot existants sont réutilisés sans changement.
+
 > Interface web immersive et multilingue qui calcule le signe astrologique, le décan et les affinités à partir d'une date de naissance, avec transition cinématique de recherche dans le ciel et tracé animé de constellation.
 
 ---
@@ -431,7 +433,7 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | aucune en ligne (html2canvas en copie locale) |
 | Poids approximatif | version autonome ≈ 6,2 Mo (dont ≈ 3,1 Mo d'illustrations du tarot, ≈ 1 Mo de villes et ≈ 1,6 Mo de traductions) |
-| Tests automatisés | 79 (dans `zodiac-tests.js`) |
+| Tests automatisés | 93 (79 historiques + 14 du portrait) |
 
 ---
 
