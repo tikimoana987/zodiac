@@ -1,6 +1,6 @@
 # 🗺️ Zodiaque & Décans — ce qu'il reste à faire
 
-> État au 31 octobre 2026, après le portrait symbolique et l'audit d'accessibilité (V7). Ce document complète `projet.md` (ce qui est fait) et `reprise.md` (notes techniques).
+> État au 31 octobre 2026, après le portrait symbolique, l'audit d'accessibilité et les tests Safari / Firefox (V7.3), et le retour détaillé d'une testeuse (§ 3). Ce document complète `projet.md` (ce qui est fait) et `reprise.md` (notes techniques).
 > Légende : 🟢 petit · 🟡 moyen · 🔴 gros chantier · ❓ décision à prendre · ⭐ recommandation de Claude
 
 ---
@@ -71,7 +71,46 @@ Idée d'une testeuse (27 octobre 2026), approuvée : aller au-delà des textes c
 
 ---
 
-## 3. 🟡 Frise annuelle des événements (en image)
+## 3. 🆕 Retour d'une testeuse (31 octobre 2026) : pistes validées
+
+Retour détaillé d'une testeuse, validé le 31 octobre. Fil conducteur pour tous ces chantiers : des lectures **réalistes mais encourageantes, jamais fatalistes** ; une relation dépend des personnes et de leurs choix, pas des astres. Chaque gros chantier suit la méthode du portrait : cahier de décisions, textes rédigés puis validés dans les 14 langues, intégration et tests.
+
+### 3.1 🟢 Oracle Oui / Non
+- [ ] Un cercle et quatre réponses : **Oui, Non, Peut-être, Bientôt**. La personne pense à sa question sans rien écrire et touche le centre ; une flèche lumineuse tourne, ralentit et s'arrête au hasard (générateur du navigateur). Toucher à nouveau pour une autre question.
+- [ ] Présenté clairement comme un jeu, pas comme une prédiction ; version sobre en mode « animations réduites ».
+- [ ] Peu de textes (≈ 6 par langue). ❓ Emplacement : onglet Tarot (§ 3.3) ou accès direct depuis l'accueil.
+
+### 3.2 🟡 Compatibilité approfondie
+- Aujourd'hui : trois axes (signes, animaux chinois, Lunes) notés sur 5, et une entente globale.
+- [ ] Ajouter Vénus (affection), Mars (attirance, énergie), Mercure (communication), les ascendants et les chemins de vie ; les positions sont déjà calculées par le thème natal.
+- [ ] Rubriques : affinité émotionnelle, attirance, communication, forces du couple, défis possibles, et **« Conseils des étoiles »** (comment la communication, la patience et la compréhension aident deux tempéraments différents).
+- [ ] ❓ Garder, adoucir ou remplacer la note sur 5 : des forces et des points d'attention plutôt qu'un verdict.
+- [ ] Ascendant de l'autre personne : ajouter son lieu de naissance (facultatif, gardé en mémoire seulement et jamais enregistré, comme aujourd'hui).
+- [ ] Cahier de décisions, puis textes dans les 14 langues : c'est le plus gros du travail.
+
+### 3.3 🟡 Onglet Tarot et nouveaux tirages
+- Aujourd'hui, dans « Numérologie & tarot » : carte de naissance, carte du jour, Passé · Présent · Avenir, deux jeux (Marseille, Waite-Smith), cartes renversées, jeu complet de 78 cartes en option.
+- [ ] Un onglet **Tarot** à part ; ❓ le portrait symbolique reste avec la numérologie.
+- [ ] Un jeu à mélanger, des cartes à choisir dans un éventail, révélées une à une.
+- [ ] Nouveaux tirages, par étapes : une question · une carte ; Situation · Défi · Conseil ; les six prochains mois (une carte par mois). Plus tard : lectures par thème (amour, travail, questions personnelles), coûteuses en textes (78 cartes × 3 thèmes × 14 langues).
+
+### 3.4 🟡 Carré de Pythagore (matrice 3×3)
+- Aujourd'hui : chemin de vie, expression (« nombre du destin »), nombre intime, personnalité, cycles de l'année, du mois et du jour ; ❓ peut-être à rendre plus visibles.
+- [ ] Matrice calculée à partir de la date de naissance ; chaque case cliquable, avec son interprétation (caractère, talents, forces, fragilités, émotions, leçons de vie).
+- [ ] ❓ Méthode de calcul à fixer dans un cahier (il en existe plusieurs variantes) ; environ 50 textes par langue.
+
+### 3.5 Mis de côté : abonnement premium
+- Idée externe (version gratuite et abonnement payant), **qui n'est pas la vision du projet** : mise de côté. Elle supposerait paiement, comptes ou clés, obligations légales, et contredirait la promesse de confidentialité.
+
+### 3.6 ❓ À étudier plus tard : une courte pause financée (ton idée)
+- Idée : au moment de la recherche, une pause de 5 à 10 secondes financée (publicité ou partenaire) ; fréquence à choisir : à chaque recherche, toutes les 5 recherches ou une fois par jour.
+- Point clé : les régies publicitaires classiques (type Google AdSense) chargent du code d'un tiers qui suit les visiteurs. Conséquences : fin de la promesse « aucune donnée envoyée », bandeau de consentement aux cookies obligatoire en Europe, rien en version hors ligne, et des revenus faibles tant que l'audience reste petite.
+- Piste compatible avec la promesse : un **message partenaire** (image et lien intégrés à l'appli, sans code tiers ni pistage) pendant l'animation de recherche, qui dure déjà ≈ 4 secondes ; partenariat direct ou lien d'affiliation.
+- À décider quand l'appli aura des utilisateurs réguliers.
+
+---
+
+## 4. 🟡 Frise annuelle des événements (en image)
 
 Idée notée le 27 octobre : visualiser l'année du ciel sous forme d'une frise stylisée, belle à regarder et à partager.
 
@@ -83,7 +122,7 @@ Idée notée le 27 octobre : visualiser l'année du ciel sous forme d'une frise 
 
 ---
 
-## 4. 🟡 Console d'administration locale (non publiée)
+## 5. 🟡 Console d'administration locale (non publiée)
 
 Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serveur, donc une section « admin » cachée dans le site ne serait jamais vraiment protégée. ⭐ D'où **une console à part, présente dans le dépôt mais exclue du site en ligne**, que tu ouvres sur ton ordinateur.
 
@@ -91,12 +130,12 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 - [ ] **Dos de cartes** : choix par jeu, et ❓ selon les saisons ou les périodes de l'année (par exemple un dos par saison, ou pour les solstices et équinoxes).
 - [ ] **Habillages de l'appli (skins)** : palettes, fonds, typographies ; aperçu en direct.
 - [ ] **Fichier de réglages** (`zodiac-config.js`) produit par la console, à déposer sur GitHub comme une mise à jour ; le site en tient compte à la publication suivante.
-- [ ] Éventuellement : génération de la frise annuelle (§ 3) pour un profil, aperçu des nouvelles cartes avant publication.
+- [ ] Éventuellement : génération de la frise annuelle (§ 4) pour un profil, aperçu des nouvelles cartes avant publication.
 - [ ] Technique : la console réutilise les modules de l'appli ; `build-standalone.py` l'exclut du dossier `site/` ; ses propres tests.
 
 ---
 
-## 5. 🔴 iPhone et version hors ligne (en dernier)
+## 6. 🔴 iPhone et version hors ligne (en dernier)
 
 - [ ] **Bouton « Version hors ligne »** : il est grisé (« bientôt disponible ») ; ❓ décider s'il est réactivé, et pour quels appareils. Une seule ligne suffit : `OFFLINE_ENABLED = true` dans `zodiac-app.js`.
 - [ ] **Appli installée sur iPhone** (« Sur l'écran d'accueil ») : vérifier le fonctionnement hors ligne, la conservation des données (Safari peut effacer les données d'un site non utilisé pendant plusieurs semaines ; c'est moins vrai pour une appli installée, à vérifier), le bandeau de mise à jour, les zones sûres (encoche, barre d'accueil).
@@ -109,11 +148,11 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 
 ---
 
-## 6. 🟢 Améliorations notées en cours de route (à valider)
+## 7. 🟢 Améliorations notées en cours de route (à valider)
 
 - [ ] **Numérologie** : « nombre actif » (prénom usuel) et « nombre héréditaire » (nom de famille), en plus des nombres actuels.
-- [ ] **Tarot** : autres tirages (oui ou non, croix celtique…), si le tirage à trois cartes plaît.
-- [ ] **Dos de cartes** : le n° 6 (rose des vents) reste en réserve, par exemple pour un troisième jeu ou une saison (§ 4).
+- [ ] **Tarot** : croix celtique et autres tirages classiques, en complément du § 3.3 (le « oui ou non » devient l'Oracle, § 3.1).
+- [ ] **Dos de cartes** : le n° 6 (rose des vents) reste en réserve, par exemple pour un troisième jeu ou une saison (§ 5).
 - [ ] **Page d'aide ou foire aux questions** : installer l'appli, importer le calendrier, enregistrer en PDF, effacer ses données, confidentialité.
 - [ ] **Turc** : les sens des 22 arcanes majeurs tutoient (sen), alors que l'interface et les arcanes mineurs vouvoient (siz) ; harmoniser au vouvoiement.
 - [ ] **Relecture des traductions** par des personnes dont c'est la langue maternelle, en priorité arabe, hindi, thaï, chinois, japonais et coréen. Les textes ont été écrits avec soin, mais une relecture humaine reste préférable.
@@ -124,7 +163,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 
 ---
 
-## 7. 🟢 Qualité, maintenance, technique
+## 8. 🟢 Qualité, maintenance, technique
 
 - [ ] **Licence du projet** ❓ : le dépôt est public mais sans licence, ce qui veut dire « tous droits réservés » par défaut. À décider : garder ainsi, ou choisir une licence (MIT, CC BY-NC…). Les crédits des données sont déjà dans le README, y compris la mention des illustrations générées avec Gemini.
 - [ ] **Versions à surveiller** dans le circuit GitHub : Ubuntu fixé à 24.04, Playwright 1.56, actions (checkout v7, setup-python v7, upload-pages-artifact v5, deploy-pages v5). À mettre à jour de temps en temps, quand GitHub prévient d'une fin de prise en charge.
@@ -136,7 +175,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 
 ---
 
-## 8. Décisions en attente (récapitulatif)
+## 9. Décisions en attente (récapitulatif)
 
 | # | Sujet | Options | ⭐ Recommandation |
 |---|---|---|---|
@@ -148,15 +187,24 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 | 6 | Console d'administration | périmètre exact | export 12 mois, dos de cartes, habillages, fichier de réglages |
 | 7 | Version hors ligne | réactiver · laisser grisé | à trancher avec l'étape iPhone |
 | 8 | Licence du dépôt | aucune · MIT · CC BY-NC | à discuter |
+| 9 | Compatibilité : note sur 5 | garder · adoucir · remplacer | forces et points d'attention plutôt qu'un verdict |
+| 10 | Oracle Oui / Non : emplacement | onglet Tarot · accueil | à décider au moment du chantier |
+| 11 | Financement | rien · lien « soutenir le projet » · message partenaire · publicité classique | rien pour l'instant ; si besoin, message partenaire sans pistage. Abonnement premium mis de côté |
 
 ---
 
-## 9. Ordre proposé
+## 10. Ordre proposé
 
 1. ✅ **Arcanes mineurs** (§ 1) ; reste les 9 illustrations à refaire avec Gemini (§ 1.1), quand il refonctionnera.
-2. ✅ **Portrait symbolique** (§ 2) : rédaction des 14 langues, intégration et tests ; contrôle final de la publication après dépôt.
-3. ✅ **Accessibilité (audit automatique) et tests Safari / Firefox informatifs** (§ 5, § 7), V7.
-4. **Améliorations rapides** (§ 6) au fil de l'eau : en priorité l'animation de recherche passable, puis l'allègement des mises à jour.
-5. **Frise annuelle** (§ 3) et **console d'administration** (§ 4), éventuellement ensemble, puisque la console peut produire la frise.
-6. **Qualité et maintenance** (§ 7), en continu.
-7. **iPhone et version hors ligne** (§ 5), en dernier.
+2. ✅ **Portrait symbolique** (§ 2).
+3. ✅ **Accessibilité (audit automatique) et tests Safari / Firefox** (§ 6, § 8), V7 à V7.3.
+4. **Animation de recherche passable** (§ 7), puis **Oracle Oui / Non** (§ 3.1) : deux petits chantiers.
+5. **Compatibilité approfondie** (§ 3.2).
+6. **Onglet Tarot et nouveaux tirages** (§ 3.3).
+7. **Carré de Pythagore** (§ 3.4).
+8. **Améliorations rapides** (§ 7) au fil de l'eau, dont l'allègement des mises à jour.
+9. **Frise annuelle** (§ 4) et **console d'administration** (§ 5), éventuellement ensemble, puisque la console peut produire la frise.
+10. **Qualité et maintenance** (§ 8), en continu.
+11. **iPhone et version hors ligne** (§ 6), en dernier.
+
+Financement (§ 3.6) : à part, à décider plus tard. Abonnement premium (§ 3.5) : mis de côté.
