@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   tests:
-    name: Tests (5 fuseaux, 3 langues, hors ligne, site installable)
+    name: Tests (5 fuseaux, 3 langues, hors ligne, site installable, accessibilité)
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
@@ -29,6 +29,8 @@ jobs:
         run: |
           pip install -r tools/requirements.txt
           python -m playwright install --with-deps chromium
+      - name: Installer l'outil d'audit d'accessibilité (axe-core, utilisé seulement pendant les tests)
+        run: npm install --no-save --no-package-lock --prefix tools axe-core@4.10.2
       - name: Assembler la version autonome et le site
         run: python build-standalone.py
       - name: Lancer tous les tests
@@ -38,6 +40,30 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: site
+
+  navigateurs:
+    # Informatif : mêmes tests dans le moteur de Safari (WebKit) et dans Firefox.
+    # Un échec s'affiche en rouge sur cette ligne, mais n'empêche jamais la publication.
+    name: Informatif — ${{ matrix.navigateur }}
+    runs-on: ubuntu-24.04
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        navigateur: [webkit, firefox]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Installer Playwright et ${{ matrix.navigateur }}
+        run: |
+          pip install -r tools/requirements.txt
+          python -m playwright install --with-deps ${{ matrix.navigateur }}
+      - name: Assembler la version autonome et le site
+        run: python build-standalone.py
+      - name: Lancer les tests dans ${{ matrix.navigateur }}
+        run: python tools/run_tests.py --browser ${{ matrix.navigateur }}
 
   publication:
     name: Publication sur GitHub Pages
