@@ -449,6 +449,7 @@ function renderResult(signKey, decanIdx){
         <p class="oracle-more"><button type="button" class="btn-secondary" data-oracle-open><span aria-hidden="true">🔮</span> ${t.oracle.open}</button></p>
       </div>
     </div>
+    <p class="support-line" data-support-line ${typeof supportReady === 'function' && supportReady() ? '' : 'hidden'}>${t.support.line} <button type="button" class="support-link" data-support-open ${typeof supportReady === 'function' && supportReady() ? '' : 'hidden'}><span aria-hidden="true">☕</span> ${t.support.open}</button></p>
   `;
   container.classList.remove('hidden');
   document.querySelector('.app').classList.add('has-result');
@@ -1987,6 +1988,7 @@ function applyUITranslations(){
   if (birthField) birthField.relabel();   // pays affiché dans la nouvelle langue
   document.getElementById('labelName').textContent = t.labelName;
   document.getElementById('oracleOpenLabel').textContent = t.oracle.open;
+  if (typeof refreshSupport === 'function') refreshSupport();
   document.getElementById('privacyLine').textContent = t.privacyLine;
   for (const [slot, key, labelId] of [['infoSlotName', 'fieldName', 'labelName'], ['infoSlotTime', 'fieldTime', 'labelBirthTime'], ['infoSlotPlace', 'fieldPlace', 'labelBirthPlace']]) {
     const el = document.getElementById(slot); if (el) el.innerHTML = infoBtn(key, document.getElementById(labelId).textContent);

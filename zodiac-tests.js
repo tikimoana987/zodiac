@@ -1212,6 +1212,36 @@
     } finally { prefersReducedMotion = keep; if (!ov.classList.contains('hidden')) closeOracle(); }
   });
 
+  test('Soutenir le projet : caché sans lien, fenêtre, liens sûrs, partage sans données personnelles', () => {
+    const keep = SUPPORT_LINKS.map(l => l.url), ov = document.getElementById('support'), opener = document.getElementById('supportOpen');
+    try {
+      SUPPORT_LINKS.forEach(l => { l.url = ''; }); refreshSupport();
+      assert(opener.hidden && !supportReady(), 'aucun lien : bouton caché');
+      SUPPORT_LINKS[0].url = 'https://ko-fi.com/exemple'; SUPPORT_LINKS[1].url = 'http://exemple.org/non-securise'; SUPPORT_LINKS[2].url = 'javascript:alert(1)';
+      refreshSupport();
+      assert(!opener.hidden, 'un lien renseigné : bouton visible');
+      assertEq(supportLinks().length, 1, 'seules les adresses https sont gardées');
+      opener.click();
+      const links = [...document.querySelectorAll('#supportList a')];
+      assert(!ov.classList.contains('hidden') && links.length === 1, 'fenêtre ouverte, une seule plateforme');
+      assert(links[0].target === '_blank' && /noopener/.test(links[0].rel) && /noreferrer/.test(links[0].rel), 'nouvel onglet, sans transmettre la page d\'origine');
+      assert(document.activeElement === links[0], 'focus sur la première plateforme');
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+      assert(ov.classList.contains('hidden') && document.activeElement === opener, 'fermeture par Échap, focus rendu');
+      assert(APP_URL.startsWith('https://') && !/[#?]/.test(APP_URL), 'adresse partagée : le site seul, sans date ni profil');
+    } finally {
+      SUPPORT_LINKS.forEach((l, i) => { l.url = keep[i]; });
+      if (!ov.classList.contains('hidden')) closeSupport();
+      refreshSupport();
+    }
+    for (const l of Object.keys(I18N)) {
+      const s = I18N[l].support;
+      assert(s && s.open && s.line && s.intro && s.share && s.note, `${l} : textes`);
+      if (l !== 'fr') assert(s.intro !== I18N.fr.support.intro && s.note !== I18N.fr.support.note, `${l} : traduit`);
+      if (l === 'th') assert(Object.values(s).every(v => !v.includes(':') && !/\.$/.test(v)), 'thaï : ni deux-points ni point final');
+    }
+  });
+
   /* ---------------- Rapport ---------------- */
   const failed = results.filter(r => !r.ok);
   window.__testResults = results;

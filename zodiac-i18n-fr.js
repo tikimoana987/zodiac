@@ -1650,5 +1650,12 @@ I18N.fr = {
     again: "Touchez le centre pour une autre question",
     note: "Un jeu pour s'amuser, pas une prédiction",
     answers: { yes: "Oui", no: "Non", maybe: "Peut-être", soon: "Bientôt" }
+  },
+  support: {
+    open: "Soutenir le projet",
+    line: "Cette appli vous plaît ?",
+    intro: "L'appli est gratuite et respecte votre vie privée. Si elle vous plaît, vous pouvez soutenir son développement.",
+    share: "Partager l'appli",
+    note: "Le don se fait sur la plateforme choisie, dans un nouvel onglet. L'appli ne transmet rien."
   }
 };

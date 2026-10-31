@@ -1650,5 +1650,12 @@ I18N.it = deepMerge(I18N.fr, {
     again: "Tocca il centro per un'altra domanda",
     note: "Un gioco per divertirsi, non una previsione",
     answers: { yes: "Sì", no: "No", maybe: "Forse", soon: "Presto" }
+  },
+  support: {
+    open: "Sostieni il progetto",
+    line: "Ti piace l'app?",
+    intro: "L'app è gratuita e rispetta la tua privacy. Se ti piace, puoi sostenerne lo sviluppo.",
+    share: "Condividi l'app",
+    note: "La donazione avviene sulla piattaforma scelta, in una nuova scheda. L'app non trasmette nulla."
   }
 });

@@ -70,6 +70,7 @@
 
   <footer class="app-foot">
     <button type="button" class="offline-btn" id="offlineBtn"><span aria-hidden="true">⬇</span> <span id="offlineLabel">Version hors ligne</span></button>
+    <button type="button" class="support-btn" id="supportOpen" data-support-open hidden><span aria-hidden="true">☕</span> <span id="supportOpenLabel">Soutenir le projet</span></button>
     <p class="offline-hint" id="offlineHint"></p>
     <p class="app-credit" id="placesCredit"></p>
     <p class="app-version" id="appVersion"></p>
@@ -100,6 +101,18 @@
   <p class="oracle-result" id="oracleResult" aria-live="polite"></p>
   <p class="oracle-note" id="oracleNote"></p>
   <button type="button" class="oracle-close" id="oracleClose">Fermer</button>
+</div>
+
+<!-- SOUTENIR LE PROJET (zodiac-support.js) -->
+<div id="support" class="modal-overlay support-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="supportTitle" aria-describedby="supportIntro" aria-hidden="true">
+  <div class="modal support-card">
+    <h2 class="support-title" id="supportTitle">Soutenir le projet</h2>
+    <p class="support-intro" id="supportIntro"></p>
+    <ul class="support-list" id="supportList"></ul>
+    <button type="button" class="support-share" id="supportShare"><span aria-hidden="true">🔗</span> <span id="supportShareLabel">Partager l'appli</span></button>
+    <p class="support-note" id="supportNote"></p>
+    <button type="button" class="support-close" id="supportClose">Fermer</button>
+  </div>
 </div>
 
 <!-- MODAL COMPATIBILITÉ -->
@@ -148,6 +161,7 @@
 <script src="zodiac-portrait-data.js"></script>
 <script src="zodiac-app.js"></script>
 <script src="zodiac-oracle.js"></script>
+<script src="zodiac-support.js"></script>
 <script src="zodiac-portrait.js"></script>
 <script src="zodiac-portrait-tests.js"></script>
 

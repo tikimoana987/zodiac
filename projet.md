@@ -1,5 +1,7 @@
 # 🌌 Zodiaque & Décans · Cosmic Interface
 
+> **31/10/2026 — V7.6 : « Soutenir le projet ».** Un bouton en bas de page et une ligne discrète à la fin des résultats (« Cette appli vous plaît ? ») ouvrent une fenêtre qui regroupe les pages de dons (Ko-fi, PayPal, Liberapay, GitHub Sponsors) et une contribution sans argent : partager l'appli (adresse publique du site, jamais celle du profil affiché). De simples liens, ouverts dans un nouvel onglet ; rien n'est chargé ni transmis par l'appli. Bouton caché tant qu'aucune adresse n'est renseignée dans `zodiac-support.js`. 14 langues ; 98 tests.
+
 > **31/10/2026 — V7.5 : Oracle Oui / Non, retour à l'animation complète.** L'animation de recherche reprend sa forme d'origine à chaque recherche (la V7.4, qui la raccourcissait et permettait de la passer, est annulée : le balayage du ciel et le tracé de la constellation font partie de l'ambiance de l'appli). Nouvel **Oracle Oui / Non** (`zodiac-oracle.js`), ouvert depuis l'accueil et depuis « Numérologie & tarot ». L'audit d'accessibilité active désormais réellement le thème clair (bouton ☀) : contraste du bouton de jeu actif corrigé dans ce thème. 97 tests.
 
 > **31/10/2026 — V7.3 : premiers résultats Safari / Firefox.** Firefox : tout passe. Safari (WebKit) a révélé un vrai défaut : un navigateur pas à jour (iPhone ancien, par exemple) ne connaît pas les fuseaux horaires les plus récents (America/Coyhaique 2025, America/Ciudad_Juarez 2022, Europe/Kyiv 2022, America/Nuuk 2020) et le résultat ne s'affichait jamais pour une ville de naissance concernée. Correction : l'ancien fuseau équivalent est utilisé (`TZ_FALLBACK`, `usableTimeZone()` dans `zodiac-places.js`), avec exactement les mêmes heures (vérifié jour par jour de 1900 à 2026 et par le test des villes). Le test du site installable fonctionne désormais aussi dans WebKit.
@@ -63,6 +65,7 @@ Les fichiers sont chargés par de simples balises `<script src>` (pas de modules
 | `zodiac-portrait-data.js` | Données des 14 langues intégrées en JavaScript local, générées à partir des JSON sources avec `node tools/regen_portraits.js` |
 | `zodiac-portrait.js` | **Portrait symbolique** : deux arcanes, maîtres 11/22/33, correspondances signe/maître/décan Golden Dawn, six rubriques repliables, formules détaillées et ponctuation adaptée aux 14 langues ; export déplié |
 | `zodiac-oracle.js` | **Oracle Oui / Non** : un cercle, quatre réponses (Oui, Peut-être, Non, Bientôt), une flèche lumineuse qui fait le tour du cercle et ralentit (≈ 3,2 s) ; une chance sur quatre par le hasard du navigateur (`secureRandom`) ; rien n'est saisi ni enregistré ; fenêtre plein écran avec focus gardé, Échap, réponse annoncée aux lecteurs d'écran ; sans rotation en mode « animations réduites » |
+| `zodiac-support.js` | **Soutenir le projet** : liste `SUPPORT_LINKS` à renseigner (une adresse https par plateforme ; vide = plateforme masquée ; aucune adresse = bouton caché), fenêtre de liens ouverts dans un nouvel onglet (`noopener noreferrer`), « Partager l'appli » (feuille de partage du téléphone ou lien copié, adresse publique `APP_URL`) ; focus gardé, Échap |
 | `zodiac-portrait.css` | Styles indépendants du portrait (mobile, thèmes et export) |
 | `zodiac-portrait-tests.js` | Tests automatiques du portrait : six dates, 36 décans, 14 langues, formules, ponctuation, interface et export |
 | `tools/regen_portraits.js` | Regénère `zodiac-portrait-data.js` depuis les fichiers `data/portraits/` sans dépendance ni accès réseau |
@@ -456,14 +459,14 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | aucune en ligne (html2canvas en copie locale) |
 | Poids approximatif | version autonome ≈ 6,8 Mo (dont ≈ 3,1 Mo d'illustrations du tarot, ≈ 1 Mo de villes, ≈ 1,6 Mo de traductions et ≈ 0,4 Mo de textes du portrait) |
-| Tests automatisés | 97 (80 historiques + 17 portrait) ; parcours réel protégé en CI |
+| Tests automatisés | 98 (81 historiques + 17 portrait) ; parcours réel protégé en CI |
 
 ---
 
 ## 🧪 Comment tester
 
 ### Tests automatiques
-Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 80 tests historiques couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
+Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 81 tests historiques couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
 La version autonome se teste de la même façon : `ZODIAC-standalone.html?test` (la suite y est intégrée ; un test supplémentaire vérifie que sa copie vierge est complète et sans donnée personnelle).
 - le calcul du Soleil, comparé à 40 positions de référence calculées par astropy (1900-2100) ;
 - signes et décans de dates de référence, équinoxes connues, jours de transition, effet de l'heure ;

@@ -1642,5 +1642,12 @@ I18N.tr = deepMerge(I18N.fr, {
     again: "Başka bir soru için ortaya dokunun",
     note: "Eğlence için bir oyun, kehanet değil",
     answers: { yes: "Evet", no: "Hayır", maybe: "Belki", soon: "Yakında" }
+  },
+  support: {
+    open: "Projeyi destekleyin",
+    line: "Uygulamayı beğendiniz mi?",
+    intro: "Uygulama ücretsizdir ve gizliliğinize saygı duyar. Beğendiyseniz geliştirilmesine destek olabilirsiniz.",
+    share: "Uygulamayı paylaşın",
+    note: "Bağış, seçtiğiniz platformda yeni bir sekmede yapılır. Uygulama hiçbir şey iletmez."
   }
 });

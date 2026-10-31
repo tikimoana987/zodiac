@@ -382,6 +382,37 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .oracle-close:focus-visible{ outline:2px solid var(--gold-bright); outline-offset:3px; }
 @media (prefers-reduced-motion: reduce){ .oracle-wheel::before, .oracle-wheel::after, .oracle-arrow.spinning::before{ animation:none; } }
 
+/* SOUTENIR LE PROJET (zodiac-support.js) — fenêtre dans le style de la modale de compatibilité */
+.support-btn{
+  background:transparent; border:1px solid var(--gold); color:var(--gold); cursor:pointer;
+  border-radius:999px; padding:.4rem 1rem; font:inherit; font-size:.85rem;
+}
+.support-btn:hover{ background:var(--ov-08); }
+.support-btn:focus-visible, .support-link:focus-visible, .support-platform:focus-visible, .support-share:focus-visible, .support-close:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+.support-line{ text-align:center; color:var(--muted); font-size:.9rem; margin:1.6rem 0 .2rem; }
+.support-line[hidden], .support-btn[hidden], .support-link[hidden]{ display:none; }
+.support-link{ background:none; border:0; padding:0 .2rem; color:var(--gold); font:inherit; font-weight:600; cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
+.support-card{ text-align:center; }
+.support-title{ font-size:1.2rem; color:var(--text); margin:0 0 .6rem; }
+.support-intro{ color:var(--text); font-size:.95rem; line-height:1.5; margin:0 0 1.1rem; }
+.support-list{ list-style:none; margin:0 0 1rem; padding:0; display:grid; gap:.55rem; }
+.support-platform{
+  display:block; padding:.65rem 1rem; border-radius:14px; text-decoration:none; font-weight:600;
+  color:var(--text); background:var(--ov-08); border:1px solid var(--ov-15);
+}
+.support-platform:hover{ border-color:var(--gold); color:var(--gold); }
+.support-share{
+  background:transparent; border:1px dashed var(--ov-30); color:var(--text); cursor:pointer;
+  border-radius:14px; padding:.6rem 1rem; width:100%; font:inherit; font-size:.9rem;
+}
+.support-share:hover{ border-color:var(--gold); }
+.support-note{ color:var(--muted); font-size:.78rem; margin:.9rem 0 1rem; }
+.support-close{
+  background:transparent; border:1px solid var(--ov-15); color:var(--text); cursor:pointer;
+  border-radius:999px; padding:.45rem 1.4rem; font:inherit; font-size:.85rem;
+}
+.support-close:hover{ border-color:var(--gold); }
+
 /* RESULT */
 .result{ animation:fadeIn .6s ease forwards; }
 .result.hidden{ display:none; }

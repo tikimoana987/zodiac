@@ -1643,5 +1643,12 @@ I18N.en = deepMerge(I18N.fr, {
     again: "Tap the centre for another question",
     note: "Just for fun, not a prediction",
     answers: { yes: "Yes", no: "No", maybe: "Maybe", soon: "Soon" }
+  },
+  support: {
+    open: "Support the project",
+    line: "Enjoying the app?",
+    intro: "The app is free and respects your privacy. If you like it, you can support its development.",
+    share: "Share the app",
+    note: "Donations are made on the platform you choose, in a new tab. The app passes nothing on."
   }
 });

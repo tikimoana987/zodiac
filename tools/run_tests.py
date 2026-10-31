@@ -6,6 +6,7 @@ Vérifie, dans un navigateur piloté par Playwright (Chromium par défaut) :
   2. la même suite dans la version autonome (ZODIAC-standalone.html), réseau coupé ;
   3. un parcours réel en français, arabe (droite à gauche) et japonais : résultat, thème natal, nuit, portrait, sans erreur ;
      puis l'Oracle Oui / Non, animations actives : ouverture, réponse après la rotation, nouvelle question, fermeture ;
+     l'audit d'accessibilité couvre aussi l'oracle ouvert et la fenêtre « Soutenir le projet » ;
   4. le site installable (dossier site/) servi comme sur GitHub Pages : installation, puis fonctionnement réseau coupé ;
   5. (Chromium seulement) l'accessibilité : audit axe-core de l'accueil et des 5 onglets, en français et en arabe,
      thèmes sombre et clair ; la moindre anomalie fait échouer les tests.
@@ -177,6 +178,14 @@ async def accessibility(browser, file):
             violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
                 .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
             found += [f'oracle : {v}' for v in violations]
+            await page.click('#oracleClose')
+            # « Soutenir le projet » : caché tant qu'aucun lien n'est renseigné ; un lien d'essai le fait apparaître
+            await page.evaluate("SUPPORT_LINKS[0].url = 'https://ko-fi.com/exemple'; refreshSupport()")
+            await page.click('#supportOpen')
+            await page.add_script_tag(content=script)
+            violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
+                .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
+            found += [f'soutien : {v}' for v in violations]
             theme = 'sombre' if scheme == 'dark' else 'clair'
             report(not found and not errors, f'{lang}, thème {theme} : '
                    + (f'{len(found + errors)} anomalie(s) | {found + errors}' if found or errors else 'aucune anomalie'))

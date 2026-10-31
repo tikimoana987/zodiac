@@ -12,7 +12,7 @@
 | Feuille de route d'origine (étapes 1 à 6) | ✅ terminée, sauf l'iPhone (gardé pour la fin) |
 | Pistes 1 à 6 | ✅ version et bandeau de mise à jour · ✅ cartes renversées · ✅ lieux par coordonnées GPS · ✅ calendrier du ciel · ✅ fiche du thème natal à imprimer ou en PDF · ✅ arcanes mineurs (jeu complet de 78 cartes) |
 | Langues | 14 (FR, EN, ES, PT, IT, DE, TR, RU, AR, HI, TH, ZH, JA, KO) |
-| Tests automatiques | 97 (80 historiques + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit) et Firefox, pour information |
+| Tests automatiques | 98 (81 historiques + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit) et Firefox, pour information |
 | Publication | automatique sur GitHub Pages, après les tests (circuit GitHub Actions) |
 | Poids | version autonome ≈ 6,8 Mo : illustrations du tarot ≈ 3,1 Mo (déjà en WebP), villes ≈ 1 Mo, 14 langues ≈ 1,6 Mo, textes du portrait ≈ 0,4 Mo |
 | Confidentialité | aucune donnée envoyée en ligne (adresse en « # », pas de serveur, pas de statistiques) ; seule exception : les événements ajoutés à Google Agenda à la demande de l'utilisateur |
@@ -107,7 +107,9 @@ Retour détaillé d'une testeuse, validé le 31 octobre. Fil conducteur pour tou
 - Point clé : les régies publicitaires classiques (type Google AdSense) chargent du code d'un tiers qui suit les visiteurs. Conséquences : fin de la promesse « aucune donnée envoyée », bandeau de consentement aux cookies obligatoire en Europe, rien en version hors ligne, et des revenus faibles tant que l'audience reste petite.
 - Piste compatible avec la promesse : un **message partenaire** (image et lien intégrés à l'appli, sans code tiers ni pistage) pendant l'animation de recherche (≈ 3,8 s à la première recherche, passable) ; partenariat direct ou lien d'affiliation.
 - À décider quand l'appli aura des utilisateurs réguliers.
-- [ ] **Dons et contributions** (demande du 31 octobre) : un lien « Soutenir le projet » en bas de page et à un endroit stratégique ; plateforme et emplacements à choisir. Un simple lien vers la plateforme, sans code tiers : la promesse de confidentialité reste intacte.
+- [x] **Dons et contributions** (V7.6) : bouton « Soutenir le projet » en bas de page et ligne « Cette appli vous plaît ? » à la fin des résultats ; fenêtre qui regroupe les plateformes (Ko-fi, PayPal, Liberapay, GitHub Sponsors) et « Partager l'appli ». Simples liens, sans code tiers.
+- [ ] Créer les comptes de dons, puis coller leurs adresses dans `SUPPORT_LINKS` (`zodiac-support.js`) : le bouton apparaît dès la première adresse.
+- [ ] Plus tard : « Proposer une relecture de traduction » dans la même fenêtre (§ 7, relecture par des personnes de langue maternelle).
 
 ---
 
@@ -199,7 +201,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 1. ✅ **Arcanes mineurs** (§ 1) ; reste les 9 illustrations à refaire avec Gemini (§ 1.1), quand il refonctionnera.
 2. ✅ **Portrait symbolique** (§ 2).
 3. ✅ **Accessibilité (audit automatique) et tests Safari / Firefox** (§ 6, § 8), V7 à V7.3.
-4. ✅ **Oracle Oui / Non** (§ 3.1), V7.5 ; l'animation de recherche reste complète (§ 7). Ensuite : **dons et contributions** (§ 3.6), en cours de décision.
+4. ✅ **Oracle Oui / Non** (§ 3.1), V7.5 ; l'animation de recherche reste complète (§ 7). ✅ **Soutenir le projet** (§ 3.6), V7.6 : reste à renseigner les adresses de dons.
 5. **Compatibilité approfondie** (§ 3.2).
 6. **Onglet Tarot et nouveaux tirages** (§ 3.3).
 7. **Carré de Pythagore** (§ 3.4).
