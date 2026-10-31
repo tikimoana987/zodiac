@@ -754,7 +754,21 @@
   test('Villes de naissance : base GeoNames complète, fuseaux reconnus', () => {
     const all = loadPlaces();
     assert(all.length > 30000, `seulement ${all.length} villes`);
-    for (const tz of PLACE_TZ) { try { new Intl.DateTimeFormat('en', { timeZone: tz }); } catch (e) { throw new Error(`fuseau ${tz} inconnu du navigateur`); } }
+    for (const tz of PLACE_TZ) { try { new Intl.DateTimeFormat('en', { timeZone: usableTimeZone(tz) }); } catch (e) { throw new Error(`fuseau ${tz} inconnu du navigateur, sans équivalent`); } }
+    // Fuseaux récents : l'équivalent ancien donne les mêmes heures (vérifiable quand le navigateur connaît les deux)
+    const known = z => { try { new Intl.DateTimeFormat('en', { timeZone: z }); return true; } catch (e) { return false; } };
+    const spans = { 'America/Coyhaique': [1947, 2025.15], 'America/Ciudad_Juarez': [1922, 2022.7], 'Europe/Kyiv': [1900, 2026], 'America/Nuuk': [1900, 2026] };
+    for (const [tz, old] of Object.entries(TZ_FALLBACK)) {
+      assert(known(old), `équivalent ${old} inconnu du navigateur`);
+      assert(PLACE_TZ.includes(tz), `${tz} absent de la base des villes`);
+      if (known(tz)) {
+        assertEq(usableTimeZone(tz), tz, `${tz} connu : gardé tel quel`);
+        const [from, until] = spans[tz];
+        for (let ms = Date.UTC(from, 0, 1, 12); ms < Date.UTC(Math.floor(until), Math.round((until % 1) * 12), 1); ms += 15 * 86400e3)
+          assertEq(tzOffset(ms, old), tzOffset(ms, tz), `${tz} ≠ ${old} le ${new Date(ms).toISOString().slice(0, 10)}`);
+      } else assertEq(usableTimeZone(tz), old, `${tz} inconnu : remplacé par ${old}`);
+    }
+    assertEq(usableTimeZone('Europe/Paris'), 'Europe/Paris', 'fuseau courant inchangé');
     assert(all.every(p => p.tz && Math.abs(p.lat) <= 90 && Math.abs(p.lon) <= 180 && /^[A-Z]{2}$/.test(p.country)), 'ville mal décodée');
     assertEq(new Set(all.map(p => p.key)).size, all.length, 'identifiants uniques');
     assert(all.filter(p => p.country === 'FR').length > 600, 'villes françaises');

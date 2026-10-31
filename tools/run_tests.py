@@ -169,13 +169,22 @@ async def installable_site(browser):
             await page.reload()
             controlled = await page.evaluate('!!navigator.serviceWorker.controller')
             report(controlled, 'installation : le service worker garde l\'appli en mémoire')
-            await ctx.set_offline(True)
+            # Coupure réseau, identique pour tous les navigateurs : le serveur s'arrête (connexion refusée).
+            # Le mode « hors ligne » simulé de Playwright n'est ajouté que pour Chromium : dans WebKit,
+            # il peut aussi bloquer le service worker, ce qu'un vrai Safari ne fait pas.
+            server.shutdown()
+            server.server_close()
+            if BROWSER == 'chromium':
+                await ctx.set_offline(True)
             await page.goto(base + '?date=1982-11-03&lang=fr')
             await page.wait_for_selector('.sign-name', timeout=60000)
             report(not errors, 'réseau coupé : l\'appli s\'ouvre et calcule' + (f' | {errors}' if errors else ''))
             await ctx.close()
+        except Exception as exc:   # un échec est signalé comme les autres, sans interrompre le rapport
+            report(False, 'site installable : ' + (str(exc).strip().splitlines() or ['erreur inconnue'])[0][:300])
         finally:
             server.shutdown()
+            server.server_close()
 
 
 async def main():

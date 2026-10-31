@@ -12,7 +12,7 @@
 const tzFormatters = {};
 function tzParts(ms, tz){
   const f = tzFormatters[tz] || (tzFormatters[tz] = new Intl.DateTimeFormat('en-US', {
-    timeZone: tz, hourCycle: 'h23', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', era: 'short'
+    timeZone: usableTimeZone(tz), hourCycle: 'h23', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', era: 'short'
   }));
   const p = {};
   for (const { type, value } of f.formatToParts(new Date(ms))) p[type] = value;

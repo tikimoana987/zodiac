@@ -17,6 +17,29 @@ function normPlace(s){
 
 /* Base décodée à la première utilisation (≈ 34 000 villes, triées par pays puis de la plus peuplée à la moins peuplée) */
 let PLACES = null;
+/* ---------- Fuseaux récents et navigateurs plus anciens ----------
+   Quelques fuseaux de la base IANA sont récents (créés ou renommés depuis 2020). Un navigateur plus ancien
+   (iPhone pas à jour, par exemple) ne les connaît pas et refuserait de calculer l'heure. On utilise alors
+   l'ancien fuseau équivalent, qui donne exactement les mêmes heures pour les dates indiquées (vérifié jour
+   par jour avec la base IANA 2026, et par un test automatique dans les navigateurs qui connaissent les deux). */
+const TZ_FALLBACK = {
+  'America/Coyhaique': 'America/Santiago',      // créé en 2025 ; identique de 1947 à mars 2025
+  'America/Ciudad_Juarez': 'America/Ojinaga',   // créé fin 2022 ; identique de 1922 à octobre 2022
+  'Europe/Kyiv': 'Europe/Kiev',                 // renommé en 2022 ; identique
+  'America/Nuuk': 'America/Godthab'             // renommé en 2020 ; identique
+};
+const tzUsable = new Map();
+function usableTimeZone(tz){
+  if (!tz) return tz;
+  if (!tzUsable.has(tz)) {
+    let zone = tz;
+    try { new Intl.DateTimeFormat('en', { timeZone: tz }); }
+    catch (e) { if (TZ_FALLBACK[tz]) zone = TZ_FALLBACK[tz]; }
+    tzUsable.set(tz, zone);
+  }
+  return tzUsable.get(tz);
+}
+
 function loadPlaces(){
   if (PLACES) return PLACES;
   const list = [];
@@ -29,7 +52,7 @@ function loadPlaces(){
       name, country: cc,
       lat: parseInt(code.slice(0, 3), 36) / 100 - 90,
       lon: parseInt(code.slice(3, 6), 36) / 100 - 180,
-      tz: PLACE_TZ[parseInt(code.slice(6, 8), 36)],
+      tz: usableTimeZone(PLACE_TZ[parseInt(code.slice(6, 8), 36)]),
       pop: parseInt(code[8], 36),
       alts: alts ? alts.split('|') : []
     });
@@ -185,7 +208,7 @@ function nearestPlaces(lat, lon, n = 12){
 function coordsPlace(lat, lon, tz){
   const near = nearestPlaces(lat, lon, 12), ref = near[0];
   const choices = [...new Set(near.map(x => x.p.tz))];
-  const zone = tz && PLACE_TZ.includes(tz) ? tz : ref.p.tz;
+  const zone = usableTimeZone(tz && PLACE_TZ.includes(tz) ? tz : ref.p.tz);
   if (!choices.includes(zone)) choices.unshift(zone);
   const fmt = (v, pos, neg) => `${Math.abs(v).toFixed(4)}°${v >= 0 ? pos : neg}`;
   return { name: `${fmt(lat, 'N', 'S')} ${fmt(lon, 'E', 'W')}`, country: ref.p.country, lat, lon, tz: zone, key: `@${lat},${lon},${zone}`,

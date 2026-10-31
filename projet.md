@@ -1,6 +1,8 @@
 # 🌌 Zodiaque & Décans · Cosmic Interface
 
-> **31/10/2026 — V6.2 : accessibilité et contrôle Safari / Firefox.** Audit axe-core : 0 anomalie (accueil et 5 onglets, français et arabe, thèmes sombre et clair), désormais vérifié à chaque publication. Mêmes tests lancés pour information dans le moteur de Safari (WebKit) et dans Firefox. Apparence inchangée (comparaison pixel par pixel).
+> **31/10/2026 — V7.3 : premiers résultats Safari / Firefox.** Firefox : tout passe. Safari (WebKit) a révélé un vrai défaut : un navigateur pas à jour (iPhone ancien, par exemple) ne connaît pas les fuseaux horaires les plus récents (America/Coyhaique 2025, America/Ciudad_Juarez 2022, Europe/Kyiv 2022, America/Nuuk 2020) et le résultat ne s'affichait jamais pour une ville de naissance concernée. Correction : l'ancien fuseau équivalent est utilisé (`TZ_FALLBACK`, `usableTimeZone()` dans `zodiac-places.js`), avec exactement les mêmes heures (vérifié jour par jour de 1900 à 2026 et par le test des villes). Le test du site installable fonctionne désormais aussi dans WebKit.
+
+> **31/10/2026 — V7 : accessibilité et contrôle Safari / Firefox.** Audit axe-core : 0 anomalie (accueil et 5 onglets, français et arabe, thèmes sombre et clair), désormais vérifié à chaque publication. Mêmes tests lancés pour information dans le moteur de Safari (WebKit) et dans Firefox. Apparence inchangée (comparaison pixel par pixel).
 
 > **28/10/2026 — Portrait symbolique V0.3.1 (correctif de présentation et tests) intégré (sur la base GitHub main `999bd9c`).** Dans l’onglet « Numérologie & tarot », carte de naissance et arcane du chemin de vie distingués, cas maîtres 11/22/33, aperçu + six rubriques dépliables, trois correspondances célestes et deux bulles (i), export de la copie dépliée. 14 traductions approuvées, données locales ; ajout de tests sur les six dates du cahier et les 36 décans. Le cahier est copié dans `docs/`. Les calculs numériques, astrologiques et tarot existants sont réutilisés sans changement.
 
@@ -358,7 +360,7 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 - [x] Navigation clavier dans la modale (Escape pour fermer, Entrée/Espace sur les affinités)
 - [x] **`prefers-reduced-motion`** : désactive les animations CSS + skip l'animation JS
 - [x] Messages d'erreur `role="alert"` (date vide ou invalide)
-- [x] **Audit axe-core à chaque publication (V6.2)** : accueil et 5 onglets, français et arabe, thèmes sombre et clair ; la moindre anomalie bloque la publication. Corrections apportées : zone principale `<main class="app-main">` (roue, saisie, résultat) ; titre `<h2>` invisible (`.sr-only`) en tête des onglets Signes, Thème natal, Ciel et Compatibilité, pour un ordre des titres sans saut ; roue du thème natal en `role="group"` (elle contient des éléments cliquables) ; encadrés latéraux du ciel en `<div>` au lieu d'`<aside>` ; contraste du bouton de jeu actif (texte `#0d0a1c`) ; en-têtes vides du tableau des positions remplacés par des cellules simples
+- [x] **Audit axe-core à chaque publication (V7)** : accueil et 5 onglets, français et arabe, thèmes sombre et clair ; la moindre anomalie bloque la publication. Corrections apportées : zone principale `<main class="app-main">` (roue, saisie, résultat) ; titre `<h2>` invisible (`.sr-only`) en tête des onglets Signes, Thème natal, Ciel et Compatibilité, pour un ordre des titres sans saut ; roue du thème natal en `role="group"` (elle contient des éléments cliquables) ; encadrés latéraux du ciel en `<div>` au lieu d'`<aside>` ; contraste du bouton de jeu actif (texte `#0d0a1c`) ; en-têtes vides du tableau des positions remplacés par des cellules simples
 
 ---
 

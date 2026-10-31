@@ -1,6 +1,6 @@
 # 🗺️ Zodiaque & Décans — ce qu'il reste à faire
 
-> État au 31 octobre 2026, après le portrait symbolique et l'audit d'accessibilité (V6.2). Ce document complète `projet.md` (ce qui est fait) et `reprise.md` (notes techniques).
+> État au 31 octobre 2026, après le portrait symbolique et l'audit d'accessibilité (V7). Ce document complète `projet.md` (ce qui est fait) et `reprise.md` (notes techniques).
 > Légende : 🟢 petit · 🟡 moyen · 🔴 gros chantier · ❓ décision à prendre · ⭐ recommandation de Claude
 
 ---
@@ -102,8 +102,9 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 - [ ] **Appli installée sur iPhone** (« Sur l'écran d'accueil ») : vérifier le fonctionnement hors ligne, la conservation des données (Safari peut effacer les données d'un site non utilisé pendant plusieurs semaines ; c'est moins vrai pour une appli installée, à vérifier), le bandeau de mise à jour, les zones sûres (encoche, barre d'accueil).
 - [ ] **Fichier autonome sur iPhone** : l'application Fichiers n'ouvre pas bien un fichier HTML local, d'où la question de l'intérêt du bouton sur iPhone.
 - [ ] **Fonctions à vérifier dans Safari** (moteur WebKit) : export en image (html2canvas), impression ou PDF, calendrier .ics (« Ajouter tous les événements »), coordonnées GPS, tirage du jour, partage.
-- [x] **Tests WebKit et Firefox dans le circuit GitHub** (31 octobre, V6.2) : tâche « Informatif — webkit / firefox », non bloquante.
-- [ ] Lire ses premiers résultats, corriger ce qui coince dans Safari, puis la rendre bloquante (voir `reprise.md`).
+- [x] **Tests WebKit et Firefox dans le circuit GitHub** (31 octobre, V7) : tâche « Informatif — webkit / firefox », non bloquante.
+- [x] Premiers résultats (V7.3) : Firefox, tout passe ; Safari (WebKit), fuseaux horaires récents inconnus des navigateurs pas à jour → corrigé par des fuseaux équivalents ; test hors ligne adapté à WebKit.
+- [ ] Quand la ligne WebKit est verte plusieurs fois de suite : la rendre bloquante (voir `reprise.md`).
 - [ ] Icône, écran de démarrage et nom sur l'écran d'accueil de l'iPhone.
 
 ---
@@ -129,7 +130,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 - [ ] **Versions à surveiller** dans le circuit GitHub : Ubuntu fixé à 24.04, Playwright 1.56, actions (checkout v7, setup-python v7, upload-pages-artifact v5, deploy-pages v5). À mettre à jour de temps en temps, quand GitHub prévient d'une fin de prise en charge.
 - [ ] **Tests d'interface dans le circuit** : la plupart des parcours (rituel du tirage, calendrier, coordonnées GPS, impression, « Mon profil ») sont vérifiés par des scripts de Claude, hors du dépôt. ⭐ En intégrer quelques-uns au circuit GitHub.
 - [ ] **Limites de validité** : calculs garantis de 1900 à 2100 (avertissement affiché au-delà) ; table des éclipses et base des villes GeoNames à rafraîchir un jour ; fuseaux horaires fournis par le navigateur.
-- [x] **Accessibilité, audit automatique** (31 octobre, V6.2) : axe-core sur l'accueil et les 5 onglets, français et arabe, thèmes sombre et clair ; 0 anomalie, vérifié à chaque publication.
+- [x] **Accessibilité, audit automatique** (31 octobre, V7) : axe-core sur l'accueil et les 5 onglets, français et arabe, thèmes sombre et clair ; 0 anomalie, vérifié à chaque publication.
 - [ ] **Accessibilité, essais réels** : navigation au clavier dans toutes les sections, lecteur d'écran (VoiceOver sur iPhone, NVDA sur PC) sur la roue et les cartes ; un audit automatique ne remplace pas ces essais.
 - [ ] **Promesse de confidentialité** : à préserver à chaque nouvelle fonction (aucun appel réseau, aucune statistique, aucun pistage).
 
@@ -154,7 +155,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 
 1. ✅ **Arcanes mineurs** (§ 1) ; reste les 9 illustrations à refaire avec Gemini (§ 1.1), quand il refonctionnera.
 2. ✅ **Portrait symbolique** (§ 2) : rédaction des 14 langues, intégration et tests ; contrôle final de la publication après dépôt.
-3. ✅ **Accessibilité (audit automatique) et tests Safari / Firefox informatifs** (§ 5, § 7), V6.2.
+3. ✅ **Accessibilité (audit automatique) et tests Safari / Firefox informatifs** (§ 5, § 7), V7.
 4. **Améliorations rapides** (§ 6) au fil de l'eau : en priorité l'animation de recherche passable, puis l'allègement des mises à jour.
 5. **Frise annuelle** (§ 3) et **console d'administration** (§ 4), éventuellement ensemble, puisque la console peut produire la frise.
 6. **Qualité et maintenance** (§ 7), en continu.
