@@ -1,21 +1,26 @@
 #!/usr/bin/env python3
 """Zodiaque & Décans — lanceur de tests (ordinateur ou GitHub Actions).
 
-Vérifie, dans Chromium piloté par Playwright :
+Vérifie, dans un navigateur piloté par Playwright (Chromium par défaut) :
   1. la suite intégrée (ZODIAC.html?test) dans 5 fuseaux horaires d'appareil ;
   2. la même suite dans la version autonome (ZODIAC-standalone.html), réseau coupé ;
-  3. un parcours réel en français, arabe (droite à gauche) et japonais : résultat, thème natal, nuit, sans erreur ;
-  4. le site installable (dossier site/) servi comme sur GitHub Pages : installation, puis fonctionnement réseau coupé.
+  3. un parcours réel en français, arabe (droite à gauche) et japonais : résultat, thème natal, nuit, portrait, sans erreur ;
+  4. le site installable (dossier site/) servi comme sur GitHub Pages : installation, puis fonctionnement réseau coupé ;
+  5. (Chromium seulement) l'accessibilité : audit axe-core de l'accueil et des 5 onglets, en français et en arabe,
+     thèmes sombre et clair ; la moindre anomalie fait échouer les tests.
 
 Usage, dans le dossier du projet :
     pip install -r tools/requirements.txt && python -m playwright install chromium
+    npm install --no-save --no-package-lock --prefix tools axe-core@4.10.2   # outil d'audit (facultatif hors GitHub)
     python build-standalone.py        # assemble la version autonome et site/
-    python tools/run_tests.py
+    python tools/run_tests.py                       # Chromium
+    python tools/run_tests.py --browser webkit      # moteur de Safari (ou firefox) ; installer d'abord ce navigateur
 Code de sortie : 0 si tout passe, 1 sinon.
 """
 import asyncio
 import functools
 import http.server
+import os
 import pathlib
 import shutil
 import sys
@@ -26,6 +31,10 @@ from playwright.async_api import async_playwright
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 TIMEZONES = ['UTC', 'Europe/Paris', 'America/Los_Angeles', 'Pacific/Auckland', 'Asia/Kolkata']
+BROWSERS = ('chromium', 'webkit', 'firefox')
+BROWSER = sys.argv[sys.argv.index('--browser') + 1] if '--browser' in sys.argv[:-1] else 'chromium'
+AXE = ROOT / 'tools' / 'node_modules' / 'axe-core' / 'axe.min.js'
+PROFILE = '?date=1982-11-03&time=19:00&place=Paris%7CFR&lang='
 problems = []
 
 
@@ -71,7 +80,7 @@ async def journey(browser, file):
         page = await ctx.new_page()
         errors = []
         page.on('pageerror', lambda e: errors.append(str(e)))
-        await page.goto(file.as_uri() + f'?date=1982-11-03&time=19:00&place=Paris%7CFR&lang={lang}')
+        await page.goto(file.as_uri() + PROFILE + lang)
         await page.wait_for_selector('#tabNatal', timeout=60000)
         await page.click('#tabNatal')
         natal = await page.locator('.natal-main .big-three').count()
@@ -100,6 +109,39 @@ async def journey(browser, file):
         except Exception as exc:
             report(False, f'{lang} : portrait absent ou non interactif — {str(exc)[:350]}')
         await ctx.close()
+
+
+async def accessibility(browser, file):
+    """Audit axe-core : accueil + 5 onglets, français et arabe, thèmes sombre et clair. Aucune anomalie tolérée."""
+    print(f'Accessibilité (audit axe-core) — {file.name}')
+    if not AXE.exists():
+        if os.environ.get('CI'):
+            report(False, 'axe-core absent : l\'étape « Installer l\'outil d\'audit » du circuit a échoué')
+        else:
+            print('  – audit ignoré : axe-core non installé (voir l\'usage en tête de ce fichier)')
+        return
+    script = AXE.read_text(encoding='utf-8')
+    for lang in ('fr', 'ar'):
+        for scheme in ('dark', 'light'):
+            ctx = await browser.new_context(viewport={'width': 1280, 'height': 900}, reduced_motion='reduce',
+                                            timezone_id='Europe/Paris', color_scheme=scheme)
+            page = await ctx.new_page()
+            errors, found = [], []
+            page.on('pageerror', lambda e: errors.append(str(e)))
+            await page.goto(file.as_uri() + PROFILE + lang)
+            await page.wait_for_selector('#tabNumbers', timeout=60000)
+            for tab in ('accueil', 'tabSigns', 'tabNatal', 'tabSky', 'tabCompat', 'tabNumbers'):
+                if tab != 'accueil':
+                    await page.click('#' + tab)
+                    await page.wait_for_timeout(250)
+                await page.add_script_tag(content=script)
+                violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
+                    .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
+                found += [f'{tab} : {v}' for v in violations]
+            theme = 'sombre' if scheme == 'dark' else 'clair'
+            report(not found and not errors, f'{lang}, thème {theme} : '
+                   + (f'{len(found + errors)} anomalie(s) | {found + errors}' if found or errors else 'aucune anomalie'))
+            await ctx.close()
 
 
 async def installable_site(browser):
@@ -138,7 +180,11 @@ async def installable_site(browser):
 
 async def main():
     async with async_playwright() as p:
-        browser = await p.chromium.launch()
+        if BROWSER not in BROWSERS:
+            report(False, f'navigateur inconnu : {BROWSER} (choix : {", ".join(BROWSERS)})')
+            sys.exit(1)
+        print(f'Navigateur : {BROWSER}')
+        browser = await getattr(p, BROWSER).launch()
         await suite(browser, ROOT / 'ZODIAC.html', cut_network=False)
         standalone = ROOT / 'ZODIAC-standalone.html'
         if standalone.exists():
@@ -146,6 +192,8 @@ async def main():
         else:
             report(False, 'ZODIAC-standalone.html absent : lancer d\'abord python build-standalone.py')
         await journey(browser, ROOT / 'ZODIAC.html')
+        if BROWSER == 'chromium':
+            await accessibility(browser, ROOT / 'ZODIAC.html')
         await installable_site(browser)
         await browser.close()
     print('\n' + ('Tout passe.' if not problems else f'{len(problems)} problème(s) : ' + ' | '.join(problems)))

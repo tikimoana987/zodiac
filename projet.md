@@ -1,5 +1,7 @@
 # 🌌 Zodiaque & Décans · Cosmic Interface
 
+> **31/10/2026 — V6.2 : accessibilité et contrôle Safari / Firefox.** Audit axe-core : 0 anomalie (accueil et 5 onglets, français et arabe, thèmes sombre et clair), désormais vérifié à chaque publication. Mêmes tests lancés pour information dans le moteur de Safari (WebKit) et dans Firefox. Apparence inchangée (comparaison pixel par pixel).
+
 > **28/10/2026 — Portrait symbolique V0.3.1 (correctif de présentation et tests) intégré (sur la base GitHub main `999bd9c`).** Dans l’onglet « Numérologie & tarot », carte de naissance et arcane du chemin de vie distingués, cas maîtres 11/22/33, aperçu + six rubriques dépliables, trois correspondances célestes et deux bulles (i), export de la copie dépliée. 14 traductions approuvées, données locales ; ajout de tests sur les six dates du cahier et les 36 décans. Le cahier est copié dans `docs/`. Les calculs numériques, astrologiques et tarot existants sont réutilisés sans changement.
 
 > Interface web immersive et multilingue qui calcule le signe astrologique, le décan et les affinités à partir d'une date de naissance, avec transition cinématique de recherche dans le ciel et tracé animé de constellation.
@@ -197,8 +199,8 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 
 ### 🧪 Dépôt GitHub, tests et publication automatiques
 - [x] **Sources du projet sur GitHub** (`tikimoana987/zodiac`) : l'appli, les scripts d'assemblage, la documentation, un README
-- [x] **`tools/run_tests.py`** : suite intégrée dans 5 fuseaux, version autonome réseau coupé, parcours réels en français, arabe et japonais, site installable servi comme sur GitHub Pages puis réseau coupé ; code de sortie 1 au moindre échec
-- [x] **Circuit GitHub Actions** (`.github/workflows/tests-et-publication.yml`) : à chaque modification de `main`, installation de Chromium, assemblage (`build-standalone.py`), tous les tests, puis **publication automatique du site** sur GitHub Pages si tout passe ; rien n'est publié en cas d'échec
+- [x] **`tools/run_tests.py`** : suite intégrée dans 5 fuseaux, version autonome réseau coupé, parcours réels en français, arabe et japonais, audit d'accessibilité axe-core (Chromium), site installable servi comme sur GitHub Pages puis réseau coupé ; code de sortie 1 au moindre échec ; option `--browser webkit|firefox`
+- [x] **Circuit GitHub Actions** (`.github/workflows/tests-et-publication.yml`) : à chaque modification de `main`, installation de Chromium et de l'outil d'audit axe-core, assemblage (`build-standalone.py`), tous les tests, puis **publication automatique du site** sur GitHub Pages si tout passe ; rien n'est publié en cas d'échec. En parallèle, tâche **informative** « Informatif — webkit / firefox » : mêmes tests dans le moteur de Safari et dans Firefox ; un échec s'y affiche en rouge mais ne bloque jamais la publication
 - [x] Les fichiers générés (`ZODIAC-standalone.html`, `site/`) ne sont plus dans le dépôt (`.gitignore`) : GitHub les reconstruit
 - **Mettre l'appli à jour** : déposer les fichiers sources modifiés sur GitHub ; tests et publication suivent tout seuls (onglet *Actions*)
 
@@ -356,6 +358,7 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 - [x] Navigation clavier dans la modale (Escape pour fermer, Entrée/Espace sur les affinités)
 - [x] **`prefers-reduced-motion`** : désactive les animations CSS + skip l'animation JS
 - [x] Messages d'erreur `role="alert"` (date vide ou invalide)
+- [x] **Audit axe-core à chaque publication (V6.2)** : accueil et 5 onglets, français et arabe, thèmes sombre et clair ; la moindre anomalie bloque la publication. Corrections apportées : zone principale `<main class="app-main">` (roue, saisie, résultat) ; titre `<h2>` invisible (`.sr-only`) en tête des onglets Signes, Thème natal, Ciel et Compatibilité, pour un ordre des titres sans saut ; roue du thème natal en `role="group"` (elle contient des éléments cliquables) ; encadrés latéraux du ciel en `<div>` au lieu d'`<aside>` ; contraste du bouton de jeu actif (texte `#0d0a1c`) ; en-têtes vides du tableau des positions remplacés par des cellules simples
 
 ---
 
@@ -446,7 +449,7 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Combinaisons d'affinités | 12 × 12 = 144 |
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | aucune en ligne (html2canvas en copie locale) |
-| Poids approximatif | version autonome ≈ 6,2 Mo (dont ≈ 3,1 Mo d'illustrations du tarot, ≈ 1 Mo de villes et ≈ 1,6 Mo de traductions) |
+| Poids approximatif | version autonome ≈ 6,8 Mo (dont ≈ 3,1 Mo d'illustrations du tarot, ≈ 1 Mo de villes, ≈ 1,6 Mo de traductions et ≈ 0,4 Mo de textes du portrait) |
 | Tests automatisés | 96 (79 historiques + 17 portrait, dont 3 nouveaux en V0.3.1) ; parcours réel protégé en CI |
 
 ---

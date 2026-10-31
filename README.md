@@ -13,7 +13,7 @@ horoscope par transits, compatibilité, carte du ciel, éclipses de Soleil vues 
 | `ZODIAC.html`, `zodiac.css`, `zodiac-*.js` | L'appli (version de travail en plusieurs fichiers ; s'ouvre d'un double-clic) |
 | `build-standalone.py` | Assemble `ZODIAC-standalone.html` (un seul fichier) et le dossier `site/` publié |
 | `build-places.py` | Régénère la base des villes (`zodiac-places-data.js`) depuis GeoNames |
-| `tools/run_tests.py` | Tous les tests : suite intégrée (5 fuseaux), version autonome réseau coupé, parcours en 3 langues, site installable |
+| `tools/run_tests.py` | Tous les tests : suite intégrée (5 fuseaux), version autonome réseau coupé, parcours en 3 langues, accessibilité, site installable ; `--browser webkit` ou `firefox` pour Safari / Firefox |
 | `.github/workflows/` | À chaque modification : tests, puis publication automatique du site s'ils passent |
 | `projet.md`, `reprise.md` | Documentation complète et notes de reprise |
 
@@ -22,6 +22,7 @@ horoscope par transits, compatibilité, carte du ciel, éclipses de Soleil vues 
 ```
 pip install -r tools/requirements.txt
 python -m playwright install chromium
+npm install --no-save --no-package-lock --prefix tools axe-core@4.10.2   # facultatif : audit d'accessibilité
 python build-standalone.py
 python tools/run_tests.py
 ```

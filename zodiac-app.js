@@ -392,11 +392,13 @@ function renderResult(signKey, decanIdx){
     <div id="profileContent">
       <div class="owner" id="profileOwner"></div>
       <div class="dual" id="viewSigns" role="tabpanel" aria-labelledby="tabSigns">
+        <h2 class="sr-only">${t.natal.tabSigns}</h2>
         ${westernCards(t, signKey, decanIdx).join('\n')}
         ${chineseCards(t, currentCn, hourAnimal).join('\n')}
       </div>
-      <div class="natal" id="viewNatal" role="tabpanel" aria-labelledby="tabNatal">${natalHtml(t)}</div>
+      <div class="natal" id="viewNatal" role="tabpanel" aria-labelledby="tabNatal"><h2 class="sr-only">${t.natal.tabNatal}</h2>${natalHtml(t)}</div>
       <div class="sky-view" id="viewSky" role="tabpanel" aria-labelledby="tabSky">
+      <h2 class="sr-only">${t.tabs.sky}</h2>
     <section class="card sky-card" aria-labelledby="skyTitle">
       <div class="sky-head">
         <h3 id="skyTitle">${t.horo.title} · ${t.signNames[signKey]}${infoBtn('horoscope', t.horo.title)}</h3>
@@ -429,7 +431,7 @@ function renderResult(signKey, decanIdx){
             <output id="mapTimeOut" for="mapTime"></output>
           </div>
         </div>
-        <aside class="map-side" id="mapSide"></aside>
+        <div class="map-side" id="mapSide"></div>
       </div>
       <p class="sky-note">${t.map.note}</p>
     </section>
@@ -440,7 +442,7 @@ function renderResult(signKey, decanIdx){
     </section>
       <section class="card cal-card" id="calCard"></section>
       </div>
-      <div class="compat-view" id="viewCompat" role="tabpanel" aria-labelledby="tabCompat">${compatCardHtml(t)}</div>
+      <div class="compat-view" id="viewCompat" role="tabpanel" aria-labelledby="tabCompat"><h2 class="sr-only">${t.tabs.compat}</h2>${compatCardHtml(t)}</div>
       <div class="numtarot" id="viewNumbers" role="tabpanel" aria-labelledby="tabNumbers">
         <h2 class="section-title">${t.num.tab}</h2><div class="numbers" id="numbersBody"></div>
         <h2 class="section-title">${t.tarot.tab}</h2><div class="tarot" id="tarotBody"></div>
@@ -586,10 +588,10 @@ function renderSky(){
         ${major.length || moment.length ? block(h.groups.major, major, aspectLine) + block(h.groups.moment, moment, aspectLine) : `<p class="sky-none">${h.none}</p>`}
         ${block(h.groups.retro + infoBtn('retrograde', h.groups.retro), tr.retro, retroLine)}
       </div>
-      <aside class="sky-side">
+      <div class="sky-side">
         <h4>${h.groups.positions}</h4><ul class="positions">${positions}</ul>
         ${moonWeek}
-      </aside>
+      </div>
     </div>
     <p class="sky-note">${h.note}</p>`;
 }
@@ -1013,7 +1015,7 @@ function natalWheelSvg(chart, t){
     const [ax, ay] = pt(118, b.lon), [bx, by] = pt(108, b.lon), [px, py] = pt(97, shown[i]);
     g += `<g class="nw-hit nw-pl" data-kind="body" data-key="${b.body}" tabindex="0" role="button" aria-label="${escapeHtml(t.rulers[b.body])}"><line class="nw-ptick" x1="${f(ax)}" y1="${f(ay)}" x2="${f(bx)}" y2="${f(by)}"/><circle class="nw-hitzone" cx="${f(px)}" cy="${f(py)}" r="8"/><text class="nw-planet" x="${f(px)}" y="${f(py)}">${PLANET_SYM[b.body]}</text></g>`;
   });
-  return `<svg class="natal-svg" viewBox="-156 -156 312 312" role="img" aria-label="${t.natal.title}">${g}</svg>`;
+  return `<svg class="natal-svg" viewBox="-156 -156 312 312" role="group" aria-label="${t.natal.title}">${g}</svg>`;
 }
 
 function natalHtml(t){
@@ -1031,7 +1033,7 @@ function natalHtml(t){
       <td>${signCell(b.lon)}</td><td class="nt-house">${b.house || ''}</td><td class="nt-retro">${b.retro ? '℞' : ''}</td></tr>`).join('');
   const angles = chart.exact ? [[n.ascendant, chart.asc, 'AC'], [n.midheaven, chart.mc, 'MC']].map(([lab, lon, ab]) =>
       `<tr class="nt-angle"><td class="nt-sym">${ab}</td><td>${lab}</td><td>${signCell(lon)}</td><td></td><td></td></tr>`).join('') : '';
-  const head = chart.exact ? `<thead><tr><th></th><th></th><th></th><th class="nt-house">${n.house}${infoBtn('houses', n.house)}</th><th></th></tr></thead>` : '';
+  const head = chart.exact ? `<thead><tr><td></td><td></td><td></td><th class="nt-house">${n.house}${infoBtn('houses', n.house)}</th><td></td></tr></thead>` : '';
   const lines = chart.bodies.map(b => `<li><div class="nl-head"><span class="nl-sym" aria-hidden="true">${PLANET_SYM[b.body]}</span> <strong>${t.rulers[b.body]}</strong> · ${signTag(t, b.sign)}${b.house ? ` · ${n.house} ${b.house}` : ''}</div>
       <p>${capitalize(n.domains[b.body])} — ${n.styles[b.sign]}${b.house ? ` — ${n.house} ${b.house} (${n.houses[b.house - 1]})` : ''}${endPunct()}</p></li>`).join('');
   const nf = new Intl.NumberFormat(loc(currentLang), { minimumFractionDigits: 1, maximumFractionDigits: 1 });
@@ -1759,7 +1761,7 @@ async function exportImage(){
     + `padding:32px;box-sizing:content-box;background:${getComputedStyle(document.documentElement).getPropertyValue('--export-bg').trim()};`;
   for (const part of parts) {
     const copy = part.cloneNode(true);
-    copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .natal-complete, .wheel-hint, .spread-actions, .spread-form, .spread-question, .tarot-deck, .cal-card').forEach(n => n.remove());
+    copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .sr-only, .natal-complete, .wheel-hint, .spread-actions, .spread-form, .spread-question, .tarot-deck, .cal-card').forEach(n => n.remove());
     copy.querySelectorAll('[id]').forEach(n => n.removeAttribute('id'));
     copy.removeAttribute('id');
     frame.appendChild(copy);

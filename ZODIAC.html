@@ -28,6 +28,8 @@
     </div>
   </header>
 
+  <!-- Zone principale (repère pour les lecteurs d'écran) : roue, saisie et résultat -->
+  <main class="app-main">
   <!-- Roue du zodiaque : tourne lentement à l'accueil, puis s'arrête sur le signe trouvé -->
   <figure class="wheel-wrap">
     <svg id="wheel" viewBox="-114 -114 228 228" role="img"></svg>
@@ -63,6 +65,7 @@
   <div class="history" id="history" hidden></div>
 
   <div id="result" class="result hidden" aria-live="polite"></div>
+  </main>
 
   <footer class="app-foot">
     <button type="button" class="offline-btn" id="offlineBtn"><span aria-hidden="true">⬇</span> <span id="offlineLabel">Version hors ligne</span></button>
