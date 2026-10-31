@@ -1638,5 +1638,13 @@ I18N.de = deepMerge(I18N.fr, {
     title: "Geburtshoroskop — {name}",
     footer: "Blatt erstellt mit Zodiak & Dekane am {date}. Positionen nach Ephemeriden berechnet; symbolische Deutungen aus der astrologischen Tradition."
   },
-  skip: "Überspringen"
+  oracle: {
+    open: "Ja-Nein-Orakel",
+    title: "Ja-Nein-Orakel",
+    hint: "Denk an deine Frage und tippe dann auf die Mitte",
+    ask: "Das Orakel befragen",
+    again: "Tippe auf die Mitte für eine weitere Frage",
+    note: "Ein Spiel zum Spaß, keine Vorhersage",
+    answers: { yes: "Ja", no: "Nein", maybe: "Vielleicht", soon: "Bald" }
+  }
 });

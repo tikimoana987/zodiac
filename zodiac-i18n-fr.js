@@ -1642,5 +1642,13 @@ I18N.fr = {
     title: "Thème natal — {name}",
     footer: "Fiche créée avec Zodiaque & Décans le {date}. Positions calculées d'après les éphémérides ; interprétations symboliques issues de la tradition astrologique."
   },
-  skip: "Passer"
+  oracle: {
+    open: "Oracle Oui / Non",
+    title: "Oracle Oui / Non",
+    hint: "Pensez à votre question, puis touchez le centre",
+    ask: "Interroger l'oracle",
+    again: "Touchez le centre pour une autre question",
+    note: "Un jeu pour s'amuser, pas une prédiction",
+    answers: { yes: "Oui", no: "Non", maybe: "Peut-être", soon: "Bientôt" }
+  }
 };

@@ -1642,5 +1642,13 @@ I18N.it = deepMerge(I18N.fr, {
     title: "Tema natale — {name}",
     footer: "Scheda creata con Zodiaco e Decani il {date}. Posizioni calcolate dalle effemeridi; interpretazioni simboliche della tradizione astrologica."
   },
-  skip: "Salta"
+  oracle: {
+    open: "Oracolo Sì / No",
+    title: "Oracolo Sì / No",
+    hint: "Pensa alla tua domanda, poi tocca il centro",
+    ask: "Interroga l'oracolo",
+    again: "Tocca il centro per un'altra domanda",
+    note: "Un gioco per divertirsi, non una previsione",
+    answers: { yes: "Sì", no: "No", maybe: "Forse", soon: "Presto" }
+  }
 });

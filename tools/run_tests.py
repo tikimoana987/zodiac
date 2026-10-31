@@ -5,7 +5,7 @@ Vérifie, dans un navigateur piloté par Playwright (Chromium par défaut) :
   1. la suite intégrée (ZODIAC.html?test) dans 5 fuseaux horaires d'appareil ;
   2. la même suite dans la version autonome (ZODIAC-standalone.html), réseau coupé ;
   3. un parcours réel en français, arabe (droite à gauche) et japonais : résultat, thème natal, nuit, portrait, sans erreur ;
-     puis l'animation de recherche, animations actives : passable d'un toucher, puis version courte ;
+     puis l'Oracle Oui / Non, animations actives : ouverture, réponse après la rotation, nouvelle question, fermeture ;
   4. le site installable (dossier site/) servi comme sur GitHub Pages : installation, puis fonctionnement réseau coupé ;
   5. (Chromium seulement) l'accessibilité : audit axe-core de l'accueil et des 5 onglets, en français et en arabe,
      thèmes sombre et clair ; la moindre anomalie fait échouer les tests.
@@ -112,34 +112,32 @@ async def journey(browser, file):
         await ctx.close()
 
 
-async def search_animation(browser, file):
-    """Animations actives : la première recherche se passe d'un toucher, la suivante est courte (sans rien toucher)."""
+async def oracle_journey(browser, file):
+    """Oracle Oui / Non depuis l'accueil, animations actives : la flèche tourne puis s'arrête sur une des 4 réponses."""
     ctx = await browser.new_context(viewport={'width': 1280, 'height': 900}, reduced_motion='no-preference', timezone_id='Europe/Paris')
     page = await ctx.new_page()
     errors = []
     page.on('pageerror', lambda e: errors.append(str(e)))
     try:
         await page.goto(file.as_uri() + '?lang=fr')
-        await page.fill('#birthDate', '1982-11-03')
-        await page.click('#btnReveal')
-        await page.wait_for_selector('#overlay:not(.hidden)', timeout=10000)
-        box = await page.locator('#searchSkip').bounding_box()
-        start = await page.evaluate('performance.now()')
-        # Clic « humain » aux coordonnées du bouton : page.click() attendrait la fin des mouvements de la page
-        await page.mouse.click(box['x'] + box['width'] / 2, box['y'] + box['height'] / 2)
-        await page.wait_for_selector('#result:not(.hidden)', timeout=10000)
-        skipped = (await page.evaluate('performance.now()') - start) / 1000
-        await page.click('#btnReveal')
-        await page.wait_for_selector('#overlay:not(.hidden)', timeout=10000)
-        start = await page.evaluate('performance.now()')
-        await page.wait_for_selector('#overlay.hidden', state='attached', timeout=10000)
-        short = (await page.evaluate('performance.now()') - start) / 1000
-        shown = await page.locator('#result:not(.hidden)').count() == 1
-        report(skipped < 1 and 0.8 < short < 2.5 and shown and not errors,
-               f'animation de recherche : passée en {skipped:.1f} s, puis version courte en {short:.1f} s'
+        await page.click('#oracleOpen')
+        await page.wait_for_selector('#oracle:not(.hidden)', timeout=10000)
+        answers = await page.evaluate("Object.values(I18N.fr.oracle.answers)")
+        times, got = [], []
+        for _ in range(2):   # deux questions de suite
+            box = await page.locator('#oracleSpin').bounding_box()
+            start = await page.evaluate('performance.now()')
+            await page.mouse.click(box['x'] + box['width'] / 2, box['y'] + box['height'] / 2)
+            await page.wait_for_function("document.getElementById('oracleResult').textContent !== ''", timeout=15000)
+            times.append((await page.evaluate('performance.now()') - start) / 1000)
+            got.append(await page.text_content('#oracleResult'))
+        await page.click('#oracleClose')
+        closed = await page.locator('#oracle.hidden').count() == 1
+        ok = all(2.5 < s < 8 for s in times) and all(g in answers for g in got) and closed and not errors
+        report(ok, f'Oracle Oui / Non : réponses « {got[0]} » puis « {got[1]} » après {times[0]:.1f} s et {times[1]:.1f} s, fermeture'
                + (f' | {errors}' if errors else ''))
     except Exception as exc:
-        report(False, 'animation de recherche : ' + (str(exc).strip().splitlines() or ['erreur inconnue'])[0][:300])
+        report(False, 'Oracle Oui / Non : ' + (str(exc).strip().splitlines() or ['erreur inconnue'])[0][:300])
     await ctx.close()
 
 
@@ -162,6 +160,10 @@ async def accessibility(browser, file):
             page.on('pageerror', lambda e: errors.append(str(e)))
             await page.goto(file.as_uri() + PROFILE + lang)
             await page.wait_for_selector('#tabNumbers', timeout=60000)
+            if scheme == 'light':   # l'appli est sombre par défaut : on passe au thème clair par son bouton ☀
+                await page.click('#themeBtn')
+                await page.wait_for_function("document.documentElement.dataset.theme === 'light'", timeout=5000)
+                await page.wait_for_timeout(300)
             for tab in ('accueil', 'tabSigns', 'tabNatal', 'tabSky', 'tabCompat', 'tabNumbers'):
                 if tab != 'accueil':
                     await page.click('#' + tab)
@@ -170,6 +172,11 @@ async def accessibility(browser, file):
                 violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
                     .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
                 found += [f'{tab} : {v}' for v in violations]
+            await page.click('#oracleOpen')   # l'Oracle ouvert, par-dessus la page
+            await page.add_script_tag(content=script)
+            violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
+                .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
+            found += [f'oracle : {v}' for v in violations]
             theme = 'sombre' if scheme == 'dark' else 'clair'
             report(not found and not errors, f'{lang}, thème {theme} : '
                    + (f'{len(found + errors)} anomalie(s) | {found + errors}' if found or errors else 'aucune anomalie'))
@@ -233,7 +240,7 @@ async def main():
         else:
             report(False, 'ZODIAC-standalone.html absent : lancer d\'abord python build-standalone.py')
         await journey(browser, ROOT / 'ZODIAC.html')
-        await search_animation(browser, ROOT / 'ZODIAC.html')
+        await oracle_journey(browser, ROOT / 'ZODIAC.html')
         if BROWSER == 'chromium':
             await accessibility(browser, ROOT / 'ZODIAC.html')
         await installable_site(browser)

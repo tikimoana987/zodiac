@@ -1635,5 +1635,13 @@ I18N.en = deepMerge(I18N.fr, {
     title: "Birth chart — {name}",
     footer: "Sheet created with Zodiac & Decans on {date}. Positions calculated from ephemerides; symbolic interpretations from the astrological tradition."
   },
-  skip: "Skip"
+  oracle: {
+    open: "Yes / No Oracle",
+    title: "Yes / No Oracle",
+    hint: "Think of your question, then tap the centre",
+    ask: "Ask the oracle",
+    again: "Tap the centre for another question",
+    note: "Just for fun, not a prediction",
+    answers: { yes: "Yes", no: "No", maybe: "Maybe", soon: "Soon" }
+  }
 });

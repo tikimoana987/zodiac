@@ -1178,31 +1178,38 @@
     for (const l of Object.keys(I18N)) { const p = I18N[l].print; assert(p && p.button && p.hint && /\{name\}/.test(p.title) && /\{date\}/.test(p.footer), `${l} : textes`); }
   });
 
-  test('Animation de recherche : passable d\'un toucher, puis version courte', () => {
-    const keepMotion = prefersReducedMotion, keepSeen = searchSeen, overlay = document.getElementById('overlay');
-    const skip = document.getElementById('searchSkip'), text = document.getElementById('searchText'), t = I18N[currentLang];
-    let calls = 0;
-    try {
-      prefersReducedMotion = () => false; searchSeen = false; quickReveal = false;
-      runSearch('scorpio', () => calls++);
-      assert(!overlay.classList.contains('hidden'), 'écran de recherche affiché');
-      assertEq(skip.textContent, t.skip, 'bouton « Passer » traduit');
-      assertEq(text.textContent, t.searching, 'première recherche : balayage complet');
-      skip.click();
-      assertEq(calls, 1, 'un toucher affiche aussitôt le résultat');
-      assert(overlay.classList.contains('hidden') && overlay.getAttribute('aria-hidden') === 'true', 'écran de recherche masqué');
-      overlay.click(); document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-      assertEq(calls, 1, 'résultat affiché une seule fois');
-      runSearch('leo', () => calls++);
-      assert(document.getElementById('constSvg').classList.contains('quick'), 'recherche suivante : version courte');
-      assert(text.textContent.includes(t.signNames.leo), 'version courte : constellation trouvée');
-      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-      assertEq(calls, 2, 'touche Échap');
-    } finally {
-      prefersReducedMotion = keepMotion; searchSeen = keepSeen;
-      overlay.classList.add('hidden'); overlay.setAttribute('aria-hidden', 'true');
+  test('Oracle Oui / Non : tirage équitable, flèche, textes, ouverture et fermeture', () => {
+    const n = 20000, count = [0, 0, 0, 0];
+    for (let i = 0; i < n; i++) count[oraclePick()]++;
+    assert(count.every(c => Math.abs(c - n / 4) < 400), `répartition ${count.join(' / ')}`);   // écart type ≈ 61 : marge ≈ 6,5 écarts types
+    assertEq(oraclePick(() => 0), 0, 'borne basse'); assertEq(oraclePick(() => 0.9999999), 3, 'borne haute');
+    let a = 0;
+    for (let i = 0; i < 200; i++) {
+      const k = i % 4, next = oracleStopAngle(a, k);
+      assert(next - a >= 3 * 360, 'au moins trois tours complets');
+      assertEq(oracleAnswerAt(next), ORACLE_ANSWERS[k], 'la flèche s\'arrête sur la réponse tirée');
+      a = next;
     }
-    for (const l of Object.keys(I18N)) assert(I18N[l].skip && (l === 'fr' || I18N[l].skip !== I18N.fr.skip), `${l} : « Passer » traduit`);
+    for (const l of Object.keys(I18N)) {
+      const o = I18N[l].oracle;
+      assert(o && o.open && o.title && o.hint && o.ask && o.again && o.note && ORACLE_ANSWERS.every(k => o.answers[k]), `${l} : textes`);
+      assertEq(new Set(ORACLE_ANSWERS.map(k => o.answers[k])).size, 4, `${l} : réponses distinctes`);
+      if (l !== 'fr') assert(o.hint !== I18N.fr.oracle.hint && o.note !== I18N.fr.oracle.note, `${l} : traduit`);
+      if (l === 'th') assert([o.open, o.title, o.hint, o.ask, o.again, o.note, ...Object.values(o.answers)].every(v => !v.includes(':') && !/\.$/.test(v)), 'thaï : ni deux-points ni point final');
+    }
+    // Ouverture depuis l'accueil, réponse (animations réduites : immédiate), fermeture au clavier, focus rendu
+    const keep = prefersReducedMotion, opener = document.getElementById('oracleOpen'), ov = document.getElementById('oracle');
+    try {
+      prefersReducedMotion = () => true;
+      opener.click();
+      assert(!ov.classList.contains('hidden') && ov.getAttribute('aria-hidden') === 'false', 'ouverture');
+      assertEq(document.activeElement && document.activeElement.id, 'oracleSpin', 'focus sur le centre');
+      document.getElementById('oracleSpin').click();
+      const on = document.querySelectorAll('.oracle-ans.on');
+      assert(on.length === 1 && document.getElementById('oracleResult').textContent === I18N[currentLang].oracle.answers[on[0].dataset.answer], 'une seule réponse allumée, annoncée aux lecteurs d\'écran');
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+      assert(ov.classList.contains('hidden') && document.activeElement === opener, 'fermeture par Échap, focus rendu au bouton');
+    } finally { prefersReducedMotion = keep; if (!ov.classList.contains('hidden')) closeOracle(); }
   });
 
   /* ---------------- Rapport ---------------- */

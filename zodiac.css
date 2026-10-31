@@ -317,16 +317,70 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
   animation:pulseText 1.4s ease-in-out infinite;
 }
 @keyframes pulseText{ 0%,100%{opacity:.5} 50%{opacity:1} }
-/* « Passer » : un toucher ou un clic n'importe où sur l'écran de recherche suffit ; le bouton le rend visible et accessible au clavier */
-.search-skip{
-  background:transparent; border:1px solid rgba(232,195,106,.35); color:var(--gold-bright); cursor:pointer;
-  border-radius:999px; padding:.4rem 1.2rem; font:inherit; font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; opacity:.75;
+
+/* ORACLE OUI / NON (zodiac-oracle.js) — même ambiance que l'écran de recherche, dans les deux thèmes */
+.oracle-entry{ display:flex; justify-content:center; margin-top:1.2rem; }
+.oracle-open{
+  background:transparent; border:1px solid var(--ov-15); color:var(--text); cursor:pointer;
+  border-radius:999px; padding:.45rem 1.1rem; font:inherit; font-size:.85rem;
 }
-.search-skip:hover{ opacity:1; border-color:var(--gold-bright); }
-.search-skip:focus-visible{ opacity:1; outline:2px solid var(--gold-bright); outline-offset:3px; }
-/* Version courte (recherches suivantes) : constellation tracée plus vite */
-.constellation.quick .const-star{ animation-duration:.2s; }
-.constellation.quick .const-line{ animation-duration:.25s; }
+.oracle-open:hover{ border-color:var(--gold); }
+.oracle-open:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+.oracle-more{ text-align:center; margin:1.4rem 0 .4rem; }
+.oracle-overlay{
+  position:fixed; inset:0; z-index:150; overflow-y:auto;
+  background:radial-gradient(ellipse at center,#0d0a24 0%,#04030a 100%); color:#f0eaff;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.1rem;
+  padding:calc(1.5rem + env(safe-area-inset-top, 0px)) 1rem calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  text-align:center; animation:fadeIn .4s ease;
+}
+.oracle-overlay.hidden{ display:none; }
+.oracle-title{ color:var(--gold-bright); font-size:1.05rem; letter-spacing:.15em; text-transform:uppercase; font-weight:600; margin:0; }
+.oracle-hint{ color:#cfc6ea; font-size:.9rem; margin:0; max-width:30rem; min-height:1.4em; }
+.oracle-wheel{
+  position:relative; width:min(88vw, 330px); aspect-ratio:1; flex:none; border-radius:50%;
+  background:radial-gradient(circle,rgba(155,126,222,.12) 0%,transparent 70%);
+  box-shadow:0 0 60px rgba(155,126,222,.18), inset 0 0 0 1px rgba(232,195,106,.25);
+}
+.oracle-wheel::before, .oracle-wheel::after{ content:''; position:absolute; border-radius:50%; pointer-events:none; }
+.oracle-wheel::before{ inset:18%; border:1px dashed rgba(232,195,106,.18); animation:spinSlow 40s linear infinite; }
+.oracle-wheel::after{ inset:32%; border:1px solid rgba(155,126,222,.25); animation:spinSlow 26s linear infinite reverse; }
+.oracle-ans{
+  position:absolute; transform:translate(-50%,-50%); white-space:nowrap;
+  color:#b8aed6; font-size:.95rem; font-weight:600; letter-spacing:.04em; z-index:1;
+  transition:color .4s ease, text-shadow .4s ease, transform .4s ease;
+}
+.oracle-ans.on{ color:var(--gold-bright); text-shadow:0 0 12px var(--gold-bright), 0 0 24px var(--gold-bright); transform:translate(-50%,-50%) scale(1.12); }
+@media (max-width:480px){ .oracle-ans{ font-size:.85rem; } }
+/* Flèche lumineuse qui fait le tour du cercle : un calque de la taille du cercle tourne sur lui-même,
+   la pointe (en haut du calque) longe le bord et montre la réponse vers l'intérieur */
+.oracle-arrow{ position:absolute; inset:0; transform:rotate(0deg); pointer-events:none; }
+.oracle-arrow::before{
+  content:''; position:absolute; left:50%; top:1.5%; transform:translateX(-50%);
+  border-left:10px solid transparent; border-right:10px solid transparent; border-top:16px solid var(--gold-bright);
+  filter:drop-shadow(0 0 6px var(--gold-bright));
+}
+.oracle-arrow.spinning::before{ animation:oracleGlow .3s ease-in-out infinite alternate; }
+@keyframes oracleGlow{ from{ opacity:.55; filter:drop-shadow(0 0 3px var(--gold-bright)) } to{ opacity:1; filter:drop-shadow(0 0 12px var(--gold-bright)) drop-shadow(0 0 22px var(--gold-bright)) } }
+.oracle-spin{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:2;
+  width:26%; aspect-ratio:1; border-radius:50%; cursor:pointer;
+  border:1px solid rgba(232,195,106,.55); color:var(--gold-bright); font-size:1.6rem;
+  background:radial-gradient(circle at 40% 35%, #2a2350 0%, #120e2c 70%);
+  box-shadow:0 0 22px rgba(232,195,106,.25);
+}
+.oracle-spin:hover{ box-shadow:0 0 30px rgba(232,195,106,.45); }
+.oracle-spin:focus-visible{ outline:2px solid var(--gold-bright); outline-offset:4px; }
+.oracle-result{ color:var(--gold-bright); font-size:1.6rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; min-height:1.3em; margin:0; }
+.oracle-result:not(:empty){ animation:fadeIn .5s ease; }
+.oracle-note{ color:#9d93c0; font-size:.78rem; font-style:italic; margin:0; }
+.oracle-close{
+  background:transparent; border:1px solid rgba(232,195,106,.35); color:var(--gold-bright); cursor:pointer;
+  border-radius:999px; padding:.45rem 1.4rem; font:inherit; font-size:.85rem;
+}
+.oracle-close:hover{ border-color:var(--gold-bright); }
+.oracle-close:focus-visible{ outline:2px solid var(--gold-bright); outline-offset:3px; }
+@media (prefers-reduced-motion: reduce){ .oracle-wheel::before, .oracle-wheel::after, .oracle-arrow.spinning::before{ animation:none; } }
 
 /* RESULT */
 .result{ animation:fadeIn .6s ease forwards; }
@@ -822,6 +876,7 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .deck-btn{ background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.15); color:var(--text); padding:.45rem 1rem; border-radius:999px; font-size:.85rem; cursor:pointer; }
 .deck-btn:hover{ border-color:var(--gold); }
 .deck-btn[aria-pressed="true"]{ background:var(--gold); color:#0d0a1c; border-color:var(--gold); font-weight:700; }
+:root[data-theme="light"] .deck-btn[aria-pressed="true"]{ color:#fff; }   /* thème clair : couleur du signe assombrie, texte blanc (contraste ≥ 5,3:1 pour les 12 signes) */
 .deck-btn:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
 .tarot-pair{ display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; }
 .tarot-slot h3{ margin-bottom:.2rem; }

@@ -145,10 +145,6 @@ function prefersReducedMotion(){
 }
 
 let quickReveal = false;   // réouverture du profil au démarrage : pas d'animation de recherche dans le ciel
-let searchSeen = false;    // l'animation complète ne se joue qu'à la première recherche depuis l'ouverture de la page
-/* Animation de recherche dans le ciel. Première recherche : balayage, constellation, ≈ 3,8 s. Recherches suivantes :
-   version courte, constellation seule, ≈ 1,2 s. Dans les deux cas, un toucher, un clic (bouton « Passer » compris)
-   ou la touche Échap affiche aussitôt le résultat. */
 function runSearch(signKey, onDone){
   if (prefersReducedMotion() || quickReveal) { quickReveal = false; onDone(); return; }
   const t = I18N[currentLang];
@@ -156,42 +152,10 @@ function runSearch(signKey, onDone){
   const crosshair = document.getElementById('crosshair');
   const svg = document.getElementById('constSvg');
   const searchText = document.getElementById('searchText');
-  const short = searchSeen;
-  searchSeen = true;
-
-  const timers = [];
-  let scan = null, done = false;
-  const later = (fn, ms) => { timers.push(setTimeout(fn, ms)); };
-  const onKey = e => { if (e.key === 'Escape') finish(); };
-  function finish(){
-    if (done) return;
-    done = true;
-    clearInterval(scan);
-    timers.forEach(clearTimeout);
-    overlay.removeEventListener('click', finish);
-    document.removeEventListener('keydown', onKey);
-    overlay.classList.add('hidden');
-    overlay.setAttribute('aria-hidden','true');
-    onDone();
-  }
-  overlay.addEventListener('click', finish);
-  document.addEventListener('keydown', onKey);
-  const fadeOut = () => { overlay.classList.add('fade-out'); later(finish, 380); };
 
   overlay.classList.remove('hidden','fade-out');
   overlay.setAttribute('aria-hidden','false');
-  document.getElementById('searchSkip').textContent = t.skip;
   svg.innerHTML = '';
-
-  if (short) {
-    crosshair.style.transition = 'none';
-    crosshair.style.opacity = '0';
-    searchText.textContent = t.found + ' · ' + t.signNames[signKey];
-    drawConstellation(signKey, 0.3);
-    later(fadeOut, 800);
-    return;
-  }
-
   searchText.textContent = t.searching;
   crosshair.style.transition = 'none';
   crosshair.style.opacity = '1';
@@ -199,13 +163,13 @@ function runSearch(signKey, onDone){
   crosshair.style.top = '50%';
   crosshair.style.transform = 'translate(-50%,-50%) scale(1)';
 
-  scan = setInterval(() => {
+  const scan = setInterval(() => {
     crosshair.style.transition = 'all .14s ease';
     crosshair.style.left = (25 + Math.random()*50) + '%';
     crosshair.style.top  = (25 + Math.random()*50) + '%';
   }, 130);
 
-  later(() => {
+  setTimeout(() => {
     clearInterval(scan);
     crosshair.style.transition = 'all .5s ease-out';
     crosshair.style.left = '50%';
@@ -213,25 +177,31 @@ function runSearch(signKey, onDone){
     crosshair.style.transform = 'translate(-50%,-50%) scale(1.5)';
     searchText.textContent = t.found + ' · ' + t.signNames[signKey];
 
-    later(() => {
+    setTimeout(() => {
       drawConstellation(signKey);
       crosshair.style.opacity = '0';
-      later(fadeOut, 1500);
+      setTimeout(() => {
+        overlay.classList.add('fade-out');
+        setTimeout(() => {
+          overlay.classList.add('hidden');
+          overlay.setAttribute('aria-hidden','true');
+          onDone();
+        }, 380);
+      }, 1500);
     }, 480);
   }, 1400);
 }
 
-function drawConstellation(signKey, speed = 1){   // speed < 1 : tracé accéléré (version courte)
+function drawConstellation(signKey){
   const svg = document.getElementById('constSvg');
   const data = CONST[signKey];
   svg.innerHTML = '';
-  svg.classList.toggle('quick', speed < 1);
   const NS = 'http://www.w3.org/2000/svg';
   data.stars.forEach(([x,y], i) => {
     const c = document.createElementNS(NS,'circle');
     c.setAttribute('cx',x); c.setAttribute('cy',y); c.setAttribute('r',2.6);
     c.setAttribute('class','const-star');
-    c.style.animationDelay = (i*0.07*speed) + 's';
+    c.style.animationDelay = (i*0.07) + 's';
     svg.appendChild(c);
   });
   data.lines.forEach(([a,b], i) => {
@@ -240,7 +210,7 @@ function drawConstellation(signKey, speed = 1){   // speed < 1 : tracé accélé
     p.setAttribute('d',`M ${x1} ${y1} L ${x2} ${y2}`);
     p.setAttribute('class','const-line');
     p.setAttribute('pathLength','100');
-    p.style.animationDelay = ((0.25 + i*0.14) * speed) + 's';
+    p.style.animationDelay = (0.25 + i*0.14) + 's';
     svg.appendChild(p);
   });
 }
@@ -476,6 +446,7 @@ function renderResult(signKey, decanIdx){
       <div class="numtarot" id="viewNumbers" role="tabpanel" aria-labelledby="tabNumbers">
         <h2 class="section-title">${t.num.tab}</h2><div class="numbers" id="numbersBody"></div>
         <h2 class="section-title">${t.tarot.tab}</h2><div class="tarot" id="tarotBody"></div>
+        <p class="oracle-more"><button type="button" class="btn-secondary" data-oracle-open><span aria-hidden="true">🔮</span> ${t.oracle.open}</button></p>
       </div>
     </div>
   `;
@@ -1791,7 +1762,7 @@ async function exportImage(){
     + `padding:32px;box-sizing:content-box;background:${getComputedStyle(document.documentElement).getPropertyValue('--export-bg').trim()};`;
   for (const part of parts) {
     const copy = part.cloneNode(true);
-    copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .sr-only, .natal-complete, .wheel-hint, .spread-actions, .spread-form, .spread-question, .tarot-deck, .cal-card').forEach(n => n.remove());
+    copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .sr-only, .oracle-more, .natal-complete, .wheel-hint, .spread-actions, .spread-form, .spread-question, .tarot-deck, .cal-card').forEach(n => n.remove());
     copy.querySelectorAll('[id]').forEach(n => n.removeAttribute('id'));
     copy.removeAttribute('id');
     frame.appendChild(copy);
@@ -2015,6 +1986,7 @@ function applyUITranslations(){
   document.getElementById('placesCredit').textContent = t.placesCredit;
   if (birthField) birthField.relabel();   // pays affiché dans la nouvelle langue
   document.getElementById('labelName').textContent = t.labelName;
+  document.getElementById('oracleOpenLabel').textContent = t.oracle.open;
   document.getElementById('privacyLine').textContent = t.privacyLine;
   for (const [slot, key, labelId] of [['infoSlotName', 'fieldName', 'labelName'], ['infoSlotTime', 'fieldTime', 'labelBirthTime'], ['infoSlotPlace', 'fieldPlace', 'labelBirthPlace']]) {
     const el = document.getElementById(slot); if (el) el.innerHTML = infoBtn(key, document.getElementById(labelId).textContent);

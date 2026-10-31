@@ -1634,5 +1634,13 @@ I18N.tr = deepMerge(I18N.fr, {
     title: "Doğum haritası — {name}",
     footer: "Bu sayfa {date} tarihinde Zodyak ve Dekanlar ile oluşturuldu. Konumlar efemeritlere göre hesaplanmıştır; yorumlar astroloji geleneğinden gelen sembolik yorumlardır."
   },
-  skip: "Geç"
+  oracle: {
+    open: "Evet / Hayır Falı",
+    title: "Evet / Hayır Falı",
+    hint: "Sorunuzu düşünün, sonra ortaya dokunun",
+    ask: "Falı başlat",
+    again: "Başka bir soru için ortaya dokunun",
+    note: "Eğlence için bir oyun, kehanet değil",
+    answers: { yes: "Evet", no: "Hayır", maybe: "Belki", soon: "Yakında" }
+  }
 });

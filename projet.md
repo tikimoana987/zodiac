@@ -1,6 +1,6 @@
 # 🌌 Zodiaque & Décans · Cosmic Interface
 
-> **31/10/2026 — V7.4 : animation de recherche passable.** Première recherche depuis l'ouverture de la page : animation complète (≈ 3,8 s), interrompue d'un toucher, d'un clic, du bouton « Passer » (14 langues) ou de la touche Échap. Recherches suivantes : version courte (≈ 1,2 s, constellation seule, tracé accéléré), elle aussi passable. Mode « animations réduites » : aucune animation, comme avant. 97 tests (1 nouveau) et un contrôle chronométré dans le parcours réel.
+> **31/10/2026 — V7.5 : Oracle Oui / Non, retour à l'animation complète.** L'animation de recherche reprend sa forme d'origine à chaque recherche (la V7.4, qui la raccourcissait et permettait de la passer, est annulée : le balayage du ciel et le tracé de la constellation font partie de l'ambiance de l'appli). Nouvel **Oracle Oui / Non** (`zodiac-oracle.js`), ouvert depuis l'accueil et depuis « Numérologie & tarot ». L'audit d'accessibilité active désormais réellement le thème clair (bouton ☀) : contraste du bouton de jeu actif corrigé dans ce thème. 97 tests.
 
 > **31/10/2026 — V7.3 : premiers résultats Safari / Firefox.** Firefox : tout passe. Safari (WebKit) a révélé un vrai défaut : un navigateur pas à jour (iPhone ancien, par exemple) ne connaît pas les fuseaux horaires les plus récents (America/Coyhaique 2025, America/Ciudad_Juarez 2022, Europe/Kyiv 2022, America/Nuuk 2020) et le résultat ne s'affichait jamais pour une ville de naissance concernée. Correction : l'ancien fuseau équivalent est utilisé (`TZ_FALLBACK`, `usableTimeZone()` dans `zodiac-places.js`), avec exactement les mêmes heures (vérifié jour par jour de 1900 à 2026 et par le test des villes). Le test du site installable fonctionne désormais aussi dans WebKit.
 
@@ -62,6 +62,7 @@ Les fichiers sont chargés par de simples balises `<script src>` (pas de modules
 | `data/portraits/portrait-xx.json` | **14 corpus validés** (FR, EN, ES, PT, DE, IT, RU, TR, AR, HI, ZH, JA, KO, TH) : essences des arcanes, textes de chemins de vie, trois phrases, deux bulles et libellés ; ces sources n’envoient aucune donnée en ligne |
 | `zodiac-portrait-data.js` | Données des 14 langues intégrées en JavaScript local, générées à partir des JSON sources avec `node tools/regen_portraits.js` |
 | `zodiac-portrait.js` | **Portrait symbolique** : deux arcanes, maîtres 11/22/33, correspondances signe/maître/décan Golden Dawn, six rubriques repliables, formules détaillées et ponctuation adaptée aux 14 langues ; export déplié |
+| `zodiac-oracle.js` | **Oracle Oui / Non** : un cercle, quatre réponses (Oui, Peut-être, Non, Bientôt), une flèche lumineuse qui fait le tour du cercle et ralentit (≈ 3,2 s) ; une chance sur quatre par le hasard du navigateur (`secureRandom`) ; rien n'est saisi ni enregistré ; fenêtre plein écran avec focus gardé, Échap, réponse annoncée aux lecteurs d'écran ; sans rotation en mode « animations réduites » |
 | `zodiac-portrait.css` | Styles indépendants du portrait (mobile, thèmes et export) |
 | `zodiac-portrait-tests.js` | Tests automatiques du portrait : six dates, 36 décans, 14 langues, formules, ponctuation, interface et export |
 | `tools/regen_portraits.js` | Regénère `zodiac-portrait-data.js` depuis les fichiers `data/portraits/` sans dépendance ni accès réseau |
@@ -89,7 +90,7 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 ### Sections de `zodiac-app.js`
 1. **État global** — `currentLang`, `currentSignKey`, `currentDecanIdx`, `currentDate`, `currentTime`, `currentName`, `currentSky`, `currentCn`, `skyDate`, `skyPeriod`, `isSearching`, `lastFocus`, `store`, `escapeHtml()`, `slugify()`
 2. **Thème dynamique** — `applyTheme()` / `resetTheme()`
-3. **Animation de recherche** — overlay avec viseur, scan, tracé SVG ; complète à la première recherche, courte ensuite (`searchSeen`), passable d'un toucher ou par Échap (`finish()` annule tous les minuteurs)
+3. **Animation de recherche** — overlay avec viseur, scan, tracé SVG ; complète à chaque recherche, volontairement (ambiance de l'appli)
 4. **Rendu du profil** — `renderOwner()`, `renderResult()`, `natalMoonItems()`, `renderSky()` (horoscope), `todayISO()`, `westernCards()`, `chineseCards()` (5 cartes chacune), briques communes (`strengthsCard()`, `loveCareerCard()`, `affinityCard()`, `infoItem()`), `starHtml()`
 5. **Modale de compatibilité** — `openCompat(sys, autre)` : `sys = 'west'` (éléments) ou `'cn'` (relations traditionnelles)
 6. **Actions** — partage (clipboard), export PNG, reset
@@ -362,6 +363,7 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 - [x] Navigation clavier dans la modale (Escape pour fermer, Entrée/Espace sur les affinités)
 - [x] **`prefers-reduced-motion`** : désactive les animations CSS + skip l'animation JS
 - [x] Messages d'erreur `role="alert"` (date vide ou invalide)
+- [x] **Thème clair réellement audité (V7.5)** : l'audit passe au thème clair par le bouton ☀ (l'appli est sombre par défaut ; la préférence du système ne suffit pas) ; bouton de jeu actif en texte blanc dans ce thème (contraste ≥ 5,3:1 pour les 12 couleurs de signe)
 - [x] **Audit axe-core à chaque publication (V7)** : accueil et 5 onglets, français et arabe, thèmes sombre et clair ; la moindre anomalie bloque la publication. Corrections apportées : zone principale `<main class="app-main">` (roue, saisie, résultat) ; titre `<h2>` invisible (`.sr-only`) en tête des onglets Signes, Thème natal, Ciel et Compatibilité, pour un ordre des titres sans saut ; roue du thème natal en `role="group"` (elle contient des éléments cliquables) ; encadrés latéraux du ciel en `<div>` au lieu d'`<aside>` ; contraste du bouton de jeu actif (texte `#0d0a1c`) ; en-têtes vides du tableau des positions remplacés par des cellules simples
 
 ---

@@ -1245,5 +1245,13 @@ I18N.zh = deepMerge(I18N.fr, {
     title: "本命盘 — {name}",
     footer: "本页由“星座与旬星”于 {date} 生成。行星位置依据星历计算；解读为占星传统中的象征性诠释。"
   },
-  skip: "跳过"
+  oracle: {
+    open: "是 / 否神谕",
+    title: "是 / 否神谕",
+    hint: "在心里想好你的问题，然后点按中心",
+    ask: "询问神谕",
+    again: "点按中心，再问一个问题",
+    note: "仅供娱乐的小游戏，并非预言",
+    answers: { yes: "是", no: "否", maybe: "也许", soon: "很快" }
+  }
 });

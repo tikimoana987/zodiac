@@ -1637,5 +1637,13 @@ I18N.pt = deepMerge(I18N.fr, {
     title: "Mapa natal — {name}",
     footer: "Ficha criada com Zodíaco e Decanatos em {date}. Posições calculadas a partir de efemérides; interpretações simbólicas da tradição astrológica."
   },
-  skip: "Pular"
+  oracle: {
+    open: "Oráculo Sim / Não",
+    title: "Oráculo Sim / Não",
+    hint: "Pense na sua pergunta e depois toque no centro",
+    ask: "Consultar o oráculo",
+    again: "Toque no centro para fazer outra pergunta",
+    note: "Um jogo para se divertir, não uma previsão",
+    answers: { yes: "Sim", no: "Não", maybe: "Talvez", soon: "Em breve" }
+  }
 });

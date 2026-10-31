@@ -75,10 +75,10 @@ Idée d'une testeuse (27 octobre 2026), approuvée : aller au-delà des textes c
 
 Retour détaillé d'une testeuse, validé le 31 octobre. Fil conducteur pour tous ces chantiers : des lectures **réalistes mais encourageantes, jamais fatalistes** ; une relation dépend des personnes et de leurs choix, pas des astres. Chaque gros chantier suit la méthode du portrait : cahier de décisions, textes rédigés puis validés dans les 14 langues, intégration et tests.
 
-### 3.1 🟢 Oracle Oui / Non
-- [ ] Un cercle et quatre réponses : **Oui, Non, Peut-être, Bientôt**. La personne pense à sa question sans rien écrire et touche le centre ; une flèche lumineuse tourne, ralentit et s'arrête au hasard (générateur du navigateur). Toucher à nouveau pour une autre question.
-- [ ] Présenté clairement comme un jeu, pas comme une prédiction ; version sobre en mode « animations réduites ».
-- [ ] Peu de textes (≈ 6 par langue). ❓ Emplacement : onglet Tarot (§ 3.3) ou accès direct depuis l'accueil.
+### 3.1 ✅ Oracle Oui / Non (V7.5)
+- [x] Un cercle et quatre réponses : **Oui, Non, Peut-être, Bientôt**. La personne pense à sa question sans rien écrire et touche le centre ; une flèche lumineuse tourne, ralentit et s'arrête au hasard (générateur du navigateur). Toucher à nouveau pour une autre question.
+- [x] Présenté clairement comme un jeu, pas comme une prédiction ; version sobre en mode « animations réduites ».
+- [x] 9 courts textes par langue. Emplacement : bouton sur l'accueil, sous le formulaire, et lien dans « Numérologie & tarot » ; à reprendre dans l'onglet Tarot (§ 3.3) quand il existera.
 
 ### 3.2 🟡 Compatibilité approfondie
 - Aujourd'hui : trois axes (signes, animaux chinois, Lunes) notés sur 5, et une entente globale.
@@ -107,6 +107,7 @@ Retour détaillé d'une testeuse, validé le 31 octobre. Fil conducteur pour tou
 - Point clé : les régies publicitaires classiques (type Google AdSense) chargent du code d'un tiers qui suit les visiteurs. Conséquences : fin de la promesse « aucune donnée envoyée », bandeau de consentement aux cookies obligatoire en Europe, rien en version hors ligne, et des revenus faibles tant que l'audience reste petite.
 - Piste compatible avec la promesse : un **message partenaire** (image et lien intégrés à l'appli, sans code tiers ni pistage) pendant l'animation de recherche (≈ 3,8 s à la première recherche, passable) ; partenariat direct ou lien d'affiliation.
 - À décider quand l'appli aura des utilisateurs réguliers.
+- [ ] **Dons et contributions** (demande du 31 octobre) : un lien « Soutenir le projet » en bas de page et à un endroit stratégique ; plateforme et emplacements à choisir. Un simple lien vers la plateforme, sans code tiers : la promesse de confidentialité reste intacte.
 
 ---
 
@@ -156,7 +157,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 - [ ] **Page d'aide ou foire aux questions** : installer l'appli, importer le calendrier, enregistrer en PDF, effacer ses données, confidentialité.
 - [ ] **Turc** : les sens des 22 arcanes majeurs tutoient (sen), alors que l'interface et les arcanes mineurs vouvoient (siz) ; harmoniser au vouvoiement.
 - [ ] **Relecture des traductions** par des personnes dont c'est la langue maternelle, en priorité arabe, hindi, thaï, chinois, japonais et coréen. Les textes ont été écrits avec soin, mais une relecture humaine reste préférable.
-- [x] **Animation de recherche** (V7.4) : complète à la première recherche et passable d'un toucher (bouton « Passer », touche Échap) ; courte ensuite (≈ 1,2 s).
+- [x] **Animation de recherche** : décision du 31 octobre, elle reste complète à chaque recherche, car elle fait partie de l'ambiance (la version courte et passable de la V7.4 a été annulée en V7.5).
 - [ ] **Arcane de l'année personnelle** : année personnelle 1 à 9 → arcane du même numéro, avec ses mots-clés, dans la continuité du portrait 🟢
 - [ ] **Allègement des mises à jour** 🟡 : le site est une seule page de 6,8 Mo, retéléchargée en entier à chaque version, alors que les illustrations et les villes (≈ 4 Mo) ne changent presque jamais. Les placer dans des fichiers séparés gardés par le service worker, et ne charger que la langue choisie, rendrait chaque mise à jour environ trois fois plus légère. La version autonome resterait en un seul fichier.
 - [ ] **Performance sur les appareils modestes** : le flou et les étoiles animées du fond coûtent cher en dessin. Le mode « animations réduites » les coupe déjà ; ❓ envisager un allègement automatique sur les petits appareils.
@@ -188,8 +189,8 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 | 7 | Version hors ligne | réactiver · laisser grisé | à trancher avec l'étape iPhone |
 | 8 | Licence du dépôt | aucune · MIT · CC BY-NC | à discuter |
 | 9 | Compatibilité : note sur 5 | garder · adoucir · remplacer | forces et points d'attention plutôt qu'un verdict |
-| 10 | Oracle Oui / Non : emplacement | onglet Tarot · accueil | à décider au moment du chantier |
-| 11 | Financement | rien · lien « soutenir le projet » · message partenaire · publicité classique | rien pour l'instant ; si besoin, message partenaire sans pistage. Abonnement premium mis de côté |
+| 10 | Oracle Oui / Non : emplacement | ✅ décidé et fait | accueil et « Numérologie & tarot », puis onglet Tarot |
+| 11 | Financement | lien « soutenir le projet » · message partenaire · publicité classique | dons et contributions d'abord (lien simple, sans pistage) ; message partenaire plus tard si besoin. Abonnement premium mis de côté |
 
 ---
 
@@ -198,7 +199,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 1. ✅ **Arcanes mineurs** (§ 1) ; reste les 9 illustrations à refaire avec Gemini (§ 1.1), quand il refonctionnera.
 2. ✅ **Portrait symbolique** (§ 2).
 3. ✅ **Accessibilité (audit automatique) et tests Safari / Firefox** (§ 6, § 8), V7 à V7.3.
-4. ✅ **Animation de recherche passable** (§ 7), V7.4. Ensuite : **Oracle Oui / Non** (§ 3.1).
+4. ✅ **Oracle Oui / Non** (§ 3.1), V7.5 ; l'animation de recherche reste complète (§ 7). Ensuite : **dons et contributions** (§ 3.6), en cours de décision.
 5. **Compatibilité approfondie** (§ 3.2).
 6. **Onglet Tarot et nouveaux tirages** (§ 3.3).
 7. **Carré de Pythagore** (§ 3.4).

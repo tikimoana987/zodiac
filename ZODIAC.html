@@ -61,6 +61,7 @@
     <p class="field-hint"><span class="field-hint-icon" aria-hidden="true">i</span> <span id="timePlaceHint"></span></p>
     <p class="privacy-line"><span aria-hidden="true">🔒</span> <span id="privacyLine"></span> <span class="info-slot" id="infoSlotPrivacy"></span></p>
   </div>
+  <div class="oracle-entry"><button type="button" class="oracle-open" id="oracleOpen" data-oracle-open><span aria-hidden="true">🔮</span> <span id="oracleOpenLabel">Oracle Oui / Non</span></button></div>
   <div id="errorMsg" class="error-msg hidden" role="alert"></div>
   <div class="history" id="history" hidden></div>
 
@@ -82,7 +83,23 @@
     <div class="crosshair" id="crosshair"><div class="dot"></div></div>
   </div>
   <p class="search-text" id="searchText"></p>
-  <button type="button" class="search-skip" id="searchSkip">Passer</button>
+</div>
+
+<!-- ORACLE OUI / NON (zodiac-oracle.js) -->
+<div id="oracle" class="oracle-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="oracleTitle" aria-describedby="oracleHint" aria-hidden="true">
+  <h2 class="oracle-title" id="oracleTitle">Oracle Oui / Non</h2>
+  <p class="oracle-hint" id="oracleHint"></p>
+  <div class="oracle-wheel">
+    <span class="oracle-ans" data-answer="yes" style="left:50%;top:16%"></span>
+    <span class="oracle-ans" data-answer="maybe" style="left:81%;top:50%"></span>
+    <span class="oracle-ans" data-answer="no" style="left:50%;top:84%"></span>
+    <span class="oracle-ans" data-answer="soon" style="left:19%;top:50%"></span>
+    <div class="oracle-arrow" id="oracleArrow" aria-hidden="true"></div>
+    <button type="button" class="oracle-spin" id="oracleSpin"><span aria-hidden="true">✦</span></button>
+  </div>
+  <p class="oracle-result" id="oracleResult" aria-live="polite"></p>
+  <p class="oracle-note" id="oracleNote"></p>
+  <button type="button" class="oracle-close" id="oracleClose">Fermer</button>
 </div>
 
 <!-- MODAL COMPATIBILITÉ -->
@@ -130,6 +147,7 @@
 <script src="zodiac-tarot.js"></script>
 <script src="zodiac-portrait-data.js"></script>
 <script src="zodiac-app.js"></script>
+<script src="zodiac-oracle.js"></script>
 <script src="zodiac-portrait.js"></script>
 <script src="zodiac-portrait-tests.js"></script>
 
