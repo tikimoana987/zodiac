@@ -1633,5 +1633,6 @@ I18N.tr = deepMerge(I18N.fr, {
     hint: "Bir dosya elde etmek için yazdırma penceresinde «PDF olarak kaydet»i seçin.",
     title: "Doğum haritası — {name}",
     footer: "Bu sayfa {date} tarihinde Zodyak ve Dekanlar ile oluşturuldu. Konumlar efemeritlere göre hesaplanmıştır; yorumlar astroloji geleneğinden gelen sembolik yorumlardır."
-  }
+  },
+  skip: "Geç"
 });

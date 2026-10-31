@@ -1636,5 +1636,6 @@ I18N.pt = deepMerge(I18N.fr, {
     hint: "Na janela de impressão, escolha “Salvar como PDF” para obter um arquivo.",
     title: "Mapa natal — {name}",
     footer: "Ficha criada com Zodíaco e Decanatos em {date}. Posições calculadas a partir de efemérides; interpretações simbólicas da tradição astrológica."
-  }
+  },
+  skip: "Pular"
 });

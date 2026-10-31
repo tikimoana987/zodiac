@@ -1641,5 +1641,6 @@ I18N.fr = {
     hint: "Dans la fenêtre d'impression, choisissez « Enregistrer au format PDF » pour obtenir un fichier.",
     title: "Thème natal — {name}",
     footer: "Fiche créée avec Zodiaque & Décans le {date}. Positions calculées d'après les éphémérides ; interprétations symboliques issues de la tradition astrologique."
-  }
+  },
+  skip: "Passer"
 };

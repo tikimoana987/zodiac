@@ -317,6 +317,16 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
   animation:pulseText 1.4s ease-in-out infinite;
 }
 @keyframes pulseText{ 0%,100%{opacity:.5} 50%{opacity:1} }
+/* « Passer » : un toucher ou un clic n'importe où sur l'écran de recherche suffit ; le bouton le rend visible et accessible au clavier */
+.search-skip{
+  background:transparent; border:1px solid rgba(232,195,106,.35); color:var(--gold-bright); cursor:pointer;
+  border-radius:999px; padding:.4rem 1.2rem; font:inherit; font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; opacity:.75;
+}
+.search-skip:hover{ opacity:1; border-color:var(--gold-bright); }
+.search-skip:focus-visible{ opacity:1; outline:2px solid var(--gold-bright); outline-offset:3px; }
+/* Version courte (recherches suivantes) : constellation tracée plus vite */
+.constellation.quick .const-star{ animation-duration:.2s; }
+.constellation.quick .const-line{ animation-duration:.25s; }
 
 /* RESULT */
 .result{ animation:fadeIn .6s ease forwards; }

@@ -5,6 +5,7 @@ Vérifie, dans un navigateur piloté par Playwright (Chromium par défaut) :
   1. la suite intégrée (ZODIAC.html?test) dans 5 fuseaux horaires d'appareil ;
   2. la même suite dans la version autonome (ZODIAC-standalone.html), réseau coupé ;
   3. un parcours réel en français, arabe (droite à gauche) et japonais : résultat, thème natal, nuit, portrait, sans erreur ;
+     puis l'animation de recherche, animations actives : passable d'un toucher, puis version courte ;
   4. le site installable (dossier site/) servi comme sur GitHub Pages : installation, puis fonctionnement réseau coupé ;
   5. (Chromium seulement) l'accessibilité : audit axe-core de l'accueil et des 5 onglets, en français et en arabe,
      thèmes sombre et clair ; la moindre anomalie fait échouer les tests.
@@ -111,6 +112,37 @@ async def journey(browser, file):
         await ctx.close()
 
 
+async def search_animation(browser, file):
+    """Animations actives : la première recherche se passe d'un toucher, la suivante est courte (sans rien toucher)."""
+    ctx = await browser.new_context(viewport={'width': 1280, 'height': 900}, reduced_motion='no-preference', timezone_id='Europe/Paris')
+    page = await ctx.new_page()
+    errors = []
+    page.on('pageerror', lambda e: errors.append(str(e)))
+    try:
+        await page.goto(file.as_uri() + '?lang=fr')
+        await page.fill('#birthDate', '1982-11-03')
+        await page.click('#btnReveal')
+        await page.wait_for_selector('#overlay:not(.hidden)', timeout=10000)
+        box = await page.locator('#searchSkip').bounding_box()
+        start = await page.evaluate('performance.now()')
+        # Clic « humain » aux coordonnées du bouton : page.click() attendrait la fin des mouvements de la page
+        await page.mouse.click(box['x'] + box['width'] / 2, box['y'] + box['height'] / 2)
+        await page.wait_for_selector('#result:not(.hidden)', timeout=10000)
+        skipped = (await page.evaluate('performance.now()') - start) / 1000
+        await page.click('#btnReveal')
+        await page.wait_for_selector('#overlay:not(.hidden)', timeout=10000)
+        start = await page.evaluate('performance.now()')
+        await page.wait_for_selector('#overlay.hidden', state='attached', timeout=10000)
+        short = (await page.evaluate('performance.now()') - start) / 1000
+        shown = await page.locator('#result:not(.hidden)').count() == 1
+        report(skipped < 1 and 0.8 < short < 2.5 and shown and not errors,
+               f'animation de recherche : passée en {skipped:.1f} s, puis version courte en {short:.1f} s'
+               + (f' | {errors}' if errors else ''))
+    except Exception as exc:
+        report(False, 'animation de recherche : ' + (str(exc).strip().splitlines() or ['erreur inconnue'])[0][:300])
+    await ctx.close()
+
+
 async def accessibility(browser, file):
     """Audit axe-core : accueil + 5 onglets, français et arabe, thèmes sombre et clair. Aucune anomalie tolérée."""
     print(f'Accessibilité (audit axe-core) — {file.name}')
@@ -201,6 +233,7 @@ async def main():
         else:
             report(False, 'ZODIAC-standalone.html absent : lancer d\'abord python build-standalone.py')
         await journey(browser, ROOT / 'ZODIAC.html')
+        await search_animation(browser, ROOT / 'ZODIAC.html')
         if BROWSER == 'chromium':
             await accessibility(browser, ROOT / 'ZODIAC.html')
         await installable_site(browser)

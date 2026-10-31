@@ -1641,5 +1641,6 @@ I18N.it = deepMerge(I18N.fr, {
     hint: "Nella finestra di stampa, scegli «Salva come PDF» per ottenere un file.",
     title: "Tema natale — {name}",
     footer: "Scheda creata con Zodiaco e Decani il {date}. Posizioni calcolate dalle effemeridi; interpretazioni simboliche della tradizione astrologica."
-  }
+  },
+  skip: "Salta"
 });

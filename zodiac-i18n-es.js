@@ -1641,5 +1641,6 @@ I18N.es = deepMerge(I18N.fr, {
     hint: "En la ventana de impresión, elige «Guardar como PDF» para obtener un archivo.",
     title: "Carta natal — {name}",
     footer: "Ficha creada con Zodiaco y Decanos el {date}. Posiciones calculadas a partir de efemérides; interpretaciones simbólicas de la tradición astrológica."
-  }
+  },
+  skip: "Saltar"
 });

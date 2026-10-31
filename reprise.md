@@ -3,6 +3,7 @@
 > **Mise à jour du 28 octobre 2026 — portrait symbolique V0.3.1 (base main `999bd9c`).**
 > Correctif V0.3.1 : décans traduits, ponctuation locale des libellés techniques, réduction complète sans étapes fictives ; trois tests unitaires supplémentaires et un contrôle réel de l’intégration dans le parcours GitHub Actions.
 > Correctif V0.3.2 : ordinal du décan en gras sans répétition, deux-points pleine chasse en japonais et chinois, test multilingue renforcé et précision du contrôle CI dans projet.md.
+> **V7.4 (31 octobre 2026) — animation de recherche passable.** `runSearch()` : animation complète à la première recherche depuis l'ouverture de la page, courte ensuite (`searchSeen`, en mémoire seulement) ; un clic ou un toucher sur l'écran de recherche (bouton `#searchSkip`, texte `skip`), ou Échap, appelle `finish()`, qui annule tous les minuteurs et n'affiche le résultat qu'une fois. Tout nouveau minuteur de l'animation passe par `later()`. Le parcours réel (`run_tests.py`) chronomètre les deux cas, animations actives, avec un clic aux coordonnées du bouton (`page.click()` attendrait la fin des mouvements de la page).
 > **V7.3 (31 octobre 2026) — fuseaux récents.** `usableTimeZone()` (`zodiac-places.js`) remplace un fuseau inconnu du navigateur par son équivalent ancien (`TZ_FALLBACK`) ; appliqué au chargement des villes, aux lieux par coordonnées et dans `tzParts()` (`zodiac-natal.js`). Après une mise à jour de la base des villes (`build-places.py`), la tâche WebKit signale tout nouveau fuseau inconnu : l'ajouter à `TZ_FALLBACK` avec son équivalent et sa période d'équivalence (test des villes, `zodiac-tests.js`).
 > **Dépôt sur GitHub : jamais de fichier ni de dossier commençant par un point via « Upload files ».** Le 31 octobre, `.github/workflows/…` déposé ainsi a atterri dans `workflows/` à la racine et `.gitignore` a été ignoré : ces fichiers se modifient avec le crayon de GitHub (copier-coller du contenu complet).
 > **V7 (31 octobre 2026) — accessibilité et Safari / Firefox.** Audit axe-core bloquant dans le circuit (0 anomalie) ; tâche informative WebKit + Firefox (`run_tests.py --browser`), non bloquante. Conventions ci-dessous (section « Accessibilité »).
@@ -33,7 +34,7 @@ L'expérience inclut **une transition cinématique** (viseur balaie le ciel → 
 ## 📦 État actuel du code
 
 **Code local modulaire**, ouverture par double-clic sur `ZODIAC.html` (aucun serveur). **Version autonome** : `ZODIAC-standalone.html`, un seul fichier d'environ 6,8 Mo, produit par `python3 build-standalone.py`. La page charge les sources et les 14 traductions par fichiers JavaScript locaux ; le portrait charge `zodiac-portrait-data.js` puis `zodiac-portrait.js` et `zodiac-portrait-tests.js` après `zodiac-app.js`.
-Styles dans `zodiac.css` et `zodiac-portrait.css`. Tests : 79 historiques dans `zodiac-tests.js` + 17 nouveaux dans `zodiac-portrait-tests.js` (96 au total, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
+Styles dans `zodiac.css` et `zodiac-portrait.css`. Tests : 80 historiques dans `zodiac-tests.js` + 17 nouveaux dans `zodiac-portrait-tests.js` (97 au total, `ZODIAC.html?test` ou `ZODIAC-standalone.html?test`).
 **Aucune ressource en ligne** : `html2canvas` 1.4.1 est une copie locale (`html2canvas.min.js`, licence MIT). Tout fonctionne sans internet.
 
 ### Fonctionnalités en place ✅

@@ -1,5 +1,7 @@
 # 🌌 Zodiaque & Décans · Cosmic Interface
 
+> **31/10/2026 — V7.4 : animation de recherche passable.** Première recherche depuis l'ouverture de la page : animation complète (≈ 3,8 s), interrompue d'un toucher, d'un clic, du bouton « Passer » (14 langues) ou de la touche Échap. Recherches suivantes : version courte (≈ 1,2 s, constellation seule, tracé accéléré), elle aussi passable. Mode « animations réduites » : aucune animation, comme avant. 97 tests (1 nouveau) et un contrôle chronométré dans le parcours réel.
+
 > **31/10/2026 — V7.3 : premiers résultats Safari / Firefox.** Firefox : tout passe. Safari (WebKit) a révélé un vrai défaut : un navigateur pas à jour (iPhone ancien, par exemple) ne connaît pas les fuseaux horaires les plus récents (America/Coyhaique 2025, America/Ciudad_Juarez 2022, Europe/Kyiv 2022, America/Nuuk 2020) et le résultat ne s'affichait jamais pour une ville de naissance concernée. Correction : l'ancien fuseau équivalent est utilisé (`TZ_FALLBACK`, `usableTimeZone()` dans `zodiac-places.js`), avec exactement les mêmes heures (vérifié jour par jour de 1900 à 2026 et par le test des villes). Le test du site installable fonctionne désormais aussi dans WebKit.
 
 > **31/10/2026 — V7 : accessibilité et contrôle Safari / Firefox.** Audit axe-core : 0 anomalie (accueil et 5 onglets, français et arabe, thèmes sombre et clair), désormais vérifié à chaque publication. Mêmes tests lancés pour information dans le moteur de Safari (WebKit) et dans Firefox. Apparence inchangée (comparaison pixel par pixel).
@@ -87,7 +89,7 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 ### Sections de `zodiac-app.js`
 1. **État global** — `currentLang`, `currentSignKey`, `currentDecanIdx`, `currentDate`, `currentTime`, `currentName`, `currentSky`, `currentCn`, `skyDate`, `skyPeriod`, `isSearching`, `lastFocus`, `store`, `escapeHtml()`, `slugify()`
 2. **Thème dynamique** — `applyTheme()` / `resetTheme()`
-3. **Animation de recherche** — overlay avec viseur, scan, tracé SVG
+3. **Animation de recherche** — overlay avec viseur, scan, tracé SVG ; complète à la première recherche, courte ensuite (`searchSeen`), passable d'un toucher ou par Échap (`finish()` annule tous les minuteurs)
 4. **Rendu du profil** — `renderOwner()`, `renderResult()`, `natalMoonItems()`, `renderSky()` (horoscope), `todayISO()`, `westernCards()`, `chineseCards()` (5 cartes chacune), briques communes (`strengthsCard()`, `loveCareerCard()`, `affinityCard()`, `infoItem()`), `starHtml()`
 5. **Modale de compatibilité** — `openCompat(sys, autre)` : `sys = 'west'` (éléments) ou `'cn'` (relations traditionnelles)
 6. **Actions** — partage (clipboard), export PNG, reset
@@ -452,14 +454,14 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | aucune en ligne (html2canvas en copie locale) |
 | Poids approximatif | version autonome ≈ 6,8 Mo (dont ≈ 3,1 Mo d'illustrations du tarot, ≈ 1 Mo de villes, ≈ 1,6 Mo de traductions et ≈ 0,4 Mo de textes du portrait) |
-| Tests automatisés | 96 (79 historiques + 17 portrait, dont 3 nouveaux en V0.3.1) ; parcours réel protégé en CI |
+| Tests automatisés | 97 (80 historiques + 17 portrait) ; parcours réel protégé en CI |
 
 ---
 
 ## 🧪 Comment tester
 
 ### Tests automatiques
-Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 79 tests couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
+Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 80 tests historiques couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
 La version autonome se teste de la même façon : `ZODIAC-standalone.html?test` (la suite y est intégrée ; un test supplémentaire vérifie que sa copie vierge est complète et sans donnée personnelle).
 - le calcul du Soleil, comparé à 40 positions de référence calculées par astropy (1900-2100) ;
 - signes et décans de dates de référence, équinoxes connues, jours de transition, effet de l'heure ;

@@ -1178,6 +1178,33 @@
     for (const l of Object.keys(I18N)) { const p = I18N[l].print; assert(p && p.button && p.hint && /\{name\}/.test(p.title) && /\{date\}/.test(p.footer), `${l} : textes`); }
   });
 
+  test('Animation de recherche : passable d\'un toucher, puis version courte', () => {
+    const keepMotion = prefersReducedMotion, keepSeen = searchSeen, overlay = document.getElementById('overlay');
+    const skip = document.getElementById('searchSkip'), text = document.getElementById('searchText'), t = I18N[currentLang];
+    let calls = 0;
+    try {
+      prefersReducedMotion = () => false; searchSeen = false; quickReveal = false;
+      runSearch('scorpio', () => calls++);
+      assert(!overlay.classList.contains('hidden'), 'écran de recherche affiché');
+      assertEq(skip.textContent, t.skip, 'bouton « Passer » traduit');
+      assertEq(text.textContent, t.searching, 'première recherche : balayage complet');
+      skip.click();
+      assertEq(calls, 1, 'un toucher affiche aussitôt le résultat');
+      assert(overlay.classList.contains('hidden') && overlay.getAttribute('aria-hidden') === 'true', 'écran de recherche masqué');
+      overlay.click(); document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+      assertEq(calls, 1, 'résultat affiché une seule fois');
+      runSearch('leo', () => calls++);
+      assert(document.getElementById('constSvg').classList.contains('quick'), 'recherche suivante : version courte');
+      assert(text.textContent.includes(t.signNames.leo), 'version courte : constellation trouvée');
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+      assertEq(calls, 2, 'touche Échap');
+    } finally {
+      prefersReducedMotion = keepMotion; searchSeen = keepSeen;
+      overlay.classList.add('hidden'); overlay.setAttribute('aria-hidden', 'true');
+    }
+    for (const l of Object.keys(I18N)) assert(I18N[l].skip && (l === 'fr' || I18N[l].skip !== I18N.fr.skip), `${l} : « Passer » traduit`);
+  });
+
   /* ---------------- Rapport ---------------- */
   const failed = results.filter(r => !r.ok);
   window.__testResults = results;

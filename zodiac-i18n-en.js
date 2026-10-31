@@ -1634,5 +1634,6 @@ I18N.en = deepMerge(I18N.fr, {
     hint: "In the print window, choose “Save as PDF” to get a file.",
     title: "Birth chart — {name}",
     footer: "Sheet created with Zodiac & Decans on {date}. Positions calculated from ephemerides; symbolic interpretations from the astrological tradition."
-  }
+  },
+  skip: "Skip"
 });

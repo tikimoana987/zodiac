@@ -145,6 +145,10 @@ function prefersReducedMotion(){
 }
 
 let quickReveal = false;   // réouverture du profil au démarrage : pas d'animation de recherche dans le ciel
+let searchSeen = false;    // l'animation complète ne se joue qu'à la première recherche depuis l'ouverture de la page
+/* Animation de recherche dans le ciel. Première recherche : balayage, constellation, ≈ 3,8 s. Recherches suivantes :
+   version courte, constellation seule, ≈ 1,2 s. Dans les deux cas, un toucher, un clic (bouton « Passer » compris)
+   ou la touche Échap affiche aussitôt le résultat. */
 function runSearch(signKey, onDone){
   if (prefersReducedMotion() || quickReveal) { quickReveal = false; onDone(); return; }
   const t = I18N[currentLang];
@@ -152,10 +156,42 @@ function runSearch(signKey, onDone){
   const crosshair = document.getElementById('crosshair');
   const svg = document.getElementById('constSvg');
   const searchText = document.getElementById('searchText');
+  const short = searchSeen;
+  searchSeen = true;
+
+  const timers = [];
+  let scan = null, done = false;
+  const later = (fn, ms) => { timers.push(setTimeout(fn, ms)); };
+  const onKey = e => { if (e.key === 'Escape') finish(); };
+  function finish(){
+    if (done) return;
+    done = true;
+    clearInterval(scan);
+    timers.forEach(clearTimeout);
+    overlay.removeEventListener('click', finish);
+    document.removeEventListener('keydown', onKey);
+    overlay.classList.add('hidden');
+    overlay.setAttribute('aria-hidden','true');
+    onDone();
+  }
+  overlay.addEventListener('click', finish);
+  document.addEventListener('keydown', onKey);
+  const fadeOut = () => { overlay.classList.add('fade-out'); later(finish, 380); };
 
   overlay.classList.remove('hidden','fade-out');
   overlay.setAttribute('aria-hidden','false');
+  document.getElementById('searchSkip').textContent = t.skip;
   svg.innerHTML = '';
+
+  if (short) {
+    crosshair.style.transition = 'none';
+    crosshair.style.opacity = '0';
+    searchText.textContent = t.found + ' · ' + t.signNames[signKey];
+    drawConstellation(signKey, 0.3);
+    later(fadeOut, 800);
+    return;
+  }
+
   searchText.textContent = t.searching;
   crosshair.style.transition = 'none';
   crosshair.style.opacity = '1';
@@ -163,13 +199,13 @@ function runSearch(signKey, onDone){
   crosshair.style.top = '50%';
   crosshair.style.transform = 'translate(-50%,-50%) scale(1)';
 
-  const scan = setInterval(() => {
+  scan = setInterval(() => {
     crosshair.style.transition = 'all .14s ease';
     crosshair.style.left = (25 + Math.random()*50) + '%';
     crosshair.style.top  = (25 + Math.random()*50) + '%';
   }, 130);
 
-  setTimeout(() => {
+  later(() => {
     clearInterval(scan);
     crosshair.style.transition = 'all .5s ease-out';
     crosshair.style.left = '50%';
@@ -177,31 +213,25 @@ function runSearch(signKey, onDone){
     crosshair.style.transform = 'translate(-50%,-50%) scale(1.5)';
     searchText.textContent = t.found + ' · ' + t.signNames[signKey];
 
-    setTimeout(() => {
+    later(() => {
       drawConstellation(signKey);
       crosshair.style.opacity = '0';
-      setTimeout(() => {
-        overlay.classList.add('fade-out');
-        setTimeout(() => {
-          overlay.classList.add('hidden');
-          overlay.setAttribute('aria-hidden','true');
-          onDone();
-        }, 380);
-      }, 1500);
+      later(fadeOut, 1500);
     }, 480);
   }, 1400);
 }
 
-function drawConstellation(signKey){
+function drawConstellation(signKey, speed = 1){   // speed < 1 : tracé accéléré (version courte)
   const svg = document.getElementById('constSvg');
   const data = CONST[signKey];
   svg.innerHTML = '';
+  svg.classList.toggle('quick', speed < 1);
   const NS = 'http://www.w3.org/2000/svg';
   data.stars.forEach(([x,y], i) => {
     const c = document.createElementNS(NS,'circle');
     c.setAttribute('cx',x); c.setAttribute('cy',y); c.setAttribute('r',2.6);
     c.setAttribute('class','const-star');
-    c.style.animationDelay = (i*0.07) + 's';
+    c.style.animationDelay = (i*0.07*speed) + 's';
     svg.appendChild(c);
   });
   data.lines.forEach(([a,b], i) => {
@@ -210,7 +240,7 @@ function drawConstellation(signKey){
     p.setAttribute('d',`M ${x1} ${y1} L ${x2} ${y2}`);
     p.setAttribute('class','const-line');
     p.setAttribute('pathLength','100');
-    p.style.animationDelay = (0.25 + i*0.14) + 's';
+    p.style.animationDelay = ((0.25 + i*0.14) * speed) + 's';
     svg.appendChild(p);
   });
 }

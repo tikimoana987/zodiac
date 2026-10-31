@@ -12,7 +12,7 @@
 | Feuille de route d'origine (étapes 1 à 6) | ✅ terminée, sauf l'iPhone (gardé pour la fin) |
 | Pistes 1 à 6 | ✅ version et bandeau de mise à jour · ✅ cartes renversées · ✅ lieux par coordonnées GPS · ✅ calendrier du ciel · ✅ fiche du thème natal à imprimer ou en PDF · ✅ arcanes mineurs (jeu complet de 78 cartes) |
 | Langues | 14 (FR, EN, ES, PT, IT, DE, TR, RU, AR, HI, TH, ZH, JA, KO) |
-| Tests automatiques | 96 (79 historiques + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit) et Firefox, pour information |
+| Tests automatiques | 97 (80 historiques + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit) et Firefox, pour information |
 | Publication | automatique sur GitHub Pages, après les tests (circuit GitHub Actions) |
 | Poids | version autonome ≈ 6,8 Mo : illustrations du tarot ≈ 3,1 Mo (déjà en WebP), villes ≈ 1 Mo, 14 langues ≈ 1,6 Mo, textes du portrait ≈ 0,4 Mo |
 | Confidentialité | aucune donnée envoyée en ligne (adresse en « # », pas de serveur, pas de statistiques) ; seule exception : les événements ajoutés à Google Agenda à la demande de l'utilisateur |
@@ -105,7 +105,7 @@ Retour détaillé d'une testeuse, validé le 31 octobre. Fil conducteur pour tou
 ### 3.6 ❓ À étudier plus tard : une courte pause financée (ton idée)
 - Idée : au moment de la recherche, une pause de 5 à 10 secondes financée (publicité ou partenaire) ; fréquence à choisir : à chaque recherche, toutes les 5 recherches ou une fois par jour.
 - Point clé : les régies publicitaires classiques (type Google AdSense) chargent du code d'un tiers qui suit les visiteurs. Conséquences : fin de la promesse « aucune donnée envoyée », bandeau de consentement aux cookies obligatoire en Europe, rien en version hors ligne, et des revenus faibles tant que l'audience reste petite.
-- Piste compatible avec la promesse : un **message partenaire** (image et lien intégrés à l'appli, sans code tiers ni pistage) pendant l'animation de recherche, qui dure déjà ≈ 4 secondes ; partenariat direct ou lien d'affiliation.
+- Piste compatible avec la promesse : un **message partenaire** (image et lien intégrés à l'appli, sans code tiers ni pistage) pendant l'animation de recherche (≈ 3,8 s à la première recherche, passable) ; partenariat direct ou lien d'affiliation.
 - À décider quand l'appli aura des utilisateurs réguliers.
 
 ---
@@ -156,7 +156,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 - [ ] **Page d'aide ou foire aux questions** : installer l'appli, importer le calendrier, enregistrer en PDF, effacer ses données, confidentialité.
 - [ ] **Turc** : les sens des 22 arcanes majeurs tutoient (sen), alors que l'interface et les arcanes mineurs vouvoient (siz) ; harmoniser au vouvoiement.
 - [ ] **Relecture des traductions** par des personnes dont c'est la langue maternelle, en priorité arabe, hindi, thaï, chinois, japonais et coréen. Les textes ont été écrits avec soin, mais une relecture humaine reste préférable.
-- [ ] **Animation de recherche** (≈ 4 s à chaque profil) : permettre de la passer d'un toucher, ou l'écourter après la première fois 🟢
+- [x] **Animation de recherche** (V7.4) : complète à la première recherche et passable d'un toucher (bouton « Passer », touche Échap) ; courte ensuite (≈ 1,2 s).
 - [ ] **Arcane de l'année personnelle** : année personnelle 1 à 9 → arcane du même numéro, avec ses mots-clés, dans la continuité du portrait 🟢
 - [ ] **Allègement des mises à jour** 🟡 : le site est une seule page de 6,8 Mo, retéléchargée en entier à chaque version, alors que les illustrations et les villes (≈ 4 Mo) ne changent presque jamais. Les placer dans des fichiers séparés gardés par le service worker, et ne charger que la langue choisie, rendrait chaque mise à jour environ trois fois plus légère. La version autonome resterait en un seul fichier.
 - [ ] **Performance sur les appareils modestes** : le flou et les étoiles animées du fond coûtent cher en dessin. Le mode « animations réduites » les coupe déjà ; ❓ envisager un allègement automatique sur les petits appareils.
@@ -198,7 +198,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 1. ✅ **Arcanes mineurs** (§ 1) ; reste les 9 illustrations à refaire avec Gemini (§ 1.1), quand il refonctionnera.
 2. ✅ **Portrait symbolique** (§ 2).
 3. ✅ **Accessibilité (audit automatique) et tests Safari / Firefox** (§ 6, § 8), V7 à V7.3.
-4. **Animation de recherche passable** (§ 7), puis **Oracle Oui / Non** (§ 3.1) : deux petits chantiers.
+4. ✅ **Animation de recherche passable** (§ 7), V7.4. Ensuite : **Oracle Oui / Non** (§ 3.1).
 5. **Compatibilité approfondie** (§ 3.2).
 6. **Onglet Tarot et nouveaux tirages** (§ 3.3).
 7. **Carré de Pythagore** (§ 3.4).
