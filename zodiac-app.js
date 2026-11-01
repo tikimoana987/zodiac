@@ -388,6 +388,7 @@ function renderResult(signKey, decanIdx){
       <button type="button" role="tab" id="tabSky" aria-controls="viewSky"><span class="vt-icon" aria-hidden="true">☾</span><span class="vt-txt"><span class="vt-title">${t.tabs.sky}</span><span class="vt-sub">${t.tabs.skySub}</span></span></button>
       <button type="button" role="tab" id="tabCompat" aria-controls="viewCompat"><span class="vt-icon" aria-hidden="true">♡</span><span class="vt-txt"><span class="vt-title">${t.tabs.compat}</span><span class="vt-sub">${t.tabs.compatSub}</span></span></button>
       <button type="button" role="tab" id="tabNumbers" aria-controls="viewNumbers"><span class="vt-icon" aria-hidden="true">№</span><span class="vt-txt"><span class="vt-title">${t.tabs.numTarot}</span><span class="vt-sub">${t.tabs.numTarotSub}</span></span></button>
+      <button type="button" role="tab" id="tabTarot" aria-controls="viewTarot"><span class="vt-icon" aria-hidden="true">✧</span><span class="vt-txt"><span class="vt-title">${(t.tabs.tarot || I18N.fr.tabs.tarot)}</span><span class="vt-sub">${(t.tabs.tarotSub || I18N.fr.tabs.tarotSub)}</span></span></button>
     </div>
     <div id="profileContent">
       <div class="owner" id="profileOwner"></div>
@@ -445,7 +446,9 @@ function renderResult(signKey, decanIdx){
       <div class="compat-view" id="viewCompat" role="tabpanel" aria-labelledby="tabCompat"><h2 class="sr-only">${t.tabs.compat}</h2>${compatCardHtml(t)}</div>
       <div class="numtarot" id="viewNumbers" role="tabpanel" aria-labelledby="tabNumbers">
         <h2 class="section-title">${t.num.tab}</h2><div class="numbers" id="numbersBody"></div>
-        <h2 class="section-title">${t.tarot.tab}</h2><div class="tarot" id="tarotBody"></div>
+      </div>
+      <div class="tarot-view" id="viewTarot" role="tabpanel" aria-labelledby="tabTarot"><h2 class="sr-only">${(t.tabs.tarot || I18N.fr.tabs.tarot)}</h2>
+        <div class="tarot" id="tarotBody"></div>
         <p class="oracle-more"><button type="button" class="btn-secondary" data-oracle-open><span aria-hidden="true">🔮</span> ${t.oracle.open}</button></p>
       </div>
     </div>
@@ -823,8 +826,8 @@ window.addEventListener('resize', () => closeInfo(false));
    ============================================================ */
 let currentBirthPlace = '';   // identifiant de la ville de naissance (zodiac-places.js), '' si non précisé
 let viewMode = 'signs';       // onglet affiché : 'signs' (signe & zodiaque chinois), 'natal' ou 'numbers' (numérologie)
-const VIEW_MODES = ['signs', 'natal', 'sky', 'compat', 'numbers'];   // une section par onglet ; 'numbers' : numérologie et tarot
-const VIEW_TABS = { signs: 'tabSigns', natal: 'tabNatal', sky: 'tabSky', compat: 'tabCompat', numbers: 'tabNumbers' };
+const VIEW_MODES = ['signs', 'natal', 'sky', 'compat', 'numbers', 'tarot'];   // une section par onglet ; 'numbers' : numérologie et portrait
+const VIEW_TABS = { signs: 'tabSigns', natal: 'tabNatal', sky: 'tabSky', compat: 'tabCompat', numbers: 'tabNumbers', tarot: 'tabTarot' };
 let tarotDeck = 'marseille';  // jeu de tarot : 'marseille' (par défaut) ou 'ws' (Waite-Smith) ; retenu sur l'appareil
 let tarotReversed = false;     // cartes renversées dans le tirage du jour (option, désactivée par défaut ; retenue sur l'appareil)
 let tarotFull = false;         // jeu complet (78 cartes, arcanes mineurs compris) dans le tirage du jour (option, désactivée par défaut ; retenue sur l'appareil)
@@ -1210,47 +1213,7 @@ function fillCalendarList(){
   }).join('');
 }
 
-/* ---------- Tirage du jour (rituel) ----------
-   Une question écrite, trois cartes tirées face cachée et retournées une à une ; un seul tirage par jour et par personne,
-   mémorisé sur l'appareil : { day, birth, question, cards, revealed, reversed }. La question n'apparaît pas dans l'image exportée.
-   Avec l'option « jeu complet », les cartes sont tirées parmi les 78 (arcanes mineurs compris) ; un tirage déjà fait ne change pas. */
-let spreadDraft = '';         // question en cours de saisie (gardée si l'affichage est refait)
-let spreadJustFlipped = -1;   // carte qui vient d'être retournée (animation)
-function currentSpread(){
-  try {
-    const s = JSON.parse(store.get('zodiac_spread') || 'null');
-    if (!s || s.day !== todayISO() || s.birth !== currentDate || !Array.isArray(s.cards) || s.cards.length !== 3 || !s.cards.every(k => TAROT_ALL_KEYS.includes(k))) return null;
-    // Tirages de l'ancienne version (sans question ni cartes face cachée) : affichés retournés
-    return { day: s.day, birth: s.birth, cards: s.cards, question: typeof s.question === 'string' ? s.question : '',
-             revealed: Array.isArray(s.revealed) && s.revealed.length === 3 ? s.revealed.map(Boolean) : [true, true, true],
-             reversed: Array.isArray(s.reversed) && s.reversed.length === 3 ? s.reversed.map(Boolean) : [false, false, false] };
-  } catch { return null; }
-}
-function saveSpread(s){ store.set('zodiac_spread', JSON.stringify(s)); }
-function spreadHtml(t, deck){
-  const u = t.tarot, sp = currentSpread(), pos = [u.spreadPast, u.spreadPresent, u.spreadFuture];
-  const head = `<h3>${u.spreadTitle}${infoBtn('spread', u.spreadTitle)}</h3>`;
-  if (!sp) return `<div class="card spread-card">${head}<p class="sky-sub">${u.spreadIntro}</p>
-    <div class="spread-form"><label for="spreadQuestion" class="spread-label">${u.spreadQuestionLabel}</label>
-      <textarea id="spreadQuestion" rows="2" maxlength="200" placeholder="${escapeHtml(u.spreadQuestionHint)}">${escapeHtml(spreadDraft)}</textarea>
-      <div class="spread-actions"><button type="button" class="btn-reveal" id="spreadDraw"${spreadDraft.trim().length >= 3 ? '' : ' disabled'}>${u.spreadDraw}</button></div></div></div>`;
-  const done = sp.revealed.every(Boolean);
-  const slots = sp.cards.map((key, i) => {
-    if (!sp.revealed[i]) return `<div class="spread-slot"><div class="spread-pos">${pos[i]}</div>
-      <button type="button" class="spread-flip" data-i="${i}" aria-label="${escapeHtml(u.spreadFlipAria.replace('{pos}', pos[i]))}">${tarotBackSvg(deck, pos[i])}</button></div>`;
-    const name = tarotName(t, key, deck), num = tarotTitleNum(key, deck), rev = sp.reversed[i], m = tarotMeaning(t, key, rev);
-    return `<div class="spread-slot${spreadJustFlipped === i ? ' just-flipped' : ''}${rev ? ' is-rev' : ''}"><div class="spread-pos">${pos[i]}</div><div class="spread-visual">${tarotCardSvg(key, deck, name, rev)}</div>
-      <div class="tarot-title">${num ? `<span class="tarot-num">${num}</span> ` : ''}${escapeHtml(name)}${rev ? ` <span class="rev-badge">${u.reversedBadge}</span>` : ''}</div>
-      ${isMinorKey(key) ? minorBadge(t, key, deck) : ''}<div class="traits">${m.keywords.map(k => `<span class="trait-tag">${k}</span>`).join('')}</div>
-      <p class="num-text">${m.text}</p></div>`;
-  }).join('');
-  return `<div class="card spread-card">${head}
-    ${sp.question ? `<p class="spread-question">${escapeHtml(sp.question)}</p>` : ''}
-    ${done ? '' : `<p class="sky-sub">${u.spreadFlip}</p>`}
-    <div class="spread-row">${slots}</div>
-    ${done ? `<p class="spread-done">${u.spreadTomorrow}</p>` : ''}
-    <p class="sky-note">${u.spreadNote}</p></div>`;
-}
+/* ---------- Tirages : voir zodiac-spreads.js (quatre tirages, éventail, sauvegarde par profil et par type) ---------- */
 function tarotName(t, key, deck){
   if (isMinorKey(key)) return t.tarot.minors.cards[key].name[deck];   // noms des mineurs propres à chaque jeu (Valet / Page, Deniers / Pentacles…)
   return deck === 'marseille' && t.tarot.marseilleNames[key] ? t.tarot.marseilleNames[key] : t.tarot.cards[key].name;
@@ -1286,26 +1249,9 @@ function renderTarot(){
       <span class="rev-toggle"><button type="button" class="deck-btn rev-btn" id="revToggle" aria-pressed="${tarotReversed}">↻ ${u.reversedToggle}</button>${infoBtn('reversed', u.reversedToggle)}</span>
       <span class="rev-toggle"><button type="button" class="deck-btn rev-btn" id="fullToggle" aria-pressed="${tarotFull}">${u.minors.fullDeck}</button>${infoBtn('tarotMinors', u.minors.fullDeck)}</span></div>
     <div class="tarot-pair">${slot(tarotByNumber(birthCardNumber(birth), deck), u.birthCard, u.birthCardDesc)}${slot(dayCardKey(currentDate, on), u.dayCard, u.dayCardDesc.replace('{d}', dLabel))}</div>
-    ${spreadHtml(t, deck)}
+    ${spreadsSectionHtml(t, deck)}
     <p class="sky-note">${u.note} ${u.artCredit}</p>`;
-  const q = el.querySelector('#spreadQuestion'), drawBtn = el.querySelector('#spreadDraw');
-  if (q) q.addEventListener('input', () => { spreadDraft = q.value; drawBtn.disabled = q.value.trim().length < 3; });
-  if (drawBtn) drawBtn.addEventListener('click', () => {
-    const question = (q ? q.value : '').trim();
-    if (question.length < 3) return;
-    const cards = drawCards(3, secureRandom, tarotFull);   // 22 arcanes majeurs, ou 78 cartes avec l'option « jeu complet »
-    saveSpread({ day: todayISO(), birth: currentDate, question, cards, revealed: [false, false, false],
-                 reversed: cards.map(() => tarotReversed && secureRandom() < 0.5) });   // une chance sur deux par carte, si l'option est active
-    spreadDraft = '';
-    renderTarot();
-    const first = document.querySelector('.spread-flip'); if (first) first.focus();
-  });
-  el.querySelectorAll('.spread-flip').forEach(b => b.addEventListener('click', () => {
-    const sp = currentSpread(); if (!sp) return;
-    sp.revealed[+b.dataset.i] = true; saveSpread(sp);
-    spreadJustFlipped = +b.dataset.i; renderTarot(); spreadJustFlipped = -1;
-    const next = document.querySelector('.spread-flip'); if (next) next.focus();
-  }));
+  bindSpreads(el);
   el.querySelector('#revToggle').addEventListener('click', () => {
     tarotReversed = !tarotReversed; store.set('zodiac_reversed', tarotReversed ? '1' : '0');   // s'applique au tirage suivant
     renderTarot(); document.getElementById('revToggle').focus();
@@ -1324,7 +1270,7 @@ function renderTarot(){
 function setView(mode, focus){
   viewMode = mode;
   store.set('zodiac_view', mode);
-  for (const [tab, panel, m] of [['tabSigns', 'viewSigns', 'signs'], ['tabNatal', 'viewNatal', 'natal'], ['tabSky', 'viewSky', 'sky'], ['tabCompat', 'viewCompat', 'compat'], ['tabNumbers', 'viewNumbers', 'numbers']]) {
+  for (const [tab, panel, m] of [['tabSigns', 'viewSigns', 'signs'], ['tabNatal', 'viewNatal', 'natal'], ['tabSky', 'viewSky', 'sky'], ['tabCompat', 'viewCompat', 'compat'], ['tabNumbers', 'viewNumbers', 'numbers'], ['tabTarot', 'viewTarot', 'tarot']]) {
     const tb = document.getElementById(tab), pn = document.getElementById(panel);
     if (!tb) continue;
     tb.setAttribute('aria-selected', String(m === mode)); tb.tabIndex = m === mode ? 0 : -1;
@@ -1742,7 +1688,7 @@ async function exportImage(){
     + `padding:32px;box-sizing:content-box;background:${getComputedStyle(document.documentElement).getPropertyValue('--export-bg').trim()};`;
   for (const part of parts) {
     const copy = part.cloneNode(true);
-    copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .sr-only, .oracle-more, .natal-complete, .wheel-hint, .spread-actions, .spread-form, .spread-question, .tarot-deck, .cal-card').forEach(n => n.remove());
+    copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .sr-only, .oracle-more, .natal-complete, .wheel-hint, .spread-actions, .spread-form, .spread-question, .spread-picker, .tarot-fan, .fan-count, .fan-actions, .tarot-shuffle, .tarot-deck, .cal-card').forEach(n => n.remove());
     copy.querySelectorAll('.compat-full').forEach(n => { n.hidden = false; });   // compatibilité : exportée dépliée
     copy.querySelectorAll('.compat-further').forEach(n => { n.open = true; });
     copy.querySelectorAll('.compat-toggle-row').forEach(n => n.remove());
@@ -2020,7 +1966,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const urlDate = params.get('date');
   const urlTime = params.get('time');
   const urlPlace = params.get('place');
-  const savedView = store.get('zodiac_view') === 'tarot' ? 'numbers' : store.get('zodiac_view');   // ancien onglet « Tarot » : section commune
+  const savedView = store.get('zodiac_view');   // un ancien réglage « tarot » rouvre l'onglet Tarot
+  spreadType = SPREAD_TYPES.includes(store.get('zodiac_spread_type')) ? store.get('zodiac_spread_type') : 'three';
   viewMode = VIEW_MODES.includes(savedView) ? savedView : 'signs';
   tarotDeck = TAROT_DECKS.includes(store.get('zodiac_deck')) ? store.get('zodiac_deck') : 'marseille';
   tarotReversed = store.get('zodiac_reversed') === '1';

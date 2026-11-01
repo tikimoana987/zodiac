@@ -12,7 +12,7 @@
 | Feuille de route d'origine (étapes 1 à 6) | ✅ terminée, sauf l'iPhone (gardé pour la fin) |
 | Pistes 1 à 6 | ✅ version et bandeau de mise à jour · ✅ cartes renversées · ✅ lieux par coordonnées GPS · ✅ calendrier du ciel · ✅ fiche du thème natal à imprimer ou en PDF · ✅ arcanes mineurs (jeu complet de 78 cartes) |
 | Langues | 14 (FR, EN, ES, PT, IT, DE, TR, RU, AR, HI, TH, ZH, JA, KO) |
-| Tests automatiques | 102 (85 historiques + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit) et Firefox, pour information |
+| Tests automatiques | 106 (89 historiques + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit) et Firefox, pour information |
 | Publication | automatique sur GitHub Pages, après les tests (circuit GitHub Actions) |
 | Poids | version autonome ≈ 6,8 Mo : illustrations du tarot ≈ 3,1 Mo (déjà en WebP), villes ≈ 1 Mo, 14 langues ≈ 1,6 Mo, textes du portrait ≈ 0,4 Mo |
 | Confidentialité | aucune donnée envoyée en ligne (adresse en « # », pas de serveur, pas de statistiques) ; seule exception : les événements ajoutés à Google Agenda à la demande de l'utilisateur |
@@ -86,11 +86,10 @@ Retour détaillé d'une testeuse, validé le 31 octobre. Fil conducteur pour tou
 - [x] Textes français rédigés, vérifiés, intégrés et testés, puis traduits dans les 13 autres langues (127 textes par langue).
 - [ ] Relecture par des personnes de langue maternelle (§ 8), comme pour le reste de l'appli.
 
-### 3.3 🟡 Onglet Tarot et nouveaux tirages
-- Aujourd'hui, dans « Numérologie & tarot » : carte de naissance, carte du jour, Passé · Présent · Avenir, deux jeux (Marseille, Waite-Smith), cartes renversées, jeu complet de 78 cartes en option.
-- [ ] Un onglet **Tarot** à part ; ❓ le portrait symbolique reste avec la numérologie.
-- [ ] Un jeu à mélanger, des cartes à choisir dans un éventail, révélées une à une.
-- [ ] Nouveaux tirages, par étapes : une question · une carte ; Situation · Défi · Conseil ; les six prochains mois (une carte par mois). Plus tard : lectures par thème (amour, travail, questions personnelles), coûteuses en textes (78 cartes × 3 thèmes × 14 langues).
+### 3.3 ✅ Onglet Tarot et nouveaux tirages (V9)
+- [x] Cahier V0.2, relu par trois IA (`docs/cahier-tarot.md`).
+- [x] Onglet Tarot à part ; quatre tirages interactifs (une question · une carte, Passé · Présent · Avenir, Situation · Défi · Conseil, les six prochains mois) ; mélanger, choisir dans l'éventail, poser, retourner ; sauvegarde par profil et par type.
+- [ ] Plus tard : lectures par thème (amour, travail, questions personnelles) en version légère ; tirages accessibles sans profil, depuis l'accueil.
 
 ### 3.4 🟡 Carré de Pythagore (matrice 3×3)
 - Aujourd'hui : chemin de vie, expression (« nombre du destin »), nombre intime, personnalité, cycles de l'année, du mois et du jour ; ❓ peut-être à rendre plus visibles.
@@ -203,7 +202,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 3. ✅ **Accessibilité (audit automatique) et tests Safari / Firefox** (§ 6, § 8), V7 à V7.3.
 4. ✅ **Oracle Oui / Non** (§ 3.1), V7.5 ; l'animation de recherche reste complète (§ 7). ✅ **Soutenir le projet** (§ 3.6), V7.6 : reste à renseigner les adresses de dons.
 5. ✅ **Compatibilité approfondie** (§ 3.2), V8.
-6. **Onglet Tarot et nouveaux tirages** (§ 3.3).
+6. ✅ **Onglet Tarot et nouveaux tirages** (§ 3.3), V9.
 7. **Carré de Pythagore** (§ 3.4).
 8. **Améliorations rapides** (§ 7) au fil de l'eau, dont l'allègement des mises à jour.
 9. **Frise annuelle** (§ 4) et **console d'administration** (§ 5), éventuellement ensemble, puisque la console peut produire la frise.

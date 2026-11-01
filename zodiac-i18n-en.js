@@ -708,7 +708,7 @@ I18N.en = deepMerge(I18N.fr, {
     numerology: "Numerology reduces dates and names to a digit from 1 to 9 by adding their digits, except the master numbers 11, 22 and 33, which are kept as they are. Life path: day, month and year of birth reduced separately, then added. Name numbers: each letter has a value (A = 1, B = 2… I = 9, then J = 1…); all letters give the expression, vowels the soul urge, consonants the personality. In Arabic, the abjad values are used (ا = 1… غ = 1000); in Russian, the equivalent Cyrillic table.",
     personalYear: "Your personal year adds your birth day and month to the current year; it follows a 9-year cycle. The personal month adds the current month, the personal day the day of the month. Cycles are calculated for the horoscope's reading date.",
     tarot: "Birth card: add the day, month and year of birth, then reduce by adding the digits until you get 22 or less; 22 is the Fool. Card of the day: a draw specific to each person and each date, the same all day long. The Tarot de Marseille and the Waite-Smith share the 22 major arcana, but some names differ, and Strength and Justice swap numbers (XI and VIII in Marseille, VIII and XI in Waite-Smith): the same calculation can therefore give one or the other depending on the deck.",
-    spread: "The three-card spread sheds light on a question: the past (what led to it), the present (what is at play) and the future (the trend if nothing changes). There is only one spread per day, for a carefully considered question: it stays on screen until the next day. Cards are drawn at random from the 22 major arcana, with no repeats. Your question stays on your device and does not appear in the exported image. Tradition calls for a clear and sincere question, asked only once: a vague question, or one asked again to get a different answer, takes the meaning out of the spread.",
+    spread: "Choose a spread from the list. “One question, one card” sheds light on a specific question. “Past · Present · Future” explores what led to the situation, what is happening now and what might unfold. “Situation · Challenge · Advice” highlights what is at stake, what needs your attention and a way forward. “The next six months” offers a theme for reflection each month. If your spread requires a question, write it down, shuffle the deck, choose your face-down cards, lay them out and turn them over one by one. The deck is shuffled using the browser's randomness, so choosing a card is equivalent to drawing one at random. Each spread can be made once a day, except the six-month spread, which can be made once a month. Your question stays on your device and does not appear in the exported image. Tarot is a symbolic tradition: it encourages reflection, not predictions about the future.",
     fieldName: "Your first name personalises the app. Traditional numerology relies on your full birth name: all your first names and your surname, as on your birth certificate. With a first name alone, your name numbers reflect only part of your name.",
     fieldTime: "It lets the app calculate your ascendant and houses, place the Moon precisely (it changes sign every two and a half days) and find the animal of your birth hour in Chinese astrology. Without it, these elements are missing or may be wrong, and your portrait remains incomplete. It is often on the birth certificate; even an approximate time helps.",
     fieldPlace: "It gives the exact time zone of your birth, daylight saving time included, and its coordinates. Without a place, the ascendant and houses cannot be calculated. The nearest town is enough. Place not found? Paste its GPS coordinates or a map link (Google Maps, OpenStreetMap, Apple Maps): the time zone is taken from the nearest town, and you can change it.",
@@ -1572,6 +1572,46 @@ I18N.en = deepMerge(I18N.fr, {
           text: "The search for security closes in on itself: leave room for change and generosity."
         }
       }
+    },
+    spreads: {
+      title: "Choose a spread",
+      one: {
+        name: "One question, one card",
+        desc: "A single card to shed light on a specific question.",
+        pos: "Tarot's answer",
+        hint: "The card that sheds light on your question"
+      },
+      three: {
+        name: "Past · Present · Future",
+        desc: "What led to this situation, what is happening now and what might unfold.",
+        hints: {
+          past: "What led to this situation",
+          present: "What is happening now",
+          future: "What might unfold if nothing changes"
+        }
+      },
+      sca: {
+        name: "Situation · Challenge · Advice",
+        desc: "What is at stake, what needs your attention and a way forward.",
+        pos: { situation: "Situation", challenge: "Challenge", advice: "Advice" },
+        hints: { situation: "What is at stake", challenge: "What needs your attention", advice: "A way forward" }
+      },
+      six: {
+        name: "The next six months",
+        desc: "One card per month, offering a thread for reflection over the coming half-year.",
+        hint: "The month's symbolic atmosphere",
+        note: "Each card offers a theme to reflect on for the month, not a forecast.",
+        done: "Your six-month spread is complete. Your next spread will be next month."
+      }
+    },
+    gesture: {
+      shuffle: "Shuffle the deck",
+      shuffling: "Shuffling the deck…",
+      pick: "Choose your cards",
+      cardAria: "Face-down card",
+      restart: "Start again",
+      place: "Lay out the cards",
+      allChosen: "All cards selected"
     }
   },
   tabs: {
@@ -1579,8 +1619,10 @@ I18N.en = deepMerge(I18N.fr, {
     skySub: "Horoscope, sky map, tonight",
     compat: "Compatibility",
     compatSub: "With another person",
-    numTarot: "Numerology & tarot",
-    numTarotSub: "Numbers and arcana"
+    numTarot: "Numerology",
+    numTarotSub: "Numbers and portrait",
+    tarot: "Tarot",
+    tarotSub: "Spreads and arcana"
   },
   me: {
     set: "This is me",

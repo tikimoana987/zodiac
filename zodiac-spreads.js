@@ -1,0 +1,255 @@
+/* ============================================================
+   Zodiaque & Décans — Onglet Tarot : tirages (cahier docs/cahier-tarot.md, V0.2)
+   Quatre tirages interactifs : une question · une carte, Passé · Présent · Avenir, Situation · Défi · Conseil,
+   les six prochains mois. Geste : mélanger, choisir face cachée dans l'éventail, poser, retourner.
+   Sauvegarde sur l'appareil seulement (zodiac_spreads) : { <date de naissance> : { <type> : { period, draft?, reading? } } }.
+   Un tirage par jour et par type (minuit, heure de l'appareil), un par mois civil pour les six mois ; expirés effacés.
+   Dépend de zodiac-tarot.js (clés, cartes, secureRandom) et, à l'exécution, de zodiac-app.js (store, I18N, réglages).
+   ============================================================ */
+const SPREAD_TYPES = ['one', 'three', 'sca', 'six'];
+const SPREAD_SIZE = { one: 1, three: 3, sca: 3, six: 6 };
+const SPREAD_ASKS = { one: true, three: true, sca: true, six: false };   // question demandée
+const SPREADS_KEY = 'zodiac_spreads';
+let spreadType = 'three';     // tirage affiché dans l'onglet
+let spreadDraft = '';         // question en cours de saisie (gardée si l'affichage est refait)
+let spreadJustFlipped = -1;   // carte qui vient d'être retournée (animation)
+let spreadShuffling = false;  // animation de mélange en cours
+let fanFocus = 0;             // carte de l'éventail qui a le focus (un seul arrêt de la touche Tab)
+
+/* Période d'un tirage : le jour (AAAA-MM-JJ) ou, pour les six mois, le mois civil (AAAA-MM) */
+function spreadPeriod(type, dayISO){ return type === 'six' ? dayISO.slice(0, 7) : dayISO; }
+/* Mélange de Fisher-Yates : chaque ordre a la même chance */
+function shuffleKeys(keys, rnd = secureRandom){
+  const a = keys.slice();
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+/* Les six mois d'un tirage (AAAA-MM), à partir du mois de sa période */
+function sixMonths(period){
+  const y = +period.slice(0, 4), m = +period.slice(5, 7);
+  return Array.from({ length: 6 }, (_, i) => { const d = new Date(y, m - 1 + i, 1); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`; });
+}
+function monthLabel(ym, lang){
+  return new Intl.DateTimeFormat(loc(lang), { month: 'long', year: 'numeric' }).format(new Date(+ym.slice(0, 4), +ym.slice(5, 7) - 1, 1));
+}
+/* Textes des tirages (repli sur le français tant qu'une langue n'est pas traduite) */
+function spreadTexts(t){ return t.tarot.spreads ? t.tarot : I18N.fr.tarot; }
+
+/* ---------- Sauvegarde ---------- */
+function validCards(list, n){ return Array.isArray(list) && list.length === n && list.every(k => TAROT_ALL_KEYS.includes(k)) && new Set(list).size === n; }
+function loadSpreads(){
+  let all = {};
+  try { all = JSON.parse(store.get(SPREADS_KEY) || '{}') || {}; } catch (e) { all = {}; }
+  let changed = false;
+  // Tirage de l'ancienne version (zodiac_spread, trois cartes) : repris s'il est d'aujourd'hui, puis la clé est retirée
+  const old = store.get('zodiac_spread');
+  if (old !== null) {
+    try {
+      const s = JSON.parse(old);
+      if (s && typeof s.birth === 'string' && typeof s.day === 'string') {
+        (all[s.birth] = all[s.birth] || {}).three = { period: s.day, reading: {
+          cards: s.cards, question: typeof s.question === 'string' ? s.question : '',
+          revealed: Array.isArray(s.revealed) && s.revealed.length === 3 ? s.revealed.map(Boolean) : [true, true, true],   // ancienne version : affiché retourné
+          reversed: Array.isArray(s.reversed) && s.reversed.length === 3 ? s.reversed.map(Boolean) : [false, false, false] } };
+      }
+    } catch (e) {}
+    store.remove('zodiac_spread'); changed = true;
+  }
+  // Nettoyage : les tirages expirés (et leur question) sont effacés de l'appareil
+  const today = todayISO();
+  for (const birth of Object.keys(all)) {
+    for (const type of Object.keys(all[birth] || {})) {
+      if (!SPREAD_TYPES.includes(type) || !all[birth][type] || all[birth][type].period !== spreadPeriod(type, today)) { delete all[birth][type]; changed = true; }
+    }
+    if (!Object.keys(all[birth] || {}).length) { delete all[birth]; changed = true; }
+  }
+  if (changed) saveSpreads(all);
+  return all;
+}
+function saveSpreads(all){
+  if (Object.keys(all).length) store.set(SPREADS_KEY, JSON.stringify(all)); else store.remove(SPREADS_KEY);
+}
+function spreadSlot(type, birth = currentDate){
+  const s = (loadSpreads()[birth] || {})[type];
+  return s && s.period === spreadPeriod(type, todayISO()) ? s : null;
+}
+function setSpreadSlot(type, slot, birth = currentDate){
+  const all = loadSpreads();
+  all[birth] = all[birth] || {};
+  if (slot) all[birth][type] = slot; else delete all[birth][type];
+  if (!Object.keys(all[birth]).length) delete all[birth];
+  saveSpreads(all);
+}
+function readingOf(type, birth = currentDate){
+  const s = spreadSlot(type, birth), r = s && s.reading, n = SPREAD_SIZE[type];
+  if (!r || !validCards(r.cards, n)) return null;
+  return { cards: r.cards, question: typeof r.question === 'string' ? r.question : '',
+    revealed: Array.isArray(r.revealed) && r.revealed.length === n ? r.revealed.map(Boolean) : Array(n).fill(true),
+    reversed: Array.isArray(r.reversed) && r.reversed.length === n ? r.reversed.map(Boolean) : Array(n).fill(false) };
+}
+function draftOf(type, birth = currentDate){
+  const s = spreadSlot(type, birth), d = s && s.draft;
+  if (!d || !Array.isArray(d.order) || !d.order.every(k => TAROT_ALL_KEYS.includes(k)) || !Array.isArray(d.picked)) return null;
+  return { order: d.order, rev: Array.isArray(d.rev) ? d.rev.map(Boolean) : d.order.map(() => false),
+    picked: d.picked.filter(i => Number.isInteger(i) && i >= 0 && i < d.order.length).slice(0, SPREAD_SIZE[type]), question: d.question || '' };
+}
+function saveDraft(type, draft){ setSpreadSlot(type, draft ? { period: spreadPeriod(type, todayISO()), draft } : null); }
+function saveReading(type, reading){ setSpreadSlot(type, { period: spreadPeriod(type, todayISO()), reading }); }
+
+/* Anciennes fonctions (tirage à trois cartes), gardées pour la compatibilité */
+function currentSpread(){
+  const r = readingOf('three');
+  return r ? { day: todayISO(), birth: currentDate, ...r } : null;
+}
+function saveSpread(s){
+  if (!s || typeof s.birth !== 'string') return;
+  const all = loadSpreads();
+  (all[s.birth] = all[s.birth] || {}).three = { period: s.day, reading: { cards: s.cards, question: s.question || '', revealed: s.revealed, reversed: s.reversed } };
+  saveSpreads(all);
+}
+
+/* ---------- Étapes du geste ---------- */
+function startShuffle(type){
+  const order = shuffleKeys(tarotFull ? TAROT_ALL_KEYS : TAROT_KEYS);   // options appliquées au moment du mélange
+  const rev = order.map(() => tarotReversed && secureRandom() < 0.5);
+  saveDraft(type, { order, rev, picked: [], question: SPREAD_ASKS[type] ? spreadDraft.trim() : '' });
+  fanFocus = 0;
+}
+function togglePick(type, i){
+  const d = draftOf(type); if (!d) return;
+  const at = d.picked.indexOf(i);
+  if (at >= 0) d.picked.splice(at, 1);
+  else if (d.picked.length < SPREAD_SIZE[type]) d.picked.push(i);
+  saveDraft(type, d);
+}
+function placeCards(type){
+  const d = draftOf(type), n = SPREAD_SIZE[type];
+  if (!d || d.picked.length !== n) return false;
+  saveReading(type, { cards: d.picked.map(i => d.order[i]), reversed: d.picked.map(i => d.rev[i]), revealed: Array(n).fill(false), question: d.question });
+  spreadDraft = '';
+  return true;
+}
+
+/* ---------- Affichage ---------- */
+function spreadPositions(t, type, period){
+  const u = spreadTexts(t), s = u.spreads, lang = Object.keys(I18N).find(l => I18N[l] === t) || currentLang;
+  if (type === 'one') return [{ name: s.one.pos, hint: s.one.hint }];
+  if (type === 'three') return [{ name: t.tarot.spreadPast, hint: s.three.hints.past }, { name: t.tarot.spreadPresent, hint: s.three.hints.present }, { name: t.tarot.spreadFuture, hint: s.three.hints.future }];
+  if (type === 'sca') return ['situation', 'challenge', 'advice'].map(k => ({ name: s.sca.pos[k], hint: s.sca.hints[k] }));
+  return sixMonths(period).map(ym => ({ name: monthLabel(ym, lang), hint: s.six.hint }));
+}
+/* Liste des tirages (choix du type) */
+function spreadPickerHtml(t){
+  const s = spreadTexts(t).spreads;
+  return `<div class="spread-picker" role="group" aria-label="${escapeHtml(s.title)}">
+    ${SPREAD_TYPES.map(k => `<button type="button" class="spread-choice" data-type="${k}" aria-pressed="${k === spreadType}">
+      <span class="sc-name">${escapeHtml(s[k].name)}</span><span class="sc-desc">${escapeHtml(s[k].desc)}</span></button>`).join('')}</div>`;
+}
+/* Panneau du tirage choisi : question et « Mélanger », éventail, ou lecture */
+function spreadPanelHtml(t, deck, type){
+  const u = t.tarot, x = spreadTexts(t), s = x.spreads, g = x.gesture, n = SPREAD_SIZE[type];
+  const reading = readingOf(type);
+  if (reading) {
+    const pos = spreadPositions(t, type, spreadPeriod(type, todayISO()));
+    const done = reading.revealed.every(Boolean);
+    const slots = reading.cards.map((key, i) => {
+      const head = `<div class="spread-pos">${escapeHtml(pos[i].name)}</div><div class="spread-hint">${escapeHtml(pos[i].hint)}</div>`;
+      if (!reading.revealed[i]) return `<div class="spread-slot">${head}
+        <button type="button" class="spread-flip" data-i="${i}" aria-label="${escapeHtml(u.spreadFlipAria.replace('{pos}', pos[i].name))}">${tarotBackSvg(deck, pos[i].name)}</button></div>`;
+      const name = tarotName(t, key, deck), num = tarotTitleNum(key, deck), rev = reading.reversed[i], m = tarotMeaning(t, key, rev);
+      return `<div class="spread-slot${spreadJustFlipped === i ? ' just-flipped' : ''}${rev ? ' is-rev' : ''}">${head}<div class="spread-visual">${tarotCardSvg(key, deck, name, rev)}</div>
+        <div class="tarot-title">${num ? `<span class="tarot-num">${num}</span> ` : ''}${escapeHtml(name)}${rev ? ` <span class="rev-badge">${u.reversedBadge}</span>` : ''}</div>
+        ${isMinorKey(key) ? minorBadge(t, key, deck) : ''}<div class="traits">${m.keywords.map(k => `<span class="trait-tag">${k}</span>`).join('')}</div>
+        <p class="num-text">${m.text}</p></div>`;
+    }).join('');
+    return `<h4 class="spread-name">${escapeHtml(s[type].name)}</h4>
+      ${reading.question ? `<p class="spread-question" dir="auto">${escapeHtml(reading.question)}</p>` : ''}
+      ${done ? '' : `<p class="sky-sub">${u.spreadFlip}</p>`}
+      <div class="spread-row spread-${type}">${slots}</div>
+      ${done ? `<p class="spread-done">${escapeHtml(type === 'six' ? s.six.done : u.spreadTomorrow)}</p>` : ''}
+      <p class="sky-note">${escapeHtml(type === 'six' ? s.six.note : u.spreadNote)}</p>`;
+  }
+  if (spreadShuffling) {
+    const back = typeof TAROT_ART_IMG !== 'undefined' ? TAROT_ART_IMG['back_' + deck] : '';
+    return `<div class="tarot-shuffle" style="--fan-back:url('${back}')" aria-hidden="true"><span></span><span></span><span></span></div>
+      <p class="sky-sub" role="status">${escapeHtml(g.shuffling)}</p>`;
+  }
+  const draft = draftOf(type);
+  if (draft) {
+    const back = typeof TAROT_ART_IMG !== 'undefined' ? TAROT_ART_IMG['back_' + deck] : '';
+    const N = draft.order.length, full = draft.picked.length === n;
+    fanFocus = Math.min(Math.max(fanFocus, 0), N - 1);
+    const cards = draft.order.map((_, i) => {
+      const at = draft.picked.indexOf(i);
+      return `<button type="button" class="fan-card" data-i="${i}" tabindex="${i === fanFocus ? 0 : -1}" aria-pressed="${at >= 0}" aria-label="${escapeHtml(g.cardAria)} ${i + 1}/${N}">${at >= 0 ? `<span class="fan-no" aria-hidden="true">${at + 1}</span>` : ''}</button>`;
+    }).join('');
+    return `${draft.question ? `<p class="spread-question" dir="auto">${escapeHtml(draft.question)}</p>` : ''}
+      <p class="sky-sub">${escapeHtml(g.pick)}</p>
+      <div class="tarot-fan" role="group" aria-label="${escapeHtml(g.pick)}" style="--fan-back:url('${back}')">${cards}</div>
+      <p class="fan-count"><span dir="ltr">${draft.picked.length}/${n}</span></p>
+      <p class="sr-only" role="status" id="fanStatus">${escapeHtml(full ? g.allChosen : '')}</p>
+      <div class="fan-actions"><button type="button" class="btn-secondary" id="spreadRestart">${escapeHtml(g.restart)}</button>
+        <button type="button" class="btn-reveal" id="spreadPlace"${full ? '' : ' disabled'}>${escapeHtml(g.place)}</button></div>`;
+  }
+  const ask = SPREAD_ASKS[type];
+  return `<div class="spread-form">
+      ${ask ? `<p class="sky-sub">${u.spreadIntro}</p><label for="spreadQuestion" class="spread-label">${u.spreadQuestionLabel}</label>
+      <textarea id="spreadQuestion" dir="auto" rows="2" maxlength="200" placeholder="${escapeHtml(u.spreadQuestionHint)}">${escapeHtml(spreadDraft)}</textarea>` : `<p class="sky-sub">${escapeHtml(s.six.desc)}</p>`}
+      <div class="spread-actions"><button type="button" class="btn-reveal" id="spreadDraw"${!ask || spreadDraft.trim().length >= 3 ? '' : ' disabled'}>${escapeHtml(g.shuffle)}</button></div></div>`;
+}
+/* Ancienne fonction (tirage à trois cartes), gardée pour la compatibilité */
+function spreadHtml(t, deck){ return spreadPanelHtml(t, deck, 'three'); }
+function spreadsSectionHtml(t, deck){
+  const x = spreadTexts(t);
+  return `<div class="card spread-card"><h3>${escapeHtml(x.spreads.title)}${infoBtn('spread', x.spreads.title)}</h3>
+    ${spreadPickerHtml(t)}<div class="spread-panel" id="spreadPanel">${spreadPanelHtml(t, deck, spreadType)}</div></div>`;
+}
+
+/* Branchements, après chaque affichage de l'onglet */
+function bindSpreads(el){
+  const refresh = focusSel => { renderTarot(); if (focusSel) { const f = document.querySelector(focusSel); if (f) f.focus(); } };
+  el.querySelectorAll('.spread-choice').forEach(b => b.addEventListener('click', () => {
+    spreadType = b.dataset.type; store.set('zodiac_spread_type', spreadType); refresh(`.spread-choice[data-type="${spreadType}"]`);
+  }));
+  const q = el.querySelector('#spreadQuestion'), draw = el.querySelector('#spreadDraw');
+  if (q) q.addEventListener('input', () => { spreadDraft = q.value; draw.disabled = q.value.trim().length < 3; });
+  if (draw) draw.addEventListener('click', () => {
+    if (SPREAD_ASKS[spreadType] && spreadDraft.trim().length < 3) return;
+    const type = spreadType;
+    if (prefersReducedMotion()) { startShuffle(type); refresh('.fan-card[tabindex="0"]'); return; }
+    spreadShuffling = true; renderTarot();
+    setTimeout(() => { spreadShuffling = false; startShuffle(type); refresh('.fan-card[tabindex="0"]'); }, 1500);
+  });
+  const fan = el.querySelector('.tarot-fan');
+  if (fan) {
+    fan.addEventListener('click', e => {
+      const c = e.target.closest('.fan-card'); if (!c) return;
+      fanFocus = +c.dataset.i; togglePick(spreadType, fanFocus); refresh('.fan-card[tabindex="0"]');
+      const st = document.getElementById('fanStatus');
+      const d = draftOf(spreadType), g = spreadTexts(I18N[currentLang]).gesture;
+      if (st && d) st.textContent = d.picked.length === SPREAD_SIZE[spreadType] ? g.allChosen : `${d.picked.length}/${SPREAD_SIZE[spreadType]}`;
+    });
+    fan.addEventListener('keydown', e => {
+      const N = fan.querySelectorAll('.fan-card').length, rtl = getComputedStyle(fan).direction === 'rtl';
+      const step = { ArrowRight: rtl ? -1 : 1, ArrowLeft: rtl ? 1 : -1, ArrowDown: 1, ArrowUp: -1 }[e.key];
+      let next = null;
+      if (step) next = (fanFocus + step + N) % N; else if (e.key === 'Home') next = 0; else if (e.key === 'End') next = N - 1;
+      if (next === null) return;
+      e.preventDefault();
+      const cur = fan.querySelector(`.fan-card[data-i="${fanFocus}"]`), nx = fan.querySelector(`.fan-card[data-i="${next}"]`);
+      if (cur) cur.tabIndex = -1;
+      fanFocus = next; nx.tabIndex = 0; nx.focus(); nx.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    });
+    const f = fan.querySelector('.fan-card[tabindex="0"]'); if (f) f.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }
+  const restart = el.querySelector('#spreadRestart');
+  if (restart) restart.addEventListener('click', () => { const d = draftOf(spreadType); if (d) spreadDraft = d.question; saveDraft(spreadType, null); refresh('#spreadDraw'); });
+  const place = el.querySelector('#spreadPlace');
+  if (place) place.addEventListener('click', () => { if (placeCards(spreadType)) refresh('.spread-flip'); });
+  el.querySelectorAll('.spread-flip').forEach(b => b.addEventListener('click', () => {
+    const r = readingOf(spreadType); if (!r) return;
+    r.revealed[+b.dataset.i] = true; saveReading(spreadType, r);
+    spreadJustFlipped = +b.dataset.i; renderTarot(); spreadJustFlipped = -1;
+    const next = document.querySelector('.spread-flip'); if (next) next.focus();
+  }));
+}

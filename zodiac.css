@@ -998,6 +998,43 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .spread-pos{ font-size:.75rem; text-transform:uppercase; letter-spacing:.14em; color:var(--gold); font-weight:700; }
 .spread-actions{ display:flex; justify-content:center; margin-top:1rem; }
 @media (max-width:640px){ .tarot-pair{ grid-template-columns:1fr; } .spread-row{ grid-template-columns:1fr; } }
+/* Onglet Tarot : liste des tirages, éventail, mélange (zodiac-spreads.js) */
+.spread-picker{ display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:.6rem; margin:.4rem 0 1.2rem; }
+.spread-choice{ display:flex; flex-direction:column; gap:.3rem; text-align:start; cursor:pointer; padding:.75rem .85rem; border-radius:14px;
+  background:var(--ov-03); border:1px solid var(--ov-12); color:var(--text); font:inherit; }
+.spread-choice:hover{ border-color:var(--gold); }
+.spread-choice[aria-pressed="true"]{ border-color:var(--gold); background:var(--ov-08); box-shadow:0 0 0 1px var(--gold) inset; }
+.spread-choice:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+.sc-name{ font-weight:700; font-size:.9rem; }
+.sc-desc{ font-size:.78rem; color:var(--muted); line-height:1.4; }
+.spread-hint{ font-size:.78rem; color:var(--muted); font-style:italic; margin-top:-.25rem; }
+.spread-name{ text-align:center; font-size:1rem; color:var(--text); margin:.2rem 0 .6rem; letter-spacing:.04em; }
+.spread-row.spread-one{ grid-template-columns:minmax(0, 320px); justify-content:center; }
+.spread-row.spread-six{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
+.tarot-fan{ display:flex; overflow-x:auto; padding:1.4rem .6rem 1rem; margin:.4rem 0; scroll-padding-inline:1rem; }
+.fan-card{ flex:none; width:52px; aspect-ratio:120 / 216; border-radius:6px; cursor:pointer; position:relative; padding:0;
+  margin-inline-start:-8px; border:1px solid var(--ov-15); background:var(--fan-back) center / cover no-repeat, #1a1435;
+  box-shadow:0 2px 6px rgba(0,0,0,.35); transition:transform .18s ease; }
+.fan-card:first-child{ margin-inline-start:0; }
+.fan-card:hover, .fan-card:focus-visible{ transform:translateY(-8px); z-index:1; }
+.fan-card:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+.fan-card[aria-pressed="true"]{ transform:translateY(-18px); z-index:2; box-shadow:0 0 0 2px var(--gold), 0 6px 14px rgba(0,0,0,.45); }
+.fan-no{ position:absolute; inset-inline:0; bottom:6px; margin:auto; width:1.6rem; height:1.6rem; border-radius:50%;
+  display:grid; place-items:center; background:var(--gold); color:#0d0a1c; font-weight:700; font-size:.85rem; }
+:root[data-theme="light"] .fan-no{ color:#fff; }
+.fan-count{ text-align:center; color:var(--text); font-weight:700; letter-spacing:.08em; margin:.2rem 0 .6rem; }
+.fan-actions{ display:flex; flex-wrap:wrap; justify-content:center; gap:.7rem; }
+.tarot-shuffle{ position:relative; height:150px; margin:1rem auto .4rem; width:110px; }
+.tarot-shuffle span{ position:absolute; inset:0; margin:auto; width:72px; aspect-ratio:120 / 216; border-radius:8px; border:1px solid var(--ov-15);
+  background:var(--fan-back) center / cover no-repeat, #1a1435; box-shadow:0 4px 12px rgba(0,0,0,.4); }
+.tarot-shuffle span:nth-child(1){ animation:shuffleA .5s ease-in-out infinite alternate; }
+.tarot-shuffle span:nth-child(2){ animation:shuffleB .5s ease-in-out infinite alternate; }
+.tarot-shuffle span:nth-child(3){ animation:shuffleA .5s ease-in-out .25s infinite alternate-reverse; }
+@keyframes shuffleA{ from{ transform:translateX(-34px) rotate(-8deg); } to{ transform:translateX(34px) rotate(6deg); } }
+@keyframes shuffleB{ from{ transform:translateX(30px) rotate(7deg); } to{ transform:translateX(-30px) rotate(-5deg); } }
+@media (max-width:900px){ .spread-picker{ grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+@media (max-width:640px){ .spread-row.spread-six{ grid-template-columns:repeat(2, minmax(0, 1fr)); } .fan-card{ margin-inline-start:4px; } .fan-card:first-child{ margin-inline-start:0; } }
+@media (prefers-reduced-motion: reduce){ .tarot-shuffle span{ animation:none; } .fan-card{ transition:none; } }
 
 /* Sections du résultat */
 [role="tabpanel"][hidden]{ display:none !important; }   /* une section cachée le reste, quelle que soit sa mise en page (grid, flex…) */
@@ -1009,7 +1046,7 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 /* Onglets du résultat (en fin de fichier : passe après les règles générales des onglets).
    Cinq onglets : sur ordinateur, côte à côte en format compact (icône au-dessus du titre) ;
    sur mobile, grille de deux colonnes (le dernier onglet, seul sur sa ligne, prend toute la largeur). */
-.view-tabs{ grid-template-columns:repeat(5, minmax(0, 1fr)); max-width:none; }
+.view-tabs{ grid-template-columns:repeat(6, minmax(0, 1fr)); max-width:none; }
 .view-tabs button{ flex-direction:column; text-align:center; gap:.35rem; padding:.75rem .5rem; }
 .vt-txt{ align-items:center; }
 .vt-title{ font-size:.9rem; } .vt-sub{ font-size:.72rem; }

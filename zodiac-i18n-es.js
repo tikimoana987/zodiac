@@ -711,7 +711,7 @@ I18N.es = deepMerge(I18N.fr, {
     numerology: "La numerología reduce fechas y nombres a una cifra del 1 al 9 sumando sus dígitos, salvo los números maestros 11, 22 y 33, que se conservan. Camino de vida: día, mes y año de nacimiento reducidos por separado y luego sumados. Números del nombre: cada letra vale una cifra (A = 1, B = 2… I = 9, luego J = 1…); todas las letras dan la expresión, las vocales el número del alma, las consonantes la personalidad. En árabe se usan los valores abjad (ا = 1… غ = 1000); en ruso, la tabla cirílica equivalente.",
     personalYear: "El año personal suma tu día y tu mes de nacimiento al año en curso; sigue un ciclo de 9 años. El mes personal añade el mes en curso, y el día personal, el día del mes. Los ciclos se calculan para la fecha de lectura del horóscopo.",
     tarot: "Carta de nacimiento: se suman el día, el mes y el año de nacimiento y luego se reduce sumando las cifras hasta obtener 22 o menos; el 22 corresponde al Loco. Carta del día: una tirada propia de cada persona y de cada fecha, la misma todo el día. El Tarot de Marsella y el Waite-Smith comparten los 22 arcanos mayores, pero algunos nombres cambian, y la Fuerza y la Justicia intercambian sus números (XI y VIII en Marsella, VIII y XI en Waite-Smith): el mismo cálculo puede dar una u otra según la baraja.",
-    spread: "La tirada de tres cartas ilumina una pregunta: el pasado (lo que llevó a ella), el presente (lo que está en juego) y el futuro (la tendencia si nada cambia). Solo se hace una tirada al día, para una pregunta bien meditada: se queda en pantalla hasta el día siguiente. Las cartas se sacan al azar entre los 22 arcanos mayores, sin repetición. Tu pregunta se queda en tu dispositivo y no aparece en la imagen exportada. La tradición pide una pregunta clara y sincera, hecha una sola vez: una pregunta vaga, o repetida para obtener otra respuesta, le quita su sentido a la tirada.",
+    spread: "Elige una tirada de la lista. «Una pregunta, una carta» ilumina una pregunta concreta. «Pasado · Presente · Futuro» explora lo que llevó a la situación, lo que ocurre ahora y lo que podría suceder. «Situación · Desafío · Consejo» muestra lo que está en juego, lo que requiere tu atención y una vía para avanzar. «Los próximos seis meses» propone un tema de reflexión por mes. Si la tirada requiere una pregunta, escríbela, baraja las cartas, elígelas boca abajo, colócalas y dales la vuelta una a una. El mazo se baraja con el azar del navegador: elegir una carta equivale a sacarla al azar. Puedes hacer cada tirada una vez al día y la de seis meses una vez al mes. Tu pregunta permanece en tu dispositivo y no aparece en la imagen exportada. El tarot es una tradición simbólica: invita a reflexionar, no predice el futuro.",
     fieldName: "Tu nombre personaliza la app. La numerología tradicional se basa en el nombre completo de nacimiento: todos tus nombres y apellidos, como en el registro civil. Con solo el nombre de pila, tus números del nombre reflejan solo una parte de tu nombre.",
     fieldTime: "Permite calcular tu ascendente y tus casas, situar con precisión la Luna (que cambia de signo cada dos días y medio) y conocer el animal de tu hora en la astrología china. Sin ella, estos elementos faltan o pueden ser erróneos, y tu retrato queda incompleto. Suele figurar en el acta de nacimiento; incluso aproximada, ayuda.",
     fieldPlace: "Da el huso horario exacto de tu nacimiento, horario de verano incluido, y sus coordenadas. Sin lugar, no se pueden calcular el ascendente ni las casas. Basta con la ciudad más cercana. ¿No encuentras el lugar? Pega sus coordenadas GPS o un enlace de mapa (Google Maps, OpenStreetMap, Mapas de Apple): el huso horario se toma de la ciudad más cercana y puedes cambiarlo.",
@@ -1575,6 +1575,50 @@ I18N.es = deepMerge(I18N.fr, {
           text: "La búsqueda de seguridad se cierra sobre sí misma: deja espacio al cambio y a la generosidad."
         }
       }
+    },
+    spreads: {
+      title: "Elige una tirada",
+      one: {
+        name: "Una pregunta, una carta",
+        desc: "Una sola carta para arrojar luz sobre una pregunta concreta.",
+        pos: "Respuesta del tarot",
+        hint: "La carta que ilumina tu pregunta"
+      },
+      three: {
+        name: "Pasado · Presente · Futuro",
+        desc: "Lo que llevó a la situación, lo que ocurre ahora y lo que podría suceder.",
+        hints: {
+          past: "Lo que llevó a la situación",
+          present: "Lo que ocurre ahora",
+          future: "Lo que podría suceder si nada cambia"
+        }
+      },
+      sca: {
+        name: "Situación · Desafío · Consejo",
+        desc: "Lo que está en juego, lo que requiere tu atención y una vía para avanzar.",
+        pos: { situation: "Situación", challenge: "Desafío", advice: "Consejo" },
+        hints: {
+          situation: "Lo que está en juego",
+          challenge: "Lo que requiere tu atención",
+          advice: "Una vía para avanzar"
+        }
+      },
+      six: {
+        name: "Los próximos seis meses",
+        desc: "Una carta por mes, como hilo de reflexión para el próximo semestre.",
+        hint: "El clima simbólico del mes",
+        note: "Cada carta propone un tema de reflexión para el mes, no una predicción.",
+        done: "Tu tirada de seis meses está completa. La próxima tirada será el mes que viene."
+      }
+    },
+    gesture: {
+      shuffle: "Barajar las cartas",
+      shuffling: "Barajando las cartas…",
+      pick: "Elige tus cartas",
+      cardAria: "Carta boca abajo",
+      restart: "Empezar de nuevo",
+      place: "Colocar las cartas",
+      allChosen: "Has elegido todas las cartas"
     }
   },
   tabs: {
@@ -1582,8 +1626,10 @@ I18N.es = deepMerge(I18N.fr, {
     skySub: "Horóscopo, mapa del cielo, noche",
     compat: "Compatibilidad",
     compatSub: "Con otra persona",
-    numTarot: "Numerología y tarot",
-    numTarotSub: "Números y arcanos"
+    numTarot: "Numerología",
+    numTarotSub: "Números y retrato",
+    tarot: "Tarot",
+    tarotSub: "Tiradas y arcanos"
   },
   me: {
     set: "Es mi perfil",

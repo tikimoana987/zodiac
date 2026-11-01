@@ -1242,6 +1242,94 @@
     }
   });
 
+  /* ---------------- Onglet Tarot (cahier docs/cahier-tarot.md, V0.2) ---------------- */
+  const withSpreadState = fn => {
+    const keep = { date: currentDate, all: store.get('zodiac_spreads'), old: store.get('zodiac_spread'), full: tarotFull, rev: tarotReversed, type: spreadType, draft: spreadDraft };
+    try { store.remove('zodiac_spreads'); store.remove('zodiac_spread'); fn(); }
+    finally {
+      currentDate = keep.date; tarotFull = keep.full; tarotReversed = keep.rev; spreadType = keep.type; spreadDraft = keep.draft;
+      if (keep.all === null) store.remove('zodiac_spreads'); else store.set('zodiac_spreads', keep.all);
+      if (keep.old === null) store.remove('zodiac_spread'); else store.set('zodiac_spread', keep.old);
+    }
+  };
+
+  test('Onglet Tarot : mélange équitable, reproductible et sans doublon', () => {
+    let seed = 7;
+    const rnd = () => (seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648;
+    const first = Object.fromEntries(TAROT_KEYS.map(k => [k, 0]));
+    for (let i = 0; i < 4400; i++) {
+      const a = shuffleKeys(TAROT_KEYS, rnd);
+      if (i < 50) assert(a.length === 22 && new Set(a).size === 22 && a.every(k => TAROT_KEYS.includes(k)), 'chaque mélange est une permutation');
+      first[a[0]]++;
+    }
+    const v = Object.values(first);
+    assert(Math.min(...v) > 120 && Math.max(...v) < 280, `chaque carte en tête ≈ 200 fois sur 4 400 (${Math.min(...v)} à ${Math.max(...v)})`);
+    const full = shuffleKeys(TAROT_ALL_KEYS);
+    assert(full.length === 78 && new Set(full).size === 78, 'jeu complet : 78 cartes, hasard du navigateur');
+  });
+
+  test('Onglet Tarot : sauvegarde par profil et par type, expiration, ancienne version', () => withSpreadState(() => {
+    const r3 = { cards: ['sun', 'moon', 'star'], reversed: [false, true, false], revealed: [true, true, true], question: 'Que dois-je comprendre ?' };
+    currentDate = '1982-11-03'; saveReading('three', r3);
+    currentDate = '1990-04-17';
+    assertEq(readingOf('three'), null, 'autre profil : pas de tirage');
+    saveReading('one', { cards: ['fool'], reversed: [false], revealed: [false], question: 'Et maintenant ?' });
+    currentDate = '1982-11-03';
+    assert(readingOf('three') && readingOf('three').question === r3.question && readingOf('one') === null, 'les profils ne s\'écrasent pas');
+    assert(readingOf('sca') === null && readingOf('six') === null, 'types indépendants');
+    const all = JSON.parse(store.get('zodiac_spreads'));
+    all['1982-11-03'].sca = { period: '2000-01-01', reading: { cards: ['sun', 'moon', 'star'], question: 'ancienne question' } };
+    store.set('zodiac_spreads', JSON.stringify(all));
+    loadSpreads();
+    assert(!store.get('zodiac_spreads').includes('ancienne question'), 'tirage expiré et sa question effacés');
+    assertEq(spreadPeriod('six', '2026-11-30'), '2026-11', 'six mois : un tirage par mois civil');
+    assertEq(spreadPeriod('one', '2026-11-30'), '2026-11-30', 'tirages courts : un par jour');
+    assertEq(sixMonths('2026-11').join(' '), '2026-11 2026-12 2027-01 2027-02 2027-03 2027-04', 'novembre → avril');
+    assertEq(sixMonths('2026-12').join(' '), '2026-12 2027-01 2027-02 2027-03 2027-04 2027-05', 'décembre → mai');
+    store.set('zodiac_spread', JSON.stringify({ day: todayISO(), birth: '1982-11-03', cards: ['sun', 'moon', 'star'] }));
+    const old = readingOf('three');
+    assert(old && old.revealed.every(Boolean) && store.get('zodiac_spread') === null, 'tirage de l\'ancienne version repris, ancienne clé retirée');
+  }));
+
+  test('Onglet Tarot : éventail, choix, reprise, Recommencer, Poser', () => withSpreadState(() => {
+    currentDate = '1982-11-03'; tarotFull = true; tarotReversed = false; spreadDraft = 'Comment avancer ?';
+    startShuffle('sca');
+    let d = draftOf('sca');
+    assert(d.order.length === 78 && d.question === 'Comment avancer ?' && d.rev.every(x => !x), 'mélange : options appliquées, question gardée');
+    togglePick('sca', 5); togglePick('sca', 9);
+    assert(!placeCards('sca'), 'impossible de poser avant le compte complet');
+    assert(spreadPanelHtml(I18N.fr, 'marseille', 'sca').includes('id="spreadPlace" disabled'), '« Poser les cartes » inactif');
+    togglePick('sca', 9); togglePick('sca', 12); togglePick('sca', 20); togglePick('sca', 30);
+    d = draftOf('sca');
+    assertEq(d.picked.join(','), '5,12,20', 'reposer une carte la retire ; pas plus de cartes que le tirage');
+    assert(placeCards('sca'), 'pose quand le compte est complet');
+    const r = readingOf('sca');
+    assert(r.cards.join() === [d.order[5], d.order[12], d.order[20]].join() && r.revealed.every(x => !x) && draftOf('sca') === null, 'les cartes posées sont celles de l\'éventail');
+    tarotFull = false; tarotReversed = true;
+    assertEq(readingOf('sca').cards.join(), r.cards.join(), 'changer les options ne modifie pas un tirage fait');
+    startShuffle('one'); togglePick('one', 2); saveDraft('one', null);
+    assert(draftOf('one') === null && readingOf('one') === null, '« Recommencer » : sélection effacée, tirage non consommé');
+    assertEq(dayCardKey('1982-11-03', '2026-11-01'), dayCardKey('1982-11-03', '2026-11-01'), 'carte du jour inchangée');
+    assert(TAROT_KEYS.includes(dayCardKey('1982-11-03', todayISO())), 'carte du jour : arcanes majeurs');
+    for (const l of Object.keys(I18N)) {
+      const m = monthLabel('2027-02', l);
+      assert(m && (l === 'en' || !/February/.test(m)), `${l} : nom du mois par le navigateur (${m})`);
+    }
+  }));
+
+  test('Onglet Tarot : textes (14 langues avant publication)', () => {
+    for (const l of Object.keys(I18N)) {
+      const t = I18N[l], s = t.tarot.spreads, g = t.tarot.gesture;
+      assert(t.tabs.tarot && t.tabs.tarotSub && s && g, `${l} : textes de l\'onglet Tarot`);
+      assert(['one', 'three', 'sca', 'six'].every(k => s[k].name && s[k].desc) && s.one.pos && s.one.hint && s.six.hint && s.six.note && s.six.done
+        && ['past', 'present', 'future'].every(k => s.three.hints[k]) && ['situation', 'challenge', 'advice'].every(k => s.sca.pos[k] && s.sca.hints[k])
+        && ['shuffle', 'shuffling', 'pick', 'cardAria', 'restart', 'place', 'allChosen'].every(k => g[k]), `${l} : 32 textes`);
+      if (l !== 'fr') assert(s.title !== I18N.fr.tarot.spreads.title && g.place !== I18N.fr.tarot.gesture.place, `${l} : traduit`);
+      if (l === 'th') assert([s.title, s.one.name, s.six.note, g.place].every(v => !v.includes(':') && !/\.$/.test(v)), 'thaï : ni deux-points ni point final');
+      assert(!/\{\w+\}/.test(JSON.stringify([s, g])), `${l} : aucune variable`);
+    }
+  });
+
   /* ---------------- Compatibilité approfondie (cahier V0.2.1) ---------------- */
   const cp = (date, time, place) => {
     const pl = place ? birthPlace(place) : null;

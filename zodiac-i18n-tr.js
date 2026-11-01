@@ -707,7 +707,7 @@ I18N.tr = deepMerge(I18N.fr, {
     numerology: "Numeroloji, tarihleri ve adları rakamlarını toplayarak 1 ile 9 arasında bir sayıya indirger; yalnızca 11, 22 ve 33 usta sayıları olduğu gibi korunur. Yaşam yolu: doğum günü, ayı ve yılı ayrı ayrı indirgenip toplanır. Adın sayıları: her harfin bir değeri vardır (A = 1, B = 2… I = 9, sonra J = 1…); tüm harfler ifade sayısını, ünlüler ruh sayısını, ünsüzler kişilik sayısını verir. Arapçada ebced değerleri (ا = 1… غ = 1000), Rusçada eşdeğer Kiril tablosu kullanılır.",
     personalYear: "Kişisel yıl, doğum gününüzü ve ayınızı içinde bulunulan yıla ekler; 9 yıllık bir döngü izler. Kişisel ay buna içinde bulunulan ayı, kişisel gün ayın gününü ekler. Döngüler burç yorumunun okuma tarihine göre hesaplanır.",
     tarot: "Doğum kartı: doğum günü, ayı ve yılı toplanır, ardından 22 ya da daha küçük bir sayı elde edilene kadar rakamlar toplanarak indirgenir; 22, Deli kartına karşılık gelir. Günün kartı: her kişiye ve her tarihe özgü, bütün gün aynı kalan bir çekiliş. Marsilya Tarotu ile Waite-Smith aynı 22 büyük arkanayı paylaşır; ancak bazı adlar farklıdır ve Güç ile Adalet numaralarını değiştirir (Marsilya'da XI ve VIII, Waite-Smith'te VIII ve XI): aynı hesap desteye göre birini ya da ötekini verebilir.",
-    spread: "Üç kartlık açılım bir soruyu aydınlatır: geçmiş (ona neyin yol açtığı), şimdi (neyin söz konusu olduğu) ve gelecek (hiçbir şey değişmezse eğilim). İyice düşünülmüş bir soru için günde yalnızca bir açılım yapılır: ertesi güne kadar ekranda kalır. Kartlar 22 büyük arkana arasından, tekrar olmadan rastgele çekilir. Sorunuz cihazınızda kalır ve dışa aktarılan görselde yer almaz. Gelenek, yalnızca bir kez sorulan açık ve içten bir soru ister: belirsiz bir soru ya da başka bir cevap almak için yeniden sorulan bir soru açılımı anlamsız kılar.",
+    spread: "Listeden bir açılım seçin. “Bir soru, bir kart” belirli bir soruya ışık tutar. “Geçmiş · Şimdi · Gelecek” bu duruma nelerin yol açtığını, şu anda neler yaşandığını ve nelerin şekillenebileceğini ele alır. “Durum · Zorluk · Tavsiye” nelerin söz konusu olduğunu, dikkatinizi gerektiren konuları ve izlenebilecek bir yolu gösterir. “Önümüzdeki altı ay” her ay için bir düşünme konusu sunar. Açılım soru gerektiriyorsa sorunuzu yazın, desteyi karıştırın, kapalı kartlarınızı seçin, yerleştirin ve sırayla çevirin. Deste tarayıcının rastgelelik sistemiyle karıştırılır; bir kart seçmek onu rastgele çekmekle eşdeğerdir. Her açılım günde bir kez, altı aylık açılım ise ayda bir kez yapılabilir. Sorunuz yalnızca cihazınızda kalır ve dışa aktarılan görselde görünmez. Tarot sembolik bir gelenektir; düşünmeye davet eder, geleceği tahmin etmez.",
     fieldName: "Adınız uygulamayı kişiselleştirir. Geleneksel numeroloji, doğumdaki tam adınıza dayanır: nüfus kaydındaki gibi tüm adlarınız ve soyadınız. Yalnızca adınızla, adın sayıları adınızın sadece bir bölümünü yansıtır.",
     fieldTime: "Yükseleninizi ve evlerinizi hesaplamayı, iki buçuk günde bir burç değiştiren Ay'ın konumunu kesinleştirmeyi ve Çin astrolojisinde doğum saatinizin hayvanını bulmayı sağlar. Saat olmadan bu öğeler eksik kalır ya da yanlış olabilir ve portreniz eksik kalır. Genellikle doğum belgesinde yazar; yaklaşık bile olsa işe yarar.",
     fieldPlace: "Doğumunuzun yaz saati dahil tam saat dilimini ve koordinatlarını verir. Yer olmadan yükselen ve evler hesaplanamaz. En yakın şehir yeterlidir. Yer bulunamadı mı? GPS koordinatlarını ya da bir harita bağlantısını (Google Maps, OpenStreetMap, Apple Haritalar) yapıştırın: saat dilimi en yakın şehirden alınır ve değiştirebilirsiniz.",
@@ -1571,6 +1571,50 @@ I18N.tr = deepMerge(I18N.fr, {
           text: "Güvenlik arayışı kendini sınırlıyor: Değişime ve cömertliğe de yer açın."
         }
       }
+    },
+    spreads: {
+      title: "Bir açılım seçin",
+      one: {
+        name: "Bir soru, bir kart",
+        desc: "Belirli bir soruya ışık tutmak için tek bir kart.",
+        pos: "Tarotun yanıtı",
+        hint: "Sorunuza ışık tutan kart"
+      },
+      three: {
+        name: "Geçmiş · Şimdi · Gelecek",
+        desc: "Bu duruma nelerin yol açtığı, şu anda neler yaşandığı ve nelerin şekillenebileceği.",
+        hints: {
+          past: "Bu duruma nelerin yol açtığı",
+          present: "Şu anda neler yaşandığı",
+          future: "Hiçbir şey değişmezse nelerin şekillenebileceği"
+        }
+      },
+      sca: {
+        name: "Durum · Zorluk · Tavsiye",
+        desc: "Nelerin söz konusu olduğu, nelerin dikkatinizi gerektirdiği ve izlenebilecek bir yol.",
+        pos: { situation: "Durum", challenge: "Zorluk", advice: "Tavsiye" },
+        hints: {
+          situation: "Nelerin söz konusu olduğu",
+          challenge: "Nelerin dikkatinizi gerektirdiği",
+          advice: "İzlenebilecek bir yol"
+        }
+      },
+      six: {
+        name: "Önümüzdeki altı ay",
+        desc: "Gelecek altı ay boyunca düşünmenize yardımcı olacak, her ay için bir kart.",
+        hint: "Ayın sembolik atmosferi",
+        note: "Her kart o ay için bir düşünme konusu sunar, bir öngörü değil.",
+        done: "Altı aylık açılımınız tamamlandı. Bir sonraki açılım gelecek ay yapılabilir."
+      }
+    },
+    gesture: {
+      shuffle: "Desteyi karıştırın",
+      shuffling: "Deste karıştırılıyor…",
+      pick: "Kartlarınızı seçin",
+      cardAria: "Kapalı kart",
+      restart: "Yeniden başlayın",
+      place: "Kartları yerleştirin",
+      allChosen: "Tüm kartlar seçildi"
     }
   },
   tabs: {
@@ -1578,8 +1622,10 @@ I18N.tr = deepMerge(I18N.fr, {
     skySub: "Burç yorumu, gökyüzü haritası, gece",
     compat: "Uyum",
     compatSub: "Bir başka kişiyle",
-    numTarot: "Numeroloji ve tarot",
-    numTarotSub: "Sayılar ve arkanalar"
+    numTarot: "Numeroloji",
+    numTarotSub: "Sayılar ve sembolik portre",
+    tarot: "Tarot",
+    tarotSub: "Açılımlar ve arkanalar"
   },
   me: {
     set: "Bu benim profilim",

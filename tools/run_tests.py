@@ -102,14 +102,41 @@ async def journey(browser, file):
             toggle = portrait.locator('.portrait-toggle')
             await toggle.click(timeout=10000)
             opened = await portrait.locator('.portrait-detail').is_visible()
+            await page.locator('#tabTarot').click(timeout=10000)   # le choix du jeu est dans l'onglet Tarot
             await page.locator('.tarot-deck .deck-btn[data-deck="ws"]').click(timeout=10000)
-            after_deck = await page.locator('#numbersBody #portraitCard').count() == 1
             selected = await page.locator('.tarot-deck .deck-btn[data-deck="ws"]').get_attribute('aria-pressed')
+            await page.locator('#tabNumbers').click(timeout=10000)
+            after_deck = await page.locator('#numbersBody #portraitCard').count() == 1
             visible_after = await page.locator('#numbersBody #portraitCard .portrait-detail').is_visible()
             report(sections == 6 and preview and opened and after_deck and selected == 'true' and visible_after and not errors,
                    f'{lang} : portrait présent, 6 rubriques, repli, changement de jeu' + (f' | {errors}' if errors else ''))
         except Exception as exc:
             report(False, f'{lang} : portrait absent ou non interactif — {str(exc)[:350]}')
+
+        # Onglet Tarot : question, mélange, trois cartes choisies au clavier, pose, retournement, tirage retrouvé après rechargement
+        try:
+            await page.locator('#tabTarot').click(timeout=10000)
+            await page.click('.spread-choice[data-type="three"]')
+            if await page.locator('.tarot-fan').count() == 0 and await page.locator('.spread-flip, .spread-done').count() == 0:
+                await page.fill('#spreadQuestion', 'Que dois-je comprendre ?')
+                await page.click('#spreadDraw')
+                await page.wait_for_selector('.tarot-fan', timeout=10000)
+                await page.focus('.fan-card[tabindex="0"]')
+                for key in ('Enter', 'ArrowRight', 'Enter', 'ArrowRight', 'Enter'):
+                    await page.keyboard.press(key)
+                await page.click('#spreadPlace')
+            while await page.locator('.spread-flip').count():
+                await page.locator('.spread-flip').first.click()
+            shown = await page.locator('.spread-slot .tarot-title').count()
+            await page.reload()
+            await page.wait_for_selector('#tabTarot', timeout=60000)
+            await page.locator('#tabTarot').click()
+            again = await page.locator('.spread-slot .tarot-title').count()
+            report(shown == 3 and again == 3 and not errors,
+                   f'{lang} : tarot, trois cartes choisies au clavier, posées, retournées, retrouvées après rechargement'
+                   + (f' | {errors}' if errors else ''))
+        except Exception as exc:
+            report(False, f'{lang} : onglet Tarot absent ou non interactif — {str(exc)[:350]}')
 
         # Compatibilité approfondie, par le vrai formulaire : date de l'autre personne, « Comparer », dépli
         try:
@@ -182,7 +209,7 @@ async def accessibility(browser, file):
                 await page.click('#themeBtn')
                 await page.wait_for_function("document.documentElement.dataset.theme === 'light'", timeout=5000)
                 await page.wait_for_timeout(300)
-            for tab in ('accueil', 'tabSigns', 'tabNatal', 'tabSky', 'tabCompat', 'tabNumbers'):
+            for tab in ('accueil', 'tabSigns', 'tabNatal', 'tabSky', 'tabCompat', 'tabNumbers', 'tabTarot'):
                 if tab != 'accueil':
                     await page.click('#' + tab)
                     await page.wait_for_timeout(250)
@@ -190,6 +217,20 @@ async def accessibility(browser, file):
                 violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
                     .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
                 found += [f'{tab} : {v}' for v in violations]
+            await page.click('#tabTarot')   # tarot : éventail ouvert, puis tirage d'une carte retourné
+            await page.click('.spread-choice[data-type="one"]')
+            await page.fill('#spreadQuestion', 'Que dois-je comprendre ?')
+            await page.click('#spreadDraw')
+            await page.wait_for_selector('.tarot-fan', timeout=10000)
+            for stage in ('éventail', 'tirage retourné'):
+                if stage == 'tirage retourné':
+                    await page.locator('.fan-card').nth(3).click()
+                    await page.click('#spreadPlace')
+                    await page.locator('.spread-flip').first.click()
+                await page.add_script_tag(content=script)
+                violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
+                    .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
+                found += [f'tarot, {stage} : {v}' for v in violations]
             await page.click('#tabCompat')   # compatibilité approfondie dépliée, avec une autre personne
             await page.evaluate("pairState = { name: '', date: '1990-04-17', time: '08:30', place: 'Lyon|FR' }; renderCompat();")
             await page.click('#pairBody .compat-toggle')

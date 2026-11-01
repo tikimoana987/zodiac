@@ -711,7 +711,7 @@ I18N.de = deepMerge(I18N.fr, {
     numerology: "Die Numerologie reduziert Daten und Namen durch Addieren ihrer Ziffern auf eine Zahl von 1 bis 9 – außer den Meisterzahlen 11, 22 und 33, die erhalten bleiben. Lebensweg: Tag, Monat und Jahr der Geburt werden einzeln reduziert und dann addiert. Namenszahlen: Jeder Buchstabe hat einen Wert (A = 1, B = 2 … I = 9, dann J = 1 …); alle Buchstaben ergeben die Ausdruckszahl, die Vokale die Seelenzahl, die Konsonanten die Persönlichkeitszahl. Im Arabischen gelten die Abdschad-Werte (ا = 1 … غ = 1000), im Russischen die entsprechende kyrillische Tabelle.",
     personalYear: "Das persönliche Jahr addiert deinen Geburtstag und -monat zum laufenden Jahr; es folgt einem Zyklus von 9 Jahren. Der persönliche Monat fügt den laufenden Monat hinzu, der persönliche Tag den Tag des Monats. Die Zyklen gelten für das Lesedatum des Horoskops.",
     tarot: "Geburtskarte: Tag, Monat und Jahr der Geburt werden addiert und dann durch Addieren der Ziffern reduziert, bis 22 oder weniger herauskommt; 22 entspricht dem Narren. Tageskarte: eine Ziehung für jede Person und jedes Datum, den ganzen Tag dieselbe. Das Tarot de Marseille und das Waite-Smith teilen die 22 großen Arkana, doch manche Namen unterscheiden sich, und Kraft und Gerechtigkeit tauschen ihre Nummern (XI und VIII bei Marseille, VIII und XI bei Waite-Smith): Dieselbe Rechnung kann je nach Deck die eine oder die andere ergeben.",
-    spread: "Die Legung mit drei Karten beleuchtet eine Frage: die Vergangenheit (was dazu geführt hat), die Gegenwart (was gerade wirkt) und die Zukunft (die Tendenz, wenn sich nichts ändert). Es gibt nur eine Legung pro Tag, für eine gut überlegte Frage: Sie bleibt bis zum nächsten Tag sichtbar. Die Karten werden zufällig aus den 22 großen Arkana gezogen, ohne Wiederholung. Deine Frage bleibt auf deinem Gerät und erscheint nicht im exportierten Bild. Die Tradition verlangt eine klare und aufrichtige Frage, die nur einmal gestellt wird: Eine vage Frage oder eine, die wiederholt wird, um eine andere Antwort zu bekommen, nimmt der Legung ihren Sinn.",
+    spread: "Wähle eine Legung aus der Liste. „Eine Frage, eine Karte“ beleuchtet eine konkrete Frage. „Vergangenheit · Gegenwart · Zukunft“ betrachtet, was zur Situation geführt hat, was gerade geschieht und was sich entwickeln könnte. „Situation · Herausforderung · Rat“ zeigt, was auf dem Spiel steht, was Aufmerksamkeit braucht und welcher Weg möglich ist. „Die nächsten sechs Monate“ bietet für jeden Monat ein Thema zum Nachdenken. Wenn die Legung eine Frage verlangt, schreibe sie auf, mische das Deck, wähle die verdeckten Karten, lege sie aus und drehe sie nacheinander um. Das Deck wird mit dem Zufallsgenerator des Browsers gemischt: Eine Karte auszuwählen entspricht dem zufälligen Ziehen. Jede Legung ist einmal täglich möglich, die Sechsmonatslegung einmal monatlich. Deine Frage bleibt auf deinem Gerät und erscheint nicht im exportierten Bild. Tarot ist eine symbolische Tradition: Es regt zum Nachdenken an und sagt die Zukunft nicht voraus.",
     fieldName: "Dein Vorname personalisiert die App. Die klassische Numerologie stützt sich auf den vollständigen Geburtsnamen: alle Vornamen und den Familiennamen, wie in der Geburtsurkunde. Mit dem Vornamen allein spiegeln deine Namenszahlen nur einen Teil deines Namens wider.",
     fieldTime: "Mit ihr lassen sich Aszendent und Häuser berechnen, der Mond genau bestimmen (er wechselt alle zweieinhalb Tage das Zeichen) und das Tier deiner Geburtsstunde in der chinesischen Astrologie finden. Ohne sie fehlen diese Elemente oder können falsch sein, und dein Porträt bleibt unvollständig. Sie steht oft in der Geburtsurkunde; auch ungefähr hilft sie.",
     fieldPlace: "Er liefert die genaue Zeitzone deiner Geburt, Sommerzeit inbegriffen, und ihre Koordinaten. Ohne Ort lassen sich Aszendent und Häuser nicht berechnen. Die nächstgelegene Stadt genügt. Ort nicht gefunden? Füge seine GPS-Koordinaten oder einen Kartenlink ein (Google Maps, OpenStreetMap, Apple Karten): Die Zeitzone wird von der nächstgelegenen Stadt übernommen, und du kannst sie ändern.",
@@ -1575,6 +1575,50 @@ I18N.de = deepMerge(I18N.fr, {
           text: "Das Streben nach Sicherheit wird zu eng: Lass Raum für Veränderung und Großzügigkeit."
         }
       }
+    },
+    spreads: {
+      title: "Wähle eine Legung",
+      one: {
+        name: "Eine Frage, eine Karte",
+        desc: "Eine einzelne Karte, um eine konkrete Frage zu beleuchten.",
+        pos: "Antwort des Tarots",
+        hint: "Die Karte, die deine Frage beleuchtet"
+      },
+      three: {
+        name: "Vergangenheit · Gegenwart · Zukunft",
+        desc: "Was zur Situation geführt hat, was gerade geschieht und was sich entwickeln könnte.",
+        hints: {
+          past: "Was zur Situation geführt hat",
+          present: "Was gerade geschieht",
+          future: "Was sich entwickeln könnte, wenn nichts verändert wird"
+        }
+      },
+      sca: {
+        name: "Situation · Herausforderung · Rat",
+        desc: "Was auf dem Spiel steht, was deine Aufmerksamkeit braucht und ein möglicher Weg.",
+        pos: { situation: "Situation", challenge: "Herausforderung", advice: "Rat" },
+        hints: {
+          situation: "Was auf dem Spiel steht",
+          challenge: "Was deine Aufmerksamkeit braucht",
+          advice: "Ein möglicher Weg"
+        }
+      },
+      six: {
+        name: "Die nächsten sechs Monate",
+        desc: "Eine Karte pro Monat als Anregung zum Nachdenken über das kommende Halbjahr.",
+        hint: "Die symbolische Stimmung des Monats",
+        note: "Jede Karte bietet ein Thema zum Nachdenken für diesen Monat, keine Vorhersage.",
+        done: "Deine Legung für sechs Monate ist abgeschlossen. Die nächste ist im kommenden Monat möglich."
+      }
+    },
+    gesture: {
+      shuffle: "Mische das Deck",
+      shuffling: "Das Deck wird gemischt…",
+      pick: "Wähle deine Karten",
+      cardAria: "Verdeckte Karte",
+      restart: "Neu beginnen",
+      place: "Karten auslegen",
+      allChosen: "Alle Karten ausgewählt"
     }
   },
   tabs: {
@@ -1582,8 +1626,10 @@ I18N.de = deepMerge(I18N.fr, {
     skySub: "Horoskop, Himmelskarte, Nacht",
     compat: "Kompatibilität",
     compatSub: "Mit einer anderen Person",
-    numTarot: "Numerologie & Tarot",
-    numTarotSub: "Zahlen und Arkana"
+    numTarot: "Numerologie",
+    numTarotSub: "Zahlen und Porträt",
+    tarot: "Tarot",
+    tarotSub: "Legungen und Arkana"
   },
   me: {
     set: "Das bin ich",

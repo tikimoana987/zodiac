@@ -711,7 +711,7 @@ I18N.fr = {
     numerology: "La numérologie réduit dates et noms à un chiffre de 1 à 9 en additionnant leurs chiffres, sauf les nombres maîtres 11, 22 et 33, gardés tels quels. Chemin de vie : jour, mois et année de naissance réduits séparément, puis additionnés. Nombres du nom : chaque lettre vaut un chiffre (A = 1, B = 2… I = 9, puis J = 1…) ; toutes les lettres donnent l'expression, les voyelles le nombre intime, les consonnes la personnalité. En arabe, on utilise les valeurs abjad (ا = 1… غ = 1000) ; en russe, la table cyrillique équivalente.",
     personalYear: "L'année personnelle additionne votre jour et votre mois de naissance à l'année en cours ; elle suit un cycle de 9 ans. Le mois personnel y ajoute le mois en cours, le jour personnel le jour du mois. Les cycles sont calculés pour la date de lecture de l'horoscope.",
     tarot: "Carte de naissance : on additionne le jour, le mois et l'année de naissance, puis on réduit en additionnant les chiffres jusqu'à obtenir 22 ou moins ; 22 correspond au Fou. Carte du jour : un tirage propre à chaque personne et à chaque date, le même toute la journée. Le tarot de Marseille et le Waite-Smith partagent les 22 arcanes majeurs, mais certains noms diffèrent, et la Force et la Justice échangent leurs numéros (XI et VIII à Marseille, VIII et XI chez Waite-Smith) : un même calcul peut donc donner l'une ou l'autre selon le jeu.",
-    spread: "Le tirage en trois cartes éclaire une question : le passé (ce qui y a conduit), le présent (ce qui se joue) et l'avenir (la tendance si rien ne change). On ne fait qu'un tirage par jour, pour une question mûrement réfléchie : il reste affiché jusqu'au lendemain. Les cartes sont tirées au hasard parmi les 22 arcanes majeurs, sans répétition. Votre question reste sur votre appareil et n'apparaît pas dans l'image exportée. La tradition veut une question claire et sincère, posée une seule fois : une question vague, ou posée à nouveau pour obtenir une autre réponse, enlève son sens au tirage.",
+    spread: "Choisissez un tirage dans la liste. « Une question, une carte » éclaire une question précise. « Passé · Présent · Avenir » montre ce qui a conduit à la situation, ce qui se joue et ce qui pourrait se dessiner. « Situation · Défi · Conseil » met en lumière l'enjeu, ce qui demande votre attention et la piste à suivre. « Les six prochains mois » propose un thème de réflexion par mois. Écrivez votre question si le tirage la demande, mélangez le jeu, choisissez vos cartes face cachée, posez-les, puis retournez-les une à une. Le jeu est mélangé par le hasard du navigateur : choisir une carte revient à la tirer au hasard. Chaque tirage se fait une fois par jour, celui des six mois une fois par mois. Votre question reste sur votre appareil et n'apparaît pas dans l'image exportée. Le tarot est une tradition symbolique : il invite à la réflexion, il ne prédit pas l'avenir.",
     fieldName: "Votre prénom personnalise l'appli. La numérologie traditionnelle s'appuie sur le nom complet de naissance : tous vos prénoms et votre nom de famille, comme à l'état civil. Avec un prénom seul, vos nombres du nom ne reflètent qu'une partie de votre nom.",
     fieldTime: "Elle permet de calculer votre ascendant et vos maisons, de situer précisément la Lune (qui change de signe tous les deux jours et demi) et de trouver l'animal de votre heure en astrologie chinoise. Sans heure, ces éléments manquent ou peuvent être faux : votre portrait reste incomplet. Elle figure souvent sur l'acte de naissance ; même approximative, elle aide.",
     fieldPlace: "Il donne le fuseau horaire exact de votre naissance, heure d'été comprise, et ses coordonnées. Sans lieu, l'ascendant et les maisons ne peuvent pas être calculés. La ville la plus proche suffit. Lieu introuvable ? Collez ses coordonnées GPS ou un lien de carte (Google Maps, OpenStreetMap, Plans) : le fuseau horaire est déduit de la ville la plus proche, et vous pouvez le changer.",
@@ -1575,6 +1575,50 @@ I18N.fr = {
           text: "La recherche de sécurité se referme sur elle-même : laissez une place au changement et à la générosité."
         }
       }
+    },
+    spreads: {
+      title: "Choisissez un tirage",
+      one: {
+        name: "Une question, une carte",
+        desc: "Une seule carte pour éclairer une question précise.",
+        pos: "Réponse du tarot",
+        hint: "La carte qui éclaire votre question"
+      },
+      three: {
+        name: "Passé · Présent · Avenir",
+        desc: "Ce qui a conduit à la situation, ce qui se joue, ce qui pourrait se dessiner.",
+        hints: {
+          past: "Ce qui a conduit à la situation",
+          present: "Ce qui se joue",
+          future: "Ce qui pourrait se dessiner si rien ne change"
+        }
+      },
+      sca: {
+        name: "Situation · Défi · Conseil",
+        desc: "Ce qui est en jeu, ce qui demande votre attention, la piste à suivre.",
+        pos: { situation: "Situation", challenge: "Défi", advice: "Conseil" },
+        hints: {
+          situation: "Ce qui est en jeu",
+          challenge: "Ce qui demande votre attention",
+          advice: "La piste à suivre"
+        }
+      },
+      six: {
+        name: "Les six prochains mois",
+        desc: "Une carte par mois, comme un fil de réflexion pour la demi-année à venir.",
+        hint: "Le climat symbolique du mois",
+        note: "Chaque carte propose un thème de réflexion pour le mois, pas une prévision.",
+        done: "Votre tirage des six mois est fait. Prochain tirage : le mois prochain."
+      }
+    },
+    gesture: {
+      shuffle: "Mélanger le jeu",
+      shuffling: "Le jeu se mélange…",
+      pick: "Choisissez vos cartes",
+      cardAria: "Carte face cachée",
+      restart: "Recommencer",
+      place: "Poser les cartes",
+      allChosen: "Toutes les cartes sont choisies"
     }
   },
   tabs: {
@@ -1582,8 +1626,10 @@ I18N.fr = {
     skySub: "Horoscope, carte du ciel, nuit",
     compat: "Compatibilité",
     compatSub: "Avec une autre personne",
-    numTarot: "Numérologie & tarot",
-    numTarotSub: "Nombres et arcanes"
+    numTarot: "Numérologie",
+    numTarotSub: "Nombres et portrait",
+    tarot: "Tarot",
+    tarotSub: "Tirages et arcanes"
   },
   me: {
     set: "C'est mon profil",

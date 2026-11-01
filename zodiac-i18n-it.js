@@ -711,7 +711,7 @@ I18N.it = deepMerge(I18N.fr, {
     numerology: "La numerologia riduce date e nomi a una cifra da 1 a 9 sommandone le cifre, tranne i numeri maestri 11, 22 e 33, che si conservano. Sentiero di vita: giorno, mese e anno di nascita ridotti separatamente e poi sommati. Numeri del nome: ogni lettera vale una cifra (A = 1, B = 2… I = 9, poi J = 1…); tutte le lettere danno l'espressione, le vocali il numero dell'anima, le consonanti la personalità. In arabo si usano i valori abjad (ا = 1… غ = 1000); in russo, la tabella cirillica equivalente.",
     personalYear: "L'anno personale somma il giorno e il mese di nascita all'anno in corso e segue un ciclo di 9 anni. Il mese personale aggiunge il mese in corso, il giorno personale il giorno del mese. I cicli sono calcolati per la data di lettura dell'oroscopo.",
     tarot: "Carta di nascita: si sommano giorno, mese e anno di nascita, poi si riduce sommando le cifre fino a ottenere 22 o meno; il 22 corrisponde al Matto. Carta del giorno: un'estrazione propria di ogni persona e di ogni data, la stessa per tutto il giorno. I Tarocchi di Marsiglia e il Waite-Smith condividono i 22 arcani maggiori, ma alcuni nomi cambiano, e la Forza e la Giustizia si scambiano i numeri (XI e VIII a Marsiglia, VIII e XI nel Waite-Smith): lo stesso calcolo può quindi dare l'una o l'altra secondo il mazzo.",
-    spread: "La stesa a tre carte illumina una domanda: il passato (ciò che vi ha condotto), il presente (ciò che è in gioco) e il futuro (la tendenza se nulla cambia). Si fa una sola stesa al giorno, per una domanda ben ponderata: resta visibile fino al giorno dopo. Le carte sono estratte a caso tra i 22 arcani maggiori, senza ripetizioni. La tua domanda resta sul tuo dispositivo e non compare nell'immagine esportata. La tradizione vuole una domanda chiara e sincera, posta una sola volta: una domanda vaga, o ripetuta per ottenere un'altra risposta, toglie senso alla stesa.",
+    spread: "Scegli una stesa dall'elenco. «Una domanda, una carta» fa luce su una domanda precisa. «Passato · Presente · Futuro» esplora ciò che ha portato alla situazione, ciò che accade e ciò che potrebbe delinearsi. «Situazione · Sfida · Consiglio» mette in luce ciò che è in gioco, ciò che richiede attenzione e una strada da seguire. «I prossimi sei mesi» propone un tema di riflessione per ogni mese. Se la stesa richiede una domanda, scrivila, mescola il mazzo, scegli le carte coperte, disponile e girale una alla volta. Il mazzo viene mescolato con il sistema casuale del browser: scegliere una carta equivale a estrarla a caso. Ogni stesa si può fare una volta al giorno, quella dei sei mesi una volta al mese. La tua domanda resta sul dispositivo e non compare nell'immagine esportata. I tarocchi sono una tradizione simbolica: invitano alla riflessione, non predicono il futuro.",
     fieldName: "Il tuo nome personalizza l'app. La numerologia tradizionale si basa sul nome completo di nascita: tutti i tuoi nomi e il cognome, come all'anagrafe. Con il solo nome di battesimo, i numeri del nome riflettono solo una parte del tuo nome.",
     fieldTime: "Permette di calcolare l'ascendente e le case, di collocare con precisione la Luna (che cambia segno ogni due giorni e mezzo) e di trovare l'animale della tua ora nell'astrologia cinese. Senza, questi elementi mancano o possono essere sbagliati e il ritratto resta incompleto. Spesso è indicata sull'atto di nascita; anche approssimativa, aiuta.",
     fieldPlace: "Fornisce il fuso orario esatto della tua nascita, ora legale compresa, e le sue coordinate. Senza luogo, ascendente e case non possono essere calcolati. Basta la città più vicina. Luogo non trovato? Incolla le coordinate GPS o un link di una mappa (Google Maps, OpenStreetMap, Mappe di Apple): il fuso orario è quello della città più vicina e puoi cambiarlo.",
@@ -1575,6 +1575,50 @@ I18N.it = deepMerge(I18N.fr, {
           text: "La ricerca di sicurezza si chiude su sé stessa: lascia spazio al cambiamento e alla generosità."
         }
       }
+    },
+    spreads: {
+      title: "Scegli una stesa",
+      one: {
+        name: "Una domanda, una carta",
+        desc: "Una sola carta per fare luce su una domanda precisa.",
+        pos: "Risposta dei tarocchi",
+        hint: "La carta che illumina la tua domanda"
+      },
+      three: {
+        name: "Passato · Presente · Futuro",
+        desc: "Ciò che ha portato alla situazione, ciò che accade e ciò che potrebbe delinearsi.",
+        hints: {
+          past: "Ciò che ha portato alla situazione",
+          present: "Ciò che accade ora",
+          future: "Ciò che potrebbe delinearsi se nulla cambia"
+        }
+      },
+      sca: {
+        name: "Situazione · Sfida · Consiglio",
+        desc: "Ciò che è in gioco, ciò che richiede attenzione e una strada da seguire.",
+        pos: { situation: "Situazione", challenge: "Sfida", advice: "Consiglio" },
+        hints: {
+          situation: "Ciò che è in gioco",
+          challenge: "Ciò che richiede attenzione",
+          advice: "Una strada da seguire"
+        }
+      },
+      six: {
+        name: "I prossimi sei mesi",
+        desc: "Una carta al mese, come filo di riflessione per il prossimo semestre.",
+        hint: "Il clima simbolico del mese",
+        note: "Ogni carta propone un tema su cui riflettere nel mese, non una previsione.",
+        done: "La tua stesa dei sei mesi è completa. La prossima stesa sarà il mese prossimo."
+      }
+    },
+    gesture: {
+      shuffle: "Mescola il mazzo",
+      shuffling: "Il mazzo si mescola…",
+      pick: "Scegli le tue carte",
+      cardAria: "Carta coperta",
+      restart: "Ricomincia",
+      place: "Disponi le carte",
+      allChosen: "Hai scelto tutte le carte"
     }
   },
   tabs: {
@@ -1582,8 +1626,10 @@ I18N.it = deepMerge(I18N.fr, {
     skySub: "Oroscopo, mappa del cielo, notte",
     compat: "Compatibilità",
     compatSub: "Con un'altra persona",
-    numTarot: "Numerologia e tarocchi",
-    numTarotSub: "Numeri e arcani"
+    numTarot: "Numerologia",
+    numTarotSub: "Numeri e ritratto",
+    tarot: "Tarocchi",
+    tarotSub: "Stese e arcani"
   },
   me: {
     set: "È il mio profilo",
