@@ -12,7 +12,7 @@
 | Feuille de route d'origine (étapes 1 à 6) | ✅ terminée, sauf l'iPhone (gardé pour la fin) |
 | Pistes 1 à 6 | ✅ version et bandeau de mise à jour · ✅ cartes renversées · ✅ lieux par coordonnées GPS · ✅ calendrier du ciel · ✅ fiche du thème natal à imprimer ou en PDF · ✅ arcanes mineurs (jeu complet de 78 cartes) |
 | Langues | 14 (FR, EN, ES, PT, IT, DE, TR, RU, AR, HI, TH, ZH, JA, KO) |
-| Tests automatiques | 98 (81 historiques + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit) et Firefox, pour information |
+| Tests automatiques | 102 (85 historiques + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit) et Firefox, pour information |
 | Publication | automatique sur GitHub Pages, après les tests (circuit GitHub Actions) |
 | Poids | version autonome ≈ 6,8 Mo : illustrations du tarot ≈ 3,1 Mo (déjà en WebP), villes ≈ 1 Mo, 14 langues ≈ 1,6 Mo, textes du portrait ≈ 0,4 Mo |
 | Confidentialité | aucune donnée envoyée en ligne (adresse en « # », pas de serveur, pas de statistiques) ; seule exception : les événements ajoutés à Google Agenda à la demande de l'utilisateur |
@@ -80,13 +80,11 @@ Retour détaillé d'une testeuse, validé le 31 octobre. Fil conducteur pour tou
 - [x] Présenté clairement comme un jeu, pas comme une prédiction ; version sobre en mode « animations réduites ».
 - [x] 9 courts textes par langue. Emplacement : bouton sur l'accueil, sous le formulaire, et lien dans « Numérologie & tarot » ; à reprendre dans l'onglet Tarot (§ 3.3) quand il existera.
 
-### 3.2 🟡 Compatibilité approfondie
-- Aujourd'hui : trois axes (signes, animaux chinois, Lunes) notés sur 5, et une entente globale.
-- [ ] Ajouter Vénus (affection), Mars (attirance, énergie), Mercure (communication), les ascendants et les chemins de vie ; les positions sont déjà calculées par le thème natal.
-- [ ] Rubriques : affinité émotionnelle, attirance, communication, forces du couple, défis possibles, et **« Conseils des étoiles »** (comment la communication, la patience et la compréhension aident deux tempéraments différents).
-- [ ] ❓ Garder, adoucir ou remplacer la note sur 5 : des forces et des points d'attention plutôt qu'un verdict.
-- [ ] Ascendant de l'autre personne : ajouter son lieu de naissance (facultatif, gardé en mémoire seulement et jamais enregistré, comme aujourd'hui).
-- [ ] Cahier de décisions, puis textes dans les 14 langues : c'est le plus gros du travail.
+### 3.2 ✅ Compatibilité approfondie (V8, 1er novembre 2026)
+- [x] Cahier de décisions V0.2.1, relu par trois IA (`docs/cahier-compatibilite.md`).
+- [x] Neuf axes lus par signes, trois tonalités, bilan sans note, aperçu, analyse repliable, « Conseils des étoiles », synastrie repliée ; lieu de naissance de l'autre personne pour les ascendants.
+- [x] Textes français rédigés, vérifiés, intégrés et testés, puis traduits dans les 13 autres langues (127 textes par langue).
+- [ ] Relecture par des personnes de langue maternelle (§ 8), comme pour le reste de l'appli.
 
 ### 3.3 🟡 Onglet Tarot et nouveaux tirages
 - Aujourd'hui, dans « Numérologie & tarot » : carte de naissance, carte du jour, Passé · Présent · Avenir, deux jeux (Marseille, Waite-Smith), cartes renversées, jeu complet de 78 cartes en option.
@@ -168,6 +166,8 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 
 ## 8. 🟢 Qualité, maintenance, technique
 
+- [ ] **Heures inexistantes ou ambiguës au changement d'heure** (signalé lors de la relecture de la compatibilité) : aujourd'hui, une heure qui n'a pas existé (passage à l'heure d'été) est avancée d'une heure, et une heure qui a existé deux fois (retour à l'heure d'hiver) prend la première occurrence. Amélioration possible pour toute l'appli : un message « cette heure n'a pas existé ce jour-là » et une mention « ascendant incertain » pour l'heure ambiguë.
+
 - [ ] **Licence du projet** ❓ : le dépôt est public mais sans licence, ce qui veut dire « tous droits réservés » par défaut. À décider : garder ainsi, ou choisir une licence (MIT, CC BY-NC…). Les crédits des données sont déjà dans le README, y compris la mention des illustrations générées avec Gemini.
 - [ ] **Versions à surveiller** dans le circuit GitHub : Ubuntu fixé à 24.04, Playwright 1.56, actions (checkout v7, setup-python v7, upload-pages-artifact v5, deploy-pages v5). À mettre à jour de temps en temps, quand GitHub prévient d'une fin de prise en charge.
 - [ ] **Tests d'interface dans le circuit** : la plupart des parcours (rituel du tirage, calendrier, coordonnées GPS, impression, « Mon profil ») sont vérifiés par des scripts de Claude, hors du dépôt. ⭐ En intégrer quelques-uns au circuit GitHub.
@@ -202,7 +202,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 2. ✅ **Portrait symbolique** (§ 2).
 3. ✅ **Accessibilité (audit automatique) et tests Safari / Firefox** (§ 6, § 8), V7 à V7.3.
 4. ✅ **Oracle Oui / Non** (§ 3.1), V7.5 ; l'animation de recherche reste complète (§ 7). ✅ **Soutenir le projet** (§ 3.6), V7.6 : reste à renseigner les adresses de dons.
-5. **Compatibilité approfondie** (§ 3.2).
+5. ✅ **Compatibilité approfondie** (§ 3.2), V8.
 6. **Onglet Tarot et nouveaux tirages** (§ 3.3).
 7. **Carré de Pythagore** (§ 3.4).
 8. **Améliorations rapides** (§ 7) au fil de l'eau, dont l'allègement des mises à jour.

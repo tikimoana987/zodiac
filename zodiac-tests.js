@@ -739,9 +739,9 @@
     }
   });
 
-  test('Bulles d\'information (i) : 39 explications complètes et traduites', () => {
+  test('Bulles d\'information (i) : 41 explications complètes et traduites', () => {
     const keys = Object.keys(I18N.fr.info);
-    assertEq(keys.length, 39, 'nombre d\'explications');
+    assertEq(keys.length, 41, 'nombre d\'explications');
     for (const lang of Object.keys(I18N)) {
       const info = I18N[lang].info;
       assert(keys.every(k => typeof info[k] === 'string' && info[k].length > 20), `${lang} : explication manquante ou trop courte`);   // 20 : le chinois est bien plus dense
@@ -1239,6 +1239,100 @@
       assert(s && s.open && s.line && s.intro && s.share && s.note, `${l} : textes`);
       if (l !== 'fr') assert(s.intro !== I18N.fr.support.intro && s.note !== I18N.fr.support.note, `${l} : traduit`);
       if (l === 'th') assert(Object.values(s).every(v => !v.includes(':') && !/\.$/.test(v)), 'thaï : ni deux-points ni point final');
+    }
+  });
+
+  /* ---------------- Compatibilité approfondie (cahier V0.2.1) ---------------- */
+  const cp = (date, time, place) => {
+    const pl = place ? birthPlace(place) : null;
+    return { date: parseISODate(date), time: time ? parseTime(time) : null, tz: pl ? pl.tz : 'Europe/Paris', place: pl };
+  };
+  const summary = c => [c.harmony, c.complement, c.attention, c.n, c.opening, c.strength, c.toBuild, c.advice.join('+')].join(' ');
+
+  test('Compatibilité approfondie : les 5 cas du cahier', () => {
+    const c1 = compatDeep(cp('1982-11-03', '19:00', 'Paris|FR'), cp('1990-04-17', '08:30', 'Lyon|FR'));
+    assertEq(summary(c1), '3 3 3 9 balanced venus moon moon+attraction+mercury', 'cas 1');
+    assert(c1.ax.attraction.d1 === 3 && c1.ax.attraction.d2 === 2 && c1.ax.attraction.tone === 'complement', 'cas 1 : attirance carré et sextile → complémentarité');
+    assert(c1.ax.asc.tone === 'harmony' && c1.ax.chinese.rel === 'triad', 'cas 1 : ascendants, triade');
+    const c2 = compatDeep(cp('1975-01-24'), cp('1976-08-18'));
+    assertEq(summary(c2), '2 3 2 7 balanced mars venus venus+attraction+mercury', 'cas 2');
+    assert(c2.ax.moon.readingUncertain && c2.ax.asc === null, 'cas 2 : Lune incertaine, pas d\'ascendant');
+    assert(c2.ax.lifePath.key === 'family' && c2.ax.lifePath.a === 11 && c2.ax.lifePath.b === 22, 'cas 2 : 11 × 22, même famille');
+    const c3 = compatDeep(cp('1982-11-03'), cp('1990-11-10'));
+    assertEq(summary(c3), '3 2 1 6 mostlyHarmony venus mars attraction+mars+lifePath', 'cas 3');
+    assert(c3.ax.moon.readingUncertain && c3.ax.mercury.readingUncertain, 'cas 3 : Lune et Mercure incertains');
+    const c4 = compatDeep(cp('1982-11-03'), cp('1988-05-05'));
+    assertEq(summary(c4), '0 2 4 6 mostlyToBuild sun venus venus+attraction+sun', 'cas 4');
+    assertEq(c4.ax.sun.tone, 'complement', 'cas 4 : point fort en complémentarité');
+    const c5 = compatDeep(cp('1975-02-18'), cp('1984-12-25'));
+    assertEq(summary(c5), '1 1 4 6 mostlyToBuild mercury moon moon+venus+sun', 'cas 5');
+    assert(c5.ax.attraction.readingUncertain && c5.ax.mars.readingUncertain && c5.ax.lifePath.a === 33, 'cas 5 : attirance et élan incertains, 33');
+  });
+
+  test('Compatibilité approfondie : cas limites et symétrie', () => {
+    const h = compatDeep(cp('1954-05-24'), cp('1962-04-17'));
+    assert(h.harmony === 7 && h.attention === 0 && h.complement === 0 && h.advice.length === 0 && h.opening === 'mostlyHarmony', 'tout en harmonie');
+    const m = compatDeep(cp('1951-05-24'), cp('2003-12-11'));
+    assertEq(summary(m).split(' ').slice(0, 6).join(' '), '2 5 1 8 mostlyComplement mercury', 'surtout complémentaire');
+    const w = compatDeep(cp('1995-07-11'), cp('1969-04-06'));
+    assert(w.ax.attraction.d1 === 5 && w.ax.attraction.d2 === 5 && w.ax.attraction.tone === 'attention', 'attirance : même relation dans les deux sens');
+    const one = compatDeep(cp('1982-11-03', '19:00', 'Paris|FR'), cp('1990-04-17'));
+    assert(one.ax.asc === null && one.n === 8, 'une seule heure : ascendant non lu, 8/9');
+    assertEq(compatDeep(cp('1984-12-25'), cp('1996-06-15')).ax.chinese.tone, 'complement', 'Rat × Rat : même animal');
+    assertEq(compatDeep(cp('1988-05-05'), cp('2000-07-01')).ax.chinese.tone, 'attention', 'Dragon × Dragon : punition de soi');
+    assert(chineseYearInfo(parseISODate('1990-01-26')).animal === 'snake' && chineseYearInfo(parseISODate('1990-01-27')).animal === 'horse', 'Nouvel An chinois');
+    const old = compatDeep(cp('1899-06-15'), cp('1982-11-03'));
+    assert(old.ax.chinese === null && old.n === 5, 'hors 1900-2100 : zodiaque chinois non lu');
+    const html = compatDeepHtml({ ax: {}, counted: [], harmony: 0, complement: 0, attention: 2, n: 2, opening: 'mostlyToBuild', strength: null, toBuild: 'moon', advice: [] }, 'A', 'B', '', false);
+    const x = compatTexts('fr');
+    assert(html.includes(escapeHtml(x.preview.noResource)) && html.includes(escapeHtml(x.labels.toBuild)), 'repli sans point fort');
+    // Symétrie : échanger les deux personnes ne change rien (tirage fixe, reproductible)
+    let seed = 20261031;
+    const rnd = () => (seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648;
+    const day = () => { const d = new Date(Date.UTC(1950, 0, 1) + Math.floor(rnd() * 55 * 365.25) * 864e5); return d.toISOString().slice(0, 10); };
+    for (let i = 0; i < 300; i++) {
+      const a = cp(day()), b = cp(day());
+      assertEq(summary(compatDeep(b, a)), summary(compatDeep(a, b)), `symétrie, paire ${i}`);
+    }
+  });
+
+  test('Compatibilité approfondie : textes (français ; 14 langues avant publication)', () => {
+    const fr = COMPAT_I18N.fr, forbidden = ['incompatible', 'âmes sœurs', 'destin', 'fatal', 'condamné', 'vous allez', 'couple'];
+    const all = []; const walk = (o, p) => { for (const [k, v] of Object.entries(o)) typeof v === 'string' ? all.push([p + k, v]) : walk(v, p + k + '.'); };
+    walk(fr, '');
+    assertEq(all.length, 128, 'nombre de textes français (124 + 3 noms chinois + code langue)');
+    for (const [k, v] of all) {
+      assert(!forbidden.some(f => v.toLowerCase().includes(f)), `${k} : mot interdit`);
+      assert(!/[{}’]/.test(v), `${k} : accolade ou apostrophe courbe`);
+    }
+    for (const key of COMPAT_AXES.filter(k => k !== 'lifePath' && k !== 'chinese')) for (let d = 0; d < 7; d++) assert(fr.readings[key]['d' + d], `${key}.d${d}`);
+    assertEq(Object.keys(COMPAT_I18N).length, 14, 'langues traduites');
+  });
+
+  test('Compatibilité approfondie : affichage, repli, bilan', () => {
+    const keep = [pairState, currentDate, currentTime, currentBirthPlace, currentName];
+    const host = document.createElement('div');
+    host.innerHTML = '<div id="pairBody"></div>';
+    document.body.appendChild(host);
+    try {
+      currentDate = '1982-11-03'; currentTime = '19:00'; currentBirthPlace = 'Paris|FR'; currentName = '';
+      pairState = { name: '', date: '1990-04-17', time: '08:30', place: 'Lyon|FR' };
+      renderCompat();
+      const el = document.getElementById('pairBody'), L = compatTexts(currentLang).labels;
+      const tally = el.querySelector('.compat-tally').textContent.replace(/\s+/g, ' ');
+      assert(tally.includes('3') && tally.includes('9/9') && tally.includes(L.analysed), 'bilan 3 · 3 · 3, 9/9');
+      assert(el.querySelector('.compat-full').hidden, 'analyse complète repliée au départ');
+      el.querySelector('.compat-toggle').click();
+      assert(!el.querySelector('.compat-full').hidden && el.querySelectorAll('.compat-axis').length === 9, 'analyse dépliée, 9 axes');
+      assert(el.querySelectorAll('.compat-advice li').length === 3 && el.querySelector('.compat-further'), 'trois conseils, synastrie repliée');
+      renderCompat();
+      assert(!el.querySelector('.compat-full').hidden, 'dépli gardé tant que la paire ne change pas');
+      pairState = { ...pairState, date: '1988-05-05', time: '', place: '' };
+      renderCompat();
+      assert(el.querySelector('.compat-full').hidden, 'nouvelle paire : repliée');
+    } finally {
+      [pairState, currentDate, currentTime, currentBirthPlace, currentName] = keep;
+      host.remove();
     }
   });
 

@@ -1,0 +1,186 @@
+{
+  "lang": "en",
+  "labels": {
+    "axes": {
+      "moon": "Emotions",
+      "venus": "Affection",
+      "attraction": "Attraction",
+      "mercury": "Communication",
+      "sun": "Temperaments",
+      "mars": "Drive and disagreements",
+      "asc": "First impression",
+      "lifePath": "Life paths",
+      "chinese": "Chinese zodiac"
+    },
+    "strength": "Strength",
+    "toBuild": "To work on",
+    "harmonies": "Harmonies",
+    "complements": "Complementarities",
+    "attentions": "Areas to work on",
+    "analysed": "Areas analysed",
+    "advice": "Advice from the stars",
+    "more": "Read the full analysis",
+    "less": "Collapse the analysis",
+    "further": "Going further",
+    "signUncertain": "Sign uncertain without a birth time",
+    "readingUncertain": "Reading uncertain without a birth time",
+    "complete": "Enter both people's birth times and places to read this area",
+    "bothWays": "In both directions",
+    "mention": "A symbolic reading inspired by astrological and numerological traditions: it sheds light on a relationship without predicting its future."
+  },
+  "tones": {
+    "harmony": "Harmony",
+    "complement": "Complementarity",
+    "attention": "Area to work on"
+  },
+  "relations": {
+    "d0": "Same sign",
+    "d1": "Neighbouring signs",
+    "d2": "Sextile",
+    "d3": "Square",
+    "d4": "Trine",
+    "d5": "Quincunx",
+    "d6": "Opposition"
+  },
+  "families": {
+    "mind": "Reflection",
+    "matter": "Practicality",
+    "creation": "Creativity"
+  },
+  "readings": {
+    "moon": {
+      "d0": "You may recognise a familiar way of experiencing emotions in the other person. This closeness makes comfort and supportive gestures easier. When the same worries arise for both of you, taking a little distance can help prevent you from amplifying them together.",
+      "d1": "Your needs for comfort may follow different rhythms. One person may want to talk while the other would rather find some calm first. This difference calls for care, but becomes easier to manage when each of you can explain what helps you feel secure.",
+      "d2": "Your sensitivities may respond gently to one another without requiring identical reactions. Each of you can often find an accessible way to reassure the other person. This emotional understanding deepens when you also express your less obvious needs, rather than expecting them to be guessed.",
+      "d3": "Your emotions may pull in opposite directions at the same moment: a need for closeness may meet a wish for space. These frictions invite you to understand your respective responses better. Listening without rushing can turn this difference into greater mutual understanding.",
+      "d4": "Your emotions may flow between you with a natural ease. Gestures that soothe one of you may also speak to the other, with support developing without much explanation. This ease remains valuable when each of you feels free to express a different emotion.",
+      "d5": "You may sense a difference that is hard to put into words in the way you seek comfort. What soothes one person may not reach the other in quite the same way. Describing your needs through concrete examples helps you create a shared emotional language.",
+      "d6": "Your ways of experiencing emotions may complement each other: one perspective brings to light what the other notices less readily. This difference can be both appealing and puzzling. Balance grows when each of you welcomes the other's sensitivity without expecting the same reaction."
+    },
+    "venus": {
+      "d0": "You often share similar ways of showing affection. A quiet gesture, a chosen moment or a shared pleasure may mean the same thing to you both. This familiarity brings you closer, provided you remain curious about the gestures each of you personally appreciates.",
+      "d1": "The way you show affection may not quite match the other person's. Thoughtful gestures offered in good faith may therefore go unnoticed. Explaining what genuinely touches each of you can turn this difference in expression into more considerate acts of care.",
+      "d2": "Your expressions of affection may complement each other easily. Your tastes overlap enough to enjoy pleasant moments while leaving room for surprises. This ease encourages tenderness, especially when each of you keeps choosing gestures suited to the other person's preferences.",
+      "d3": "Your wishes and ways of showing affection may clash, even when intentions are generous. This contrast encourages you to step beyond familiar habits. By explaining what feels welcome or uncomfortable, you learn to care for each other without imposing your own style.",
+      "d4": "You seem able to recognise quite naturally what pleases the other person. Affectionate gestures and shared pleasures find their place with little effort. This harmony grows richer when each of you maintains personal tastes without making similarity a requirement.",
+      "d5": "Signs of affection may be difficult for you to interpret. A gesture that matters to one person may seem unremarkable to the other. This subtle mismatch invites you to discover each other's specific preferences and create gestures that mean something to you both.",
+      "d6": "Your ways of expressing affection may bring together two contrasting styles, each adding something valuable. What surprises you at first may become an opportunity for discovery. Finding balance means recognising the care you receive, even when it takes an unexpected form."
+    },
+    "attraction": {
+      "d0": "An immediate sense of familiarity may encourage a wish to grow closer. The spark deepens when you also leave room for surprise beyond your similarities.",
+      "d1": "A wish to grow closer can emerge despite different rhythms. The attraction becomes easier to understand when each of you respects the other's signs of interest and expressed boundaries.",
+      "d2": "A gentle attraction may develop between you, fuelled by curiosity and the pleasure of spending time together. It benefits from staying spontaneous and free from pressure.",
+      "d3": "The pull between you may be intense, even unsettling: the challenge intrigues as much as it unsettles. Attraction stays enjoyable when you welcome differences without trying to gain the upper hand.",
+      "d4": "Attraction may feel effortless, as though each wish to grow closer finds a natural response. Curiosity and freely shared gestures of attention help it flourish too.",
+      "d5": "The attraction may emerge in unexpected ways, through signals that are difficult to read. It becomes easier to navigate when expectations are expressed clearly.",
+      "d6": "Contrasting temperaments can spark strong mutual curiosity. This attraction finds balance when each of you feels free to move closer or keep some space."
+    },
+    "mercury": {
+      "d0": "Your ways of speaking and thinking may be similar, making conversations quick and familiar. You often understand the same unspoken meanings. When making decisions together, taking time to check your agreement helps you avoid mistaking immediate understanding for genuinely shared views.",
+      "d1": "Your conversations may differ in pace or in the way an idea is presented. One person quickly explores the details while the other looks for a conclusion first. Clarifying the subject and letting each other finish speaking makes decisions more peaceful.",
+      "d2": "Your ways of communicating may support each other with ease. One idea prompts a response, then another possibility, without either person having to fight to be heard. This flexibility helps you decide together, especially when you check what each of you actually understood.",
+      "d3": "Discussions may become lively when your reasoning follows different paths. This friction can bring out ideas neither of you would have found alone. Restating the other person's position before replying helps keep the exchange constructive, even when you disagree.",
+      "d4": "You may share a natural ease in telling stories, listening and connecting ideas. Conversation can then feel continuous, even around complex subjects. This understanding benefits from making room for less obvious opinions rather than rushing towards agreement.",
+      "d5": "A word, a silence or a way of making decisions may not mean the same thing to you both. Misunderstandings are possible without any wish to hurt. Asking for a specific example and separating facts from interpretations helps you understand each other better.",
+      "d6": "Your ways of thinking may respond to each other through contrast: each person notices what the other overlooks. This complementarity enriches shared choices but asks you not to turn every conversation into a debate. Decisions become stronger when both perspectives are heard."
+    },
+    "sun": {
+      "d0": "You may share a similar drive and way of finding your place in the world. This resemblance creates a spontaneous sense of recognition. It also calls for care so that each of you can express your personality without constantly measuring yourselves against one another.",
+      "d1": "Your temperaments may be guided by different priorities. What seems essential to one person may matter less to the other. Your relationship becomes more flexible when you acknowledge the value of these priorities and find room for them to coexist.",
+      "d2": "Your ways of being may encourage each other without becoming identical. Each person brings an energy the other can receive fairly easily, which supports shared projects. This understanding stays alive when you continue to make room for individual ambitions.",
+      "d3": "Your ways of asserting your identities may compete. This contrast can raise useful questions about recognition and independence. By giving each person a visible place, you can turn rivalry into motivation rather than a struggle for influence.",
+      "d4": "Your temperaments may come together naturally through shared energy and values. This harmony fosters a sense of trust and common purpose. It becomes especially valuable when each of you retains the freedom to explore wishes the other does not share.",
+      "d5": "Your ways of moving through the world may seem difficult to reconcile at first. One person's way of expressing themselves can puzzle the other. By explaining what truly matters to you, you can build mutual recognition that relies less on being alike.",
+      "d6": "Your temperaments may offer two very different responses to the same situations. This opposition brings a wealth of perspectives, and sometimes tension about each person's place. Balance takes shape when neither person has to step aside for the other to be themselves."
+    },
+    "mars": {
+      "d0": "You may share similar rhythms of action and respond in much the same way when a decision is needed. This coordination makes joint initiatives easier. During disagreements, however, the same reflexes may reinforce one another; sharing out responsibilities helps you regain momentum.",
+      "d1": "Your ways of acting may fall out of step: one person starts something while the other prefers to prepare first. This difference creates practical tensions, but becomes useful if you agree on a realistic pace and a simple way of settling disagreements.",
+      "d2": "Your energies may work well together in action, helping you turn ideas into deeds. Each of you can find a place in a shared effort quite easily. When a disagreement arises, naming your common goal helps preserve this cooperative drive.",
+      "d3": "Your instincts for action may work against each other: one person speeds up as the other resists, and disagreements quickly take up space. Yet this tension can reveal useful needs. Slowing down before deciding helps you negotiate a practical step rather than defend a position.",
+      "d4": "Your ways of acting may follow a similar course without requiring lengthy negotiations. This ease supports projects and makes shared efforts feel more natural. When you disagree, keeping responsibilities clearly divided prevents expectations from remaining unspoken.",
+      "d5": "Your attempts to take the initiative may cross paths without quite meeting. One person waits for a signal the other does not think to give. Clear agreements about deadlines, responsibilities and how to discuss disagreements make working together easier.",
+      "d6": "Your energies in action may work like two opposing forces, each offering something the other sometimes lacks. Decisions can benefit from this, provided you avoid becoming trapped in a power struggle. Looking for a shared goal helps you move forward."
+    },
+    "asc": {
+      "d0": "Your first impressions may be shaped by a reassuring sense of familiarity. You recognise similar attitudes, ways of approaching others or everyday habits. This ease helps you enjoy simple moments together without overlooking what makes each person's style distinct.",
+      "d1": "When you first meet, your ways of presenting yourselves may seem out of step. One of you may appear more reserved, the other more spontaneous, without this defining either personality. Daily life becomes more comfortable when you explain and respect each other's habits.",
+      "d2": "Your ways of presenting yourselves and your habits may fit together easily. First impressions give way to a sense of ease that helps with outings, meetings and small projects. This understanding grows when each person keeps their own way of taking up space.",
+      "d3": "Your attitudes on first meeting may clash or prompt quick reactions. Behaviour that seems harmless to one person may appear abrupt to the other. This friction invites you to look beyond appearances; learning each other's habits makes interactions more comfortable.",
+      "d4": "Your ways of connecting with others may seem naturally in tune. Gestures, attitudes and some lifestyle choices become easy to understand. This harmony makes daily life simpler while leaving room to adjust your habits rather than treating them as fixed.",
+      "d5": "First impressions may be misleading because your social codes or habits seem to come from different worlds. Gestures that feel obvious to one person remain ambiguous to the other. Asking simple questions helps you find common ground without forcing uniformity.",
+      "d6": "Your lifestyles and ways of presenting yourselves may complement one another through contrast. Each person opens a door onto less familiar habits. This variety becomes a strength if you take time to agree on shared points of reference for social situations and daily life."
+    }
+  },
+  "chinese": {
+    "harmony": "This traditional alliance suggests a quiet understanding in which each person may feel understood without lengthy explanations. Your connection grows when you share your intentions and respect your individual ways of moving forward.",
+    "triad": "Belonging to the same triad suggests similar values or impulses. This harmony may make shared projects easier, especially when each person has room to contribute their own perspective.",
+    "same": "Sharing the same animal may create an immediate sense of understanding. Each person nevertheless brings their own experience and sensitivity, enriching this closeness and offering new sides of the other to discover.",
+    "neutral": "Tradition does not describe any particular link between these two animals. This neutrality leaves an open space: your habits, gestures of care and decisions gradually give the relationship its own character.",
+    "clash": "This traditional clash suggests priorities that may come into conflict. Above all, it invites you to recognise differences in pace and look for practical agreements without turning contrasts into a verdict.",
+    "harm": "This relationship traditionally called harm points to possible misunderstandings rather than negative intentions. Checking what has been understood and expressing expectations clearly helps preserve trust.",
+    "punishment": "This traditional pattern highlights mutual expectations that can sometimes be demanding. It invites you to distinguish a useful request from excessive pressure, then agree on reasonable commitments for each person.",
+    "selfPunish": "Tradition calls this self-punishment: sharing this animal may intensify certain similar reflexes. Taking a step back together helps prevent these habits from reinforcing one another."
+  },
+  "lifePath": {
+    "same": "Sharing the same life path may bring your ways of considering priorities and finding meaning in experiences closer together. You have a common language for discussing your choices. This harmony becomes more fruitful when you accept that your personal journeys can differ.",
+    "family": "Your life paths belong to the same symbolic family while retaining their own nuances. This closeness may make motivations easier to understand and encourage mutual support. Each of you can draw inspiration from the other's qualities without trying to follow exactly the same route.",
+    "different": "Your life paths belong to different symbolic families. This can open up several ways of approaching a project, decision or difficulty. Complementarity develops when you recognise what each approach contributes rather than looking for a single method for you both."
+  },
+  "advice": {
+    "moon": {
+      "attention": "Take a moment to say what helps you feel calm, then ask the other person what they need before offering a solution.",
+      "complement": "Welcome expressed emotions without trying to mirror them. An open question and a gesture chosen together can offer support suited to each person."
+    },
+    "venus": {
+      "attention": "Share specific examples of gestures you appreciate, then each try a small act suited to the other person's tastes without expecting an immediate return.",
+      "complement": "Take turns choosing how to spend an enjoyable moment. Suggest something you like, then let the other person choose in their own way."
+    },
+    "attraction": {
+      "attention": "Express your wishes gently and check that both of you welcome growing closer. Leave room for each person to respond freely.",
+      "complement": "Give each person time to show interest in their own way. A clear invitation, without pressure, helps you respect each other's wishes."
+    },
+    "mercury": {
+      "attention": "When deciding, write down the options together, then check that each person agrees with the conclusion before taking action.",
+      "complement": "Let each person explain their reasoning, then look for a practical point of agreement. Write down the shared decision to avoid different interpretations."
+    },
+    "sun": {
+      "attention": "Give each person space to discuss personal projects. Then choose a shared ambition that does not require either of you to give up your identity.",
+      "complement": "Acknowledge each person's individual strengths openly. In a shared project, divide roles according to preferences rather than unspoken expectations."
+    },
+    "mars": {
+      "attention": "When tension rises, take a short break and return to a specific goal. Decide who does what and when to review the situation together.",
+      "complement": "Set a shared goal, then divide tasks according to each person's strengths. Plan a quick check-in to adjust your pace without blame."
+    },
+    "asc": {
+      "attention": "Describe your habits without presenting them as rules. Try a simple compromise for outings or daily life, then adjust it together.",
+      "complement": "Introduce each other to your everyday habits and choose a few shared routines. Leave each person time to keep their own rhythm too."
+    },
+    "lifePath": {
+      "complement": "For an important choice, ask each person what matters most to them. Compare your answers and find a decision that respects both approaches."
+    },
+    "chinese": {
+      "attention": "Check your expectations before making a shared commitment. If you disagree, describe the facts, listen to each other's feelings, then choose a workable adjustment.",
+      "complement": "Choose an activity each of you can explore in your own way. Afterwards, share your impressions and decide what you would like to repeat."
+    },
+    "harmony": "Nurture your understanding through regular gestures of care, projects chosen together and open conversations. Leave room for each person's new interests too.",
+    "closing": "These suggestions offer opportunities to understand each other better, not a set of compulsory instructions. Your conversations and choices remain the best starting point."
+  },
+  "preview": {
+    "mostlyHarmony": "Several parts of your relationship seem naturally in tune. This ease can build trust and encourage projects you choose together.",
+    "mostlyComplement": "Your differences appear mainly as strengths to discover. The relationship can grow richer when each person recognises the other's unique contribution.",
+    "balanced": "Your reading combines spontaneous understanding with useful adjustments. It invites you to build on your strengths while making room for differences.",
+    "mostlyToBuild": "Several areas call for attention without defining what your relationship can become. Open conversations and small agreements can create new possibilities.",
+    "noResource": "No area emerges here as an obvious symbolic source of support. That closes no doors: your everyday gestures and choices can build the relationship."
+  },
+  "info": {
+    "compat": "This reading explores nine areas: Emotions, Affection, Attraction, Communication, Temperaments, Drive and disagreements, First impression, Chinese zodiac and Life paths. It distinguishes Harmony, Complementarity and Areas to work on, without assigning a score: a relationship cannot be reduced to a number. An uncertain sign means the birth time is missing, but the reading stays the same. An uncertain reading means the interpretation depends on the time, so that area is not counted. Without a birthplace, the app uses the device's time zone. The Chinese zodiac year changes at Lunar New Year; some traditions instead use a date around 4 February. None of this predicts the future.",
+    "compatRelations": "To compare two signs, ZODIAC uses their distance around the zodiac wheel: Same sign, Neighbouring signs, Sextile, Square, Trine, Quincunx or Opposition. Same sign, Sextile and Trine indicate Harmony; Neighbouring signs, Square and Quincunx point to Areas to work on; Opposition suggests Complementarity. Attraction is examined in both directions. When those directions differ, the area is classified as Complementarity. These areas compare signs; detailed synastry compares planetary degrees and may sometimes offer a different nuance.",
+    "compatLifePath": "The life path follows the calculation used in the symbolic portrait: day, month and year are reduced separately while master numbers are preserved. To compare paths, ZODIAC uses three families: reflection (1, 5, 7), practicality (2, 4, 8) and creativity (3, 6, 9). This is one convention among others in Pythagorean numerology. Master numbers 11, 22 and 33 are linked respectively to 2, 4 and 6 for this comparison."
+  },
+  "cnNames": {
+    "clash": "Clash (六冲)",
+    "same": "Same animal",
+    "selfPunish": "Same animal (自刑)"
+  }
+}

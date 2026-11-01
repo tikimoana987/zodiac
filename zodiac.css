@@ -614,6 +614,43 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .pair-line{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:.4rem; color:var(--text); font-size:.9rem; margin-bottom:.5rem; font-variant-emoji:text; }
 .pair-axis p{ color:var(--muted); font-size:.88rem; line-height:1.55; }
 .pair-axis .modal-element{ margin-top:.7rem; }
+/* Compatibilité approfondie (zodiac-compat.js) : bilan, aperçu, axes, pastilles de tonalité */
+.compat-tally{ display:flex; flex-wrap:wrap; justify-content:center; gap:.3rem .6rem; color:var(--muted); font-size:.9rem; margin:0 0 1rem; text-align:center; }
+.compat-tally strong{ color:var(--text); }
+.compat-preview{ background:var(--ov-03); border:1px solid var(--ov-06); border-radius:16px; padding:1rem 1.2rem; display:grid; gap:.55rem; }
+.compat-preview p{ color:var(--text); line-height:1.55; margin:0; }
+.compat-key{ display:flex; flex-wrap:wrap; align-items:center; gap:.35rem; }
+.compat-key strong{ color:var(--gold); }
+.compat-toggle-row{ text-align:center; margin:1rem 0 .4rem; }
+.compat-full[hidden]{ display:none; }
+.compat-method{ color:var(--muted); font-size:.8rem; text-align:center; margin:.6rem 0 1rem; line-height:1.6; }
+.compat-axes{ display:grid; gap:1rem; }
+@media (min-width:960px){ .compat-axes{ grid-template-columns:repeat(3, minmax(0,1fr)); } }
+.compat-axis{ background:var(--ov-03); border:1px solid var(--ov-06); border-radius:16px; padding:1rem 1.1rem; }
+.compat-axis-head{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.4rem; margin-bottom:.55rem; }
+.compat-axis h4{ font-size:.75rem; text-transform:uppercase; letter-spacing:.12em; color:var(--gold); margin:0; }
+.compat-line{ color:var(--text); font-size:.88rem; line-height:1.6; margin-bottom:.5rem; font-variant-emoji:text; }
+.compat-line .sub, .compat-dir .sub{ color:var(--muted); font-size:.78rem; }
+.compat-dir{ color:var(--text) !important; font-size:.85rem !important; margin-top:.4rem; font-variant-emoji:text; }
+.compat-axis p{ color:var(--muted); font-size:.88rem; line-height:1.55; margin:0 0 .45rem; }
+.compat-axis p strong{ color:var(--text); }
+.compat-axis .modal-element{ margin-top:.3rem; }
+.compat-note{ font-style:italic; font-size:.8rem !important; }
+.compat-unsure{ border-style:dashed; }
+/* Pastilles : libellé toujours écrit, couleur en plus (jamais seule) */
+.tone-pill{ display:inline-flex; align-items:center; gap:.35rem; border:1px solid var(--ov-15); border-radius:999px; padding:.12rem .6rem; font-size:.72rem; font-weight:600; color:var(--text); white-space:nowrap; }
+.tone-pill::before{ content:''; width:.55rem; height:.55rem; border-radius:50%; flex:none; }
+.tone-harmony::before{ background:var(--green); }
+.tone-complement::before{ background:#8f7cf0; }
+.tone-attention::before{ background:#f0a43a; }
+.compat-advice{ margin-top:1.2rem; background:var(--ov-03); border:1px solid var(--ov-06); border-radius:16px; padding:1rem 1.2rem; }
+.compat-advice h4{ font-size:.75rem; text-transform:uppercase; letter-spacing:.12em; color:var(--gold); margin:0 0 .6rem; }
+.compat-advice ul{ list-style:none; display:grid; gap:.55rem; margin:0 0 .7rem; padding:0; }
+.compat-advice li, .compat-advice p{ color:var(--text); font-size:.9rem; line-height:1.55; margin:0; }
+.compat-advice li strong{ color:var(--gold); }
+.compat-further{ margin-top:1.2rem; }
+.compat-further > summary{ cursor:pointer; color:var(--gold); font-size:.8rem; text-transform:uppercase; letter-spacing:.12em; padding:.4rem 0; }
+.compat-further > summary:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
 
 /* Pied de l'image exportée */
 .export-foot{ margin-top:1.2rem; text-align:end; color:var(--muted); font-size:.8rem; letter-spacing:.08em; }

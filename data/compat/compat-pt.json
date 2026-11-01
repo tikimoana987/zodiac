@@ -1,0 +1,186 @@
+{
+  "lang": "pt",
+  "labels": {
+    "axes": {
+      "moon": "Emoções",
+      "venus": "Afeto",
+      "attraction": "Atração",
+      "mercury": "Comunicação",
+      "sun": "Temperamentos",
+      "mars": "Ação e divergências",
+      "asc": "Primeira impressão",
+      "lifePath": "Caminhos de vida",
+      "chinese": "Zodíaco chinês"
+    },
+    "strength": "Ponto forte",
+    "toBuild": "A desenvolver",
+    "harmonies": "Harmonias",
+    "complements": "Complementaridades",
+    "attentions": "Pontos de atenção",
+    "analysed": "Eixos analisados",
+    "advice": "Conselhos das estrelas",
+    "more": "Ler a análise completa",
+    "less": "Recolher a análise",
+    "further": "Para ir além",
+    "signUncertain": "Signo incerto sem a hora de nascimento",
+    "readingUncertain": "Leitura incerta sem a hora de nascimento",
+    "complete": "Informe a hora e o local de nascimento das duas pessoas para consultar este eixo",
+    "bothWays": "Nos dois sentidos",
+    "mention": "Leitura simbólica, inspirada nas tradições astrológicas e numerológicas: ajuda a compreender uma relação sem prever seu futuro."
+  },
+  "tones": {
+    "harmony": "Harmonia",
+    "complement": "Complementaridade",
+    "attention": "Ponto de atenção"
+  },
+  "relations": {
+    "d0": "Mesmo signo",
+    "d1": "Signos vizinhos",
+    "d2": "Sextil",
+    "d3": "Quadratura",
+    "d4": "Trígono",
+    "d5": "Quincúncio",
+    "d6": "Oposição"
+  },
+  "families": {
+    "mind": "Reflexão",
+    "matter": "Concreto",
+    "creation": "Criação"
+  },
+  "readings": {
+    "moon": {
+      "d0": "Você pode reconhecer na outra pessoa uma maneira familiar de vivenciar as emoções. Essa proximidade facilita o acolhimento e os gestos de apoio. Quando as mesmas preocupações surgem para vocês, tomar um pouco de distância ajuda a não reforçá-las mutuamente.",
+      "d1": "Suas necessidades de acolhimento podem seguir ritmos diferentes. Às vezes, uma pessoa prefere conversar enquanto a outra busca recuperar a calma. Essa diferença exige atenção, mas fica mais fácil de lidar quando cada pessoa expressa o que lhe traz segurança emocional.",
+      "d2": "Suas sensibilidades podem se corresponder com delicadeza, sem exigir reações iguais. Muitas vezes, cada pessoa encontra uma maneira acessível de tranquilizar a outra. Essa sintonia emocional se aprofunda quando vocês também expressam necessidades menos evidentes, sem esperar que sejam adivinhadas.",
+      "d3": "As emoções podem tomar direções opostas no mesmo instante: uma necessidade de proximidade pode encontrar um desejo de espaço. Esses atritos convidam vocês a compreender melhor as próprias reações. Ouvir sem pressa ajuda a transformar esse desencontro em conhecimento mútuo.",
+      "d4": "Suas emoções parecem fluir com naturalidade. Os gestos que acalmam uma pessoa podem tocar espontaneamente a outra, e o apoio surge sem muitas explicações. Essa fluidez continua valiosa quando cada pessoa mantém a liberdade de expressar emoções diferentes.",
+      "d5": "Você pode perceber uma diferença difícil de definir na maneira como buscam conforto. O que tranquiliza uma pessoa não necessariamente ajuda a outra. Ao descrever suas necessidades com exemplos concretos, vocês criam uma linguagem emocional própria.",
+      "d6": "Suas maneiras de vivenciar as emoções podem se complementar: uma pessoa ilumina aspectos que a outra nem sempre percebe. Essa diferença atrai e também desperta perguntas. O equilíbrio se constrói quando cada pessoa acolhe a sensibilidade da outra sem exigir uma reação idêntica à sua."
+    },
+    "venus": {
+      "d0": "Vocês costumam ter maneiras parecidas de demonstrar afeto. Um gesto discreto, um momento escolhido ou um prazer compartilhado podem ter o mesmo valor para vocês. Essa familiaridade aproxima, desde que permaneça a curiosidade pelas atenções que cada pessoa aprecia particularmente.",
+      "d1": "Sua maneira de demonstrar afeto pode não coincidir com a da outra pessoa. Gestos oferecidos com boa intenção podem passar despercebidos. Dizer o que realmente toca cada pessoa permite transformar essa diferença de linguagem em demonstrações mais adequadas.",
+      "d2": "Suas demonstrações de afeto podem se complementar com simplicidade. Os gostos se aproximam o suficiente para criar momentos agradáveis, sem deixar de abrir espaço para surpresas. Essa facilidade favorece a ternura, sobretudo quando cada pessoa continua escolhendo atenções que fazem sentido para a outra.",
+      "d3": "Seus desejos e suas formas de demonstrar afeto podem entrar em choque, mesmo quando a intenção é generosa. Esse contraste incentiva vocês a sair da rotina. Ao esclarecer o que agrada ou incomoda, vocês aprendem a cuidar sem impor o próprio estilo.",
+      "d4": "Vocês parecem reconhecer com naturalidade o que agrada à outra pessoa. Gestos de carinho e prazeres compartilhados encontram espaço com facilidade. Essa harmonia se enriquece quando cada pessoa mantém gostos próprios, sem transformar a semelhança em obrigação.",
+      "d5": "As demonstrações de afeto podem ser difíceis de interpretar entre vocês. Um gesto importante para uma pessoa às vezes parece banal para a outra. Essa pequena diferença convida a descobrir preferências concretas e a criar atenções que façam sentido para vocês.",
+      "d6": "Sua maneira de expressar afeto pode reunir dois estilos contrastantes, cada um trazendo uma nuance valiosa. O que surpreende no início pode se tornar fonte de descoberta. Encontrar equilíbrio pede reconhecer os gestos recebidos, mesmo quando assumem uma forma inesperada."
+    },
+    "attraction": {
+      "d0": "Uma familiaridade imediata pode alimentar a vontade de se aproximar. O magnetismo cresce quando vocês também deixam espaço para a surpresa, além das semelhanças.",
+      "d1": "A vontade de se aproximar pode surgir apesar de ritmos diferentes. O magnetismo fica mais claro quando cada pessoa respeita os sinais de interesse e os limites expressos pela outra.",
+      "d2": "Uma atração leve pode circular entre vocês, movida pela curiosidade e pelo prazer da companhia. Ela ganha ao manter a espontaneidade, sem pressão.",
+      "d3": "O magnetismo pode ser intenso e às vezes desconcertante: o desafio intriga tanto quanto provoca. A atração continua agradável quando vocês acolhem as diferenças sem tentar dominar a situação.",
+      "d4": "A atração pode parecer fluida, como se os impulsos de aproximação encontrassem eco naturalmente. Ela também se alimenta de curiosidade e de atenções compartilhadas por livre escolha.",
+      "d5": "O magnetismo pode surgir de maneira desencontrada, com sinais difíceis de interpretar. Fica mais fácil vivê-lo quando as expectativas são expressas com clareza.",
+      "d6": "Temperamentos contrastantes podem despertar uma forte curiosidade recíproca. Essa atração encontra equilíbrio quando cada pessoa tem liberdade para se aproximar ou preservar seu espaço."
+    },
+    "mercury": {
+      "d0": "Suas maneiras de falar e pensar podem ser parecidas, tornando as conversas rápidas e familiares. Vocês costumam captar as mesmas entrelinhas. Para tomar decisões em conjunto, reservar tempo para confirmar acordos evita confundir entendimento imediato com opiniões realmente compartilhadas.",
+      "d1": "Suas conversas podem seguir ritmos diferentes ou maneiras distintas de apresentar uma ideia. Uma pessoa entra rapidamente nos detalhes, enquanto a outra busca primeiro uma conclusão. Definir o assunto e permitir que cada pessoa termine seu raciocínio torna as decisões mais tranquilas.",
+      "d2": "Suas maneiras de conversar podem se apoiar com facilidade. Uma ideia leva a uma resposta e depois a outra possibilidade, sem que ninguém precise defender longamente seu espaço. Essa flexibilidade ajuda a decidir em conjunto, sobretudo quando vocês confirmam o que foi compreendido.",
+      "d3": "As conversas podem ficar intensas quando seus raciocínios seguem caminhos diferentes. Esse atrito às vezes faz surgir ideias que nenhuma pessoa encontraria por conta própria. Reformular o ponto de vista da outra antes de responder ajuda a manter uma troca construtiva, mesmo diante de divergências.",
+      "d4": "Vocês podem compartilhar facilidade para contar histórias, ouvir e conectar ideias. A conversa transmite uma sensação de continuidade, mesmo em assuntos complexos. Essa sintonia ganha força quando há espaço para opiniões menos evidentes, em vez de buscar um acordo depressa demais.",
+      "d5": "Uma palavra, um silêncio ou uma maneira de decidir pode não ter o mesmo significado para vocês. Mal-entendidos são possíveis mesmo sem intenção de magoar. Pedir um exemplo concreto e separar os fatos das interpretações ajuda a ampliar a compreensão mútua.",
+      "d6": "Suas maneiras de pensar podem se responder por contraste: cada pessoa percebe o que a outra deixa de lado. Essa complementaridade enriquece as escolhas comuns, mas pede que nem toda conversa vire debate. Uma decisão fica mais sólida quando as duas perspectivas são ouvidas."
+    },
+    "sun": {
+      "d0": "Vocês podem compartilhar vitalidade e uma maneira parecida de ocupar seu lugar no mundo. Essa semelhança cria um reconhecimento espontâneo. Também convida a garantir que cada pessoa possa expressar sua personalidade sem precisar se comparar constantemente com a outra.",
+      "d1": "Seus temperamentos podem seguir prioridades diferentes. O que parece essencial para uma pessoa pode ter menos importância para a outra. A relação ganha flexibilidade quando cada pessoa reconhece o valor dessas prioridades e busca espaços onde elas possam coexistir.",
+      "d2": "Suas maneiras de ser podem se incentivar mutuamente sem se confundir. Cada pessoa traz uma energia que a outra costuma acolher com facilidade, favorecendo projetos comuns. Essa sintonia se mantém viva quando vocês também reservam espaço para ambições individuais.",
+      "d3": "Suas maneiras de afirmar a própria identidade podem entrar em competição. Esse contraste às vezes desperta perguntas úteis sobre reconhecimento e autonomia. Ao garantir um espaço visível para cada pessoa, vocês podem transformar a rivalidade em estímulo, em vez de disputa por influência.",
+      "d4": "Seus temperamentos podem se encontrar naturalmente na energia e nos valores. Essa harmonia favorece a confiança e a sensação de avançar na mesma direção. Ela se fortalece quando cada pessoa preserva o direito de explorar desejos que não são compartilhados.",
+      "d5": "Suas maneiras de estar no mundo podem parecer difíceis de conciliar à primeira vista. Uma forma de expressão pode surpreender a outra pessoa. Ao explicar o que realmente importa para cada uma, vocês podem construir um reconhecimento mútuo menos dependente das semelhanças.",
+      "d6": "Seus temperamentos podem oferecer respostas muito diferentes às mesmas situações. Essa oposição amplia os pontos de vista e às vezes cria tensão sobre o espaço de cada pessoa. O equilíbrio aparece quando ninguém precisa se apagar para que a outra pessoa se expresse."
+    },
+    "mars": {
+      "d0": "Vocês podem ter ritmos de ação semelhantes e reagir de modo parecido quando uma decisão se impõe. Essa coordenação facilita iniciativas comuns. Em uma divergência, porém, os mesmos reflexos podem se intensificar; dividir as responsabilidades ajuda a recuperar o movimento.",
+      "d1": "Suas maneiras de agir podem perder a sintonia: uma pessoa toma a iniciativa enquanto a outra prefere preparar o terreno. Essa diferença gera tensões práticas, mas pode ser útil quando vocês combinam um ritmo realista e uma forma simples de resolver divergências.",
+      "d2": "Suas energias podem se alinhar na ação, com boa capacidade de transformar ideias em gestos concretos. Cada pessoa encontra seu espaço em um esforço compartilhado. Quando surge uma divergência, lembrar o objetivo comum ajuda a preservar essa disposição para cooperar.",
+      "d3": "Seus reflexos de ação podem entrar em conflito: uma pessoa acelera quando a outra resiste, e a divergência cresce depressa. Essa tensão, porém, pode revelar necessidades importantes. Diminuir o ritmo antes de decidir permite negociar uma ação concreta, em vez de defender posições.",
+      "d4": "Suas maneiras de agir podem seguir um movimento parecido, sem exigir longas negociações. Essa fluidez sustenta projetos e torna os esforços compartilhados mais naturais. Em uma divergência, manter clara a divisão de responsabilidades evita que as expectativas fiquem implícitas.",
+      "d5": "Suas iniciativas podem se cruzar sem realmente se encontrar. Uma pessoa espera um sinal que a outra nem pensa em oferecer. Acordos concretos sobre prazos, responsabilidades e maneiras de conversar sobre divergências facilitam a cooperação.",
+      "d6": "Suas energias de ação podem funcionar como forças opostas, cada uma trazendo algo que às vezes falta à outra. As decisões podem ganhar com isso, desde que vocês não fiquem presos a uma disputa de poder. Buscar um objetivo comum ajuda a avançar."
+    },
+    "asc": {
+      "d0": "Suas primeiras impressões podem ser marcadas por uma familiaridade acolhedora. Vocês reconhecem atitudes, maneiras de se aproximar das pessoas ou hábitos semelhantes. Essa facilidade ajuda a compartilhar momentos simples, sem deixar de descobrir o que distingue o estilo de cada pessoa.",
+      "d1": "No primeiro contato, suas maneiras de se apresentar podem parecer desencontradas. Uma das pessoas pode demonstrar mais reserva, enquanto a outra age com mais espontaneidade, sem que isso resuma suas personalidades. O convívio fica mais agradável quando cada pessoa explica e respeita os hábitos da outra.",
+      "d2": "Seus estilos de apresentação e seus hábitos podem se encontrar com simplicidade. A primeira impressão dá lugar a uma naturalidade que facilita passeios, encontros e pequenos projetos. Essa sintonia se enriquece quando cada pessoa mantém sua maneira particular de ocupar o espaço.",
+      "d3": "Suas atitudes no primeiro contato podem entrar em choque ou provocar reações rápidas. Um comportamento banal para uma pessoa pode soar brusco para a outra. Esse atrito convida vocês a ir além das aparências; conhecer melhor os hábitos mútuos torna as interações mais confortáveis.",
+      "d4": "Suas maneiras de se relacionar podem parecer naturalmente alinhadas. Gestos, atitudes e certas escolhas de vida são compreendidos com relativa rapidez. Essa harmonia facilita o cotidiano, sem impedir que vocês adaptem os hábitos em vez de tratá-los como definitivos.",
+      "d5": "Suas primeiras impressões podem enganar, pois os códigos sociais ou hábitos de vocês parecem vir de mundos diferentes. Gestos óbvios para uma pessoa podem parecer ambíguos para a outra. Fazer perguntas simples ajuda a encontrar um terreno comum sem forçar a uniformidade.",
+      "d6": "Seus estilos de vida e suas maneiras de se apresentar podem se complementar por contraste. Cada pessoa abre uma porta para hábitos menos familiares. Essa diversidade se torna um recurso quando vocês reservam tempo para definir referências compartilhadas para encontros e para o cotidiano."
+    }
+  },
+  "chinese": {
+    "harmony": "Essa aliança tradicional evoca uma sintonia discreta, na qual cada pessoa pode se sentir compreendida sem longas explicações. A cumplicidade cresce quando vocês compartilham suas intenções e respeitam suas maneiras próprias de avançar.",
+    "triad": "Pertencer à mesma tríade sugere valores ou impulsos semelhantes. Essa harmonia pode facilitar projetos compartilhados, sobretudo quando cada pessoa mantém espaço para acrescentar suas próprias nuances.",
+    "same": "Compartilhar o mesmo animal pode criar uma compreensão imediata. Cada pessoa traz, porém, suas experiências e sua sensibilidade, enriquecendo essa proximidade e permitindo descobrir novas facetas da outra.",
+    "neutral": "A tradição não descreve uma ligação particular entre esses dois animais. Essa neutralidade deixa um espaço aberto: seus hábitos, suas atenções e suas decisões dão, aos poucos, uma identidade própria à relação.",
+    "clash": "Esse choque tradicional evoca prioridades que podem entrar em conflito. Ele convida principalmente a reconhecer as diferenças de ritmo e buscar acordos concretos, sem transformar os contrastes em um veredito.",
+    "harm": "Essa relação tradicionalmente chamada de prejuízo se refere a possíveis mal-entendidos, não a uma intenção negativa. Confirmar o que foi compreendido e expressar claramente as expectativas ajuda a preservar a confiança.",
+    "punishment": "Essa figura tradicional destaca exigências mútuas que às vezes são elevadas. Ela convida a distinguir um pedido útil de uma pressão excessiva e, depois, negociar compromissos razoáveis para cada pessoa.",
+    "selfPunish": "A tradição chama isso de autopunição: compartilhar esse animal pode intensificar certos reflexos semelhantes. Tomar alguma distância em conjunto ajuda a evitar que esses hábitos se reforcem mutuamente."
+  },
+  "lifePath": {
+    "same": "Um mesmo caminho de vida pode aproximar suas maneiras de pensar nas prioridades e dar sentido às experiências. Vocês dispõem de uma linguagem comum para conversar sobre escolhas. Essa harmonia fica mais fértil quando vocês acolhem trajetórias pessoais diferentes.",
+    "family": "Seus caminhos de vida pertencem à mesma família simbólica, mas mantêm nuances próprias. Essa proximidade pode facilitar a compreensão das motivações e o apoio recíproco. Cada pessoa pode se inspirar nas qualidades da outra sem tentar seguir exatamente o mesmo caminho.",
+    "different": "Seus caminhos de vida pertencem a famílias simbólicas diferentes. Isso pode abrir várias maneiras de lidar com um projeto, uma decisão ou uma dificuldade. A complementaridade se constrói ao reconhecer a contribuição de cada abordagem, em vez de buscar um método único para vocês."
+  },
+  "advice": {
+    "moon": {
+      "attention": "Reserve um momento para dizer o que traz conforto de maneira concreta e pergunte à outra pessoa do que ela precisa antes de oferecer uma solução.",
+      "complement": "Acolha as emoções expressas sem tentar reproduzi-las. Uma pergunta aberta e um gesto escolhido em conjunto podem criar um apoio adequado às necessidades de cada pessoa."
+    },
+    "venus": {
+      "attention": "Troquem exemplos precisos de atenções que agradam e experimentem gestos simples de acordo com os gostos da outra pessoa, sem esperar uma retribuição imediata.",
+      "complement": "Alternem suas maneiras de compartilhar um momento agradável. Proponha uma atenção segundo seus gostos e deixe a outra pessoa escolher uma do seu próprio jeito."
+    },
+    "attraction": {
+      "attention": "Expressem seus desejos com delicadeza e confirmem que a aproximação é desejada nos dois sentidos. Deixem espaço para que cada pessoa responda livremente.",
+      "complement": "Deixem que cada pessoa demonstre interesse no próprio ritmo. Um convite claro, sem insistência, ajuda a respeitar os desejos de ambas as partes."
+    },
+    "mercury": {
+      "attention": "Para decidir, resumam as opções por escrito e confirmem que cada pessoa concorda com a conclusão antes de colocá-la em prática.",
+      "complement": "Deem a cada pessoa espaço para expor seu raciocínio e depois busquem um acordo concreto. Registrem a decisão conjunta para evitar interpretações diferentes."
+    },
+    "sun": {
+      "attention": "Reservem espaço para que cada pessoa fale de seus projetos pessoais. Depois, escolham uma ambição comum que não exija renunciar à própria identidade.",
+      "complement": "Reconheçam explicitamente as qualidades de cada pessoa. Em um projeto compartilhado, distribuam as funções de acordo com as vontades, não com expectativas implícitas."
+    },
+    "mars": {
+      "attention": "Diante de uma tensão, façam uma breve pausa e retomem um objetivo concreto. Decidam quem fará o quê e quando vão reavaliar a situação em conjunto.",
+      "complement": "Definam um objetivo comum e distribuam as tarefas conforme as qualidades de cada pessoa. Combinem uma conversa breve para ajustar o ritmo sem cobranças."
+    },
+    "asc": {
+      "attention": "Descrevam seus hábitos sem apresentá-los como regras. Experimentem um acordo simples para os passeios ou o cotidiano e depois ajustem esse combinado em conjunto.",
+      "complement": "Apresentem seus hábitos de vida e escolham algumas referências comuns. Deixem também espaço para que cada pessoa mantenha seu próprio ritmo."
+    },
+    "lifePath": {
+      "complement": "Para uma escolha importante, peçam que cada pessoa indique sua prioridade. Comparem as respostas e busquem uma decisão que respeite as duas abordagens."
+    },
+    "chinese": {
+      "attention": "Confirmem suas expectativas antes de assumir um compromisso compartilhado. Se surgir uma divergência, descrevam os fatos, escutem os sentimentos e escolham um ajuste viável.",
+      "complement": "Escolham uma atividade que cada pessoa possa descobrir à sua maneira. Depois, compartilhem suas impressões e decidam o que gostariam de repetir."
+    },
+    "harmony": "Cultivem sua sintonia com atenções regulares, projetos escolhidos em conjunto e conversas sinceras. Reservem também espaço para os novos desejos de cada pessoa.",
+    "closing": "Essas sugestões oferecem oportunidades de compreender melhor a relação, não um manual obrigatório. Suas conversas e suas escolhas continuam sendo o melhor ponto de partida."
+  },
+  "preview": {
+    "mostlyHarmony": "Várias dimensões da sua relação parecem encontrar uma sintonia natural. Essa facilidade pode fortalecer a confiança e incentivar projetos escolhidos em conjunto.",
+    "mostlyComplement": "Suas diferenças aparecem sobretudo como recursos a descobrir. A relação pode se enriquecer quando cada pessoa reconhece a contribuição singular da outra.",
+    "balanced": "Sua leitura combina sintonia espontânea e ajustes úteis. Ela convida vocês a aproveitar os pontos fortes sem deixar de acolher as diferenças.",
+    "mostlyToBuild": "Vários eixos pedem atenção, sem definir o que sua relação pode se tornar. Conversas francas e pequenos acordos podem abrir novas possibilidades.",
+    "noResource": "Nenhum eixo aparece aqui como apoio simbólico evidente. Isso não fecha portas: suas atenções concretas e suas escolhas podem construir a relação."
+  },
+  "info": {
+    "compat": "Esta leitura explora nove eixos: emoções, afeto, atração, comunicação, temperamentos, ação e divergências, primeira impressão, zodíaco chinês e caminhos de vida. Ela distingue harmonia, complementaridade e ponto de atenção, sem atribuir nota: uma relação não se resume a uma pontuação. Um signo incerto significa que falta a hora de nascimento, mas a leitura permanece igual. Uma leitura incerta significa que a interpretação depende da hora: esse eixo não entra na contagem. Sem o local de nascimento, o aplicativo usa o fuso horário do dispositivo. O ano chinês muda no Ano-Novo Lunar; algumas tradições consideram uma data próxima de 4 de fevereiro. Nada aqui prevê o futuro.",
+    "compatRelations": "Para comparar dois signos, ZODIAC considera a distância entre eles na roda zodiacal: mesmo signo, signos vizinhos, sextil, quadratura, trígono, quincúncio ou oposição. O mesmo signo, o sextil e o trígono indicam harmonia; os signos vizinhos, a quadratura e o quincúncio apontam pontos de atenção; a oposição sugere complementaridade. A atração é examinada nos dois sentidos. Quando os sentidos diferem, o eixo é classificado como complementaridade. Esses eixos comparam signos; uma análise detalhada de sinastria compara os graus dos planetas e pode, às vezes, apresentar outra nuance.",
+    "compatLifePath": "O caminho de vida segue o cálculo do retrato simbólico: dia, mês e ano são reduzidos separadamente, preservando os números mestres. Para comparar trajetórias, ZODIAC usa três famílias: reflexão (1, 5, 7), concreto (2, 4, 8) e criação (3, 6, 9). Essa é uma convenção da numerologia pitagórica entre outras. Os números mestres 11, 22 e 33 correspondem respectivamente a 2, 4 e 6 nessa comparação."
+  },
+  "cnNames": {
+    "clash": "Choque (六冲)",
+    "same": "Mesmo animal",
+    "selfPunish": "Mesmo animal (自刑)"
+  }
+}

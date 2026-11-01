@@ -1,0 +1,186 @@
+{
+  "lang": "tr",
+  "labels": {
+    "axes": {
+      "moon": "Duygular",
+      "venus": "Şefkat",
+      "attraction": "Çekim",
+      "mercury": "İletişim",
+      "sun": "Mizaçlar",
+      "mars": "Hareket ve Anlaşmazlıklar",
+      "asc": "İlk İzlenim",
+      "lifePath": "Yaşam Yolları",
+      "chinese": "Çin Zodyağı"
+    },
+    "strength": "Güçlü yön",
+    "toBuild": "Geliştirilecek yön",
+    "harmonies": "Uyumlar",
+    "complements": "Tamamlayıcılıklar",
+    "attentions": "Dikkat Gerektiren Noktalar",
+    "analysed": "İncelenen alanlar",
+    "advice": "Yıldızlardan öneriler",
+    "more": "Ayrıntılı analizi okuyun",
+    "less": "Analizi daraltın",
+    "further": "Daha derine inmek için",
+    "signUncertain": "Doğum saati bilinmediği için burç belirsiz",
+    "readingUncertain": "Doğum saati bilinmediği için yorum belirsiz",
+    "complete": "Bu alanı değerlendirmek için iki kişinin de doğum saatini ve yerini belirtin",
+    "bothWays": "Her iki yönde",
+    "mention": "Astroloji ve numeroloji geleneklerinden esinlenen simgesel bir yorumdur: ilişkinin geleceğini öngörmeden onu anlamaya yardımcı olur."
+  },
+  "tones": {
+    "harmony": "Uyum",
+    "complement": "Tamamlayıcılık",
+    "attention": "Dikkat Gerektiren Nokta"
+  },
+  "relations": {
+    "d0": "Aynı burç",
+    "d1": "Komşu burçlar",
+    "d2": "Sekstil",
+    "d3": "Kare",
+    "d4": "Üçgen",
+    "d5": "Quincunx",
+    "d6": "Karşıt açı"
+  },
+  "families": {
+    "mind": "Düşünce",
+    "matter": "Somut yaşam",
+    "creation": "Yaratıcılık"
+  },
+  "readings": {
+    "moon": {
+      "d0": "Diğer kişinin duyguları yaşama biçiminde size tanıdık gelen yönler bulabilirsiniz. Bu yakınlık, birbirinizi rahatlatmayı ve destek olmayı kolaylaştırır. Ancak ikinizde de aynı kaygılar belirdiğinde, onları karşılıklı olarak büyütmemek için biraz geri çekilip duruma yeniden bakmak yararlı olur.",
+      "d1": "Rahatlama ihtiyacınız farklı zamanlarda ortaya çıkabilir. Biriniz konuşmak isterken diğeriniz önce sakinleşmeye ihtiyaç duyabilir. Bu ayrım özen gerektirir; ancak herkes kendisini neyin güvende hissettirdiğini açıkça anlattığında, duygusal ihtiyaçları birlikte karşılamak daha kolay hâle gelebilir.",
+      "d2": "Duyarlılıklarınız, aynı tepkileri vermeniz gerekmeksizin birbirine nazikçe karşılık bulabilir. Her biriniz diğer kişiyi rahatlatmanın doğal bir yolunu keşfedebilirsiniz. Bu duygusal anlaşma, karşı tarafın kendiliğinden anlamasını beklemeden daha az görünür ihtiyaçlarınızı da dile getirdiğinizde derinleşebilir.",
+      "d3": "Duygularınız aynı anda farklı yönlere gidebilir: biriniz yakınlık ararken diğeriniz biraz alana ihtiyaç duyabilir. Bu sürtüşmeler, karşılıklı tepkilerinizi daha iyi tanımanıza imkân verir. Acele etmeden dinlemek, aradaki farkı birbirinizi daha yakından anlamanın bir yoluna dönüştürebilir.",
+      "d4": "Duygularınız aranızda doğal bir rahatlıkla akabilir. Birinize iyi gelen davranışlar diğerine de kendiliğinden anlamlı gelebilir; destek uzun açıklamalar gerektirmeden oluşabilir. Bu akıcılık, her biriniz farklı bir duygu yaşadığında da onu açıkça ifade etme özgürlüğüne sahip olduğunda değerini korur.",
+      "d5": "Rahatlama arayışınızda adlandırması güç bir farklılık hissedebilirsiniz. Birinizi yatıştıran şey diğerine aynı ölçüde iyi gelmeyebilir. İhtiyaçlarınızı somut örneklerle anlattığınızda, ikiniz için de anlaşılır ve ilişkinize özgü bir duygusal dil geliştirebilirsiniz.",
+      "d6": "Duyguları yaşama biçimleriniz birbirini tamamlayabilir: biriniz diğerinin kolayca fark etmediği bir yönü görünür kılabilir. Bu fark hem merak uyandırabilir hem de soru işaretleri yaratabilir. Denge, birbirinizden aynı duygusal tepkiyi beklemeden farklı hassasiyetlere yer açtığınızda gelişir."
+    },
+    "venus": {
+      "d0": "Şefkatinizi gösterme biçimleriniz çoğu zaman birbirine yakın olabilir. Küçük bir ilgi, birlikte geçirilen özel bir an ya da ortak bir keyif ikiniz için de benzer değer taşıyabilir. Bu tanıdıklık yakınlaştırır; yine de herkesin kişisel olarak hangi davranışlardan hoşlandığını merak etmeye devam etmek önemlidir.",
+      "d1": "Şefkat gösterme biçiminiz diğer kişinin alışkanlıklarıyla örtüşmeyebilir. İyi niyetle sunulan ilgiler bu yüzden fark edilmeyebilir. Her biriniz hangi davranışların gerçekten içinize dokunduğunu söylediğinizde, bu farklı ifade biçimlerini birbirinize daha uygun ve anlamlı jestlere dönüştürebilirsiniz.",
+      "d2": "Şefkat gösterme yollarınız birbirini kolaylıkla tamamlayabilir. Zevkleriniz keyifli zamanlar paylaşacak kadar örtüşürken küçük sürprizlere de yer bırakabilir. Bu rahatlık, her biriniz diğer kişinin tercihlerine uygun özenli davranışlar seçmeye devam ettiğinde sıcaklığı destekler.",
+      "d3": "İstekleriniz ve şefkat gösterme biçimleriniz, niyetleriniz iyi olsa bile çatışabilir. Bu farklılık alışkanlıklarınızın dışına çıkmanızı teşvik eder. Nelerin hoşunuza gittiğini ya da sizi rahatsız ettiğini belirttiğinizde, kendi tarzınızı dayatmadan birbirinize özen göstermeyi öğrenebilirsiniz.",
+      "d4": "Diğer kişinin hoşuna giden şeyleri oldukça doğal biçimde sezebilirsiniz. Şefkatli davranışlar ve paylaşılan zevkler günlük yaşamda rahatça yer bulabilir. Her biriniz kendi beğenilerinizi koruduğunda ve benzerliği bir zorunluluk hâline getirmediğinde bu uyum daha da zenginleşir.",
+      "d5": "Şefkat işaretlerini birbiriniz açısından yorumlamak zor olabilir. Biriniz için önemli olan bir ilgi, diğerine sıradan görünebilir. Bu küçük fark, herkesin somut tercihlerini keşfetmeye ve ikiniz için de anlam taşıyan yeni davranışlar geliştirmeye davet eder.",
+      "d6": "Şefkati ifade etme biçimleriniz iki farklı tarzı bir araya getirerek her birine değerli bir katkı sağlayabilir. İlk başta şaşırtan davranışlar zamanla keşif fırsatına dönüşebilir. Denge kurmak, beklenmedik biçimde sunulan ilginin bile değerini fark etmeyi gerektirir."
+    },
+    "attraction": {
+      "d0": "İlk anda hissedilen tanıdıklık, birbirinize yaklaşma isteğini besleyebilir. Benzerliklerinizin ötesinde sürprize de yer açtığınızda aranızdaki çekim canlılığını koruyabilir.",
+      "d1": "Farklı ritimlere rağmen yakınlaşma isteği doğabilir. Her biriniz diğerinin ilgi işaretlerine ve açıkça belirttiği sınırlara saygı gösterdiğinde karşılıklı çekim daha anlaşılır hâle gelebilir.",
+      "d2": "Merak ve birlikte vakit geçirmekten alınan keyif, aranızda hafif ve doğal bir çekim oluşturabilir. Bu yakınlaşma, baskı olmadan kendiliğinden geliştiğinde canlılığını koruyabilir.",
+      "d3": "Çekim güçlü, zaman zaman da şaşırtıcı olabilir: meydan okuma hem merak uyandırır hem de sarsar. Farklılıkları üstün gelmeye çalışmadan karşıladığınızda yakınlaşma keyifli kalabilir.",
+      "d4": "Yakınlaşma isteğiniz karşılık buluyormuş gibi, çekim doğal ve akıcı hissedilebilir. Bu bağ, merak ve karşılıklı isteğe dayanan küçük ilgilerle de beslenebilir.",
+      "d5": "Çekim birbirinden farklı ritimlerde ortaya çıkabilir; verilen işaretleri anlamak zaman zaman güçleşebilir. Beklentilerinizi açıkça dile getirdiğinizde karşılıklı yakınlaşma daha rahat yaşanabilir.",
+      "d6": "Farklı mizaçlar güçlü bir karşılıklı merak uyandırabilir. Bu çekim, her biriniz yakınlaşmak ya da kendinize alan bırakmak konusunda özgür hissettiğinizde dengelenebilir."
+    },
+    "mercury": {
+      "d0": "Konuşma ve düşünme biçimleriniz benzer olabilir; böylece sohbetler hızlı ve tanıdık ilerleyebilir. Aynı ima ve göndermeleri çoğu zaman kolayca anlayabilirsiniz. Birlikte karar verirken gerçekten aynı fikirde olup olmadığınızı kontrol etmek, hızlı anlaşmayı ortak görüşle karıştırmanızı önleyebilir.",
+      "d1": "Konuşmalarınızın temposu veya bir düşünceyi sunma biçiminiz farklılaşabilir. Biriniz ayrıntılara hızla girerken diğeriniz önce sonuca ulaşmak isteyebilir. Konuyu netleştirmek ve herkesin sözünü tamamlamasına izin vermek ortak kararları daha sakin ve anlaşılır hâle getirir.",
+      "d2": "İletişim tarzlarınız birbirini doğal biçimde destekleyebilir. Bir düşünce başka bir yanıtı ve yeni bir olasılığı çağırırken kimsenin kendisini uzun uzun savunması gerekmeyebilir. Bu esneklik, söylenenlerin gerçekten nasıl anlaşıldığını birlikte kontrol ettiğinizde ortak kararları kolaylaştırır.",
+      "d3": "Düşünme yollarınız ayrıldığında konuşmalar hareketlenebilir. Bu fikir sürtüşmesi, tek başınıza bulamayacağınız yeni görüşlerin ortaya çıkmasını sağlayabilir. Yanıt vermeden önce diğer kişinin düşüncesini kendi sözlerinizle özetlemek, görüş ayrılığı sürerken bile konuşmayı yapıcı tutmaya yardımcı olur.",
+      "d4": "Anlatmak, dinlemek ve fikirleri birleştirmek konusunda benzer bir rahatlık yaşayabilirsiniz. Karmaşık konularda bile konuşmalarınız kesintisiz ilerliyormuş gibi gelebilir. Bu uyum, hemen anlaşmaya çalışmak yerine daha az belirgin görüşlere de yer verdiğinizde zenginleşir.",
+      "d5": "Bir sözcük, sessizlik ya da karar verme biçimi ikiniz için farklı anlamlar taşıyabilir. Kimse incitmek istemese de yanlış anlamalar doğabilir. Somut bir örnek istemek ve olup bitenlerle bunlara getirdiğiniz yorumları ayırmak, birbirinizi daha iyi anlamanızı sağlayabilir.",
+      "d6": "Düşünme biçimleriniz karşıtlık içinde birbirini tamamlayabilir: biriniz diğerinin gözden kaçırdığı noktaları fark edebilir. Bu çeşitlilik ortak seçimleri zenginleştirir, ancak her konuşmayı tartışmaya çevirmemek önemlidir. Her iki bakış açısı da duyulduğunda kararlar daha sağlam bir temele oturabilir."
+    },
+    "sun": {
+      "d0": "Yaşam enerjiniz ve dünyada kendinize yer açma biçiminiz benzer olabilir. Bu yakınlık karşılıklı tanınma duygusunu kolaylaştırır. Ancak her birinizin diğer kişiyle kendisini sürekli karşılaştırmak zorunda kalmadan kendi kişiliğini ifade edebilmesine de özen göstermeniz yararlı olur.",
+      "d1": "Mizaçlarınız farklı önceliklere göre hareket edebilir. Biriniz için temel olan bir konu diğeriniz açısından ikinci planda kalabilir. Bu önceliklerin değerini ayrı ayrı kabul edip birlikte var olabilecekleri alanlar aradığınızda ilişkiniz daha esnek bir hâl alabilir.",
+      "d2": "Kendinizi ortaya koyma biçimleriniz birbirine destek olabilir; bunun için aynı olmanız gerekmez. Her biriniz diğerinin kolayca karşılayabildiği bir enerji getirerek ortak projeleri kolaylaştırabilir. Kişisel hedeflere de yer açmaya devam ettiğinizde bu anlaşma canlı kalabilir.",
+      "d3": "Kimliğinizi ortaya koyma biçimleriniz bazen rekabete dönüşebilir. Bu karşıtlık, görülme ve bağımsız kalma ihtiyaçları hakkında yararlı sorular doğurabilir. Her birinizin kendisini gösterebileceği bir alan bıraktığınızda çekişmeyi güç mücadelesi yerine karşılıklı bir teşvike dönüştürebilirsiniz.",
+      "d4": "Mizaçlarınız enerji ve değerler bakımından doğal biçimde birleşebilir. Bu uyum güven duygusunu ve birlikte ilerleme isteğini destekleyebilir. Paylaşmadığınız ilgi alanlarını keşfetme hakkını da birbirinize tanıdığınızda bu yakınlık daha güçlü ve özgür bir temel kazanır.",
+      "d5": "Dünyada kendinizi ifade etme biçimleriniz ilk bakışta zor bağdaşabilir görünebilir. Birinizin seçtiği ifade tarzı diğerini şaşırtabilir. Her biriniz için asıl önemli olanı açıkladığınızda, yalnızca benzerliklere dayanmayan karşılıklı bir anlayış geliştirebilirsiniz.",
+      "d6": "Mizaçlarınız aynı durumlara birbirinden oldukça farklı yanıtlar verebilir. Bu karşıtlık, farklı bakış açıları kadar herkesin ilişkideki yeri konusunda gerilim de yaratabilir. Birinizin var olabilmesi için diğerinin geri çekilmesi gerekmediğinde karşılıklı denge kurulabilir."
+    },
+    "mars": {
+      "d0": "Harekete geçme ritimleriniz benzer olabilir ve karar gerektiğinde birbirinize yakın tepkiler verebilirsiniz. Bu eşgüdüm ortak girişimleri kolaylaştırır. Ancak bir anlaşmazlıkta aynı refleksler birbirini güçlendirebilir; görevleri açıkça paylaştırmak yeniden ilerlemenize yardımcı olabilir.",
+      "d1": "Harekete geçme biçimleriniz aynı zamana denk gelmeyebilir: biriniz girişimi başlatırken diğeriniz önce hazırlık yapmak isteyebilir. Bu fark günlük gerginlikler yaratabilir. Ancak gerçekçi bir tempo ve anlaşmazlıkları çözmek için basit bir yöntem belirlediğinizde işe yarar bir katkıya dönüşebilir.",
+      "d2": "Enerjileriniz eyleme geçerken kolaylıkla uyum sağlayabilir; düşünceden uygulamaya birlikte geçebilirsiniz. Ortak çabada her biriniz kendisine doğal bir yer bulabilir. Görüş ayrılığı çıktığında ortak hedefi açıkça adlandırmak, bu işbirliğine dayalı hareketliliği korumaya yardımcı olur.",
+      "d3": "Harekete geçme refleksleriniz çatışabilir: biriniz hızlanırken diğeriniz direnebilir ve anlaşmazlık kısa sürede büyüyebilir. Bu gerginlik yine de önemli ihtiyaçları açığa çıkarabilir. Karar vermeden önce yavaşlamak, yalnızca kendi konumunuzu savunmak yerine uygulanabilir bir çözüm üzerinde uzlaşmanızı sağlayabilir.",
+      "d4": "Harekete geçme biçimleriniz uzun pazarlıklar gerektirmeden benzer bir akış izleyebilir. Bu rahatlık projeleri destekler ve ortak çabayı doğal kılar. Görüş ayrılığı olduğunda sorumlulukları açıkça belirlemek, beklentilerin örtük kalmasını ve sonradan gerginlik yaratmasını önleyebilir.",
+      "d5": "Girişimde bulunma tarzlarınız karşılaşsa bile tam olarak buluşmayabilir. Biriniz diğerinin vermeyi düşünmediği bir işareti bekleyebilir. Süreler, sorumluluklar ve anlaşmazlıkları konuşma biçimi hakkında somut kararlar almak, birlikte hareket etmenizi daha kolay ve anlaşılır kılabilir.",
+      "d6": "Harekete geçme enerjileriniz, birbirinde eksik kalabilecek yönleri tamamlayan iki karşıt güç gibi işleyebilir. Bu çeşitlilik kararlara katkı sağlayabilir; yeter ki bir güç mücadelesine sıkışıp kalmayın. Ortak bir hedef aramak birlikte ilerlemenize yardımcı olur."
+    },
+    "asc": {
+      "d0": "İlk karşılaşmalarınızda güven veren bir tanıdıklık hissedebilirsiniz. Davranışlarda, insanlara yaklaşma biçimlerinde veya günlük alışkanlıklarda benzerlikler görebilirsiniz. Bu rahatlık birlikte zaman geçirmeyi kolaylaştırır; yine de her birinizin kendine özgü tarzını keşfetmeye devam etmek ilişkinizi zenginleştirir.",
+      "d1": "İlk karşılaşmada kendinizi sunma biçimleriniz farklı görünebilir. Biriniz daha çekingen, diğeriniz daha kendiliğinden davranabilir; ancak bu izlenimler kişiliklerinizi bütünüyle tanımlamaz. Herkes alışkanlıklarını açıkladığında ve diğerinin alışkanlıklarına saygı gösterdiğinde günlük yaşam daha rahat ilerleyebilir.",
+      "d2": "Kendinizi tanıtma tarzlarınız ve alışkanlıklarınız kolayca uyuşabilir. İlk izlenimin ardından gelen rahatlık, gezileri, buluşmaları ve küçük projeleri kolaylaştırabilir. Her birinizin bulunduğu ortamda kendine özgü biçimde yer almasına izin verdiğinizde bu uyum daha da zenginleşir.",
+      "d3": "İlk karşılaşmadaki tavırlarınız çarpışabilir veya hızlı tepkiler doğurabilir. Biriniz için sıradan olan bir davranış diğerine sert gelebilir. Bu sürtüşme, ilk izlenimlerin ötesine geçmeye çağırır; birbirinizin alışkanlıklarını tanımak temaslarınızı daha rahat hâle getirebilir.",
+      "d4": "İlişki kurma tarzlarınız doğal biçimde birbiriyle uyumlu görünebilir. Jestler, tutumlar ve bazı yaşam tercihleri kısa sürede anlaşılabilir. Bu uyum günlük hayatı kolaylaştırır; alışkanlıkları değişmez kabul etmek yerine gerektiğinde birlikte uyarlamanıza da alan bırakır.",
+      "d5": "İlk izlenimler yanıltıcı olabilir; toplumsal davranış kodlarınız veya alışkanlıklarınız farklı dünyalardan geliyor gibi görünebilir. Birinizin çok açık bulduğu hareketler diğerine belirsiz gelebilir. Basit sorular sormak, herkesi aynı kalıba sokmadan ortak bir zemin bulmanıza yardım eder.",
+      "d6": "Yaşam tarzlarınız ve kendinizi sunma biçimleriniz zıtlıklarıyla birbirini tamamlayabilir. Her biriniz diğerine daha az tanıdığı alışkanlıklara açılan bir kapı sunabilir. Buluşmalar ve günlük yaşam için ortak işaretler oluşturduğunuzda bu çeşitlilik yararlı bir kaynağa dönüşebilir."
+    }
+  },
+  "chinese": {
+    "harmony": "Bu geleneksel gizli ittifak, uzun açıklamalara gerek kalmadan birbirinizi anlayabileceğiniz sakin bir uyumu simgeler. Niyetlerinizi paylaşıp her birinizin kendine özgü ilerleme biçimine saygı gösterdiğinizde aranızdaki yakınlık daha da gelişebilir.",
+    "triad": "Aynı üçlü grupta yer almak, benzer değerleri ve hareket etme isteklerini simgeler. Bu uyum ortak projeleri kolaylaştırabilir; özellikle de her biriniz kendi bakış açısını ve kişisel katkısını sunabildiğinde.",
+    "same": "Aynı hayvan işaretini paylaşmak, ilk anda anlaşılmış hissetmenize yardımcı olabilir. Yine de her birinizin farklı deneyimleri ve duyarlılıkları vardır; bu ayrıntılar yakınlığı zenginleştirerek birbirinizin yeni yönlerini keşfetmenizi sağlayabilir.",
+    "neutral": "Gelenekte bu iki hayvan arasında özel bir bağ tarif edilmez. Bu tarafsızlık size açık bir alan bırakır: alışkanlıklarınız, gösterdiğiniz özen ve birlikte verdiğiniz kararlar ilişkiye zamanla kendine özgü bir anlam kazandırabilir.",
+    "clash": "Bu geleneksel çatışma, zaman zaman karşı karşıya gelebilecek öncelikleri simgeler. Asıl daveti, farklı ritimleri fark edip somut uzlaşmalar aramaktır; böylece aranızdaki karşıtlıkları ilişkiniz hakkında kesin bir hükme dönüştürmemiş olursunuz.",
+    "harm": "Gelenekte zarar verme diye adlandırılan bu bağ, kötü niyetten çok olası yanlış anlamalara işaret eder. Ne anlaşıldığını kontrol etmek ve beklentileri açıkça dile getirmek karşılıklı güveni korumaya yardımcı olabilir.",
+    "punishment": "Bu geleneksel ilişki biçimi, birbirinizden bazen yüksek beklentiler taşıyabileceğinizi hatırlatır. Yararlı bir isteği aşırı baskıdan ayırmak ve her iki kişinin de yerine getirebileceği makul sorumluluklar üzerinde anlaşmak önemlidir.",
+    "selfPunish": "Gelenek bunu kişinin kendini cezalandırması olarak adlandırır: aynı hayvanı paylaşmak benzer alışkanlıkları daha belirgin hâle getirebilir. Birlikte biraz geri çekilip duruma bakmak, bu reflekslerin birbirini karşılıklı olarak güçlendirmesini önleyebilir."
+  },
+  "lifePath": {
+    "same": "Aynı yaşam yoluna sahip olmak, önceliklerinizi düşünme ve deneyimlerinize anlam verme biçimlerinizi yakınlaştırabilir. Seçimlerinizi konuşmak için ortak bir dil bulabilirsiniz. Kişisel yolculuklarınızın yine de farklı olabileceğini kabul ettiğinizde bu uyum daha verimli bir hâl alabilir.",
+    "family": "Yaşam yollarınız aynı simgesel aileye ait olsa da her birinin kendine özgü nüansları bulunur. Bu yakınlık, birbirinizin motivasyonlarını anlamayı ve karşılıklı desteği kolaylaştırabilir. Her biriniz diğerinin güçlü yönlerinden ilham alabilir; bunun için tam olarak aynı yolu izlemeniz gerekmez.",
+    "different": "Yaşam yollarınız farklı simgesel ailelere aittir. Bu durum bir projeye, karara veya zorluğa yaklaşmanın çeşitli yollarını açabilir. Tamamlayıcılık, ikiniz için tek bir yöntem aramak yerine her yaklaşımın ne kattığını kabul ederek ve bu katkılardan birlikte yararlanarak gelişir."
+  },
+  "advice": {
+    "moon": {
+      "attention": "Sizi somut olarak neyin rahatlattığını anlatmak için zaman ayırın. Bir çözüm önermeden önce diğer kişinin neye ihtiyaç duyduğunu da açıkça sorun.",
+      "complement": "Dile getirilen duyguları aynı şekilde hissetmeye çalışmadan kabul edin. Açık bir soru ve birlikte seçilen küçük bir davranış, herkese uygun destek oluşturabilir."
+    },
+    "venus": {
+      "attention": "Hoşunuza giden ilgilere somut örnekler verin. Ardından, hemen karşılık beklemeden, diğer kişinin tercihlerine uygun küçük bir özen göstermeyi sırayla deneyin.",
+      "complement": "Birlikte geçirdiğiniz keyifli zamanlarda tercihlerinize sırayla yer verin. Önce siz bir etkinlik önerin, ardından diğer kişinin kendi tarzında seçim yapmasına fırsat tanıyın."
+    },
+    "attraction": {
+      "attention": "İsteklerinizi incelikle dile getirin ve yakınlaşmanın her iki tarafça da istendiğinden emin olun. Herkesin baskı hissetmeden özgürce yanıt verebilmesine alan bırakın.",
+      "complement": "Her birinizin ilgisini kendi zamanında ve tarzında göstermesine izin verin. Israr içermeyen açık bir davet, karşılıklı istekleri ve sınırları gözetmeyi kolaylaştırır."
+    },
+    "mercury": {
+      "attention": "Bir karar için seçenekleri birlikte yazılı olarak özetleyin. Harekete geçmeden önce her birinizin varılan sonucu gerçekten kabul ettiğini açıkça kontrol edin.",
+      "complement": "Her biriniz kendi düşünme sürecini açıklasın; ardından somut bir ortak nokta arayın. Farklı yorumları önlemek için birlikte verdiğiniz kararı not edin."
+    },
+    "sun": {
+      "attention": "Kişisel hedeflerinizi anlatabilmeniz için birbirinize zaman ayırın. Ardından, hiçbirinizin kendi kimliğinden vazgeçmesini gerektirmeyen ortak bir hedef üzerinde anlaşın.",
+      "complement": "Her birinizin kendine özgü güçlü yönlerini açıkça takdir edin. Ortak bir projede görevleri örtük beklentilere değil, isteklere göre paylaştırın."
+    },
+    "mars": {
+      "attention": "Gerginlik olduğunda kısa bir ara verip somut hedefinize dönün. Kimin ne yapacağını ve durumu ne zaman birlikte yeniden değerlendireceğinizi kararlaştırın.",
+      "complement": "Ortak bir hedef belirleyin, ardından görevleri herkesin güçlü yönlerine göre dağıtın. Suçlamadan ilerleme hızınızı ayarlamak için kısa bir değerlendirme zamanı planlayın."
+    },
+    "asc": {
+      "attention": "Alışkanlıklarınızı değişmez kurallar gibi sunmadan anlatın. Geziler veya günlük yaşam için basit bir uzlaşma deneyin; ardından sonucu birlikte değerlendirip ayarlayın.",
+      "complement": "Birbirinize günlük yaşam alışkanlıklarınızı anlatın ve birkaç ortak düzen belirleyin. Her birinizin kendi ritmini koruyabileceği kişisel zamanlara da yer açın."
+    },
+    "lifePath": {
+      "complement": "Önemli bir seçimde her birinizin neye öncelik verdiğini açıkça sorun. Ardından yanıtlarınızı karşılaştırıp iki yaklaşımı da gözeten bir karar arayın."
+    },
+    "chinese": {
+      "attention": "Ortak bir sorumluluk üstlenmeden önce beklentilerinizi netleştirin. Anlaşmazlık çıkarsa yaşananları anlatın, duyguları dinleyin ve uygulanabilir küçük bir değişiklik seçin.",
+      "complement": "Her birinizin kendi tarzında keşfedebileceği bir etkinlik seçin. Ardından izlenimlerinizi paylaşmak ve neyi tekrar denemek istediğinize karar vermek için zaman ayırın."
+    },
+    "harmony": "Uyumunuzu düzenli özen göstererek, birlikte seçtiğiniz projelerle ve içten konuşmalarla besleyin. Her birinizin yeni ilgi ve isteklerine de açık bir alan bırakın.",
+    "closing": "Bu öneriler, uyulması zorunlu kurallar değil, birbirinizi daha iyi tanıma fırsatları sunar. Karşılıklı konuşmalarınız ve bilinçli seçimleriniz en sağlam başlangıç noktasıdır."
+  },
+  "preview": {
+    "mostlyHarmony": "İlişkinizin birçok alanında doğal bir uyum görülebilir. Bu rahatlık, güven duygusunu besleyebilir ve birlikte seçtiğiniz projelere adım atmanızı kolaylaştırabilir.",
+    "mostlyComplement": "Farklılıklarınız çoğunlukla keşfedilecek değerli kaynaklar olarak beliriyor. Her biriniz diğerinin kendine özgü katkısını gördüğünde ilişkiniz daha zengin ve anlamlı olabilir.",
+    "balanced": "Bu yorumda kendiliğinden gelişen uyumlar ile özen gerektiren ayrımlar bir arada bulunuyor. Güçlü yönlerinize dayanırken farklılıklarınıza da yer açmanız yararlı olabilir.",
+    "mostlyToBuild": "Birçok alan özel bir özen gerektirebilir; ancak bu, ilişkinizin nasıl gelişeceğini belirlemez. Açık konuşmalar ve küçük uzlaşmalar yeni imkânlar yaratabilir.",
+    "noResource": "Bu yorumda açık bir simgesel dayanak olarak öne çıkan alan bulunmuyor. Bu, hiçbir kapıyı kapatmaz: somut ilginiz ve seçimleriniz ilişkinizi şekillendirebilir."
+  },
+  "info": {
+    "compat": "Bu yorum dokuz alanı inceler: Duygular, Şefkat, Çekim, İletişim, Mizaçlar, Hareket ve Anlaşmazlıklar, İlk İzlenim, Çin Zodyağı ve Yaşam Yolları. Uyum, Tamamlayıcılık ve Dikkat Gerektiren Nokta arasında ayrım yapar; ancak puan vermez, çünkü bir ilişki tek bir puana indirgenemez. Burç belirsizse doğum saati eksiktir fakat yorum değişmez. Yorum belirsizse değerlendirme doğum saatine bağlıdır ve bu alan hesaba katılmaz. Doğum yeri belirtilmemişse uygulama cihazın saat dilimini kullanır. Çin takviminde yıl, Ay takvimine göre kutlanan Yeni Yılda değişir; bazı gelenekler ise yaklaşık 4 Şubat tarihini esas alır. Bu, geleceği öngören değil, simgesel bir yorumdur.",
+    "compatRelations": "ZODIAC iki burcu karşılaştırırken zodyak çemberindeki uzaklıklarını esas alır: Aynı burç, Komşu burçlar, Sekstil, Kare, Üçgen, Quincunx ve Karşıt açı. Aynı burç, Sekstil ve Üçgen Uyum; Komşu burçlar, Kare ve Quincunx Dikkat Gerektiren Nokta; Karşıt açı ise Tamamlayıcılık anlamına gelir. Çekim her iki yönde incelenir. İki yön farklı sonuç verdiğinde bu alan Tamamlayıcılık olarak sınıflandırılır. Buradaki alanlar burçları karşılaştırır; ayrıntılı sinastri ise gezegenlerin derecelerini karşılaştırır ve bazen farklı bir yorum sunabilir.",
+    "compatLifePath": "Yaşam Yolu, simgesel portredeki yöntemle hesaplanır: gün, ay ve yıl ayrı ayrı indirgenirken ana sayılar korunur. Karşılaştırmada ZODIAC üç aile kullanır: Düşünce (1, 5, 7), Somut yaşam (2, 4, 8) ve Yaratıcılık (3, 6, 9). Bu, Pisagor numerolojisinde kullanılan çeşitli yaklaşımlardan yalnızca biridir. Ana sayılar 11, 22 ve 33 karşılaştırma için sırasıyla 2, 4 ve 6 ile ilişkilendirilir."
+  },
+  "cnNames": {
+    "clash": "Çatışma (六冲)",
+    "same": "Aynı hayvan",
+    "selfPunish": "Aynı hayvan (自刑)"
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "lang": "de",
+  "labels": {
+    "axes": {
+      "moon": "Gefühle",
+      "venus": "Zuneigung",
+      "attraction": "Anziehung",
+      "mercury": "Kommunikation",
+      "sun": "Temperamente",
+      "mars": "Tatendrang und Meinungsverschiedenheiten",
+      "asc": "Erster Eindruck",
+      "lifePath": "Lebenswege",
+      "chinese": "Chinesischer Tierkreis"
+    },
+    "strength": "Stärke",
+    "toBuild": "Woran ihr arbeiten könnt",
+    "harmonies": "Harmonien",
+    "complements": "Ergänzungen",
+    "attentions": "Punkte zum Beachten",
+    "analysed": "Untersuchte Bereiche",
+    "advice": "Ratschläge der Sterne",
+    "more": "Vollständige Analyse lesen",
+    "less": "Analyse einklappen",
+    "further": "Zum Weiterlesen",
+    "signUncertain": "Sternzeichen ohne Geburtszeit unsicher",
+    "readingUncertain": "Deutung ohne Geburtszeit unsicher",
+    "complete": "Gib Geburtszeit und Geburtsort beider Personen an, um diesen Bereich zu deuten",
+    "bothWays": "In beide Richtungen",
+    "mention": "Symbolische Deutung nach astrologischen und numerologischen Traditionen: Sie kann eine Beziehung beleuchten, ohne ihre Zukunft vorherzusagen."
+  },
+  "tones": {
+    "harmony": "Harmonie",
+    "complement": "Ergänzung",
+    "attention": "Punkt zum Beachten"
+  },
+  "relations": {
+    "d0": "Gleiches Zeichen",
+    "d1": "Benachbarte Zeichen",
+    "d2": "Sextil",
+    "d3": "Quadrat",
+    "d4": "Trigon",
+    "d5": "Quinkunx",
+    "d6": "Opposition"
+  },
+  "families": {
+    "mind": "Reflexion",
+    "matter": "Praktisches",
+    "creation": "Kreativität"
+  },
+  "readings": {
+    "moon": {
+      "d0": "Du kannst bei der anderen Person eine vertraute Art erkennen, mit Gefühlen umzugehen. Diese Nähe erleichtert es, einander Trost und Unterstützung zu geben. Wenn bei euch beiden dieselben Sorgen aufkommen, hilft etwas Abstand, damit ihr sie nicht gegenseitig verstärkt.",
+      "d1": "Eure Bedürfnisse nach Trost können unterschiedlichen Rhythmen folgen. Manchmal möchte eine Person reden, während die andere erst zur Ruhe kommen will. Das erfordert Aufmerksamkeit, lässt sich aber leichter miteinander leben, wenn jede Person sagen kann, was ihr Sicherheit gibt.",
+      "d2": "Eure Empfindungen können sich auf sanfte Weise ergänzen, ohne dass ihr gleich reagieren müsst. Oft findet ihr einen einfachen Weg, einander Sicherheit zu geben. Diese emotionale Verbundenheit wächst, wenn du auch weniger offensichtliche Bedürfnisse aussprichst, statt zu erwarten, dass sie erraten werden.",
+      "d3": "Eure Gefühle können sich im selben Moment in unterschiedliche Richtungen bewegen: Das Bedürfnis nach Nähe trifft manchmal auf den Wunsch nach Freiraum. Solche Reibungen laden dazu ein, eure Reaktionen besser zu verstehen. Aufmerksames Zuhören ohne Eile macht aus dem Unterschied eine Chance, einander kennenzulernen.",
+      "d4": "Eure Gefühle können erstaunlich leicht miteinander in Einklang kommen. Was einer Person Ruhe schenkt, kann auch die andere unmittelbar ansprechen; Unterstützung entsteht dann ohne viele Erklärungen. Diese Leichtigkeit bleibt besonders wertvoll, wenn jede Person auch andere Gefühle ausdrücken darf.",
+      "d5": "Bei der Suche nach Trost könnt ihr einen Unterschied spüren, der schwer zu benennen ist. Was einer Person guttut, erreicht die andere nicht unbedingt. Wenn ihr eure Bedürfnisse anhand konkreter Beispiele erklärt, entwickelt ihr eine gemeinsame Sprache für Gefühle, die zu euch passt.",
+      "d6": "Eure Arten, Gefühle zu erleben, können sich ergänzen: Eine Person nimmt wahr, was der anderen weniger schnell auffällt. Dieser Unterschied kann zugleich anziehend und ungewohnt sein. Ausgleich entsteht, wenn ihr die Empfindungen des Gegenübers annehmt, ohne dieselbe Reaktion zu erwarten."
+    },
+    "venus": {
+      "d0": "Ihr zeigt eure Zuneigung oft auf ähnliche Weise. Eine kleine Aufmerksamkeit, ein bewusst gewählter Moment oder eine gemeinsame Freude können für euch beide denselben Wert haben. Diese Vertrautheit verbindet, solange ihr neugierig bleibt, welche Gesten jede Person ganz persönlich schätzt.",
+      "d1": "Deine Art, Zuneigung zu zeigen, muss nicht zu der anderen Person passen. Gut gemeinte Aufmerksamkeiten können dadurch unbemerkt bleiben. Wenn ihr aussprecht, welche Gesten euch wirklich berühren, verwandelt ihr diese unterschiedliche Ausdrucksweise in passendere Zeichen der Zuneigung.",
+      "d2": "Eure Zeichen der Zuneigung können sich ganz unkompliziert ergänzen. Eure Vorlieben ähneln sich genug für schöne gemeinsame Momente und lassen zugleich Raum für Überraschungen. Diese Leichtigkeit fördert Wärme, besonders wenn ihr weiterhin Aufmerksamkeiten auswählt, die zur anderen Person passen.",
+      "d3": "Eure Wünsche und Arten, Zuneigung zu zeigen, können aneinandergeraten, selbst bei guten Absichten. Dieser Kontrast regt dazu an, Gewohnheiten zu hinterfragen. Wenn ihr klar benennt, was Freude macht oder Unbehagen auslöst, könnt ihr füreinander sorgen, ohne den eigenen Stil aufzudrängen.",
+      "d4": "Ihr erkennt möglicherweise ganz von selbst, was der anderen Person gefällt. Zärtliche Gesten und gemeinsame Freuden finden dadurch leicht ihren Platz. Diese Harmonie wird reicher, wenn ihr beide eigene Vorlieben behalten könnt, ohne Ähnlichkeit zur Pflicht zu machen.",
+      "d5": "Zeichen der Zuneigung lassen sich zwischen euch nicht immer leicht deuten. Eine wichtige Aufmerksamkeit wirkt auf die andere Person vielleicht nebensächlich. Dieser feine Unterschied lädt dazu ein, die konkreten Vorlieben beider Seiten kennenzulernen und Gesten zu finden, die euch beide erreichen.",
+      "d6": "Eure Arten, Zuneigung auszudrücken, können zwei unterschiedliche Stile verbinden, die jeweils etwas Wertvolles beitragen. Was zunächst überrascht, kann neue Entdeckungen ermöglichen. Ein Gleichgewicht entsteht, wenn ihr erhaltene Aufmerksamkeiten anerkennt, auch wenn sie anders aussehen als erwartet."
+    },
+    "attraction": {
+      "d0": "Ein sofortiges Gefühl der Vertrautheit kann den Wunsch nach Nähe wecken. Die Anziehung wächst, wenn ihr neben euren Ähnlichkeiten auch Raum für Überraschungen lasst.",
+      "d1": "Der Wunsch nach Nähe kann trotz unterschiedlicher Rhythmen entstehen. Die Anziehung wird klarer, wenn ihr gegenseitig Interesse und die geäußerten Grenzen respektiert.",
+      "d2": "Eine leichte Anziehung kann zwischen euch entstehen, getragen von Neugier und Freude am Zusammensein. Sie bleibt lebendig, wenn ihr ihr ohne Druck Raum gebt.",
+      "d3": "Die Anziehung kann stark und verwirrend sein: Die Herausforderung fasziniert und bringt zugleich Unruhe. Angenehm bleibt sie, wenn ihr Unterschiede zulasst, ohne euch übertrumpfen zu wollen.",
+      "d4": "Die Anziehung kann mühelos wirken, als würden eure Wünsche nach Nähe ganz von selbst aufeinander antworten. Auch gegenseitige Neugier und freiwillige Aufmerksamkeiten nähren sie.",
+      "d5": "Die Anziehung kann sich zeitversetzt zeigen und ihre Signale sind nicht immer eindeutig. Leichter wird der Umgang damit, wenn ihr eure Erwartungen offen aussprecht.",
+      "d6": "Unterschiedliche Temperamente können auf beiden Seiten große Neugier wecken. Diese Anziehung findet Ausgleich, wenn ihr beide frei entscheiden könnt, ob ihr Nähe sucht oder Abstand braucht."
+    },
+    "mercury": {
+      "d0": "Eure Art zu sprechen und zu denken kann sich ähneln, sodass Gespräche schnell und vertraut verlaufen. Oft versteht ihr dieselben Anspielungen. Wenn ihr gemeinsam entscheidet, solltet ihr eure Übereinstimmung dennoch prüfen: Ein sofortiges Verstehen bedeutet nicht unbedingt, dass ihr dieselbe Meinung habt.",
+      "d1": "Eure Gespräche können sich im Tempo oder in der Art unterscheiden, wie ihr Gedanken erklärt. Eine Person geht rasch ins Detail, die andere sucht zuerst nach einem Ergebnis. Klärt das Thema und lasst einander ausreden, damit gemeinsame Entscheidungen ruhiger gelingen.",
+      "d2": "Eure Arten, euch auszutauschen, können sich mühelos unterstützen. Ein Gedanke führt zur Antwort und dann zu einer neuen Idee, ohne dass jemand lange um Gehör kämpfen muss. Diese Offenheit hilft bei gemeinsamen Entscheidungen, wenn ihr zugleich prüft, was wirklich angekommen ist.",
+      "d3": "Gespräche können lebhaft werden, wenn eure Gedanken verschiedene Wege nehmen. Gerade diese Reibung bringt manchmal Ideen hervor, auf die niemand allein gekommen wäre. Wenn du die Sicht der anderen Person erst in eigenen Worten zusammenfasst, bleibt der Austausch auch bei Meinungsverschiedenheiten konstruktiv.",
+      "d4": "Ihr könnt dieselbe Leichtigkeit beim Erzählen, Zuhören und Verknüpfen von Gedanken teilen. Selbst bei komplizierten Themen fühlt sich ein Gespräch dann zusammenhängend an. Diese Verständigung gewinnt, wenn auch ungewöhnliche Meinungen Platz finden, statt dass ihr zu schnell nach Einigkeit sucht.",
+      "d5": "Ein Wort, eine Pause oder eine Entscheidung kann für euch beide Verschiedenes bedeuten. Missverständnisse sind möglich, auch ohne verletzende Absicht. Fragt nach einem konkreten Beispiel und trennt Tatsachen von Deutungen, damit ihr euch Schritt für Schritt besser versteht.",
+      "d6": "Eure Denkweisen können sich gerade durch ihre Unterschiede ergänzen: Jede Person erkennt etwas, das der anderen entgeht. Das bereichert gemeinsame Entscheidungen, solange nicht jedes Gespräch zum Streitgespräch wird. Eine Wahl wird tragfähiger, wenn beide Sichtweisen wirklich gehört werden."
+    },
+    "sun": {
+      "d0": "Ihr könnt eine ähnliche Lebenskraft teilen und euren Platz in der Welt auf vertraute Weise einnehmen. Diese Ähnlichkeit schafft unmittelbare Anerkennung. Achtet zugleich darauf, dass jede Person ihre Eigenart zeigen kann, ohne sich ständig mit der anderen messen zu müssen.",
+      "d1": "Eure Temperamente können unterschiedlichen Prioritäten folgen. Was einer Person besonders wichtig erscheint, hat für die andere vielleicht weniger Gewicht. Eure Verbindung wird beweglicher, wenn ihr den Wert dieser Prioritäten anerkennt und Räume sucht, in denen beide nebeneinander bestehen können.",
+      "d2": "Eure Art, euch in der Welt zu zeigen, kann sich gegenseitig ermutigen, ohne gleich zu sein. Jede Person bringt eine Energie mit, die die andere gut aufnehmen kann. Das fördert gemeinsame Vorhaben, solange auch persönliche Ziele ihren Platz behalten.",
+      "d3": "Eure Arten, die eigene Persönlichkeit zu behaupten, können miteinander konkurrieren. Dieser Kontrast wirft hilfreiche Fragen nach Anerkennung und Selbstständigkeit auf. Wenn beide sichtbar Raum bekommen, kann aus dem Wettbewerb ein Ansporn werden, statt ein Kampf um Einfluss.",
+      "d4": "Eure Temperamente können in Antrieb und Werten ganz natürlich zusammenfinden. Diese Harmonie fördert Vertrauen und das Gefühl, gemeinsam voranzukommen. Sie entfaltet sich besonders dann, wenn jede Person auch Interessen verfolgen darf, die die andere nicht teilt.",
+      "d5": "Eure Arten, in der Welt zu leben, lassen sich auf den ersten Blick vielleicht schwer verbinden. Die Ausdrucksweise einer Person kann die andere irritieren. Wenn ihr erklärt, was euch wirklich wichtig ist, entsteht gegenseitige Anerkennung, die weniger von Ähnlichkeiten abhängt.",
+      "d6": "Eure Temperamente können auf dieselbe Situation sehr unterschiedlich reagieren. Dieser Gegensatz bereichert eure Sichtweisen, kann aber auch Fragen nach dem Raum für jede Person aufwerfen. Ausgleich entsteht, wenn niemand die eigene Persönlichkeit zurücknehmen muss, damit die andere zur Geltung kommt."
+    },
+    "mars": {
+      "d0": "Ihr könnt ein ähnliches Handlungstempo haben und ähnlich reagieren, wenn eine Entscheidung nötig ist. Das erleichtert gemeinsame Initiativen. Bei Meinungsverschiedenheiten können sich allerdings dieselben Reflexe gegenseitig verstärken. Eine klare Aufgabenverteilung hilft euch dann, wieder ins Handeln zu kommen.",
+      "d1": "Eure Arten zu handeln laufen nicht unbedingt im selben Takt: Eine Person beginnt schon, während die andere zuerst planen möchte. Das schafft praktische Spannungen, kann aber hilfreich werden, wenn ihr ein realistisches Tempo und einen einfachen Weg für Entscheidungen vereinbart.",
+      "d2": "Eure Energie kann beim Handeln gut zusammenpassen, sodass ihr Ideen leicht in Taten umsetzt. Jede Person findet ihren Platz bei einer gemeinsamen Anstrengung. Falls ihr euch uneinig werdet, hilft die Erinnerung an euer gemeinsames Ziel, dieses kooperative Miteinander zu bewahren.",
+      "d3": "Eure Handlungsimpulse können sich kreuzen: Eine Person drängt vorwärts, während die andere bremst, und der Streit nimmt rasch Raum ein. Diese Spannung kann jedoch wichtige Bedürfnisse sichtbar machen. Eine Pause vor der Entscheidung hilft, einen konkreten nächsten Schritt auszuhandeln, statt auf Positionen zu beharren.",
+      "d4": "Eure Arten zu handeln können einem ähnlichen Rhythmus folgen, ohne dass ihr viel verhandeln müsst. Diese Leichtigkeit unterstützt Vorhaben und macht gemeinsame Anstrengungen natürlicher. Wenn ihr uneins seid, verhindert eine klare Verteilung der Verantwortung, dass unausgesprochene Erwartungen das Handeln erschweren.",
+      "d5": "Eure Initiativen können sich überschneiden, ohne wirklich zusammenzufinden. Eine Person wartet auf ein Zeichen, das die andere gar nicht zu geben denkt. Konkrete Absprachen über Fristen, Zuständigkeiten und den Umgang mit Meinungsverschiedenheiten erleichtern eure Zusammenarbeit.",
+      "d6": "Eure Tatkraft kann wie zwei entgegengesetzte Kräfte wirken, von denen jede etwas beiträgt, das der anderen manchmal fehlt. Davon können Entscheidungen profitieren, solange ihr euch nicht im Kräftemessen verliert. Ein gemeinsames Ziel hilft dabei, in Bewegung zu bleiben."
+    },
+    "asc": {
+      "d0": "Euer erster Eindruck voneinander kann von beruhigender Vertrautheit geprägt sein. Ihr erkennt ähnliche Haltungen, Arten, auf andere zuzugehen, oder Gewohnheiten wieder. Das macht gemeinsame Momente leichter, solange ihr neugierig darauf bleibt, was den persönlichen Stil der anderen Person besonders macht.",
+      "d1": "Beim ersten Kontakt können eure Arten, euch zu zeigen, unterschiedlich wirken. Eine Person erscheint eher zurückhaltend, die andere spontaner, ohne dass das eure Persönlichkeiten vollständig beschreibt. Der Alltag wird angenehmer, wenn ihr eure Gewohnheiten erklärt und die der anderen Person respektiert.",
+      "d2": "Eure Arten, aufzutreten, und eure Gewohnheiten können sich unkompliziert verbinden. Aus dem ersten Eindruck entsteht eine Vertrautheit, die Ausflüge, Begegnungen und kleine Vorhaben erleichtert. Diese Verständigung wird reicher, wenn jede Person ihren eigenen Weg behält, Raum einzunehmen.",
+      "d3": "Euer Auftreten beim ersten Kontakt kann sich reiben oder schnelle Reaktionen auslösen. Was für eine Person harmlos wirkt, erscheint der anderen vielleicht schroff. Diese Spannung lädt dazu ein, hinter die Fassade zu blicken. Besseres Verständnis für eure Gewohnheiten macht Begegnungen entspannter.",
+      "d4": "Eure Arten, auf Menschen zuzugehen, können ganz natürlich zusammenpassen. Gesten, Haltungen und manche Lebensentscheidungen versteht ihr recht schnell. Diese Harmonie erleichtert den Alltag und lässt euch zugleich die Freiheit, Gewohnheiten anzupassen, statt sie als unveränderlich zu betrachten.",
+      "d5": "Der erste Eindruck kann täuschen, weil eure sozialen Gewohnheiten und Umgangsformen aus verschiedenen Welten zu stammen scheinen. Was für eine Person selbstverständlich ist, bleibt für die andere unklar. Einfache Fragen helfen, Gemeinsamkeiten zu finden, ohne Gleichförmigkeit zu erzwingen.",
+      "d6": "Eure Lebensstile und Arten, euch zu zeigen, können sich durch Gegensätze ergänzen. Jede Person eröffnet der anderen einen Blick auf weniger vertraute Gewohnheiten. Diese Vielfalt wird zur Stärke, wenn ihr euch Zeit nehmt, gemeinsame Orientierungspunkte für Begegnungen und den Alltag zu finden."
+    }
+  },
+  "chinese": {
+    "harmony": "Diese traditionelle geheime Verbindung steht für ein stilles Einvernehmen, bei dem ihr euch auch ohne viele Worte verstanden fühlen könnt. Eure Vertrautheit wächst, wenn ihr eure Absichten teilt und die persönlichen Wege des Gegenübers achtet.",
+    "triad": "Zur selben Dreiergruppe zu gehören, deutet auf ähnliche Werte oder Antriebe hin. Diese Harmonie kann gemeinsame Vorhaben erleichtern, besonders wenn jede Person Raum behält, eigene Nuancen und Ideen einzubringen.",
+    "same": "Dasselbe Tierzeichen zu teilen, kann ein unmittelbares Verständnis schaffen. Dennoch bringt jede Person eigene Erfahrungen und Empfindungen mit. Das bereichert eure Nähe und lässt euch neue Seiten aneinander entdecken.",
+    "neutral": "Die Tradition beschreibt keine besondere Verbindung zwischen diesen beiden Tieren. Diese Neutralität lässt vieles offen: Eure Gewohnheiten, Aufmerksamkeiten und Entscheidungen geben der Beziehung nach und nach ihre eigene Gestalt.",
+    "clash": "Dieser traditionelle Zusammenstoß deutet auf Prioritäten hin, die aneinandergeraten können. Er lädt vor allem dazu ein, unterschiedliche Rhythmen anzuerkennen und konkrete Absprachen zu finden, statt aus Gegensätzen ein Urteil zu machen.",
+    "harm": "Diese traditionell als Beeinträchtigung bezeichnete Beziehung verweist eher auf mögliche Missverständnisse als auf böse Absichten. Prüft, was angekommen ist, und sprecht eure Erwartungen offen aus. So könnt ihr Vertrauen bewahren.",
+    "punishment": "Diese traditionelle Konstellation betont gegenseitige Ansprüche, die manchmal hoch ausfallen. Sie lädt dazu ein, sinnvolle Wünsche von übermäßigem Druck zu unterscheiden und anschließend Verpflichtungen auszuhandeln, die für beide Seiten tragbar sind.",
+    "selfPunish": "Die Tradition spricht hier von Selbstbestrafung: Dasselbe Tierzeichen kann ähnliche Verhaltensmuster noch verstärken. Ein wenig gemeinsamer Abstand hilft, damit sich solche Gewohnheiten nicht gegenseitig hochschaukeln."
+  },
+  "lifePath": {
+    "same": "Derselbe Lebensweg kann euch in eurer Art verbinden, über Prioritäten nachzudenken und Erfahrungen einen Sinn zu geben. Ihr findet leichter eine gemeinsame Sprache für Entscheidungen. Diese Harmonie trägt mehr Früchte, wenn ihr trotzdem unterschiedliche persönliche Wege anerkennt.",
+    "family": "Eure Lebenswege gehören zur selben symbolischen Familie, behalten aber eigene Nuancen. Diese Nähe kann es leichter machen, die Beweggründe des Gegenübers zu verstehen und einander zu unterstützen. Jede Person kann von den Stärken der anderen lernen, ohne genau denselben Weg gehen zu müssen.",
+    "different": "Eure Lebenswege gehören zu unterschiedlichen symbolischen Familien. Dadurch können sich mehrere Herangehensweisen an ein Vorhaben, eine Entscheidung oder eine Schwierigkeit eröffnen. Ergänzung entsteht, wenn ihr den Beitrag jedes Ansatzes anerkennt, statt für euch beide nach einer einzigen Methode zu suchen."
+  },
+  "advice": {
+    "moon": {
+      "attention": "Nimm dir Zeit, konkret zu sagen, was dich beruhigt. Frage dann die andere Person, was sie braucht, bevor du eine Lösung vorschlägst.",
+      "complement": "Nimm geäußerte Gefühle an, ohne sie genauso empfinden zu müssen. Eine offene Frage und eine gemeinsam gewählte Geste können euch beiden passende Unterstützung geben."
+    },
+    "venus": {
+      "attention": "Tauscht konkrete Beispiele für Gesten aus, die euch Freude machen. Probiert dann jeweils eine kleine Aufmerksamkeit aus, die zum Gegenüber passt, ohne sofort etwas zurückzuerwarten.",
+      "complement": "Wechselt euch bei der Gestaltung schöner gemeinsamer Momente ab. Schlage eine Aufmerksamkeit nach deinem Geschmack vor und lass die andere Person danach auf ihre Weise wählen."
+    },
+    "attraction": {
+      "attention": "Sprich deine Wünsche behutsam an und prüfe, ob die Annäherung auf beiden Seiten erwünscht ist. Lass Raum für eine freie Antwort, ohne Druck auszuüben.",
+      "complement": "Gib euch beiden Zeit, Interesse auf die eigene Weise zu zeigen. Eine klare Einladung ohne Drängen hilft, gegenseitige Wünsche und Grenzen zu respektieren."
+    },
+    "mercury": {
+      "attention": "Fasst vor einer Entscheidung die Möglichkeiten gemeinsam schriftlich zusammen. Prüft anschließend, ob ihr beide mit dem Ergebnis einverstanden seid, bevor ihr handelt.",
+      "complement": "Lasst jede Person ihre Überlegungen erklären und sucht dann eine konkrete Übereinstimmung. Haltet die gemeinsame Entscheidung fest, damit ihr sie später nicht unterschiedlich auslegt."
+    },
+    "sun": {
+      "attention": "Gebt euch gegenseitig Raum, über persönliche Vorhaben zu sprechen. Wählt anschließend ein gemeinsames Ziel, für das niemand auf die eigene Persönlichkeit verzichten muss.",
+      "complement": "Würdigt ausdrücklich die besonderen Stärken jeder Person. Verteilt bei einem gemeinsamen Vorhaben die Aufgaben nach euren Wünschen und nicht nach unausgesprochenen Erwartungen."
+    },
+    "mars": {
+      "attention": "Legt bei Spannungen eine kurze Pause ein und kehrt zu einem konkreten Ziel zurück. Klärt, wer was übernimmt und wann ihr die Situation gemeinsam erneut besprecht.",
+      "complement": "Legt ein gemeinsames Ziel fest und verteilt die Aufgaben nach euren jeweiligen Stärken. Plant eine kurze Rücksprache ein, um das Tempo ohne Vorwürfe anzupassen."
+    },
+    "asc": {
+      "attention": "Beschreibe deine Gewohnheiten, ohne sie als Regeln darzustellen. Probiert für Unternehmungen oder den Alltag einen einfachen Kompromiss aus und passt ihn dann gemeinsam an.",
+      "complement": "Erzählt einander von euren Alltagsgewohnheiten und wählt einige gemeinsame Orientierungspunkte. Lasst euch zugleich genug Zeit, um den eigenen Rhythmus beizubehalten."
+    },
+    "lifePath": {
+      "complement": "Fragt euch bei einer wichtigen Entscheidung, was für jede Person Vorrang hat. Vergleicht eure Antworten und sucht eine Lösung, die beiden Herangehensweisen gerecht wird."
+    },
+    "chinese": {
+      "attention": "Klärt eure Erwartungen, bevor ihr eine gemeinsame Verpflichtung eingeht. Bei Meinungsverschiedenheiten beschreibt die Fakten, hört einander zu und wählt eine Veränderung, die ihr umsetzen könnt.",
+      "complement": "Wählt eine Aktivität, die jede Person auf ihre Weise neu entdecken kann. Tauscht euch danach über eure Eindrücke aus und entscheidet, was ihr wiederholen möchtet."
+    },
+    "harmony": "Pflegt euer gutes Einvernehmen durch regelmäßige Aufmerksamkeiten, gemeinsam gewählte Vorhaben und offene Gespräche. Lasst dabei auch Platz für neue Wünsche von euch beiden.",
+    "closing": "Diese Anregungen bieten Gelegenheiten, einander besser zu verstehen, und keine verbindliche Anleitung. Eure Gespräche und Entscheidungen sind der beste Ausgangspunkt für euren eigenen Weg."
+  },
+  "preview": {
+    "mostlyHarmony": "Mehrere Bereiche eurer Beziehung scheinen leicht zueinanderzufinden. Diese Übereinstimmung kann Vertrauen stärken und euch ermutigen, gemeinsam gewählte Vorhaben anzugehen.",
+    "mostlyComplement": "Eure Unterschiede zeigen sich vor allem als Möglichkeiten, Neues zu entdecken. Eure Beziehung kann reicher werden, wenn ihr die besonderen Beiträge beider Seiten anerkennt.",
+    "balanced": "Diese Deutung verbindet spontane Übereinstimmungen mit sinnvollen Anpassungen. Sie lädt euch ein, auf eure Stärken zu bauen und zugleich Unterschiede ernst zu nehmen.",
+    "mostlyToBuild": "Mehrere Bereiche brauchen Aufmerksamkeit, ohne festzulegen, wie eure Beziehung sich entwickeln kann. Offene Gespräche und kleine Vereinbarungen können neue Möglichkeiten eröffnen.",
+    "noResource": "Kein Bereich tritt hier als eindeutige symbolische Stärke hervor. Das schließt nichts aus: Mit konkreter Zuwendung und eigenen Entscheidungen könnt ihr eure Beziehung gestalten."
+  },
+  "info": {
+    "compat": "Diese Deutung betrachtet neun Bereiche: Gefühle, Zuneigung, Anziehung, Kommunikation, Temperamente, Tatendrang und Meinungsverschiedenheiten, Erster Eindruck, Chinesischer Tierkreis und Lebenswege. Sie unterscheidet Harmonie, Ergänzung und Punkte zum Beachten, vergibt aber keine Note: Eine Beziehung lässt sich nicht auf eine Zahl reduzieren. Ein unsicheres Sternzeichen bedeutet, dass die Geburtszeit fehlt, die Deutung jedoch gleich bleibt. Eine unsichere Deutung hängt dagegen von der Geburtszeit ab; dieser Bereich wird nicht mitgezählt. Ohne Geburtsort verwendet die App die Zeitzone des Geräts. Das chinesische Jahr beginnt zum chinesischen Neujahr nach dem Mondkalender; manche Traditionen setzen den Beginn um den 4. Februar an. Dies ist eine symbolische Deutung und keine Zukunftsvorhersage.",
+    "compatRelations": "ZODIAC vergleicht zwei Sternzeichen anhand ihres Abstands auf dem Tierkreis: Gleiches Zeichen, Benachbarte Zeichen, Sextil, Quadrat, Trigon, Quinkunx und Opposition. Gleiches Zeichen, Sextil und Trigon stehen für Harmonie. Benachbarte Zeichen, Quadrat und Quinkunx gelten als Punkte zum Beachten, während die Opposition für Ergänzung steht. Die Anziehung wird in beide Richtungen betrachtet. Wenn die beiden Richtungen unterschiedlich ausfallen, zählt der Bereich ebenfalls als Ergänzung. Diese Bereiche vergleichen Sternzeichen; eine ausführliche Synastrie untersucht dagegen die genauen Grade der Planeten. Deshalb können beide Deutungen manchmal voneinander abweichen.",
+    "compatLifePath": "Der Lebensweg wird wie im symbolischen Porträt berechnet: Tag, Monat und Jahr werden einzeln reduziert, wobei Meisterzahlen erhalten bleiben. Für den Vergleich verwendet ZODIAC drei Familien: Reflexion (1, 5, 7), Praktisches (2, 4, 8) und Kreativität (3, 6, 9). Das ist eine von mehreren Konventionen der pythagoreischen Numerologie. Die Meisterzahlen 11, 22 und 33 werden für diesen Vergleich jeweils den Zahlen 2, 4 und 6 zugeordnet."
+  },
+  "cnNames": {
+    "clash": "Zusammenstoß (六冲)",
+    "same": "Gleiches Tier",
+    "selfPunish": "Gleiches Tier (自刑)"
+  }
+}

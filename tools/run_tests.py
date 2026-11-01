@@ -110,6 +110,23 @@ async def journey(browser, file):
                    f'{lang} : portrait présent, 6 rubriques, repli, changement de jeu' + (f' | {errors}' if errors else ''))
         except Exception as exc:
             report(False, f'{lang} : portrait absent ou non interactif — {str(exc)[:350]}')
+
+        # Compatibilité approfondie, par le vrai formulaire : date de l'autre personne, « Comparer », dépli
+        try:
+            await page.locator('#tabCompat').click(timeout=10000)
+            await page.fill('#pairDate', '1990-04-17')
+            await page.fill('#pairTime', '08:30')
+            await page.click('#pairBtn')
+            await page.wait_for_selector('#pairBody .compat-tally', timeout=15000)
+            tally = (await page.text_content('#pairBody .compat-tally')).replace('\n', ' ')
+            await page.click('#pairBody .compat-toggle')
+            axes = await page.locator('#pairBody .compat-axis').count()
+            pills = await page.locator('#pairBody .compat-axis .tone-pill').count()
+            advice = await page.locator('#pairBody .compat-advice li').count()
+            report(axes == 9 and pills >= 7 and 1 <= advice <= 3 and '/9' in tally and not errors,
+                   f'{lang} : compatibilité, 9 axes, bilan « …{tally.split("·")[-1].strip()} », {advice} conseil(s)' + (f' | {errors}' if errors else ''))
+        except Exception as exc:
+            report(False, f'{lang} : compatibilité absente ou non interactive — {str(exc)[:350]}')
         await ctx.close()
 
 
@@ -173,6 +190,14 @@ async def accessibility(browser, file):
                 violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
                     .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
                 found += [f'{tab} : {v}' for v in violations]
+            await page.click('#tabCompat')   # compatibilité approfondie dépliée, avec une autre personne
+            await page.evaluate("pairState = { name: '', date: '1990-04-17', time: '08:30', place: 'Lyon|FR' }; renderCompat();")
+            await page.click('#pairBody .compat-toggle')
+            await page.evaluate("document.querySelector('.compat-further').open = true")
+            await page.add_script_tag(content=script)
+            violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
+                .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
+            found += [f'compatibilité : {v}' for v in violations]
             await page.click('#oracleOpen')   # l'Oracle ouvert, par-dessus la page
             await page.add_script_tag(content=script)
             violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))

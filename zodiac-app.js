@@ -1369,28 +1369,11 @@ function renderCompat(){
   const me = { date: parseISODate(currentDate), time: parseTime(currentTime), tz: birthTz() };
   const op = birthPlace(pairState.place);
   const other = { date: parseISODate(pairState.date), time: parseTime(pairState.time), tz: op ? op.tz : null };
-  const c = compatibility(me, other);
+  const c = compatibility(me, other);   // signes affichés en tête (comme l'onglet Signes)
   const nameA = escapeHtml(currentName || q.you), nameB = escapeHtml(pairState.name || q.other);
   const cnA = chineseYearInfo(me.date), cnB = chineseYearInfo(other.date);
   const chip = (name, sign, cn) => `<div class="pair-person"><div class="pair-name">${name}</div>
       <div class="pair-signs"><span aria-hidden="true">${SIGN_META[sign].sym}</span> ${t.signNames[sign]}${cn ? ` · <span aria-hidden="true">${CN_META[cn.animal].glyph}</span> ${t.cn.names[cn.animal]}` : ''}</div></div>`;
-  const nf = new Intl.NumberFormat(loc(currentLang), { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-  const axis = (title, symA, symB, nmA, nmB, score, text, badge) => `<div class="pair-axis">
-      <h4>${title}</h4>
-      <div class="pair-line"><span><span aria-hidden="true">${symA}</span> ${nmA} + <span aria-hidden="true">${symB}</span> ${nmB}</span>
-        <span class="aff-stars" aria-label="${score}/5">${starHtml(score)}</span></div>
-      <p>${text}</p>${badge ? `<span class="modal-element">${badge}</span>` : ''}</div>`;
-  const elA = SIGN_META[c.west.a].element, elB = SIGN_META[c.west.b].element;
-  let axes = axis(q.western, SIGN_META[c.west.a].sym, SIGN_META[c.west.b].sym, t.signNames[c.west.a], t.signNames[c.west.b], c.west.score,
-    t.compat.pairs[compatKey(elA, elB)], `${t.elements[elA]} × ${t.elements[elB]}`);
-  axes += c.cn
-    ? axis(q.chinese, CN_META[c.cn.a].glyph, CN_META[c.cn.b].glyph, t.cn.names[c.cn.a], t.cn.names[c.cn.b], c.cn.score, t.cn.relations[c.cn.rel], t.cn.relationNames[c.cn.rel])
-    : `<div class="pair-axis"><h4>${q.chinese}</h4><p>${t.cn.outOfRange}</p></div>`;
-  if (c.moon) {
-    const mA = SIGN_META[c.moon.a].element, mB = SIGN_META[c.moon.b].element;
-    axes += axis(q.moon, `☽${SIGN_META[c.moon.a].sym}`, `☽${SIGN_META[c.moon.b].sym}`, t.signNames[c.moon.a], t.signNames[c.moon.b], c.moon.score,
-      t.compat.pairs[compatKey(mA, mB)], `${t.elements[mA]} × ${t.elements[mB]}`);
-  } else axes += `<div class="pair-axis"><h4>${q.moon}</h4><p>${q.moonUnknown}</p></div>`;
   // Synastrie : aspects entre les planètes des deux thèmes natals
   const n = t.natal, bare = s => s.replace(/\s*[（(][^()（）]*[)）]\s*$/, '');
   const syn = synastry(natalPoints(natalChart(me.date, me.time, birthPlace(currentBirthPlace)), !!me.time),
@@ -1408,18 +1391,14 @@ function renderCompat(){
       <div class="syn-cols">${synCol(q.synHarmony, 'good', syn.harmony)}${synCol(q.synTension, 'bad', syn.tension)}</div>
       ${!me.time || !other.time ? `<p class="sky-note">${q.synNote}</p>` : ''}
     </div>`;
-  const rounded = Math.round(c.avg);
+  // Compatibilité approfondie (zodiac-compat.js) : neuf axes, bilan, aperçu, analyse complète repliée
+  const myPlace = birthPlace(currentBirthPlace);
+  const key = JSON.stringify([currentDate, currentTime, currentBirthPlace, pairState]);
+  if (key !== compatDeepKey) { compatDeepKey = key; compatDeepOpen = false; }
+  const deep = compatDeep({ ...me, place: myPlace }, { ...other, place: op });
   el.innerHTML = `
     <div class="pair-head">${chip(nameA, c.west.a, cnA)}<span class="pair-x" aria-hidden="true">×</span>${chip(nameB, c.west.b, cnB)}</div>
-    <div class="pair-global">
-      <span class="pair-global-label">${q.global}</span>
-      <span class="modal-stars" aria-label="${nf.format(c.avg)}/5">${starHtml(rounded)}</span>
-      <span class="pair-score">${nf.format(c.avg)} / 5</span>
-      <span class="modal-level">${t.compat.levels[rounded]}</span>
-    </div>
-    <div class="pair-axes">${axes}</div>
-    ${synHtml}
-    <p class="sky-note">${q.note}</p>`;
+    ${compatDeepHtml(deep, nameA, nameB, synHtml, !(me.time && other.time && myPlace && op))}`;
 }
 
 function bindCompat(){
@@ -1764,6 +1743,9 @@ async function exportImage(){
   for (const part of parts) {
     const copy = part.cloneNode(true);
     copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .sr-only, .oracle-more, .natal-complete, .wheel-hint, .spread-actions, .spread-form, .spread-question, .tarot-deck, .cal-card').forEach(n => n.remove());
+    copy.querySelectorAll('.compat-full').forEach(n => { n.hidden = false; });   // compatibilité : exportée dépliée
+    copy.querySelectorAll('.compat-further').forEach(n => { n.open = true; });
+    copy.querySelectorAll('.compat-toggle-row').forEach(n => n.remove());
     copy.querySelectorAll('[id]').forEach(n => n.removeAttribute('id'));
     copy.removeAttribute('id');
     frame.appendChild(copy);

@@ -1,5 +1,7 @@
 # 🌌 Zodiaque & Décans · Cosmic Interface
 
+> **01/11/2026 — V8 : compatibilité approfondie.** L'onglet « Compatibilité » passe de trois axes notés sur 5 à neuf axes lus par signes (émotions, affection, attirance dans les deux sens, communication, tempéraments, élan et désaccords, première impression, chemins de vie, zodiaque chinois), avec trois tonalités (harmonie, complémentarité, point d'attention), un bilan sans note, un aperçu, une analyse complète repliable et les « Conseils des étoiles ». Signes incertains sans heure traités par la règle des deux signes possibles. 127 textes par langue, rédigés en français, intégrés et testés, puis traduits dans les 13 autres langues. Cahier : `docs/cahier-compatibilite.md`. 102 tests.
+
 > **31/10/2026 — V7.6 : « Soutenir le projet ».** Un bouton en bas de page et une ligne discrète à la fin des résultats (« Cette appli vous plaît ? ») ouvrent une fenêtre qui regroupe les pages de dons (Ko-fi, PayPal, Liberapay, GitHub Sponsors) et une contribution sans argent : partager l'appli (adresse publique du site, jamais celle du profil affiché). De simples liens, ouverts dans un nouvel onglet ; rien n'est chargé ni transmis par l'appli. Bouton caché tant qu'aucune adresse n'est renseignée dans `zodiac-support.js`. 14 langues ; 98 tests.
 
 > **31/10/2026 — V7.5 : Oracle Oui / Non, retour à l'animation complète.** L'animation de recherche reprend sa forme d'origine à chaque recherche (la V7.4, qui la raccourcissait et permettait de la passer, est annulée : le balayage du ciel et le tracé de la constellation font partie de l'ambiance de l'appli). Nouvel **Oracle Oui / Non** (`zodiac-oracle.js`), ouvert depuis l'accueil et depuis « Numérologie & tarot ». L'audit d'accessibilité active désormais réellement le thème clair (bouton ☀) : contraste du bouton de jeu actif corrigé dans ce thème. 97 tests.
@@ -66,6 +68,8 @@ Les fichiers sont chargés par de simples balises `<script src>` (pas de modules
 | `zodiac-portrait.js` | **Portrait symbolique** : deux arcanes, maîtres 11/22/33, correspondances signe/maître/décan Golden Dawn, six rubriques repliables, formules détaillées et ponctuation adaptée aux 14 langues ; export déplié |
 | `zodiac-oracle.js` | **Oracle Oui / Non** : un cercle, quatre réponses (Oui, Peut-être, Non, Bientôt), une flèche lumineuse qui fait le tour du cercle et ralentit (≈ 3,2 s) ; une chance sur quatre par le hasard du navigateur (`secureRandom`) ; rien n'est saisi ni enregistré ; fenêtre plein écran avec focus gardé, Échap, réponse annoncée aux lecteurs d'écran ; sans rotation en mode « animations réduites » |
 | `zodiac-support.js` | **Soutenir le projet** : liste `SUPPORT_LINKS` à renseigner (une adresse https par plateforme ; vide = plateforme masquée ; aucune adresse = bouton caché), fenêtre de liens ouverts dans un nouvel onglet (`noopener noreferrer`), « Partager l'appli » (feuille de partage du téléphone ou lien copié, adresse publique `APP_URL`) ; focus gardé, Échap |
+| `zodiac-compat.js` | **Compatibilité approfondie** (cahier V0.2.1) : `compatDeep()` calcul pur et symétrique (neuf axes, tonalités, bilan, ouverture, point fort, conseils), règle des signes possibles sans heure, attirance dans les deux sens ; `compatDeepHtml()` affichage (bilan, aperçu, analyse repliable, conseils, synastrie repliée) ; installe les bulles (i), les relations chinoises réécrites et leurs noms renommés |
+| `zodiac-compat-data.js` | Textes de la compatibilité dans les 14 langues (`COMPAT_I18N`), **générés** par `tools/regen_compat.js` depuis `data/compat/compat-xx.json` : ne pas modifier à la main |
 | `zodiac-portrait.css` | Styles indépendants du portrait (mobile, thèmes et export) |
 | `zodiac-portrait-tests.js` | Tests automatiques du portrait : six dates, 36 décans, 14 langues, formules, ponctuation, interface et export |
 | `tools/regen_portraits.js` | Regénère `zodiac-portrait-data.js` depuis les fichiers `data/portraits/` sans dépendance ni accès réseau |
@@ -307,11 +311,13 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 - [x] En mode semaine : plages de dates pour chaque transit (« jusqu'au 28 oct. ») et **événements lunaires** (nouvelle Lune, quartiers, pleine Lune) avec date et heure locales ; la Lune est exclue des transits hebdomadaires (elle change de signe tous les 2 jours et demi)
 - [x] Mention honnête en pied de carte : positions calculées, interprétations symboliques
 
-### 💞 Compatibilité à deux
-- [x] Carte placée sous la double fiche, **incluse dans l'image exportée seulement si elle est renseignée** : prénom (facultatif), date et heure (facultative) de l'autre personne
-- [x] **Trois axes** notés de 1 à 5 : signes du zodiaque (matrice d'affinités + texte des éléments), animaux chinois (relation traditionnelle), **Lunes** (affinité émotionnelle, seulement si les deux signes lunaires sont certains)
-- [x] **Entente globale** : moyenne des axes disponibles (« 3,0 / 5 »), avec le texte de niveau correspondant
-- [x] Les deux prénoms en tête (« Vous » / « L'autre personne » si aucun), signe et animal de chacun ; le prénom de la personne principale se met à jour en direct
+### 💞 Compatibilité à deux (compatibilité approfondie, V8)
+- [x] Carte placée sous la double fiche, **incluse dans l'image exportée seulement si elle est renseignée** : prénom (facultatif), date, heure et lieu (facultatifs) de l'autre personne
+- [x] **Neuf axes lus par signes** (cahier `docs/cahier-compatibilite.md`) : émotions (Lunes), affection (Vénus), attirance (Vénus × Mars, dans les deux sens), communication (Mercure), tempéraments (Soleils), élan et désaccords (Mars), première impression (ascendants, avec heures et lieux des deux), chemins de vie (familles 1-5-7, 2-4-8, 3-6-9), zodiaque chinois
+- [x] **Trois tonalités** par axe — harmonie, complémentarité, point d'attention — selon l'écart entre les signes (0 à 6) ; pastilles lisibles sans la couleur
+- [x] **Pas de note** : bilan « Harmonies · Complémentarités · Points d'attention · Axes analysés n/9 », aperçu (ouverture, point fort, à construire), analyse complète repliable (exportée dépliée), « Conseils des étoiles », synastrie repliée sous « Pour aller plus loin »
+- [x] **Sans heure** : si une planète change de signe le jour de la naissance, les deux signes possibles sont testés ; même tonalité → « signe incertain » ; tonalités différentes → « lecture incertaine », axe hors bilan
+- [x] Les deux prénoms en tête (« Vous » / « L'autre personne » si aucun), signe et animal de chacun
 - [x] Les données de l'autre personne restent **en mémoire seulement** : jamais enregistrées sur l'appareil, ni dans l'URL ; effacées par « Nouvelle recherche »
 
 ### 🔭 Carte du ciel
@@ -459,14 +465,14 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | aucune en ligne (html2canvas en copie locale) |
 | Poids approximatif | version autonome ≈ 6,8 Mo (dont ≈ 3,1 Mo d'illustrations du tarot, ≈ 1 Mo de villes, ≈ 1,6 Mo de traductions et ≈ 0,4 Mo de textes du portrait) |
-| Tests automatisés | 98 (81 historiques + 17 portrait) ; parcours réel protégé en CI |
+| Tests automatisés | 102 (85 historiques + 17 portrait) ; parcours réel protégé en CI, compatibilité comprise |
 
 ---
 
 ## 🧪 Comment tester
 
 ### Tests automatiques
-Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 81 tests historiques couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
+Ouvrir `ZODIAC.html?test` (tous les fichiers dans le même dossier). Un rapport s'affiche en bas à droite (détail aussi dans la console). Les 85 tests historiques couvrent (dont 6 pour le thème natal : fuseaux, villes, maisons contre la Swiss Ephemeris, repli polaire, thème de référence, textes) :
 La version autonome se teste de la même façon : `ZODIAC-standalone.html?test` (la suite y est intégrée ; un test supplémentaire vérifie que sa copie vierge est complète et sans donnée personnelle).
 - le calcul du Soleil, comparé à 40 positions de référence calculées par astropy (1900-2100) ;
 - signes et décans de dates de référence, équinoxes connues, jours de transition, effet de l'heure ;
