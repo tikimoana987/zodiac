@@ -234,7 +234,9 @@ function renderOwner(){
   const born = parseISODate(currentDate), yr = born ? born.y : null;   // aucune date chargée (ex. : nom tapé après « Nouvelle recherche »)
   const warn = yr && (yr < 1900 || yr > 2100) ? `<p class="range-warn" role="note">${I18N[currentLang].rangeWarning}</p>` : '';
   el.innerHTML = name + `<div class="owner-birth">${formatBirth(currentDate, currentTime, currentLang)}${birthPlace(currentBirthPlace) ? ' · ' + escapeHtml(placeName(birthPlace(currentBirthPlace), currentLang)) : ''}</div>` + warn + dstNoticeHtml();
-  el.querySelectorAll('input[name="dstFold"]').forEach(r => r.addEventListener('change', () => { if (r.checked) setFold(+r.value); }));
+  // Choix appliqué juste après l'événement : Safari et Firefox finissent de traiter la flèche ou le clic sur l'ancien
+  // bouton (focus compris) après « change » ; redessiner pendant ce traitement leur ferait perdre le focus
+  el.querySelectorAll('input[name="dstFold"]').forEach(r => r.addEventListener('change', () => { if (r.checked) setTimeout(() => setFold(+r.value), 0); }));
   if (refocusFold) { refocusFold = false; const r = el.querySelector(`input[name="dstFold"][value="${currentFold}"]`); if (r) r.focus(); }
 }
 

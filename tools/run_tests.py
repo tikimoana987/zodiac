@@ -48,6 +48,8 @@ def report(ok, label):
     print(('  ✓ ' if ok else '  ✗ ') + label, flush=True)
     if not ok:
         problems.append(label)
+        if os.environ.get('GITHUB_ACTIONS'):   # annotation : affichée sur la page du passage, lisible sans connexion
+            print(f'::error title=Test en échec ({BROWSER})::' + label.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A'), flush=True)
 
 
 async def offline(ctx):
@@ -254,20 +256,25 @@ async def dst_journey(browser, file):
         page = await ctx.new_page()
         errors = []
         page.on('pageerror', lambda e: errors.append(str(e)))
+        step = 'ouverture'
         try:
             await page.goto(file.as_uri() + f'?date=2026-10-25&time=02:30&place=Paris%7CFR&lang={lang}')
             await page.wait_for_selector('.dst-note input[name="dstFold"]', timeout=60000)
             first = (await page.evaluate(asc), await page.locator('input[name="dstFold"][value="0"]').is_checked())
             await page.locator('input[name="dstFold"][value="0"]').focus()
+            step = 'choix au clavier'
             await page.keyboard.press('ArrowDown')   # flèches : choix suivant du groupe, dans tous les sens d'écriture
             await page.wait_for_function("location.hash.includes('fold=1')", timeout=10000)
+            step = 'focus rendu au bouton choisi'
             await page.wait_for_function("document.activeElement && document.activeElement.name === 'dstFold'", timeout=5000)
             second = (await page.evaluate(asc), await page.evaluate('document.activeElement.value'))
             link = await page.evaluate('location.href')
             await page.goto('about:blank')
+            step = 'lien rouvert'
             await page.goto(link)   # lien partagé : le choix est repris
             await page.wait_for_selector('.dst-note input[name="dstFold"]', timeout=60000)
             reopened = (await page.evaluate(asc), await page.locator('input[name="dstFold"][value="1"]').is_checked())
+            step = 'heure sautée'
             await page.goto(file.as_uri() + f'?date=2026-03-29&time=02:30&place=Paris%7CFR&lang={lang}')
             await page.wait_for_selector('.dst-note', timeout=60000)
             gap = await page.locator('.dst-note input').count() == 0 and '{' not in await page.text_content('.dst-note')
@@ -275,7 +282,7 @@ async def dst_journey(browser, file):
             report(ok, f'{lang} : heure vécue deux fois → choix au clavier (ascendant Lion → Vierge), gardé dans le lien ; heure sautée signalée'
                    + ('' if ok else f' | {first} {second} {reopened} {gap}') + (f' | {errors}' if errors else ''))
         except Exception as exc:
-            report(False, f'{lang} : changement d\'heure — {str(exc)[:300]}')
+            report(False, f'{lang} : changement d\'heure, étape « {step} » — {str(exc).splitlines()[0][:200]}')
         await ctx.close()
 
 
