@@ -1,5 +1,7 @@
 # 🌌 Zodiaque & Décans · Cosmic Interface
 
+> **V10.1 : Oracle plus vivant.** Boule de cristal dessinée en code (`crystalBallSvg()`, brume qui tourne, halo, étincelles, socle doré, étoiles en orbite) sur le bouton de l'accueil, dans une carte d'invitation en bas de l'onglet Tarot et au centre du cercle de l'Oracle, où elle s'illumine pendant la rotation. Immobile en mode « animations réduites ». Aucun nouveau texte.
+
 > **V10 : carré de Pythagore.** Nouvelle carte dans l'onglet « Numérologie », avant le portrait : grille 3 × 3 calculée depuis la date (méthode d'Alexandrov avant 2000, variante moderne « + 19 » depuis 2000), 9 cases et 8 lignes cliquables, niveaux des lignes calibrés pour chaque siècle, analyse complète repliable et exportée. Aucun vocabulaire de santé ni de mesure. Cahier : `docs/cahier-carre-pythagore.md` (V0.2). 110 tests.
 
 > **V9 : onglet Tarot.** Le tarot a son propre onglet (l'ancien « Numérologie & tarot » devient « Numérologie ») : carte de naissance, carte du jour, et quatre tirages interactifs (une question · une carte, Passé · Présent · Avenir, Situation · Défi · Conseil, les six prochains mois) avec le geste « mélanger, choisir face cachée dans l'éventail, poser, retourner ». Un tirage par jour et par type, un par mois pour les six mois, sauvegardé sur l'appareil par profil ; sélection en cours reprise après fermeture. Cahier : `docs/cahier-tarot.md` (V0.2). 106 tests.

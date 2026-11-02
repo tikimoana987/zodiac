@@ -24,6 +24,40 @@ function oracleAnswerAt(angle){
 
 const oracle = { angle: 0, busy: false, timer: null, opener: null };
 
+/* Boule de cristal dessinée en code (aucune image extérieure) : verre, brume qui tourne, étincelles, reflet, socle doré.
+   id : suffixe unique par emplacement (les dégradés d'un SVG masqué ne doivent pas servir aux autres). */
+function crystalBallSvg(id){
+  const g = `cb-${id}`;
+  return `<svg class="crystal-ball" viewBox="0 0 120 132" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="${g}-halo" cx="50%" cy="45%" r="50%"><stop offset="55%" stop-color="#9b7ee6" stop-opacity=".45"/><stop offset="100%" stop-color="#9b7ee6" stop-opacity="0"/></radialGradient>
+      <radialGradient id="${g}-glass" cx="38%" cy="32%" r="72%"><stop offset="0%" stop-color="#f3eeff"/><stop offset="28%" stop-color="#a996f5"/><stop offset="62%" stop-color="#4a33a8"/><stop offset="100%" stop-color="#170f42"/></radialGradient>
+      <linearGradient id="${g}-gold" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#f7dc8a"/><stop offset="100%" stop-color="#a8761f"/></linearGradient>
+      <clipPath id="${g}-clip"><circle cx="60" cy="56" r="42"/></clipPath>
+      <filter id="${g}-blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4"/></filter>
+    </defs>
+    <circle class="cb-halo" cx="60" cy="56" r="58" fill="url(#${g}-halo)"/>
+    <path d="M30 110 Q60 98 90 110 L98 124 Q60 132 22 124 Z" fill="url(#${g}-gold)"/>
+    <ellipse cx="60" cy="110" rx="30" ry="6" fill="#5e3f0e" opacity=".55"/>
+    <circle cx="60" cy="56" r="42" fill="url(#${g}-glass)"/>
+    <g clip-path="url(#${g}-clip)"><g class="cb-mist" filter="url(#${g}-blur)">
+      <ellipse cx="48" cy="60" rx="30" ry="12" fill="#e6dcff" opacity=".45"/>
+      <ellipse cx="74" cy="48" rx="22" ry="9" fill="#ffd6f4" opacity=".35"/>
+      <ellipse cx="62" cy="76" rx="26" ry="8" fill="#b9e2ff" opacity=".3"/>
+    </g></g>
+    <g class="cb-sparks" fill="#fff">
+      <circle class="cb-spark" cx="44" cy="44" r="1.6"/><circle class="cb-spark s2" cx="76" cy="62" r="1.3"/>
+      <circle class="cb-spark s3" cx="58" cy="78" r="1.1"/><circle class="cb-spark s4" cx="70" cy="38" r="1"/>
+    </g>
+    <ellipse cx="44" cy="36" rx="12" ry="7" fill="#fff" opacity=".55" transform="rotate(-28 44 36)"/>
+    <circle cx="60" cy="56" r="42" fill="none" stroke="#d9cdfa" stroke-opacity=".5" stroke-width="1.2"/>
+  </svg>`;
+}
+/* Étoiles en orbite autour d'un élément (trois étoiles par défaut) */
+function orbitStarsHtml(n = 3){
+  return `<span class="cb-orbit" aria-hidden="true">${Array.from({ length: n }, (_, i) => `<span class="cb-star" style="--a:${Math.round(i * 360 / n)}deg">✦</span>`).join('')}</span>`;
+}
+
 function oracleTexts(){
   const t = I18N[currentLang], o = t.oracle;
   document.getElementById('oracleTitle').textContent = o.title;
@@ -51,6 +85,7 @@ function closeOracle(){
   clearTimeout(oracle.timer);
   oracle.busy = false;
   document.getElementById('oracleArrow').classList.remove('spinning');
+  ov.classList.remove('is-spinning');
   ov.classList.add('hidden');
   ov.setAttribute('aria-hidden', 'true');
   if (oracle.opener && document.contains(oracle.opener)) oracle.opener.focus();
@@ -67,6 +102,7 @@ function spinOracle(){
   const reveal = () => {
     const key = ORACLE_ANSWERS[index];
     arrow.classList.remove('spinning');
+    document.getElementById('oracle').classList.remove('is-spinning');
     document.querySelector(`.oracle-ans[data-answer="${key}"]`).classList.add('on');
     result.textContent = I18N[currentLang].oracle.answers[key];   // annoncé par les lecteurs d'écran (aria-live)
     oracle.answered = true;
@@ -81,10 +117,14 @@ function spinOracle(){
   }
   oracle.busy = true;
   arrow.classList.add('spinning');
+  document.getElementById('oracle').classList.add('is-spinning');   // la boule s'illumine pendant la rotation
   arrow.style.transition = `transform ${ORACLE_SPIN_MS}ms cubic-bezier(.12,.72,.18,1)`;
   arrow.style.transform = `rotate(${oracle.angle}deg)`;
   oracle.timer = setTimeout(reveal, ORACLE_SPIN_MS + 80);
 }
+
+/* Boules de cristal des emplacements fixes de la page (accueil, centre du cercle) */
+document.querySelectorAll('[data-crystal]').forEach(el => { el.innerHTML = crystalBallSvg(el.dataset.crystal) + (el.dataset.orbit ? orbitStarsHtml(+el.dataset.orbit) : ''); });
 
 /* Branchements : boutons [data-oracle-open] (accueil, section tarot), centre, Fermer, clavier */
 document.addEventListener('click', e => {

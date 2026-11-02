@@ -449,7 +449,9 @@ function renderResult(signKey, decanIdx){
       </div>
       <div class="tarot-view" id="viewTarot" role="tabpanel" aria-labelledby="tabTarot"><h2 class="sr-only">${(t.tabs.tarot || I18N.fr.tabs.tarot)}</h2>
         <div class="tarot" id="tarotBody"></div>
-        <p class="oracle-more"><button type="button" class="btn-secondary" data-oracle-open><span aria-hidden="true">🔮</span> ${t.oracle.open}</button></p>
+        <div class="oracle-more"><button type="button" class="oracle-teaser" data-oracle-open>
+          <span class="cb-teaser">${typeof crystalBallSvg === 'function' ? crystalBallSvg('teaser') + orbitStarsHtml(3) : ''}</span>
+          <span class="ot-txt"><span class="ot-title">${t.oracle.open}</span><span class="ot-sub">${t.oracle.hint}</span><span class="ot-note">${t.oracle.note}</span></span></button></div>
       </div>
     </div>
     <p class="support-line" data-support-line ${typeof supportReady === 'function' && supportReady() ? '' : 'hidden'}>${t.support.line} <button type="button" class="support-link" data-support-open ${typeof supportReady === 'function' && supportReady() ? '' : 'hidden'}><span aria-hidden="true">☕</span> ${t.support.open}</button></p>

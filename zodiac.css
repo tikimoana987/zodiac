@@ -364,12 +364,10 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 @keyframes oracleGlow{ from{ opacity:.55; filter:drop-shadow(0 0 3px var(--gold-bright)) } to{ opacity:1; filter:drop-shadow(0 0 12px var(--gold-bright)) drop-shadow(0 0 22px var(--gold-bright)) } }
 .oracle-spin{
   position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:2;
-  width:26%; aspect-ratio:1; border-radius:50%; cursor:pointer;
-  border:1px solid rgba(232,195,106,.55); color:var(--gold-bright); font-size:1.6rem;
-  background:radial-gradient(circle at 40% 35%, #2a2350 0%, #120e2c 70%);
-  box-shadow:0 0 22px rgba(232,195,106,.25);
+  width:34%; aspect-ratio:1; border-radius:50%; cursor:pointer; padding:0;
+  border:0; background:transparent; color:var(--gold-bright);
 }
-.oracle-spin:hover{ box-shadow:0 0 30px rgba(232,195,106,.45); }
+.oracle-spin:hover .crystal-ball{ filter:drop-shadow(0 0 14px rgba(196,170,255,.75)); }
 .oracle-spin:focus-visible{ outline:2px solid var(--gold-bright); outline-offset:4px; }
 .oracle-result{ color:var(--gold-bright); font-size:1.6rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; min-height:1.3em; margin:0; }
 .oracle-result:not(:empty){ animation:fadeIn .5s ease; }
@@ -381,6 +379,42 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .oracle-close:hover{ border-color:var(--gold-bright); }
 .oracle-close:focus-visible{ outline:2px solid var(--gold-bright); outline-offset:3px; }
 @media (prefers-reduced-motion: reduce){ .oracle-wheel::before, .oracle-wheel::after, .oracle-arrow.spinning::before{ animation:none; } }
+/* Boule de cristal de l'Oracle (zodiac-oracle.js) : brume, halo, étincelles, étoiles en orbite */
+.crystal-ball{ display:block; width:100%; height:auto; overflow:visible; filter:drop-shadow(0 0 8px rgba(155,126,230,.45)); transition:filter .4s ease; }
+.cb-mist{ transform-box:fill-box; transform-origin:center; animation:cbMist 14s linear infinite; }
+.cb-halo{ transform-box:fill-box; transform-origin:center; animation:cbHalo 3.2s ease-in-out infinite; }
+.cb-spark{ animation:cbSpark 2.4s ease-in-out infinite; }
+.cb-spark.s2{ animation-delay:.6s; } .cb-spark.s3{ animation-delay:1.2s; } .cb-spark.s4{ animation-delay:1.8s; }
+@keyframes cbMist{ to{ transform:rotate(360deg); } }
+@keyframes cbHalo{ 0%,100%{ opacity:.65; transform:scale(.96); } 50%{ opacity:1; transform:scale(1.04); } }
+@keyframes cbSpark{ 0%,100%{ opacity:.15; } 50%{ opacity:1; } }
+.cb-mini, .cb-center, .cb-teaser{ position:relative; display:inline-block; }
+.cb-mini{ width:24px; height:26px; vertical-align:middle; margin-inline-end:.15rem; }
+.cb-center{ width:100%; height:100%; }
+.cb-teaser{ width:92px; flex:none; }
+.cb-orbit{ position:absolute; inset:-14%; animation:cbOrbit 18s linear infinite; pointer-events:none; }
+.cb-star{ position:absolute; left:50%; top:50%; color:var(--gold-bright); font-size:.75rem; line-height:1;
+  transform:rotate(var(--a)) translateY(-62%) translateY(-1.2rem); text-shadow:0 0 6px var(--gold-bright); }
+.cb-center .cb-orbit{ inset:-22%; }
+.cb-center .cb-star{ font-size:.9rem; transform:rotate(var(--a)) translateY(-3.4rem); }
+.cb-teaser .cb-star{ transform:rotate(var(--a)) translateY(-3.2rem); }
+@keyframes cbOrbit{ to{ transform:rotate(360deg); } }
+.oracle-overlay.is-spinning .cb-mist{ animation-duration:1.4s; }
+.oracle-overlay.is-spinning .cb-halo{ animation-duration:.8s; }
+.oracle-overlay.is-spinning .cb-orbit{ animation-duration:3s; }
+.oracle-overlay.is-spinning .crystal-ball{ filter:drop-shadow(0 0 18px rgba(214,190,255,.9)); }
+/* Carte d'invitation de l'onglet Tarot */
+.oracle-more{ margin:1.6rem 0 .4rem; }
+.oracle-teaser{ display:flex; align-items:center; gap:1.4rem; width:100%; max-width:560px; margin:0 auto; padding:1.2rem 1.4rem; cursor:pointer;
+  text-align:start; border-radius:18px; border:1px solid rgba(232,195,106,.35); color:#f0eaff; font:inherit;
+  background:radial-gradient(ellipse at 20% 50%, #2a1f5c 0%, #120d2c 70%); box-shadow:0 0 30px rgba(155,126,230,.18); }
+.oracle-teaser:hover{ border-color:var(--gold-bright); box-shadow:0 0 36px rgba(155,126,230,.35); }
+.oracle-teaser:focus-visible{ outline:2px solid var(--gold-bright); outline-offset:3px; }
+.ot-txt{ display:flex; flex-direction:column; gap:.3rem; }
+.ot-title{ font-weight:700; font-size:1.05rem; color:var(--gold-bright); letter-spacing:.04em; }
+.ot-sub{ font-size:.88rem; color:#d8cff5; line-height:1.45; }
+.ot-note{ font-size:.75rem; color:#a79cc9; font-style:italic; }
+@media (prefers-reduced-motion: reduce){ .cb-mist, .cb-halo, .cb-spark, .cb-orbit{ animation:none !important; } }
 
 /* SOUTENIR LE PROJET (zodiac-support.js) — fenêtre dans le style de la modale de compatibilité */
 .support-btn{
