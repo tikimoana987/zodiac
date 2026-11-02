@@ -5,6 +5,7 @@ Vérifie, dans un navigateur piloté par Playwright (Chromium par défaut) :
   1. la suite intégrée (ZODIAC.html?test) dans 5 fuseaux horaires d'appareil ;
   2. la même suite dans la version autonome (ZODIAC-standalone.html), réseau coupé ;
   3. un parcours réel en français, arabe (droite à gauche) et japonais : résultat, thème natal, nuit, portrait, sans erreur ;
+     articles « En savoir plus » au clavier depuis une bulle (i) et depuis l'Oracle ;
      puis l'Oracle Oui / Non, animations actives : ouverture, réponse après la rotation, nouvelle question, fermeture ;
      l'audit d'accessibilité couvre aussi l'oracle ouvert et la fenêtre « Soutenir le projet » ;
   4. le site installable (dossier site/) servi comme sur GitHub Pages : installation, puis fonctionnement réseau coupé ;
@@ -112,6 +113,45 @@ async def journey(browser, file):
                    f'{lang} : portrait présent, 6 rubriques, repli, changement de jeu' + (f' | {errors}' if errors else ''))
         except Exception as exc:
             report(False, f'{lang} : portrait absent ou non interactif — {str(exc)[:350]}')
+
+        # Articles « En savoir plus » au clavier : bulle (i) → lien → panneau (focus gardé) → Échap → retour au bouton (i) ;
+        # puis depuis l'Oracle : Échap ferme l'article seulement, l'Oracle reste ouvert
+        try:
+            await page.locator('#tabSigns').click(timeout=10000)
+            info = page.locator('.info-btn[data-info="decan"]').first
+            await info.focus()
+            await page.keyboard.press('Enter')
+            await page.wait_for_selector('#infoPop:not([hidden]) .info-pop-more:not([hidden])', timeout=5000)
+            await page.keyboard.press('Tab')
+            on_more = await page.evaluate("document.activeElement.classList.contains('info-more')")
+            await page.keyboard.press('Enter')
+            await page.wait_for_selector('#article:not(.hidden)', timeout=5000)
+            title = await page.text_content('#articleTitle')
+            expected = await page.evaluate(f"ARTICLES_I18N['{lang}'].articles.signs.title")
+            sections = await page.locator('#article .article-section').count()
+            tabs = []
+            for _ in range(3):
+                await page.keyboard.press('Tab')
+                tabs.append(await page.evaluate('document.activeElement.id'))
+            await page.keyboard.press('Escape')
+            closed = await page.locator('#article.hidden').count() == 1
+            back = await page.evaluate('document.activeElement.dataset.info')
+            await page.locator('#tabTarot').click(timeout=10000)
+            await page.locator('.oracle-teaser').click(timeout=10000)
+            await page.locator('#oracleArticle').click(timeout=10000)
+            await page.wait_for_selector('#article:not(.hidden)', timeout=5000)
+            oracle_title = await page.text_content('#articleTitle') == await page.evaluate(f"ARTICLES_I18N['{lang}'].articles.oracle.title")
+            await page.keyboard.press('Escape')
+            oracle_kept = await page.locator('#article.hidden').count() == 1 and await page.locator('#oracle:not(.hidden)').count() == 1
+            oracle_focus = await page.evaluate('document.activeElement.id') == 'oracleArticle'
+            await page.locator('#oracleClose').click(timeout=10000)
+            ok = (on_more and title == expected and sections == 5 and tabs == ['articleClose', 'articleDone', 'articleClose']
+                  and closed and back == 'decan' and oracle_title and oracle_kept and oracle_focus and not errors)
+            report(ok, f'{lang} : article « {title} » au clavier, focus gardé, Échap, retour au bouton (i), article de l\'Oracle'
+                   + ('' if ok else f' | lien {on_more}, rubriques {sections}, tab {tabs}, fermé {closed}, retour {back}, oracle {oracle_title}/{oracle_kept}/{oracle_focus}')
+                   + (f' | {errors}' if errors else ''))
+        except Exception as exc:
+            report(False, f'{lang} : articles « En savoir plus » absents ou non interactifs — {str(exc)[:350]}')
 
         # Carré de Pythagore : une case, une ligne, l'analyse complète
         try:
@@ -232,6 +272,17 @@ async def accessibility(browser, file):
                 violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
                     .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
                 found += [f'{tab} : {v}' for v in violations]
+            await page.click('#tabSigns')   # bulle (i) avec son lien « En savoir plus », puis l'article ouvert
+            await page.click('.info-btn[data-info="decan"]')
+            for stage in ('bulle', 'article'):
+                if stage == 'article':
+                    await page.click('#infoPop .info-more')
+                    await page.wait_for_selector('#article:not(.hidden)', timeout=5000)
+                await page.add_script_tag(content=script)
+                violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
+                    .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
+                found += [f'{stage} : {v}' for v in violations]
+            await page.keyboard.press('Escape')
             await page.click('#tabNumbers')   # carré de Pythagore : une ligne choisie, analyse complète dépliée
             await page.click('#squareCard .sq-line[data-key="d159"]')
             await page.click('#squareCard .square-toggle')

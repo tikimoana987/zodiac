@@ -448,6 +448,44 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 }
 .support-close:hover{ border-color:var(--gold); }
 
+/* ARTICLE « EN SAVOIR PLUS » (zodiac-articles.js) : panneau de lecture, au-dessus de l'Oracle s'il est ouvert */
+.modal-overlay.article-overlay{ z-index:210; }
+.modal.article-card{
+  max-width:42rem; max-height:calc(100vh - 2rem); max-height:calc(100dvh - 2rem); overflow-y:auto; overscroll-behavior:contain;
+  padding:2rem 2.2rem 1.6rem; text-align:start;
+}
+.article-title{
+  color:var(--gold); font-size:1.35rem; font-weight:600; line-height:1.3; margin:0 0 .4rem;
+  padding-inline-end:2.6rem; padding-bottom:.9rem; border-bottom:1px solid var(--glow);
+}
+.article-title:focus{ outline:none; }
+.modal.article-card .article-section h3{ text-align:start; color:var(--gold); font-size:1rem; font-weight:600; margin:1.5rem 0 .5rem; }
+.article-section p{ color:var(--text); font-size:.95rem; line-height:1.72; margin:0 0 .7rem; }
+.article-sources ul{ list-style:none; margin:0; padding:0; }
+.article-sources li{
+  color:var(--muted); font-size:.8rem; line-height:1.5; margin:.45rem 0;
+  padding-inline-start:.75rem; border-inline-start:2px solid var(--ov-15);
+}
+.article-done{
+  display:block; margin:1.6rem auto 0; background:transparent; border:1px solid var(--ov-15); color:var(--text);
+  cursor:pointer; border-radius:999px; padding:.45rem 1.4rem; font:inherit; font-size:.85rem;
+}
+.article-done:hover{ border-color:var(--gold); }
+.article-x:focus-visible, .article-done:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+@media (max-width:560px){
+  .modal-overlay.article-overlay{ padding:0; }
+  .modal.article-card{
+    max-height:100vh; max-height:100dvh; height:100%; border-radius:0; border:0;
+    padding:calc(1.4rem + env(safe-area-inset-top, 0px)) 1.2rem calc(1.4rem + env(safe-area-inset-bottom, 0px));
+  }
+  .article-card .article-x{ top:calc(.9rem + env(safe-area-inset-top, 0px)); }
+}
+.oracle-article{
+  background:none; border:0; padding:0; color:var(--gold-bright); font:inherit; font-size:.85rem; cursor:pointer;
+  text-decoration:underline; text-underline-offset:3px;
+}
+.oracle-article:focus-visible{ outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:4px; }
+
 /* RESULT */
 .result{ animation:fadeIn .6s ease forwards; }
 .result.hidden{ display:none; }
@@ -846,6 +884,11 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .info-pop[hidden]{ display:none; }
 .info-pop-title{ color:var(--gold); font-weight:700; font-size:.82rem; text-transform:uppercase; letter-spacing:.08em; margin-bottom:.35rem; }
 .info-pop-text{ font-size:.88rem; line-height:1.55; }
+.info-pop-more{ margin-top:.6rem; }
+.info-pop-more[hidden]{ display:none; }
+.info-more{ background:none; border:0; padding:0; color:var(--gold); font:inherit; font-size:.86rem; font-weight:600; cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
+.info-more:hover{ text-decoration-thickness:2px; }
+.info-more:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; border-radius:4px; }
 .natal-complete{ margin:.2rem 0 .6rem; }
 
 .aff-hint{ font-size:.8rem; color:var(--muted); margin-bottom:.9rem; }

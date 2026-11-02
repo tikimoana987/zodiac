@@ -65,6 +65,7 @@ function oracleTexts(){
   document.getElementById('oracleNote').textContent = o.note;
   document.getElementById('oracleSpin').setAttribute('aria-label', o.ask);
   document.getElementById('oracleClose').textContent = t.close;
+  articleButtonLabels();   // « En savoir plus » : article de l'Oracle (zodiac-articles.js)
   ORACLE_ANSWERS.forEach(k => { document.querySelector(`.oracle-ans[data-answer="${k}"]`).textContent = o.answers[k]; });
 }
 
@@ -136,9 +137,10 @@ document.getElementById('oracleClose').addEventListener('click', closeOracle);
 document.addEventListener('keydown', e => {
   if (document.getElementById('oracle').classList.contains('hidden')) return;
   if (e.key === 'Escape') closeOracle();
-  else if (e.key === 'Tab') {   // focus gardé dans l'oracle : le centre et « Fermer »
+  else if (e.key === 'Tab') {   // focus gardé dans l'oracle : le centre, « En savoir plus », « Fermer »
     e.preventDefault();
-    const spin = document.getElementById('oracleSpin'), close = document.getElementById('oracleClose');
-    (document.activeElement === spin ? close : spin).focus();
+    const items = ['oracleSpin', 'oracleArticle', 'oracleClose'].map(id => document.getElementById(id));
+    const i = items.indexOf(document.activeElement);
+    items[i < 0 ? 0 : (i + (e.shiftKey ? items.length - 1 : 1)) % items.length].focus();
   }
 });

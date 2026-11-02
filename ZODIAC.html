@@ -100,7 +100,18 @@
   </div>
   <p class="oracle-result" id="oracleResult" aria-live="polite"></p>
   <p class="oracle-note" id="oracleNote"></p>
+  <button type="button" class="oracle-article" id="oracleArticle" data-article-open="oracle">En savoir plus</button>
   <button type="button" class="oracle-close" id="oracleClose">Fermer</button>
+</div>
+
+<!-- ARTICLE « EN SAVOIR PLUS » (zodiac-articles.js) : ouvert depuis une bulle (i) ou depuis l'Oracle -->
+<div id="article" class="modal-overlay article-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="articleTitle" aria-hidden="true">
+  <div class="modal article-card">
+    <button type="button" class="modal-close article-x" id="articleClose" aria-label="Fermer">×</button>
+    <h2 class="article-title" id="articleTitle" tabindex="-1"></h2>
+    <div class="article-body" id="articleBody"></div>
+    <button type="button" class="article-done" id="articleDone">Fermer</button>
+  </div>
 </div>
 
 <!-- SOUTENIR LE PROJET (zodiac-support.js) -->
@@ -164,6 +175,8 @@
 <script src="zodiac-compat-data.js"></script>
 <script src="zodiac-compat.js"></script>
 <script src="zodiac-app.js"></script>
+<script src="zodiac-articles-data.js"></script>
+<script src="zodiac-articles.js"></script>
 <script src="zodiac-oracle.js"></script>
 <script src="zodiac-support.js"></script>
 <script src="zodiac-portrait.js"></script>

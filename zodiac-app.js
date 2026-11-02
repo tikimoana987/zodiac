@@ -784,21 +784,27 @@ function closeInfo(restoreFocus){
 }
 function openInfo(btn){
   const t = I18N[currentLang];
-  showPop(btn, btn.dataset.title, t.info[btn.dataset.info] || '');
+  showPop(btn, btn.dataset.title, t.info[btn.dataset.info] || '', btn.dataset.info);
 }
-/* Bulle d'explication sous (ou au-dessus de) l'élément « anchor » : bouton (i) ou élément de la roue du thème */
-function showPop(anchor, title, text){
+/* Bulle d'explication sous (ou au-dessus de) l'élément « anchor » : bouton (i) ou élément de la roue du thème.
+   « infoKey » : bulle (i) d'une méthode → lien « En savoir plus » vers son article (zodiac-articles.js) */
+function showPop(anchor, title, text, infoKey){
   let pop = document.getElementById('infoPop');
   if (!pop) {
     pop = document.createElement('div');
     pop.id = 'infoPop'; pop.className = 'info-pop'; pop.setAttribute('role', 'dialog'); pop.hidden = true;
-    pop.innerHTML = '<p class="info-pop-title" id="infoPopTitle"></p><p class="info-pop-text"></p>';
+    pop.innerHTML = '<p class="info-pop-title" id="infoPopTitle"></p><p class="info-pop-text"></p>' +
+      '<p class="info-pop-more" hidden><button type="button" class="info-more"></button></p>';
     pop.setAttribute('aria-labelledby', 'infoPopTitle');
     document.body.appendChild(pop);
   }
   closeInfo(false);
   pop.querySelector('.info-pop-title').textContent = title;
   pop.querySelector('.info-pop-text').textContent = text;
+  const article = typeof articleForInfo === 'function' ? articleForInfo(infoKey) : null, more = pop.querySelector('.info-more');
+  pop.querySelector('.info-pop-more').hidden = !article;
+  more.dataset.article = article || '';
+  more.textContent = article ? articleTexts().labels.more : '';
   pop.hidden = false;
   // Sous l'élément, gardée dans l'écran ; au-dessus s'il manque de place en bas
   const r = anchor.getBoundingClientRect(), w = pop.offsetWidth, h = pop.offsetHeight, m = 10;

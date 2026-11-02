@@ -1,5 +1,7 @@
 # 🌌 Zodiaque & Décans · Cosmic Interface
 
+> **V10.3 : articles « En savoir plus ».** Les bulles (i) des méthodes (38 bulles) gardent leur texte court et se terminent par « En savoir plus », qui ouvre l'un des 10 articles (signes et décans, zodiaque chinois, thème natal, ciel du moment, compatibilité, numérologie, carré de Pythagore, portrait, tarot, Oracle) dans un panneau de lecture : titre, quatre rubriques (D'où ça vient, Le principe, Comment ZODIAC l'applique, Ce que ce n'est pas) et sources. L'Oracle a son propre lien. Panneau accessible (focus gardé, Échap, retour du focus, arabe de droite à gauche, thèmes clair et sombre, plein écran sur téléphone). 14 langues ; textes dans `data/articles/`, générés par `tools/regen_articles.js`. Cahier : `docs/cahier-articles.md`. 113 tests.
+
 > **V10.1 : Oracle plus vivant.** Boule de cristal dessinée en code (`crystalBallSvg()`, brume qui tourne, halo, étincelles, socle doré, étoiles en orbite) sur le bouton de l'accueil, dans une carte d'invitation en bas de l'onglet Tarot et au centre du cercle de l'Oracle, où elle s'illumine pendant la rotation. Immobile en mode « animations réduites ». Aucun nouveau texte. Le bouton de l'accueil n'apparaît que tant qu'aucun profil n'est affiché ; ensuite, l'Oracle s'ouvre depuis l'onglet Tarot (pas de doublon).
 
 > **V10 : carré de Pythagore.** Nouvelle carte dans l'onglet « Numérologie », avant le portrait : grille 3 × 3 calculée depuis la date (méthode d'Alexandrov avant 2000, variante moderne « + 19 » depuis 2000), 9 cases et 8 lignes cliquables, niveaux des lignes calibrés pour chaque siècle, analyse complète repliable et exportée. Aucun vocabulaire de santé ni de mesure. Cahier : `docs/cahier-carre-pythagore.md` (V0.2). 110 tests.
@@ -75,6 +77,9 @@ Les fichiers sont chargés par de simples balises `<script src>` (pas de modules
 | `zodiac-oracle.js` | **Oracle Oui / Non** : un cercle, quatre réponses (Oui, Peut-être, Non, Bientôt), une flèche lumineuse qui fait le tour du cercle et ralentit (≈ 3,2 s) ; une chance sur quatre par le hasard du navigateur (`secureRandom`) ; rien n'est saisi ni enregistré ; fenêtre plein écran avec focus gardé, Échap, réponse annoncée aux lecteurs d'écran ; sans rotation en mode « animations réduites » |
 | `zodiac-support.js` | **Soutenir le projet** : liste `SUPPORT_LINKS` à renseigner (une adresse https par plateforme ; vide = plateforme masquée ; aucune adresse = bouton caché), fenêtre de liens ouverts dans un nouvel onglet (`noopener noreferrer`), « Partager l'appli » (feuille de partage du téléphone ou lien copié, adresse publique `APP_URL`) ; focus gardé, Échap |
 | `zodiac-compat.js` | **Compatibilité approfondie** (cahier V0.2.1) : `compatDeep()` calcul pur et symétrique (neuf axes, tonalités, bilan, ouverture, point fort, conseils), règle des signes possibles sans heure, attirance dans les deux sens ; `compatDeepHtml()` affichage (bilan, aperçu, analyse repliable, conseils, synastrie repliée) ; installe les bulles (i), les relations chinoises réécrites et leurs noms renommés |
+| `data/articles/articles-xx.json` | **Articles « En savoir plus »** : 10 articles × 14 langues (titre, 4 rubriques, sources) et libellés ; textes validés, source de vérité |
+| `zodiac-articles-data.js` | Articles dans les 14 langues (`ARTICLES_I18N`), **générés** par `node tools/regen_articles.js` (contrôle structure, accolades, apostrophes, thaï, sources) : ne pas modifier à la main |
+| `zodiac-articles.js` | **Articles « En savoir plus »** (cahier `docs/cahier-articles.md`) : table `ARTICLE_OF_INFO` (bulle → article), lien dans la bulle (via `showPop()`), panneau de lecture `#article` (focus gardé, Échap en phase de capture, retour du focus), bouton de l'Oracle `[data-article-open]` |
 | `zodiac-compat-data.js` | Textes de la compatibilité dans les 14 langues (`COMPAT_I18N`), **générés** par `tools/regen_compat.js` depuis `data/compat/compat-xx.json` : ne pas modifier à la main |
 | `zodiac-spreads.js` | **Tirages de l'onglet Tarot** (cahier `docs/cahier-tarot.md`) : quatre tirages, mélange de Fisher-Yates (`shuffleKeys`), éventail au clavier (un seul arrêt Tab, flèches), « Poser les cartes », « Recommencer » ; sauvegarde par profil et par type (`zodiac_spreads`), tirages expirés et questions effacés, reprise de l'ancien `zodiac_spread` ; six mois par mois civil (`spreadPeriod`, `sixMonths`) ; garde `currentSpread()`, `saveSpread()`, `spreadHtml()` pour la compatibilité |
 | `zodiac-square.js` | **Carré de Pythagore** (cahier `docs/cahier-carre-pythagore.md`) : `pythagorasSquare()` (nombres de travail, chiffres par case, niveaux des lignes), seuils `SQUARE_THRESHOLDS` par siècle, `squareCellLevel()`, `squareHtml()` (grille cliquable, lignes, analyse complète) |
@@ -254,6 +259,7 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 ### ℹ️ Bulles d'information
 - [x] **Boutons (i)** à côté des notions moins connues : position du Soleil, Lune natale, modalité, planète, décan, affinités (occidentales et chinoises), année chinoise, élément de l'année, polarité, élément fixe, animal de l'heure, thème natal, ascendant, Milieu du Ciel, maisons, aspects, rétrogradation, horoscope, carte du ciel, compatibilité — 21 explications de deux ou trois phrases, distinguant le fait astronomique de la tradition
 - [x] Une seule bulle, placée sous le bouton (au-dessus s'il manque de place) ; fonctionne au doigt comme à la souris ; fermeture par second appui, Échap (le focus revient au bouton), appui ailleurs ; absente de l'image exportée
+- [x] **« En savoir plus »** (V10.3) : les bulles des méthodes se terminent par un lien vers l'un des 10 articles, lus dans un panneau (titre, 4 rubriques, sources) ; au clavier, Tab mène du bouton (i) au lien ; cahier `docs/cahier-articles.md`
 
 ### 📱 Application installable (GitHub Pages)
 - [x] Adresse : **https://tikimoana987.github.io/zodiac/** — sur iPhone : Safari → Partager → « Sur l'écran d'accueil » ; sur Android : menu → « Installer l'application »
@@ -472,8 +478,8 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Combinaisons d'affinités | 12 × 12 = 144 |
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | aucune en ligne (html2canvas en copie locale) |
-| Poids approximatif | version autonome ≈ 6,8 Mo (dont ≈ 3,1 Mo d'illustrations du tarot, ≈ 1 Mo de villes, ≈ 1,6 Mo de traductions et ≈ 0,4 Mo de textes du portrait) |
-| Tests automatisés | 110 (93 historiques + 17 portrait) ; parcours réel protégé en CI, compatibilité, tarot et carré compris |
+| Poids approximatif | version autonome ≈ 8,4 Mo, mesurée le 2 novembre 2026 (7,8 Mo avant les articles) : ≈ 3,1 Mo d'illustrations du tarot, ≈ 1 Mo de villes, ≈ 1,6 Mo de traductions, ≈ 0,6 Mo d'articles, ≈ 0,4 Mo de textes du portrait |
+| Tests automatisés | 113 (96 dans `zodiac-tests.js`, dont 3 pour les articles, + 17 portrait) ; parcours réel protégé en CI, compatibilité, tarot, carré et articles compris |
 
 ---
 

@@ -1512,6 +1512,85 @@
     }
   });
 
+  section('Articles « En savoir plus »');
+  test('Articles : 14 langues, structure et règles d’écriture (14 langues obligatoires avant publication)', () => {
+    const langs = Object.keys(ARTICLES_I18N), ids = Object.keys(ARTICLES_I18N.fr.articles), latin = ['fr', 'en', 'es', 'pt', 'it', 'de', 'tr'];
+    assertEq(langs.length, 14, 'langues');
+    assertEq(ids.join(','), 'signs,chinese,natal,sky,compat,numerology,square,portrait,tarot,oracle', 'articles');
+    const sources = ids.map(id => ARTICLES_I18N.fr.articles[id].sources.length).join(',');
+    for (const lang of langs) {
+      const T = ARTICLES_I18N[lang], texts = [...Object.values(T.labels)];
+      assertEq(T.lang, lang, 'code langue');
+      assertEq(Object.keys(T.labels).join(','), 'more,history,principle,zodiac,notThis,sources', `${lang} : libellés`);
+      assertEq(Object.keys(T.articles).join(','), ids.join(','), `${lang} : articles`);
+      assertEq(ids.map(id => T.articles[id].sources.length).join(','), sources, `${lang} : nombre de sources`);
+      for (const id of ids) {
+        const a = T.articles[id];
+        texts.push(a.title, a.history, a.principle, a.zodiac, a.notThis, ...a.sources);
+        assert(a.zodiac.includes('ZODIAC'), `${lang}.${id} : nom ZODIAC`);
+      }
+      for (const v of texts) {
+        assert(typeof v === 'string' && v.trim() === v && v.length > 0, `${lang} : texte vide ou espaces`);
+        assert(!/[{}<>]/.test(v), `${lang} : accolade ou chevron`);
+        if (latin.includes(lang)) assert(!/[‘’]/.test(v), `${lang} : apostrophe courbe`);
+        if (lang === 'th') assert(!/[:：]/.test(v) && !/\.$/.test(v), 'thaï : deux-points ou point final');
+      }
+    }
+    const fr = ARTICLES_I18N.fr.articles;   // corrections validées du français
+    assert(fr.natal.sources.some(x => x.includes('Keplerian Elements')) && !fr.natal.sources.some(x => x.includes('DE405')), 'source JPL');
+    assert(fr.sky.zodiac.includes('à l\'œil nu') && !fr.sky.zodiac.includes('oeil'), 'œil');
+    assert(fr.portrait.zodiac.includes('et non de calculs astronomiques'), 'portrait');
+    assert(fr.square.sources.length === 1 && fr.square.sources[0].includes('2015'), 'source unique du carré');
+  });
+
+  test('Articles : chaque bulle (i) de méthode mène à un article, chaque article est accessible', () => {
+    const ids = new Set(Object.keys(ARTICLES_I18N.fr.articles)), reached = new Set();
+    for (const [key, id] of Object.entries(ARTICLE_OF_INFO)) {
+      assert(I18N.fr.info[key] || PORTRAIT_I18N.fr.info[key], `bulle inconnue : ${key}`);
+      assert(ids.has(id), `${key} → article inconnu ${id}`);
+      reached.add(id);
+    }
+    document.querySelectorAll('[data-article-open]').forEach(b => reached.add(b.dataset.articleOpen));
+    assertEq([...ids].filter(id => !reached.has(id)).join(','), '', 'articles sans accès');
+    for (const key of ['fieldName', 'fieldTime', 'fieldPlace', 'privacy']) assert(!articleForInfo(key), `${key} : pas d’article`);
+  });
+
+  test('Articles : lien dans la bulle, panneau, rubriques, sources, retour du focus', () => {
+    const host = document.createElement('div');
+    host.innerHTML = infoBtn('square', 'Carré') + infoBtn('privacy', 'Confidentialité');
+    document.body.appendChild(host);
+    try {
+      const [withArticle, without] = host.querySelectorAll('.info-btn');
+      openInfo(withArticle);
+      const more = document.querySelector('#infoPop .info-more');
+      assert(!more.closest('.info-pop-more').hidden && more.textContent === articleTexts().labels.more, 'lien affiché');
+      withArticle.focus();
+      more.click();
+      const ov = document.getElementById('article'), T = articleTexts().articles.square;
+      assert(!ov.classList.contains('hidden') && ov.getAttribute('aria-hidden') === 'false', 'panneau ouvert');
+      assert(document.getElementById('infoPop').hidden, 'bulle fermée');
+      assertEq(document.getElementById('articleTitle').textContent, T.title, 'titre');
+      assertEq(document.activeElement.id, 'articleTitle', 'focus sur le titre');
+      const secs = ov.querySelectorAll('.article-section');
+      assertEq(secs.length, 5, '4 rubriques + sources');
+      assertEq(secs[0].querySelectorAll('p').length, T.history.split(/\n\s*\n/).length, 'paragraphes');
+      assertEq(ov.querySelectorAll('.article-sources li').length, 1, 'une source');
+      closeArticle();
+      assert(ov.classList.contains('hidden'), 'panneau fermé');
+      assert(document.activeElement === withArticle, 'focus rendu au bouton (i)');
+      openArticle('oracle', withArticle);
+      assertEq(ov.querySelectorAll('.article-section').length, 4, 'Oracle : pas de rubrique Sources vide');
+      closeArticle();
+      openInfo(without);
+      assert(document.querySelector('#infoPop .info-pop-more').hidden, 'bulle sans article : pas de lien');
+      closeInfo(false);
+    } finally {
+      closeArticle();
+      closeInfo(false);
+      host.remove();
+    }
+  });
+
   /* ---------------- Rapport ---------------- */
   const failed = results.filter(r => !r.ok);
   window.__testResults = results;
