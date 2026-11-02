@@ -1,6 +1,6 @@
 # 🗺️ Zodiaque & Décans — ce qu'il reste à faire
 
-> État au 2 novembre 2026, après les articles « En savoir plus » (V10.3) et l'allègement des mises à jour (V10.4) ; auparavant le portrait symbolique, l'audit d'accessibilité et les tests Safari / Firefox (V7.3), et le retour détaillé d'une testeuse (§ 3). Ce document complète `projet.md` (ce qui est fait) et `reprise.md` (notes techniques).
+> État au 2 novembre 2026, après les articles « En savoir plus » (V10.3), l'allègement des mises à jour (V10.4) et le test Safari bloquant (V10.5) ; auparavant le portrait symbolique, l'audit d'accessibilité et les tests Safari / Firefox (V7.3), et le retour détaillé d'une testeuse (§ 3). Ce document complète `projet.md` (ce qui est fait) et `reprise.md` (notes techniques).
 > Légende : 🟢 petit · 🟡 moyen · 🔴 gros chantier · ❓ décision à prendre · ⭐ recommandation de Claude
 
 ---
@@ -12,7 +12,7 @@
 | Feuille de route d'origine (étapes 1 à 6) | ✅ terminée, sauf l'iPhone (gardé pour la fin) |
 | Pistes 1 à 6 | ✅ version et bandeau de mise à jour · ✅ cartes renversées · ✅ lieux par coordonnées GPS · ✅ calendrier du ciel · ✅ fiche du thème natal à imprimer ou en PDF · ✅ arcanes mineurs (jeu complet de 78 cartes) |
 | Langues | 14 (FR, EN, ES, PT, IT, DE, TR, RU, AR, HI, TH, ZH, JA, KO) |
-| Tests automatiques | 113 (96 + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit) et Firefox, pour information |
+| Tests automatiques | 113 (96 + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit), bloquants, et dans Firefox, pour information |
 | Publication | automatique sur GitHub Pages, après les tests (circuit GitHub Actions) |
 | Poids | version autonome ≈ 8,4 Mo, mesurée le 2 novembre 2026 (7,8 Mo avant les articles ; l'ancien chiffre de 6,8 Mo était dépassé) : illustrations du tarot ≈ 3,1 Mo (déjà en WebP), villes ≈ 1 Mo, 14 langues ≈ 1,6 Mo, articles ≈ 0,6 Mo, textes du portrait ≈ 0,4 Mo |
 | Confidentialité | aucune donnée envoyée en ligne (adresse en « # », pas de serveur, pas de statistiques) ; seule exception : les événements ajoutés à Google Agenda à la demande de l'utilisateur |
@@ -146,7 +146,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 - [ ] **Fonctions à vérifier dans Safari** (moteur WebKit) : export en image (html2canvas), impression ou PDF, calendrier .ics (« Ajouter tous les événements »), coordonnées GPS, tirage du jour, partage.
 - [x] **Tests WebKit et Firefox dans le circuit GitHub** (31 octobre, V7) : tâche « Informatif — webkit / firefox », non bloquante.
 - [x] Premiers résultats (V7.3) : Firefox, tout passe ; Safari (WebKit), fuseaux horaires récents inconnus des navigateurs pas à jour → corrigé par des fuseaux équivalents ; test hors ligne adapté à WebKit.
-- [ ] Quand la ligne WebKit est verte plusieurs fois de suite : la rendre bloquante (voir `reprise.md`).
+- [x] Test Safari (WebKit) **bloquant** (V10.5, 2 novembre 2026, passage n°48) : un échec empêche la publication ; Firefox reste informatif.
 - [ ] Icône, écran de démarrage et nom sur l'écran d'accueil de l'iPhone.
 
 ---
