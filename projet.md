@@ -1,5 +1,7 @@
 # 🌌 Zodiaque & Décans · Cosmic Interface
 
+> **V10.4 : mises à jour allégées.** Le site publié n'est plus une seule page de 8,4 Mo : une page de 10 Ko charge les 45 modules (scripts, styles), chacun publié sous un nom tiré de son contenu (`zodiac-app.1a2b3c4d5e.js`). Le service worker garde les modules d'une version à l'autre et ne télécharge que ceux qui ont changé ; il ne demande plus la page deux fois. Mise à jour typique ≈ 80 Ko transférés (≈ 250 Ko pour une version comme celle des articles) au lieu d'environ 4 Mo compressés, voire le double. Première visite inchangée (≈ 4,1 Mo compressés). La version autonome reste un seul fichier ; hors ligne et confidentialité inchangés. Le test du site installable simule une mise à jour. 113 tests.
+
 > **V10.3 : articles « En savoir plus ».** Les bulles (i) des méthodes (38 bulles) gardent leur texte court et se terminent par « En savoir plus », qui ouvre l'un des 10 articles (signes et décans, zodiaque chinois, thème natal, ciel du moment, compatibilité, numérologie, carré de Pythagore, portrait, tarot, Oracle) dans un panneau de lecture : titre, quatre rubriques (D'où ça vient, Le principe, Comment ZODIAC l'applique, Ce que ce n'est pas) et sources. L'Oracle a son propre lien. Panneau accessible (focus gardé, Échap, retour du focus, arabe de droite à gauche, thèmes clair et sombre, plein écran sur téléphone). 14 langues ; textes dans `data/articles/`, générés par `tools/regen_articles.js`. Cahier : `docs/cahier-articles.md`. 113 tests.
 
 > **V10.1 : Oracle plus vivant.** Boule de cristal dessinée en code (`crystalBallSvg()`, brume qui tourne, halo, étincelles, socle doré, étoiles en orbite) sur le bouton de l'accueil, dans une carte d'invitation en bas de l'onglet Tarot et au centre du cercle de l'Oracle, où elle s'illumine pendant la rotation. Immobile en mode « animations réduites ». Aucun nouveau texte. Le bouton de l'accueil n'apparaît que tant qu'aucun profil n'est affiché ; ensuite, l'Oracle s'ouvre depuis l'onglet Tarot (pas de doublon).
@@ -97,9 +99,9 @@ Les fichiers sont chargés par de simples balises `<script src>` (pas de modules
 | `build-standalone.py` | Assemble `ZODIAC-standalone.html` : styles, scripts et tests intégrés dans la page |
 | `ZODIAC-standalone.html` | Version autonome en un seul fichier (générée, ne pas modifier à la main) |
 | `manifest.webmanifest` | Manifeste de l'application installable : nom, icônes, couleurs |
-| `sw.js` | Service worker (modèle) : garde l'appli en mémoire ; sa version est inscrite par le script d'assemblage |
+| `sw.js` | Service worker (modèle) : garde l'appli en mémoire et, à chaque version, ne télécharge que les modules modifiés ; sa version et la liste des modules sont inscrites par le script d'assemblage |
 | `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` | Icônes de l'application (roue dorée sur fond nuit) |
-| `site/` | Dossier à publier tel quel sur GitHub Pages (généré : `index.html`, manifeste, `sw.js` versionné, icônes, `README.md`) |
+| `site/` | Dossier publié sur GitHub Pages (généré : `index.html` de 10 Ko, un fichier par module nommé d'après son contenu, manifeste, `sw.js` versionné, icônes, `ZODIAC-standalone.html` et `zodiac-tests.js` servis à la demande, `README.md`) |
 
 Ordre de chargement : données → données du ciel → noyau i18n → langues → calculs → planètes → carte du ciel → thème natal → application.
 
@@ -264,7 +266,7 @@ Ordre de chargement : données → données du ciel → noyau i18n → langues �
 ### 📱 Application installable (GitHub Pages)
 - [x] Adresse : **https://tikimoana987.github.io/zodiac/** — sur iPhone : Safari → Partager → « Sur l'écran d'accueil » ; sur Android : menu → « Installer l'application »
 - [x] **Fonctionne sans internet** une fois installée : le service worker garde la page, le manifeste et les icônes ; un lien avec date (`?date=…&lang=…`) s'ouvre aussi hors ligne
-- [x] **Mises à jour automatiques** : avec du réseau, la page en ligne est toujours prise d'abord ; chaque nouvelle publication change `sw.js` (version = empreinte du contenu), ce qui remplace la copie gardée et efface l'ancienne
+- [x] **Mises à jour automatiques** : avec du réseau, la page en ligne est toujours prise d'abord ; chaque nouvelle publication change `sw.js` (version = empreinte du contenu) ; depuis V10.4, seuls les modules modifiés sont téléchargés, les autres restent en mémoire, ceux qui ne servent plus sont effacés
 - [x] Les données (nom, historique, lieu, mode) restent sur l'appareil ; sur iPhone, l'app de l'écran d'accueil a son propre stockage, distinct de Safari
 - [x] Effet secondaire : sur le site, « Partager » copie un vrai lien (date, heure, langue ; jamais le nom)
 - **Publier une mise à jour** : `python3 build-standalone.py`, puis déposer le contenu de `site/` dans le dépôt GitHub (remplacer les fichiers)
@@ -478,7 +480,7 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Combinaisons d'affinités | 12 × 12 = 144 |
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | aucune en ligne (html2canvas en copie locale) |
-| Poids approximatif | version autonome ≈ 8,4 Mo, mesurée le 2 novembre 2026 (7,8 Mo avant les articles) : ≈ 3,1 Mo d'illustrations du tarot, ≈ 1 Mo de villes, ≈ 1,6 Mo de traductions, ≈ 0,6 Mo d'articles, ≈ 0,4 Mo de textes du portrait |
+| Poids approximatif | site : première visite ≈ 4,1 Mo compressés, mise à jour typique ≈ 80 Ko (V10.4) ; version autonome ≈ 8,4 Mo, mesurée le 2 novembre 2026 (7,8 Mo avant les articles) : ≈ 3,1 Mo d'illustrations du tarot, ≈ 1 Mo de villes, ≈ 1,6 Mo de traductions, ≈ 0,6 Mo d'articles, ≈ 0,4 Mo de textes du portrait |
 | Tests automatisés | 113 (96 dans `zodiac-tests.js`, dont 3 pour les articles, + 17 portrait) ; parcours réel protégé en CI, compatibilité, tarot, carré et articles compris |
 
 ---

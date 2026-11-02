@@ -8,7 +8,8 @@ Vérifie, dans un navigateur piloté par Playwright (Chromium par défaut) :
      articles « En savoir plus » au clavier depuis une bulle (i) et depuis l'Oracle ;
      puis l'Oracle Oui / Non, animations actives : ouverture, réponse après la rotation, nouvelle question, fermeture ;
      l'audit d'accessibilité couvre aussi l'oracle ouvert et la fenêtre « Soutenir le projet » ;
-  4. le site installable (dossier site/) servi comme sur GitHub Pages : installation, puis fonctionnement réseau coupé ;
+  4. le site installable (dossier site/) servi comme sur GitHub Pages : installation, mise à jour qui ne retélécharge
+     que le module modifié, puis fonctionnement réseau coupé ;
   5. (Chromium seulement) l'accessibilité : audit axe-core de l'accueil et des 5 onglets, en français et en arabe,
      thèmes sombre et clair ; la moindre anomalie fait échouer les tests.
 
@@ -23,8 +24,10 @@ Code de sortie : 0 si tout passe, 1 sinon.
 import asyncio
 import functools
 import http.server
+import importlib.util
 import os
 import pathlib
+import re
 import shutil
 import sys
 import tempfile
@@ -332,6 +335,14 @@ async def accessibility(browser, file):
             await ctx.close()
 
 
+def load_builder():
+    """build-standalone.py chargé comme module : sert à publier une « version suivante » du site pendant le test."""
+    spec = importlib.util.spec_from_file_location('build_standalone', ROOT / 'build-standalone.py')
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 async def installable_site(browser):
     site = ROOT / 'site'
     if not (site / 'index.html').exists():
@@ -339,10 +350,27 @@ async def installable_site(browser):
         return
     print('Site installable (servi comme sur GitHub Pages, sous /zodiac/)')
     with tempfile.TemporaryDirectory() as tmp:
-        shutil.copytree(site, pathlib.Path(tmp) / 'zodiac')
+        served = pathlib.Path(tmp) / 'zodiac'
+        shutil.copytree(site, served)
+        log = []   # (adresse, code, octets envoyés) de chaque demande reçue par le serveur
+
         class Quiet(http.server.SimpleHTTPRequestHandler):
             def log_message(self, *args):   # pas de journal des requêtes dans la sortie des tests
                 pass
+
+            def send_response(self, code, message=None):
+                self.code_sent = code
+                super().send_response(code, message)
+
+            def do_GET(self):
+                super().do_GET()
+                path = self.path.split('?')[0]
+                file = pathlib.Path(tmp) / path.lstrip('/')
+                if file.is_dir():
+                    file = file / 'index.html'
+                code = getattr(self, 'code_sent', 0)
+                log.append((path, code, file.stat().st_size if code == 200 and file.exists() else 0))
+
         handler = functools.partial(Quiet, directory=tmp)
         server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), handler)
         threading.Thread(target=server.serve_forever, daemon=True).start()
@@ -356,7 +384,38 @@ async def installable_site(browser):
             await page.evaluate('navigator.serviceWorker.ready')
             await page.reload()
             controlled = await page.evaluate('!!navigator.serviceWorker.controller')
-            report(controlled, 'installation : le service worker garde l\'appli en mémoire')
+            first = sum(size for _, _, size in log)
+            report(controlled, f'installation : le service worker garde l\'appli en mémoire ({first // 1024} Ko téléchargés)')
+
+            # Version suivante : un seul module modifié (le texte français). La mise à jour ne doit télécharger
+            # que la page, le service worker et ce module ; les autres restent en mémoire, l'ancien est effacé.
+            builder = load_builder()
+            app = next(served.glob('zodiac-app.*.js')).read_text(encoding='utf-8')
+            stamp = re.search(r"const APP_VERSION = '([^']*)';", app).group(1)
+            before = {p.name for p in served.iterdir()}
+            fr = (ROOT / 'zodiac-i18n-fr.js').read_text(encoding='utf-8') + '\n/* essai de mise à jour */\n'
+            nxt = builder.build_site(stamp, dest=served, override={'zodiac-i18n-fr.js': fr})
+            changed = [a for a in nxt['assets'] if a not in before]
+            log.clear()
+            await page.evaluate('navigator.serviceWorker.getRegistration().then(r => r.update())')
+            keys = []
+            for _ in range(150):   # au plus 30 s : nouvelle version installée, ancienne effacée
+                keys = await page.evaluate('caches.keys()')
+                if f"zodiac-page-{nxt['version']}" in keys and sum(k.startswith('zodiac-page-') for k in keys) == 1:
+                    break
+                await page.wait_for_timeout(200)
+            await page.reload()
+            await page.wait_for_selector('#birthDate', timeout=60000)
+            modules = [p.rsplit('/', 1)[-1] for p, code, _ in log if code == 200 and re.search(r'\.[0-9a-f]{10}\.(js|css)$', p)]
+            update = sum(size for _, _, size in log)
+            kept = await page.evaluate("caches.open('zodiac-files').then(c => c.keys()).then(k => k.map(r => r.url.split('/').pop()))")
+            ok = (len(changed) == 1 and modules == changed and sorted(kept) == sorted(nxt['assets'])
+                  and update < 400 * 1024 and f"zodiac-page-{nxt['version']}" in keys and not errors)
+            report(ok, f'mise à jour : {len(modules)} module retéléchargé sur {len(nxt["assets"])} '
+                       f'({update // 1024} Ko au lieu de {first // 1024} Ko), anciens modules effacés'
+                   + ('' if ok else f' | modifiés {changed}, reçus {modules}, mémoire {len(kept)}, versions {keys}')
+                   + (f' | {errors}' if errors else ''))
+
             # Coupure réseau, identique pour tous les navigateurs : le serveur s'arrête (connexion refusée).
             # Le mode « hors ligne » simulé de Playwright n'est ajouté que pour Chromium : dans WebKit,
             # il peut aussi bloquer le service worker, ce qu'un vrai Safari ne fait pas.
@@ -366,7 +425,7 @@ async def installable_site(browser):
                 await ctx.set_offline(True)
             await page.goto(base + '?date=1982-11-03&lang=fr')
             await page.wait_for_selector('.sign-name', timeout=60000)
-            report(not errors, 'réseau coupé : l\'appli s\'ouvre et calcule' + (f' | {errors}' if errors else ''))
+            report(not errors, 'réseau coupé, après la mise à jour : l\'appli s\'ouvre et calcule' + (f' | {errors}' if errors else ''))
             await ctx.close()
         except Exception as exc:   # un échec est signalé comme les autres, sans interrompre le rapport
             report(False, 'site installable : ' + (str(exc).strip().splitlines() or ['erreur inconnue'])[0][:300])

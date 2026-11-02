@@ -1,6 +1,6 @@
 # 🗺️ Zodiaque & Décans — ce qu'il reste à faire
 
-> État au 2 novembre 2026, après les articles « En savoir plus » (V10.3) ; auparavant le portrait symbolique, l'audit d'accessibilité et les tests Safari / Firefox (V7.3), et le retour détaillé d'une testeuse (§ 3). Ce document complète `projet.md` (ce qui est fait) et `reprise.md` (notes techniques).
+> État au 2 novembre 2026, après les articles « En savoir plus » (V10.3) et l'allègement des mises à jour (V10.4) ; auparavant le portrait symbolique, l'audit d'accessibilité et les tests Safari / Firefox (V7.3), et le retour détaillé d'une testeuse (§ 3). Ce document complète `projet.md` (ce qui est fait) et `reprise.md` (notes techniques).
 > Légende : 🟢 petit · 🟡 moyen · 🔴 gros chantier · ❓ décision à prendre · ⭐ recommandation de Claude
 
 ---
@@ -161,7 +161,8 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 - [ ] **Relecture des traductions** par des personnes dont c'est la langue maternelle, en priorité arabe, hindi, thaï, chinois, japonais et coréen. Les textes ont été écrits avec soin, mais une relecture humaine reste préférable.
 - [x] **Animation de recherche** : décision du 31 octobre, elle reste complète à chaque recherche, car elle fait partie de l'ambiance (la version courte et passable de la V7.4 a été annulée en V7.5).
 - [ ] **Arcane de l'année personnelle** : année personnelle 1 à 9 → arcane du même numéro, avec ses mots-clés, dans la continuité du portrait 🟢
-- [ ] **Allègement des mises à jour** 🟡 : le site est une seule page de 6,8 Mo, retéléchargée en entier à chaque version, alors que les illustrations et les villes (≈ 4 Mo) ne changent presque jamais. Les placer dans des fichiers séparés gardés par le service worker, et ne charger que la langue choisie, rendrait chaque mise à jour environ trois fois plus légère. La version autonome resterait en un seul fichier.
+- [x] **Allègement des mises à jour** (V10.4, 2 novembre 2026) : un fichier par module, nommé d'après son contenu, gardé par le service worker d'une version à l'autre ; double téléchargement de la page supprimé. Mise à jour typique ≈ 80 Ko au lieu d'environ 4 à 8 Mo ; première visite inchangée (≈ 4,1 Mo compressés). La version autonome reste en un seul fichier.
+- [ ] Plus tard, si besoin : alléger aussi la première visite (≈ 4,1 Mo compressés, dont ≈ 2,4 Mo d'illustrations) ; piste : ne charger les illustrations du tarot qu'à l'ouverture de l'onglet Tarot.
 - [ ] **Performance sur les appareils modestes** : le flou et les étoiles animées du fond coûtent cher en dessin. Le mode « animations réduites » les coupe déjà ; ❓ envisager un allègement automatique sur les petits appareils.
 
 ---
@@ -207,7 +208,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 5. ✅ **Compatibilité approfondie** (§ 3.2), V8.
 6. ✅ **Onglet Tarot et nouveaux tirages** (§ 3.3), V9.
 7. ✅ **Carré de Pythagore** (§ 3.4), V10. ✅ **Articles « En savoir plus »** (§ 3.4 bis), V10.3.
-8. **Allègement des mises à jour** (validé, prochain chantier) : aujourd'hui chaque visiteur retélécharge toute la page (≈ 8,4 Mo) à chaque version ; viser environ trois fois moins. Puis **améliorations rapides** (§ 7) au fil de l'eau.
+8. ✅ **Allègement des mises à jour** (§ 7), V10.4 : mise à jour typique ≈ 80 Ko. Puis **améliorations rapides** (§ 7) au fil de l'eau.
 9. **Frise annuelle** (§ 4) et **console d'administration** (§ 5), éventuellement ensemble, puisque la console peut produire la frise.
 10. **Qualité et maintenance** (§ 8), en continu.
 11. **iPhone et version hors ligne** (§ 6), en dernier.

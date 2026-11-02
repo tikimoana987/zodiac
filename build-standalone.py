@@ -4,14 +4,16 @@
 Produit :
 - ZODIAC-standalone.html : toute l'appli (page, styles, scripts, traductions, données du ciel et html2canvas
   pour l'export en image) dans un seul fichier, utilisable sans internet et facile à partager ;
-- le dossier site/ : la même appli en application installable (PWA) à déposer tel quel sur GitHub Pages
-  (index.html, manifeste, service worker, icônes). Sur iPhone, c'est la seule façon de l'utiliser hors ligne :
-  iOS refuse d'exécuter le JavaScript d'un fichier HTML ouvert depuis l'appareil.
+- le dossier site/ : la même appli en application installable (PWA), publiée sur GitHub Pages
+  (index.html, un fichier par module nommé d'après son contenu, manifeste, service worker, icônes). Sur iPhone,
+  c'est la seule façon de l'utiliser hors ligne : iOS refuse d'exécuter le JavaScript d'un fichier HTML ouvert
+  depuis l'appareil. À chaque nouvelle version, seuls les modules modifiés sont retéléchargés (voir sw.js).
 
 Utilisation, dans le dossier du projet :   python3 build-standalone.py
 Aucune dépendance : Python 3 suffit. À relancer après chaque modification des fichiers sources.
 """
 import hashlib
+import json
 import time
 import pathlib
 import re
@@ -81,7 +83,7 @@ def build():
     (HERE / OUTPUT).write_text(html, encoding='utf-8')
     size = (HERE / OUTPUT).stat().st_size
     print(f"{OUTPUT} : {size // 1024} Ko, {len(names)} scripts intégrés + styles + tests")
-    build_site(html)
+    build_site(stamp)
 
 
 PWA_HEAD = """<link rel="manifest" href="manifest.webmanifest">
@@ -96,38 +98,86 @@ PWA_HEAD = """<link rel="manifest" href="manifest.webmanifest">
 SITE_FILES = ['manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png']
 
 
-def build_site(html):
-    """Dossier site/ : version autonome + balises d'application installable, service worker versionné."""
-    site = HERE / 'site'
+def asset_name(name, data):
+    """Nom publié d'un module : son nom suivi de l'empreinte de son contenu (zodiac-app.1a2b3c4d5e.js).
+    Un nom donné ne change donc jamais de contenu : l'appli installée le garde d'une version à l'autre."""
+    stem, ext = name.rsplit('.', 1)
+    return f"{stem}.{hashlib.sha256(data).hexdigest()[:10]}.{ext}"
+
+
+def build_site(stamp, dest=None, override=None):
+    """Dossier site/ : la page (quelques Ko) charge les modules comme ZODIAC.html, dans le même ordre, mais sous
+    leur nom publié ; sw.js reçoit la liste des modules et ne télécharge que ceux qu'il n'a pas encore.
+    stamp : numéro de version affiché (le même que la version autonome).
+    dest, override : pour les tests seulement (autre dossier ; {fichier source: texte} pour simuler une mise à jour)."""
+    override = override or {}
+    site = pathlib.Path(dest) if dest else HERE / 'site'
     shutil.rmtree(site, ignore_errors=True)
-    site.mkdir()
+    site.mkdir(parents=True)
+    html = override.get(SOURCE) or read(SOURCE)
+    assets = []
+
+    def publish(name):
+        text = override.get(name) or read(name)
+        if name == 'zodiac-app.js':
+            if "'__APP_VERSION__'" not in text:
+                sys.exit("Repère '__APP_VERSION__' introuvable dans zodiac-app.js")
+            text = text.replace("'__APP_VERSION__'", f"'{stamp}'", 1)
+        data = text.encode('utf-8')
+        published = asset_name(name, data)
+        (site / published).write_bytes(data)
+        if published not in assets:
+            assets.append(published)
+        return published
+
+    for css in ('zodiac.css', 'zodiac-portrait.css'):
+        link = f'<link rel="stylesheet" href="{css}">'
+        if link in html:
+            html = html.replace(link, f'<link rel="stylesheet" href="{publish(css)}">')
+    html = re.sub(r'<script src="([^"/:]+\.js)"></script>', lambda m: f'<script src="{publish(m.group(1))}"></script>', html)
     anchor = '<meta name="viewport"'
     if anchor not in html:
         sys.exit('Balise <meta name="viewport"> introuvable : impossible d\'ajouter les balises d\'application')
     i = html.index(anchor)
     j = html.index('>', i) + 1
-    page = html[:j] + '\n' + PWA_HEAD + html[j:]
-    (site / 'index.html').write_text(page, encoding='utf-8')
+    # Manifeste et icônes : noms fixes (l'appli installée les connaît sous ce nom), gardés tant qu'ils ne changent pas
+    shell = hashlib.sha256()
     for name in SITE_FILES:
         if not (HERE / name).exists():
             sys.exit(f"Fichier manquant pour le site : {name}")
         shutil.copy(HERE / name, site / name)
-    # Version = empreinte du contenu : chaque modification change sw.js, donc l'appli installée se met à jour
-    digest = hashlib.sha256(page.encode('utf-8'))
-    for name in SITE_FILES:
-        digest.update((HERE / name).read_bytes())
+        shell.update((HERE / name).read_bytes())
+    shell_version = shell.hexdigest()[:12]
+    # Version = empreinte de la page, des modules et des icônes ; écrite dans la page, que sw.js vérifie
+    digest = hashlib.sha256((html + '\n'.join(assets) + shell_version).encode('utf-8'))
     version = digest.hexdigest()[:12]
-    (site / 'sw.js').write_text(read('sw.js').replace('__VERSION__', version), encoding='utf-8')
+    page = html[:j] + '\n' + PWA_HEAD + f'<meta name="zodiac-version" content="{version}">\n' + html[j:]
+    (site / 'index.html').write_text(page, encoding='utf-8')
+    sw = read('sw.js')
+    for mark in ('__VERSION__', '__SHELL__', '__ASSETS__'):
+        if mark not in sw:
+            sys.exit(f"Repère {mark} introuvable dans sw.js")
+    sw = sw.replace('__VERSION__', version).replace('__SHELL__', shell_version).replace('__ASSETS__', json.dumps(assets))
+    (site / 'sw.js').write_text(sw, encoding='utf-8')
+    # Servis à la demande seulement, jamais gardés en mémoire par l'appli : la version autonome (bouton
+    # « Version hors ligne ») et la suite de tests (adresse ?test)
+    if (HERE / OUTPUT).exists() and not dest:
+        shutil.copy(HERE / OUTPUT, site / OUTPUT)
+    (site / TESTS).write_text(override.get(TESTS) or read(TESTS), encoding='utf-8')
     (site / 'README.md').write_text(
         "# Zodiaque & Décans\n\n"
         "Signe et décan (position réelle du Soleil), zodiaque chinois, horoscope par transits, carte du ciel, "
-        "compatibilité, en 7 langues.\n\n"
+        "compatibilité, numérologie, tarot, en 14 langues.\n\n"
         "**Utiliser l'appli : https://tikimoana987.github.io/zodiac/**\n\n"
         "Sur iPhone : ouvrir l'adresse dans Safari, puis Partager → « Sur l'écran d'accueil ». "
         "L'appli fonctionne ensuite sans internet.\n\n"
         "Fichiers générés par `build-standalone.py` à partir des sources du projet : ne pas les modifier à la main.\n",
         encoding='utf-8')
-    print(f"site/ : {len(list(site.iterdir()))} fichiers, version {version}")
+    weight = (site / 'index.html').stat().st_size + sum((site / a).stat().st_size for a in assets)
+    if not dest:
+        print(f"site/ : page {(site / 'index.html').stat().st_size // 1024} Ko + {len(assets)} modules "
+              f"({weight // 1024} Ko en tout), version {version}")
+    return {'version': version, 'shell': shell_version, 'assets': assets}
 
 
 if __name__ == '__main__':
