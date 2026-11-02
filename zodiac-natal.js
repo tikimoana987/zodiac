@@ -27,18 +27,38 @@ function tzOffset(ms, tz){
   asUtc.setUTCHours(p.h, p.min, p.s, 0);
   return asUtc.getTime() - Math.floor(ms / 1000) * 1000;
 }
-/* Heure locale d'un lieu → instant UTC (ms). Heure inexistante (passage à l'heure d'été) : décalée d'autant ;
-   heure ambiguë (retour à l'heure d'hiver) : première occurrence. */
-function zonedInstant(date, h, min, tz){
+/* Heure locale d'un lieu → instant UTC (ms). Heure inexistante (horloges avancées) : décalage d'avant le
+   changement, soit le même instant exprimé avec la nouvelle heure ; heure vécue deux fois (horloges retardées) :
+   la première, ou la seconde si fold vaut 1 (choix de l'utilisateur, voir wallTimeInfo). */
+function zonedInstant(date, h, min, tz, fold){
+  const w = wallMs(date, h, min);
+  const valid = validInstants(w, tz);
+  if (valid.length) return valid[fold && valid.length > 1 ? valid.length - 1 : 0];
+  return w - tzOffset(w - 86400e3, tz);               // heure inexistante : décalage d'avant le changement
+}
+function wallMs(date, h, min){
   const wall = new Date(0);
   wall.setUTCFullYear(date.y, date.m - 1, date.d);
   wall.setUTCHours(h, min, 0, 0);
-  const w = wall.getTime();
-  // Décalages possibles autour de cette date ; on garde ceux qui redonnent bien l'heure locale demandée
+  return wall.getTime();
+}
+/* Instants (ms, croissants) où les horloges du lieu ont affiché cette heure : décalages possibles autour de
+   cette date, gardés s'ils redonnent bien l'heure locale demandée. 0 : heure sautée ; 2 : heure vécue deux fois. */
+function validInstants(w, tz){
   const offsets = new Set([tzOffset(w - 86400e3, tz), tzOffset(w, tz), tzOffset(w + 86400e3, tz)]);
-  const valid = [...offsets].map(o => w - o).filter(t => tzOffset(t, tz) === w - t).sort((a, b) => a - b);
-  if (valid.length) return valid[0];                  // heure ambiguë : première occurrence
-  return w - tzOffset(w - 86400e3, tz);               // heure inexistante : décalage d'avant le changement
+  return [...offsets].map(o => w - o).filter(t => tzOffset(t, tz) === w - t).sort((a, b) => a - b);
+}
+/* Heure de naissance touchée par un changement d'heure du lieu (d'après la base des fuseaux du navigateur :
+   heure d'été, changements de fuseau, passage de l'heure locale à l'heure légale…), sinon null.
+   { kind: 'gap' (heure qui n'a pas existé) | 'overlap' (heure vécue deux fois), shift: écart en minutes,
+     equiv: { h, min } heure retenue à la place (gap seulement) } */
+function wallTimeInfo(date, h, min, tz){
+  if (!tz) return null;
+  const w = wallMs(date, h, min), valid = validInstants(w, tz);
+  if (valid.length > 1) return { kind: 'overlap', shift: Math.round((valid[valid.length - 1] - valid[0]) / 60000) };
+  if (valid.length) return null;
+  const before = tzOffset(w - 86400e3, tz), after = tzOffset(w + 86400e3, tz), t = w - before, p = tzParts(t, tz);
+  return { kind: 'gap', shift: Math.round(Math.abs(after - before) / 60000), equiv: { h: p.h, min: p.min } };
 }
 
 /* ---------- Angles et maisons ---------- */
@@ -116,7 +136,7 @@ function aspectsBetween(positions){
    Sans lieu : heure interprétée dans le fuseau de l'appareil, ni ascendant ni maisons. */
 function natalChart(date, time, place){
   const exact = !!(time && place);
-  const ms = place ? zonedInstant(date, time ? time.h : 12, time ? time.min : 0, place.tz)
+  const ms = place ? zonedInstant(date, time ? time.h : 12, time ? time.min : 0, place.tz, time && time.fold)
                    : localInstant(date, time ? time.h : 12, time ? time.min : 0);
   const bodies = BODIES.map(body => {
     const lon = bodyLongitude(body, ms);

@@ -1819,5 +1819,13 @@ I18N.en = deepMerge(I18N.fr, {
     intro: "The app is free and respects your privacy. If you like it, you can support its development.",
     share: "Share the app",
     note: "Donations are made on the platform you choose, in a new tab. The app passes nothing on."
+  },
+  dst: {
+    gap: "On that day in {place}, according to official historical time records, clocks moved forward by {shift}: {time} did not occur. ZODIAC used {equiv}, the same instant expressed in the new local time. Check the time on the birth certificate.",
+    overlap: "On that day in {place}, according to official historical time records, clocks moved back by {shift}: {time} occurred twice. Please specify which occurrence; otherwise, ZODIAC uses the first.",
+    before: "Before the clock change",
+    after: "After the clock change",
+    choice: "Time of birth",
+    old: "Before 1970, these historical records are less reliable in some countries."
   }
 });

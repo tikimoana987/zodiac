@@ -1825,5 +1825,13 @@ I18N.pt = deepMerge(I18N.fr, {
     intro: "O app é gratuito e respeita a sua privacidade. Se você gosta dele, pode apoiar o seu desenvolvimento.",
     share: "Compartilhar o app",
     note: "A doação é feita na plataforma escolhida, em uma nova aba. O app não transmite nada."
+  },
+  dst: {
+    gap: "Naquele dia, em {place}, segundo o histórico oficial dos horários, os relógios foram adiantados em {shift}: o horário {time} não existiu. O ZODIAC considerou {equiv}, o mesmo instante expresso no novo horário. Confira a hora na certidão de nascimento.",
+    overlap: "Naquele dia, em {place}, segundo o histórico oficial dos horários, os relógios foram atrasados em {shift}: o horário {time} ocorreu duas vezes. Indique qual das duas ocorrências; sem essa informação, o ZODIAC considera a primeira.",
+    before: "Antes da mudança de horário",
+    after: "Depois da mudança de horário",
+    choice: "Momento do nascimento",
+    old: "Antes de 1970, esse histórico é menos confiável em alguns países."
   }
 });

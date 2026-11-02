@@ -1830,5 +1830,13 @@ I18N.fr = {
     intro: "L'appli est gratuite et respecte votre vie privée. Si elle vous plaît, vous pouvez soutenir son développement.",
     share: "Partager l'appli",
     note: "Le don se fait sur la plateforme choisie, dans un nouvel onglet. L'appli ne transmet rien."
+  },
+  dst: {
+    gap: "Ce jour-là à {place}, d'après l'historique officiel des heures, les horloges ont été avancées de {shift} : {time} n'a pas existé. ZODIAC a retenu {equiv}, le même instant exprimé avec la nouvelle heure. Vérifiez l'heure sur l'acte de naissance.",
+    overlap: "Ce jour-là à {place}, d'après l'historique officiel des heures, les horloges ont été retardées de {shift} : {time} a existé deux fois. Précisez laquelle ; sans précision, ZODIAC retient la première.",
+    before: "Avant le changement d'heure",
+    after: "Après le changement d'heure",
+    choice: "Moment de la naissance",
+    old: "Avant 1970, cet historique est moins sûr dans certains pays."
   }
 };

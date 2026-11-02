@@ -5,7 +5,7 @@ Vérifie, dans un navigateur piloté par Playwright (Chromium par défaut) :
   1. la suite intégrée (ZODIAC.html?test) dans 5 fuseaux horaires d'appareil ;
   2. la même suite dans la version autonome (ZODIAC-standalone.html), réseau coupé ;
   3. un parcours réel en français, arabe (droite à gauche) et japonais : résultat, thème natal, nuit, portrait, sans erreur ;
-     articles « En savoir plus » au clavier depuis une bulle (i) et depuis l'Oracle ;
+     articles « En savoir plus » au clavier depuis une bulle (i) et depuis l'Oracle ; changement d'heure le jour de naissance ;
      puis l'Oracle Oui / Non, animations actives : ouverture, réponse après la rotation, nouvelle question, fermeture ;
      l'audit d'accessibilité couvre aussi l'oracle ouvert et la fenêtre « Soutenir le projet » ;
   4. le site installable (dossier site/) servi comme sur GitHub Pages : installation, mise à jour qui ne retélécharge
@@ -244,6 +244,41 @@ async def oracle_journey(browser, file):
     await ctx.close()
 
 
+async def dst_journey(browser, file):
+    """Changement d'heure le jour de naissance (Paris) : heure vécue deux fois, choix au clavier, lien, retour ;
+    heure qui n'a pas existé : message seul. En français, arabe et japonais."""
+    print(f'Changement d\'heure — {file.name}')
+    asc = "signFromLongitude(natalChart(parseISODate(currentDate), birthTime(), birthPlace(currentBirthPlace)).asc)"
+    for lang in ('fr', 'ar', 'ja'):
+        ctx = await browser.new_context(viewport={'width': 1280, 'height': 900}, reduced_motion='reduce', timezone_id='America/New_York')
+        page = await ctx.new_page()
+        errors = []
+        page.on('pageerror', lambda e: errors.append(str(e)))
+        try:
+            await page.goto(file.as_uri() + f'?date=2026-10-25&time=02:30&place=Paris%7CFR&lang={lang}')
+            await page.wait_for_selector('.dst-note input[name="dstFold"]', timeout=60000)
+            first = (await page.evaluate(asc), await page.locator('input[name="dstFold"][value="0"]').is_checked())
+            await page.locator('input[name="dstFold"][value="0"]').focus()
+            await page.keyboard.press('ArrowDown')   # flèches : choix suivant du groupe, dans tous les sens d'écriture
+            await page.wait_for_function("location.hash.includes('fold=1')", timeout=10000)
+            await page.wait_for_function("document.activeElement && document.activeElement.name === 'dstFold'", timeout=5000)
+            second = (await page.evaluate(asc), await page.evaluate('document.activeElement.value'))
+            link = await page.evaluate('location.href')
+            await page.goto('about:blank')
+            await page.goto(link)   # lien partagé : le choix est repris
+            await page.wait_for_selector('.dst-note input[name="dstFold"]', timeout=60000)
+            reopened = (await page.evaluate(asc), await page.locator('input[name="dstFold"][value="1"]').is_checked())
+            await page.goto(file.as_uri() + f'?date=2026-03-29&time=02:30&place=Paris%7CFR&lang={lang}')
+            await page.wait_for_selector('.dst-note', timeout=60000)
+            gap = await page.locator('.dst-note input').count() == 0 and '{' not in await page.text_content('.dst-note')
+            ok = first == ('leo', True) and second == ('virgo', '1') and reopened == ('virgo', True) and gap and not errors
+            report(ok, f'{lang} : heure vécue deux fois → choix au clavier (ascendant Lion → Vierge), gardé dans le lien ; heure sautée signalée'
+                   + ('' if ok else f' | {first} {second} {reopened} {gap}') + (f' | {errors}' if errors else ''))
+        except Exception as exc:
+            report(False, f'{lang} : changement d\'heure — {str(exc)[:300]}')
+        await ctx.close()
+
+
 async def accessibility(browser, file):
     """Audit axe-core : accueil + 5 onglets, français et arabe, thèmes sombre et clair. Aucune anomalie tolérée."""
     print(f'Accessibilité (audit axe-core) — {file.name}')
@@ -322,6 +357,14 @@ async def accessibility(browser, file):
                 .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
             found += [f'oracle : {v}' for v in violations]
             await page.click('#oracleClose')
+            # Message de changement d'heure avec son choix (heure vécue deux fois à Paris)
+            await page.evaluate("""document.getElementById('birthDate').value = '2026-10-25';
+                document.getElementById('birthTime').value = '02:30'; birthField.set('Paris|FR'); quickReveal = true; launchSearch();""")
+            await page.wait_for_selector('.dst-note input[name="dstFold"]', timeout=10000)
+            await page.add_script_tag(content=script)
+            violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
+                .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
+            found += [f'changement d\'heure : {v}' for v in violations]
             # « Soutenir le projet » : caché tant qu'aucun lien n'est renseigné ; un lien d'essai le fait apparaître
             await page.evaluate("SUPPORT_LINKS[0].url = 'https://ko-fi.com/exemple'; refreshSupport()")
             await page.click('#supportOpen')
@@ -449,6 +492,7 @@ async def main():
             report(False, 'ZODIAC-standalone.html absent : lancer d\'abord python build-standalone.py')
         await journey(browser, ROOT / 'ZODIAC.html')
         await oracle_journey(browser, ROOT / 'ZODIAC.html')
+        await dst_journey(browser, ROOT / 'ZODIAC.html')
         if BROWSER == 'chromium':
             await accessibility(browser, ROOT / 'ZODIAC.html')
         await installable_site(browser)

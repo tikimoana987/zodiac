@@ -60,9 +60,10 @@ function parseTime(str){
 
 /* Instant local → ms UTC. Avec tz (fuseau IANA du lieu de naissance, ex. « Europe/Paris ») : heure du lieu,
    changements d'heure compris (zonedInstant, zodiac-natal.js) ; sans tz : fuseau de l'appareil.
-   Sans heure, les appelants prennent midi, soit ±0,5° de Soleil au pire. */
-function localInstant(date, h, min, tz){
-  if (tz) return zonedInstant(date, h, min, tz);
+   Sans heure, les appelants prennent midi, soit ±0,5° de Soleil au pire.
+   fold : 1 = seconde occurrence d'une heure vécue deux fois (avec tz seulement, voir wallTimeInfo). */
+function localInstant(date, h, min, tz, fold){
+  if (tz) return zonedInstant(date, h, min, tz, fold);
   const dt = new Date(2000, 0, 1, 12, 0, 0, 0);
   dt.setFullYear(date.y, date.m - 1, date.d);   // setFullYear : correct aussi pour les années < 100
   dt.setHours(h, min, 0, 0);
@@ -72,7 +73,7 @@ function localInstant(date, h, min, tz){
 /* Ciel de naissance : longitude, signe, décan, et alerte si le Soleil change de signe ou de décan
    ce jour-là alors qu'aucune heure n'a été fournie. */
 function computeSky(date, time, tz){
-  const lon = sunLongitude(time ? localInstant(date, time.h, time.min, tz) : localInstant(date, 12, 0, tz));
+  const lon = sunLongitude(time ? localInstant(date, time.h, time.min, tz, time.fold) : localInstant(date, 12, 0, tz));
   let cusp = null;
   if (!time) {
     const a = sunLongitude(localInstant(date, 0, 0, tz));

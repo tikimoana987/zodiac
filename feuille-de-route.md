@@ -1,6 +1,6 @@
 # 🗺️ Zodiaque & Décans — ce qu'il reste à faire
 
-> État au 2 novembre 2026, après les articles « En savoir plus » (V10.3), l'allègement des mises à jour (V10.4) et le test Safari bloquant (V10.5) ; auparavant le portrait symbolique, l'audit d'accessibilité et les tests Safari / Firefox (V7.3), et le retour détaillé d'une testeuse (§ 3). Ce document complète `projet.md` (ce qui est fait) et `reprise.md` (notes techniques).
+> État au 2 novembre 2026, après les articles « En savoir plus » (V10.3), l'allègement des mises à jour (V10.4), le test Safari bloquant (V10.5) et le changement d'heure le jour de naissance (V10.6) ; auparavant le portrait symbolique, l'audit d'accessibilité et les tests Safari / Firefox (V7.3), et le retour détaillé d'une testeuse (§ 3). Ce document complète `projet.md` (ce qui est fait) et `reprise.md` (notes techniques).
 > Légende : 🟢 petit · 🟡 moyen · 🔴 gros chantier · ❓ décision à prendre · ⭐ recommandation de Claude
 
 ---
@@ -12,7 +12,7 @@
 | Feuille de route d'origine (étapes 1 à 6) | ✅ terminée, sauf l'iPhone (gardé pour la fin) |
 | Pistes 1 à 6 | ✅ version et bandeau de mise à jour · ✅ cartes renversées · ✅ lieux par coordonnées GPS · ✅ calendrier du ciel · ✅ fiche du thème natal à imprimer ou en PDF · ✅ arcanes mineurs (jeu complet de 78 cartes) |
 | Langues | 14 (FR, EN, ES, PT, IT, DE, TR, RU, AR, HI, TH, ZH, JA, KO) |
-| Tests automatiques | 113 (96 + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit), bloquants, et dans Firefox, pour information |
+| Tests automatiques | 116 (99 + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit), bloquants, et dans Firefox, pour information |
 | Publication | automatique sur GitHub Pages, après les tests (circuit GitHub Actions) |
 | Poids | version autonome ≈ 8,4 Mo, mesurée le 2 novembre 2026 (7,8 Mo avant les articles ; l'ancien chiffre de 6,8 Mo était dépassé) : illustrations du tarot ≈ 3,1 Mo (déjà en WebP), villes ≈ 1 Mo, 14 langues ≈ 1,6 Mo, articles ≈ 0,6 Mo, textes du portrait ≈ 0,4 Mo |
 | Confidentialité | aucune donnée envoyée en ligne (adresse en « # », pas de serveur, pas de statistiques) ; seule exception : les événements ajoutés à Google Agenda à la demande de l'utilisateur |
@@ -169,7 +169,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 
 ## 8. 🟢 Qualité, maintenance, technique
 
-- [ ] **Heures inexistantes ou ambiguës au changement d'heure** (signalé lors de la relecture de la compatibilité) : aujourd'hui, une heure qui n'a pas existé (passage à l'heure d'été) est avancée d'une heure, et une heure qui a existé deux fois (retour à l'heure d'hiver) prend la première occurrence. Amélioration possible pour toute l'appli : un message « cette heure n'a pas existé ce jour-là » et une mention « ascendant incertain » pour l'heure ambiguë.
+- [x] **Heures inexistantes ou vécues deux fois au changement d'heure** (V10.6, 2 novembre 2026) : message dans les deux cas, d'après l'historique officiel des heures du lieu (tous pays, toutes époques) ; choix « Avant / Après le changement d'heure » pour l'heure vécue deux fois, gardé avec le profil et le lien. La personne de la compatibilité saisie à la main garde la première occurrence (choix possible plus tard si besoin).
 
 - [ ] **Licence du projet** ❓ : le dépôt est public mais sans licence, ce qui veut dire « tous droits réservés » par défaut. À décider : garder ainsi, ou choisir une licence (MIT, CC BY-NC…). Les crédits des données sont déjà dans le README, y compris la mention des illustrations générées avec Gemini.
 - [ ] **Versions à surveiller** dans le circuit GitHub : Ubuntu fixé à 24.04, Playwright 1.56, actions (checkout v7, setup-python v7, upload-pages-artifact v5, deploy-pages v5). À mettre à jour de temps en temps, quand GitHub prévient d'une fin de prise en charge.

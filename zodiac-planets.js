@@ -191,7 +191,7 @@ function wholeSignAspect(bodySign, personSign){
 
 /* Lune natale : phase, et signe(s) possibles (deux si elle change de signe ce jour-là et que l'heure manque) */
 function natalMoon(date, time, tz){
-  const at = time ? localInstant(date, time.h, time.min, tz) : localInstant(date, 12, 0, tz);
+  const at = time ? localInstant(date, time.h, time.min, tz, time.fold) : localInstant(date, 12, 0, tz);
   const signs = time ? [signFromLongitude(moonLongitude(at))]
     : [...new Set([0, 12, 23.99].map(h => signFromLongitude(moonLongitude(localInstant(date, Math.floor(h), Math.round((h % 1) * 60), tz)))))];
   return { phase: moonPhase(at), signs };

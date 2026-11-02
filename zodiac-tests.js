@@ -1512,6 +1512,63 @@
     }
   });
 
+  section('Changement d’heure le jour de naissance');
+  test('Changement d’heure : heures sautées et vécues deux fois, partout et à toute époque', () => {
+    const W = (tz, y, m, d, h, min) => JSON.stringify(wallTimeInfo({ y, m, d }, h, min, tz));
+    assertEq(W('Europe/Paris', 2026, 3, 29, 2, 30), '{"kind":"gap","shift":60,"equiv":{"h":3,"min":30}}', 'Paris, horloges avancées');
+    assertEq(W('Europe/Paris', 2026, 10, 25, 2, 30), '{"kind":"overlap","shift":60}', 'Paris, horloges retardées');
+    assertEq(W('Europe/Paris', 2026, 10, 25, 1, 30) + W('Europe/Paris', 2026, 10, 25, 3, 0) + W('Europe/Paris', 2026, 7, 14, 2, 30), 'nullnullnull', 'heures ordinaires');
+    assertEq(W('Australia/Sydney', 2026, 4, 5, 2, 30), '{"kind":"overlap","shift":60}', 'hémisphère sud, avril');
+    assertEq(W('Australia/Sydney', 2026, 10, 4, 2, 30), '{"kind":"gap","shift":60,"equiv":{"h":3,"min":30}}', 'hémisphère sud, octobre');
+    assertEq(W('America/New_York', 2026, 11, 1, 1, 30), '{"kind":"overlap","shift":60}', 'New York');
+    assertEq(W('Australia/Lord_Howe', 2026, 10, 4, 2, 15), '{"kind":"gap","shift":30,"equiv":{"h":2,"min":45}}', 'décalage d’une demi-heure');
+    assertEq(W('Europe/Paris', 1911, 3, 10, 23, 55), '{"kind":"overlap","shift":9}', 'Paris 1911 : heure locale → heure de Greenwich');
+    assertEq(W('Asia/Tokyo', 1949, 4, 3, 0, 30), '{"kind":"gap","shift":60,"equiv":{"h":1,"min":30}}', 'Tokyo 1949');
+    assertEq(W('Asia/Tokyo', 1990, 6, 1, 2, 30) + W('Asia/Kolkata', 2026, 3, 29, 2, 30), 'nullnull', 'pays sans changement d’heure');
+    assertEq(wallTimeInfo({ y: 2026, m: 10, d: 25 }, 2, 30, null), null, 'sans lieu : rien');
+    // Instants : heure sautée = même instant que l'heure d'après ; heure vécue deux fois = première ou seconde
+    const iso = ms => new Date(ms).toISOString().slice(0, 16);
+    assertEq(iso(zonedInstant({ y: 2026, m: 3, d: 29 }, 2, 30, 'Europe/Paris')), '2026-03-29T01:30', 'heure sautée');
+    assertEq(iso(zonedInstant({ y: 2026, m: 10, d: 25 }, 2, 30, 'Europe/Paris')), '2026-10-25T00:30', 'première');
+    assertEq(iso(zonedInstant({ y: 2026, m: 10, d: 25 }, 2, 30, 'Europe/Paris', 1)), '2026-10-25T01:30', 'seconde');
+    assertEq(iso(zonedInstant({ y: 2026, m: 7, d: 14 }, 2, 30, 'Europe/Paris', 1)), '2026-07-14T00:30', 'choix sans effet hors changement');
+  });
+
+  test('Changement d’heure : le choix change l’ascendant, la Lune et la compatibilité, et suit le profil', () => {
+    const date = { y: 2026, m: 10, d: 25 }, paris = birthPlace('Paris|FR');
+    const first = natalChart(date, { h: 2, min: 30 }, paris), second = natalChart(date, { h: 2, min: 30, fold: 1 }, paris);
+    assertEq(signFromLongitude(first.asc) + '/' + signFromLongitude(second.asc), 'leo/virgo', 'ascendant Lion puis Vierge');
+    assertEq(second.ms - first.ms, 3600e3, 'une heure d’écart');
+    const moved = (moonLongitude(localInstant(date, 2, 30, 'Europe/Paris', 1)) - moonLongitude(localInstant(date, 2, 30, 'Europe/Paris')) + 360) % 360;
+    assert(moved > 0.3 && moved < 0.8, `Lune : ${moved.toFixed(2)}° en une heure`);
+    const pa = compatPerson({ date, time: { h: 2, min: 30 }, tz: 'Europe/Paris', place: paris });
+    const pb = compatPerson({ date, time: { h: 2, min: 30, fold: 1 }, tz: 'Europe/Paris', place: paris });
+    assertEq(pa.shown.asc + '/' + pb.shown.asc, 'leo/virgo', 'compatibilité');
+    // Profil : clé distincte (sauvegardes par profil), historique non dédoublé (le dernier choix remplace l'entrée)
+    const p = { name: 'Essai', date: '2026-10-25', time: '02:30', place: 'Paris|FR' };
+    assert(profileKey(p) !== profileKey({ ...p, fold: 1 }), 'clé de profil');
+    const h = pushHistory([{ ...p, sign: 'scorpio' }], { ...p, sign: 'scorpio', fold: 1 });
+    assertEq(h.length + '/' + h[0].fold, '1/1', 'historique');
+    assert(URL_KEYS.includes('fold'), 'lien');
+  });
+
+  test('Changement d’heure : message et choix dans les 14 langues', () => {
+    const keys = 'gap,overlap,before,after,choice,old', latin = ['fr', 'en', 'es', 'pt', 'it', 'de', 'tr'];
+    const marks = { gap: ['{equiv}', '{place}', '{shift}', '{time}'], overlap: ['{place}', '{shift}', '{time}'] };
+    for (const lang of ['fr', 'en', 'es', 'pt', 'it', 'de', 'tr', 'ru', 'ar', 'hi', 'th', 'zh', 'ja', 'ko']) {
+      const d = I18N[lang].dst;
+      assertEq(Object.keys(d).join(','), keys, `${lang} : clés`);
+      for (const k of keys.split(',')) {
+        const v = d[k];
+        assertEq((v.match(/\{[^}]*\}/g) || []).sort().join(), (marks[k] || []).join(), `${lang}.${k} : repères`);
+        assert(!/[{}]/.test(v.replace(/\{(place|shift|time|equiv)\}/g, '')), `${lang}.${k} : accolade`);
+        if (latin.includes(lang)) assert(!/[‘’]/.test(v), `${lang}.${k} : apostrophe courbe`);
+        if (lang === 'th') assert(!/[:：]/.test(v) && !/\.$/.test(v), `thaï ${k}`);
+      }
+      assert(d.gap.includes('ZODIAC') && d.overlap.includes('ZODIAC'), `${lang} : ZODIAC`);
+    }
+  });
+
   section('Articles « En savoir plus »');
   test('Articles : 14 langues, structure et règles d’écriture (14 langues obligatoires avant publication)', () => {
     const langs = Object.keys(ARTICLES_I18N), ids = Object.keys(ARTICLES_I18N.fr.articles), latin = ['fr', 'en', 'es', 'pt', 'it', 'de', 'tr'];

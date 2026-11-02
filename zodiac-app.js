@@ -18,6 +18,8 @@ let currentSignKey = null;
 let currentDecanIdx = 0;
 let currentDate = null;
 let currentTime = null;    // "HH:MM" ou null
+let currentFold = 0;       // heure vécue deux fois (horloges retardées ce jour-là) : 1 = la seconde, après le changement
+let pendingFold = null;    // { date, time, place } : seconde occurrence à reprendre au prochain calcul (profil, lien, choix)
 let currentName = '';      // prénom ou nom facultatif, gardé sur l'appareil uniquement (jamais dans l'URL)
 let currentSky = null;     // résultat de computeSky()
 let currentCn = null;      // résultat de chineseYearInfo(), null hors 1900-2100
@@ -49,7 +51,7 @@ function showUpdateBanner(){
   document.getElementById('updateReload').addEventListener('click', () => location.reload());
 }
 /* Paramètres de l'adresse : après « # », jamais envoyés au serveur (les anciens liens en « ? » restent lus, puis convertis) */
-const URL_KEYS = ['date', 'time', 'place', 'lang'];
+const URL_KEYS = ['date', 'time', 'fold', 'place', 'lang'];
 function readUrlParams(){
   const out = new URLSearchParams(location.hash.slice(1)), q = new URLSearchParams(location.search);
   for (const k of URL_KEYS) if (q.has(k) && !out.has(k)) out.set(k, q.get(k));
@@ -231,8 +233,42 @@ function renderOwner(){
   const name = currentName ? `<div class="owner-name">${escapeHtml(currentName)}</div>` : '';
   const born = parseISODate(currentDate), yr = born ? born.y : null;   // aucune date chargée (ex. : nom tapé après « Nouvelle recherche »)
   const warn = yr && (yr < 1900 || yr > 2100) ? `<p class="range-warn" role="note">${I18N[currentLang].rangeWarning}</p>` : '';
-  el.innerHTML = name + `<div class="owner-birth">${formatBirth(currentDate, currentTime, currentLang)}${birthPlace(currentBirthPlace) ? ' · ' + escapeHtml(placeName(birthPlace(currentBirthPlace), currentLang)) : ''}</div>` + warn;
+  el.innerHTML = name + `<div class="owner-birth">${formatBirth(currentDate, currentTime, currentLang)}${birthPlace(currentBirthPlace) ? ' · ' + escapeHtml(placeName(birthPlace(currentBirthPlace), currentLang)) : ''}</div>` + warn + dstNoticeHtml();
+  el.querySelectorAll('input[name="dstFold"]').forEach(r => r.addEventListener('change', () => { if (r.checked) setFold(+r.value); }));
+  if (refocusFold) { refocusFold = false; const r = el.querySelector(`input[name="dstFold"][value="${currentFold}"]`); if (r) r.focus(); }
 }
+
+/* Heure de naissance du profil affiché, avec le choix de l'occurrence quand l'heure a existé deux fois */
+function birthTime(){ const t = parseTime(currentTime); if (t && currentFold) t.fold = 1; return t; }
+function timeKey(){ return (currentTime || '') + (currentFold ? '+' : ''); }
+
+/* Changement d'heure le jour de naissance au lieu de naissance (wallTimeInfo, zodiac-natal.js) : message, et
+   pour une heure vécue deux fois, choix entre avant et après le changement d'heure */
+function dstNoticeHtml(){
+  const t = I18N[currentLang], d = parseISODate(currentDate), tm = parseTime(currentTime), place = birthPlace(currentBirthPlace);
+  const info = d && tm && place ? wallTimeInfo(d, tm.h, tm.min, place.tz) : null;
+  if (!info) return '';
+  const clock = (h, min) => new Intl.DateTimeFormat(loc(currentLang), { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }).format(Date.UTC(2000, 0, 1, h, min));
+  const hours = info.shift % 60 === 0, n = hours ? info.shift / 60 : info.shift;
+  let shift;
+  try { shift = new Intl.NumberFormat(loc(currentLang), { style: 'unit', unit: hours ? 'hour' : 'minute', unitDisplay: 'long' }).format(n); }
+  catch (e) { shift = `${n} ${hours ? 'h' : 'min'}`; }   // navigateur ancien sans unités
+  const fill = s => s.replace('{place}', escapeHtml(placeName(place, currentLang))).replace('{shift}', shift)
+    .replace('{time}', clock(tm.h, tm.min)).replace('{equiv}', info.equiv ? clock(info.equiv.h, info.equiv.min) : '');
+  const text = fill(info.kind === 'gap' ? t.dst.gap : t.dst.overlap) + (d.y < 1970 ? ' ' + t.dst.old : '');
+  const choice = info.kind === 'overlap' ? `<div class="dst-choice" role="radiogroup" aria-label="${escapeHtml(t.dst.choice)}">` +
+    [0, 1].map(f => `<label class="dst-option"><input type="radio" name="dstFold" value="${f}"${currentFold === f ? ' checked' : ''}> ${f ? t.dst.after : t.dst.before}</label>`).join('') +
+    '</div>' : '';
+  return `<div class="dst-note" role="note"><p>${text}</p>${choice}</div>`;
+}
+/* Choix de l'occurrence : même chemin qu'un nouveau calcul (résultats, historique, lien), sans animation */
+function setFold(fold){
+  pendingFold = fold ? { date: currentDate, time: currentTime, place: currentBirthPlace } : null;
+  quickReveal = true;
+  refocusFold = true;
+  launchSearch();
+}
+let refocusFold = false;   // après le choix, le focus revient sur le bouton choisi (la fiche est redessinée)
 
 /* Briques de rendu partagées par les deux fiches */
 const infoItem = (label, value, info) => `<div class="info-item"><span class="info-label">${label}${info ? infoBtn(info, label) : ''}</span><span class="info-value">${value}</span></div>`;
@@ -273,7 +309,7 @@ function affinityCard(t, sys, own, keys, sym, name, score){
 function natalMoonItems(t){
   const date = parseISODate(currentDate);
   if (!date) return '';
-  const moon = natalMoon(date, parseTime(currentTime), birthTz());
+  const moon = natalMoon(date, birthTime(), birthTz());
   const signs = moon.signs.map(s => `<span aria-hidden="true">${SIGN_META[s].sym}</span> ${t.signNames[s]}`).join(' / ');
   return infoItem(t.labels.natalMoon, `<span aria-hidden="true">${MOON_PHASE_EMOJI[moon.phase.index]}</span> ${t.horo.phases[moon.phase.index]}`)
        + infoItem(t.labels.moonSign, signs);
@@ -545,8 +581,8 @@ function renderSky(){
       <p>${h.retroTexts[r.body]}</p></div></li>`;
   const block = (title, items, line) => items.length ? `<h4>${title}</h4><ul class="transits">${items.map(line).join('')}</ul>` : '';
   // Transits sur le thème natal (mis en mémoire : la période d'influence des planètes lentes demande des centaines de positions)
-  const birth = parseISODate(currentDate), btime = parseTime(currentTime), bplace = birthPlace(currentBirthPlace);
-  const nKey = `${currentDate}|${currentTime}|${currentBirthPlace}|${tr.noons[0]}|${days}`;
+  const birth = parseISODate(currentDate), btime = birthTime(), bplace = birthPlace(currentBirthPlace);
+  const nKey = `${currentDate}|${timeKey()}|${currentBirthPlace}|${tr.noons[0]}|${days}`;
   if (!natalTransitCache || natalTransitCache.key !== nKey) natalTransitCache = { key: nKey, list: natalTransits(natalPoints(natalChart(birth, btime, bplace), !!btime), tr.noons) };
   const nt = natalTransitCache.list.filter(x => x.slow || PERSONAL_POINTS.includes(x.point)).slice(0, 8);
   const n = t.natal, bare = s => s.replace(/\s*[（(][^()（）]*[)）]\s*$/, '');   // sans « (empreinte de génération) »
@@ -700,9 +736,9 @@ function updateWheel(){
   svg.querySelectorAll('.ws').forEach(p => p.classList.toggle('ws-mine', p.dataset.sign === currentSignKey));
   let sunLon, moonLon, moonSigns, label;
   if (currentSky && currentDate) {
-    const d = parseISODate(currentDate), tm = parseTime(currentTime);
+    const d = parseISODate(currentDate), tm = birthTime();
     sunLon = currentSky.lon;
-    moonLon = moonLongitude(tm ? localInstant(d, tm.h, tm.min, birthTz()) : localInstant(d, 12, 0, birthTz()));
+    moonLon = moonLongitude(tm ? localInstant(d, tm.h, tm.min, birthTz(), tm.fold) : localInstant(d, 12, 0, birthTz()));
     moonSigns = natalMoon(d, tm, birthTz()).signs;
     label = t.wheel.birth;
   } else {
@@ -733,6 +769,7 @@ function readHistory(){
 }
 /* Ajoute une recherche en tête, sans doublon (même date, heure et nom), en gardant les plus récentes */
 function pushHistory(list, entry, max = HISTORY_MAX){
+  // Sans le choix de l'occurrence (fold) : changer d'occurrence remplace l'entrée au lieu d'en ajouter une
   const key = e => `${e.date}|${e.time || ''}|${e.place || ''}|${(e.name || '').toLowerCase()}`;
   return [entry, ...list.filter(e => key(e) !== key(entry))].slice(0, max);
 }
@@ -758,6 +795,7 @@ function renderHistory(){
     document.getElementById('birthDate').value = e.date;
     document.getElementById('birthTime').value = e.time || '';
     birthField.set(e.place);
+    pendingFold = e.fold ? { date: e.date, time: e.time, place: e.place || '' } : null;
     launchSearch();
   }));
   document.getElementById('historyClear').addEventListener('click', () => { store.remove('zodiac_history'); renderHistory(); });
@@ -1032,7 +1070,7 @@ function natalWheelSvg(chart, t){
 }
 
 function natalHtml(t){
-  const n = t.natal, date = parseISODate(currentDate), time = parseTime(currentTime), place = birthPlace(currentBirthPlace);
+  const n = t.natal, date = parseISODate(currentDate), time = birthTime(), place = birthPlace(currentBirthPlace);
   const chart = natalChart(date, time, place);
   currentChart = chart;
   const sun = chart.bodies[0], moon = chart.bodies[1];
@@ -1117,9 +1155,9 @@ const calCats = { moon: true, eclipses: true, retro: true, ingress: true, transi
 let calTool = '', calCache = null;
 /* Événements des 30 prochains jours (mis en mémoire pour la journée, la personne et les catégories) */
 function calendarEventsNow(){
-  const key = `${currentDate}|${currentTime}|${currentBirthPlace}|${JSON.stringify(calCats)}|${todayISO()}`;
+  const key = `${currentDate}|${timeKey()}|${currentBirthPlace}|${JSON.stringify(calCats)}|${todayISO()}`;
   if (!calCache || calCache.key !== key) {
-    const start = Date.now(), t = parseTime(currentTime);
+    const start = Date.now(), t = birthTime();
     const points = natalPoints(natalChart(parseISODate(currentDate), t, birthPlace(currentBirthPlace)), !!t);
     calCache = { key, start, events: calendarEvents(start, start + CAL_LIST_DAYS * CAL_DAY, calCats, points) };
   }
@@ -1321,7 +1359,7 @@ function renderCompat(){
   if (!el) return;
   if (!pairState || !currentDate) { el.innerHTML = ''; return; }
   const t = I18N[currentLang], q = t.pair;
-  const me = { date: parseISODate(currentDate), time: parseTime(currentTime), tz: birthTz() };
+  const me = { date: parseISODate(currentDate), time: birthTime(), tz: birthTz() };
   const op = birthPlace(pairState.place);
   const other = { date: parseISODate(pairState.date), time: parseTime(pairState.time), tz: op ? op.tz : null };
   const c = compatibility(me, other);   // signes affichés en tête (comme l'onglet Signes)
@@ -1348,7 +1386,7 @@ function renderCompat(){
     </div>`;
   // Compatibilité approfondie (zodiac-compat.js) : neuf axes, bilan, aperçu, analyse complète repliée
   const myPlace = birthPlace(currentBirthPlace);
-  const key = JSON.stringify([currentDate, currentTime, currentBirthPlace, pairState]);
+  const key = JSON.stringify([currentDate, timeKey(), currentBirthPlace, pairState]);
   if (key !== compatDeepKey) { compatDeepKey = key; compatDeepOpen = false; }
   const deep = compatDeep({ ...me, place: myPlace }, { ...other, place: op });
   el.innerHTML = `
@@ -1758,6 +1796,8 @@ function reset(){
   currentDecanIdx = 0;
   currentDate = null;
   currentTime = null;
+  currentFold = 0;
+  pendingFold = null;
   currentSky = null;
   currentCn = null;
   skyDate = null;
@@ -1803,11 +1843,11 @@ function downloadOffline(){
 
 /* ---------- « C'est mon profil » : le profil désigné s'ouvre directement à chaque visite ----------
    Mémorisé sur l'appareil ({ name, date, time, place }) ; les autres consultations ne le remplacent pas. */
-function profileKey(p){ return `${p.date}|${p.time || ''}|${p.place || ''}|${(p.name || '').trim().toLowerCase()}`; }
+function profileKey(p){ return `${p.date}|${p.time || ''}${p.fold ? '+' : ''}|${p.place || ''}|${(p.name || '').trim().toLowerCase()}`; }
 function readMe(){
   try { const m = JSON.parse(store.get('zodiac_me') || 'null'); return m && parseISODate(m.date) ? m : null; } catch { return null; }
 }
-function currentProfile(){ return { name: currentName || '', date: currentDate, time: currentTime || '', place: currentBirthPlace || '' }; }
+function currentProfile(){ return { name: currentName || '', date: currentDate, time: currentTime || '', place: currentBirthPlace || '', ...(currentFold ? { fold: 1 } : {}) }; }
 function isMeShown(){ const m = readMe(); return !!(m && currentDate && profileKey(m) === profileKey(currentProfile())); }
 function renderMeButton(){
   const b = document.getElementById('btnMe'); if (!b) return;
@@ -1868,6 +1908,12 @@ function launchSearch(){
     return;
   }
   const place = birthPlace(birthField.key);
+  const pf = pendingFold;
+  pendingFold = null;
+  if (time && pf && place && pf.date === input.value && pf.time === timeValue.slice(0, 5) && pf.place === place.key) {
+    const info = wallTimeInfo(date, time.h, time.min, place.tz);
+    if (info && info.kind === 'overlap') time.fold = 1;
+  }
   const sky = computeSky(date, time, place ? place.tz : null);
   const sign = sky.sign;
   hideError();
@@ -1877,15 +1923,17 @@ function launchSearch(){
   currentDecanIdx = sky.decan;
   currentDate = input.value;
   currentTime = time ? timeValue.slice(0, 5) : null;
+  currentFold = time && time.fold ? 1 : 0;
   currentName = document.getElementById('userName').value.trim();
   currentBirthPlace = place ? place.key : '';
 
   // Persistance
   store.set('zodiac_lastDate', currentDate);
-  store.set('zodiac_history', JSON.stringify(pushHistory(readHistory(), { name: currentName, date: currentDate, time: currentTime || '', place: currentBirthPlace, sign })));
+  store.set('zodiac_history', JSON.stringify(pushHistory(readHistory(), { name: currentName, date: currentDate, time: currentTime || '', place: currentBirthPlace, sign, ...(currentFold ? { fold: 1 } : {}) })));
   if (currentBirthPlace) store.set('zodiac_lastPlace', currentBirthPlace); else store.remove('zodiac_lastPlace');
   renderHistory();
   if (currentTime) store.set('zodiac_lastTime', currentTime); else store.remove('zodiac_lastTime');
+  if (currentFold) store.set('zodiac_lastFold', '1'); else store.remove('zodiac_lastFold');
   updateURL(currentDate, currentTime, currentLang);
 
   isSearching = true;
@@ -1902,7 +1950,7 @@ function launchSearch(){
 function updateURL(date, time, lang){
   try {
     const p = new URLSearchParams();
-    if (date) { p.set('date', date); if (time) p.set('time', time); if (currentBirthPlace) p.set('place', currentBirthPlace); }
+    if (date) { p.set('date', date); if (time) p.set('time', time); if (time && currentFold) p.set('fold', '1'); if (currentBirthPlace) p.set('place', currentBirthPlace); }
     p.set('lang', lang);
     const q = new URLSearchParams(location.search); URL_KEYS.forEach(k => q.delete(k));   // anciens paramètres en « ? » retirés
     history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q : '') + '#' + p);
@@ -2046,6 +2094,7 @@ document.addEventListener('DOMContentLoaded', () => {
       input.value = urlDate;
       if (parseTime(urlTime)) timeInput.value = urlTime.slice(0, 5);
       if (birthPlace(urlPlace)) birthField.set(urlPlace);
+      if (params.get('fold') === '1' && parseTime(urlTime)) pendingFold = { date: urlDate, time: urlTime.slice(0, 5), place: urlPlace || '' };
       launchSearch();
     } else showError(I18N[currentLang].errorInvalid);
   } else if (parseISODate(lsDate)) {
@@ -2053,6 +2102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (parseTime(lsTime)) timeInput.value = lsTime;
     const lsPlace = store.get('zodiac_lastPlace');
     if (birthPlace(lsPlace)) birthField.set(lsPlace);
+    if (store.get('zodiac_lastFold') === '1' && parseTime(lsTime)) pendingFold = { date: lsDate, time: lsTime, place: lsPlace || '' };
   }
   // Rendez-vous quotidien : le profil désigné (« C'est mon profil ») s'ouvre directement sur les résultats du jour,
   // quelles que soient les personnes consultées entre-temps ; sans profil désigné, le formulaire s'affiche comme avant
@@ -2062,6 +2112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     timeInput.value = parseTime(me.time) ? me.time : '';
     birthField.set(birthPlace(me.place) ? me.place : '');
     document.getElementById('userName').value = me.name || '';
+    pendingFold = me.fold ? { date: me.date, time: me.time, place: me.place || '' } : null;
     quickReveal = true; launchSearch();
   }
 

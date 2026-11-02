@@ -1822,5 +1822,13 @@ I18N.tr = deepMerge(I18N.fr, {
     intro: "Uygulama ücretsizdir ve gizliliğinize saygı duyar. Beğendiyseniz geliştirilmesine destek olabilirsiniz.",
     share: "Uygulamayı paylaşın",
     note: "Bağış, seçtiğiniz platformda yeni bir sekmede yapılır. Uygulama hiçbir şey iletmez."
+  },
+  dst: {
+    gap: "O gün {place} için resmî saat geçmişine göre saatler {shift} ileri alındı: {time} saati o gün hiç yaşanmadı. ZODIAC, aynı anın yeni saatle karşılığı olan {equiv} değerini kullandı. Doğum belgesindeki saati kontrol edin.",
+    overlap: "O gün {place} için resmî saat geçmişine göre saatler {shift} geri alındı: {time} saati iki kez yaşandı. Hangisi olduğunu belirtin; belirtmezseniz ZODIAC ilkini esas alır.",
+    before: "Saat değişiminden önce",
+    after: "Saat değişiminden sonra",
+    choice: "Doğum anı",
+    old: "1970 öncesine ait bu kayıtlar bazı ülkelerde daha az güvenilirdir."
   }
 });

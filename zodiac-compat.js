@@ -30,14 +30,14 @@ function lifePathFamily(n){
 const CN_TONE = { harmony: 'harmony', triad: 'harmony', same: 'complement', neutral: 'complement',
   clash: 'attention', harm: 'attention', punishment: 'attention', selfPunish: 'attention' };
 
-/* Une personne = { date, time | null, tz | null, place | null }. Signes de midi (affichés) et signes possibles
+/* Une personne = { date, time | null (avec fold éventuel), tz | null, place | null }. Signes de midi (affichés) et signes possibles
    dans la journée quand l'heure manque (0 h et 23 h 59, fuseau du lieu, à défaut de l'appareil) */
 function compatPerson(p){
-  const at = (h, m) => localInstant(p.date, h, m, p.tz || null);
+  const at = (h, m, fold) => localInstant(p.date, h, m, p.tz || null, fold);
   const signAt = (body, ms) => signFromLongitude(bodyLongitude(body, ms));
   const out = { lifePath: lifePath(p.date), cn: chineseYearInfo(p.date), shown: {}, cand: {} };
   for (const body of COMPAT_SIGN_AXES) {
-    if (p.time) { out.shown[body] = signAt(body, at(p.time.h, p.time.min)); out.cand[body] = [out.shown[body]]; }
+    if (p.time) { out.shown[body] = signAt(body, at(p.time.h, p.time.min, p.time.fold)); out.cand[body] = [out.shown[body]]; }
     else { out.shown[body] = signAt(body, at(12, 0)); out.cand[body] = [...new Set([at(0, 0), at(23, 59)].map(ms => signAt(body, ms)))]; }
   }
   const chart = p.time && p.place ? natalChart(p.date, p.time, p.place) : null;

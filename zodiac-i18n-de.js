@@ -1826,5 +1826,13 @@ I18N.de = deepMerge(I18N.fr, {
     intro: "Die App ist kostenlos und respektiert deine Privatsphäre. Wenn sie dir gefällt, kannst du ihre Entwicklung unterstützen.",
     share: "App teilen",
     note: "Die Spende erfolgt auf der gewählten Plattform in einem neuen Tab. Die App übermittelt nichts."
+  },
+  dst: {
+    gap: "An diesem Tag in {place} wurden laut den offiziellen historischen Zeitdaten die Uhren um {shift} vorgestellt: Die Uhrzeit {time} gab es nicht. ZODIAC hat {equiv} verwendet, denselben Zeitpunkt in der neuen Ortszeit. Prüfe die Uhrzeit auf deiner Geburtsurkunde.",
+    overlap: "An diesem Tag in {place} wurden laut den offiziellen historischen Zeitdaten die Uhren um {shift} zurückgestellt: Die Uhrzeit {time} kam zweimal vor. Wähle den richtigen Zeitpunkt; ohne Auswahl verwendet ZODIAC den ersten.",
+    before: "Vor der Zeitumstellung",
+    after: "Nach der Zeitumstellung",
+    choice: "Zeitpunkt der Geburt",
+    old: "Vor 1970 sind diese historischen Daten in einigen Ländern weniger zuverlässig."
   }
 });
