@@ -1,4 +1,4 @@
-# Zodiaque & Décans — à chaque modification : tests, puis publication du site sur GitHub Pages s'ils passent.
+# Zodiaque & Décans — à chaque modification : tests (Chromium et Safari), puis publication du site sur GitHub Pages s'ils passent.
 name: Tests et publication
 
 on:
@@ -41,33 +41,48 @@ jobs:
         with:
           path: site
 
-  navigateurs:
-    # Informatif : mêmes tests dans le moteur de Safari (WebKit) et dans Firefox.
-    # Un échec s'affiche en rouge sur cette ligne, mais n'empêche jamais la publication.
-    name: Informatif — ${{ matrix.navigateur }}
+  safari:
+    # Bloquant depuis le 2 novembre 2026 : mêmes tests dans le moteur de Safari (WebKit).
+    # Un échec empêche la publication, comme pour les tests Chromium.
+    name: Tests — Safari (WebKit)
     runs-on: ubuntu-24.04
-    continue-on-error: true
-    strategy:
-      fail-fast: false
-      matrix:
-        navigateur: [webkit, firefox]
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
-      - name: Installer Playwright et ${{ matrix.navigateur }}
+      - name: Installer Playwright et WebKit
         run: |
           pip install -r tools/requirements.txt
-          python -m playwright install --with-deps ${{ matrix.navigateur }}
+          python -m playwright install --with-deps webkit
       - name: Assembler la version autonome et le site
         run: python build-standalone.py
-      - name: Lancer les tests dans ${{ matrix.navigateur }}
-        run: python tools/run_tests.py --browser ${{ matrix.navigateur }}
+      - name: Lancer les tests dans WebKit
+        run: python tools/run_tests.py --browser webkit
+
+  firefox:
+    # Informatif : mêmes tests dans Firefox.
+    # Un échec s'affiche en rouge sur cette ligne, mais n'empêche jamais la publication.
+    name: Informatif — Firefox
+    runs-on: ubuntu-24.04
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Installer Playwright et Firefox
+        run: |
+          pip install -r tools/requirements.txt
+          python -m playwright install --with-deps firefox
+      - name: Assembler la version autonome et le site
+        run: python build-standalone.py
+      - name: Lancer les tests dans Firefox
+        run: python tools/run_tests.py --browser firefox
 
   publication:
     name: Publication sur GitHub Pages
-    needs: tests
+    needs: [tests, safari]
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-24.04
     environment:
