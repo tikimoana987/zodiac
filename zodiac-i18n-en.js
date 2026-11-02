@@ -715,7 +715,9 @@ I18N.en = deepMerge(I18N.fr, {
     privacy: "Everything you enter (name, date, time, place, history, tarot question) is stored only in your browser's memory, on this device. No data is sent to any server, and the app contains no analytics or tracking tools. Clearing this site's data in your browser deletes everything. Only the “Share” button creates a link containing your date of birth, which you send yourself.",
     reversed: "With a real deck, some cards come out upside down: tradition gives them a nuanced meaning, where the card's energy is blocked, delayed, turned inward or excessive. This option is off by default; when on, each card of the daily spread has a one-in-two chance of coming out reversed. It applies to the next spread: a spread already drawn does not change.",
     calendar: "The list shows the sky's appointments for the next 30 days, recalculated every day: new and full moons, eclipses (with their visibility from the sky map's location), starts and ends of retrograde motion, sign changes, and the exact dates of slow-planet transits (Jupiter to Pluto) on your birth chart. You can add those of the next 7 days to your calendar: Apple, Outlook and most calendars receive an .ics file; Google Calendar receives the events one by one (its app cannot open .ics files). A reminder at the end of the week invites you to come back and add the next one.",
-    tarotMinors: "The 56 Minor Arcana explore everyday experiences symbolically through four suits. Batons or Wands are linked to Fire and action, while Cups reflect Water and emotions. Swords correspond to Air and thought, and Coins or Pentacles to Earth and practical life. You can include them in your daily reading by selecting the full 78-card deck."
+    tarotMinors: "The 56 Minor Arcana explore everyday experiences symbolically through four suits. Batons or Wands are linked to Fire and action, while Cups reflect Water and emotions. Swords correspond to Air and thought, and Coins or Pentacles to Earth and practical life. You can include them in your daily reading by selecting the full 78-card deck.",
+    square: "Pythagoras Square arranges the digits of your date of birth in a nine-cell grid. Four working numbers, calculated using Alexander Alexandrov's method, are added to the date's digits. For births from 2000 onwards, ZODIAC uses the modern '+ 19' variation adopted by most calculators today, whereas Alexandrov kept his original formula. Each cell shows how often its digit appears; an empty cell represents a quality to cultivate. This is a symbolic tradition within Numerology: it invites reflection rather than defining anyone's personality or capabilities.",
+    squareLines: "Each row, column or diagonal adds together the digits from three cells. Its subtle, balanced or pronounced level compares your grid with those of people born in the same century: dates in the 1900s and 2000s do not contain the same digits, and the method calculates them differently. These levels are a convention used by ZODIAC: they do not rank anyone, and everyone has their own strengths."
   },
   placePlaceholder: "Type a city name…",
   placeNoMatch: "No city found. Try the nearest town.",
@@ -815,7 +817,132 @@ I18N.en = deepMerge(I18N.fr, {
         text: "Master number 33: an amplified 6; devotion, kindness and a sense of service."
       }
     },
-    years: ["A year of new beginnings: sow, dare, launch projects.", "A year of patience and cooperation: build bonds, let things ripen.", "A year of expression and creativity: communicate, show yourself, enjoy.", "A year of work and foundations: organise, consolidate, persevere.", "A year of change and freedom: move, adapt, discover.", "A year of responsibilities and the heart: home, family, commitments.", "A year of stepping back and introspection: learn, reflect, recharge.", "A year of achievement: ambitions, finances, recognition.", "A year of review and closure: finish, sort out, prepare the next cycle."]
+    years: ["A year of new beginnings: sow, dare, launch projects.", "A year of patience and cooperation: build bonds, let things ripen.", "A year of expression and creativity: communicate, show yourself, enjoy.", "A year of work and foundations: organise, consolidate, persevere.", "A year of change and freedom: move, adapt, discover.", "A year of responsibilities and the heart: home, family, commitments.", "A year of stepping back and introspection: learn, reflect, recharge.", "A year of achievement: ambitions, finances, recognition.", "A year of review and closure: finish, sort out, prepare the next cycle."],
+    square: {
+      title: "Pythagoras Square",
+      working: "Working numbers",
+      cell: "Cell",
+      empty: "No digits",
+      linesTitle: "Lines",
+      more: "Read the full analysis",
+      less: "Collapse the analysis",
+      levels: { low: "Subtle level", mid: "Balanced level", high: "Pronounced level" },
+      cells: {
+        c1: {
+          name: "Character",
+          l0: "You tend to assert yourself gently: you often listen before making a decision. This restraint is a strength, especially when you also give yourself permission to say clearly what you want when it matters to you.",
+          l1: "Your character combines self-assurance with flexibility: you can take a stand without closing down the discussion. This balance helps you defend your ideas while making room for others, particularly when opinions differ.",
+          l2: "Your character is assured and steady: you know what matters to you and are willing to say so. This confidence inspires trust; it works best when accompanied by listening and an appreciation of different perspectives.",
+          l3: "You have a powerful sense of purpose: you like taking charge and staying the course. This strength works best with balance, leaving others room to contribute so that your drive encourages rather than overwhelms."
+        },
+        c2: {
+          name: "Energy",
+          l0: "Your energy tends to come in waves rather than flowing constantly: it helps to recognise what genuinely restores your enthusiasm. You can nurture this quality by protecting time for breaks and choosing carefully where to invest yourself.",
+          l1: "You use your energy thoughtfully, directing it towards what feels meaningful to you. Choosing your priorities and respecting your own pace helps you keep moving forward over time without spreading yourself too thin.",
+          l2: "You have energy to share: you bring enthusiasm to your own projects and to the people around you. That enthusiasm flows more freely when you also allow yourself to receive support and take time to rest.",
+          l3: "You have plenty of energy: you readily inspire others and enjoy taking action. This strength benefits from balance, keeping some energy for yourself and allowing everyone to move at their own pace."
+        },
+        c3: {
+          name: "Curiosity and method",
+          l0: "Your curiosity follows whatever interests you in the moment rather than a fixed plan. This freedom is valuable; organising your ideas a little, perhaps by writing them down, can help you pursue what truly fascinates you.",
+          l1: "You enjoy understanding how things work, in your own way and at your own pace. A little structure can turn that curiosity into lasting knowledge about the subjects that matter to you.",
+          l2: "You approach learning with curiosity and organisation: you enjoy exploring, sorting and understanding things in depth. This methodical approach becomes a real resource when you share it and adapt it to the unexpected.",
+          l3: "You have a strong appreciation for order and knowledge: you look for precision and logic in everything. This rigour becomes even more useful when you make room for surprises and other people's ways of doing things."
+        },
+        c4: {
+          name: "Perseverance",
+          l0: "Your perseverance develops through experience: you often move forward in successive bursts of enthusiasm. Short-term goals and small, regular habits can help you stay committed over time to what matters most to you.",
+          l1: "You know how to persevere when a goal feels meaningful. This quiet determination thrives on simple reminders of why you started and on the satisfaction of recognising each step you have completed.",
+          l2: "Your perseverance is steady: you can sustain your efforts over time and see your commitments through. This reliability is a valuable resource, especially when you also allow yourself breaks and adjustments along the way.",
+          l3: "Your perseverance is particularly strong: you like seeing your projects through, whatever happens. This determination works best when it remains flexible enough to change direction if another path becomes more suitable for you."
+        },
+        c5: {
+          name: "Intuition and logic",
+          l0: "You tend to rely on experience and facts rather than hunches. Taking a moment to notice your impressions without judging them can bring a fresh and unexpected perspective to your decisions.",
+          l1: "Your intuition is present but understated: it suggests possibilities that your reasoning then helps you explore. This partnership between feeling and logic can help you make thoughtful decisions with a sense of calm.",
+          l2: "You readily connect the clues: intuition and logic work together in the way you approach things. Sharing how you move from an initial impression to an understanding can help others follow your thinking.",
+          l3: "Your intuition is especially lively: you often sense things before you can explain them. This sensitivity benefits from being checked against facts and other people's views, so it remains a useful guide when making choices."
+        },
+        c6: {
+          name: "Practical sense",
+          l0: "Ideas and relationships often appeal to you more than hands-on work. A practical approach can be cultivated too: making small things with your hands may bring you a reassuring sense of grounding and simple satisfaction.",
+          l1: "You know how to turn an idea into action when needed. This straightforward, effective practical sense helps you make your projects real without getting caught up in details or putting things off.",
+          l2: "Practical projects inspire you: you enjoy making things and seeing the results of your efforts. Turning ideas into tangible achievements can be a valuable resource for you and those around you.",
+          l3: "You have a strong practical streak: you like to see things moving forward and taking shape. This hands-on drive benefits from making room for thought and rest too, rather than carrying everything on your own shoulders."
+        },
+        c7: {
+          name: "Opportunities",
+          l0: "You tend to build things through your own efforts rather than relying on circumstances. Staying open to new encounters and happy coincidences can bring unexpected openings and fresh ideas along your way.",
+          l1: "You can recognise an opportunity when it appears. Being alert to the right moments works even better with a little boldness: saying yes to what draws you can open up new possibilities.",
+          l2: "Opportunities seem to cross your path often, and you know how to seize them. Being receptive to new openings is a resource that bears fruit when you choose those that truly suit you.",
+          l3: "You have a keen eye for opportunities: you know how to make the most of circumstances and encounters. This instinct works best with focus, choosing the paths that truly matter rather than following every possibility."
+        },
+        c8: {
+          name: "Sense of duty",
+          l0: "You tend to commit yourself where your heart leads rather than out of obligation. This freedom is valuable, especially when paired with commitments you choose and honour because they mean something to you.",
+          l1: "You take your responsibilities seriously without letting them define you. This balanced sense of duty makes you dependable while preserving your freedom to choose which commitments to make.",
+          l2: "You have a strong sense of responsibility: others can rely on you, and you look out for them. This dependability is precious; it becomes easier to carry when you also accept help from those around you.",
+          l3: "Your sense of duty is particularly strong: you want to do things well and avoid disappointing anyone. This high standard benefits from balance, giving yourself permission to say no and make time for yourself."
+        },
+        c9: {
+          name: "Reflection",
+          l0: "You enjoy learning through experience and action rather than theory. Taking time to reflect on what you go through, perhaps by writing about it, can deepen what you take away from those experiences.",
+          l1: "You enjoy thinking things through and understanding subjects that interest you in your own way. Nurturing this curiosity through reading or conversation can open up new horizons and different points of view.",
+          l2: "Learning and exploring ideas matter to you: you enjoy remembering what you discover and making connections. This openness is a valuable resource, especially when shared through lively, curious conversations.",
+          l3: "Your enjoyment of reflection is particularly strong: you like analysing, exploring and understanding things in detail. This inner richness benefits from leaving room for intuition and action too, rather than going round in circles."
+        }
+      },
+      lines: {
+        r147: {
+          name: "Determination",
+          low: "Your goals tend to take shape along the way rather than being set out in advance. This flexibility helps you embrace what comes; choosing one or two simple directions can help you move forward with confidence.",
+          mid: "You can set goals and work towards them while remaining willing to adjust them. This balance between determination and flexibility helps you move steadily towards what matters.",
+          high: "Your determination is strong: you know what you want and stick with it. This drive benefits from staying open to detours, which sometimes take you further than expected."
+        },
+        r258: {
+          name: "Close relationships",
+          low: "Your independence matters to you, and you choose your relationships carefully. The connections you value can flourish through small, regular gestures of care, expressed in your own way.",
+          mid: "You make room for both other people and yourself. This sense of connection, without dependence, helps you build warm and dependable relationships that last.",
+          high: "Relationships matter deeply to you: you enjoy caring for those close to you and sharing with them. This generosity is a strength, especially when you also keep some time for yourself."
+        },
+        r369: {
+          name: "Habits and stability",
+          low: "You enjoy novelty and change more than routine. This freedom helps you adapt; a few simple points of reference can offer a reassuring foundation when everything around you is shifting.",
+          mid: "You can find a balance between reassuring habits and the desire for change. This flexibility helps you adapt to circumstances without losing sight of what anchors you.",
+          high: "Familiar routines and consistency mean a great deal to you: you like building on firm foundations. This stability is a strength, particularly when you occasionally welcome a little spontaneity."
+        },
+        c123: {
+          name: "Self-esteem",
+          low: "You tend to see yourself modestly. Recognising your achievements, however small, and accepting compliments can nurture a quiet confidence in your own worth.",
+          mid: "You tend to see yourself in a fair and balanced light. This grounded confidence helps you recognise your strengths while remaining aware of what you would still like to develop.",
+          high: "You have firm confidence in yourself and what you can do. This assurance is a resource, especially when paired with listening and curiosity about how others see things."
+        },
+        c456: {
+          name: "Material life",
+          low: "Material comfort is not your main motivation: other things inspire you more. Bringing a little organisation to daily life can nevertheless free your attention for what really matters.",
+          mid: "You have a balanced relationship with money and everyday practicalities without letting them take over. This practical outlook helps you create a settled foundation for your projects.",
+          high: "Material life matters to you: you enjoy building a solid and comfortable foundation. This practical outlook is a strength, especially when it also leaves room for life's simple pleasures."
+        },
+        c789: {
+          name: "Creativity",
+          low: "Your creativity often finds quiet expression in the small details of daily life. Making some space for it, however modest, can bring to light interests you have not yet discovered.",
+          mid: "You feel drawn to create and express what inspires you, at your own pace. Cultivating that pleasure without pressure to produce results can enrich other parts of your life too.",
+          high: "Your desire to create is very present: ideas, projects and personal expression inspire you. This richness is best brought to life step by step, by choosing the projects closest to your heart."
+        },
+        d159: {
+          name: "Spiritual drive",
+          low: "Your attention is drawn mainly to practical matters and the present moment. Occasionally making space for quiet, perspective or contemplation can bring fresh insight into everyday life.",
+          mid: "Finding meaning in your experiences matters to you without drawing you away from practical reality. This balance between inner life and tangible involvement can bring a calming sense of perspective to everyday life.",
+          high: "The search for meaning holds an important place in your life: you enjoy exploring why things are as they are. This depth becomes even richer when it stays connected to simple acts and to other people."
+        },
+        d357: {
+          name: "Temperament",
+          low: "Your temperament tends to be calm and considered. This serenity reassures those around you; letting your enthusiasm show from time to time can bring extra warmth to your relationships.",
+          mid: "Your temperament combines enthusiasm and composure: you can feel excited without being carried away. This balance makes your presence both lively and reassuring to others.",
+          high: "Your temperament is passionate: you experience things with intensity and enthusiasm. This spark is a valuable quality that benefits from balance, making room for your energy and that of others."
+        }
+      }
+    }
   },
   tarot: {
     tab: "Tarot",

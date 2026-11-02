@@ -718,7 +718,9 @@ I18N.es = deepMerge(I18N.fr, {
     privacy: "Todo lo que introduces (nombre, fecha, hora, lugar, historial, pregunta del tarot) se guarda solo en la memoria de tu navegador, en este dispositivo. No se envía ningún dato a ningún servidor y la app no contiene herramientas de estadísticas ni de seguimiento. Borrar los datos de este sitio en tu navegador lo elimina todo. Solo el botón «Compartir» crea un enlace con tu fecha de nacimiento, que envías tú mismo.",
     reversed: "Con una baraja real, algunas cartas salen al revés: la tradición les da un sentido matizado, en el que la energía de la carta está bloqueada, retrasada, interiorizada o es excesiva. Esta opción está desactivada por defecto; activada, cada carta de la tirada del día tiene una posibilidad entre dos de salir invertida. Se aplica a la tirada siguiente: una tirada ya hecha no cambia.",
     calendar: "La lista muestra las citas del cielo de los próximos 30 días, recalculadas cada día: lunas nuevas y llenas, eclipses (con su visibilidad desde el lugar del mapa del cielo), inicios y finales de retrogradación, cambios de signo y fechas exactas de los tránsitos de los planetas lentos (de Júpiter a Plutón) sobre tu carta natal. Puedes añadir las de los próximos 7 días a tu agenda: Apple, Outlook y la mayoría de agendas reciben un archivo .ics; Google Calendar recibe los eventos uno a uno (su aplicación no sabe abrir archivos .ics). Un recordatorio al final de la semana te invita a volver para añadir la siguiente.",
-    tarotMinors: "Los 56 arcanos menores exploran de forma simbólica las experiencias cotidianas a través de cuatro palos. Los Bastos se asocian al Fuego y la acción, y las Copas al Agua y las emociones. Las Espadas corresponden al Aire y al pensamiento, y los Oros o Pentáculos a la Tierra y al mundo material. Puedes incluirlos en tu tirada del día seleccionando la baraja completa de 78 cartas."
+    tarotMinors: "Los 56 arcanos menores exploran de forma simbólica las experiencias cotidianas a través de cuatro palos. Los Bastos se asocian al Fuego y la acción, y las Copas al Agua y las emociones. Las Espadas corresponden al Aire y al pensamiento, y los Oros o Pentáculos a la Tierra y al mundo material. Puedes incluirlos en tu tirada del día seleccionando la baraja completa de 78 cartas.",
+    square: "El cuadrado de Pitágoras distribuye los dígitos de tu fecha de nacimiento en una cuadrícula de nueve casillas. A los dígitos de la fecha se suman cuatro números de trabajo, calculados según el método de Alexandre Alexandrov; para los nacimientos desde el año 2000, ZODIAC utiliza la variante moderna «+ 19», habitual en la mayoría de las calculadoras actuales, mientras que Alexandrov mantenía su fórmula inicial. Cada casilla cuenta cuántas veces aparece su dígito; una casilla vacía se interpreta como una cualidad que puedes cultivar. Es una tradición simbólica de la numerología: invita a reflexionar y no mide ni la personalidad ni las capacidades.",
+    squareLines: "Cada fila, columna o diagonal suma los dígitos de tres casillas. Su nivel, discreto, equilibrado o marcado, compara tu cuadrícula con las de las personas nacidas en el mismo siglo: las fechas de los años 1900 y de los años 2000 no tienen los mismos dígitos, y el método las calcula de manera distinta. Estos niveles son una convención de ZODIAC: no establecen clasificaciones entre personas y cada cual tiene sus propias fortalezas."
   },
   placePlaceholder: "Escribe el nombre de una ciudad…",
   placeNoMatch: "No se encontró ninguna ciudad. Prueba con la más cercana.",
@@ -818,7 +820,132 @@ I18N.es = deepMerge(I18N.fr, {
         text: "Número maestro 33: un 6 amplificado; entrega, bondad y vocación de servicio."
       }
     },
-    years: ["Año de nuevos comienzos: sembrar, atreverse, lanzar proyectos.", "Año de paciencia y cooperación: crear lazos, dejar madurar.", "Año de expresión y creatividad: comunicar, mostrarse, disfrutar.", "Año de trabajo y cimientos: organizar, consolidar, perseverar.", "Año de cambios y libertad: moverse, adaptarse, descubrir.", "Año de responsabilidades y del corazón: hogar, familia, compromisos.", "Año de pausa e introspección: aprender, reflexionar, recargar energías.", "Año de logros: ambiciones, finanzas, reconocimiento.", "Año de balance y cierre: terminar, ordenar, preparar el ciclo siguiente."]
+    years: ["Año de nuevos comienzos: sembrar, atreverse, lanzar proyectos.", "Año de paciencia y cooperación: crear lazos, dejar madurar.", "Año de expresión y creatividad: comunicar, mostrarse, disfrutar.", "Año de trabajo y cimientos: organizar, consolidar, perseverar.", "Año de cambios y libertad: moverse, adaptarse, descubrir.", "Año de responsabilidades y del corazón: hogar, familia, compromisos.", "Año de pausa e introspección: aprender, reflexionar, recargar energías.", "Año de logros: ambiciones, finanzas, reconocimiento.", "Año de balance y cierre: terminar, ordenar, preparar el ciclo siguiente."],
+    square: {
+      title: "Cuadrado de Pitágoras",
+      working: "Números de trabajo",
+      cell: "Casilla",
+      empty: "Ningún dígito",
+      linesTitle: "Líneas",
+      more: "Leer el análisis completo",
+      less: "Contraer el análisis",
+      levels: { low: "Nivel discreto", mid: "Nivel equilibrado", high: "Nivel marcado" },
+      cells: {
+        c1: {
+          name: "Carácter",
+          l0: "Tu manera de afirmarte es suave: a menudo avanzas escuchando antes de tomar una decisión. Esa prudencia es una fortaleza; puede acompañarse del derecho a expresar con claridad lo que deseas cuando algo es importante para ti.",
+          l1: "Tu carácter combina firmeza y flexibilidad: sabes tomar postura sin cerrar el diálogo. Ese equilibrio te ayuda a defender tus ideas y, al mismo tiempo, dejar espacio a los demás, sobre todo cuando hay opiniones distintas.",
+          l2: "Tu carácter es firme y estable: sabes lo que te importa y lo expresas. Esa seguridad inspira confianza y encuentra su mejor expresión cuando va acompañada de escucha y matices.",
+          l3: "Tu voluntad tiene mucha fuerza: te gusta tomar la iniciativa y mantener el rumbo. Conviene dosificar esa energía y dejar espacio a las propuestas de los demás, para impulsar sin imponerte."
+        },
+        c2: {
+          name: "Energía",
+          l0: "Tu energía llega por oleadas más que de forma continua: te beneficia reconocer qué te renueva de verdad. Puedes cultivar esa cualidad reservando momentos de pausa y eligiendo con cuidado dónde poner tu dedicación.",
+          l1: "Administras tu energía con mesura y la dedicas a lo que tiene sentido para ti. Elegir tus prioridades y respetar tu propio ritmo te permite avanzar a largo plazo sin dispersarte.",
+          l2: "Tienes energía para tus proyectos y también para compartir con los demás. Ese impulso fluye mejor cuando sabes recibir ayuda y concederte momentos de descanso.",
+          l3: "Tu energía es abundante: animas con facilidad a los demás y disfrutas pasando a la acción. Esta fuerza agradece cierta mesura: reserva una parte para ti y deja que cada cual avance a su ritmo."
+        },
+        c3: {
+          name: "Curiosidad y método",
+          l0: "Tu curiosidad sigue más las ganas del momento que un plan establecido. Esa libertad es valiosa; ordenar un poco tus ideas, por ejemplo anotándolas, puede ayudarte a dar continuidad a lo que te apasiona.",
+          l1: "Te gusta comprender cómo funcionan las cosas, a tu manera y a tu ritmo. Un poco de método basta para convertir esa curiosidad en conocimientos sólidos sobre los temas que te importan.",
+          l2: "Tu curiosidad va de la mano del orden: te gusta aprender, clasificar y comprender las cosas a fondo. Ese sentido del método se vuelve un recurso valioso cuando lo compartes y lo adaptas a los imprevistos.",
+          l3: "Sientes un gran interés por el orden y el conocimiento: buscas precisión y lógica en todo. Esa rigurosidad gana al dejar espacio para lo imprevisto y para otras formas de hacer las cosas."
+        },
+        c4: {
+          name: "Perseverancia",
+          l0: "Tu constancia se construye con la experiencia: sueles avanzar mediante impulsos sucesivos. Marcarte objetivos breves y crear pequeños hábitos regulares puede ayudarte a sostener en el tiempo lo que te importa.",
+          l1: "Sabes perseverar cuando una meta tiene sentido para ti. Esa constancia serena se alimenta de referencias sencillas que te recuerdan por qué empezaste y de la satisfacción por cada etapa superada.",
+          l2: "Tu perseverancia es sólida: sabes mantener el esfuerzo a lo largo del tiempo y cumplir tus compromisos. Esa fiabilidad es un recurso valioso, especialmente cuando también te permites pausas y ajustes.",
+          l3: "Tu constancia es muy marcada: llevas tus proyectos hasta el final, pase lo que pase. Esa tenacidad gana cuando conserva cierta flexibilidad para cambiar de rumbo si surge un camino más adecuado para ti."
+        },
+        c5: {
+          name: "Intuición y lógica",
+          l0: "Sueles confiar en la experiencia y en los hechos más que en las corazonadas. Dedicar un momento a escuchar tus impresiones, sin juzgarlas, puede aportar a tus decisiones una perspectiva nueva e inesperada.",
+          l1: "Tu intuición está presente de forma discreta: te sugiere caminos que luego contrastas con el razonamiento. Esa unión entre sensaciones y lógica te ayuda a decidir con criterio y serenidad.",
+          l2: "Relacionas los indicios con facilidad: en ti, la intuición y la lógica trabajan juntas. Esa capacidad de intuir y luego comprender resulta aún más útil cuando explicas a los demás cómo has llegado a tus ideas.",
+          l3: "Tu intuición es muy viva: a menudo percibes las cosas antes de poder explicarlas. Esa sensibilidad gana al contrastarse con los hechos y con otros puntos de vista, para orientar tus decisiones con mayor fiabilidad."
+        },
+        c6: {
+          name: "Sentido práctico",
+          l0: "Las ideas y las relaciones suelen atraerte más que el trabajo manual. El gusto por lo tangible también se cultiva: crear pequeñas cosas con tus manos puede ofrecerte una conexión serena con lo cotidiano y satisfacciones sencillas.",
+          l1: "Sabes pasar de la idea a la acción cuando hace falta. Ese sentido práctico, sencillo y eficaz, te ayuda a hacer realidad tus proyectos sin perderte en los detalles ni dejarlos para después.",
+          l2: "Lo tangible te inspira: te gusta hacer, fabricar y ver el resultado de tus esfuerzos. Ese gusto por transformar ideas en realizaciones visibles es un recurso valioso, tanto para ti como para quienes te rodean.",
+          l3: "Tu sentido práctico es muy marcado: te gusta que las cosas avancen y den resultados visibles. Esa energía orientada a la acción gana cuando deja espacio para reflexionar y descansar, sin cargar con todo por tu cuenta."
+        },
+        c7: {
+          name: "Oportunidades",
+          l0: "Construyes tu camino sobre todo con esfuerzo propio, más que contando con las circunstancias. Mantener la atención en los encuentros y las coincidencias afortunadas puede abrirte puertas inesperadas y aportar ideas nuevas.",
+          l1: "Sabes reconocer una oportunidad cuando aparece. Esa atención a los momentos propicios gana con un poco de audacia: atreverte a decir que sí a lo que te atrae suele abrir nuevas perspectivas.",
+          l2: "Parece que se presentan muchas oportunidades en tu camino y sabes aprovecharlas. Esa facilidad para detectar posibilidades es un recurso valioso; da mejores frutos cuando eliges las que encajan contigo.",
+          l3: "Tienes un sentido muy vivo de las oportunidades: sabes aprovechar las circunstancias y los encuentros. Esa inspiración gana cuando eliges los caminos que de verdad te importan, en lugar de intentar seguirlos todos."
+        },
+        c8: {
+          name: "Sentido del deber",
+          l0: "Te implicas sobre todo en aquello que te mueve por dentro, más que por obligación. Esa libertad es una riqueza y se complementa bien con compromisos elegidos que mantienes porque tienen sentido para ti.",
+          l1: "Te tomas tus responsabilidades en serio, sin dejar que te encierren. Ese sentido del deber equilibrado inspira confianza y, al mismo tiempo, protege tu libertad para elegir tus compromisos.",
+          l2: "Tienes un gran sentido de la responsabilidad: los demás pueden contar contigo y prestas atención a quienes te rodean. Esa fiabilidad es valiosa y resulta más llevadera cuando también aceptas su ayuda.",
+          l3: "Tu sentido del deber es muy marcado: te importa hacer las cosas bien y no decepcionar a nadie. Esa exigencia gana con mesura, al permitirte decir que no y reservar tiempo para atender tus propias necesidades."
+        },
+        c9: {
+          name: "Reflexión",
+          l0: "Te gusta aprender mediante la experiencia y la acción más que a través de la teoría. Dedicar tiempo a reflexionar sobre lo que vives, por ejemplo escribiendo, puede profundizar lo que extraes de cada vivencia.",
+          l1: "Te gusta reflexionar y comprender a tu manera los temas que despiertan tu interés. Alimentar esa curiosidad mediante lecturas o conversaciones puede abrirte a nuevos horizontes y otros puntos de vista.",
+          l2: "La vida intelectual ocupa un lugar importante para ti: te gusta aprender, recordar y establecer conexiones. Esa apertura es un recurso valioso, sobre todo cuando la compartes en conversaciones vivas y curiosas.",
+          l3: "Tu gusto por la reflexión es muy marcado: te gusta analizar, profundizar y comprender los detalles. Esa riqueza interior gana cuando también deja espacio a la intuición y a la acción, para que las ideas sigan avanzando."
+        }
+      },
+      lines: {
+        r147: {
+          name: "Determinación",
+          low: "Tus metas van tomando forma por el camino, más que estar definidas desde el principio. Esa flexibilidad te permite aprovechar lo que surge; elegir uno o dos rumbos sencillos puede ayudarte a avanzar con confianza.",
+          mid: "Sabes fijarte objetivos y perseguirlos, sin dejar de ajustarlos cuando hace falta. Ese equilibrio entre voluntad y flexibilidad te ayuda a avanzar con serenidad hacia lo que te importa.",
+          high: "Tu determinación es fuerte: sabes lo que quieres y mantienes tu propósito. Esa energía gana cuando permanece abierta a los desvíos, que a veces llevan más lejos de lo previsto."
+        },
+        r258: {
+          name: "Vínculos cercanos",
+          low: "Tu independencia es importante para ti y eliges tus vínculos con cuidado. Las relaciones que aprecias se fortalecen con pequeños gestos regulares, a tu manera.",
+          mid: "Concedes un espacio equilibrado a los demás y a ti. Esa forma de vincularte, sin dependencia, te ayuda a crear relaciones duraderas, cálidas y de confianza.",
+          high: "Los vínculos son muy importantes para ti: te gusta cuidar y compartir con las personas que aprecias. Esa generosidad es una fortaleza, especialmente cuando también reservas tiempo para ti."
+        },
+        r369: {
+          name: "Hábitos y estabilidad",
+          low: "Te atraen la novedad y los cambios más que la rutina. Esa libertad te ayuda a adaptarte; contar con algunas referencias sencillas puede darte una base tranquilizadora cuando todo cambia a tu alrededor.",
+          mid: "Sabes encontrar un equilibrio entre hábitos que te dan seguridad y ganas de cambiar. Esa flexibilidad te permite adaptarte a las circunstancias sin perder tus referencias esenciales.",
+          high: "Las referencias y la regularidad te aportan mucho: te gusta construir sobre una base sólida. Esa estabilidad es una fortaleza que se enriquece al acoger de vez en cuando algo imprevisto."
+        },
+        c123: {
+          name: "Autoestima",
+          low: "Sueles valorar tus cualidades con modestia. Reconocer tus logros, incluso los pequeños, y aceptar los cumplidos puede reforzar una confianza serena en tu propio valor.",
+          mid: "Tu forma de valorarte suele ser justa y equilibrada. Esa confianza mesurada te ayuda a reconocer tus fortalezas sin perder de vista lo que aún deseas desarrollar.",
+          high: "Confías mucho en ti y en tus capacidades. Esa seguridad es un recurso valioso, especialmente cuando va acompañada de escucha y curiosidad por la mirada de los demás."
+        },
+        c456: {
+          name: "Vida material",
+          low: "El bienestar material no es tu principal motivación: hay otras cosas que te mueven más. Sin embargo, organizar un poco tu día a día puede dejarte más espacio mental para lo que de verdad importa.",
+          mid: "Mantienes una relación equilibrada con el dinero y los asuntos cotidianos, sin dejar que ocupen todo el espacio. Ese sentido práctico te ayuda a construir una base tranquila para tus proyectos.",
+          high: "La vida material es importante para ti: te gusta construir una base sólida y cómoda. Ese sentido práctico es una fortaleza que se enriquece al dejar espacio también a los placeres sencillos."
+        },
+        c789: {
+          name: "Creatividad",
+          low: "Tu creatividad se expresa sobre todo de manera discreta, en los pequeños detalles del día a día. Darle un espacio propio, por modesto que sea, puede despertar inquietudes que aún no imaginas.",
+          mid: "Sientes ganas de crear y de expresar lo que te mueve, a tu ritmo. Cultivar ese placer, sin presionarte por los resultados, puede enriquecer también otros aspectos de tu vida.",
+          high: "Tu deseo de crear está muy presente: te impulsan las ideas, los proyectos y la expresión personal. Esa riqueza gana al tomar forma paso a paso, eligiendo los proyectos que más te importan."
+        },
+        d159: {
+          name: "Impulso espiritual",
+          low: "Te interesan ante todo lo tangible y el presente. Tomarte de vez en cuando un momento de distancia, silencio o contemplación puede aportar una nueva perspectiva a tu vida cotidiana.",
+          mid: "Te importa encontrar sentido a lo que vives, sin alejarte de la realidad. Ese equilibrio entre vida interior e implicación concreta es un recurso que aporta serenidad a tu día a día.",
+          high: "La búsqueda de sentido ocupa un lugar importante para ti: te gusta comprender el porqué de las cosas. Esa profundidad se enriquece cuando sigue conectada con los gestos sencillos y con los demás."
+        },
+        d357: {
+          name: "Temperamento",
+          low: "Tu temperamento suele ser tranquilo y mesurado. Esa serenidad transmite calma a tu entorno; dejar que tus entusiasmos se expresen de vez en cuando puede aportar calidez a tus relaciones.",
+          mid: "Tu temperamento combina impulso y autocontrol: sabes entusiasmarte sin dejarte llevar por completo. Ese equilibrio hace que tu presencia resulte a la vez viva y tranquilizadora para los demás.",
+          high: "Tu temperamento es apasionado: vives las cosas con intensidad. Esa llama es una riqueza que conviene dosificar para reservar energía tanto para ti como para los demás."
+        }
+      }
+    }
   },
   tarot: {
     tab: "Tarot",

@@ -714,7 +714,9 @@ I18N.tr = deepMerge(I18N.fr, {
     privacy: "Girdiğiniz her şey (ad, tarih, saat, yer, geçmiş, tarot sorusu) yalnızca bu cihazdaki tarayıcınızın belleğinde saklanır. Hiçbir veri bir sunucuya gönderilmez ve uygulamada istatistik ya da izleme aracı yoktur. Tarayıcınızda bu sitenin verilerini silmek her şeyi siler. Yalnızca «Paylaş» düğmesi doğum tarihinizi içeren bir bağlantı oluşturur; onu siz gönderirsiniz.",
     reversed: "Gerçek bir destede bazı kartlar ters çıkar: gelenek onlara, kartın enerjisinin engellendiği, geciktiği, içe döndüğü ya da aşırıya kaçtığı nüanslı bir anlam verir. Bu seçenek varsayılan olarak kapalıdır; açıldığında günün açılımındaki her kartın ters çıkma olasılığı ikide birdir. Bir sonraki açılım için geçerlidir: daha önce yapılmış bir açılım değişmez.",
     calendar: "Liste, her gün yeniden hesaplanan önümüzdeki 30 günün gökyüzü buluşmalarını gösterir: yeni ay ve dolunaylar, tutulmalar (gökyüzü haritasının konumundan görünürlükleriyle), retroların başlangıç ve bitişleri, burç değişimleri ve yavaş gezegenlerin (Jüpiter'den Plüton'a) doğum haritanızdaki transitlerinin tam tarihleri. Önümüzdeki 7 günün buluşmalarını ajandanıza ekleyebilirsiniz: Apple, Outlook ve çoğu ajanda bir .ics dosyası alır; Google Takvim olayları tek tek alır (uygulaması .ics dosyalarını açamaz). Hafta sonundaki bir hatırlatma, sonraki haftayı eklemek için geri gelmenizi önerir.",
-    tarotMinors: "56 küçük arkana kartı, gündelik deneyimleri dört takım üzerinden simgesel olarak ele alır. Değnekler Ateş ve yaratıcılıkla, Kupalar Su ve duygularla ilişkilidir. Kılıçlar Hava ve düşünceyi, Paralar ya da Tılsımlar ise Toprak ve somut yaşamı temsil eder. Günlük açılımda tam desteyi seçerek bu kartları 78 kartlık açılıma katabilirsiniz."
+    tarotMinors: "56 küçük arkana kartı, gündelik deneyimleri dört takım üzerinden simgesel olarak ele alır. Değnekler Ateş ve yaratıcılıkla, Kupalar Su ve duygularla ilişkilidir. Kılıçlar Hava ve düşünceyi, Paralar ya da Tılsımlar ise Toprak ve somut yaşamı temsil eder. Günlük açılımda tam desteyi seçerek bu kartları 78 kartlık açılıma katabilirsiniz.",
+    square: "Pisagor Karesi, doğum tarihinizin rakamlarını dokuz hücreli bir tabloya yerleştirir. Tarihin rakamlarına, Aleksandr Aleksandrov yöntemine göre hesaplanan dört hesaplama sayısı eklenir. ZODIAC, 2000 yılı ve sonrasında doğanlar için günümüzdeki hesaplayıcıların çoğunun kullandığı modern “+ 19” yöntemini benimser; Aleksandrov ise ilk formülünü kullanmaya devam etmiştir. Her hücre, ilgili rakamın kaç kez yer aldığını gösterir; boş hücre, geliştirilebilecek bir özellik olarak yorumlanır. Bu, Numeroloji geleneğinin simgesel bir yorumudur: Düşünmeye davet eder, kişiliği veya becerileri nesnel biçimde değerlendirmez.",
+    squareLines: "Her yatay, dikey veya çapraz çizgi, üç hücrede yer alan rakamları birlikte ele alır. Hafif, dengeli veya belirgin düzeyler, tablonuzu aynı yüzyılda doğan kişilerin tablolarıyla karşılaştırır: 1900'lü ve 2000'li yıllardaki doğum tarihlerinin rakamları aynı değildir ve yöntem bunları farklı biçimlerde hesaplar. Bu düzeyler ZODIAC tarafından kullanılan bir yorumlama geleneğidir: İnsanları sıralamaz; herkesin kendine özgü güçlü yanları vardır."
   },
   placePlaceholder: "Bir şehir adı yazın…",
   placeNoMatch: "Şehir bulunamadı. En yakın şehri deneyin.",
@@ -814,7 +816,132 @@ I18N.tr = deepMerge(I18N.fr, {
         text: "Usta sayı 33: güçlenmiş bir 6; adanmışlık, iyilikseverlik ve hizmet ruhu."
       }
     },
-    years: ["Yeni başlangıçlar yılı: ekmek, cesaret etmek, projeler başlatmak.", "Sabır ve iş birliği yılı: bağlar kurmak, olgunlaşmasını beklemek.", "İfade ve yaratıcılık yılı: iletişim kurmak, kendini göstermek, keyif almak.", "Çalışma ve temel atma yılı: düzenlemek, sağlamlaştırmak, sebat etmek.", "Değişim ve özgürlük yılı: hareket etmek, uyum sağlamak, keşfetmek.", "Sorumluluklar ve gönül yılı: yuva, aile, bağlılıklar.", "Geri çekilme ve iç gözlem yılı: öğrenmek, düşünmek, dinlenmek.", "Başarı yılı: hedefler, para, takdir.", "Muhasebe ve kapanış yılı: bitirmek, ayıklamak, yeni döngüye hazırlanmak."]
+    years: ["Yeni başlangıçlar yılı: ekmek, cesaret etmek, projeler başlatmak.", "Sabır ve iş birliği yılı: bağlar kurmak, olgunlaşmasını beklemek.", "İfade ve yaratıcılık yılı: iletişim kurmak, kendini göstermek, keyif almak.", "Çalışma ve temel atma yılı: düzenlemek, sağlamlaştırmak, sebat etmek.", "Değişim ve özgürlük yılı: hareket etmek, uyum sağlamak, keşfetmek.", "Sorumluluklar ve gönül yılı: yuva, aile, bağlılıklar.", "Geri çekilme ve iç gözlem yılı: öğrenmek, düşünmek, dinlenmek.", "Başarı yılı: hedefler, para, takdir.", "Muhasebe ve kapanış yılı: bitirmek, ayıklamak, yeni döngüye hazırlanmak."],
+    square: {
+      title: "Pisagor Karesi",
+      working: "Hesaplama sayıları",
+      cell: "Hücre",
+      empty: "Rakam yok",
+      linesTitle: "Çizgiler",
+      more: "Analizin tamamını okuyun",
+      less: "Analizi daraltın",
+      levels: { low: "Hafif düzey", mid: "Dengeli düzey", high: "Belirgin düzey" },
+      cells: {
+        c1: {
+          name: "Karakter",
+          l0: "Kendinizi ortaya koyarken yumuşak bir yol izliyorsunuz: Karar vermeden önce çoğu zaman dinlemeyi tercih ediyorsunuz. Bu sakin tutum değerli bir güçtür; sizin için önemli olduğunda ne istediğinizi açıkça söyleme hakkını da kendinize tanımanız onu daha anlamlı kılar.",
+          l1: "Karakteriniz kararlılıkla esnekliği bir araya getiriyor: Tartışmanın kapısını kapatmadan kendi görüşünüzü savunabiliyorsunuz. Bu denge, özellikle fikirler ayrıldığında, başkalarına da alan açarken düşüncelerinizi korumanıza yardımcı oluyor.",
+          l2: "Karakteriniz kendinden emin ve tutarlı bir duruş sergiliyor: Sizin için neyin önemli olduğunu biliyor ve bunu ifade ediyorsunuz. Bu güven duygusu çevrenize de yansıyor; dinlemeye ve farklı bakış açılarına açık kaldığınızda daha da yerini buluyor.",
+          l3: "İradeniz oldukça belirgin: İnisiyatif almayı ve seçtiğiniz yolda ilerlemeyi seviyorsunuz. Bu gücü, başkalarının da öneri sunmasına alan açarak dengelemeniz, enerjinizin dayatmadan ilham vermesine yardımcı olur."
+        },
+        c2: {
+          name: "Enerji",
+          l0: "Enerjiniz sürekli aynı tempoda değil, dönem dönem kendini gösteriyor: Size gerçekten neyin yeni bir heves verdiğini fark etmek yararlı olabilir. Dinlenme zamanlarınıza yer ayırıp enerjinizi nereye yönelteceğinizi özenle seçerek bu yönünüzü geliştirebilirsiniz.",
+          l1: "Enerjinizi dikkatle kullanıyor, sizin için anlam taşıyan şeylere ayırıyorsunuz. Önceliklerinizi seçmek ve kendi temponuza saygı göstermek, dikkatiniz dağılmadan uzun vadede yol almanıza yardımcı oluyor.",
+          l2: "Enerjinizi hem kendi projelerinize hem de çevrenizdekilere ayırabiliyorsunuz. Bu canlılık, başkalarından destek almayı ve kendinize dinlenme anları tanımayı da bildiğinizde daha rahat akıyor.",
+          l3: "Enerjiniz oldukça canlı: Başkalarını kolayca harekete geçirebiliyor ve eyleme geçmeyi seviyorsunuz. Kendinize de pay ayırıp herkesin kendi hızında ilerlemesine izin verdiğinizde bu gücü daha dengeli kullanabilirsiniz."
+        },
+        c3: {
+          name: "Merak ve yöntem",
+          l0: "Merakınız sabit bir plandan çok o anda ilginizi çeken konuların peşinden gidiyor. Bu özgürlük değerlidir; düşüncelerinizi biraz düzenlemek, örneğin not almak, sizi heyecanlandıran konuları sürdürmenizi kolaylaştırabilir.",
+          l1: "Şeylerin nasıl işlediğini kendi yolunuzla ve kendi hızınızda anlamayı seviyorsunuz. Biraz yöntemli ilerlemek, bu merakı sizin için önemli konularda sağlam bilgilere dönüştürmenize yardımcı olabilir.",
+          l2: "Meraklı ve düzenli bir yaklaşımınız var: Öğrenmeyi, bilgileri sınıflandırmayı ve konuları derinlemesine anlamayı seviyorsunuz. Yöntemli düşünme alışkanlığınız, onu başkalarıyla paylaşıp beklenmedik durumlara uyarladığınızda daha da değerli hale geliyor.",
+          l3: "Düzene ve bilgiye büyük önem veriyorsunuz: Çoğu konuda açıklık, kesinlik ve mantık arıyorsunuz. Bu titiz yaklaşım, beklenmedik gelişmelere ve başkalarının farklı yöntemlerine de yer açtığınızda daha esnek hale gelebilir."
+        },
+        c4: {
+          name: "Sebat",
+          l0: "Sebatınız deneyimlerle zaman içinde gelişiyor: Çoğu zaman art arda gelen heveslerle ilerlemeyi tercih ediyorsunuz. Kısa vadeli hedefler ve küçük, düzenli alışkanlıklar, önemsediğiniz şeyleri uzun süre sürdürmenize yardımcı olabilir.",
+          l1: "Hedefiniz sizin için anlamlı olduğunda çaba göstermeyi sürdürebiliyorsunuz. Başlama nedeninizi hatırlatan basit işaretler ve tamamladığınız aşamaların verdiği sevinç, bu sakin kararlılığı besleyebilir.",
+          l2: "Sebatınız sağlam bir dayanak: Çabanızı zamana yayabiliyor ve üstlendiğiniz işleri tamamlayabiliyorsunuz. Bu güvenilirlik değerlidir; kendinize mola ve gerektiğinde yön değiştirme izni verdiğinizde daha da anlam kazanır.",
+          l3: "Sebatınız çok belirgin: Koşullar değişse de projelerinizi sonuna kadar götürmeye eğilimlisiniz. Bu kararlılığı esnek tutmak, başka bir yol sizin için daha uygun hale geldiğinde yön değiştirebilmenize yardımcı olur."
+        },
+        c5: {
+          name: "Sezgi ve mantık",
+          l0: "Önsezilerden çok deneyimlere ve somut bilgilere güvenmeyi tercih ediyorsunuz. İzlenimlerinizi yargılamadan dinlemek için biraz zaman ayırmanız, kararlarınıza yeni ve beklenmedik bir bakış açısı katabilir.",
+          l1: "Sezgileriniz sessizce kendini hissettiriyor: Size bazı yollar öneriyor, ardından mantığınızla bunları gözden geçiriyorsunuz. Hislerle akıl yürütmenin bu uyumu, kararları daha sakin ve özenli vermenize yardımcı oluyor.",
+          l2: "İpuçları arasında kolayca bağ kuruyorsunuz: Sezgi ve mantığı birlikte kullanıyorsunuz. Bir şeyi önce hissedip sonra anlamlandırma yaklaşımınız, düşüncenizin nasıl geliştiğini başkalarına açıkladığınızda daha da değer kazanıyor.",
+          l3: "Sezgileriniz oldukça canlı: Bazen bir durumu açıklayabilmeden önce hissediyorsunuz. Bu inceliği somut bilgilerle ve başkalarının görüşleriyle karşılaştırmanız, seçimlerinizde size daha güvenilir bir yol gösterici sunabilir."
+        },
+        c6: {
+          name: "Pratiklik",
+          l0: "Fikirler ve ilişkiler, elinizle bir şeyler yapmaktan daha çok ilginizi çekebiliyor. Somut üretimden keyif almak da geliştirilebilir: Ellerinizle küçük şeyler yapmak, günlük yaşamınızda dinginlik ve sade bir tatmin duygusu sağlayabilir.",
+          l1: "Gerektiğinde fikirleri eyleme dönüştürebiliyorsunuz. Sade ve etkili pratik yaklaşımınız, ayrıntılarda kaybolmadan ya da sürekli ertelemeden projelerinizi hayata geçirmenize yardımcı oluyor.",
+          l2: "Somut sonuçlar size ilham veriyor: Yapmayı, üretmeyi ve emeğinizin sonucunu görmeyi seviyorsunuz. Fikirleri görünür işlere dönüştürme isteğiniz, hem sizin hem de çevrenizdekiler için değerli bir kaynak.",
+          l3: "Pratik yönünüz oldukça belirgin: İşlerin ilerlemesini ve sonuçlarının görülmesini seviyorsunuz. Her şeyi tek başınıza üstlenmemek için düşünmeye ve dinlenmeye de yer ayırmanız, bu hareketli yaklaşımı dengeleyebilir."
+        },
+        c7: {
+          name: "Fırsatlar",
+          l0: "Koşulların kendiliğinden yol açmasını beklemekten çok kendi çabanızla ilerliyorsunuz. Karşılaşmalara ve güzel rastlantılara açık olmak, yolculuğunuza beklenmedik kapılar ve yeni fikirler katabilir.",
+          l1: "Bir fırsat karşınıza çıktığında onu fark edebiliyorsunuz. Doğru anları fark etme becerinizi biraz cesaretle birleştirip ilginizi çeken şeylere evet demek, çoğu zaman yeni bakış açıları kazandırır.",
+          l2: "Yolunuza sık sık fırsatlar çıkıyormuş gibi görünüyor ve bunları değerlendirmeyi biliyorsunuz. Açılan kapıları fark etmeniz değerli bir kaynak; size gerçekten uyanları seçtiğinizde daha anlamlı sonuçlar doğuruyor.",
+          l3: "Fırsatları fark etme yönünüz çok canlı: Koşulları ve karşılaşmaları değerlendirmeyi biliyorsunuz. Her seçeneğin peşinden gitmek yerine gerçekten önem verdiğiniz yolları seçmek, bu ilhamı daha iyi yönlendirmenize yardımcı olur."
+        },
+        c8: {
+          name: "Sorumluluk duygusu",
+          l0: "Sırf yükümlülük olduğu için değil, daha çok gönülden bağ kurduğunuz konularda sorumluluk alıyorsunuz. Bu özgürlük değerlidir; size anlamlı gelen ve sürdürmeyi seçtiğiniz sözlerle birleştiğinde daha da güçlenir.",
+          l1: "Sorumluluklarınızı ciddiye alıyor, ancak onların sizi sınırlamasına izin vermiyorsunuz. Bu dengeli görev anlayışı, hangi yükümlülükleri üstleneceğinize karar verme özgürlüğünüzü korurken güven oluşturuyor.",
+          l2: "Sorumluluk duygunuz gelişmiş: Çevrenizdekiler size güvenebiliyor ve siz de onlarla ilgileniyorsunuz. Bu güvenilirlik değerlidir; başkalarından yardım kabul ettiğinizde sorumluluklarınızı daha rahat taşıyabilirsiniz.",
+          l3: "Görev bilinciniz oldukça belirgin: İşleri iyi yapmayı ve kimseyi hayal kırıklığına uğratmamayı önemsiyorsunuz. Gerektiğinde hayır deme ve kendinize de özen gösterme hakkını tanımanız, bu beklentiyi dengede tutmanıza yardımcı olur."
+        },
+        c9: {
+          name: "Düşünme",
+          l0: "Kuramdan çok deneyimleyerek ve uygulayarak öğrenmeyi seviyorsunuz. Yaşadıklarınız üzerine düşünmek için zaman ayırmak, örneğin yazmak, bu deneyimlerden çıkardığınız anlamı derinleştirebilir.",
+          l1: "İlginizi çeken konuları kendi yönteminizle düşünmeyi ve anlamayı seviyorsunuz. Okuyarak ya da başkalarıyla konuşarak merakınızı beslemek, size yeni ufuklar ve farklı bakış açıları açabilir.",
+          l2: "Öğrenmek ve düşünmek sizin için önemli: Bilgi edinmeyi, akılda tutmayı ve bağlantılar kurmayı seviyorsunuz. Bu açıklık, düşüncelerinizi canlı ve merak dolu sohbetlerde paylaştığınızda daha da değerli hale geliyor.",
+          l3: "Derinlemesine düşünmeye güçlü bir ilginiz var: İncelemeyi, ayrıntılara inmeyi ve konuları iyice anlamayı seviyorsunuz. Bu iç zenginliği sezgiye ve harekete de yer açarak beslemeniz, aynı düşünceler etrafında dönüp durmamanıza yardımcı olabilir."
+        }
+      },
+      lines: {
+        r147: {
+          name: "Kararlılık",
+          low: "Hedefleriniz çoğu zaman en baştan değil, yol boyunca şekilleniyor. Bu esneklik karşınıza çıkanları değerlendirmenizi sağlıyor; bir iki basit yön belirlemek, daha güvenle ilerlemenize yardımcı olabilir.",
+          mid: "Hedef koyabiliyor ve gerektiğinde onları yeniden düzenleyerek ilerleyebiliyorsunuz. Kararlılık ile esneklik arasındaki bu denge, önem verdiğiniz şeylere sakin bir biçimde yaklaşmanıza yardımcı oluyor.",
+          high: "Kararlılığınız belirgin: Ne istediğinizi biliyor ve seçtiğiniz yolda ilerliyorsunuz. Bu enerjiyi, bazen beklenenden daha farklı yerlere götüren yeni yollara da açık tutmak yararlı olabilir."
+        },
+        r258: {
+          name: "Yakın ilişkiler",
+          low: "Bağımsızlığınız sizin için önemli ve ilişkilerinizi özenle seçiyorsunuz. Değer verdiğiniz bağları kendi tarzınızda küçük ama düzenli jestlerle beslemek, onları daha da güçlendirebilir.",
+          mid: "Hem başkalarına hem de kendinize dengeli bir yer ayırıyorsunuz. Bağımlılığa dayanmayan bu yakınlık anlayışı, zaman içinde güvenilir ve sıcak ilişkiler kurmanıza yardımcı oluyor.",
+          high: "Yakın ilişkiler sizin için çok önemli: Sevdiklerinizle ilgilenmeyi ve paylaşmayı seviyorsunuz. Bu cömertlik değerli bir güç; kendinize de zaman ayırdığınızda daha dengeli bir şekilde yaşanıyor."
+        },
+        r369: {
+          name: "Alışkanlık ve istikrar",
+          low: "Rutinden çok yeniliği ve değişimi seviyorsunuz. Bu özgürlük, yeni koşullara uyum sağlamanızı kolaylaştırıyor; çevrenizde her şey değişirken birkaç basit alışkanlık size güven veren bir temel sunabilir.",
+          mid: "Güven veren alışkanlıklarla değişim isteği arasında denge kurabiliyorsunuz. Bu esneklik, sizin için temel olan şeylerden uzaklaşmadan koşullara uyum sağlamanıza yardımcı oluyor.",
+          high: "Düzenli alışkanlıklar ve tanıdık dayanaklar size çok şey katıyor: Sağlam temeller üzerine kurmayı seviyorsunuz. Bu istikrar değerli bir güç; zaman zaman beklenmedik gelişmelere de yer açtığınızda daha esnek oluyor."
+        },
+        c123: {
+          name: "Özsaygı",
+          low: "Kendinize bakışınız daha çok alçakgönüllü bir çizgide. Küçük de olsa başarılarınızı fark etmek ve güzel sözleri kabul etmek, kendi değerinize duyduğunuz sakin güveni güçlendirebilir.",
+          mid: "Kendinize genellikle gerçekçi ve dengeli bakıyorsunuz. Bu yerinde güven, geliştirmek istediğiniz yönleri göz ardı etmeden güçlü yanlarınızı tanımanıza yardımcı oluyor.",
+          high: "Kendinize ve yapabileceklerinize sağlam bir güven duyuyorsunuz. Bu güven değerli bir kaynaktır; başkalarının bakış açılarını dinlemeye ve merak etmeye devam ettiğinizde daha da anlam kazanır."
+        },
+        c456: {
+          name: "Maddi yaşam",
+          low: "Maddi rahatlık sizi harekete geçiren başlıca unsur değil; başka konulara daha çok önem veriyorsunuz. Günlük yaşamınızı biraz düzenlemek, zihninizde asıl değer verdiğiniz şeylere daha fazla yer açabilir.",
+          mid: "Para ve günlük yaşamla dengeli bir ilişkiniz var; bunların her şeyi belirlemesine izin vermiyorsunuz. Bu pratik yaklaşım, projeleriniz için huzurlu bir temel kurmanıza yardımcı oluyor.",
+          high: "Maddi yaşam sizin için önemli: Sağlam ve rahat bir temel oluşturmayı seviyorsunuz. Bu somut yaklaşım değerli bir güç; basit keyiflere de yer bıraktığınızda daha zengin bir anlam kazanıyor."
+        },
+        c789: {
+          name: "Yaratıcılık",
+          low: "Yaratıcılığınız daha çok günlük yaşamın küçük ayrıntılarında sessizce kendini gösteriyor. Ona size ait, küçük de olsa bir alan açmanız, henüz fark etmediğiniz istekleri ortaya çıkarabilir.",
+          mid: "Kendi hızınızda üretmek ve içinizden gelenleri ifade etmek istiyorsunuz. Sonuç baskısı olmadan bu keyfi geliştirmek, yaşamınızın diğer alanlarını da besleyebilir.",
+          high: "Üretme isteğiniz oldukça canlı: Fikirler, projeler ve kişisel ifade size ilham veriyor. Sizin için en anlamlı projeleri seçip adım adım somutlaştırmanız, bu zenginliği hayata geçirmenize yardımcı olabilir."
+        },
+        d159: {
+          name: "Manevi yönelim",
+          low: "Öncelikle somut konulara ve içinde bulunduğunuz ana ilgi duyuyorsunuz. Bazen durup düşünmek, sessizliğe ya da derin bir gözleme zaman ayırmak, günlük yaşamınıza yeni bir bakış açısı getirebilir.",
+          mid: "Yaşadıklarınızın anlamını önemsiyor, aynı zamanda gerçek yaşamla bağınızı koruyorsunuz. İç dünyanızla somut çabalarınız arasındaki bu denge, günlük yaşamda huzur veren bir kaynak olabilir.",
+          high: "Anlam arayışı yaşamınızda önemli bir yer tutuyor: Olayların nedenlerini anlamayı seviyorsunuz. Bu derinlik, basit günlük davranışlarla ve başka insanlarla bağını koruduğunda daha da değer kazanıyor."
+        },
+        d357: {
+          name: "Mizaç",
+          low: "Mizacınız daha çok sakin ve dengeli bir çizgide. Bu dinginlik çevrenize güven veriyor; heyecanınızı zaman zaman daha açık göstermek, ilişkilerinize fazladan sıcaklık katabilir.",
+          mid: "Mizacınız canlılıkla özdenetimi birleştiriyor: Heyecanlanabiliyor ama bu duyguya bütünüyle kapılmıyorsunuz. Bu denge, varlığınızın başkaları için hem canlı hem de huzur verici olmasını sağlıyor.",
+          high: "Mizacınız coşkulu: Olayları yoğunlukla ve tutkuyla yaşıyorsunuz. Bu içten gelen ateş değerli bir zenginlik; hem kendinize hem de başkalarına alan tanıyarak onu dengede tutmanız yararlı olabilir."
+        }
+      }
+    }
   },
   tarot: {
     tab: "Tarot",

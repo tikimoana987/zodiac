@@ -1008,6 +1008,30 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .sc-name{ font-weight:700; font-size:.9rem; }
 .sc-desc{ font-size:.78rem; color:var(--muted); line-height:1.4; }
 .spread-hint{ font-size:.78rem; color:var(--muted); font-style:italic; margin-top:-.25rem; }
+/* Carré de Pythagore (zodiac-square.js) : grille 3 × 3 en colonnes 1-2-3 / 4-5-6 / 7-8-9, toujours dans le même ordre */
+.square-grid{ display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); grid-template-rows:repeat(3, auto); grid-auto-flow:column;
+  gap:.5rem; max-width:420px; margin:.8rem auto 1rem; }
+.sq-cell{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.3rem; min-height:86px; padding:.6rem .3rem;
+  border-radius:12px; border:1px solid var(--ov-15); background:var(--ov-03); color:var(--text); cursor:pointer; font:inherit; }
+.sq-cell:hover{ border-color:var(--gold); }
+.sq-cell[aria-pressed="true"]{ border-color:var(--gold); background:var(--ov-08); box-shadow:0 0 0 1px var(--gold) inset; }
+.sq-cell:focus-visible, .sq-line:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+.sq-digits{ font-size:clamp(.8rem, 3.4vw, 1.15rem); font-weight:700; letter-spacing:.04em; color:var(--gold); white-space:nowrap; text-align:center; }
+.sq-name{ font-size:.72rem; color:var(--muted); text-align:center; line-height:1.25; max-width:100%; overflow-wrap:anywhere; hyphens:auto; }
+@media (max-width:480px){ .sq-cell{ min-height:78px; padding:.5rem .2rem; } .sq-name{ font-size:.64rem; } .square-grid{ gap:.35rem; } }
+.square-lines-head{ display:flex; align-items:center; justify-content:center; gap:.3rem; font-size:.75rem; text-transform:uppercase; letter-spacing:.12em; color:var(--gold); margin-top:.4rem; }
+.square-lines{ display:flex; flex-wrap:wrap; justify-content:center; gap:.4rem; margin:.5rem 0 1rem; }
+.sq-line{ border:1px solid var(--ov-15); background:transparent; color:var(--text); border-radius:999px; padding:.3rem .75rem; font:inherit; font-size:.78rem; cursor:pointer; }
+.sq-line:hover{ border-color:var(--gold); }
+.sq-line[aria-pressed="true"]{ border-color:var(--gold); background:var(--ov-08); }
+.square-detail{ background:var(--ov-03); border:1px solid var(--ov-06); border-radius:14px; padding:.9rem 1.1rem; }
+.square-detail h4, .sq-full-item h5{ margin:0 0 .4rem; font-size:.95rem; color:var(--text); }
+.square-detail p, .sq-full-item p{ margin:0; color:var(--muted); font-size:.9rem; line-height:1.55; }
+.sq-meta{ color:var(--gold); font-weight:700; letter-spacing:.05em; margin-inline-start:.3rem; }
+.square-toggle-row{ text-align:center; margin:1rem 0 .4rem; }
+.square-full[hidden]{ display:none; }
+.square-full{ display:grid; gap:.8rem; margin-top:.6rem; }
+@media (min-width:900px){ .square-full{ grid-template-columns:repeat(2, minmax(0, 1fr)); } }
 .spread-name{ text-align:center; font-size:1rem; color:var(--text); margin:.2rem 0 .6rem; letter-spacing:.04em; }
 .spread-row.spread-one{ grid-template-columns:minmax(0, 320px); justify-content:center; }
 .spread-row.spread-six{ grid-template-columns:repeat(3, minmax(0, 1fr)); }

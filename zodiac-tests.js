@@ -739,9 +739,9 @@
     }
   });
 
-  test('Bulles d\'information (i) : 41 explications complètes et traduites', () => {
+  test('Bulles d\'information (i) : 43 explications complètes et traduites', () => {
     const keys = Object.keys(I18N.fr.info);
-    assertEq(keys.length, 41, 'nombre d\'explications');
+    assertEq(keys.length, 43, 'nombre d\'explications');
     for (const lang of Object.keys(I18N)) {
       const info = I18N[lang].info;
       assert(keys.every(k => typeof info[k] === 'string' && info[k].length > 20), `${lang} : explication manquante ou trop courte`);   // 20 : le chinois est bien plus dense
@@ -1239,6 +1239,94 @@
       assert(s && s.open && s.line && s.intro && s.share && s.note, `${l} : textes`);
       if (l !== 'fr') assert(s.intro !== I18N.fr.support.intro && s.note !== I18N.fr.support.note, `${l} : traduit`);
       if (l === 'th') assert(Object.values(s).every(v => !v.includes(':') && !/\.$/.test(v)), 'thaï : ni deux-points ni point final');
+    }
+  });
+
+  /* ---------------- Carré de Pythagore (cahier docs/cahier-carre-pythagore.md, V0.2) ---------------- */
+  const SQ_LINE_ORDER = ['r147', 'r258', 'r369', 'c123', 'c456', 'c789', 'd159', 'd357'];
+  const sqLine = r => SQ_LINE_ORDER.map(k => ({ low: 'D', mid: 'E', high: 'M' })[r.lines[k].level]).join('');
+  const sqGrid = r => Array.from({ length: 9 }, (_, i) => String(i + 1).repeat(r.counts[i + 1]) || '-').join(' ');
+
+  test('Carré de Pythagore : les 11 dates de référence du cahier', () => {
+    const ref = [
+      ['1982-11-03', '25 7 19 10', '11111 22 3 - 5 - 7 8 99', 'MEDMDMME'], ['1990-04-17', '31 4 29 11', '11111 2 3 44 - - 7 - 999', 'MDEEEMMD'],
+      ['1975-01-24', '29 11 25 7', '1111 222 - 4 55 - 77 - 99', 'MMDEMMME'], ['1909-01-10', '21 3 19 10', '111111 2 3 - - - - - 999', 'MDEMDEMD'],
+      ['1996-02-29', '38 11 34 7', '111 22 33 4 - 6 7 8 999', 'EEMEEMEE'], ['1999-12-31', '35 8 29 11', '11111 22 33 - 5 - - 8 9999', 'EEMMDMME'],
+      ['2000-01-01', '4 4 23 5', '11 22 3 44 5 - - - -', 'EDDDEDDD'], ['2000-02-29', '15 6 34 7', '1 222 3 4 5 6 7 - 9', 'DEEDEEDE'],
+      ['2003-12-11', '10 1 29 11', '1111111 222 3 - - - - - 9', 'MDDMDDMD'], ['2004-02-29', '19 10 38 11', '1111 222 3 4 - - - 8 99', 'EEEMDEMD'],
+      ['2010-06-09', '18 9 37 10', '111 2 3 - - 6 7 8 99', 'EDMDDMED']];
+    for (const [iso, work, grid, lines] of ref) {
+      const r = pythagorasSquare(parseISODate(iso));
+      assertEq(r.working.join(' '), work, `${iso} : nombres de travail`);
+      assertEq(sqGrid(r), grid, `${iso} : grille`);
+      assertEq(sqLine(r), lines, `${iso} : niveaux des lignes`);
+    }
+    assertEq([0, 1, 2, 3, 4, 7].map(n => squareCellLevel(1, n)).join(''), '001233', 'case 1 : un ou moins, deux, trois, quatre ou plus');
+    assertEq([0, 1, 2, 3, 5].map(n => squareCellLevel(4, n)).join(''), '01233', 'autres cases : aucun, un, deux, trois ou plus');
+  });
+
+  test('Carré de Pythagore : toutes les dates de 1900 à 2100, seuils par siècle', () => {
+    let min = 99, max = 0, neg = 0;
+    const share = { 19: {}, 20: {} }, total = { 19: 0, 20: 0 };
+    for (let ms = Date.UTC(1900, 0, 1); ms <= Date.UTC(2100, 11, 31); ms += 864e5) {
+      const dt = new Date(ms), date = { y: dt.getUTCFullYear(), m: dt.getUTCMonth() + 1, d: dt.getUTCDate() }, r = pythagorasSquare(date);
+      const n = Object.values(r.counts).reduce((a, b) => a + b, 0);
+      min = Math.min(min, n); max = Math.max(max, n); if (r.working[2] < 0) neg++;
+      if (date.y <= 2026) {
+        const c = date.y >= 2000 ? 20 : 19; total[c]++;
+        for (const k of SQ_LINE_ORDER) { const key = k + r.lines[k].level; share[c][key] = (share[c][key] || 0) + 1; }
+      }
+    }
+    assert(min >= 8 && max <= 15 && neg === 0, `grille de 8 à 15 chiffres, 3e nombre jamais négatif (${min} à ${max}, ${neg})`);
+    for (const c of [19, 20]) for (const k of SQ_LINE_ORDER) for (const lv of ['low', 'mid', 'high']) {
+      const p = (share[c][k + lv] || 0) / total[c];
+      assert(p > 0.15 && p < 0.55, `${c}xx, ${k}, ${lv} : ${Math.round(p * 100)} % (entre 15 et 55)`);
+    }
+    const at = (y, key, sum) => { const [lo, hi] = SQUARE_THRESHOLDS[y >= 2000 ? 20 : 19][key]; return sum <= lo ? 'low' : sum >= hi ? 'high' : 'mid'; };
+    assert(at(1982, 'r147', 3) === 'low' && at(1982, 'r147', 4) === 'mid' && at(1982, 'r147', 5) === 'mid' && at(1982, 'r147', 6) === 'high', 'seuils exacts aux frontières');
+  });
+
+  test('Carré de Pythagore : textes (14 langues avant publication)', () => {
+    const forbidden = ['santé', 'maladie', 'faiblesse', 'manque', 'défaut', 'excès', 'don inné', 'destin', 'fatal', 'vous allez'];
+    for (const l of Object.keys(I18N)) {
+      const q = I18N[l].num.square;
+      assert(q && q.title && q.working && q.cell && q.empty && q.linesTitle && q.more && q.less && ['low', 'mid', 'high'].every(k => q.levels[k]), `${l} : libellés`);
+      for (let k = 1; k <= 9; k++) assert(q.cells['c' + k].name && [0, 1, 2, 3].every(n => q.cells['c' + k]['l' + n]), `${l} : case ${k}`);
+      for (const k of SQ_LINE_ORDER) assert(q.lines[k].name && ['low', 'mid', 'high'].every(n => q.lines[k][n]), `${l} : ligne ${k}`);
+      assert(I18N[l].info.square && I18N[l].info.squareLines, `${l} : bulles (i)`);
+      const all = JSON.stringify([q, I18N[l].info.square, I18N[l].info.squareLines]);
+      assert(!/\{\w+\}/.test(all) && !all.includes('’'), `${l} : ni variable ni apostrophe courbe`);
+      if (l === 'fr') assert(!forbidden.some(f => all.toLowerCase().includes(f)), 'français : aucun mot interdit');
+      else assert(q.cells.c1.l2 !== I18N.fr.num.square.cells.c1.l2 && q.lines.r147.high !== I18N.fr.num.square.lines.r147.high, `${l} : traduit`);
+      if (l === 'th') {
+        const leaves = []; const walk = o => { for (const v of Object.values(o)) typeof v === 'string' ? leaves.push(v) : walk(v); };
+        walk(q); leaves.push(I18N[l].info.square, I18N[l].info.squareLines);
+        assert(leaves.every(v => !/[:：]/.test(v) && !/\.\s*$/.test(v)), 'thaï : ni deux-points ni point final');
+      }
+    }
+  });
+
+  test('Carré de Pythagore : affichage, choix d\'une case ou d\'une ligne, analyse complète', () => {
+    const keep = [currentDate, squareSel, squareOpen, squareFor];
+    const host = document.createElement('div');
+    document.body.appendChild(host);
+    try {
+      currentDate = '1982-11-03';
+      host.innerHTML = squareHtml(I18N.fr, parseISODate('1982-11-03'));
+      const card = () => document.getElementById('squareCard');
+      assertEq(card().querySelectorAll('.sq-cell').length, 9, 'neuf cases');
+      assert(card().querySelector('.square-grid').getAttribute('dir') === 'ltr', 'grille toujours dans le même ordre');
+      assert(card().querySelector('.square-detail').textContent.includes(I18N.fr.num.square.cells.c1.name), 'case 1 affichée au départ');
+      card().querySelector('.sq-cell[data-key="c4"]').click();
+      assert(card().querySelector('.square-detail').textContent.includes(I18N.fr.num.square.cells.c4.l0), 'case 4 vide : texte « à cultiver »');
+      card().querySelector('.sq-line[data-key="c789"]').click();
+      assert(card().querySelector('.square-detail h4').textContent.includes(I18N.fr.num.square.levels.high), 'ligne : nom et niveau');
+      assert(card().querySelector('.square-full').hidden, 'analyse complète repliée');
+      card().querySelector('.square-toggle').click();
+      assert(!card().querySelector('.square-full').hidden && card().querySelectorAll('.sq-full-item').length === 17, '17 lectures dépliées');
+    } finally {
+      [currentDate, squareSel, squareOpen, squareFor] = keep;
+      host.remove();
     }
   });
 

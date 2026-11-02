@@ -718,7 +718,9 @@ I18N.de = deepMerge(I18N.fr, {
     privacy: "Alles, was du eingibst (Name, Datum, Uhrzeit, Ort, Verlauf, Tarot-Frage), wird nur im Speicher deines Browsers auf diesem Gerät abgelegt. Es werden keine Daten an einen Server gesendet, und die App enthält keine Statistik- oder Tracking-Werkzeuge. Wenn du die Daten dieser Website in deinem Browser löschst, ist alles gelöscht. Nur die Schaltfläche „Teilen“ erstellt einen Link mit deinem Geburtsdatum, den du selbst verschickst.",
     reversed: "Bei einem echten Deck kommen manche Karten verkehrt herum: Die Tradition gibt ihnen eine nuancierte Bedeutung, bei der die Energie der Karte blockiert, verzögert, nach innen gewendet oder übersteigert ist. Diese Option ist standardmäßig aus; ist sie an, kommt jede Karte der Tageslegung mit einer Wahrscheinlichkeit von eins zu zwei umgekehrt. Sie gilt für die nächste Legung: Eine bereits gezogene Legung ändert sich nicht.",
     calendar: "Die Liste zeigt die Himmelstermine der nächsten 30 Tage, täglich neu berechnet: Neu- und Vollmonde, Finsternisse (mit ihrer Sichtbarkeit vom Ort der Himmelskarte), Beginn und Ende von Rückläufigkeiten, Zeichenwechsel sowie die exakten Daten der Transite der langsamen Planeten (Jupiter bis Pluto) auf dein Geburtshoroskop. Die Termine der nächsten 7 Tage kannst du deinem Kalender hinzufügen: Apple, Outlook und die meisten Kalender erhalten eine .ics-Datei; Google Kalender erhält die Ereignisse einzeln (seine App kann keine .ics-Dateien öffnen). Eine Erinnerung am Ende der Woche lädt dich ein, die nächste hinzuzufügen.",
-    tarotMinors: "Die 56 Karten der Kleinen Arkana spiegeln symbolisch alltägliche Erfahrungen in vier Farben. Die Stäbe stehen für Feuer, Tatkraft und Kreativität, die Kelche für Wasser, Gefühle und Beziehungen. Die Schwerter verbinden sich mit Luft und Denken, die Münzen oder Pentakel mit Erde und dem greifbaren Leben. Für die Tageslegung kannst du das vollständige Deck mit 78 Karten wählen."
+    tarotMinors: "Die 56 Karten der Kleinen Arkana spiegeln symbolisch alltägliche Erfahrungen in vier Farben. Die Stäbe stehen für Feuer, Tatkraft und Kreativität, die Kelche für Wasser, Gefühle und Beziehungen. Die Schwerter verbinden sich mit Luft und Denken, die Münzen oder Pentakel mit Erde und dem greifbaren Leben. Für die Tageslegung kannst du das vollständige Deck mit 78 Karten wählen.",
+    square: "Das Pythagoras-Quadrat ordnet die Ziffern deines Geburtsdatums in einem Raster aus neun Feldern an. Zu den Ziffern des Datums kommen vier Arbeitszahlen hinzu, die nach der Methode von Alexander Alexandrow berechnet werden. Für Geburten ab dem Jahr 2000 verwendet ZODIAC die moderne Variante „+ 19“, wie die meisten heutigen Rechner; Alexandrow blieb dagegen bei seiner ursprünglichen Formel. Jedes Feld zeigt, wie oft die jeweilige Ziffer vorkommt; ein leeres Feld steht für eine Eigenschaft, die du entwickeln kannst. Es handelt sich um eine symbolische Tradition der Numerologie: Sie lädt zum Nachdenken ein und misst weder Persönlichkeit noch Fähigkeiten.",
+    squareLines: "Jede Reihe, Spalte oder Diagonale zählt die Ziffern aus drei Feldern zusammen. Ihre Ausprägung – dezent, ausgewogen oder deutlich – setzt dein Raster in Beziehung zu den Rastern von Menschen, die im selben Jahrhundert geboren wurden: Geburtsdaten aus den 1900er- und 2000er-Jahren enthalten unterschiedliche Ziffern, und ihre Arbeitszahlen werden nach unterschiedlichen Regeln berechnet. Diese Ausprägungen sind eine Konvention von ZODIAC: Sie dienen nicht dazu, Menschen einzuordnen, denn jeder Mensch hat eigene Stärken."
   },
   placePlaceholder: "Stadtnamen eingeben …",
   placeNoMatch: "Keine Stadt gefunden. Versuche die nächstgelegene.",
@@ -818,7 +820,132 @@ I18N.de = deepMerge(I18N.fr, {
         text: "Meisterzahl 33: eine verstärkte 6; Hingabe, Güte und Sinn für den Dienst an anderen."
       }
     },
-    years: ["Ein Jahr des Neubeginns: säen, wagen, Projekte starten.", "Ein Jahr der Geduld und Zusammenarbeit: Bindungen knüpfen, reifen lassen.", "Ein Jahr des Ausdrucks und der Kreativität: kommunizieren, sich zeigen, genießen.", "Ein Jahr der Arbeit und der Fundamente: ordnen, festigen, durchhalten.", "Ein Jahr des Wandels und der Freiheit: aufbrechen, sich anpassen, entdecken.", "Ein Jahr der Verantwortung und des Herzens: Zuhause, Familie, Verpflichtungen.", "Ein Jahr des Rückzugs und der Selbstbesinnung: lernen, nachdenken, Kraft tanken.", "Ein Jahr der Verwirklichung: Ziele, Finanzen, Anerkennung.", "Ein Jahr der Bilanz und des Abschlusses: beenden, aussortieren, den nächsten Zyklus vorbereiten."]
+    years: ["Ein Jahr des Neubeginns: säen, wagen, Projekte starten.", "Ein Jahr der Geduld und Zusammenarbeit: Bindungen knüpfen, reifen lassen.", "Ein Jahr des Ausdrucks und der Kreativität: kommunizieren, sich zeigen, genießen.", "Ein Jahr der Arbeit und der Fundamente: ordnen, festigen, durchhalten.", "Ein Jahr des Wandels und der Freiheit: aufbrechen, sich anpassen, entdecken.", "Ein Jahr der Verantwortung und des Herzens: Zuhause, Familie, Verpflichtungen.", "Ein Jahr des Rückzugs und der Selbstbesinnung: lernen, nachdenken, Kraft tanken.", "Ein Jahr der Verwirklichung: Ziele, Finanzen, Anerkennung.", "Ein Jahr der Bilanz und des Abschlusses: beenden, aussortieren, den nächsten Zyklus vorbereiten."],
+    square: {
+      title: "Pythagoras-Quadrat",
+      working: "Arbeitszahlen",
+      cell: "Feld",
+      empty: "Keine Ziffer",
+      linesTitle: "Linien",
+      more: "Vollständige Analyse lesen",
+      less: "Analyse einklappen",
+      levels: { low: "Dezente Ausprägung", mid: "Ausgewogene Ausprägung", high: "Deutliche Ausprägung" },
+      cells: {
+        c1: {
+          name: "Charakter",
+          l0: "Deine Selbstbehauptung zeigt sich auf sanfte Weise: Oft hörst du erst zu, bevor du dich entscheidest. Diese Zurückhaltung ist eine Stärke; sie gewinnt, wenn du dir auch erlaubst, klar zu sagen, was du willst, sobald es dir wichtig ist.",
+          l1: "Dein Charakter verbindet Selbstbehauptung mit Flexibilität: Du kannst Stellung beziehen, ohne das Gespräch abzubrechen. Diese Balance hilft dir, deine Ideen zu vertreten und zugleich anderen Raum zu lassen, gerade wenn die Meinungen auseinandergehen.",
+          l2: "Dein Charakter wirkt gefestigt und klar: Du weißt, was dir wichtig ist, und bringst es zum Ausdruck. Diese Sicherheit schafft Vertrauen; besonders stimmig bleibt sie, wenn du auch zuhörst und Zwischentöne zulässt.",
+          l3: "Du hast einen ausgeprägten Willen: Du nimmst Dinge gern selbst in die Hand und hältst an deinem Kurs fest. Diese Stärke gewinnt, wenn du anderen Raum für Vorschläge lässt, damit dein Elan mitreißt, ohne sich aufzudrängen."
+        },
+        c2: {
+          name: "Energie",
+          l0: "Deine Energie kommt eher in Wellen als gleichmäßig: Es lohnt sich, herauszufinden, was dir wirklich neuen Schwung gibt. Diese Qualität lässt sich pflegen, indem du deine Pausen schützt und bewusst wählst, wofür du dich einsetzt.",
+          l1: "Du gehst bewusst mit deiner Energie um und setzt sie für Dinge ein, die dir etwas bedeuten. Wenn du Prioritäten setzt und deinen eigenen Rhythmus achtest, kannst du langfristig vorankommen, ohne dich zu verzetteln.",
+          l2: "Deine Energie ist da und du teilst sie gern: Du bringst Schwung in eigene Projekte und in das Miteinander. Besonders gut gelingt das, wenn du auch Unterstützung annimmst und dir Momente der Ruhe gönnst.",
+          l3: "Du bringst viel Energie ein: Du begeisterst andere leicht und handelst gern. Diese Kraft entfaltet sich am besten, wenn du auch etwas für dich behältst und jedem Menschen Raum für das eigene Tempo lässt."
+        },
+        c3: {
+          name: "Neugier und Methode",
+          l0: "Deine Neugier folgt eher dem, was dich gerade anspricht, als einem festen Plan. Diese Freiheit ist wertvoll; wenn du deine Gedanken ein wenig ordnest, etwa durch Notizen, kannst du leichter weiterverfolgen, was dich begeistert.",
+          l1: "Du möchtest verstehen, wie Dinge funktionieren, auf deine eigene Art und in deinem eigenen Tempo. Ein wenig Struktur reicht oft aus, damit aus deiner Neugier fundiertes Wissen über die Themen wird, die dir wichtig sind.",
+          l2: "Du gehst neugierig und strukturiert an Dinge heran: Du lernst gern, ordnest und möchtest Zusammenhänge gründlich verstehen. Dieser Sinn für Methode ist besonders wertvoll, wenn du dein Wissen teilst und deine Vorgehensweise an Unerwartetes anpasst.",
+          l3: "Du legst großen Wert auf Ordnung und Wissen: In allem suchst du Genauigkeit und Logik. Diese Gründlichkeit gewinnt, wenn sie auch dem Unerwarteten und den Vorgehensweisen anderer Raum lässt."
+        },
+        c4: {
+          name: "Beharrlichkeit",
+          l0: "Deine Beharrlichkeit wächst mit deinen Erfahrungen: Du gehst gern in mehreren Anläufen vor. Kurze Ziele und kleine, regelmäßige Gewohnheiten können dir helfen, über längere Zeit an dem dranzubleiben, was dir am Herzen liegt.",
+          l1: "Du kannst dranbleiben, wenn dir ein Ziel wirklich etwas bedeutet. Diese ruhige Beharrlichkeit lässt sich durch einfache Orientierungspunkte stärken, die dich an deinen Anfang erinnern, und durch die Freude über erreichte Etappen.",
+          l2: "Deine Beharrlichkeit trägt dich: Du kannst dich über längere Zeit einsetzen und deine Vorhaben zu Ende führen. Diese Verlässlichkeit ist eine wertvolle Ressource, besonders wenn du dir auch Pausen und Anpassungen erlaubst.",
+          l3: "Deine Beharrlichkeit ist stark ausgeprägt: Du bringst deine Projekte entschlossen zu Ende. Diese Ausdauer gewinnt durch Beweglichkeit, damit du einen anderen Weg wählen kannst, wenn er besser zu dir passt."
+        },
+        c5: {
+          name: "Intuition und Logik",
+          l0: "Du verlässt dich gern auf Erfahrungen und Tatsachen statt auf Vorahnungen. Wenn du dir etwas Zeit nimmst, auf deine Eindrücke zu hören, ohne sie zu bewerten, kann das deine Entscheidungen um eine neue, unerwartete Sichtweise bereichern.",
+          l1: "Deine Intuition meldet sich leise: Sie gibt dir Anregungen, die du anschließend mit deinem Verstand überprüfst. Dieses Zusammenspiel von Gefühl und Logik hilft dir, überlegt und gelassen zu entscheiden.",
+          l2: "Du erkennst Verbindungen zwischen Hinweisen leicht: Intuition und Logik wirken bei dir zusammen. Wenn du erst etwas erahnst und es dann verstehst, wird diese Fähigkeit besonders wertvoll, sobald du anderen deinen Gedankengang erklärst.",
+          l3: "Deine Intuition ist sehr lebendig: Oft spürst du etwas, bevor du es in Worte fassen kannst. Diese Feinfühligkeit gewinnt, wenn du sie mit Fakten und den Ansichten anderer abgleichst, damit sie dir bei Entscheidungen verlässlich Orientierung gibt."
+        },
+        c6: {
+          name: "Sinn fürs Praktische",
+          l0: "Ideen und Beziehungen sprechen dich oft stärker an als handwerkliche Tätigkeiten. Auch die Freude am Praktischen lässt sich entwickeln: Kleine Dinge selbst herzustellen kann dir ein ruhiges Gefühl von Bodenhaftung und einfache Erfolgserlebnisse schenken.",
+          l1: "Wenn es darauf ankommt, kannst du Ideen in Taten umsetzen. Dein unkomplizierter, wirksamer Sinn fürs Praktische hilft dir, Vorhaben zu verwirklichen, ohne dich in Einzelheiten zu verlieren oder alles aufzuschieben.",
+          l2: "Das Konkrete inspiriert dich: Du machst und gestaltest gern etwas und möchtest die Ergebnisse deiner Mühe sehen. Die Freude daran, Ideen sichtbar werden zu lassen, ist für dich und die Menschen um dich herum wertvoll.",
+          l3: "Dein Sinn fürs Praktische ist stark ausgeprägt: Du möchtest, dass Dinge vorangehen und Ergebnisse sichtbar werden. Dieser Tatendrang gewinnt, wenn du auch Raum zum Nachdenken und Ausruhen lässt, statt alles allein zu tragen."
+        },
+        c7: {
+          name: "Gelegenheiten",
+          l0: "Du baust vor allem auf deine eigenen Anstrengungen, statt dich auf günstige Umstände zu verlassen. Wenn du offen für Begegnungen und glückliche Zufälle bleibst, können sich dir unerwartete Möglichkeiten und neue Ideen eröffnen.",
+          l1: "Du erkennst eine Gelegenheit, wenn sie sich bietet. Diese Aufmerksamkeit für den richtigen Moment gewinnt durch etwas Mut: Wenn du dich traust, zu Dingen Ja zu sagen, die dich anziehen, öffnen sich oft neue Perspektiven.",
+          l2: "Auf deinem Weg scheinen sich oft Gelegenheiten zu bieten, und du weißt sie zu nutzen. Dein Gespür für neue Möglichkeiten ist wertvoll; besonders trägt es Früchte, wenn du die auswählst, die wirklich zu dir passen.",
+          l3: "Du hast ein feines Gespür für Gelegenheiten: Du kannst Umstände und Begegnungen gut aufgreifen. Diese Inspiration gewinnt an Klarheit, wenn du die Wege wählst, die dir wirklich wichtig sind, statt alle zugleich zu verfolgen."
+        },
+        c8: {
+          name: "Pflichtbewusstsein",
+          l0: "Du engagierst dich vor allem dort, wo dein Herz dich hinführt, und weniger aus bloßer Verpflichtung. Diese Freiheit ist wertvoll; sie passt gut zu bewusst gewählten Zusagen, die du einhältst, weil sie dir etwas bedeuten.",
+          l1: "Du nimmst deine Verantwortung ernst, ohne dich von ihr einengen zu lassen. Dieses ausgewogene Pflichtbewusstsein macht dich verlässlich und bewahrt dir zugleich die Freiheit, selbst über deine Verpflichtungen zu entscheiden.",
+          l2: "Dein Verantwortungsgefühl ist ausgeprägt: Andere können sich auf dich verlassen, und du kümmerst dich um sie. Diese Verlässlichkeit ist wertvoll; sie lässt sich leichter leben, wenn du auch Hilfe von deinem Umfeld annimmst.",
+          l3: "Dein Pflichtbewusstsein ist stark ausgeprägt: Du möchtest alles gut machen und niemanden enttäuschen. Dieser Anspruch gewinnt, wenn du dir auch das Recht gibst, Nein zu sagen und auf dich selbst zu achten."
+        },
+        c9: {
+          name: "Reflexion",
+          l0: "Du lernst gern durch Erleben und Handeln statt allein durch Theorie. Wenn du dir Zeit nimmst, über deine Erfahrungen nachzudenken, etwa beim Schreiben, kannst du noch mehr aus ihnen mitnehmen.",
+          l1: "Du denkst gern über Themen nach, die dich interessieren, und möchtest sie auf deine Weise verstehen. Wenn du diese Neugier durch Lesen oder Gespräche pflegst, können sich dir neue Horizonte und andere Blickwinkel eröffnen.",
+          l2: "Geistige Anregungen sind dir wichtig: Du lernst gern, merkst dir Dinge und stellst Verbindungen her. Diese Offenheit ist eine wertvolle Ressource, besonders wenn du sie in lebendigen, neugierigen Gesprächen teilst.",
+          l3: "Deine Freude am Nachdenken ist stark ausgeprägt: Du analysierst gern, gehst Dingen auf den Grund und möchtest Einzelheiten verstehen. Diese innere Vielfalt gewinnt, wenn du auch Intuition und Handeln Raum gibst, statt dich in Gedanken zu drehen."
+        }
+      },
+      lines: {
+        r147: {
+          name: "Entschlossenheit",
+          low: "Deine Ziele nehmen eher unterwegs Gestalt an, als dass sie von Anfang an feststehen. Diese Beweglichkeit hilft dir, Gelegenheiten aufzugreifen; ein oder zwei einfache Richtungen können dir zusätzlich Sicherheit beim Vorangehen geben.",
+          mid: "Du kannst dir Ziele setzen und sie verfolgen, ohne auf Anpassungen zu verzichten. Dieses Gleichgewicht zwischen Willenskraft und Flexibilität hilft dir, gelassen auf das zuzugehen, was dir wichtig ist.",
+          high: "Deine Entschlossenheit ist groß: Du weißt, was du willst, und bleibst dabei. Diese Energie gewinnt, wenn du auch für Umwege offen bleibst, die dich manchmal weiterbringen als erwartet."
+        },
+        r258: {
+          name: "Beziehungen und Nähe",
+          low: "Deine Unabhängigkeit ist dir wichtig, und du wählst deine Beziehungen mit Bedacht. Den Menschen, die dir nahestehen, tun kleine, regelmäßige Gesten gut, auf deine ganz eigene Art.",
+          mid: "Du gibst anderen und dir selbst in ausgewogener Weise Raum. Diese Verbundenheit ohne Abhängigkeit hilft dir, über längere Zeit verlässliche und herzliche Beziehungen aufzubauen.",
+          high: "Deine Beziehungen bedeuten dir viel: Du kümmerst dich gern um Menschen, die dir nahestehen, und teilst mit ihnen. Diese Großzügigkeit ist eine Stärke, besonders wenn du auch Zeit für dich behältst."
+        },
+        r369: {
+          name: "Gewohnheiten und Stabilität",
+          low: "Du magst Neues und Veränderungen lieber als feste Routinen. Diese Freiheit macht dich anpassungsfähig; einige einfache Orientierungspunkte können dir Halt geben, wenn sich um dich herum vieles verändert.",
+          mid: "Du findest eine Balance zwischen vertrauten Gewohnheiten und dem Wunsch nach Veränderung. Diese Flexibilität hilft dir, dich auf neue Umstände einzustellen, ohne deine wichtigsten Orientierungspunkte aus den Augen zu verlieren.",
+          high: "Vertraute Abläufe und Regelmäßigkeit bedeuten dir viel: Du baust gern auf einer soliden Grundlage auf. Diese Beständigkeit ist eine Stärke, die durch gelegentliche Überraschungen noch gewinnen kann."
+        },
+        c123: {
+          name: "Selbstwertgefühl",
+          low: "Du blickst eher bescheiden auf dich selbst. Wenn du deine Erfolge anerkennst, auch die kleinen, und Komplimente annimmst, kann das ein ruhiges Vertrauen in deinen eigenen Wert stärken.",
+          mid: "Du betrachtest dich selbst mit einem recht ausgewogenen und fairen Blick. Dieses gelassene Selbstvertrauen hilft dir, deine Stärken anzuerkennen, ohne aus dem Blick zu verlieren, was du noch entwickeln möchtest.",
+          high: "Du vertraust dir und deinen Fähigkeiten sehr. Diese Sicherheit ist eine wertvolle Ressource, besonders wenn du dabei offen für die Sichtweisen anderer bleibst und ihnen aufmerksam zuhörst."
+        },
+        c456: {
+          name: "Materielles Leben",
+          low: "Materieller Komfort ist nicht dein wichtigster Antrieb: Anderes bewegt dich mehr. Wenn du deinen Alltag etwas organisierst, kannst du dir dennoch mehr Freiraum für das schaffen, was dir wirklich wichtig ist.",
+          mid: "Du findest einen ausgewogenen Umgang mit Geld und Alltag, ohne beidem zu viel Raum zu geben. Dieser praktische Sinn hilft dir, eine gelassene Grundlage für deine Vorhaben zu schaffen.",
+          high: "Das materielle Leben ist dir wichtig: Du möchtest eine solide und angenehme Grundlage schaffen. Dieser Sinn fürs Konkrete ist eine Stärke, die noch gewinnt, wenn auch einfache Freuden ihren Platz behalten."
+        },
+        c789: {
+          name: "Kreativität",
+          low: "Deine Kreativität zeigt sich eher unauffällig, in den kleinen Dingen des Alltags. Wenn du ihr einen eigenen Raum gibst, und sei er noch so klein, können dabei Wünsche sichtbar werden, die du bisher nicht geahnt hast.",
+          mid: "Du möchtest etwas erschaffen und ausdrücken, was dich bewegt, in deinem eigenen Tempo. Wenn du diese Freude ohne Ergebnisdruck pflegst, kann sie auch andere Bereiche deines Lebens bereichern.",
+          high: "Dein Wunsch, kreativ zu sein, ist sehr präsent: Ideen, Vorhaben und persönlicher Ausdruck bewegen dich. Diese Vielfalt gewinnt, wenn du sie Schritt für Schritt verwirklichst und die Projekte auswählst, die dir besonders am Herzen liegen."
+        },
+        d159: {
+          name: "Spirituelle Orientierung",
+          low: "Du interessierst dich vor allem für das Konkrete und den gegenwärtigen Moment. Wenn du dir gelegentlich Zeit für Abstand, Stille oder Betrachtung nimmst, kann das deinen Alltag um neue Einsichten bereichern.",
+          mid: "Der Sinn deiner Erfahrungen ist dir wichtig, ohne dass du dabei den Bezug zum Alltag verlierst. Dieses Gleichgewicht zwischen Innenleben und konkretem Engagement kann dir im täglichen Leben Ruhe geben.",
+          high: "Die Suche nach Sinn nimmt in deinem Leben viel Raum ein: Du möchtest verstehen, warum die Dinge so sind, wie sie sind. Diese Tiefe gewinnt, wenn sie mit einfachen Gesten und anderen Menschen verbunden bleibt."
+        },
+        d357: {
+          name: "Temperament",
+          low: "Dein Temperament ist eher ruhig und besonnen. Diese Gelassenheit gibt den Menschen um dich herum Sicherheit; wenn du gelegentlich auch deine Begeisterung zeigst, kann das deinen Beziehungen zusätzliche Wärme geben.",
+          mid: "Dein Temperament vereint Schwung und Besonnenheit: Du kannst dich begeistern, ohne dich mitreißen zu lassen. Dieses Gleichgewicht macht deine Gegenwart für andere zugleich lebendig und beruhigend.",
+          high: "Dein Temperament ist feurig: Du erlebst vieles mit Intensität und Leidenschaft. Dieses innere Feuer ist eine Bereicherung, die gewinnt, wenn du bewusst damit umgehst und Raum für deine Energie und die anderer lässt."
+        }
+      }
+    }
   },
   tarot: {
     tab: "Tarot",

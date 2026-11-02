@@ -12,7 +12,7 @@
 | Feuille de route d'origine (étapes 1 à 6) | ✅ terminée, sauf l'iPhone (gardé pour la fin) |
 | Pistes 1 à 6 | ✅ version et bandeau de mise à jour · ✅ cartes renversées · ✅ lieux par coordonnées GPS · ✅ calendrier du ciel · ✅ fiche du thème natal à imprimer ou en PDF · ✅ arcanes mineurs (jeu complet de 78 cartes) |
 | Langues | 14 (FR, EN, ES, PT, IT, DE, TR, RU, AR, HI, TH, ZH, JA, KO) |
-| Tests automatiques | 106 (89 historiques + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit) et Firefox, pour information |
+| Tests automatiques | 110 (93 historiques + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit) et Firefox, pour information |
 | Publication | automatique sur GitHub Pages, après les tests (circuit GitHub Actions) |
 | Poids | version autonome ≈ 6,8 Mo : illustrations du tarot ≈ 3,1 Mo (déjà en WebP), villes ≈ 1 Mo, 14 langues ≈ 1,6 Mo, textes du portrait ≈ 0,4 Mo |
 | Confidentialité | aucune donnée envoyée en ligne (adresse en « # », pas de serveur, pas de statistiques) ; seule exception : les événements ajoutés à Google Agenda à la demande de l'utilisateur |
@@ -91,10 +91,9 @@ Retour détaillé d'une testeuse, validé le 31 octobre. Fil conducteur pour tou
 - [x] Onglet Tarot à part ; quatre tirages interactifs (une question · une carte, Passé · Présent · Avenir, Situation · Défi · Conseil, les six prochains mois) ; mélanger, choisir dans l'éventail, poser, retourner ; sauvegarde par profil et par type.
 - [ ] Plus tard : lectures par thème (amour, travail, questions personnelles) en version légère ; tirages accessibles sans profil, depuis l'accueil.
 
-### 3.4 🟡 Carré de Pythagore (matrice 3×3)
-- Aujourd'hui : chemin de vie, expression (« nombre du destin »), nombre intime, personnalité, cycles de l'année, du mois et du jour ; ❓ peut-être à rendre plus visibles.
-- [ ] Matrice calculée à partir de la date de naissance ; chaque case cliquable, avec son interprétation (caractère, talents, forces, fragilités, émotions, leçons de vie).
-- [ ] ❓ Méthode de calcul à fixer dans un cahier (il en existe plusieurs variantes) ; environ 50 textes par langue.
+### 3.4 ✅ Carré de Pythagore (V10)
+- [x] Cahier V0.2, relu par trois IA (`docs/cahier-carre-pythagore.md`) ; méthode d'Alexandrov, variante moderne « + 19 » depuis 2000.
+- [x] Grille 3 × 3 cliquable, 9 cases et 8 lignes, seuils par siècle, analyse complète repliable et exportée ; 89 textes par langue.
 
 ### 3.5 Mis de côté : abonnement premium
 - Idée externe (version gratuite et abonnement payant), **qui n'est pas la vision du projet** : mise de côté. Elle supposerait paiement, comptes ou clés, obligations légales, et contredirait la promesse de confidentialité.
@@ -203,7 +202,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 4. ✅ **Oracle Oui / Non** (§ 3.1), V7.5 ; l'animation de recherche reste complète (§ 7). ✅ **Soutenir le projet** (§ 3.6), V7.6 : reste à renseigner les adresses de dons.
 5. ✅ **Compatibilité approfondie** (§ 3.2), V8.
 6. ✅ **Onglet Tarot et nouveaux tirages** (§ 3.3), V9.
-7. **Carré de Pythagore** (§ 3.4).
+7. ✅ **Carré de Pythagore** (§ 3.4), V10.
 8. **Améliorations rapides** (§ 7) au fil de l'eau, dont l'allègement des mises à jour.
 9. **Frise annuelle** (§ 4) et **console d'administration** (§ 5), éventuellement ensemble, puisque la console peut produire la frise.
 10. **Qualité et maintenance** (§ 8), en continu.

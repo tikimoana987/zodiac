@@ -113,6 +113,21 @@ async def journey(browser, file):
         except Exception as exc:
             report(False, f'{lang} : portrait absent ou non interactif — {str(exc)[:350]}')
 
+        # Carré de Pythagore : une case, une ligne, l'analyse complète
+        try:
+            await page.locator('#tabNumbers').click(timeout=10000)
+            await page.wait_for_selector('#squareCard', timeout=10000)
+            await page.locator('#squareCard .sq-cell[data-key="c4"]').click()
+            cell_ok = await page.locator('#squareCard .sq-cell[data-key="c4"][aria-pressed="true"]').count() == 1
+            await page.locator('#squareCard .sq-line[data-key="r147"]').click()
+            line_ok = await page.locator('#squareCard .sq-line[data-key="r147"][aria-pressed="true"]').count() == 1
+            await page.locator('#squareCard .square-toggle').click()
+            items = await page.locator('#squareCard .sq-full-item').count()
+            report(cell_ok and line_ok and items == 17 and not errors,
+                   f'{lang} : carré de Pythagore, case et ligne choisies, 17 lectures' + (f' | {errors}' if errors else ''))
+        except Exception as exc:
+            report(False, f'{lang} : carré de Pythagore absent ou non interactif — {str(exc)[:350]}')
+
         # Onglet Tarot : question, mélange, trois cartes choisies au clavier, pose, retournement, tirage retrouvé après rechargement
         try:
             await page.locator('#tabTarot').click(timeout=10000)
@@ -217,6 +232,13 @@ async def accessibility(browser, file):
                 violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
                     .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
                 found += [f'{tab} : {v}' for v in violations]
+            await page.click('#tabNumbers')   # carré de Pythagore : une ligne choisie, analyse complète dépliée
+            await page.click('#squareCard .sq-line[data-key="d159"]')
+            await page.click('#squareCard .square-toggle')
+            await page.add_script_tag(content=script)
+            violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
+                .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
+            found += [f'carré : {v}' for v in violations]
             await page.click('#tabTarot')   # tarot : éventail ouvert, puis tirage d'une carte retourné
             await page.click('.spread-choice[data-type="one"]')
             await page.fill('#spreadQuestion', 'Que dois-je comprendre ?')

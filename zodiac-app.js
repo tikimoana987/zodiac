@@ -1094,6 +1094,7 @@ function renderNumbers(){
     <div class="card num-card"><h3>${u.cyclesCard}${infoBtn('personalYear', u.cyclesCard)}</h3><p class="sky-sub">${onLabel}</p>
       <div class="num-cycles">${cycle(u.personalYear, cy.year, u.years[cy.year - 1])}${cycle(u.personalMonth, cy.month, u.numbers[cy.month].keywords.join(' · '))}${cycle(u.personalDay, cy.day, u.numbers[cy.day].keywords.join(' · '))}</div></div>
     <div class="card num-card"><h3>${u.nameCard}</h3>${names}</div>
+    ${squareHtml(t, birth)}
     <p class="sky-note">${u.note}</p>`;
 }
 
@@ -1689,7 +1690,8 @@ async function exportImage(){
   for (const part of parts) {
     const copy = part.cloneNode(true);
     copy.querySelectorAll('.compat-form, .pair-error, .sky-controls, .map-time input, .map-time label, .info-btn, .sr-only, .oracle-more, .natal-complete, .wheel-hint, .spread-actions, .spread-form, .spread-question, .spread-picker, .tarot-fan, .fan-count, .fan-actions, .tarot-shuffle, .tarot-deck, .cal-card').forEach(n => n.remove());
-    copy.querySelectorAll('.compat-full').forEach(n => { n.hidden = false; });   // compatibilité : exportée dépliée
+    copy.querySelectorAll('.compat-full, .square-full').forEach(n => { n.hidden = false; });   // compatibilité et carré : exportés dépliés
+    copy.querySelectorAll('.square-toggle-row, .square-detail').forEach(n => n.remove());
     copy.querySelectorAll('.compat-further').forEach(n => { n.open = true; });
     copy.querySelectorAll('.compat-toggle-row').forEach(n => n.remove());
     copy.querySelectorAll('[id]').forEach(n => n.removeAttribute('id'));

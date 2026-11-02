@@ -718,7 +718,9 @@ I18N.fr = {
     privacy: "Tout ce que vous saisissez (nom, date, heure, lieu, historique, question de tarot) est enregistré uniquement dans la mémoire de votre navigateur, sur cet appareil. Aucune donnée n'est envoyée à un serveur, et l'appli ne contient aucun outil de statistiques ou de pistage. Effacer les données du site dans votre navigateur supprime tout. Seul le bouton « Partager » crée un lien contenant votre date de naissance, que vous envoyez vous-même.",
     reversed: "Avec un vrai jeu, certaines cartes sortent à l'envers : la tradition leur donne un sens nuancé, où l'énergie de la carte est bloquée, retardée, intériorisée ou excessive. Cette option est désactivée par défaut ; activée, chaque carte du tirage du jour a une chance sur deux de sortir renversée. Elle s'applique au tirage suivant : un tirage déjà fait ne change pas.",
     calendar: "La liste montre les rendez-vous du ciel des 30 prochains jours, recalculés chaque jour : nouvelles et pleines lunes, éclipses (avec leur visibilité depuis le lieu de la carte du ciel), débuts et fins de rétrogradation, changements de signe, et dates exactes des transits des planètes lentes (Jupiter à Pluton) sur votre thème natal. Vous pouvez ajouter ceux des 7 prochains jours à votre agenda : Apple, Outlook et la plupart des agendas reçoivent un fichier .ics ; Google Agenda reçoit les événements un par un (son application ne sait pas ouvrir les fichiers .ics). Un rappel en fin de semaine vous invite à revenir ajouter la suivante.",
-    tarotMinors: "Les 56 arcanes mineurs explorent symboliquement les expériences du quotidien à travers quatre couleurs. Les Bâtons sont associés au Feu et à l'action, les Coupes à l'Eau et aux émotions. Les Épées correspondent à l'Air et à la pensée, les Deniers ou Pentacles à la Terre et au monde concret. Vous pouvez les inclure dans le tirage du jour en choisissant le jeu complet de 78 cartes."
+    tarotMinors: "Les 56 arcanes mineurs explorent symboliquement les expériences du quotidien à travers quatre couleurs. Les Bâtons sont associés au Feu et à l'action, les Coupes à l'Eau et aux émotions. Les Épées correspondent à l'Air et à la pensée, les Deniers ou Pentacles à la Terre et au monde concret. Vous pouvez les inclure dans le tirage du jour en choisissant le jeu complet de 78 cartes.",
+    square: "Le carré de Pythagore range les chiffres de votre date de naissance dans une grille de neuf cases. Aux chiffres de la date s'ajoutent quatre nombres de travail, calculés selon la méthode d'Alexandre Alexandrov ; pour les naissances depuis 2000, ZODIAC utilise la variante moderne « + 19 », celle de la plupart des calculateurs actuels, alors qu'Alexandrov gardait sa première formule. Chaque case compte combien de fois son chiffre apparaît ; une case vide se lit comme une qualité à cultiver. C'est une tradition symbolique de la numérologie : elle invite à la réflexion et ne mesure ni la personnalité ni les capacités.",
+    squareLines: "Chaque ligne, colonne ou diagonale additionne les chiffres de trois cases. Son niveau, discret, équilibré ou marqué, compare votre grille à celles des personnes nées dans le même siècle : les dates des années 1900 et des années 2000 n'ont pas les mêmes chiffres, et la méthode les calcule différemment. Ces niveaux sont une convention de ZODIAC : ils ne classent personne, et chacun a ses propres atouts."
   },
   placePlaceholder: "Tapez le nom d'une ville…",
   placeNoMatch: "Aucune ville trouvée. Essayez la ville la plus proche.",
@@ -818,7 +820,132 @@ I18N.fr = {
         text: "Nombre maître 33 : le 6 amplifié ; dévouement, bienveillance et sens du service."
       }
     },
-    years: ["Année de nouveaux départs : semer, oser, lancer des projets.", "Année de patience et de coopération : nouer des liens, laisser mûrir.", "Année d'expression et de créativité : communiquer, se montrer, se faire plaisir.", "Année de travail et de fondations : organiser, consolider, persévérer.", "Année de changements et de liberté : bouger, s'adapter, découvrir.", "Année des responsabilités et du cœur : foyer, famille, engagements.", "Année de recul et d'introspection : apprendre, réfléchir, se ressourcer.", "Année de réalisation : ambitions, finances, reconnaissance.", "Année de bilan et de clôture : terminer, trier, préparer le cycle suivant."]
+    years: ["Année de nouveaux départs : semer, oser, lancer des projets.", "Année de patience et de coopération : nouer des liens, laisser mûrir.", "Année d'expression et de créativité : communiquer, se montrer, se faire plaisir.", "Année de travail et de fondations : organiser, consolider, persévérer.", "Année de changements et de liberté : bouger, s'adapter, découvrir.", "Année des responsabilités et du cœur : foyer, famille, engagements.", "Année de recul et d'introspection : apprendre, réfléchir, se ressourcer.", "Année de réalisation : ambitions, finances, reconnaissance.", "Année de bilan et de clôture : terminer, trier, préparer le cycle suivant."],
+    square: {
+      title: "Carré de Pythagore",
+      working: "Nombres de travail",
+      cell: "Case",
+      empty: "Aucun chiffre",
+      linesTitle: "Lignes",
+      more: "Lire l'analyse complète",
+      less: "Replier l'analyse",
+      levels: { low: "Niveau discret", mid: "Niveau équilibré", high: "Niveau marqué" },
+      cells: {
+        c1: {
+          name: "Caractère",
+          l0: "Votre affirmation de soi se montre en douceur : vous avancez souvent en écoutant avant de trancher. Cette retenue est une force ; elle gagne à s'accompagner du droit de dire clairement ce que vous voulez quand c'est important pour vous.",
+          l1: "Votre caractère allie affirmation et souplesse : vous savez prendre position sans fermer la discussion. Cet équilibre aide à défendre vos idées tout en laissant de la place aux autres, surtout quand les avis divergent.",
+          l2: "Votre caractère est affirmé et stable : vous savez ce qui compte pour vous et le faites savoir. Cette assurance inspire confiance ; elle reste la plus juste quand elle s'accompagne d'écoute et de nuances.",
+          l3: "Votre volonté est puissante : vous aimez prendre les choses en main et tenir le cap. Cette force gagne à être dosée, en laissant aux autres l'espace de proposer, pour que votre énergie entraîne sans s'imposer."
+        },
+        c2: {
+          name: "Énergie",
+          l0: "Votre énergie se vit par vagues plutôt qu'en continu : vous gagnez à repérer ce qui vous ressource vraiment. Cette qualité se cultive en protégeant vos temps de pause et en choisissant avec soin où vous investir.",
+          l1: "Votre énergie est mesurée : vous la dépensez avec discernement, pour ce qui a du sens à vos yeux. Choisir vos priorités et respecter votre rythme vous permet d'avancer longtemps sans vous disperser.",
+          l2: "Votre énergie est disponible et partagée : vous avez de l'élan pour vos projets comme pour les autres. Cet élan circule d'autant mieux que vous savez aussi recevoir et vous accorder des moments de repos.",
+          l3: "Votre énergie est abondante : vous entraînez facilement les autres et vous aimez agir. Cette force gagne à être dosée, en gardant une part pour vous-même et en laissant chacun avancer à son propre rythme."
+        },
+        c3: {
+          name: "Curiosité et méthode",
+          l0: "Votre curiosité suit surtout vos envies du moment plutôt qu'un plan. C'est une liberté précieuse ; organiser un peu vos idées, par exemple en les notant, peut vous aider à donner suite à ce qui vous passionne.",
+          l1: "Vous aimez comprendre comment les choses fonctionnent, à votre manière et à votre rythme. Un peu de méthode suffit pour transformer cette curiosité en connaissances solides, sur les sujets qui comptent pour vous.",
+          l2: "Votre esprit est curieux et organisé : vous aimez apprendre, classer et comprendre en profondeur. Ce sens de la méthode devient une vraie ressource quand vous le partagez et l'adaptez aux imprévus.",
+          l3: "Votre goût de l'ordre et du savoir est très présent : vous cherchez la précision et la logique en toute chose. Cette rigueur gagne à laisser une place à l'imprévu et à la façon de faire des autres."
+        },
+        c4: {
+          name: "Constance",
+          l0: "Votre constance se construit au fil de l'expérience : vous avancez volontiers par élans successifs. Des objectifs courts et de petites habitudes régulières peuvent vous aider à tenir dans la durée ce qui vous tient à cœur.",
+          l1: "Vous savez persévérer quand le but vous parle. Cette constance tranquille gagne à être nourrie par des repères simples, qui rappellent pourquoi vous avez commencé, et par la satisfaction des étapes franchies.",
+          l2: "Votre persévérance est solide : vous savez maintenir un effort dans la durée et aller au bout de vos engagements. Cette fiabilité est une ressource, surtout quand vous vous autorisez aussi des pauses et des ajustements.",
+          l3: "Votre constance est très affirmée : vous menez vos projets jusqu'au bout, quoi qu'il arrive. Cette ténacité gagne à rester souple, pour savoir changer de route quand une autre voie devient plus juste pour vous."
+        },
+        c5: {
+          name: "Intuition et logique",
+          l0: "Vous vous fiez volontiers à l'expérience et aux faits plutôt qu'aux pressentiments. Prendre un temps pour écouter vos impressions, sans les juger, peut enrichir vos choix d'un éclairage nouveau et inattendu.",
+          l1: "Votre intuition est présente et discrète : elle vous souffle des pistes que votre raisonnement vient ensuite vérifier. Cette alliance entre ressenti et logique vous aide à décider avec justesse et sérénité.",
+          l2: "Vous reliez facilement les indices : intuition et logique travaillent ensemble chez vous. Cette capacité à pressentir puis à comprendre gagne à être partagée, en expliquant aux autres le chemin de vos idées.",
+          l3: "Votre intuition est très vive : vous percevez souvent les choses avant de pouvoir les expliquer. Cette finesse gagne à être confrontée aux faits et aux avis des autres, pour rester un guide fiable dans vos choix."
+        },
+        c6: {
+          name: "Sens du concret",
+          l0: "Les idées et les relations vous parlent souvent davantage que le travail manuel. Le goût du concret se cultive aussi : réaliser de petites choses de vos mains peut vous apporter un ancrage apaisant et des satisfactions simples.",
+          l1: "Vous savez passer de l'idée à l'action quand c'est nécessaire. Ce sens pratique, simple et efficace, vous aide à rendre vos projets réels sans vous perdre dans les détails ni remettre à plus tard.",
+          l2: "Le concret vous inspire : vous aimez faire, fabriquer et voir le résultat de vos efforts. Ce goût de transformer les idées en réalisations visibles est une ressource précieuse, pour vous comme pour votre entourage.",
+          l3: "Votre sens du concret est très marqué : vous aimez que les choses avancent et se voient. Cette énergie pratique gagne à laisser aussi de la place à la réflexion et au repos, pour ne pas tout porter sur vos seules épaules."
+        },
+        c7: {
+          name: "Occasions",
+          l0: "Vous construisez surtout par vos efforts plutôt qu'en comptant sur les circonstances. Garder l'œil ouvert aux rencontres et aux hasards heureux peut ajouter à votre parcours des portes inattendues et des idées neuves.",
+          l1: "Vous savez reconnaître une occasion quand elle se présente. Cette attention aux bons moments gagne à s'accompagner d'un peu d'audace : oser dire oui à ce qui vous attire ouvre souvent de nouvelles perspectives.",
+          l2: "Les occasions semblent se présenter souvent sur votre chemin, et vous savez les saisir. Cette aisance à repérer les ouvertures est une ressource ; elle porte ses fruits quand vous choisissez celles qui vous ressemblent.",
+          l3: "Votre sens des occasions est très vif : vous savez tirer parti des circonstances et des rencontres. Cette inspiration gagne à être canalisée, en choisissant les pistes qui comptent vraiment plutôt que de toutes les suivre."
+        },
+        c8: {
+          name: "Sens du devoir",
+          l0: "Vous vous engagez surtout là où votre cœur vous porte, plutôt que par obligation. Cette liberté est une richesse ; elle s'accompagne bien d'engagements choisis, que vous tenez parce qu'ils ont du sens pour vous.",
+          l1: "Vous prenez vos responsabilités au sérieux, sans vous laisser enfermer par elles. Ce sens du devoir mesuré vous rend digne de confiance tout en préservant votre liberté de choisir vos engagements.",
+          l2: "Votre sens des responsabilités est développé : on peut compter sur vous, et vous veillez sur les autres. Cette fiabilité est précieuse ; elle reste légère à porter quand vous acceptez aussi l'aide de votre entourage.",
+          l3: "Votre sens du devoir est très affirmé : vous tenez à bien faire et à ne décevoir personne. Cette exigence gagne à être dosée, en vous accordant le droit de dire non et de prendre soin de vous-même."
+        },
+        c9: {
+          name: "Réflexion",
+          l0: "Vous apprenez volontiers par l'expérience et l'action plutôt que par la théorie. Prendre le temps de réfléchir à ce que vous vivez, par exemple en écrivant, peut approfondir encore ce que vous en retirez.",
+          l1: "Vous aimez réfléchir et comprendre, à votre manière, les sujets qui vous intéressent. Nourrir cette curiosité par des lectures ou des échanges peut ouvrir votre esprit à de nouveaux horizons et à d'autres points de vue.",
+          l2: "La vie de l'esprit compte pour vous : vous aimez apprendre, retenir et faire des liens. Cette ouverture est une ressource précieuse, surtout quand vous la partagez dans des échanges vivants et curieux.",
+          l3: "Votre goût de la réflexion est très marqué : vous aimez analyser, approfondir et comprendre en détail. Cette richesse intérieure gagne à laisser aussi de la place à l'intuition et à l'action, pour ne pas tourner en rond."
+        }
+      },
+      lines: {
+        r147: {
+          name: "Détermination",
+          low: "Vos buts se dessinent en chemin plutôt que d'avance. Cette souplesse vous permet de saisir ce qui se présente ; fixer un ou deux caps simples peut vous aider à avancer avec confiance.",
+          mid: "Vous savez vous fixer des objectifs et les poursuivre, tout en restant capable de les ajuster. Cet équilibre entre volonté et souplesse vous aide à avancer sereinement vers ce qui compte.",
+          high: "Votre détermination est forte : vous savez ce que vous voulez et vous vous y tenez. Cette énergie gagne à rester ouverte aux détours, qui mènent parfois plus loin que prévu."
+        },
+        r258: {
+          name: "Liens et proches",
+          low: "Votre indépendance compte, et vous choisissez vos liens avec soin. Les relations qui vous sont chères gagnent à être nourries par de petits gestes réguliers, à votre façon.",
+          mid: "Vous accordez une place équilibrée aux autres et à vous-même. Ce sens du lien, sans dépendance, vous aide à créer des relations fiables et chaleureuses dans la durée.",
+          high: "Les liens comptent beaucoup pour vous : vous aimez prendre soin des personnes qui vous sont chères et partager. Cette générosité est une force, surtout quand vous gardez aussi du temps pour vous."
+        },
+        r369: {
+          name: "Habitudes et stabilité",
+          low: "Vous aimez la nouveauté et le changement plus que la routine. Cette liberté vous rend adaptable ; quelques repères simples peuvent vous offrir une base rassurante quand tout bouge autour de vous.",
+          mid: "Vous savez trouver un équilibre entre habitudes rassurantes et envie de changement. Cette souplesse vous permet de vous adapter aux circonstances sans perdre vos repères essentiels.",
+          high: "Les repères et la régularité vous apportent beaucoup : vous aimez construire sur du solide. Cette stabilité est une force, qui gagne à accueillir de temps en temps un peu d'imprévu."
+        },
+        c123: {
+          name: "Estime de soi",
+          low: "Votre regard sur vous-même est plutôt modeste. Reconnaître vos réussites, même petites, et accepter les compliments peut renforcer une confiance tranquille en votre propre valeur.",
+          mid: "Vous portez sur vous-même un regard plutôt juste et équilibré. Cette confiance mesurée vous aide à reconnaître vos forces sans négliger ce que vous souhaitez encore développer.",
+          high: "Vous avez une solide confiance en vous et en vos capacités. Cette assurance est une ressource, surtout quand elle s'accompagne d'écoute et de curiosité pour le regard des autres."
+        },
+        c456: {
+          name: "Vie matérielle",
+          low: "Le confort matériel n'est pas votre premier moteur : d'autres choses vous animent davantage. Organiser un peu votre quotidien peut toutefois libérer votre esprit pour ce qui compte vraiment.",
+          mid: "Vous entretenez un rapport équilibré avec l'argent et le quotidien, sans qu'il prenne toute la place. Ce sens pratique vous aide à construire une base sereine pour vos projets.",
+          high: "La vie matérielle compte pour vous : vous aimez bâtir une base solide et confortable. Ce sens du concret est une force, qui gagne à laisser aussi de la place aux plaisirs simples."
+        },
+        c789: {
+          name: "Créativité",
+          low: "Votre créativité s'exprime surtout de façon discrète, dans les petites choses du quotidien. Lui donner un espace à vous, même modeste, peut révéler des envies que vous ne soupçonnez pas encore.",
+          mid: "Vous avez envie de créer et d'exprimer ce qui vous anime, à votre rythme. Cultiver ce plaisir, sans pression de résultat, peut nourrir aussi le reste de votre vie.",
+          high: "Votre envie de créer est très présente : idées, projets et expression personnelle vous animent. Cette richesse gagne à se concrétiser pas à pas, en choisissant les projets qui vous tiennent le plus à cœur."
+        },
+        d159: {
+          name: "Élan spirituel",
+          low: "Vous vous intéressez avant tout au concret et au présent. Prendre parfois un temps de recul, de silence ou de contemplation peut apporter un éclairage nouveau à votre quotidien.",
+          mid: "Le sens de ce que vous vivez vous importe, sans vous éloigner du réel. Cet équilibre entre vie intérieure et engagement concret est une ressource apaisante au quotidien.",
+          high: "La recherche de sens tient une grande place pour vous : vous aimez comprendre le pourquoi des choses. Cette profondeur gagne à rester reliée aux gestes simples et aux autres."
+        },
+        d357: {
+          name: "Tempérament",
+          low: "Votre tempérament est plutôt calme et mesuré. Cette sérénité rassure votre entourage ; laisser parfois s'exprimer vos enthousiasmes peut ajouter de la chaleur à vos relations.",
+          mid: "Votre tempérament allie élan et maîtrise : vous savez vous enthousiasmer sans vous laisser emporter. Cet équilibre rend votre présence à la fois vivante et apaisante pour les autres.",
+          high: "Votre tempérament est ardent : vous vivez les choses avec intensité et passion. Cette flamme est une richesse, qui gagne à être dosée pour préserver votre énergie et celle des autres."
+        }
+      }
+    }
   },
   tarot: {
     tab: "Tarot",
