@@ -261,7 +261,8 @@ async def accessibility(browser, file):
             violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
                 .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
             found += [f'compatibilité : {v}' for v in violations]
-            await page.click('#oracleOpen')   # l'Oracle ouvert, par-dessus la page
+            await page.click('#tabTarot')   # l'Oracle ouvert depuis l'onglet Tarot (le bouton de l'accueil est masqué quand un profil est affiché)
+            await page.click('.oracle-teaser')
             await page.add_script_tag(content=script)
             violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
                 .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")

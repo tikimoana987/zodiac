@@ -320,6 +320,7 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 
 /* ORACLE OUI / NON (zodiac-oracle.js) — même ambiance que l'écran de recherche, dans les deux thèmes */
 .oracle-entry{ display:flex; justify-content:center; margin-top:1.2rem; }
+.app.has-result .oracle-entry{ display:none; }   /* profil affiché : l'Oracle est dans l'onglet Tarot, pas de doublon */
 .oracle-open{
   background:transparent; border:1px solid var(--ov-15); color:var(--text); cursor:pointer;
   border-radius:999px; padding:.45rem 1.1rem; font:inherit; font-size:.85rem;

@@ -1,6 +1,6 @@
 # 🌌 Zodiaque & Décans · Cosmic Interface
 
-> **V10.1 : Oracle plus vivant.** Boule de cristal dessinée en code (`crystalBallSvg()`, brume qui tourne, halo, étincelles, socle doré, étoiles en orbite) sur le bouton de l'accueil, dans une carte d'invitation en bas de l'onglet Tarot et au centre du cercle de l'Oracle, où elle s'illumine pendant la rotation. Immobile en mode « animations réduites ». Aucun nouveau texte.
+> **V10.1 : Oracle plus vivant.** Boule de cristal dessinée en code (`crystalBallSvg()`, brume qui tourne, halo, étincelles, socle doré, étoiles en orbite) sur le bouton de l'accueil, dans une carte d'invitation en bas de l'onglet Tarot et au centre du cercle de l'Oracle, où elle s'illumine pendant la rotation. Immobile en mode « animations réduites ». Aucun nouveau texte. Le bouton de l'accueil n'apparaît que tant qu'aucun profil n'est affiché ; ensuite, l'Oracle s'ouvre depuis l'onglet Tarot (pas de doublon).
 
 > **V10 : carré de Pythagore.** Nouvelle carte dans l'onglet « Numérologie », avant le portrait : grille 3 × 3 calculée depuis la date (méthode d'Alexandrov avant 2000, variante moderne « + 19 » depuis 2000), 9 cases et 8 lignes cliquables, niveaux des lignes calibrés pour chaque siècle, analyse complète repliable et exportée. Aucun vocabulaire de santé ni de mesure. Cahier : `docs/cahier-carre-pythagore.md` (V0.2). 110 tests.
 
