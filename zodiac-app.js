@@ -237,7 +237,13 @@ function renderOwner(){
   // Choix appliqué juste après l'événement : Safari et Firefox finissent de traiter la flèche ou le clic sur l'ancien
   // bouton (focus compris) après « change » ; redessiner pendant ce traitement leur ferait perdre le focus
   el.querySelectorAll('input[name="dstFold"]').forEach(r => r.addEventListener('change', () => { if (r.checked) setTimeout(() => setFold(+r.value), 0); }));
-  if (refocusFold) { refocusFold = false; const r = el.querySelector(`input[name="dstFold"][value="${currentFold}"]`); if (r) r.focus(); }
+  if (refocusFold) {
+    refocusFold = false;
+    const r = el.querySelector(`input[name="dstFold"][value="${currentFold}"]`);
+    // Safari (WebKit) refuse le focus d'un élément tout juste créé tant que sa mise en page n'est pas calculée :
+    // on la force (offsetWidth), et on réessaie à l'image suivante si besoin
+    if (r) { void r.offsetWidth; r.focus(); if (document.activeElement !== r) requestAnimationFrame(() => { if (r.isConnected) r.focus(); }); }
+  }
 }
 
 /* Heure de naissance du profil affiché, avec le choix de l'occurrence quand l'heure a existé deux fois */

@@ -269,9 +269,10 @@ async def dst_journey(browser, file):
             await page.wait_for_function("document.activeElement && document.activeElement.name === 'dstFold'", timeout=5000)
             second = (await page.evaluate(asc), await page.evaluate('document.activeElement.value'))
             link = await page.evaluate('location.href')
-            await page.goto('about:blank')
             step = 'lien rouvert'
-            await page.goto(link)   # lien partagé : le choix est repris
+            page = await ctx.new_page()   # lien partagé ouvert dans un nouvel onglet : le choix est repris
+            page.on('pageerror', lambda e: errors.append(str(e)))
+            await page.goto(link)
             await page.wait_for_selector('.dst-note input[name="dstFold"]', timeout=60000)
             reopened = (await page.evaluate(asc), await page.locator('input[name="dstFold"][value="1"]').is_checked())
             step = 'heure sautée'
