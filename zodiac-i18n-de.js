@@ -1746,6 +1746,34 @@ I18N.de = deepMerge(I18N.fr, {
       restart: "Neu beginnen",
       place: "Karten auslegen",
       allChosen: "Alle Karten ausgewählt"
+    },
+    synth: {
+      title: "Was das für deine Frage bedeutet",
+      titleSix: "Was die nächsten sechs Monate nahelegen",
+      tendency: { up: "Günstige Entwicklung", open: "Chance zum Ergreifen", work: "Herausforderung angehen" },
+      one: {
+        up: ["„{card}“ verleiht der Legung einen günstigen Grundton: Fortschritt scheint möglich, wenn du diesen Schwung stärkst.", "Mit „{card}“ deutet die Legung auf gute Voraussetzungen hin. Du kannst auf dem aufbauen, was bereits funktioniert."],
+        open: ["„{card}“ lässt eine Möglichkeit erkennen, sofern du vor einer Entscheidung auf das achtest, was wichtig ist.", "Die Botschaft von „{card}“ gleicht einer angelehnten Tür: Dein Urteilsvermögen kann den Unterschied machen."],
+        work: ["„{card}“ macht einen Widerstand sichtbar, keine Sackgasse. Wenn du klar hinsiehst, gewinnst du neuen Handlungsspielraum.", "Mit „{card}“ lädt die Legung dazu ein, deinen Ansatz anzupassen, statt etwas zu erzwingen. Ein überlegter Schritt kann helfen."]
+      },
+      three: {
+        up: ["Auf der Position Zukunft deutet „{card}“ einen ermutigenden Verlauf an, wenn die bisherige Dynamik anhält. Deine Entscheidungen können ihn stärken.", "„{card}“ auf der Position Zukunft lässt eine günstige Entwicklung möglich erscheinen. Du kannst das Kommende noch mitgestalten."],
+        open: ["Auf der Position Zukunft zeigt „{card}“ eine Möglichkeit, die Gestalt annehmen könnte, wenn du deine Optionen in Ruhe abwägst.", "„{card}“ eröffnet einen Weg nach vorn, ohne das Ergebnis festzulegen. Eine bewusste Entscheidung könnte ihm Kontur geben."],
+        work: ["Auf der Position Zukunft weist „{card}“ auf mögliche Schwierigkeiten hin, falls sich nichts ändert. Du kannst den Verlauf noch beeinflussen.", "„{card}“ deutet an, dass das Kommende Anpassungen erfordern könnte. Zu erkennen, was bremst, gibt dir einen Ansatzpunkt."]
+      },
+      sca: {
+        up: ["Auf der Position Rat lädt „{card}“ dich ein, das bereits Erreichte weiter zu fördern. Zuversicht und Augenmaß können diesen Schwung stärken.", "„{card}“ auf der Position Rat lenkt den Blick auf deine Stärken. Setzt du sie gezielt ein, kann das eine gute Entwicklung fördern."],
+        open: ["Auf der Position Rat zeigt „{card}“ einen Weg, den du erkunden kannst. Ein Blick für Details kann dir helfen, ihn zu nutzen.", "Als Rat empfiehlt „{card}“, Möglichkeiten nicht vorschnell auszuschließen. Deine Zweifel ernst zu nehmen kann die Wahl klären."],
+        work: ["Als Rat legt „{card}“ nahe, ein heikles Thema systematisch anzugehen. Schon eine kleine Anpassung kann etwas verändern.", "„{card}“ auf der Position Rat lädt ein, Widerstände anzuerkennen, ohne den Mut zu verlieren. Ein neuer Blickwinkel kann helfen."]
+      },
+      six: {
+        up: ["Zusammen zeichnen die sechs Karten ein überwiegend günstiges Bild. Chancen auf Fortschritt scheinen da zu sein; nutze sie mit Bedacht.", "Dieses Halbjahr scheint von hilfreichen Einflüssen geprägt. Mit Beständigkeit und Vertrauen könntest du das Beste daraus machen."],
+        open: ["Die Sechsmonatslegung zeigt Möglichkeiten, aber auch nötige Entscheidungen. Gute Zeichen wahrzunehmen kann dir helfen.", "Dieses Halbjahr scheint mehrere Chancen zum Erkunden zu bieten. Geduld und Flexibilität könnten ebenso wichtig sein wie Schwung."],
+        work: ["Über die sechs Monate hinweg brauchen manche Widerstände Aufmerksamkeit. Nichts ist festgelegt: Dein Tempo anzupassen kann helfen.", "Der Grundton lädt dazu ein, einigen Herausforderungen klar zu begegnen. Jede Etappe kann dir helfen, deine Bedürfnisse besser zu verstehen."]
+      },
+      sixBest: "Die laut Legung günstigsten Monate: {months}. Begegne ihnen zuversichtlich und mit Bedacht.",
+      sixCare: "Die Monate, die besondere Aufmerksamkeit verlangen: {months}. Geh sie flexibel an und lass dich nicht entmutigen.",
+      close: ["Diese Legung zeigt dir mögliche Wege; du entscheidest, welche zu deiner Situation passen.", "Sieh diese Karten als Denkanstoß und vertraue bei deinen nächsten Schritten auf dein Urteil.", "Die Legung regt zum Nachdenken an; wie du das Kommende gestaltest, entscheidest weiterhin du."]
     }
   },
   tabs: {

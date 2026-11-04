@@ -138,6 +138,43 @@ function spreadPositions(t, type, period){
   if (type === 'sca') return ['situation', 'challenge', 'advice'].map(k => ({ name: s.sca.pos[k], hint: s.sca.hints[k] }));
   return sixMonths(period).map(ym => ({ name: monthLabel(ym, lang), hint: s.six.hint }));
 }
+/* Synthèse d'un tirage entièrement retourné : « Ce que cela signifie pour votre question ».
+   Tendance d'ensemble à partir des tendances traditionnelles des cartes (tarotTendency, zodiac-tarot.js),
+   pondérées selon leur place : présent et avenir comptent davantage ; dans Situation · Défi · Conseil, le défi
+   est par nature un point d'attention et ne compte pas, le conseil compte double ; six mois : poids égaux.
+   La phrase cite la carte qui décide (la carte unique, l'Avenir, le Conseil). Variantes de texte choisies d'après
+   le tirage lui-même : la même lecture redonne la même synthèse. */
+const SYNTH_WEIGHTS = { one: [1], three: [1, 2, 3], sca: [1, 0, 2], six: [1, 1, 1, 1, 1, 1] };
+const SYNTH_KEY_CARD = { one: 0, three: 2, sca: 2 };
+const TENDENCY_SCORE = { up: 1, open: 0, work: -1 };
+function spreadTendency(type, reading){
+  const w = SYNTH_WEIGHTS[type], tend = reading.cards.map((k, i) => tarotTendency(k, reading.reversed[i]));
+  const score = tend.reduce((sum, x, i) => sum + TENDENCY_SCORE[x] * w[i], 0) / w.reduce((a, b) => a + b, 0);
+  return { overall: score >= 0.3 ? 'up' : score <= -0.3 ? 'work' : 'open', cards: tend };
+}
+function spreadSynthHtml(t, deck, type, reading, period){
+  const y = t.tarot.synth || I18N.fr.tarot.synth, lang = Object.keys(I18N).find(l => I18N[l] === t) || currentLang;
+  const { overall, cards } = spreadTendency(type, reading);
+  let seed = 0;
+  for (const ch of type + period + reading.cards.join() + reading.reversed.join()) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
+  let text = y[type][overall][seed % y[type][overall].length];
+  if (type in SYNTH_KEY_CARD) { const i = SYNTH_KEY_CARD[type]; text = text.replace('{card}', escapeHtml(tarotName(t, reading.cards[i], deck))); }
+  let months = '';
+  if (type === 'six') {
+    const names = sixMonths(period).map(ym => monthLabel(ym, lang));
+    const list = arr => { try { return new Intl.ListFormat(loc(lang), { type: 'conjunction' }).format(arr); } catch (e) { return arr.join(', '); } };
+    const pick = kind => names.filter((_, i) => cards[i] === kind);
+    const best = pick('up'), care = pick('work');   // un mois sur six au moins, et pas tous : sinon rien à distinguer
+    if (best.length && best.length < 6) months += `<p class="synth-months">${escapeHtml(y.sixBest.replace('{months}', list(best)))}</p>`;
+    if (care.length && care.length < 6) months += `<p class="synth-months">${escapeHtml(y.sixCare.replace('{months}', list(care)))}</p>`;
+  }
+  const id = `synthTitle-${type}`;
+  return `<section class="spread-synth synth-${overall}" aria-labelledby="${id}">
+      <h5 class="synth-title" id="${id}">${escapeHtml(type === 'six' ? y.titleSix : y.title)}</h5>
+      <p class="synth-tendency">${escapeHtml(y.tendency[overall])}</p>
+      <p class="synth-text">${text}</p>${months}
+      <p class="synth-close">${escapeHtml(y.close[seed % y.close.length])}</p></section>`;
+}
 /* Liste des tirages (choix du type) */
 function spreadPickerHtml(t){
   const s = spreadTexts(t).spreads;
@@ -166,6 +203,7 @@ function spreadPanelHtml(t, deck, type){
       ${reading.question ? `<p class="spread-question" dir="auto">${escapeHtml(reading.question)}</p>` : ''}
       ${done ? '' : `<p class="sky-sub">${u.spreadFlip}</p>`}
       <div class="spread-row spread-${type}">${slots}</div>
+      ${done ? spreadSynthHtml(t, deck, type, reading, spreadPeriod(type, todayISO())) : ''}
       ${done ? `<p class="spread-done">${escapeHtml(type === 'six' ? s.six.done : u.spreadTomorrow)}</p>` : ''}
       <p class="sky-note">${escapeHtml(type === 'six' ? s.six.note : u.spreadNote)}</p>`;
   }

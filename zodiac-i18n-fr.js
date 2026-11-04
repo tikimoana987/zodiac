@@ -1746,6 +1746,34 @@ I18N.fr = {
       restart: "Recommencer",
       place: "Poser les cartes",
       allChosen: "Toutes les cartes sont choisies"
+    },
+    synth: {
+      title: "Ce que cela signifie pour votre question",
+      titleSix: "Ce que suggèrent les six prochains mois",
+      tendency: { up: "Élan favorable", open: "Ouverture à saisir", work: "Défi à travailler" },
+      one: {
+        up: ["« {card} » donne au tirage une tonalité favorable : une avancée semble possible si vous nourrissez cet élan.", "Avec « {card} », le tirage suggère un terrain propice. Vous pouvez vous appuyer sur ce qui fonctionne déjà."],
+        open: ["« {card} » laisse entrevoir une possibilité, à condition de regarder ce qui mérite votre attention avant de choisir.", "Le message de « {card} » est celui d'une porte entrouverte : votre discernement peut faire la différence."],
+        work: ["« {card} » met en lumière une résistance, non une impasse. En la regardant avec lucidité, vous pouvez retrouver une marge d'action.", "Avec « {card} », le tirage invite à ajuster votre approche plutôt qu'à forcer les choses. Un pas réfléchi peut déjà aider."]
+      },
+      three: {
+        up: ["À la place de l'Avenir, « {card} » esquisse une suite encourageante si la dynamique actuelle se prolonge. Vos choix peuvent soutenir cet élan.", "« {card} », en position d'Avenir, suggère une évolution favorable possible. Ce qui se dessine peut encore être accompagné par vos décisions."],
+        open: ["En position d'Avenir, « {card} » évoque une possibilité qui pourrait se préciser si vous prenez le temps d'évaluer vos options.", "« {card} » ouvre une piste pour la suite, sans en fixer l'issue. Une décision attentive pourrait lui donner de la consistance."],
+        work: ["À la place de l'Avenir, « {card} » signale une difficulté possible si rien ne change. Vous pouvez encore infléchir cette tendance.", "« {card} » suggère que la suite pourrait demander des ajustements. Identifier ce qui freine la situation vous donne déjà une prise."]
+      },
+      sca: {
+        up: ["À la place du Conseil, « {card} » vous invite à soutenir ce qui avance déjà. Une démarche confiante et mesurée peut renforcer cet élan.", "« {card} », en position de Conseil, met l'accent sur vos ressources. En les mobilisant avec justesse, vous pourriez favoriser une évolution constructive."],
+        open: ["En position de Conseil, « {card} » indique une piste à explorer. Une attention aux détails peut vous aider à la saisir.", "« {card} » vous propose, comme Conseil, de ne pas fermer trop vite les possibilités. Écouter vos hésitations peut éclairer votre choix."],
+        work: ["Comme Conseil, « {card} » suggère d'aborder le point sensible avec méthode. Même un ajustement modeste peut faire évoluer la situation.", "« {card} », en position de Conseil, invite à reconnaître ce qui résiste sans vous décourager. Vous pouvez avancer en changeant d'angle."]
+      },
+      six: {
+        up: ["L'ensemble des six cartes dessine un climat plutôt porteur. Les occasions de progresser semblent présentes, à vous de les accueillir avec discernement.", "Cette demi-année apparaît traversée par des appuis favorables. En cultivant régularité et confiance, vous pourriez en tirer le meilleur."],
+        open: ["Le tirage des six mois montre des possibilités, mais aussi des choix à poser. Observer les bons signaux peut vous aider à avancer.", "Cette demi-année semble offrir plusieurs ouvertures à explorer. La patience et la souplesse pourraient compter autant que l'élan."],
+        work: ["Sur l'ensemble des six mois, certaines résistances demandent de l'attention. Rien n'est figé : ajuster votre rythme peut alléger le parcours.", "La tonalité générale invite à traverser quelques défis avec lucidité. Chaque étape peut devenir l'occasion de mieux comprendre vos besoins."]
+      },
+      sixBest: "Les mois les plus porteurs, d'après le tirage : {months}. Accueillez-les avec confiance et discernement.",
+      sixCare: "Les mois qui demandent le plus d'attention : {months}. Abordez-les avec souplesse, sans vous décourager.",
+      close: ["Ce tirage vous offre des pistes ; à vous de choisir celles qui résonnent avec votre situation.", "Prenez ces cartes comme un éclairage, puis faites confiance à votre jugement pour avancer.", "Le tirage invite à réfléchir ; vos décisions restent entre vos mains pour construire la suite."]
     }
   },
   tabs: {

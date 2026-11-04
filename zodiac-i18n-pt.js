@@ -1745,6 +1745,34 @@ I18N.pt = deepMerge(I18N.fr, {
       restart: "Recomeçar",
       place: "Dispor as cartas",
       allChosen: "Todas as cartas foram escolhidas"
+    },
+    synth: {
+      title: "O que isso significa para sua pergunta",
+      titleSix: "O que sugerem os próximos seis meses",
+      tendency: { up: "Impulso favorável", open: "Oportunidade a aproveitar", work: "Desafio a enfrentar" },
+      one: {
+        up: ["“{card}” dá à tiragem um tom favorável: avançar parece possível se você alimentar esse impulso.", "Com “{card}”, a tiragem sugere um terreno propício. Você pode se apoiar no que já está dando certo."],
+        open: ["“{card}” deixa entrever uma possibilidade, desde que você observe o que merece atenção antes de escolher.", "A mensagem de “{card}” é a de uma porta entreaberta: seu discernimento pode fazer a diferença."],
+        work: ["“{card}” revela uma resistência, não um beco sem saída. Ao encará-la com clareza, você pode recuperar espaço para agir.", "Com “{card}”, a tiragem convida você a ajustar sua abordagem em vez de forçar as coisas. Um passo ponderado já pode ajudar."]
+      },
+      three: {
+        up: ["Na posição Futuro, “{card}” esboça uma sequência animadora se a dinâmica atual continuar. Suas escolhas podem fortalecer esse impulso.", "“{card}”, na posição Futuro, sugere uma possível evolução favorável. Suas decisões ainda podem influenciar o que se desenha."],
+        open: ["Na posição Futuro, “{card}” indica uma possibilidade que pode ganhar forma se você reservar tempo para avaliar suas opções.", "“{card}” abre um caminho para o que vem pela frente, sem definir o resultado. Uma decisão cuidadosa pode lhe dar consistência."],
+        work: ["Na posição Futuro, “{card}” sinaliza uma possível dificuldade se nada mudar. Você ainda pode alterar essa tendência.", "“{card}” sugere que o que vem pela frente pode exigir ajustes. Identificar o que trava a situação já oferece um ponto de apoio."]
+      },
+      sca: {
+        up: ["Na posição Conselho, “{card}” convida você a apoiar o que já está avançando. Agir com confiança e equilíbrio pode reforçar esse impulso.", "“{card}”, na posição Conselho, destaca seus recursos. Usá-los com sabedoria pode favorecer uma evolução construtiva."],
+        open: ["Na posição Conselho, “{card}” indica um caminho a explorar. A atenção aos detalhes pode ajudar você a aproveitá-lo.", "Como Conselho, “{card}” sugere não descartar possibilidades cedo demais. Ouvir suas dúvidas pode esclarecer sua escolha."],
+        work: ["Como Conselho, “{card}” sugere tratar a questão delicada com método. Mesmo um pequeno ajuste pode mudar a situação.", "“{card}”, na posição Conselho, convida você a reconhecer as resistências sem desanimar. Mudar o ponto de vista pode ajudar a avançar."]
+      },
+      six: {
+        up: ["As seis cartas, em conjunto, apontam para um clima favorável. Parece haver oportunidades de avançar; acolha-as com discernimento.", "Este semestre parece contar com apoios positivos. Cultivar constância e confiança pode ajudar você a aproveitá-los melhor."],
+        open: ["A tiragem dos seis meses mostra possibilidades, mas também escolhas a fazer. Observar bons sinais pode ajudar você a avançar.", "Este semestre parece oferecer várias oportunidades a explorar. Paciência e flexibilidade podem importar tanto quanto o impulso."],
+        work: ["Ao longo dos seis meses, algumas resistências pedem atenção. Nada está definido: ajustar seu ritmo pode facilitar o caminho.", "O tom geral convida você a enfrentar alguns desafios com lucidez. Cada etapa pode ajudar a entender melhor suas necessidades."]
+      },
+      sixBest: "Os meses mais favoráveis, segundo a tiragem: {months}. Receba-os com confiança e discernimento.",
+      sixCare: "Os meses que pedem mais atenção: {months}. Encare-os com flexibilidade, sem desanimar.",
+      close: ["Esta tiragem oferece caminhos para refletir; cabe a você escolher os que fazem sentido para sua situação.", "Veja estas cartas como uma forma de esclarecimento e confie no seu julgamento para seguir em frente.", "A tiragem convida à reflexão; suas decisões continuam em suas mãos para construir o que vem pela frente."]
     }
   },
   tabs: {

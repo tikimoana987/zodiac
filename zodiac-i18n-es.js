@@ -1746,6 +1746,34 @@ I18N.es = deepMerge(I18N.fr, {
       restart: "Empezar de nuevo",
       place: "Colocar las cartas",
       allChosen: "Has elegido todas las cartas"
+    },
+    synth: {
+      title: "Qué significa esto para tu pregunta",
+      titleSix: "Qué sugieren los próximos seis meses",
+      tendency: { up: "Impulso favorable", open: "Oportunidad por explorar", work: "Desafío por afrontar" },
+      one: {
+        up: ["«{card}» da a la tirada un tono favorable: parece posible avanzar si alimentas ese impulso.", "Con «{card}», la tirada sugiere un terreno propicio. Puedes apoyarte en lo que ya funciona."],
+        open: ["«{card}» deja entrever una posibilidad, siempre que prestes atención a lo que importa antes de decidir.", "El mensaje de «{card}» es el de una puerta entreabierta: tu criterio puede marcar la diferencia."],
+        work: ["«{card}» pone de relieve una resistencia, no un callejón sin salida. Si la miras con claridad, puedes recuperar margen de acción.", "Con «{card}», la tirada te invita a ajustar tu enfoque en vez de forzar las cosas. Un paso meditado puede ayudar."]
+      },
+      three: {
+        up: ["En la posición de Futuro, «{card}» esboza una continuación alentadora si se mantiene la dinámica actual. Tus decisiones pueden reforzarla.", "«{card}», en la posición de Futuro, sugiere una posible evolución favorable. Tus decisiones aún pueden acompañar lo que se perfila."],
+        open: ["En la posición de Futuro, «{card}» apunta a una posibilidad que podría concretarse si te tomas tiempo para valorar tus opciones.", "«{card}» abre una vía hacia lo que viene, sin determinar el resultado. Una decisión cuidadosa podría darle forma."],
+        work: ["En la posición de Futuro, «{card}» señala una posible dificultad si nada cambia. Todavía puedes influir en esa tendencia.", "«{card}» sugiere que lo que viene podría requerir ajustes. Identificar qué frena la situación ya te da un punto de apoyo."]
+      },
+      sca: {
+        up: ["En la posición de Consejo, «{card}» te invita a sostener lo que ya avanza. Actuar con confianza y mesura puede reforzar ese impulso.", "«{card}», en la posición de Consejo, destaca tus recursos. Usarlos con acierto podría favorecer un cambio constructivo."],
+        open: ["En la posición de Consejo, «{card}» señala una vía que explorar. Prestar atención a los detalles puede ayudarte a aprovecharla.", "Como Consejo, «{card}» te propone no cerrar demasiado pronto las posibilidades. Escuchar tus dudas puede aclarar tu elección."],
+        work: ["Como Consejo, «{card}» sugiere abordar el punto delicado con método. Incluso un pequeño ajuste puede mejorar la situación.", "«{card}», en la posición de Consejo, invita a reconocer lo que se resiste sin desanimarte. Cambiar de perspectiva puede ayudarte a avanzar."]
+      },
+      six: {
+        up: ["Las seis cartas dibujan en conjunto un clima bastante propicio. Parece haber ocasiones para avanzar; recíbelas con criterio.", "Este semestre parece contar con apoyos favorables. Si cultivas la constancia y la confianza, podrías aprovecharlos mejor."],
+        open: ["La tirada de seis meses muestra posibilidades, pero también decisiones que tomar. Observar las buenas señales puede ayudarte a avanzar.", "Este semestre parece ofrecer varias oportunidades que explorar. La paciencia y la flexibilidad podrían importar tanto como el impulso."],
+        work: ["A lo largo de los seis meses, algunas resistencias requieren atención. Nada está decidido: ajustar tu ritmo puede facilitar el camino.", "El tono general invita a afrontar algunos desafíos con lucidez. Cada etapa puede ayudarte a comprender mejor tus necesidades."]
+      },
+      sixBest: "Los meses más propicios, según la tirada: {months}. Recíbelos con confianza y criterio.",
+      sixCare: "Los meses que requieren más atención: {months}. Afróntalos con flexibilidad y sin desanimarte.",
+      close: ["Esta tirada te ofrece pistas; tú eliges cuáles encajan con tu situación.", "Toma estas cartas como una orientación y confía después en tu criterio para avanzar.", "La tirada invita a reflexionar; las decisiones para construir lo que viene siguen en tus manos."]
     }
   },
   tabs: {

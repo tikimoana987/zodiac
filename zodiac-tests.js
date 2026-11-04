@@ -1512,6 +1512,69 @@
     }
   });
 
+  section('Synthèse des tirages de tarot');
+  test('Tarot : tendance traditionnelle des 78 cartes, à l’endroit et renversées', () => {
+    const ok = new Set(['up', 'open', 'work']);
+    for (const k of TAROT_ALL_KEYS) for (const rev of [false, true]) assert(ok.has(tarotTendency(k, rev)), `${k} ${rev}`);
+    assertEq(Object.keys(TAROT_MAJOR_TENDENCY).sort().join(), TAROT_KEYS.slice().sort().join(), 'arcanes majeurs');
+    const pairs = { sun: 'up/open', star: 'up/open', tower: 'work/open', devil: 'work/open', moon: 'work/open', death: 'open/work',
+      cups_5: 'work/open', swords_10: 'work/open', pentacles_10: 'up/open', cups_7: 'open/work', wands_ace: 'up/open' };
+    for (const [k, v] of Object.entries(pairs)) assertEq(tarotTendency(k, false) + '/' + tarotTendency(k, true), v, k);
+    const up = TAROT_ALL_KEYS.filter(k => tarotTendency(k, false) === 'up').length;
+    assert(up >= 40 && up <= 55, `cartes favorables à l’endroit : ${up}`);
+  });
+
+  test('Tarot : synthèse d’un tirage (tendance d’ensemble, carte citée, mois, même texte au rechargement)', () => {
+    const R = (cards, rev) => ({ cards, reversed: rev || cards.map(() => false), revealed: cards.map(() => true), question: '' });
+    assertEq(spreadTendency('one', R(['sun'])).overall, 'up', 'une carte favorable');
+    assertEq(spreadTendency('one', R(['sun'], [true])).overall, 'open', 'renversée');
+    assertEq(spreadTendency('one', R(['tower'])).overall, 'work', 'une carte défi');
+    assertEq(spreadTendency('three', R(['tower', 'moon', 'sun'])).overall, 'open', 'passé et présent difficiles, avenir favorable');
+    assertEq(spreadTendency('three', R(['sun', 'star', 'tower'])).overall, 'open', 'avenir difficile');
+    assertEq(spreadTendency('sca', R(['star', 'tower', 'cups_3'])).overall, 'up', 'le défi ne compte pas');
+    assertEq(spreadTendency('sca', R(['cups_5', 'sun', 'tower'])).overall, 'work', 'situation et conseil difficiles');
+    const t = I18N.fr, y = t.tarot.synth, sca = R(['star', 'tower', 'cups_3']);
+    const html = spreadSynthHtml(t, 'ws', 'sca', sca, '2026-11-04');
+    assert(html.includes(y.title) && html.includes(y.tendency.up) && html.includes('« Trois de Coupes »'), 'titre, tendance, carte du Conseil');
+    assert(!/[{}]/.test(html), 'repère non remplacé');
+    assertEq(spreadSynthHtml(t, 'ws', 'sca', sca, '2026-11-04'), html, 'même tirage, même synthèse');
+    const six = spreadSynthHtml(t, 'ws', 'six', R(['sun', 'tower', 'hermit', 'star', 'devil', 'justice']), '2026-11');
+    assert(six.includes(y.titleSix) && six.includes('novembre 2026') && six.includes('février 2027'), 'mois porteurs');
+    assert(six.includes('décembre 2026') && six.includes('mars 2027'), 'mois à surveiller');
+    const allUp = spreadSynthHtml(t, 'ws', 'six', R(['sun', 'star', 'world', 'cups_10', 'wands_ace', 'pentacles_9']), '2026-11');
+    assert(!allUp.includes('synth-months'), 'six mois tous favorables : rien à distinguer');
+    for (const lang of Object.keys(I18N)) {
+      if (!I18N[lang].tarot || !I18N[lang].tarot.synth) continue;
+      for (const type of ['one', 'three', 'sca', 'six']) {
+        const h = spreadSynthHtml(I18N[lang], 'marseille', type, R(['sun', 'tower', 'hermit', 'star', 'devil', 'justice'].slice(0, SPREAD_SIZE[type])), '2026-11-04');
+        assert(!/[{}]/.test(h), `${lang} ${type} : repère non remplacé`);
+      }
+    }
+  });
+
+  test('Tarot : textes de la synthèse dans les 14 langues', () => {
+    const latin = ['fr', 'en', 'es', 'pt', 'it', 'de', 'tr'];
+    for (const lang of ['fr', 'en', 'es', 'pt', 'it', 'de', 'tr', 'ru', 'ar', 'hi', 'th', 'zh', 'ja', 'ko']) {
+      const y = I18N[lang].tarot.synth, texts = [y.title, y.titleSix, ...Object.values(y.tendency), y.sixBest, y.sixCare, ...y.close];
+      assertEq(Object.keys(y.tendency).join(), 'up,open,work', `${lang} : tendances`);
+      assertEq(y.close.length, 3, `${lang} : clôtures`);
+      for (const type of ['one', 'three', 'sca', 'six']) for (const k of ['up', 'open', 'work']) {
+        assertEq(y[type][k].length, 2, `${lang}.${type}.${k} : deux variantes`);
+        for (const v of y[type][k]) {
+          assertEq((v.match(/\{[^}]*\}/g) || []).join(), type === 'six' ? '' : '{card}', `${lang}.${type}.${k} : repère`);
+          texts.push(v);
+        }
+      }
+      assert(y.sixBest.split('{months}').length === 2 && y.sixCare.split('{months}').length === 2, `${lang} : mois`);
+      for (const v of texts) {
+        assert(typeof v === 'string' && v.trim() === v && v.length > 0, `${lang} : texte vide`);
+        assert(!/[{}]/.test(v.replace(/\{(card|months)\}/g, '')), `${lang} : accolade`);
+        if (latin.includes(lang)) assert(!/[’]/.test(v), `${lang} : apostrophe courbe`);
+        if (lang === 'th') assert(!/[:：]/.test(v) && !/\.$/.test(v), 'thaï : deux-points ou point final');
+      }
+    }
+  });
+
   section('Changement d’heure le jour de naissance');
   test('Changement d’heure : heures sautées et vécues deux fois, partout et à toute époque', () => {
     const W = (tz, y, m, d, h, min) => JSON.stringify(wallTimeInfo({ y, m, d }, h, min, tz));

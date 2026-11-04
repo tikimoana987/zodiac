@@ -1739,6 +1739,34 @@ I18N.en = deepMerge(I18N.fr, {
       restart: "Start again",
       place: "Lay out the cards",
       allChosen: "All cards selected"
+    },
+    synth: {
+      title: "What this means for your question",
+      titleSix: "What the next six months suggest",
+      tendency: { up: "Favourable momentum", open: "Opportunity to seize", work: "Challenge to work through" },
+      one: {
+        up: ["“{card}” gives the reading a favourable tone: progress seems possible if you nurture this momentum.", "With “{card}”, the reading suggests fertile ground. You can build on what is already working."],
+        open: ["“{card}” hints at an opportunity, provided you consider what needs your attention before deciding.", "The message of “{card}” is of a door left ajar: your judgement may make the difference."],
+        work: ["“{card}” highlights resistance, not a dead end. By facing it clearly, you can regain room to act.", "With “{card}”, the reading invites you to adjust your approach rather than force matters. One considered step may already help."]
+      },
+      three: {
+        up: ["In the Future position, “{card}” suggests an encouraging outcome if the current momentum continues. Your choices can support it.", "“{card}”, in the Future position, suggests that positive change may be possible. Your decisions can still shape what unfolds."],
+        open: ["In the Future position, “{card}” points to a possibility that may take shape if you take time to weigh your options.", "“{card}” opens a path ahead without determining the outcome. A thoughtful decision could help it take shape."],
+        work: ["In the Future position, “{card}” signals a possible difficulty if nothing changes. You can still influence this trend.", "“{card}” suggests that what comes next may call for adjustments. Identifying what holds things back gives you a starting point."]
+      },
+      sca: {
+        up: ["In the Advice position, “{card}” invites you to support what is already moving forward. Confidence and care may strengthen this momentum.", "“{card}”, in the Advice position, highlights your resources. Using them wisely could encourage constructive change."],
+        open: ["In the Advice position, “{card}” points to a path worth exploring. Paying attention to detail may help you make the most of it.", "As Advice, “{card}” suggests not closing off possibilities too quickly. Listening to your doubts may clarify your choice."],
+        work: ["As Advice, “{card}” suggests approaching the sensitive issue methodically. Even a small adjustment may change the situation.", "“{card}”, in the Advice position, invites you to acknowledge resistance without losing heart. A different angle may help you move forward."]
+      },
+      six: {
+        up: ["Together, the six cards suggest a broadly supportive atmosphere. Opportunities for progress seem present; meet them with discernment.", "This half-year appears to bring favourable support. By cultivating consistency and confidence, you may make the most of it."],
+        open: ["The six-month reading reveals possibilities, but also choices to make. Noticing promising signs may help you move forward.", "This half-year seems to offer several openings to explore. Patience and flexibility may matter as much as momentum."],
+        work: ["Across the six months, some resistance calls for attention. Nothing is set in stone: adjusting your pace may ease the way.", "The overall tone invites you to face a few challenges with clarity. Each stage may help you understand your needs better."]
+      },
+      sixBest: "The most promising months, according to the reading: {months}. Welcome them with confidence and discernment.",
+      sixCare: "The months calling for the most attention: {months}. Approach them flexibly and without losing heart.",
+      close: ["This reading offers you avenues to explore; you decide which resonate with your situation.", "Take these cards as a source of insight, then trust your judgement as you move forward.", "The reading invites reflection; the decisions that shape what comes next remain yours."]
     }
   },
   tabs: {

@@ -1742,6 +1742,34 @@ I18N.tr = deepMerge(I18N.fr, {
       restart: "Yeniden başlayın",
       place: "Kartları yerleştirin",
       allChosen: "Tüm kartlar seçildi"
+    },
+    synth: {
+      title: "Sorunuz için bu ne anlama geliyor?",
+      titleSix: "Önümüzdeki altı ay neye işaret ediyor?",
+      tendency: { up: "Olumlu gidişat", open: "Değerlendirilecek fırsat", work: "Ele alınacak zorluk" },
+      one: {
+        up: ["“{card}” açılıma olumlu bir hava katıyor: bu ivmeyi beslerseniz ilerleme mümkün görünüyor.", "“{card}” ile açılım elverişli bir zemine işaret ediyor. Zaten iyi giden şeylerden güç alabilirsiniz."],
+        open: ["“{card}” bir olasılığı gösteriyor; seçim yapmadan önce dikkatinizi gerektiren noktaları değerlendirmeniz önemli.", "“{card}” kartının mesajı aralık bir kapıyı andırıyor: sağduyunuz fark yaratabilir."],
+        work: ["“{card}” çıkmazı değil, bir direnci görünür kılıyor. Buna açıkça bakarak yeniden hareket alanı bulabilirsiniz.", "“{card}” ile açılım, zorlamak yerine yaklaşımınızı değiştirmenizi öneriyor. Düşünülmüş küçük bir adım bile yardımcı olabilir."]
+      },
+      three: {
+        up: ["Gelecek konumunda “{card}”, mevcut gidişat sürerse umut verici bir devamı işaret ediyor. Seçimleriniz bu ivmeyi destekleyebilir.", "Gelecek konumundaki “{card}”, olumlu bir gelişmenin mümkün olabileceğini düşündürüyor. Kararlarınız süreci hâlâ şekillendirebilir."],
+        open: ["Gelecek konumunda “{card}”, seçeneklerinizi değerlendirmek için zaman ayırırsanız belirginleşebilecek bir olasılığı gösteriyor.", "“{card}” sonucu belirlemeden ilerisi için bir yol açıyor. Özenli bir karar bu olasılığı güçlendirebilir."],
+        work: ["Gelecek konumunda “{card}”, hiçbir şey değişmezse olası bir güçlüğe işaret ediyor. Bu gidişatı hâlâ etkileyebilirsiniz.", "“{card}” bundan sonrasının bazı değişiklikler gerektirebileceğini düşündürüyor. Neyin engel olduğunu görmek size bir başlangıç sağlar."]
+      },
+      sca: {
+        up: ["Tavsiye konumunda “{card}”, ilerlemekte olanı desteklemeye davet ediyor. Güvenli ve ölçülü adımlar bu ivmeyi güçlendirebilir.", "Tavsiye konumundaki “{card}”, kaynaklarınıza dikkat çekiyor. Bunları yerinde kullanmanız yapıcı bir gelişmeyi destekleyebilir."],
+        open: ["Tavsiye konumunda “{card}”, araştırmaya değer bir yolu gösteriyor. Ayrıntılara dikkat etmek onu değerlendirmenize yardımcı olabilir.", "Tavsiye olarak “{card}”, olasılıkları aceleyle elememeyi öneriyor. Tereddütlerinizi dinlemek kararınızı netleştirebilir."],
+        work: ["Tavsiye olarak “{card}”, hassas noktaya planlı yaklaşmayı öneriyor. Küçük bir düzenleme bile durumu değiştirebilir.", "Tavsiye konumundaki “{card}”, yılmadan dirençleri kabul etmeye çağırıyor. Bakış açınızı değiştirerek ilerleyebilirsiniz."]
+      },
+      six: {
+        up: ["Altı kart birlikte genel olarak destekleyici bir ortam gösteriyor. İlerleme fırsatları var gibi; bunları sağduyuyla değerlendirin.", "Bu altı aylık dönem olumlu destekler barındırıyor gibi görünüyor. İstikrar ve güvenle bunlardan daha iyi yararlanabilirsiniz."],
+        open: ["Altı aylık açılım hem olasılıkları hem de yapılacak seçimleri gösteriyor. Olumlu işaretleri izlemek ilerlemenize yardımcı olabilir.", "Bu altı aylık dönem keşfedilecek çeşitli fırsatlar sunabilir. Sabır ve esneklik de ivme kadar önemli olabilir."],
+        work: ["Altı ay boyunca bazı dirençler dikkat gerektiriyor. Hiçbir şey kesinleşmiş değil: hızınızı ayarlamak yolu kolaylaştırabilir.", "Genel hava, bazı güçlükleri açık fikirle karşılamaya davet ediyor. Her aşama ihtiyaçlarınızı daha iyi anlamanıza yardımcı olabilir."]
+      },
+      sixBest: "Açılıma göre en elverişli aylar: {months}. Bu dönemi güven ve sağduyuyla karşılayın.",
+      sixCare: "En çok dikkat gerektiren aylar: {months}. Bunları esnek davranarak ve yılmadan karşılayın.",
+      close: ["Bu açılım size yollar gösteriyor; hangilerinin durumunuza uyduğuna siz karar verirsiniz.", "Kartları bir bakış açısı olarak değerlendirin, ardından ilerlerken kendi muhakemenize güvenin.", "Açılım düşünmeye çağırıyor; bundan sonrasını şekillendirecek kararlar yine sizin elinizde."]
     }
   },
   tabs: {

@@ -188,13 +188,19 @@ async def journey(browser, file):
             while await page.locator('.spread-flip').count():
                 await page.locator('.spread-flip').first.click()
             shown = await page.locator('.spread-slot .tarot-title').count()
+            # Synthèse « Ce que cela signifie pour votre question » : la tendance affichée est celle du tirage
+            expected = await page.evaluate("""(() => { const t = I18N[currentLang], r = readingOf(spreadType);
+                return t.tarot.synth.tendency[spreadTendency(spreadType, r).overall]; })()""")
+            synth = await page.locator('.spread-synth .synth-tendency').inner_text() == expected
+            synth = synth and '{' not in await page.locator('.spread-synth').inner_text()
             await page.reload()
             await page.wait_for_selector('#tabTarot', timeout=60000)
             await page.locator('#tabTarot').click()
             again = await page.locator('.spread-slot .tarot-title').count()
-            report(shown == 3 and again == 3 and not errors,
-                   f'{lang} : tarot, trois cartes choisies au clavier, posées, retournées, retrouvées après rechargement'
-                   + (f' | {errors}' if errors else ''))
+            synth = synth and await page.locator('.spread-synth').count() == 1
+            report(shown == 3 and again == 3 and synth and not errors,
+                   f'{lang} : tarot, trois cartes choisies au clavier, posées, retournées, synthèse « {expected} », retrouvées après rechargement'
+                   + ('' if synth else ' | synthèse absente ou fausse') + (f' | {errors}' if errors else ''))
         except Exception as exc:
             report(False, f'{lang} : onglet Tarot absent ou non interactif — {str(exc)[:350]}')
 

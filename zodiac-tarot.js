@@ -18,6 +18,43 @@ const TAROT_MINOR_KEYS = MINOR_SUITS.flatMap(s => MINOR_RANKS.map(r => `${s}_${r
 const TAROT_ALL_KEYS = TAROT_KEYS.concat(TAROT_MINOR_KEYS);                              // jeu complet : 78 cartes
 const MINOR_SET = new Set(TAROT_MINOR_KEYS);
 function isMinorKey(key){ return MINOR_SET.has(key); }
+
+/* Tendance traditionnelle de chaque carte, à l'endroit puis renversée, pour la synthèse des tirages
+   (zodiac-spreads.js) : 'up' élan favorable, 'open' ouverture à saisir (sous condition), 'work' défi à travailler.
+   Arcanes majeurs : sens traditionnels (Marseille, Waite-Smith). Arcanes mineurs : tableau par couleur et par rang ;
+   renversée, une carte favorable devient une ouverture, une ouverture un défi, et un défi s'allège en ouverture
+   (le Cinq de Coupes renversé, par exemple, est l'acceptation et le nouveau départ). */
+const TAROT_MAJOR_TENDENCY = {
+  fool: ['up', 'work'], magician: ['up', 'work'], priestess: ['open', 'work'], empress: ['up', 'open'],
+  emperor: ['up', 'work'], hierophant: ['open', 'open'], lovers: ['up', 'work'], chariot: ['up', 'work'],
+  strength: ['up', 'open'], hermit: ['open', 'work'], wheel: ['up', 'work'], justice: ['open', 'work'],
+  hangedman: ['open', 'work'], death: ['open', 'work'], temperance: ['up', 'open'], devil: ['work', 'open'],
+  tower: ['work', 'open'], star: ['up', 'open'], moon: ['work', 'open'], sun: ['up', 'open'],
+  judgement: ['up', 'work'], world: ['up', 'open']
+};
+//                       Bâtons  Coupes  Épées   Deniers
+const TAROT_MINOR_UPRIGHT = {
+  ace:    ['up',   'up',   'up',   'up'],
+  2:      ['up',   'up',   'open', 'open'],
+  3:      ['up',   'up',   'work', 'up'],
+  4:      ['up',   'open', 'open', 'open'],
+  5:      ['work', 'work', 'work', 'work'],
+  6:      ['up',   'up',   'open', 'up'],
+  7:      ['open', 'open', 'work', 'open'],
+  8:      ['up',   'open', 'work', 'up'],
+  9:      ['open', 'up',   'work', 'up'],
+  10:     ['work', 'up',   'work', 'up'],
+  page:   ['up',   'up',   'open', 'up'],
+  knight: ['up',   'up',   'open', 'up'],
+  queen:  ['up',   'up',   'up',   'up'],
+  king:   ['up',   'up',   'up',   'up']
+};
+const TENDENCY_REVERSED = { up: 'open', open: 'work', work: 'open' };
+function tarotTendency(key, reversed){
+  if (TAROT_MAJOR_TENDENCY[key]) return TAROT_MAJOR_TENDENCY[key][reversed ? 1 : 0];
+  const { suit, rank } = minorParts(key), up = TAROT_MINOR_UPRIGHT[rank][MINOR_SUITS.indexOf(suit)];
+  return reversed ? TENDENCY_REVERSED[up] : up;
+}
 /* Couleur et rang d'un arcane mineur ('cups_7' → { suit: 'cups', rank: '7' }) */
 function minorParts(key){ const i = key.indexOf('_'); return { suit: key.slice(0, i), rank: key.slice(i + 1) }; }
 

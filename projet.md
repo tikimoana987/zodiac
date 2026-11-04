@@ -1,5 +1,7 @@
 # 🌌 Zodiaque & Décans · Cosmic Interface
 
+> **V10.7 : synthèse des tirages de tarot.** Une fois toutes les cartes retournées, une rubrique bien visible « Ce que cela signifie pour votre question » (« Ce que suggèrent les six prochains mois » pour le tirage sans question) : étiquette de tendance (élan favorable, ouverture à saisir, défi à travailler), conclusion courte et encourageante qui cite la carte décisive, mois porteurs et mois à surveiller pour les six mois, phrase de clôture ; jamais de promesse. Tendance traditionnelle des 78 cartes à l'endroit et renversées, pondérée selon la place de chaque carte. Idée d'une testeuse ; 14 langues (ChatGPT, contrôlé). Cahier : `docs/cahier-tarot.md`. 119 tests.
+
 > **V10.6 : changement d'heure le jour de naissance.** Avec un lieu de naissance, l'appli repère les heures touchées par un changement d'heure, d'après l'historique officiel des heures du lieu intégré au navigateur : heure d'été dans tous les pays qui la pratiquent ou l'ont pratiquée (hémisphère sud compris), changements historiques de fuseau, passage de l'heure locale à l'heure légale (Paris, 1911), décalages d'une demi-heure. **Heure qui n'a pas existé** (horloges avancées) : message, et ZODIAC retient le même instant exprimé avec la nouvelle heure. **Heure vécue deux fois** (horloges retardées) : message et choix « Avant / Après le changement d'heure » (avant par défaut, comme jusqu'ici), qui recalcule ascendant, maisons, Lune et compatibilité (Paris, 25 octobre 2026 à 2 h 30 : ascendant Lion ou Vierge) ; le choix est gardé avec le profil, « C'est mon profil », l'historique et le lien. Jamais les mots « heure d'été / d'hiver » (tous les changements n'en sont pas) ; avant 1970, mention que l'historique est moins sûr dans certains pays. 14 langues (traduction ChatGPT contrôlée). 116 tests.
 
 > **V10.5 : test Safari bloquant.** Les tests dans le moteur de Safari (WebKit), verts depuis une douzaine de publications, empêchent désormais la publication en cas d'échec ; Firefox reste informatif.
@@ -485,7 +487,7 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | aucune en ligne (html2canvas en copie locale) |
 | Poids approximatif | site : première visite ≈ 4,1 Mo compressés, mise à jour typique ≈ 80 Ko (V10.4) ; version autonome ≈ 8,4 Mo, mesurée le 2 novembre 2026 (7,8 Mo avant les articles) : ≈ 3,1 Mo d'illustrations du tarot, ≈ 1 Mo de villes, ≈ 1,6 Mo de traductions, ≈ 0,6 Mo d'articles, ≈ 0,4 Mo de textes du portrait |
-| Tests automatisés | 116 (99 dans `zodiac-tests.js`, dont 3 pour les articles et 3 pour le changement d'heure, + 17 portrait) ; parcours réel protégé en CI, compatibilité, tarot, carré, articles et changement d'heure compris |
+| Tests automatisés | 119 (102 dans `zodiac-tests.js`, dont 3 pour les articles, 3 pour le changement d'heure et 3 pour la synthèse du tarot, + 17 portrait) ; parcours réel protégé en CI, compatibilité, tarot, carré, articles et changement d'heure compris |
 
 ---
 

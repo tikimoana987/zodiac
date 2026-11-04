@@ -107,6 +107,17 @@ Choisir un tirage → écrire sa question (si le tirage la demande) → mélange
 - Confidentialité : tirages et questions sur l'appareil seulement, effacés à expiration ; rien n'est envoyé ; la question n'apparaît pas dans l'image exportée.
 - Export : carte de naissance, carte du jour et tirages retournés, avec le nom du tirage ; ni liste des tirages, ni éventail, ni boutons, ni question.
 
+## Synthèse « Ce que cela signifie pour votre question » (V10.7, 4 novembre 2026)
+
+Idée d'une testeuse (4 novembre 2026). Une fois toutes les cartes d'un tirage retournées, une rubrique bien visible conclut la lecture : titre (« Ce que suggèrent les six prochains mois » pour le tirage sans question), étiquette de tendance, conclusion courte, mois porteurs ou à surveiller (six mois), phrase de clôture.
+
+- **Tendance de chaque carte** (`tarotTendency`, `zodiac-tarot.js`) : `up` élan favorable, `open` ouverture à saisir (sous condition), `work` défi à travailler. Arcanes majeurs : sens traditionnels (`TAROT_MAJOR_TENDENCY`, à l'endroit puis renversé). Mineurs : tableau par rang et par couleur (`TAROT_MINOR_UPRIGHT`) ; renversée, `up` → `open`, `open` → `work`, `work` → `open` (un défi renversé s'allège : Cinq de Coupes renversé = acceptation). À l'endroit : 46 favorables, 19 ouvertures, 13 défis.
+- **Tendance d'ensemble** (`spreadTendency`, `zodiac-spreads.js`) : moyenne pondérée (`up` +1, `open` 0, `work` −1), seuils ±0,3. Poids : une carte 1 ; Passé · Présent · Avenir 1, 2, 3 ; Situation · Défi · Conseil 1, 0, 2 (le Défi est par nature un point d'attention) ; six mois 1 chacun.
+- **Texte** (`spreadSynthHtml`) : deux variantes par tirage et par tendance (`I18N[l].tarot.synth`), choisies d'après le tirage lui-même (la même lecture redonne la même synthèse) ; la phrase cite la carte qui décide entre guillemets (carte unique, Avenir, Conseil). Six mois : `sixBest` et `sixCare` listent les mois favorables et les mois défi (`Intl.ListFormat`), seulement s'il y a quelque chose à distinguer (ni aucun, ni tous).
+- **Limite honnête** : l'appli ne comprend pas la question tapée (tout reste sur l'appareil) ; les textes parlent du tirage, jamais de la question.
+- **Ton** : encourageant, jamais de promesse, de peur ni de fatalité ; français rédigé par ChatGPT sur consigne, contrôlé et corrigé (accord avec un seul mois, « Conseil »), 13 traductions contrôlées automatiquement.
+- **Tests** : tendances des 78 cartes, synthèse de chaque tirage (cas pondérés, mois, même texte au rechargement, aucun repère non remplacé dans les 14 langues), textes des 14 langues ; parcours réel (fr, ar, ja) : la tendance affichée est celle du tirage ; audit axe-core avec le tirage retourné.
+
 ## Tests
 
 Mélange (reproductible et statistique), choix dans l'éventail, reprise et « Recommencer », fréquence (jour, mois), profils, migration, nettoyage, options, six mois (novembre → avril, décembre → mai, noms des mois dans les 14 langues), textes (14 langues avant publication), parcours réel en français, arabe et japonais (choix au clavier, rechargement), accessibilité (éventail ouvert, tirage retourné, thèmes sombre et clair), export (image réelle).

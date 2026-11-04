@@ -1746,6 +1746,34 @@ I18N.it = deepMerge(I18N.fr, {
       restart: "Ricomincia",
       place: "Disponi le carte",
       allChosen: "Hai scelto tutte le carte"
+    },
+    synth: {
+      title: "Cosa significa per la tua domanda",
+      titleSix: "Cosa suggeriscono i prossimi sei mesi",
+      tendency: { up: "Slancio favorevole", open: "Opportunità da cogliere", work: "Sfida da affrontare" },
+      one: {
+        up: ["«{card}» dà alla stesa un tono favorevole: un passo avanti sembra possibile se alimenti questo slancio.", "Con «{card}», la stesa suggerisce un terreno propizio. Puoi fare leva su ciò che già funziona."],
+        open: ["«{card}» lascia intravedere una possibilità, purché tu osservi ciò che merita attenzione prima di scegliere.", "Il messaggio di «{card}» è quello di una porta socchiusa: il tuo discernimento può fare la differenza."],
+        work: ["«{card}» mette in luce una resistenza, non un vicolo cieco. Guardandola con lucidità, puoi ritrovare margine di azione.", "Con «{card}», la stesa invita a modificare il tuo approccio invece di forzare le cose. Un passo ponderato può già aiutare."]
+      },
+      three: {
+        up: ["Nella posizione Futuro, «{card}» delinea un seguito incoraggiante se la dinamica attuale continua. Le tue scelte possono sostenerlo.", "«{card}», nella posizione Futuro, suggerisce una possibile evoluzione favorevole. Le tue decisioni possono ancora orientare ciò che emerge."],
+        open: ["Nella posizione Futuro, «{card}» evoca una possibilità che potrebbe prendere forma se ti concedi tempo per valutare le opzioni.", "«{card}» apre una strada per il seguito, senza fissarne l'esito. Una decisione attenta potrebbe darle consistenza."],
+        work: ["Nella posizione Futuro, «{card}» segnala una possibile difficoltà se nulla cambia. Puoi ancora influire su questa tendenza.", "«{card}» suggerisce che il seguito potrebbe richiedere aggiustamenti. Capire cosa frena la situazione ti dà già un punto di partenza."]
+      },
+      sca: {
+        up: ["Nella posizione Consiglio, «{card}» ti invita a sostenere ciò che è già in movimento. Fiducia e misura possono rafforzare questo slancio.", "«{card}», nella posizione Consiglio, mette in risalto le tue risorse. Usarle con criterio potrebbe favorire un cambiamento costruttivo."],
+        open: ["Nella posizione Consiglio, «{card}» indica una strada da esplorare. L'attenzione ai dettagli può aiutarti a coglierla.", "Come Consiglio, «{card}» suggerisce di non scartare troppo presto le possibilità. Ascoltare i tuoi dubbi può chiarire la scelta."],
+        work: ["Come Consiglio, «{card}» suggerisce di affrontare il punto delicato con metodo. Anche un piccolo cambiamento può incidere sulla situazione.", "«{card}», nella posizione Consiglio, invita a riconoscere ciò che oppone resistenza senza scoraggiarti. Cambiare prospettiva può aiutarti."]
+      },
+      six: {
+        up: ["Le sei carte, nel complesso, delineano un clima piuttosto favorevole. Sembrano esserci occasioni per progredire: accoglile con discernimento.", "Questo semestre sembra offrire sostegni favorevoli. Coltivando costanza e fiducia, potresti trarne il meglio."],
+        open: ["La stesa dei sei mesi mostra possibilità, ma anche scelte da compiere. Riconoscere i segnali positivi può aiutarti ad avanzare.", "Questo semestre sembra offrire diverse aperture da esplorare. Pazienza e flessibilità potrebbero contare quanto lo slancio."],
+        work: ["Nei sei mesi, alcune resistenze chiedono attenzione. Nulla è immutabile: adattare il tuo ritmo può rendere il percorso più agevole.", "Il tono generale invita ad affrontare alcune sfide con lucidità. Ogni tappa può aiutarti a capire meglio i tuoi bisogni."]
+      },
+      sixBest: "I mesi più favorevoli secondo la stesa: {months}. Accoglili con fiducia e discernimento.",
+      sixCare: "I mesi che richiedono più attenzione: {months}. Affrontali con flessibilità, senza scoraggiarti.",
+      close: ["Questa stesa ti offre spunti; sta a te scegliere quelli più vicini alla tua situazione.", "Considera queste carte come uno spunto per capire meglio, poi affidati al tuo giudizio per proseguire.", "La stesa invita a riflettere; le decisioni per costruire il seguito restano nelle tue mani."]
     }
   },
   tabs: {
