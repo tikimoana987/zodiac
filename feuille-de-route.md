@@ -12,7 +12,7 @@
 | Feuille de route d'origine (étapes 1 à 6) | ✅ terminée, sauf l'iPhone (gardé pour la fin) |
 | Pistes 1 à 6 | ✅ version et bandeau de mise à jour · ✅ cartes renversées · ✅ lieux par coordonnées GPS · ✅ calendrier du ciel · ✅ fiche du thème natal à imprimer ou en PDF · ✅ arcanes mineurs (jeu complet de 78 cartes) |
 | Langues | 14 (FR, EN, ES, PT, IT, DE, TR, RU, AR, HI, TH, ZH, JA, KO) |
-| Tests automatiques | 119 (102 + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit), bloquants, et dans Firefox, pour information |
+| Tests automatiques | 120 (103 + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit), bloquants, et dans Firefox, pour information |
 | Publication | automatique sur GitHub Pages, après les tests (circuit GitHub Actions) |
 | Poids | version autonome ≈ 8,4 Mo, mesurée le 2 novembre 2026 (7,8 Mo avant les articles ; l'ancien chiffre de 6,8 Mo était dépassé) : illustrations du tarot ≈ 3,1 Mo (déjà en WebP), villes ≈ 1 Mo, 14 langues ≈ 1,6 Mo, articles ≈ 0,6 Mo, textes du portrait ≈ 0,4 Mo |
 | Confidentialité | aucune donnée envoyée en ligne (adresse en « # », pas de serveur, pas de statistiques) ; seule exception : les événements ajoutés à Google Agenda à la demande de l'utilisateur |

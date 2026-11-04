@@ -75,10 +75,30 @@ function shade(hex, f){
   const n = parseInt(hex.slice(1), 16);
   return '#' + [16, 8, 0].map(s => Math.round(((n >> s) & 255) * (1 - f)).toString(16).padStart(2, '0')).join('');
 }
+/* Contraste WCAG entre deux couleurs #rrggbb */
+function contrastRatio(a, b){
+  const lum = hex => { const n = parseInt(hex.slice(1), 16);
+    const [r, g, bl] = [16, 8, 0].map(s => { const v = ((n >> s) & 255) / 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); });
+    return .2126 * r + .7152 * g + .0722 * bl; };
+  const x = lum(a), y = lum(b);
+  return (Math.max(x, y) + .05) / (Math.min(x, y) + .05);
+}
+/* Couleur du signe lisible en texte sur les surfaces sombres (bulles, fenêtres : #1b1738) : au moins 4,6:1
+   (WCAG AA pour les petits textes), en l'éclaircissant légèrement si besoin. Seul le Scorpion (#e63946, 4,1:1)
+   est concerné : #e95560 (4,8:1). */
+const DARK_SURFACE = '#1b1738';
+function readableOnDark(hex){
+  let c = hex;
+  for (let i = 0; i < 20 && contrastRatio(c, DARK_SURFACE) < 4.6; i++) {
+    const n = parseInt(c.slice(1), 16);
+    c = '#' + [16, 8, 0].map(s => { const v = (n >> s) & 255; return Math.round(v + (255 - v) * .05).toString(16).padStart(2, '0'); }).join('');
+  }
+  return c;
+}
 function isLight(){ return document.documentElement.dataset.theme === 'light'; }
 function paintTheme(){
   const base = themeColors || { gold: '#e8c36a', purple: '#9b7ede' }, light = isLight();
-  const gold = light ? shade(base.gold, LIGHT_SHADE.gold) : base.gold;
+  const gold = light ? shade(base.gold, LIGHT_SHADE.gold) : readableOnDark(base.gold);
   const purple = light ? shade(base.purple, LIGHT_SHADE.purple) : base.purple;
   const st = document.documentElement.style;
   st.setProperty('--gold', gold);

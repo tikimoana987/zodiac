@@ -1512,6 +1512,17 @@
     }
   });
 
+  section('Couleurs lisibles');
+  test('Couleur de chaque signe lisible en texte, thèmes sombre et clair (au moins 4,5:1)', () => {
+    const palettes = Object.entries(SIGN_THEME).concat([['défaut', { gold: '#e8c36a' }]]);
+    for (const [k, p] of palettes) {
+      const dark = readableOnDark(p.gold), light = shade(p.gold, LIGHT_SHADE.gold);
+      assert(contrastRatio(dark, DARK_SURFACE) >= 4.5, `${k} sombre : ${dark} ${contrastRatio(dark, DARK_SURFACE).toFixed(2)}`);
+      assert(contrastRatio(light, '#ffffff') >= 4.5, `${k} clair : ${light} ${contrastRatio(light, '#ffffff').toFixed(2)}`);
+    }
+    assertEq(readableOnDark('#e8c36a'), '#e8c36a', 'couleur déjà lisible : inchangée');
+  });
+
   section('Synthèse des tirages de tarot');
   test('Tarot : tendance traditionnelle des 78 cartes, à l’endroit et renversées', () => {
     const ok = new Set(['up', 'open', 'work']);
