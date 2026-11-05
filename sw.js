@@ -11,6 +11,7 @@
    chaque nouvelle version change ce fichier, ce qui déclenche l'installation de la nouvelle version. */
 const VERSION = '__VERSION__';
 const ASSETS = __ASSETS__;
+const LAZY = __LAZY__;                            // chargés à la demande (une langue de Cosmic Daily) : gardés s'ils sont là
 const PAGE = 'zodiac-page-' + VERSION;           // la page de cette version
 const SHELL = 'zodiac-shell-__SHELL__';           // manifeste et icônes
 const FILES = 'zodiac-files';                     // modules, gardés d'une version à l'autre
@@ -46,7 +47,7 @@ self.addEventListener('activate', event => {
     for (const key of await caches.keys()) {
       if (key.startsWith('zodiac-') && !keep.includes(key)) await caches.delete(key);   // anciennes versions
     }
-    const cache = await caches.open(FILES), wanted = new Set(ASSETS.map(absolute));
+    const cache = await caches.open(FILES), wanted = new Set(ASSETS.concat(LAZY).map(absolute));
     for (const request of await cache.keys()) {
       if (!wanted.has(request.url)) await cache.delete(request);   // modules qui ne servent plus
     }

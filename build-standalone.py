@@ -98,6 +98,9 @@ PWA_HEAD = """<link rel="manifest" href="manifest.webmanifest">
 SITE_FILES = ['manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png']
 
 
+LAZY_RE = re.compile(r'zodiac-cosmic-(?!ui\.)[a-z]{2}\.js')   # textes de Cosmic Daily, une langue par fichier (pas les libellés « ui »)
+
+
 def asset_name(name, data):
     """Nom publié d'un module : son nom suivi de l'empreinte de son contenu (zodiac-app.1a2b3c4d5e.js).
     Un nom donné ne change donc jamais de contenu : l'appli installée le garde d'une version à l'autre."""
@@ -116,6 +119,7 @@ def build_site(stamp, dest=None, override=None):
     site.mkdir(parents=True)
     html = override.get(SOURCE) or read(SOURCE)
     assets = []
+    lazy = {}   # modules chargés à la demande (une langue de Cosmic Daily) : nom source → nom publié
 
     def publish(name):
         text = override.get(name) or read(name)
@@ -134,7 +138,15 @@ def build_site(stamp, dest=None, override=None):
         link = f'<link rel="stylesheet" href="{css}">'
         if link in html:
             html = html.replace(link, f'<link rel="stylesheet" href="{publish(css)}">')
-    html = re.sub(r'<script src="([^"/:]+\.js)"></script>', lambda m: f'<script src="{publish(m.group(1))}"></script>', html)
+    def script(m):
+        name = m.group(1)
+        if LAZY_RE.fullmatch(name):   # retiré de la page : chargé à la demande, une langue à la fois
+            published = publish(name)
+            assets.remove(published)
+            lazy[name] = published
+            return ''
+        return f'<script src="{publish(name)}"></script>'
+    html = re.sub(r'<script src="([^"/:]+\.js)"></script>\n?', script, html)
     anchor = '<meta name="viewport"'
     if anchor not in html:
         sys.exit('Balise <meta name="viewport"> introuvable : impossible d\'ajouter les balises d\'application')
@@ -149,15 +161,17 @@ def build_site(stamp, dest=None, override=None):
         shell.update((HERE / name).read_bytes())
     shell_version = shell.hexdigest()[:12]
     # Version = empreinte de la page, des modules et des icônes ; écrite dans la page, que sw.js vérifie
-    digest = hashlib.sha256((html + '\n'.join(assets) + shell_version).encode('utf-8'))
+    digest = hashlib.sha256((html + '\n'.join(assets) + '\n'.join(lazy.values()) + shell_version).encode('utf-8'))
     version = digest.hexdigest()[:12]
-    page = html[:j] + '\n' + PWA_HEAD + f'<meta name="zodiac-version" content="{version}">\n' + html[j:]
+    page = (html[:j] + '\n' + PWA_HEAD + f'<meta name="zodiac-version" content="{version}">\n'
+            + f'<script>window.ZODIAC_LAZY = {json.dumps(lazy)};</script>\n' + html[j:])
     (site / 'index.html').write_text(page, encoding='utf-8')
     sw = read('sw.js')
-    for mark in ('__VERSION__', '__SHELL__', '__ASSETS__'):
+    for mark in ('__VERSION__', '__SHELL__', '__ASSETS__', '__LAZY__'):
         if mark not in sw:
             sys.exit(f"Repère {mark} introuvable dans sw.js")
-    sw = sw.replace('__VERSION__', version).replace('__SHELL__', shell_version).replace('__ASSETS__', json.dumps(assets))
+    sw = (sw.replace('__VERSION__', version).replace('__SHELL__', shell_version).replace('__ASSETS__', json.dumps(assets))
+          .replace('__LAZY__', json.dumps(sorted(lazy.values()))))
     (site / 'sw.js').write_text(sw, encoding='utf-8')
     # Servis à la demande seulement, jamais gardés en mémoire par l'appli : la version autonome (bouton
     # « Version hors ligne ») et la suite de tests (adresse ?test)
@@ -176,8 +190,8 @@ def build_site(stamp, dest=None, override=None):
     weight = (site / 'index.html').stat().st_size + sum((site / a).stat().st_size for a in assets)
     if not dest:
         print(f"site/ : page {(site / 'index.html').stat().st_size // 1024} Ko + {len(assets)} modules "
-              f"({weight // 1024} Ko en tout), version {version}")
-    return {'version': version, 'shell': shell_version, 'assets': assets}
+              f"({weight // 1024} Ko en tout) + {len(lazy)} à la demande, version {version}")
+    return {'version': version, 'shell': shell_version, 'assets': assets, 'lazy': lazy}
 
 
 if __name__ == '__main__':

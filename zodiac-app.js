@@ -453,6 +453,7 @@ function renderResult(signKey, decanIdx){
       <button type="button" role="tab" id="tabCompat" aria-controls="viewCompat"><span class="vt-icon" aria-hidden="true">♡</span><span class="vt-txt"><span class="vt-title">${t.tabs.compat}</span><span class="vt-sub">${t.tabs.compatSub}</span></span></button>
       <button type="button" role="tab" id="tabNumbers" aria-controls="viewNumbers"><span class="vt-icon" aria-hidden="true">№</span><span class="vt-txt"><span class="vt-title">${t.tabs.numTarot}</span><span class="vt-sub">${t.tabs.numTarotSub}</span></span></button>
       <button type="button" role="tab" id="tabTarot" aria-controls="viewTarot"><span class="vt-icon" aria-hidden="true">✧</span><span class="vt-txt"><span class="vt-title">${(t.tabs.tarot || I18N.fr.tabs.tarot)}</span><span class="vt-sub">${(t.tabs.tarotSub || I18N.fr.tabs.tarotSub)}</span></span></button>
+      ${typeof COSMIC_UI === 'object' ? `<button type="button" role="tab" id="tabCosmic" aria-controls="viewCosmic"><span class="vt-icon" aria-hidden="true">✺</span><span class="vt-txt"><span class="vt-title">${escapeHtml(cosmicUi().tab)}</span><span class="vt-sub">${escapeHtml(cosmicUi().tabSub)}</span></span></button>` : ''}
     </div>
     <div id="profileContent">
       <div class="owner" id="profileOwner"></div>
@@ -517,6 +518,7 @@ function renderResult(signKey, decanIdx){
           <span class="cb-teaser">${typeof crystalBallSvg === 'function' ? crystalBallSvg('teaser') + orbitStarsHtml(3) : ''}</span>
           <span class="ot-txt"><span class="ot-title">${t.oracle.open}</span><span class="ot-sub">${t.oracle.hint}</span><span class="ot-note">${t.oracle.note}</span></span></button></div>
       </div>
+      ${typeof COSMIC_UI === 'object' ? `<div class="cosmic-view" id="viewCosmic" role="tabpanel" aria-labelledby="tabCosmic"><h2 class="sr-only">${escapeHtml(cosmicUi().tab)}</h2><div id="cosmicBody"></div></div>` : ''}
     </div>
     <p class="support-line" data-support-line ${typeof supportReady === 'function' && supportReady() ? '' : 'hidden'}>${t.support.line} <button type="button" class="support-link" data-support-open ${typeof supportReady === 'function' && supportReady() ? '' : 'hidden'}><span aria-hidden="true">☕</span> ${t.support.open}</button></p>
   `;
@@ -546,6 +548,7 @@ function renderResult(signKey, decanIdx){
   });
   const tabs = VIEW_MODES.map(m => document.getElementById(VIEW_TABS[m]));
   tabs.forEach((tb, i) => {
+    if (!tb) return;
     tb.addEventListener('click', () => setView(VIEW_MODES[i]));
     tb.addEventListener('keydown', e => {   // flèches gauche / droite entre les onglets (sens inversé en écriture de droite à gauche)
       if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
@@ -558,6 +561,7 @@ function renderResult(signKey, decanIdx){
   if (!skyDate) skyDate = todayISO();
   renderNumbers();
   renderTarot();
+  if (typeof renderCosmic === 'function') renderCosmic();   // onglet Cosmic Daily (zodiac-cosmic.js)
   renderCalendar();
   document.getElementById('skyDate').addEventListener('change', e => {
     if (parseISODate(e.target.value)) { skyDate = e.target.value; mapMinutes = null; renderSky(); renderMap(); renderNumbers(); renderTarot(); }
@@ -900,8 +904,8 @@ window.addEventListener('resize', () => closeInfo(false));
    ============================================================ */
 let currentBirthPlace = '';   // identifiant de la ville de naissance (zodiac-places.js), '' si non précisé
 let viewMode = 'signs';       // onglet affiché : 'signs' (signe & zodiaque chinois), 'natal' ou 'numbers' (numérologie)
-const VIEW_MODES = ['signs', 'natal', 'sky', 'compat', 'numbers', 'tarot'];   // une section par onglet ; 'numbers' : numérologie et portrait
-const VIEW_TABS = { signs: 'tabSigns', natal: 'tabNatal', sky: 'tabSky', compat: 'tabCompat', numbers: 'tabNumbers', tarot: 'tabTarot' };
+const VIEW_MODES = ['signs', 'natal', 'sky', 'compat', 'numbers', 'tarot', 'cosmic'];   // une section par onglet ; 'numbers' : numérologie et portrait
+const VIEW_TABS = { signs: 'tabSigns', natal: 'tabNatal', sky: 'tabSky', compat: 'tabCompat', numbers: 'tabNumbers', tarot: 'tabTarot', cosmic: 'tabCosmic' };
 let tarotDeck = 'marseille';  // jeu de tarot : 'marseille' (par défaut) ou 'ws' (Waite-Smith) ; retenu sur l'appareil
 let tarotReversed = false;     // cartes renversées dans le tirage du jour (option, désactivée par défaut ; retenue sur l'appareil)
 let tarotFull = false;         // jeu complet (78 cartes, arcanes mineurs compris) dans le tirage du jour (option, désactivée par défaut ; retenue sur l'appareil)
@@ -1345,7 +1349,7 @@ function renderTarot(){
 function setView(mode, focus){
   viewMode = mode;
   store.set('zodiac_view', mode);
-  for (const [tab, panel, m] of [['tabSigns', 'viewSigns', 'signs'], ['tabNatal', 'viewNatal', 'natal'], ['tabSky', 'viewSky', 'sky'], ['tabCompat', 'viewCompat', 'compat'], ['tabNumbers', 'viewNumbers', 'numbers'], ['tabTarot', 'viewTarot', 'tarot']]) {
+  for (const [tab, panel, m] of [['tabSigns', 'viewSigns', 'signs'], ['tabNatal', 'viewNatal', 'natal'], ['tabSky', 'viewSky', 'sky'], ['tabCompat', 'viewCompat', 'compat'], ['tabNumbers', 'viewNumbers', 'numbers'], ['tabTarot', 'viewTarot', 'tarot'], ['tabCosmic', 'viewCosmic', 'cosmic']]) {
     const tb = document.getElementById(tab), pn = document.getElementById(panel);
     if (!tb) continue;
     tb.setAttribute('aria-selected', String(m === mode)); tb.tabIndex = m === mode ? 0 : -1;

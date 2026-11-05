@@ -6,6 +6,7 @@ Vérifie, dans un navigateur piloté par Playwright (Chromium par défaut) :
   2. la même suite dans la version autonome (ZODIAC-standalone.html), réseau coupé ;
   3. un parcours réel en français, arabe (droite à gauche) et japonais : résultat, thème natal, nuit, portrait, sans erreur ;
      articles « En savoir plus » au clavier depuis une bulle (i) et depuis l'Oracle ; changement d'heure le jour de naissance ;
+     Cosmic Daily (voix au clavier, signe, voix retenue) ;
      puis l'Oracle Oui / Non, animations actives : ouverture, réponse après la rotation, nouvelle question, fermeture ;
      l'audit d'accessibilité couvre aussi l'oracle ouvert et la fenêtre « Soutenir le projet » ;
   4. le site installable (dossier site/) servi comme sur GitHub Pages : installation, mise à jour qui ne retélécharge
@@ -293,6 +294,47 @@ async def dst_journey(browser, file):
         await ctx.close()
 
 
+async def cosmic_journey(browser, file):
+    """Onglet Cosmic Daily : cinq rubriques, voix choisie au clavier (focus gardé, voix retenue après
+    rechargement), autre signe choisi. En français, arabe et japonais."""
+    print(f'Cosmic Daily — {file.name}')
+    for lang in ('fr', 'ar', 'ja'):
+        ctx = await browser.new_context(viewport={'width': 1280, 'height': 900}, reduced_motion='reduce')
+        page = await ctx.new_page()
+        errors = []
+        page.on('pageerror', lambda e: errors.append(str(e)))
+        step = 'ouverture'
+        try:
+            await page.goto(file.as_uri() + PROFILE + lang)
+            await page.wait_for_selector('#tabCosmic', timeout=60000)
+            await page.click('#tabCosmic')
+            await page.wait_for_selector('#viewCosmic .cosmic-rubric', timeout=10000)
+            rubrics = await page.locator('#viewCosmic .cosmic-rubric').count()
+            before = await page.locator('.cosmic-roast p').inner_text()
+            step = 'voix au clavier'
+            await page.locator('input[name="cosmicVoice"][value="classic"]').check()
+            await page.locator('input[name="cosmicVoice"][value="classic"]').focus()
+            await page.keyboard.press('ArrowDown')   # voix suivante : Drôle
+            await page.wait_for_function("cosmicVoice === 'funny'", timeout=5000)
+            focus = await page.evaluate('document.activeElement.name + "=" + document.activeElement.value')
+            funny = await page.locator('.cosmic-roast p').inner_text()
+            step = 'autre signe'
+            await page.select_option('#cosmicSign', 'pisces')
+            pisces = await page.locator('.cosmic-roast p').inner_text()
+            sky = await page.locator('#cosmicSkyText').inner_text()
+            step = 'rechargement'
+            await page.reload()
+            await page.wait_for_selector('#viewCosmic .cosmic-rubric', timeout=60000)
+            kept = await page.locator('input[name="cosmicVoice"][value="funny"]').is_checked()
+            ok = (rubrics == 5 and focus == 'cosmicVoice=funny' and funny != before and pisces != funny and sky.strip()
+                  and kept and not errors)
+            report(ok, f'{lang} : Cosmic Daily, 5 rubriques, voix au clavier (focus gardé, retenue), autre signe, ciel « {sky.strip()} »'
+                   + ('' if ok else f' | {rubrics} {focus} {funny != before} {pisces != funny} {kept}') + (f' | {errors}' if errors else ''))
+        except Exception as exc:
+            report(False, f'{lang} : Cosmic Daily, étape « {step} » — {str(exc).splitlines()[0][:200]}')
+        await ctx.close()
+
+
 async def accessibility(browser, file):
     """Audit axe-core : accueil + 5 onglets, français et arabe, thèmes sombre et clair. Aucune anomalie tolérée."""
     print(f'Accessibilité (audit axe-core) — {file.name}')
@@ -316,7 +358,7 @@ async def accessibility(browser, file):
                 await page.click('#themeBtn')
                 await page.wait_for_function("document.documentElement.dataset.theme === 'light'", timeout=5000)
                 await page.wait_for_timeout(300)
-            for tab in ('accueil', 'tabSigns', 'tabNatal', 'tabSky', 'tabCompat', 'tabNumbers', 'tabTarot'):
+            for tab in ('accueil', 'tabSigns', 'tabNatal', 'tabSky', 'tabCompat', 'tabNumbers', 'tabTarot', 'tabCosmic'):
                 if tab != 'accueil':
                     await page.click('#' + tab)
                     await page.wait_for_timeout(250)
@@ -441,6 +483,9 @@ async def installable_site(browser):
             await page.evaluate('navigator.serviceWorker.ready')
             await page.reload()
             controlled = await page.evaluate('!!navigator.serviceWorker.controller')
+            lazy_ok = await page.evaluate("ensureCosmic('fr')") and await page.evaluate("ensureCosmic('ja')")
+            report(lazy_ok and await page.evaluate("!!window.COSMIC_I18N.fr && !window.COSMIC_I18N.ko"),
+                   'Cosmic Daily : textes chargés à la demande, une langue à la fois')
             first = sum(size for _, _, size in log)
             report(controlled, f'installation : le service worker garde l\'appli en mémoire ({first // 1024} Ko téléchargés)')
 
@@ -466,7 +511,8 @@ async def installable_site(browser):
             modules = [p.rsplit('/', 1)[-1] for p, code, _ in log if code == 200 and re.search(r'\.[0-9a-f]{10}\.(js|css)$', p)]
             update = sum(size for _, _, size in log)
             kept = await page.evaluate("caches.open('zodiac-files').then(c => c.keys()).then(k => k.map(r => r.url.split('/').pop()))")
-            ok = (len(changed) == 1 and modules == changed and sorted(kept) == sorted(nxt['assets'])
+            lazy_files = set(nxt['lazy'].values())
+            ok = (len(changed) == 1 and modules == changed and set(nxt['assets']) <= set(kept) <= set(nxt['assets']) | lazy_files
                   and update < 400 * 1024 and f"zodiac-page-{nxt['version']}" in keys and not errors)
             report(ok, f'mise à jour : {len(modules)} module retéléchargé sur {len(nxt["assets"])} '
                        f'({update // 1024} Ko au lieu de {first // 1024} Ko), anciens modules effacés'
@@ -482,7 +528,9 @@ async def installable_site(browser):
                 await ctx.set_offline(True)
             await page.goto(base + '?date=1982-11-03&lang=fr')
             await page.wait_for_selector('.sign-name', timeout=60000)
-            report(not errors, 'réseau coupé, après la mise à jour : l\'appli s\'ouvre et calcule' + (f' | {errors}' if errors else ''))
+            offline_cosmic = await page.evaluate("ensureCosmic('fr')")
+            report(not errors and offline_cosmic, 'réseau coupé, après la mise à jour : l\'appli s\'ouvre et calcule, Cosmic Daily en français disponible'
+                   + ('' if offline_cosmic else ' | Cosmic Daily absent hors ligne') + (f' | {errors}' if errors else ''))
             await ctx.close()
         except Exception as exc:   # un échec est signalé comme les autres, sans interrompre le rapport
             report(False, 'site installable : ' + (str(exc).strip().splitlines() or ['erreur inconnue'])[0][:300])
@@ -507,6 +555,7 @@ async def main():
         await journey(browser, ROOT / 'ZODIAC.html')
         await oracle_journey(browser, ROOT / 'ZODIAC.html')
         await dst_journey(browser, ROOT / 'ZODIAC.html')
+        await cosmic_journey(browser, ROOT / 'ZODIAC.html')
         if BROWSER == 'chromium':
             await accessibility(browser, ROOT / 'ZODIAC.html')
         await installable_site(browser)

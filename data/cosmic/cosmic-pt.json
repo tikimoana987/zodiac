@@ -1,0 +1,2217 @@
+{
+  "lang": "pt",
+  "ui": {
+    "tab": "Cosmic Daily",
+    "tabSub": "O horóscopo do dia, com humor",
+    "intro": "Seu horóscopo de hoje, baseado no céu real, na voz que você escolher.",
+    "voice": "Voz",
+    "voices": {
+      "classic": "Clássico",
+      "funny": "Divertido",
+      "piquant": "Picante"
+    },
+    "sign": "Signo",
+    "skyToday": "Céu de hoje",
+    "mercuryRx": "Mercúrio retrógrado",
+    "rubrics": {
+      "career": "Carreira",
+      "love": "Amor",
+      "wellbeing": "Bem-estar",
+      "wisdom": "Sabedoria cósmica",
+      "roast": "Cosmic Roast"
+    },
+    "note": "Uma brincadeira para sorrir, não uma previsão.",
+    "share": "Compartilhar",
+    "copied": "Texto copiado",
+    "info": "Cosmic Daily se baseia no céu real do dia: o signo pelo qual a Lua passa, que muda a cada dois ou três dias, e Mercúrio quando está retrógrado. Os textos brincam com os estereótipos de cada signo, nunca com as pessoas. Uma brincadeira para sorrir, não uma previsão."
+  },
+  "moon": {
+    "aries": "a Lua em Áries",
+    "taurus": "a Lua em Touro",
+    "gemini": "a Lua em Gêmeos",
+    "cancer": "a Lua em Câncer",
+    "leo": "a Lua em Leão",
+    "virgo": "a Lua em Virgem",
+    "libra": "a Lua em Libra",
+    "scorpio": "a Lua em Escorpião",
+    "sagittarius": "a Lua em Sagitário",
+    "capricorn": "a Lua em Capricórnio",
+    "aquarius": "a Lua em Aquário",
+    "pisces": "a Lua em Peixes"
+  },
+  "common": {
+    "classic": {
+      "wellbeing": {
+        "fire": [
+          "{moon} desperta uma energia vibrante. Uma caminhada sem pressa pode ajudar você a reencontrar seu próprio ritmo.",
+          "O entusiasmo também pode ser aproveitado com calma. Faça uma pausa antes de seguir em frente."
+        ],
+        "earth": [
+          "{moon} convida a desacelerar e retomar gestos simples. Um momento tranquilo pode ser suficiente.",
+          "Uma caminhada por lugares conhecidos e um pouco de descanso podem deixar o dia mais leve."
+        ],
+        "air": [
+          "{moon} estimula as conversas e os pensamentos. Uma pausa longe do falatório pode fazer bem.",
+          "Respire entre uma ideia e outra. O silêncio também merece espaço."
+        ],
+        "water": [
+          "{moon} torna o clima mais sensível. Um instante de tranquilidade pode ajudar a acolher suas emoções.",
+          "Uma caminhada serena ou um momento com pessoas queridas pode suavizar um dia agitado."
+        ]
+      },
+      "wisdom": {
+        "fire": [
+          "{moon} lembra que o impulso vai mais longe quando encontra uma direção.",
+          "A força de um começo às vezes está na paciência do primeiro passo."
+        ],
+        "earth": [
+          "{moon} lembra que aquilo que cresce devagar pode durar muito.",
+          "A constância não impede a descoberta; ela lhe dá sustentação."
+        ],
+        "air": [
+          "{moon} sugere que uma ideia ganha forma quando recebe espaço.",
+          "Ouvir uma ideia diferente não diminui o valor da sua."
+        ],
+        "water": [
+          "{moon} lembra que a sensibilidade pode iluminar sem comandar.",
+          "Acolher uma emoção não significa entregar a ela todas as decisões."
+        ]
+      }
+    },
+    "funny": {
+      "wellbeing": {
+        "fire": [
+          "{moon} parece ter colocado o dia no modo acelerado. Calce os tênis para passear, não para correr uma maratona.",
+          "Sua lista de atividades também precisa de descanso. Dê a ela um tempo sem novas missões."
+        ],
+        "earth": [
+          "{moon} valoriza os prazeres simples. Uma poltrona e um pouco de sossego não exigem inscrição prévia.",
+          "Se o cobertor estiver chamando você para descansar, escute. Repousar não precisa de cerimônia."
+        ],
+        "air": [
+          "{moon} multiplica os assuntos de conversa. Passear sem comentar cada nuvem pode ser uma experiência rara.",
+          "Deixe suas ideias em pausa enquanto toma um copo d'água. Elas podem esperar."
+        ],
+        "water": [
+          "{moon} desperta lembranças. Uma pausa tranquila é melhor do que uma visita guiada por toda a sua memória.",
+          "Se uma música trouxer dez emoções, deixe-as passar com calma e vá tomar um ar."
+        ]
+      },
+      "wisdom": {
+        "fire": [
+          "{moon} lembra que correr não transforma um erro em atalho.",
+          "Até uma ideia brilhante pode esperar os cadarços serem amarrados."
+        ],
+        "earth": [
+          "{moon} lembra que um plano confortável também pode ter uma saída.",
+          "Ir devagar, tudo bem; pedir permissão ao sofá nem sempre."
+        ],
+        "air": [
+          "{moon} lembra que conversar não é disputar quem fala mais.",
+          "As melhores ideias às vezes gostam de não ser interrompidas."
+        ],
+        "water": [
+          "{moon} lembra que uma lembrança merece um lugar, não a sala inteira.",
+          "A emoção pode pegar o microfone sem presidir a reunião toda."
+        ]
+      }
+    },
+    "piquant": {
+      "wellbeing": {
+        "fire": [
+          "{moon} agita a vontade de fazer tudo. Sua pausa não precisa virar um projeto com metas e resultados.",
+          "Você pode descansar sem otimizar a duração do descanso. Que ousadia, não é mesmo?"
+        ],
+        "earth": [
+          "{moon} pede conforto e praticidade. Mas não é preciso criar uma comissão para escolher o passeio.",
+          "A tranquilidade não surge de aperfeiçoar infinitamente o ambiente. Apenas descanse."
+        ],
+        "air": [
+          "{moon} abre vinte conversas imaginárias. Uma pausa de verdade dispensa seus comentários ao vivo.",
+          "Encerre por um instante o debate interior. Até seus argumentos merecem folga."
+        ],
+        "water": [
+          "{moon} intensifica a nostalgia. O passado pode continuar sendo uma lembrança, não a programação da noite.",
+          "Uma emoção insistente nem sempre pede uma análise completa. Vá tomar um ar."
+        ]
+      },
+      "wisdom": {
+        "fire": [
+          "{moon} lembra que uma urgência inventada continua sendo invenção.",
+          "Fazer barulho enquanto avança não prova que você conhece o caminho."
+        ],
+        "earth": [
+          "{moon} lembra que um hábito não é um monumento a preservar.",
+          "O conforto é um refúgio, não o diretor da programação."
+        ],
+        "air": [
+          "{moon} lembra que nem todo pensamento exige plateia.",
+          "Uma ideia pode ser brilhante sem fazer um discurso sobre si mesma."
+        ],
+        "water": [
+          "{moon} lembra que um sentimento não é uma investigação concluída.",
+          "O passado merece atenção, não uma assinatura vitalícia."
+        ]
+      }
+    }
+  },
+  "mercury": {
+    "classic": [
+      "Mercúrio retrógrado convida a reler suas mensagens antes de enviá-las. Um detalhe pode evitar um mal-entendido.",
+      "Uma conversa antiga pode voltar à tona com Mercúrio retrógrado. Procure compreender o contexto.",
+      "Mercúrio retrógrado sugere conferir os detalhes em vez de presumir que todos entenderam a mesma coisa."
+    ],
+    "funny": [
+      "Mercúrio retrógrado recomenda uma segunda leitura. Sua mensagem talvez pareça misteriosa só porque falta uma palavra.",
+      "Um assunto antigo voltou? Mercúrio retrógrado aparentemente achou a gaveta das conversas inacabadas.",
+      "Mercúrio retrógrado põe a comunicação à prova. Antes de culpar o cosmos, confira o destinatário da mensagem."
+    ],
+    "piquant": [
+      "Mercúrio retrógrado não é licença cósmica para mandar mensagens ambíguas e desaparecer em seguida.",
+      "Às vezes o passado volta com Mercúrio retrógrado. Você não precisa reabrir todos os arquivos que ele traz.",
+      "Mercúrio retrógrado sugere reler suas palavras. A outra pessoa não tem obrigação de adivinhar as legendas dos seus pensamentos."
+    ]
+  },
+  "signs": {
+    "aries": {
+      "classic": {
+        "career": {
+          "fire": [
+            "{moon} incentiva sua ousadia natural. Escolher uma prioridade pode tornar esse impulso mais produtivo.",
+            "Áries sabe tomar a iniciativa; dedicar tempo a preparar os próximos passos pode favorecer seus objetivos."
+          ],
+          "earth": [
+            "{moon} valoriza as etapas concretas. Seu entusiasmo pode ganhar força com um plano simples.",
+            "Um ritmo moderado não diminui sua determinação. Pode até dar mais consistência às suas iniciativas."
+          ],
+          "air": [
+            "{moon} favorece a circulação de ideias. Ouvir as propostas de quem está à sua volta pode enriquecer seu impulso.",
+            "Áries gosta de abrir caminhos; permitir que cada pessoa contribua pode fortalecer o projeto."
+          ],
+          "water": [
+            "{moon} convida a perceber o clima da equipe. Sua franqueza pode ganhar delicadeza sem perder a força.",
+            "Por trás de uma hesitação profissional às vezes existe a necessidade de ser ouvido. Sua coragem também pode aparecer aí."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} desperta sua espontaneidade. Um gesto sincero pode tocar mais do que uma grande declaração improvisada.",
+            "Sua energia traz calor às relações. Respeitar o ritmo da outra pessoa pode enriquecer esse encontro."
+          ],
+          "earth": [
+            "{moon} convida a apreciar os pequenos cuidados. A presença constante pode falar tão alto quanto um grande impulso.",
+            "Áries gosta de surpreender; um hábito compartilhado também pode ter seu encanto."
+          ],
+          "air": [
+            "{moon} anima as conversas. Seu entusiasmo pode caminhar junto com uma escuta curiosa.",
+            "Ter coragem de expressar um desejo é valioso. Fazer uma pergunta sem antecipar a resposta também."
+          ],
+          "water": [
+            "{moon} deixa as nuances afetivas mais perceptíveis. A delicadeza pode acompanhar sua sinceridade.",
+            "Seu impulso não precisa resolver todas as emoções. Às vezes, estar presente basta."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} acelera o ritmo. Áries pode esquecer que nem todo mundo começa ao mesmo sinal.",
+            "Você gosta de ir à frente; esperar uma resposta antes de continuar seria uma bela mudança."
+          ],
+          "earth": [
+            "{moon} pede um pouco de paciência. Áries descobre que as coisas boas nem sempre aparecem num estalar de dedos.",
+            "Sua vontade de avançar é encantadora; os três lembretes para a mesma tarefa, nem tanto."
+          ],
+          "air": [
+            "{moon} convida ao diálogo. Áries poderia deixar uma frase chegar ao fim antes de oferecer a solução.",
+            "Você escuta com entusiasmo, principalmente quando a conversa chega à parte em que pode agir."
+          ],
+          "water": [
+            "{moon} traz sensibilidade. Seu impulso de socorrer os outros pode esperar até que expliquem o que houve.",
+            "Áries quer ajudar imediatamente; ficar em silêncio por um momento também exige coragem."
+          ]
+        }
+      },
+      "funny": {
+        "career": {
+          "fire": [
+            "{moon} dá vontade de começar antes mesmo de a equipe abrir o documento. Esperar as instruções pode evitar uma segunda largada.",
+            "Para Áries, a reunião de abertura é um obstáculo entre ele e o início do projeto."
+          ],
+          "earth": [
+            "{moon} prefere tudo organizado e conferido. Sua impaciência já procura um atalho para o último item da lista.",
+            "Pedem um cronograma realista. Você responde “agora”, com ponto de exclamação."
+          ],
+          "air": [
+            "{moon} faz as ideias circularem. Áries já escolheu a melhor antes de os outros terminarem de falar.",
+            "Seu entusiasmo anima o debate; falta descobrir essa atividade exótica chamada fazer anotações."
+          ],
+          "water": [
+            "{moon} convida a observar as reações. Seu discurso motivacional poderia começar perguntando como está a equipe.",
+            "Áries quer resolver o problema em dois minutos. A equipe gostaria primeiro de saber qual é o problema."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} traz energia para os encontros. Seu convite espontâneo ficaria melhor se incluísse a opinião da outra pessoa.",
+            "Áries adora surpresas românticas; anunciar o programa três segundos antes de sair exige certa adaptação."
+          ],
+          "earth": [
+            "{moon} sugere um momento simples. Você pode escolher um lugar agradável sem transformar a decisão em competição.",
+            "Seu entusiasmo propõe uma aventura. O conforto lembra que um jantar tranquilo também vale a pena."
+          ],
+          "air": [
+            "{moon} incentiva a conversar com leveza. Faça uma pergunta e resista à tentação de dar a resposta também.",
+            "Áries chama isso de conversa apaixonada. Os outros às vezes veem uma corrida de revezamento sem passagem do bastão."
+          ],
+          "water": [
+            "{moon} desperta emoções discretas. Seu reflexo de apresentar um plano de ação pode esperar o fim de uma confidência.",
+            "Você quer consertar um dia ruim com um grande gesto. Apenas ouvir talvez tenha seu charme."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} incentiva a ação. Áries seria capaz de começar a corrida enquanto ainda desenham o percurso.",
+            "Você chama isso de iniciativa. O calendário chama de chegar antes do convite."
+          ],
+          "earth": [
+            "{moon} prefere avançar por etapas. Áries olha a lista e pergunta se pode pular direto para a vitória.",
+            "Sua paciência é admirável: às vezes dura exatamente o tempo de dizer “E aí?”."
+          ],
+          "air": [
+            "{moon} estimula as discussões. Áries considera o silêncio uma autorização para assumir o comando.",
+            "Você diz gostar de trocar ideias. Principalmente quando elas chegam na sua velocidade."
+          ],
+          "water": [
+            "{moon} abre espaço para a intuição. Áries já vestiu a capa de herói antes de ouvir a história.",
+            "Seu coração corre na frente. Seus ouvidos tentam alcançar o resto do grupo."
+          ]
+        }
+      },
+      "piquant": {
+        "career": {
+          "fire": [
+            "{moon} aumenta sua vontade de agir. Áries poderia esperar o fim das instruções antes de chamar a iniciativa de sucesso.",
+            "Sua confiança impressiona; o documento que você não leu, nem tanto."
+          ],
+          "earth": [
+            "{moon} exige detalhes e método. Seu lema “a gente vê no caminho” talvez precise, desta vez, de um caminho.",
+            "Áries descobre o acompanhamento de tarefas. Pelo visto, começar não bastava para terminar."
+          ],
+          "air": [
+            "{moon} incentiva as trocas. Evite tratar toda sugestão diferente como uma ameaça ao seu território.",
+            "Sua opinião está pronta, como sempre. A dos colegas também merece o direito de existir."
+          ],
+          "water": [
+            "{moon} torna o ambiente mais sensível. Sua franqueza não precisa entrar como uma porta batendo.",
+            "Áries às vezes confunde ser direto com falar antes de escolher as palavras."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} desperta a espontaneidade. Um encontro não é uma prova de velocidade, nem para Áries.",
+            "Sua paixão é charmosa; deixar a outra pessoa escolher entre duas ideias não deveria tomar a noite inteira."
+          ],
+          "earth": [
+            "{moon} prefere a suavidade dos rituais. Sua urgência de mudar tudo pode dar espaço ao que já funciona.",
+            "Áries quer sacudir os hábitos; talvez pudesse começar perguntando se eles realmente precisam disso."
+          ],
+          "air": [
+            "{moon} favorece perguntas e conversas. Uma resposta diferente não é necessariamente um convite para discutir.",
+            "Você queria um papo leve. Seu discurso de vinte minutos talvez seja ambicioso demais."
+          ],
+          "water": [
+            "{moon} chama atenção para o que não foi dito. Não transforme cada silêncio numa missão de resgate imediata.",
+            "Áries tem um grande coração, mas não precisa dirigir o roteiro emocional de todo mundo."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} desperta a impaciência. Áries às vezes entende “pense bem” como uma instrução para os outros.",
+            "Você não pula etapas. Só considera algumas delas sugestões opcionais."
+          ],
+          "earth": [
+            "{moon} defende a calma. Áries exige um resultado imediato, mas amadurecido à perfeição: uma bela missão para o relógio.",
+            "Sua relação com a paciência parece uma visita guiada cuja saída você procura desde a entrada."
+          ],
+          "air": [
+            "{moon} multiplica as opiniões. Áries gosta da diversidade, desde que todos cheguem logo à sua conclusão.",
+            "Você escuta as objeções com muita energia. É quase como ouvi-las de verdade."
+          ],
+          "water": [
+            "{moon} pede delicadeza. Áries às vezes acha que um abraço e uma solução express resolvem toda emoção.",
+            "Você tem disposição para apoiar o mundo inteiro; perguntar o que ele deseja já seria um começo."
+          ]
+        }
+      }
+    },
+    "taurus": {
+      "classic": {
+        "career": {
+          "fire": [
+            "{moon} desperta a vontade de tomar iniciativas. Touro pode experimentar um método novo sem perder sua solidez.",
+            "Você sabe construir com paciência. Um pouco de ousadia às vezes destrava o que estava parado."
+          ],
+          "earth": [
+            "{moon} apoia seu gosto pelo concreto. Seus esforços constantes podem dar estabilidade a um projeto.",
+            "A paciência de Touro é valiosa. Só vale distinguir reflexão de imobilidade."
+          ],
+          "air": [
+            "{moon} estimula as trocas. Explicar suas escolhas pode ajudar os outros a entender seu ritmo.",
+            "Sua opinião amadurece devagar, mas merece encontrar ideias diferentes."
+          ],
+          "water": [
+            "{moon} destaca os sentimentos. Seu senso de responsabilidade pode oferecer segurança à equipe.",
+            "Uma mudança pode gerar dúvidas. Expressá-las com calma às vezes ajuda a avançar."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} convida a uma pequena aventura. Seu gosto pelo familiar pode acolher uma surpresa escolhida a dois.",
+            "Touro sabe criar referências afetuosas. Um toque de inesperado pode dar a elas um charme novo."
+          ],
+          "earth": [
+            "{moon} celebra os momentos simples. Um carinho constante pode alimentar um vínculo sem grandes discursos.",
+            "Sua fidelidade aos hábitos pode se tornar uma linguagem de afeto, desde que abra espaço para novos desejos."
+          ],
+          "air": [
+            "{moon} incentiva conversas leves. Compartilhar uma ideia inesperada pode abrir um belo diálogo.",
+            "Touro não precisa abandonar suas convicções para ouvir outro jeito de amar."
+          ],
+          "water": [
+            "{moon} torna as emoções mais presentes. Um momento tranquilo pode ajudar a expressar o que você costuma guardar.",
+            "Sua doçura também merece palavras, não apenas pequenos gestos de carinho."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} gosta de movimento. Touro prefere conferir se o programa inclui algum lugar para sentar.",
+            "Seus projetos avançam muito bem assim que você encontra o lugar perfeito para começar."
+          ],
+          "earth": [
+            "{moon} compartilha seu gosto pelo conforto. Mas Touro pode descobrir que mudar um móvel não abala toda a estabilidade do mundo.",
+            "Sua constância ajuda muito; às vezes também transforma qualquer novidade em algo solene."
+          ],
+          "air": [
+            "{moon} incentiva a conversa. Touro escuta com prazer, mesmo quando sua ideia inicial continua confortavelmente instalada.",
+            "Você gosta de ouvir outras opiniões; dar espaço a elas nos seus hábitos já é outra aventura."
+          ],
+          "water": [
+            "{moon} favorece as confidências. Touro às vezes demora tanto a escolher o momento que o chá esfria.",
+            "Sua cautela carinhosa é agradável, mas também pode atrasar palavras muito simples."
+          ]
+        }
+      },
+      "funny": {
+        "career": {
+          "fire": [
+            "{moon} incentiva a experimentar novidades. Touro primeiro pede o manual, um plano B e uma cadeira.",
+            "Propõem uma mudança de método. Você pergunta se existe uma versão que mantenha os velhos hábitos."
+          ],
+          "earth": [
+            "{moon} aprecia tarefas práticas. Touro começa organizando a mesa para organizar melhor a organização.",
+            "Seu plano é impecável. Só falta um detalhe pequeno: colocá-lo em prática."
+          ],
+          "air": [
+            "{moon} multiplica as propostas. Touro analisa uma enquanto os outros já inventaram mais seis.",
+            "Na reunião, você não muda de opinião facilmente. A mesa tem mais chance de mudar de lugar."
+          ],
+          "water": [
+            "{moon} torna o clima mais sensível. Touro prepara um lanche para acalmar a equipe antes de falar do projeto.",
+            "Diante das tensões do grupo, você sugere uma pausa confortável. Um método bem seu."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} dá vontade de sair da rotina. Touro considera um lugar novo e depois verifica a qualidade das cadeiras.",
+            "Uma surpresa parece interessante, desde que seja anunciada com tantos detalhes que deixe de ser surpresa."
+          ],
+          "earth": [
+            "{moon} valoriza os pequenos prazeres. Sua noite ideal inclui um lugar conhecido e nenhuma mudança de última hora.",
+            "Touro gosta de demonstrações de afeto. Um carinho e uma sobremesa compartilhada combinam muito bem."
+          ],
+          "air": [
+            "{moon} favorece a espontaneidade das palavras. Experimente dizer sim a uma ideia antes de listar as objeções.",
+            "Você escuta uma proposta romântica nova como um arquiteto examinando uma parede de sustentação."
+          ],
+          "water": [
+            "{moon} suaviza as conversas. Touro poderia trocar o silêncio teimoso por uma frase bem simples.",
+            "Uma lembrança carinhosa volta à mente. Você se recorda até do lugar exato onde estava sentado."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} propõe improvisar. Touro pergunta se a improvisação pode ser agendada com antecedência.",
+            "Você gosta de novidades, especialmente quando são idênticas ao que já existia."
+          ],
+          "earth": [
+            "{moon} celebra a estabilidade. Touro tem até um lugar reservado para pensar onde vai se sentar.",
+            "Pediram que você fosse flexível. Você escolheu uma almofada mais macia."
+          ],
+          "air": [
+            "{moon} estimula as conversas. Touro responde calmamente e depois leva o assunto de volta ao ponto de partida.",
+            "Sua mente aberta é real. Só tem horário de funcionamento e condições de acesso."
+          ],
+          "water": [
+            "{moon} desperta lembranças. Touro ainda conta por que sua poltrona antiga era insubstituível.",
+            "Sua memória é doce e precisa, sobretudo quando se trata de hábitos que ninguém ousava mudar."
+          ]
+        }
+      },
+      "piquant": {
+        "career": {
+          "fire": [
+            "{moon} pede ousadia. Touro poderia tentar antes de exigir provas de que nada vai mudar.",
+            "Seu método funciona; isso não transforma todos os outros em ofensas pessoais."
+          ],
+          "earth": [
+            "{moon} incentiva a praticidade. Touro pode avançar sem criar um regulamento interno para cada etapa.",
+            "Você chama isso de rigor. O projeto só espera que a preparação lhe dê uma chance."
+          ],
+          "air": [
+            "{moon} faz as ideias circularem. Sua primeira reação poderia ser algo além de uma lista de razões para recusar.",
+            "Touro consulta as opiniões com grande abertura, depois volta tranquilamente à sua."
+          ],
+          "water": [
+            "{moon} aumenta a sensibilidade. Sua necessidade de estabilidade não obriga a equipe a andar na ponta dos pés.",
+            "Uma proposta de mudança não é um ataque ao seu conforto profissional."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} incentiva a aventura. Touro pode aceitar um desvio sem exigir garantia de voltar tudo exatamente ao mesmo lugar.",
+            "Seu carinho gosta de rituais, mas o afeto não segue um cronograma imutável."
+          ],
+          "earth": [
+            "{moon} coloca o conforto em destaque. Isso não é motivo para confundir romantismo com controle de temperatura.",
+            "Você encontrou a fórmula de uma noite ideal. A outra pessoa talvez tenha ideias também, imagine só."
+          ],
+          "air": [
+            "{moon} convida a conversar com leveza. Sua opinião sobre o programa não é um tratado a defender.",
+            "Touro pode dizer “por que não?” sem anexar imediatamente a lista de ressalvas."
+          ],
+          "water": [
+            "{moon} deixa as emoções mais delicadas. Ouvir o que muda não ameaça aquilo que traz segurança.",
+            "Seu silêncio parece serenidade, mesmo quando você está negociando cada novidade por dentro."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} convida ao movimento. Touro pergunta se a ideia tem um botão “voltar às configurações anteriores”.",
+            "A mudança interessa muito a você, especialmente quando envolve os hábitos de outra pessoa."
+          ],
+          "earth": [
+            "{moon} defende as referências familiares. Touro poderia dar um nome oficial à sua cadeira favorita.",
+            "Seu conforto é tão organizado que até o imprevisto teria de reservar horário."
+          ],
+          "air": [
+            "{moon} multiplica os pontos de vista. Touro os observa como quem visita um museu: com interesse, sem mover nada.",
+            "Você diz que está considerando outras perspectivas, mas sua opinião aparentemente assinou um contrato de longo prazo."
+          ],
+          "water": [
+            "{moon} convida a acolher sentimentos. Touro às vezes prefere guardar os antigos numa caixa bem arrumada.",
+            "Você protege suas lembranças com carinho; nem todas precisam de cadeado."
+          ]
+        }
+      }
+    },
+    "gemini": {
+      "classic": {
+        "career": {
+          "fire": [
+            "{moon} dá fôlego às suas ideias. Escolher as que merecem crescer pode aumentar sua eficiência.",
+            "A agilidade de Gêmeos abre caminhos. Levar um deles até o fim pode trazer uma satisfação diferente."
+          ],
+          "earth": [
+            "{moon} convida a definir as etapas. Sua curiosidade pode encontrar apoio num método simples.",
+            "Uma boa ideia às vezes precisa amadurecer. Você não precisa mudar de direção a cada detalhe."
+          ],
+          "air": [
+            "{moon} multiplica as possibilidades de troca. Sua habilidade para aproximar pessoas pode dar coesão a um projeto.",
+            "Gêmeos sabe fazer boas perguntas. Deixar uma resposta se desenvolver pode ser igualmente valioso."
+          ],
+          "water": [
+            "{moon} torna as reações mais perceptíveis. Sua flexibilidade pode ajudar a acolher opiniões delicadas.",
+            "Entre tantas informações, considere também o que a equipe tem dificuldade de colocar em palavras."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} incentiva os impulsos espontâneos. Sua leveza pode criar um belo momento se você estiver realmente presente.",
+            "A curiosidade de Gêmeos alimenta os vínculos. Uma atenção sincera pode valer mais do que uma surpresa elaborada."
+          ],
+          "earth": [
+            "{moon} valoriza os gestos constantes. Um hábito compartilhado pode aprofundar uma cumplicidade já viva.",
+            "Você gosta de novidades; redescobrir um prazer simples a dois também pode surpreender."
+          ],
+          "air": [
+            "{moon} torna as conversas animadas. Ouvir com atenção pode abrir ainda mais espaço para o carinho.",
+            "Suas palavras aproximam as pessoas. Reserve tempo também para as palavras da outra pessoa."
+          ],
+          "water": [
+            "{moon} convida a reconhecer as emoções por trás das palavras. Um silêncio acolhedor pode valer uma longa explicação.",
+            "Gêmeos gosta de entender. Algumas impressões só precisam ser acolhidas."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} multiplica a vontade de agir. Gêmeos poderia escolher uma aventura antes de anunciar outras quatro.",
+            "Sua curiosidade corre na frente; seus projetos talvez gostassem de saber o caminho de volta."
+          ],
+          "earth": [
+            "{moon} pede constância. Gêmeos já procura uma forma mais interessante de seguir a mesma rotina.",
+            "Você gosta de métodos claros, desde que permitam pequenas fugas para novas ideias."
+          ],
+          "air": [
+            "{moon} alimenta as conversas. Gêmeos sempre encontra mais uma pergunta.",
+            "Seu entusiasmo pelas trocas é valioso; uma resposta completa às vezes merece toda a atenção."
+          ],
+          "water": [
+            "{moon} faz as emoções virem à tona. Gêmeos pensa em explicá-las antes de simplesmente senti-las.",
+            "Você sabe dar nome a muitas coisas; permitir um instante de silêncio também tem sua elegância."
+          ]
+        }
+      },
+      "funny": {
+        "career": {
+          "fire": [
+            "{moon} dá vontade de agir depressa. Gêmeos abre cinco projetos e esquece o título do primeiro.",
+            "Você sugere uma sessão de ideias. A equipe não sabia que seria preciso reservar uma sala para todas elas."
+          ],
+          "earth": [
+            "{moon} pede método. Gêmeos já inventou três categorias novas para guardar uma única anotação.",
+            "Sua planilha de acompanhamento está linda. Pena que as tarefas sumiram atrás das cores."
+          ],
+          "air": [
+            "{moon} incentiva as trocas. Gêmeos cria uma conversa para explicar por que existem conversas demais.",
+            "Você faz uma pergunta pertinente; a resposta pode chegar se você deixar a pessoa terminar."
+          ],
+          "water": [
+            "{moon} torna o ambiente delicado. Gêmeos tenta animar a equipe com uma história que puxa outras doze.",
+            "Sua reunião de escuta começa bem e de repente vira um relato detalhado do seu trajeto."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} estimula a espontaneidade. Gêmeos imagina um encontro, depois outro, antes de escolher o primeiro.",
+            "Seu charme adora surpresas. A outra pessoa talvez gostasse de saber ao menos onde será o encontro."
+          ],
+          "earth": [
+            "{moon} destaca os pequenos gestos. Uma atenção simples pode substituir a mensagem de três páginas que a explica.",
+            "Gêmeos gosta de variar os programas. Uma noite tranquila sem nenhuma novidade seria quase uma aventura."
+          ],
+          "air": [
+            "{moon} abre as portas da conversa. Experimente fazer uma pergunta cuja resposta você realmente quer ouvir.",
+            "Você promete um papo a dois e acaba convidando cinco assuntos para a mesma mesa."
+          ],
+          "water": [
+            "{moon} convida a sentir em vez de comentar. Gêmeos pode viver um momento carinhoso sem narrá-lo ao vivo.",
+            "Uma lembrança emociona você. Já está preparando a versão longa, a curta e a alternativa da história."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} desperta vontades novas. Gêmeos muda de projeto mais rápido do que consegue virar as páginas do caderno.",
+            "Suas ideias estão todas com as malas prontas. Nenhuma sabe ainda para onde vai."
+          ],
+          "earth": [
+            "{moon} procura estabilidade. Gêmeos responde lançando um novo método para preservar os antigos métodos.",
+            "Você decidiu se organizar. Sua primeira tarefa é comparar dez sistemas de organização."
+          ],
+          "air": [
+            "{moon} incentiva a fala. Gêmeos descobre que uma conversa às vezes tem uma segunda voz.",
+            "Sua ideia de silêncio é original: você explica longamente por que ele seria útil."
+          ],
+          "water": [
+            "{moon} desperta lembranças. Gêmeos conta uma e depois outras sete para esclarecer o contexto.",
+            "Você queria compartilhar uma emoção. Agora a história tem personagens secundários e cronologia própria."
+          ]
+        }
+      },
+      "piquant": {
+        "career": {
+          "fire": [
+            "{moon} agita sua vontade de começar. Gêmeos poderia verificar se terminou um projeto antes de organizar o próximo.",
+            "Seu talento para abrir possibilidades é inegável. Dar um destino a elas seria uma bela novidade."
+          ],
+          "earth": [
+            "{moon} pede disciplina. Sua curiosidade pode sobreviver a uma lista curta sem acrescentar itens a cada dez minutos.",
+            "Gêmeos adora ferramentas de produtividade, sobretudo quando viram um motivo para não produzir."
+          ],
+          "air": [
+            "{moon} multiplica os argumentos. Sua reunião ganharia com uma decisão, não apenas com um desfile de hipóteses.",
+            "Gêmeos sempre tem uma nuance a acrescentar. A ata já chegou à sua própria conclusão provisória."
+          ],
+          "water": [
+            "{moon} aumenta a atenção às reações. Uma colega não precisa necessariamente de uma análise completa do próprio suspiro.",
+            "Você procura a palavra certa para tudo. Às vezes, ouvir sem reformular é a melhor contribuição."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} estimula a improvisação. Seu charme não exige que cada encontro vire um programa de múltipla escolha.",
+            "Gêmeos pode apreciar um momento sem listar imediatamente alternativas mais interessantes."
+          ],
+          "earth": [
+            "{moon} privilegia a continuidade. Você pode manter um carinho sem oferecer uma versão atualizada a cada semana.",
+            "Seu gosto por novidades é sedutor; a relação não é uma assinatura que precisa ser renovada sem parar."
+          ],
+          "air": [
+            "{moon} favorece o diálogo. A outra pessoa talvez queira ser ouvida antes de sua próxima teoria sobre as intenções dela.",
+            "Você sabe conversar; agora experimente a ousadia de deixar uma pergunta sem comentário adicional."
+          ],
+          "water": [
+            "{moon} intensifica as emoções. Gêmeos pode evitar transformar uma confidência em debate de ideias.",
+            "Sua fala sabe brilhar, mas não precisa substituir a presença em todo momento delicado."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} acelera as iniciativas. Gêmeos já mudou de opinião durante o próprio anúncio oficial.",
+            "Você diz seguir a intuição. Às vezes ela deve precisar de um mapa para encontrar você."
+          ],
+          "earth": [
+            "{moon} pede estabilidade. Gêmeos procura a melhor maneira de ser constante e depois descobre outras seis.",
+            "Sua agenda tem tantas opções que precisaria de outra agenda para escolher a primeira."
+          ],
+          "air": [
+            "{moon} distribui ideias. Gêmeos se oferece para apresentar, debater e assistir à própria conversa.",
+            "Você tem opinião sobre todos os assuntos. Inclusive os que ninguém pretendia mencionar."
+          ],
+          "water": [
+            "{moon} deixa o clima emotivo. Gêmeos abre um parêntese para explicar por que não quer abrir parênteses.",
+            "Você sabe nomear sentimentos. Deixá-los existir sem palestra explicativa seria um belo feito simbólico."
+          ]
+        }
+      }
+    },
+    "cancer": {
+      "classic": {
+        "career": {
+          "fire": [
+            "{moon} incentiva a tomar iniciativas. Sua atenção aos outros pode dar um impulso humano a um projeto.",
+            "Câncer prefere construir confiança. Ousar compartilhar sua ideia também pode ajudar o grupo a avançar."
+          ],
+          "earth": [
+            "{moon} favorece referências estáveis. Sua persistência serena pode dar segurança às etapas do trabalho em equipe.",
+            "Uma organização previsível tranquiliza você. Aceitar um pequeno ajuste pode torná-la mais viva."
+          ],
+          "air": [
+            "{moon} incentiva as trocas. Sua escuta sensível pode aproximar diferentes pontos de vista.",
+            "Você percebe as nuances da equipe; colocar suas observações em palavras claras pode ajudar."
+          ],
+          "water": [
+            "{moon} intensifica a sensibilidade do ambiente. Sua intuição pode inspirar cuidados delicados com o grupo.",
+            "Câncer costuma sentir muita coisa. Distinguir impressões de fatos pode ajudar a manter a serenidade."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} incentiva uma espontaneidade calorosa. Um gesto simples pode expressar carinho sem tantos preparativos.",
+            "Sua ternura gosta de cuidar dos vínculos. Uma pequena iniciativa pode animar um momento compartilhado."
+          ],
+          "earth": [
+            "{moon} privilegia a doçura dos hábitos. Um ritual escolhido a dois pode virar um espaço bonito de cumplicidade.",
+            "As lembranças queridas de Câncer podem nutrir uma relação sem impedir novas descobertas."
+          ],
+          "air": [
+            "{moon} favorece a conversa. Dizer diretamente o que você deseja pode evitar que os outros precisem adivinhar.",
+            "Sua imaginação enriquece as trocas. Uma pergunta aberta pode aproximar mais do que uma suposição."
+          ],
+          "water": [
+            "{moon} intensifica a sensibilidade. Acolher suas emoções com simplicidade pode suavizar o diálogo.",
+            "Sua memória guarda os carinhos preciosos. O presente também merece a chance de surpreender."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} dá vontade de agir. Câncer poderia guardar as lembranças por um instante, só até começar.",
+            "Você prefere ter certeza de que todos estão prontos antes do primeiro passo. Uma intenção encantadora."
+          ],
+          "earth": [
+            "{moon} gosta de lugares familiares. Câncer às vezes tem dificuldade até de mudar um hábito feliz.",
+            "Sua necessidade de segurança é delicada; um desvio inofensivo não precisa ameaçá-la."
+          ],
+          "air": [
+            "{moon} multiplica as conversas. Câncer poderia fazer sua pergunta em vez de procurar a resposta em cada olhar.",
+            "Você conhece de cor o silêncio das pessoas próximas; perguntar o que ele significa continua sendo uma boa ideia."
+          ],
+          "water": [
+            "{moon} desperta a nostalgia. Câncer poderia folhear as lembranças sem passar o dia inteiro morando nelas.",
+            "Seu carinho pelo passado é tocante; o presente também gostaria de ganhar um lugar na estante."
+          ]
+        }
+      },
+      "funny": {
+        "career": {
+          "fire": [
+            "{moon} dá o sinal de partida. Câncer primeiro verifica se toda a equipe dormiu bem.",
+            "Sua ideia é excelente. Você hesita em apresentá-la para não incomodar a planta do escritório."
+          ],
+          "earth": [
+            "{moon} adora referências sólidas. Câncer guarda um método antigo como quem guarda um cartão-postal precioso.",
+            "Mudam a pauta. Você pergunta educadamente se a versão anterior pode ficar de lembrança."
+          ],
+          "air": [
+            "{moon} favorece as discussões. Câncer poderia perguntar o que pensam em vez de interpretar três sobrancelhas erguidas.",
+            "Sua ata traz as decisões e uma observação sobre o clima emocional da sala."
+          ],
+          "water": [
+            "{moon} faz os sentimentos aflorarem. Câncer quase distribuiria cobertores antes de uma reunião difícil.",
+            "Sua dedicação à equipe é admirável. Mas nem todos precisam de um chá para comentar um gráfico."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} estimula declarações espontâneas. Câncer ainda prepara um rascunho, caso a emoção transborde.",
+            "Sua ideia de romance inclui uma lembrança, uma música e uma explicação da importância histórica de ambas."
+          ],
+          "earth": [
+            "{moon} celebra o conforto. Câncer escolheu o lugar perfeito: exatamente onde já viveu um momento bonito.",
+            "Você gosta de uma noite simples. Até guardou a toalha da última vez para preservar o clima."
+          ],
+          "air": [
+            "{moon} convida a falar com leveza. Você pode perguntar como a pessoa está sem buscar um significado oculto em cada sílaba.",
+            "Câncer relê mensagens carinhosas pela beleza delas. Também guarda o primeiro rascunho sentimental."
+          ],
+          "water": [
+            "{moon} amplifica a nostalgia. Câncer sugere reviver uma lembrança, com comentários e pequenas pausas emocionadas.",
+            "Sua ternura é um álbum vivo. Novas páginas também teriam muito charme."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} pede ação. Câncer já preparou uma mensagem carinhosa para cada etapa do caminho.",
+            "Você queria agir espontaneamente. Só falta concluir a lista de cuidados emocionais."
+          ],
+          "earth": [
+            "{moon} aprecia a estabilidade. Câncer daria um certificado de carinho à sua caneca antiga.",
+            "Um hábito tranquiliza você. Até a almofada conhece toda a história de como chegou ali."
+          ],
+          "air": [
+            "{moon} incentiva as conversas. Câncer poderia organizar uma pesquisa sobre o tom exato de um “bom dia”.",
+            "Sua intuição tem arquivos bem organizados, mas o rosto da outra pessoa não é um mapa a decifrar."
+          ],
+          "water": [
+            "{moon} desperta lembranças. Câncer revive a emoção de um bilhete deixado há muito tempo.",
+            "Sua memória afetiva tem um arquivo enorme. Até o arquivo às vezes pediria um dia de folga."
+          ]
+        }
+      },
+      "piquant": {
+        "career": {
+          "fire": [
+            "{moon} pede uma iniciativa. Câncer pode apresentar sua ideia sem esperar ter certeza de que ninguém vai franzir a testa.",
+            "Sua percepção do clima é valiosa, mas uma reunião não é um exame permanente das emoções de todos."
+          ],
+          "earth": [
+            "{moon} incentiva a organização. Dá para mudar um hábito sem escrever um discurso de despedida.",
+            "Câncer gosta de suas referências. A escala de trabalho, porém, não é um álbum de família."
+          ],
+          "air": [
+            "{moon} multiplica as mensagens. Você pode pedir esclarecimentos em vez de achar um sentido oculto em cada sinal de pontuação.",
+            "Câncer percebe todas as nuances, inclusive algumas que ninguém pretendia transmitir."
+          ],
+          "water": [
+            "{moon} intensifica as reações. Sua compaixão não exige que você carregue o humor de toda a equipe.",
+            "Câncer identifica tensões depressa. Também pode permitir que os colegas simplesmente tenham um dia comum."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} incentiva o impulso. Você pode demonstrar carinho sem submeter cada gesto à aprovação de suas lembranças.",
+            "Câncer adora pequenos sinais de afeto. Às vezes pode oferecê-los sem perguntar o que todos significam."
+          ],
+          "earth": [
+            "{moon} privilegia a segurança emocional. Seu conforto não precisa ser a programação obrigatória de todos os encontros.",
+            "Tradições são preciosas, mas uma noite diferente não é uma traição ao passado."
+          ],
+          "air": [
+            "{moon} estimula a fala. Diga o que sente em vez de esperar que alguém interprete completamente seu silêncio.",
+            "Câncer tem ótima memória para detalhes. Os outros merecem não fazer prova sobre cada um deles."
+          ],
+          "water": [
+            "{moon} desperta emoções. Uma lembrança não precisa virar a medida de todos os carinhos do presente.",
+            "Sua nostalgia é doce, até o momento em que o presente precisa competir com uma cena perfeitamente conservada."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} incentiva o movimento. Câncer já prepara uma caixinha para guardar as emoções da partida.",
+            "Você diz gostar de surpresas. Seu coração prefere que elas sejam anunciadas com delicadeza e antecedência."
+          ],
+          "earth": [
+            "{moon} defende o familiar. Câncer poderia emoldurar uma agenda antiga só porque lembra uma semana feliz.",
+            "Seu apego é comovente; nem todo objeto cotidiano precisa de cerimônia."
+          ],
+          "air": [
+            "{moon} propõe conversar. Câncer ainda procura o significado daquele suspiro ouvido antes da primeira frase.",
+            "Você chama isso de intuição refinada. Às vezes alguém só estava procurando as palavras."
+          ],
+          "water": [
+            "{moon} aprofunda a sensibilidade. Câncer seria capaz de escrever uma carta de despedida para um hábito que mudou.",
+            "Seu álbum interior é enorme. Felizmente, os dias novos não precisam pedir autorização para entrar."
+          ]
+        }
+      }
+    },
+    "leo": {
+      "classic": {
+        "career": {
+          "fire": [
+            "{moon} incentiva sua energia criativa. Propor uma iniciativa sem monopolizar a cena pode envolver a equipe.",
+            "Seu gosto por projetos ambiciosos merece uma direção clara. O brilho de Leão aumenta quando todos têm espaço."
+          ],
+          "earth": [
+            "{moon} convida a dar forma concreta às ambições. Seu cuidado com a apresentação pode servir a um trabalho minucioso.",
+            "Fazer um projeto avançar discretamente não diminui seu talento para unir pessoas."
+          ],
+          "air": [
+            "{moon} facilita a troca de ideias. Leão pode destacar uma proposta valorizando também seus parceiros.",
+            "Ouvir com atenção pode trazer uma perspectiva inesperada para o próximo projeto."
+          ],
+          "water": [
+            "{moon} destaca o lado humano das decisões. Seu calor pode incentivar um colega inseguro.",
+            "Reconhecer os esforços silenciosos da equipe às vezes é uma forma luminosa de liderar."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} estimula seu entusiasmo afetivo. Um carinho espontâneo pode dizer muito sem precisar impressionar.",
+            "Sua generosidade encontra um belo eco quando você também acolhe os desejos da outra pessoa."
+          ],
+          "earth": [
+            "{moon} favorece gestos simples e constantes. Oferecer tempo pode valer mais do que uma surpresa grandiosa.",
+            "Leão também pode apreciar uma ternura tranquila, sem a necessidade de tornar cada instante memorável."
+          ],
+          "air": [
+            "{moon} desperta a vontade de compartilhar histórias. Seu jeito caloroso fica ainda melhor quando a outra pessoa pode terminar a dela.",
+            "Uma conversa curiosa pode alimentar o vínculo tanto quanto uma grande declaração."
+          ],
+          "water": [
+            "{moon} torna as emoções mais presentes. Sua presença acolhedora pode bastar, sem um grande discurso.",
+            "Receber uma confidência com delicadeza é outra maneira de demonstrar afeto."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} incentiva grandes iniciativas. Leão às vezes esquece que um gesto sincero não precisa de cerimônia.",
+            "Você gosta de abrir o baile; deixar alguém escolher a música também seria um belo carinho."
+          ],
+          "earth": [
+            "{moon} prefere resultados discretos. Até Leão pode saborear uma conquista sem pedir bis sob os holofotes.",
+            "Sua elegância natural vai sobreviver muito bem a uma tarefa feita sem testemunhas."
+          ],
+          "air": [
+            "{moon} convida todos a falar. Leão ganha ao ouvir uma história sem preparar sua própria entrada em cena.",
+            "Você sabe prender a atenção de uma sala; permitir que ela responda também combina com você."
+          ],
+          "water": [
+            "{moon} lembra o valor das emoções. Leão poderia ouvir antes de planejar uma grande demonstração de consolo.",
+            "Seu coração é generoso; também pode se mostrar sem encenação."
+          ]
+        }
+      },
+      "funny": {
+        "career": {
+          "fire": [
+            "{moon} quer lançar projetos imediatamente. Leão já preparou o discurso de inauguração enquanto a equipe procura o arquivo.",
+            "Você apresentou a ideia como uma estreia mundial. A lista de tarefas ainda pede detalhes."
+          ],
+          "earth": [
+            "{moon} exige método. Leão descobre que as planilhas de acompanhamento não têm coluna para aplausos.",
+            "Sua apresentação impressiona; o documento de trabalho gostaria de estar igualmente completo."
+          ],
+          "air": [
+            "{moon} acelera as discussões. Você conduz tão bem a reunião que o silêncio pede um horário para participar.",
+            "Leão tem uma proposta para cada assunto, inclusive os que aparecem só nas notas de rodapé."
+          ],
+          "water": [
+            "{moon} convida a perceber as sensibilidades. Seu discurso motivacional talvez funcione sem três metáforas heroicas.",
+            "Um colega pede ajuda; Leão já prepara uma cerimônia de reconhecimento."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} estimula gestos românticos. Leão planeja um pequeno carinho e acaba com um espetáculo em três atos.",
+            "Você propõe um passeio espontâneo e pergunta discretamente se a surpresa merece uma trilha sonora de entrada."
+          ],
+          "earth": [
+            "{moon} prefere prazeres tranquilos. Seu jantar simples inclui uma disposição dos guardanapos digna de recepção oficial.",
+            "Leão poderia descobrir que ver um filme a dois não exige apresentação do programa antes da sessão."
+          ],
+          "air": [
+            "{moon} multiplica as conversas. Você conta seu dia como uma série e quase espera a reação da plateia.",
+            "Seu charme gosta de falar; poderia reservar um episódio inteiro para a outra pessoa."
+          ],
+          "water": [
+            "{moon} deixa o clima sentimental. Leão quer consolar com discurso, luz suave e talvez uma cortina.",
+            "Você oferece um ombro amigo, desde que ele não apareça no cartaz da noite."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} favorece começos entusiasmados. Leão pode aplaudir a própria ideia antes de saber se alguém ouviu.",
+            "Você entra numa sala tranquila e logo pergunta onde fica o público."
+          ],
+          "earth": [
+            "{moon} valoriza a simplicidade. Leão aceita ser discreto, mas pergunta se a discrição tem traje específico.",
+            "Sua maior vitória simbólica seria receber um elogio sem preparar uma resposta oficial."
+          ],
+          "air": [
+            "{moon} incentiva compartilhar ideias. Leão leva microfone, iluminação e conclusão quando só pediram sua opinião.",
+            "Você diz gostar de diálogo; lembre-se de distribuir algumas falas também."
+          ],
+          "water": [
+            "{moon} destaca a sensibilidade. Leão sugere consolar todos com uma cerimônia íntima para quarenta convidados.",
+            "Você tem um coração enorme e, às vezes, uma entrada em cena ainda maior."
+          ]
+        }
+      },
+      "piquant": {
+        "career": {
+          "fire": [
+            "{moon} estimula suas ambições. O projeto pode avançar sem receber um nome grandioso antes da primeira etapa.",
+            "Leão adora inspirar; poderia conferir se a equipe aceitou o roteiro antes de distribuir papéis secundários."
+          ],
+          "earth": [
+            "{moon} pede trabalho paciente. Sua assinatura no documento ainda não substitui as páginas que faltam.",
+            "Leão preferiria revelar o resultado final. Mas os detalhes insistem em existir."
+          ],
+          "air": [
+            "{moon} favorece a discussão. Uma ideia diferente da sua não é uma crítica ao seu talento.",
+            "Você domina a palavra com elegância; o problema é que os outros às vezes gostariam de usá-la."
+          ],
+          "water": [
+            "{moon} afina a atenção às emoções. Um colega pode pedir ajuda sem querer um discurso de motivação.",
+            "Sua liderança brilha mais quando ilumina o trabalho dos outros, não só a própria imagem."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} desperta a vontade de surpreender. Leão poderia oferecer carinho sem exigir avaliação após a apresentação.",
+            "Seu charme não perde nada se a outra pessoa escolher uma atividade que não foi anunciada como excepcional."
+          ],
+          "earth": [
+            "{moon} pede simplicidade. Um jantar tranquilo não representa uma queda de qualidade no seu programa romântico.",
+            "Leão pode fechar as cortinas do teatro e descobrir o prazer de conversar sem cenário."
+          ],
+          "air": [
+            "{moon} convida a trocar ideias. Sua história favorita ganharia se deixasse espaço para as lembranças de quem escuta.",
+            "Você ouve elogios com prazer; perguntas abertas merecem a mesma atenção."
+          ],
+          "water": [
+            "{moon} valoriza as confidências. Sua resposta não precisa ser a frase mais bonita da noite.",
+            "Leão pode demonstrar ternura sem explicar em seguida por que seu gesto foi tão notável."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} pede ação. Leão já se pergunta se a iniciativa merece um trailer.",
+            "Você não exige aplausos; apenas deixa um silêncio cuidadosamente calculado para recebê-los."
+          ],
+          "earth": [
+            "{moon} recompensa o esforço discreto. Leão tenta agir no anonimato, mas assina o agradecimento.",
+            "Você acha interessante trabalhar nos bastidores, desde que eles tenham boa iluminação."
+          ],
+          "air": [
+            "{moon} multiplica as opiniões. Leão escuta todos e naturalmente se oferece para resumir tudo em nome próprio.",
+            "Sua modéstia é verdadeira; só gosta de ser anunciada com antecedência."
+          ],
+          "water": [
+            "{moon} amplifica as emoções. Leão prepara um carinho e uma explicação completa de seu significado simbólico.",
+            "Até sua compaixão poderia aprender a entrar num lugar sem fanfarra."
+          ]
+        }
+      }
+    },
+    "virgo": {
+      "classic": {
+        "career": {
+          "fire": [
+            "{moon} dá impulso aos seus projetos. Seu olhar para os detalhes pode orientar uma iniciativa rápida para o essencial.",
+            "Virgem sabe tornar as ideias mais confiáveis; aceitar uma primeira versão imperfeita às vezes ajuda a avançar."
+          ],
+          "earth": [
+            "{moon} valoriza seu trabalho cuidadoso. Escolher a etapa prioritária evita perder-se em ajustes.",
+            "Sua constância faz diferença quando você compartilha um método claro em vez de uma lista infinita de verificações."
+          ],
+          "air": [
+            "{moon} multiplica as trocas. Uma observação construtiva pode enriquecer sua análise sem questionar sua competência.",
+            "Virgem pode tornar o projeto mais claro deixando as ideias circularem antes de classificá-las."
+          ],
+          "water": [
+            "{moon} ressalta as preocupações de cada um. Sua atenção discreta pode melhorar a colaboração.",
+            "Perguntar como um colega está pode ser tão útil quanto verificar o documento dele."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} convida a ousar. Um carinho espontâneo pode tocar sem preparação detalhada.",
+            "Seu cuidado aparece nos detalhes; também pode ser expresso com palavras simples."
+          ],
+          "earth": [
+            "{moon} favorece a estabilidade e os gestos familiares. Uma presença constante pode trazer muita doçura.",
+            "Virgem aprecia a confiança; abrir um pequeno espaço para o inesperado pode enriquecer o convívio."
+          ],
+          "air": [
+            "{moon} incentiva as confidências. Ouvir sem procurar logo uma solução pode aprofundar a cumplicidade.",
+            "Sua curiosidade pelos detalhes pode ser uma bela maneira de conhecer melhor a outra pessoa."
+          ],
+          "water": [
+            "{moon} intensifica as nuances afetivas. Sua delicadeza pode deixar alguém mais à vontade para falar.",
+            "Você pode acolher uma emoção sem tentar organizá-la imediatamente."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} acelera o ritmo. Virgem poderia descobrir que um rascunho também tem direito de sair da pasta.",
+            "Sua exigência é valiosa; às vezes ela pode deixar espaço para uma tentativa."
+          ],
+          "earth": [
+            "{moon} celebra as coisas bem-feitas. Mesmo assim, Virgem poderia deixar um guardanapo ligeiramente torto.",
+            "Você domina a arte de organizar; o mundo suporta uma gaveta menos perfeita."
+          ],
+          "air": [
+            "{moon} convida ao diálogo. Virgem não precisa corrigir a pontuação de cada boa ideia.",
+            "Seu olhar preciso pode descansar um pouco enquanto os outros terminam de falar."
+          ],
+          "water": [
+            "{moon} dá espaço aos sentimentos. Virgem ganharia ao acolher uma emoção antes de fazer seu inventário.",
+            "Até seus gestos mais delicados dispensam uma lista de verificação."
+          ]
+        }
+      },
+      "funny": {
+        "career": {
+          "fire": [
+            "{moon} exige uma decisão rápida. Virgem pede só mais um instante para conferir a quarta versão do plano.",
+            "Você preparou uma reunião de lançamento tão completa que quase não sobrou tempo para lançar nada."
+          ],
+          "earth": [
+            "{moon} incentiva a organização. Virgem criou uma pasta para guardar as pastas que aguardam classificação.",
+            "Você quis simplificar a planilha; agora ela tem uma legenda de duas páginas."
+          ],
+          "air": [
+            "{moon} abre mil discussões. Sua vontade de corrigir detalhes transforma a sessão de ideias numa oficina de revisão.",
+            "Virgem anota cada sugestão e inventa categorias para ideias que nunca pediram classificação."
+          ],
+          "water": [
+            "{moon} destaca o clima da equipe. Você percebeu um suspiro e já pensa num formulário de avaliação.",
+            "Um colega diz que está tudo bem; Virgem ainda gostaria de confirmar por escrito."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} incentiva um gesto espontâneo. Virgem consulta mentalmente três consequências antes de mandar uma mensagem carinhosa.",
+            "Sua pequena surpresa vem com instruções, caso a espontaneidade se perca no caminho."
+          ],
+          "earth": [
+            "{moon} aprecia hábitos agradáveis. Virgem sugere uma noite tranquila com uma ordem precisa para escolher o filme.",
+            "Você preparou uma refeição simples e conferiu duas vezes se a mesa estava simples o suficiente."
+          ],
+          "air": [
+            "{moon} dá vontade de conversar. Você escuta uma história com carinho, mas o detalhe cronológico intriga ainda mais.",
+            "Virgem quer fazer uma pergunta romântica e chega com três subperguntas bem numeradas."
+          ],
+          "water": [
+            "{moon} torna os sentimentos mais presentes. Sua vontade de entender é bonita, mesmo que uma confidência dispense resumo.",
+            "Você poderia oferecer um ombro amigo sem perguntar depois se o consolo cumpriu as metas."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} incentiva o improviso. Virgem está quase terminando de escrever o protocolo de improvisação.",
+            "Você diz gostar de aventura, especialmente quando o roteiro está num documento compartilhado."
+          ],
+          "earth": [
+            "{moon} valoriza a ordem. Virgem etiquetou a gaveta destinada às etiquetas.",
+            "Sua lista de pequenas tarefas tem uma lista própria de verificação."
+          ],
+          "air": [
+            "{moon} multiplica as ideias. Virgem ainda procura a função que organiza conversas por relevância.",
+            "Você até faria um comentário espontâneo, mas o revisor interno exige uma última leitura."
+          ],
+          "water": [
+            "{moon} convida a sentir. Virgem gostaria de saber em que categoria colocar aquela emoção nova.",
+            "Você pode receber um elogio sem pedir a referência exata do critério avaliado."
+          ]
+        }
+      },
+      "piquant": {
+        "career": {
+          "fire": [
+            "{moon} pede uma decisão. Sua quinta conferência parece cada vez mais uma maneira elegante de não escolher.",
+            "Virgem gosta de trabalho impecável; só falta permitir que ele chegue a algum lugar."
+          ],
+          "earth": [
+            "{moon} incentiva o rigor. Seu método é sólido, mas nem toda a equipe se inscreveu numa aula sobre vírgulas.",
+            "Você pensou em todos os detalhes, menos talvez no tempo que os outros gastam relendo cada um."
+          ],
+          "air": [
+            "{moon} convida a compartilhar ideias. Evite tratar toda sugestão como um erro a corrigir.",
+            "Virgem promete uma conversa livre e depois distribui uma ficha de avaliação."
+          ],
+          "water": [
+            "{moon} evidencia as emoções. Um colega não é um problema a resolver com colunas e filtros.",
+            "Sua precisão ajuda muito; ajuda ainda mais quando deixa as pessoas respirarem."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} desperta a vontade de surpreender. Sua necessidade de prever tudo pode sufocar a surpresa antes de começar.",
+            "Virgem poderia fazer um gesto bonito sem avaliar depois os pontos de melhoria."
+          ],
+          "earth": [
+            "{moon} privilegia pequenos rituais. A ternura não precisa de um plano de manutenção preventiva.",
+            "Você sabe cuidar dos detalhes; aprender a ignorar um guardanapo mal dobrado também pode ser charmoso."
+          ],
+          "air": [
+            "{moon} favorece as trocas. Uma confidência não é um texto para fazer anotações na margem.",
+            "Virgem quer entender a outra pessoa, mas pode deixá-la sem a obrigação de fornecer todos os dados."
+          ],
+          "water": [
+            "{moon} desperta a sensibilidade. Resista à vontade de diagnosticar todo silêncio como um detalhe mal resolvido.",
+            "Sua delicadeza seria ainda mais suave se aceitasse algumas perguntas sem resposta imediata."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} pede ousadia. Virgem considera um salto no desconhecido após a aprovação do controle de qualidade.",
+            "Até suas decisões espontâneas parecem passar por uma comissão de revisão."
+          ],
+          "earth": [
+            "{moon} aprecia a precisão. Virgem quer corrigir o manual de uma cadeira já montada.",
+            "Você diz não ser perfeccionista; sua coleção de listas revisadas conta outra história."
+          ],
+          "air": [
+            "{moon} incentiva as trocas. Virgem ouve ideias novas como se tivessem chegado sem manual de instruções.",
+            "Sua definição de conversa aberta tem surpreendentemente muitas caixas obrigatórias."
+          ],
+          "water": [
+            "{moon} faz emoções virem à tona. Virgem pergunta educadamente se existe uma planilha para classificá-las.",
+            "Você sabe organizar quase tudo; seu carinho às vezes se recusa a ser arquivado."
+          ]
+        }
+      }
+    },
+    "libra": {
+      "classic": {
+        "career": {
+          "fire": [
+            "{moon} convida a tomar a iniciativa. Seu talento para ponderar opções pode ajudar a decidir com calma.",
+            "Libra reúne pontos de vista; escolher uma direção pode dar sentido a essa harmonia."
+          ],
+          "earth": [
+            "{moon} privilegia a estabilidade. Um acordo claro e realista pode oferecer uma base tranquila.",
+            "Seu senso de equilíbrio ajuda a encontrar consenso sem perder de vista as tarefas práticas."
+          ],
+          "air": [
+            "{moon} estimula as trocas. Você pode iluminar um debate dando espaço real às opiniões divergentes.",
+            "Libra sabe aproximar ideias; transformá-las numa proposta comum pode fazer o trabalho avançar."
+          ],
+          "water": [
+            "{moon} torna as tensões mais perceptíveis. Sua diplomacia pode abrir espaço para ouvir sem apagar toda discordância.",
+            "Você pode manter o respeito numa conversa e ainda expressar claramente sua posição."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} desperta a vontade de avançar. Um convite sincero pode bastar, mesmo sem comparar todas as possibilidades.",
+            "Seu charme também aparece nas decisões simples que você se permite tomar."
+          ],
+          "earth": [
+            "{moon} convida a apreciar o cotidiano. Um pequeno ritual a dois pode alimentar a cumplicidade.",
+            "Libra sabe cultivar a delicadeza; deixar a outra pessoa escolher um detalhe pode tornar o momento mais vivo."
+          ],
+          "air": [
+            "{moon} favorece as conversas. Dizer com sinceridade do que você gosta pode aproximar mais do que concordar automaticamente.",
+            "Seu apreço pelo diálogo ganha força quando você compartilha seus próprios desejos com igual atenção."
+          ],
+          "water": [
+            "{moon} destaca emoções sutis. Sua gentileza pode acolher uma discordância sem medo de romper a harmonia.",
+            "Uma palavra sincera, mesmo hesitante, pode aprofundar o vínculo que você quer preservar."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} pede movimento. Libra poderia escolher uma direção sem consultar a opinião do caminho.",
+            "Sua arte de considerar todas as alternativas às vezes merece uma conclusão simples."
+          ],
+          "earth": [
+            "{moon} oferece referências sólidas. Até Libra pode escolher uma cadeira sem consultar toda a sala.",
+            "Você gosta de escolhas bem pensadas; uma escolha pequena também pode continuar pequena."
+          ],
+          "air": [
+            "{moon} incentiva o debate. Libra pode ouvir duas opiniões opostas sem tentar conciliá-las imediatamente.",
+            "Você encontra qualidades em toda proposta; escolher uma também seria sinal de confiança."
+          ],
+          "water": [
+            "{moon} aumenta a sensibilidade ao ambiente. Libra pode continuar gentil sem carregar o humor de todo o grupo.",
+            "Sua diplomacia é valiosa; ela não precisa acalmar até as almofadas da sala."
+          ]
+        }
+      },
+      "funny": {
+        "career": {
+          "fire": [
+            "{moon} pede decisões rápidas. Libra prepara uma comparação detalhada entre dois botões idênticos.",
+            "Você organizou a votação e depois pediu uma segunda para confirmar se a primeira foi justa."
+          ],
+          "earth": [
+            "{moon} aprecia os métodos. Libra cria uma tabela para decidir qual método usar.",
+            "Seu acordo satisfaz todos, menos o calendário, que gostaria de iniciar a tarefa."
+          ],
+          "air": [
+            "{moon} multiplica as opiniões. Você conduz um debate em que toda ideia tem advogado, até as abandonadas no começo.",
+            "Libra pede outra rodada de opiniões; a mesa considera pedir uma pausa."
+          ],
+          "water": [
+            "{moon} desperta sensibilidades. Você percebe dois colegas contrariados e propõe uma mediação sobre a escolha dos clipes.",
+            "Libra quer harmonizar a equipe inteira, inclusive as pessoas que já concordavam."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} incentiva a iniciativa. Sua escolha de local para um passeio já passou por três consultas a amigos.",
+            "Libra prepara uma surpresa romântica, depois pergunta discretamente se a surpresa vai agradar antes de anunciá-la."
+          ],
+          "earth": [
+            "{moon} privilegia o conforto. Você encontrou dois lugares charmosos e passa a noite comparando as poltronas.",
+            "Libra quer um momento perfeito; o sofá ainda espera que alguém escolha de que lado sentar."
+          ],
+          "air": [
+            "{moon} convida à conversa. Você pede a opinião da outra pessoa e depois oferece cinco versões da sua.",
+            "Libra sabe criar um clima agradável, mesmo que escolher um filme vire um congresso."
+          ],
+          "water": [
+            "{moon} deixa as emoções mais delicadas. Você procura um jeito gentil de dizer não e inventa uma resposta do tamanho de um convite.",
+            "Libra quer preservar a harmonia a ponto de negociar até com o silêncio."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} exige ação. Libra poderia escolher o próximo passo antes de o chão mudar de opinião.",
+            "Seu talento para hesitar transforma um cruzamento vazio numa assembleia de bairro."
+          ],
+          "earth": [
+            "{moon} sugere uma solução prática. Libra verifica se ela existe também em outra cor.",
+            "Você ganhou tempo para pensar e passou a comparar as maneiras de usá-lo."
+          ],
+          "air": [
+            "{moon} traz opiniões à tona. Libra encontra um terceiro caminho entre duas propostas que diziam exatamente a mesma coisa.",
+            "Sua neutralidade impressiona; até sua preferência pede um tempo para refletir."
+          ],
+          "water": [
+            "{moon} intensifica as nuances. Libra poderia escrever uma carta de desculpas para a cadeira que não escolheu.",
+            "Você apazigua tensões com arte, mesmo quando ninguém percebeu nenhum desacordo."
+          ]
+        }
+      },
+      "piquant": {
+        "career": {
+          "fire": [
+            "{moon} pede um impulso. Seu novo método de consulta não deve substituir a decisão.",
+            "Libra quer que todos sejam ouvidos; o projeto também gostaria de ter voz."
+          ],
+          "earth": [
+            "{moon} favorece o concreto. Um acordo que não produz nada continua sendo apenas uma conversa bonita.",
+            "Sua apresentação das opções é impecável; escolher uma delas poderia ser a parte prática."
+          ],
+          "air": [
+            "{moon} incentiva as trocas. Você poderia defender uma ideia sem inventar imediatamente o argumento contrário.",
+            "Libra gosta tanto de equilíbrio que às vezes dá às objeções imaginárias o mesmo peso dos fatos."
+          ],
+          "water": [
+            "{moon} revela sensibilidades. Você não precisa transformar toda discordância numa conferência diplomática.",
+            "Sua gentileza ajuda a equipe, mas uma opinião clara às vezes ajudaria ainda mais."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} estimula a ousadia. Seu charme seria mais convincente com um convite do que com um questionário de preferências.",
+            "Libra pode tomar a iniciativa sem perguntar primeiro se tomar a iniciativa é uma boa ideia."
+          ],
+          "earth": [
+            "{moon} aprecia os prazeres simples. De tanto procurar a noite perfeita, você pode acabar passando a noite comparando opções.",
+            "Seu gosto pela harmonia não deveria exigir um acordo formal sobre a posição das almofadas."
+          ],
+          "air": [
+            "{moon} multiplica as conversas. Dizer o que pensa não é uma ofensa à diplomacia.",
+            "Libra tem opinião própria; ela às vezes aparece depois de elogiar todas as outras."
+          ],
+          "water": [
+            "{moon} incentiva a sensibilidade. Uma discordância respeitosa é possível sem redigir uma declaração conjunta.",
+            "Sua atenção à outra pessoa é preciosa; ela sobrevive a um pequeno não dito com clareza."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} convida a correr. Libra pergunta se correr já seria assumir uma posição radical demais.",
+            "Você tem tantas nuances a acrescentar que um simples sim precisa de anexo."
+          ],
+          "earth": [
+            "{moon} exige uma decisão razoável. Libra propõe adiar a escolha até as opções escolherem umas às outras.",
+            "Seu senso de equilíbrio é admirável; as tarefas pendentes gostariam de ver você pender para um lado."
+          ],
+          "air": [
+            "{moon} abre o diálogo. Libra defende uma opinião e logo pede desculpas à opinião contrária.",
+            "Você conseguiria prolongar um debate indefinidamente e ainda deixar todos satisfeitos."
+          ],
+          "water": [
+            "{moon} intensifica os sentimentos. Libra gostaria de obter o consenso de todas as emoções antes de expressar uma.",
+            "Você protege tão bem a harmonia que às vezes ela não pode nem encontrar a sinceridade."
+          ]
+        }
+      }
+    },
+    "scorpio": {
+      "classic": {
+        "career": {
+          "fire": [
+            "{moon} estimula sua determinação. Compartilhar o objetivo pode ajudar os outros a acompanhar seu movimento.",
+            "Sua persistência ganha força quando você mostra claramente suas intenções à equipe."
+          ],
+          "earth": [
+            "{moon} privilegia um progresso consistente. Seu olhar atento pode revelar um detalhe decisivo.",
+            "Escorpião sabe investigar profundamente; definir etapas concretas pode tornar a pesquisa útil para todos."
+          ],
+          "air": [
+            "{moon} incentiva conversas. Você pode fazer perguntas essenciais sem parecer que está interrogando alguém.",
+            "Uma ideia compartilhada com franqueza pode abrir parcerias mais simples do que estratégias silenciosas."
+          ],
+          "water": [
+            "{moon} aprofunda as emoções. Sua intuição pode complementar os fatos sem substituí-los.",
+            "Escorpião percebe tensões discretas; abordá-las com tato pode fortalecer a confiança."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} desperta a intensidade dos sentimentos. Uma palavra direta pode demonstrar afeto com delicadeza.",
+            "Sua paixão ganha profundidade quando também respeita a liberdade da outra pessoa."
+          ],
+          "earth": [
+            "{moon} favorece a segurança dos hábitos. Um carinho confiável pode valer mais que uma grande demonstração.",
+            "Escorpião pode alimentar o vínculo apreciando pequenos sinais de confiança no cotidiano."
+          ],
+          "air": [
+            "{moon} estimula as confidências. Um papo leve pode ser sincero sem revelar todos os segredos do mundo.",
+            "Sua curiosidade pela outra pessoa pode aparecer em perguntas abertas e gentis."
+          ],
+          "water": [
+            "{moon} intensifica as emoções. Ouvir sem procurar sentidos ocultos pode trazer serenidade.",
+            "Sua sensibilidade profunda encontra equilíbrio quando você deixa algumas coisas serem apenas ditas."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} dá vontade de agir. Escorpião não precisa de uma estratégia secreta para sugerir uma ideia.",
+            "Sua determinação impressiona; às vezes ela poderia vir com um sorriso explicativo."
+          ],
+          "earth": [
+            "{moon} convida à praticidade. Até Escorpião pode aceitar que uma gaveta fechada só esconde uma gaveta organizada.",
+            "Seu talento investigativo merece de vez em quando um assunto menos misterioso."
+          ],
+          "air": [
+            "{moon} incentiva as trocas. Escorpião poderia fazer uma pergunta sem aquele olhar de detetive.",
+            "Você percebe subentendidos; também pode gostar de deixar as frases simples em paz."
+          ],
+          "water": [
+            "{moon} torna o clima íntimo. Escorpião pode acolher um silêncio sem imaginar um romance inteiro por trás dele.",
+            "Sua profundidade emociona; nem toda emoção precisa ser decifrada."
+          ]
+        }
+      },
+      "funny": {
+        "career": {
+          "fire": [
+            "{moon} quer acelerar as decisões. Escorpião já preparou estratégia, plano B e um disfarce discreto.",
+            "Você aceita uma tarefa comum com a seriedade de uma missão confidencial."
+          ],
+          "earth": [
+            "{moon} favorece provas concretas. Escorpião encara a planilha como se quisesse arrancar uma confissão dela.",
+            "Você encontrou um erro no documento e abriu uma investigação sobre a origem do clipe."
+          ],
+          "air": [
+            "{moon} multiplica as conversas. Escorpião ouve três frases e pergunta por que a quarta não foi pronunciada.",
+            "Na reunião, seu silêncio tem tanto suspense que os outros esperam os créditos finais."
+          ],
+          "water": [
+            "{moon} torna o ambiente sensível. Você percebe uma sobrancelha franzida e começa a reunir provas.",
+            "Escorpião não pergunta se está tudo bem; oferece uma série de perguntas cuidadosamente preparadas."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} convida à ousadia. Escorpião sugere um passeio com a intensidade de uma confissão no alto de uma montanha.",
+            "Até sua mensagem mais simples tem uma pausa dramática que ninguém consegue ouvir."
+          ],
+          "earth": [
+            "{moon} valoriza os prazeres tranquilos. Escorpião aceita um filme leve, mas continua buscando as motivações ocultas dos personagens.",
+            "Você prepara um jantar simples com a atmosfera de um encontro diplomático secreto."
+          ],
+          "air": [
+            "{moon} incentiva o diálogo. Você pergunta como foi o dia e escuta como se a resposta escondesse um enigma.",
+            "Escorpião acha o mistério encantador, até quando a outra pessoa só explica que perdeu o ônibus."
+          ],
+          "water": [
+            "{moon} intensifica as emoções. Você relê uma frase carinhosa como um documento com vários níveis de significado.",
+            "Seu romantismo gosta de suspense; uma mensagem clara talvez fosse uma bela surpresa."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} pede ação. Escorpião entra na sala como se já conhecesse o segredo da reunião.",
+            "Você tem um plano discreto para escolher uma atividade que todos poderiam simplesmente sugerir."
+          ],
+          "earth": [
+            "{moon} prefere certezas. Escorpião mantém um dossiê sobre as possíveis intenções de sua planta.",
+            "Seu instinto investigativo transformaria a arrumação do armário numa série de suspense."
+          ],
+          "air": [
+            "{moon} favorece a conversa. Escorpião pronuncia três palavras misteriosas e observa as reações por vinte minutos.",
+            "Você chama isso de diálogo; os outros esperam a próxima pista."
+          ],
+          "water": [
+            "{moon} desperta a nostalgia. Escorpião lembra de um sorriso estranho muito depois de esquecer o assunto da noite.",
+            "Sua memória afetiva possui uma biblioteca secreta e às vezes se recusa a publicar o catálogo."
+          ]
+        }
+      },
+      "piquant": {
+        "career": {
+          "fire": [
+            "{moon} pede iniciativas. Guardar uma ideia como segredo de Estado nem sempre ajuda o projeto a começar.",
+            "Escorpião sabe prever obstáculos; poderia anunciar o plano antes de testar a confiança de toda a equipe."
+          ],
+          "earth": [
+            "{moon} convida a verificar fatos. Uma linha ausente não prova uma conspiração administrativa.",
+            "Sua exigência é útil, mas nem todo documento incompleto esconde uma intenção secreta."
+          ],
+          "air": [
+            "{moon} multiplica opiniões. Responder a uma pergunta com outra nem sempre é uma estratégia brilhante.",
+            "Escorpião pode compartilhar sua análise sem fazer toda reunião parecer uma armadilha."
+          ],
+          "water": [
+            "{moon} destaca as emoções da equipe. Sua intuição às vezes ganharia se pedisse confirmação antes de criar um cenário inteiro.",
+            "Você percebe tensões depressa; aceitar uma explicação simples seria uma experiência interessante."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} estimula os sentimentos. Um convite claro talvez tenha mais charme do que uma mensagem escrita como enigma.",
+            "Escorpião prefere profundidade; poderia admitir que um carinho simples não é sinal de superficialidade."
+          ],
+          "earth": [
+            "{moon} convida a apreciar o cotidiano. Não é preciso buscar intenções escondidas por trás de todo pequeno hábito.",
+            "Sua intensidade é bonita; ela pode deixar um jantar ser apenas um jantar."
+          ],
+          "air": [
+            "{moon} desperta conversas. Uma resposta curta não é automaticamente um segredo a desvendar.",
+            "Escorpião quer ser compreendido sem contar tudo; a outra pessoa talvez aprecie mais uma pista."
+          ],
+          "water": [
+            "{moon} torna os sentimentos mais sensíveis. Nem todas as suas intuições merecem uma investigação silenciosa.",
+            "Seu coração pode acolher uma confidência sem analisar cada pausa entre as palavras."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} incentiva gestos rápidos. Escorpião ainda prefere preparar um plano que ninguém jamais saberá que executou.",
+            "Você poderia pedir diretamente o que quer, mas isso estragaria o suspense."
+          ],
+          "earth": [
+            "{moon} defende o bom senso. Escorpião ainda procura nele um compartimento secreto.",
+            "Seu ar misterioso funciona muito bem, até quando você só procura onde deixou as chaves."
+          ],
+          "air": [
+            "{moon} convida a falar. Escorpião solta uma frase enigmática e espera três interpretações de cada pessoa.",
+            "Você chama isso de discernimento; também poderíamos chamar de não querer responder simplesmente."
+          ],
+          "water": [
+            "{moon} aprofunda as emoções. Escorpião guarda a lembrança de uma vírgula como se ela tivesse mudado a história inteira.",
+            "Seu talento para ler nas entrelinhas às vezes poderia incluir a leitura das próprias linhas."
+          ]
+        }
+      }
+    },
+    "sagittarius": {
+      "classic": {
+        "career": {
+          "fire": [
+            "{moon} favorece seu gosto por iniciativas. Um novo horizonte pode ganhar forma com um primeiro objetivo claro.",
+            "Seu entusiasmo por grandes projetos ganha força com etapas que todos conseguem acompanhar."
+          ],
+          "earth": [
+            "{moon} lembra a utilidade de bases sólidas. Organizar os detalhes pode ampliar o alcance de suas ideias ousadas.",
+            "Sagitário gosta de explorar; concluir uma tarefa em andamento pode abrir espaço para a próxima."
+          ],
+          "air": [
+            "{moon} multiplica caminhos a descobrir. Sua curiosidade pode enriquecer o projeto se você escolher algumas ideias centrais.",
+            "Conversar com pessoas de trajetórias variadas pode abrir possibilidades profissionais interessantes."
+          ],
+          "water": [
+            "{moon} torna as motivações mais sensíveis. Sua franqueza pode incentivar quando vem acompanhada de escuta.",
+            "Sagitário pode alimentar o entusiasmo coletivo sem esquecer das preocupações mais discretas."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} estimula a vontade de viver aventuras a dois. Convidar sem impor o ritmo pode fortalecer a cumplicidade.",
+            "Sua espontaneidade traz frescor aos relacionamentos quando respeita a liberdade de cada um."
+          ],
+          "earth": [
+            "{moon} valoriza prazeres simples. Um hábito caloroso pode enriquecer tanto quanto uma escapada improvisada.",
+            "Sagitário pode apreciar o carinho dos momentos familiares sem perder o espírito aventureiro."
+          ],
+          "air": [
+            "{moon} convida a conversas abertas. Sua sinceridade pode aproximar quando respeita as nuances da outra pessoa.",
+            "Compartilhar uma descoberta ou uma ideia pode criar proximidade com muita leveza."
+          ],
+          "water": [
+            "{moon} aprofunda os sentimentos. Sua necessidade de espaço pode conviver com uma presença atenciosa.",
+            "Uma confidência sincera pode abrir paisagens interiores tão amplas quanto as que você gosta de conhecer."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} incentiva a partir na frente. Sagitário pode conferir o mapa antes de comemorar a partida.",
+            "Sua paixão por horizontes novos é bonita; voltar para terminar uma pequena tarefa também pode ser."
+          ],
+          "earth": [
+            "{moon} convida a fortalecer as bases. Sagitário poderia descobrir que um percurso também tem linha de chegada.",
+            "Você gosta de liberdade; um encontro bem organizado não precisa assustar."
+          ],
+          "air": [
+            "{moon} incentiva as trocas. Sagitário pode contar uma viagem sem anunciar imediatamente a próxima.",
+            "Sua curiosidade é contagiante; perguntar sobre o outro dá a ele o mesmo espaço."
+          ],
+          "water": [
+            "{moon} desperta lembranças. Sagitário poderia ficar um instante com uma emoção antes de procurar outro horizonte.",
+            "Você gosta de seguir em frente; alguns momentos de presença também fazem parte do caminho."
+          ]
+        }
+      },
+      "funny": {
+        "career": {
+          "fire": [
+            "{moon} incentiva grandes partidas. Sagitário abriu três projetos novos antes de encontrar o que começou ontem.",
+            "Você apresenta uma visão ambiciosa; a equipe gostaria de saber onde fica o botão de começar."
+          ],
+          "earth": [
+            "{moon} exige resultados concretos. Sagitário descobre surpreso que preencher um formulário não é uma aventura.",
+            "Você prometeu conferir os detalhes, mas uma ideia nova entrou pela janela."
+          ],
+          "air": [
+            "{moon} estimula as conversas. Sagitário transforma uma pergunta prática num relato de viagem profissional imaginária.",
+            "Sua reunião de quinze minutos já inclui quatro destinos possíveis e nenhuma decisão sobre o arquivo."
+          ],
+          "water": [
+            "{moon} torna o humor da equipe mais visível. Você sugeriu uma viagem coletiva quando só pediram uma resposta tranquila.",
+            "Sagitário quer animar o grupo; começa sugerindo uma mudança completa de cenário."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} dá vontade de improvisar. Sagitário chama uma pequena caminhada de início de expedição.",
+            "Seu passeio romântico cabe num mapa, mas você esqueceu de escolher o ponto de encontro."
+          ],
+          "earth": [
+            "{moon} prefere momentos confortáveis. Você aceita uma noite sossegada, desde que já possa planejar a próxima aventura.",
+            "Sagitário acha o sofá agradável e depois pergunta se existe uma versão com vista para o desconhecido."
+          ],
+          "air": [
+            "{moon} favorece histórias compartilhadas. Sua resposta a uma pergunta simples começa com um relato sobre três países imaginários.",
+            "Você faz uma pergunta carinhosa e logo propõe outros cinco assuntos mais exóticos."
+          ],
+          "water": [
+            "{moon} dá profundidade às conversas. Sagitário pode ouvir uma emoção sem propor uma mudança imediata de paisagem.",
+            "Sua generosidade sugere uma escapada para esquecer os problemas; talvez conversar também ajude."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} pede movimento. Sagitário já fez as malas para uma ideia que ninguém sugeriu ainda.",
+            "Você diz estar disponível; falta saber em qual direção já saiu."
+          ],
+          "earth": [
+            "{moon} exige constância. Sagitário promete se concentrar e olha pela janela como se ela estivesse chamando.",
+            "Sua agenda parece um mapa de exploração com várias etapas puladas."
+          ],
+          "air": [
+            "{moon} incentiva ideias novas. Sagitário encontra outro destino entre o começo e o fim de uma frase.",
+            "Você transforma uma conversa sobre compras numa palestra sobre a aventura humana."
+          ],
+          "water": [
+            "{moon} desperta a nostalgia. Sagitário lembra com carinho de um lugar do qual já planeja partir.",
+            "Seu espírito livre pode atravessar três emoções antes de aceitar sentar para conversar sobre elas."
+          ]
+        }
+      },
+      "piquant": {
+        "career": {
+          "fire": [
+            "{moon} pede ação imediata. Sua próxima grande ideia ganharia ao conhecer o trabalho deixado pela anterior.",
+            "Sagitário adora lançar iniciativas; assinar a conclusão delas seria uma mudança interessante."
+          ],
+          "earth": [
+            "{moon} exige método. A empolgação da partida não substitui a lista de tarefas a concluir.",
+            "Você chama isso de liberdade; o documento incompleto chama de falta de acompanhamento."
+          ],
+          "air": [
+            "{moon} multiplica as propostas. Nem toda ideia nova merece desviar a equipe de seu objetivo inicial.",
+            "Sagitário anima as discussões, mas o assunto da reunião gostaria de ser reconhecido."
+          ],
+          "water": [
+            "{moon} destaca a escuta. Sua franqueza não precisa atravessar a sala antes de encontrar o tom adequado.",
+            "Você quer inspirar a equipe; talvez comece ouvindo por que ela está hesitante."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} incentiva aventuras. Um convite não fica mais romântico só por parecer uma partida sem roteiro.",
+            "Sagitário pode apreciar a liberdade sem transformar toda proposta numa prova de espontaneidade."
+          ],
+          "earth": [
+            "{moon} privilegia a continuidade. Pequenos compromissos não são barreiras contra sua sede de descobertas.",
+            "Você gosta de surpresas; cumprir uma promessa simples talvez seja uma das mais apreciadas."
+          ],
+          "air": [
+            "{moon} favorece o diálogo. Sua sinceridade poderia perguntar antes se a outra pessoa realmente quer ouvir tantos detalhes.",
+            "Sagitário conta tudo com entusiasmo; uma pergunta atenta pode evitar um monólogo de exploração."
+          ],
+          "water": [
+            "{moon} intensifica a sensibilidade. Sua necessidade de distância não precisa virar um desaparecimento diplomático.",
+            "Você sabe abrir horizontes; continuar presente durante uma confidência também merece curiosidade."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} exige uma partida rápida. Sagitário já anunciou a volta antes de saber para onde vai.",
+            "Sua liberdade às vezes parece ter medo de um programa com mais de três linhas."
+          ],
+          "earth": [
+            "{moon} prefere hábitos sólidos. Sagitário pergunta se o compromisso pode ser aceito apenas em caráter experimental.",
+            "Você adora caminhos novos; os últimos metros dos antigos interessam bem menos."
+          ],
+          "air": [
+            "{moon} abre discussões. Sagitário transforma cada pergunta num convite para rever sua filosofia inteira.",
+            "Você tem resposta para tudo, principalmente quando ela começa com uma história sem relação com o assunto."
+          ],
+          "water": [
+            "{moon} convida a acolher emoções. Sagitário propõe tomar um ar antes de ouvir a primeira frase.",
+            "Seu entusiasmo pelo que está longe quase faz esquecer que o que está perto também merece sua presença."
+          ]
+        }
+      }
+    },
+    "capricorn": {
+      "classic": {
+        "career": {
+          "fire": [
+            "{moon} incentiva novas iniciativas. Seu senso de responsabilidade pode dar a elas uma direção realista.",
+            "Capricórnio sabe persistir; delegar uma parte do caminho também pode fortalecer o projeto."
+          ],
+          "earth": [
+            "{moon} valoriza a constância. Seus métodos sólidos podem ganhar ao serem simplificados para os demais.",
+            "Sua paciência ajuda a construir conquistas coletivas quando cada um entende sua participação."
+          ],
+          "air": [
+            "{moon} favorece as trocas. Uma sugestão inesperada pode enriquecer o plano sem torná-lo menos sério.",
+            "Capricórnio pode encontrar soluções novas dando espaço a ideias ainda inacabadas."
+          ],
+          "water": [
+            "{moon} destaca as necessidades do grupo. Sua confiabilidade tranquiliza quando você também demonstra atenção às pessoas.",
+            "Ouvir uma preocupação antes de falar das metas pode tornar seu apoio mais perceptível."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} desperta a vontade de ousar. Um carinho espontâneo pode dizer o que seus atos já mostram com constância.",
+            "Sua lealdade também pode se expressar num momento leve, sem meta a alcançar."
+          ],
+          "earth": [
+            "{moon} convida a apreciar os hábitos compartilhados. Sua presença fiel alimenta uma ternura tranquila.",
+            "Capricórnio gosta de construir para durar; um prazer simples pode tornar essa construção mais suave."
+          ],
+          "air": [
+            "{moon} incentiva a falar livremente. Compartilhar um desejo sem pesar cada detalhe pode aproximar.",
+            "Sua reserva pode dar espaço à curiosidade sincera pelas pequenas histórias da outra pessoa."
+          ],
+          "water": [
+            "{moon} aprofunda a sensibilidade. Uma palavra carinhosa pode complementar seu jeito de estar presente pelos gestos.",
+            "Você pode acolher um momento de emoção sem transformá-lo em problema a resolver."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} convida a agir logo. Capricórnio poderia começar alguma coisa sem calendário de acompanhamento.",
+            "Seu jeito sério é admirável; uma pausa imprevista não ameaça o equilíbrio do universo."
+          ],
+          "earth": [
+            "{moon} aprecia a ordem. Capricórnio pode deixar uma tarefa simples existir sem inventar um procedimento.",
+            "Você sabe planejar o futuro; o presente talvez gostasse de um pouco menos de planejamento."
+          ],
+          "air": [
+            "{moon} favorece a espontaneidade nas trocas. Capricórnio poderia reagir a uma ideia maluca sem calcular logo os riscos.",
+            "Seu bom senso é valioso; ele também pode abrir espaço para um pouco de fantasia."
+          ],
+          "water": [
+            "{moon} valoriza os sentimentos. Capricórnio pode demonstrar afeto sem preparar um relatório emocional.",
+            "Sua discrição é elegante; um sorriso sem justificativa também pode ser."
+          ]
+        }
+      },
+      "funny": {
+        "career": {
+          "fire": [
+            "{moon} põe todo mundo em movimento. Capricórnio primeiro confere se o entusiasmo tem metas mensuráveis.",
+            "Você preparou um roteiro para uma iniciativa que nem nome recebeu ainda."
+          ],
+          "earth": [
+            "{moon} gosta de resultados concretos. Capricórnio encontra o dia perfeito para organizar as planilhas de organização.",
+            "Sua ideia de comemoração é verificar se todas as caixas foram preenchidas corretamente."
+          ],
+          "air": [
+            "{moon} traz propostas novas. Capricórnio pede educadamente à imaginação que apresente os documentos comprobatórios.",
+            "Você acolheu uma ideia original oferecendo imediatamente um cronograma de execução."
+          ],
+          "water": [
+            "{moon} torna os sentimentos mais visíveis. Você pensa numa reunião de apoio com pauta e ata.",
+            "Capricórnio quer tranquilizar um colega e propõe um cronograma para voltar a sorrir."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} dá vontade de surpreender. Capricórnio programou uma declaração espontânea entre dois compromissos agendados.",
+            "Você propõe uma aventura romântica, mas quer saber o horário de retorno antes da partida."
+          ],
+          "earth": [
+            "{moon} valoriza o conforto. Capricórnio planeja uma noite tranquila e escreve um pequeno roteiro dela.",
+            "Seu carinho aparece numa manta bem dobrada e num programa quase confiável demais."
+          ],
+          "air": [
+            "{moon} multiplica as conversas. Você pergunta como foi o dia e escuta com a concentração de uma avaliação anual.",
+            "Capricórnio trata os desejos a dois como um projeto importante que precisa de três reuniões de acompanhamento."
+          ],
+          "water": [
+            "{moon} aprofunda as emoções. Você quer expressar ternura, mas seu rosto continua com ar de reunião importante.",
+            "Capricórnio demonstra amor ajudando; a outra pessoa talvez aprecie também uma frase sem formulário."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} pede impulso. Capricórnio prefere consultar o programa das dez próximas etapas antes.",
+            "Sua versão de relaxar é adiar uma tarefa para a semana seguinte sem ficar se culpando."
+          ],
+          "earth": [
+            "{moon} privilegia o concreto. Capricórnio criou um plano para melhorar a maneira como planeja seus planos.",
+            "Você acha descanso agradável quando ele está na agenda com uma caixa para marcar."
+          ],
+          "air": [
+            "{moon} incentiva ideias inesperadas. Capricórnio pede imediatamente a prova de viabilidade.",
+            "Sua imaginação trabalha duro, mas sempre precisa mostrar o crachá na entrada."
+          ],
+          "water": [
+            "{moon} desperta sensibilidade. Capricórnio consulta mentalmente as prioridades antes de admitir que uma música o emociona.",
+            "Você tem um coração carinhoso; às vezes ele aparece disfarçado de documento confidencial."
+          ]
+        }
+      },
+      "piquant": {
+        "career": {
+          "fire": [
+            "{moon} estimula a ousadia. Seu plano detalhado não deveria impedir a equipe de testar uma primeira ideia.",
+            "Capricórnio quer garantir tudo; o projeto às vezes gostaria de verificar na prática o que funciona."
+          ],
+          "earth": [
+            "{moon} exige rigor. Você poderia parar de controlar o que seus colegas já sabem fazer perfeitamente.",
+            "Sua tabela de responsabilidades começa a parecer uma declaração de posse de cada tarefa."
+          ],
+          "air": [
+            "{moon} favorece as trocas. Uma ideia inesperada não ameaça seu planejamento.",
+            "Capricórnio escuta propostas criativas com cara de quem procura o botão de cancelar."
+          ],
+          "water": [
+            "{moon} revela tensões humanas. Um colega é mais do que o andamento das tarefas dele.",
+            "Seu senso de dever impressiona; perguntar simplesmente como alguém está pode contar tanto quanto isso."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} incentiva os impulsos. Um carinho não precisa passar pelo seu comitê interno de aprovação.",
+            "Capricórnio pode oferecer um momento espontâneo sem exigir garantia de que dará tudo certo."
+          ],
+          "earth": [
+            "{moon} protege os hábitos. Seu jeito sério tranquiliza, mas ternura não é uma missão com entregas obrigatórias.",
+            "Você sabe construir referências; deixar a outra pessoa mudar um pequeno ritual também pode ser gostoso."
+          ],
+          "air": [
+            "{moon} favorece as discussões. Não espere a avaliação do fim do mês para dizer o que sente.",
+            "Capricórnio gostaria de entender emoções como metas; elas às vezes preferem uma presença simples."
+          ],
+          "water": [
+            "{moon} amplifica os sentimentos. Manter a calma não exige uma expressão perfeitamente burocrática.",
+            "Seu carinho aparece nos gestos; algumas palavras afetuosas podem evitar que passe despercebido."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} quer começar imediatamente. Capricórnio prefere escrever o relatório de lançamento antes de iniciar.",
+            "Você trata um passeio improvisado como um exercício de gestão de riscos."
+          ],
+          "earth": [
+            "{moon} recompensa a paciência. Capricórnio interpreta isso como convite a criar mais três categorias de acompanhamento.",
+            "Sua ideia de descanso é adorável: começa quando todas as tarefas possíveis terminarem, ou seja, nunca."
+          ],
+          "air": [
+            "{moon} incentiva conversas livres. Capricórnio procura o formulário para autorizar uma brincadeira fora do assunto.",
+            "Você tem tantos procedimentos que uma ideia espontânea precisaria marcar horário."
+          ],
+          "water": [
+            "{moon} destaca as emoções. Capricórnio as recebe educadamente e pergunta se são urgentes.",
+            "Você sabe ser firme; também poderia deixar sua agenda sobreviver a um abraço inesperado."
+          ]
+        }
+      }
+    },
+    "aquarius": {
+      "classic": {
+        "career": {
+          "fire": [
+            "{moon} estimula sua inventividade. Dar uma primeira forma a uma ideia ousada pode ajudar o grupo a acompanhar você.",
+            "Aquário enxerga longe; apresentar uma etapa acessível pode tornar sua visão mais fácil de compartilhar."
+          ],
+          "earth": [
+            "{moon} valoriza soluções concretas. Sua originalidade pode se apoiar num método simples e comprovado.",
+            "Uma experiência cuidadosa pode transformar uma intuição incomum num projeto coletivo."
+          ],
+          "air": [
+            "{moon} multiplica as trocas. Conhecer diferentes pontos de vista pode alimentar suas intuições.",
+            "Aquário sabe pensar de outro jeito; perguntar o que os outros entenderam pode enriquecer sua proposta."
+          ],
+          "water": [
+            "{moon} destaca as necessidades de todos. Seu espírito independente também pode se expressar com atenção discreta ao grupo.",
+            "Considerar as emoções da equipe pode dar mais profundidade à sua ideia nova."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} desperta a necessidade de novidade. Um convite inesperado pode aproximar quando respeita o ritmo da outra pessoa.",
+            "Sua liberdade de pensamento traz frescor quando vem acompanhada de presença sincera."
+          ],
+          "earth": [
+            "{moon} privilegia gestos simples. Um pequeno ritual a dois pode acolher sua singularidade sem limitá-la.",
+            "Aquário pode descobrir que um hábito carinhoso também deixa espaço para inventar."
+          ],
+          "air": [
+            "{moon} favorece conversas curiosas. Suas ideias originais podem abrir um diálogo cheio de cumplicidade.",
+            "Uma pergunta sincera sobre as paixões da outra pessoa pode alimentar o vínculo tanto quanto uma descoberta."
+          ],
+          "water": [
+            "{moon} amplifica as emoções. Dar nome a um sentimento pode valer tanto quanto explicá-lo brilhantemente.",
+            "Sua independência pode conviver com uma escuta calorosa e atenta."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} incentiva a inventar. Aquário poderia usar uma solução comum sem perder sua singularidade.",
+            "Seu espírito inovador é charmoso; alguns problemas aceitam uma resposta simples."
+          ],
+          "earth": [
+            "{moon} convida ao pragmatismo. Aquário pode gostar de um método tradicional sem reinventá-lo inteiro.",
+            "Você adora quebrar hábitos; conservar um que funciona também seria uma escolha original."
+          ],
+          "air": [
+            "{moon} multiplica as discussões. Aquário poderia explicar sua nova ideia começando pelo que todos conhecem.",
+            "Sua curiosidade é enorme; às vezes ela pode desacelerar para acolher uma pergunta simples."
+          ],
+          "water": [
+            "{moon} abre espaço para sentimentos. Aquário pode compartilhar uma emoção sem transformá-la numa teoria sobre relações humanas.",
+            "Seu distanciamento ajuda; sua presença simples pode ajudar tanto quanto."
+          ]
+        }
+      },
+      "funny": {
+        "career": {
+          "fire": [
+            "{moon} desperta a vontade de agir. Aquário propõe revolucionar o escritório antes mesmo de ligar o computador.",
+            "Você tem uma solução futurista; a equipe ainda procura onde clicar para abrir o arquivo."
+          ],
+          "earth": [
+            "{moon} exige um resultado palpável. Aquário olha o método habitual e imediatamente propõe uma versão experimental.",
+            "Pedem para consertar uma prateleira; você começa repensando todo o sistema de organização."
+          ],
+          "air": [
+            "{moon} faz as ideias surgirem. Aquário inicia um debate sobre o futuro das reuniões durante uma que só precisava definir o horário.",
+            "Sua proposta é brilhante, mas pressupõe que toda a equipe aprenda uma língua nova num único dia."
+          ],
+          "water": [
+            "{moon} torna os climas mais sensíveis. Aquário quer resolver uma tensão com uma teoria fascinante sobre grupos humanos.",
+            "Você entendeu a dinâmica coletiva; perguntar como cada um está pode complementar o estudo."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} incentiva a espontaneidade. Aquário convida para um encontro tão original que precisa explicar o conceito por dez minutos.",
+            "Sua surpresa romântica parece uma experiência social com biscoitos."
+          ],
+          "earth": [
+            "{moon} prefere prazeres simples. Aquário sugere ver um filme e depois inventa um sistema inédito para escolhê-lo.",
+            "Você acha a rotina entediante, mesmo quando ela consiste em tomar um chá tranquilamente a dois."
+          ],
+          "air": [
+            "{moon} multiplica as conversas. Uma pergunta carinhosa vira um debate fascinante sobre a natureza dos relacionamentos.",
+            "Aquário compartilha uma ideia insólita; a outra pessoa também gostaria de saber como foi o seu dia."
+          ],
+          "water": [
+            "{moon} faz as emoções aflorarem. Você tenta entender um sentimento como se fosse uma tecnologia nova para testar.",
+            "Aquário aceita falar com o coração, mas pergunta se existe um diagrama explicativo."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} convida a agir depressa. Aquário inventou um jeito novo de partir antes de escolher o destino.",
+            "Você rejeitou a solução óbvia por princípio e ainda procura uma alternativa elegante."
+          ],
+          "earth": [
+            "{moon} exige referências sólidas. Aquário imediatamente as redesenha como uma constelação pessoal.",
+            "Você procura originalidade até na maneira de organizar quatro lápis."
+          ],
+          "air": [
+            "{moon} favorece as trocas. Aquário faz uma pergunta que ninguém imaginou e espera resposta imediata.",
+            "Uma conversa banal vira com você o protótipo de uma nova organização do mundo."
+          ],
+          "water": [
+            "{moon} aprofunda os sentimentos. Aquário analisa uma emoção como se fosse um fenômeno celeste raríssimo.",
+            "Seu coração manda um pequeno sinal; sua cabeça já quer publicar uma teoria."
+          ]
+        }
+      },
+      "piquant": {
+        "career": {
+          "fire": [
+            "{moon} estimula a ação. Sua ideia inovadora talvez mereça um protótipo antes do grande anúncio sobre o futuro do trabalho.",
+            "Aquário gosta de mudar as regras; conferir para que servem antes de eliminá-las poderia surpreender a equipe."
+          ],
+          "earth": [
+            "{moon} pede resultados concretos. Uma solução original não é melhor só porque complica a tarefa.",
+            "Você recusa os métodos tradicionais com uma constância que curiosamente parece um hábito."
+          ],
+          "air": [
+            "{moon} incentiva as discussões. Ouvir uma objeção não significa abandonar sua singularidade.",
+            "Aquário propõe uma mudança radical e depois estranha que perguntem para que ela serve."
+          ],
+          "water": [
+            "{moon} lembra das necessidades humanas. Uma equipe não é apenas um modelo teórico para otimizar.",
+            "Sua visão coletiva impressiona; pedir a opinião das pessoas envolvidas daria ainda mais força a ela."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} incentiva o inesperado. A simplicidade de um convite claro não ameaça sua reputação de originalidade.",
+            "Aquário pode surpreender sem transformar cada encontro numa experiência inédita."
+          ],
+          "earth": [
+            "{moon} valoriza os hábitos. Um carinho repetido não representa derrota da imaginação.",
+            "Sua necessidade de independência não impede que você seja confiável nas pequenas coisas."
+          ],
+          "air": [
+            "{moon} incentiva o diálogo. Uma resposta afetuosa não precisa começar com sua teoria pessoal do universo.",
+            "Aquário adora compartilhar conceitos; perguntar sobre os desejos da outra pessoa também seria inovador."
+          ],
+          "water": [
+            "{moon} destaca as emoções. Seu distanciamento pode ajudar, mas nem sempre substitui uma palavra carinhosa.",
+            "Você tem uma explicação fascinante para o silêncio; a outra pessoa talvez prefira uma resposta simples."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} dá vontade de inovar. Aquário rejeita a porta aberta e inventa um novo sistema de entrada.",
+            "Você nunca segue a multidão, nem quando ela está indo simplesmente para a sala certa."
+          ],
+          "earth": [
+            "{moon} exige um método sólido. Aquário propõe um tão original que primeiro é preciso aprender a entendê-lo.",
+            "Você gosta tanto de ser diferente que uma ideia comum quase precisa pedir desculpas."
+          ],
+          "air": [
+            "{moon} estimula os debates. Aquário faz uma pergunta absurda com ares de revelar um problema universal.",
+            "Seu talento para os desvios transformaria a resposta mais simples num ritual de iniciação."
+          ],
+          "water": [
+            "{moon} aproxima as emoções. Aquário prefere estudar a conexão humana a dizer que gosta de alguém.",
+            "Você defende a liberdade de expressão; seu carinho às vezes espera autorização para falar."
+          ]
+        }
+      }
+    },
+    "pisces": {
+      "classic": {
+        "career": {
+          "fire": [
+            "{moon} incentiva a passar à ação. Dar uma forma simples à sua inspiração pode abrir uma possibilidade concreta.",
+            "Peixes imagina com riqueza; escolher o primeiro passo pode ajudar a ideia a ganhar vida."
+          ],
+          "earth": [
+            "{moon} lembra o valor das referências. Um pouco de organização pode proteger sua criatividade sem prendê-la.",
+            "Sua intuição pode se apoiar em tarefas específicas para tornar o projeto mais acessível."
+          ],
+          "air": [
+            "{moon} favorece a troca de ideias. Suas imagens e intuições podem encontrar palavras claras por meio do diálogo.",
+            "Peixes às vezes ganha ao compartilhar ideias antes de encontrar a formulação perfeita."
+          ],
+          "water": [
+            "{moon} aumenta a sensibilidade. Sua atenção aos ambientes pode ajudar a compreender as necessidades da equipe.",
+            "Deixar as emoções aparecerem sem carregar as de todo o grupo pode apoiar seu equilíbrio no trabalho."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} desperta um impulso espontâneo. Um gesto simples pode expressar ternura sem esperar o momento ideal.",
+            "Sua imaginação romântica pode ganhar ao acolher os desejos reais da outra pessoa."
+          ],
+          "earth": [
+            "{moon} gosta de pequenos hábitos. Um instante compartilhado com simplicidade pode alimentar seus sonhos mais doces.",
+            "Peixes pode encontrar encanto num cotidiano tranquilo, sem exigir que ele pareça uma história inventada."
+          ],
+          "air": [
+            "{moon} estimula as conversas. Expressar claramente um desejo pode aproximar tanto quanto um olhar demorado.",
+            "Sua sensibilidade pode iluminar o diálogo quando você ousa colocar suas impressões em palavras."
+          ],
+          "water": [
+            "{moon} intensifica as emoções. Sua escuta profunda pode acolher sem levar tudo para o lado pessoal.",
+            "Um carinho pode aproximar duas pessoas sem exigir que cada silêncio tenha significado."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} incentiva iniciativas. Peixes poderia deixar os devaneios de lado por tempo suficiente para anotar uma ideia.",
+            "Sua imaginação é maravilhosa; também pode ajudar a lembrar onde começou o projeto."
+          ],
+          "earth": [
+            "{moon} favorece a praticidade. Peixes pode admirar as nuvens sem perder de vista a lista de compras.",
+            "Sua doçura não impede de marcar um horário preciso em vez de esperar um vago momento ideal."
+          ],
+          "air": [
+            "{moon} abre conversas. Peixes poderia contar um sonho começando pelo começo.",
+            "Suas imagens poéticas encantam; uma frase simples às vezes lhes dá um belo contorno."
+          ],
+          "water": [
+            "{moon} intensifica a nostalgia. Peixes pode guardar uma lembrança bonita sem construir uma casa inteira dentro dela.",
+            "Seu coração acolhe muitas nuances; também pode descansar no presente."
+          ]
+        }
+      },
+      "funny": {
+        "career": {
+          "fire": [
+            "{moon} dá vontade de começar imediatamente. Peixes já imaginou o resultado, mas ainda procura o primeiro documento.",
+            "Seu projeto está lindo na cabeça; a folha em branco gostaria de receber uma parte dele."
+          ],
+          "earth": [
+            "{moon} pede organização. Peixes transformou o quadro de tarefas numa paisagem cheia de possibilidades.",
+            "Você arrumou as anotações e encontrou um desenho fascinante no lugar do planejamento."
+          ],
+          "air": [
+            "{moon} multiplica as trocas. Você começou a explicar uma ideia e depois seguiu três associações que pareciam mais interessantes.",
+            "Peixes apresenta uma visão inspiradora; a equipe só pergunta qual é a próxima etapa."
+          ],
+          "water": [
+            "{moon} destaca a sensibilidade coletiva. Você percebeu um clima estranho e inventou uma história em torno da máquina de café.",
+            "Peixes gostaria de consolar um colega antes de saber se ele realmente precisa de consolo."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} estimula a espontaneidade romântica. Peixes imagina uma cena maravilhosa e às vezes esquece de propor a hora do encontro.",
+            "Sua mensagem carinhosa parece o começo de uma história cujo final só você conhece."
+          ],
+          "earth": [
+            "{moon} convida a apreciar as coisas simples. Peixes transforma uma xícara de chá numa lembrança poética antes do primeiro gole.",
+            "Você sonha com o momento perfeito; a manta espera pacientemente seu retorno à sala."
+          ],
+          "air": [
+            "{moon} incentiva as conversas. Uma pergunta simples desencadeia uma sequência de imagens e lembranças emocionantes.",
+            "Peixes conta o dia como um conto, com desvios que mereceriam um mapa."
+          ],
+          "water": [
+            "{moon} intensifica os sentimentos. Você escuta uma música suave e sua imaginação já organiza um filme inteiro.",
+            "Peixes poderia receber um elogio sem inventar para ele uma trilha sonora de seis minutos."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} pede energia. Peixes já começou três sonhos e esqueceu qual deles deveria virar projeto.",
+            "Sua ideia flutua tão lindamente que talvez seja hora de lhe dar um endereço."
+          ],
+          "earth": [
+            "{moon} convida ao realismo. Peixes faz uma lista de tarefas e a ilustra antes de marcar a primeira.",
+            "Você encontrou o lugar perfeito para sonhar; as chaves de casa continuam um mistério."
+          ],
+          "air": [
+            "{moon} abre espaço para trocas. Peixes responde com uma metáfora que até ele gostaria de escutar de novo.",
+            "Você começa uma história comum e termina numa paisagem imaginária."
+          ],
+          "water": [
+            "{moon} mexe nas lembranças. Peixes revive emocionado uma cena cujo motivo já esqueceu.",
+            "Sua nostalgia poderia escrever uma longa carta a uma nuvem que estava passando."
+          ]
+        }
+      },
+      "piquant": {
+        "career": {
+          "fire": [
+            "{moon} pede ação. Sua inspiração não vai preencher o formulário por você, por mais bonita que seja.",
+            "Peixes sonha com o projeto concluído; o primeiro rascunho gostaria de participar da aventura."
+          ],
+          "earth": [
+            "{moon} pede resultados concretos. Uma ideia vaga não vira plano só porque recebeu um título poético.",
+            "Sua criatividade merece ferramentas simples; tarefas esquecidas não se resolvem sozinhas."
+          ],
+          "air": [
+            "{moon} multiplica as conversas. Você poderia terminar de explicar seu projeto antes de seguir outro pensamento fascinante.",
+            "Peixes tem mil imagens na cabeça; a equipe gostaria de receber pelo menos uma instrução utilizável."
+          ],
+          "water": [
+            "{moon} intensifica as emoções. Carregar todo o clima do escritório vai um pouco além das suas responsabilidades.",
+            "Sua intuição é valiosa; pedir confirmação às vezes evita trabalhar em cima de uma preocupação imaginária."
+          ]
+        },
+        "love": {
+          "fire": [
+            "{moon} incentiva iniciativas. Seu roteiro romântico poderia começar com um convite claro.",
+            "Peixes gosta de belas histórias; a outra pessoa também merece conhecer o programa real."
+          ],
+          "earth": [
+            "{moon} exige gestos simples. Compartilhar uma xícara de chá pode bastar, sem virar símbolo de uma grande história.",
+            "Sua imaginação colore tudo; às vezes ela pode deixar uma noite tranquila continuar tranquila."
+          ],
+          "air": [
+            "{moon} favorece as trocas. Não espere a outra pessoa adivinhar seus sentimentos pela escolha de uma música.",
+            "Peixes sabe sugerir muitas coisas; dizer uma frase clara poderia mudar o ritmo de maneira agradável."
+          ],
+          "water": [
+            "{moon} desperta a sensibilidade. Nem toda pausa numa conversa anuncia um drama em vários capítulos.",
+            "Seu coração vê nuances em toda parte; às vezes ganharia ao aceitar uma explicação simples."
+          ]
+        },
+        "roast": {
+          "fire": [
+            "{moon} convida à ação. Peixes já imaginou a aventura, as cores e a música, mas esqueceu a partida.",
+            "Você poderia deixar um sonho para amanhã, mas primeiro precisaria encontrar o de ontem."
+          ],
+          "earth": [
+            "{moon} pede referências. Peixes preparou um caderno de projetos e o usa principalmente para desenhar paisagens.",
+            "Sua organização é muito artística; as tarefas reais gostariam de aparecer na exposição."
+          ],
+          "air": [
+            "{moon} incentiva a conversa. Peixes começa a responder, depois segue um pensamento que o leva para outro lugar.",
+            "Sua explicação fascina; seria ainda melhor reencontrar a pergunta original."
+          ],
+          "water": [
+            "{moon} coloca as emoções em destaque. Peixes poderia interpretar a chuva como uma mensagem pessoal do universo.",
+            "Sua imaginação compõe uma epopeia a partir de um silêncio que a outra pessoa achava apenas relaxante."
+          ]
+        }
+      }
+    }
+  }
+}
