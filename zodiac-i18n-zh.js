@@ -537,7 +537,8 @@ I18N.zh = deepMerge(I18N.fr, {
     eclAnnular: "此地可见环食：约 {m} 环食 {dur}（日食 {a} 至 {b}）",
     eclRises: "太阳带食而升",
     eclSets: "太阳带食而落",
-    eclSafety: "⚠️ 切勿在没有符合 ISO 12312-2 标准的日食眼镜时直视太阳。"
+    eclSafety: "⚠️ 切勿在没有符合 ISO 12312-2 标准的日食眼镜时直视太阳。",
+    zoom: { open: "放大星图", zoomIn: "放大", zoomOut: "缩小", reset: "重置视图", hint: "滚动鼠标滚轮或用双指捏合来缩放，拖动即可移动星图。" }
   },
   pair: {
     title: "双人契合度",

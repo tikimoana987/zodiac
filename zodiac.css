@@ -642,7 +642,33 @@ body.has-skybg::before, body.has-skybg::after{ display:none; }
 .map-grid{ display:grid; gap:1.4rem; align-items:start; margin-top:.6rem; }
 @media (min-width:960px){ .map-grid{ grid-template-columns:minmax(0,3fr) minmax(0,2fr); } }
 .map-main{ display:flex; flex-direction:column; align-items:center; gap:.8rem; }
-#skySvg{ width:100%; max-width:560px; height:auto; display:block; }
+#skySvg{ width:100%; max-width:560px; height:auto; display:block; cursor:zoom-in; }
+/* Carte du ciel agrandie (zodiac-skyzoom.js) */
+.sky-map-wrap{ position:relative; width:100%; max-width:560px; }
+.sky-zoom-open{ position:absolute; top:.3rem; inset-inline-end:.3rem; width:2.3rem; height:2.3rem; border-radius:50%; cursor:pointer;
+  font:inherit; font-size:1.15rem; line-height:1; color:#f0eaff; background:rgba(11,10,26,.7); border:1px solid rgba(232,195,106,.5); }
+.sky-zoom-open:hover{ border-color:var(--gold-bright); }
+.sky-zoom-open:focus-visible{ outline:2px solid var(--gold-bright); outline-offset:2px; }
+.modal-overlay.sky-zoom-overlay{ z-index:206; padding:0; background:rgba(5,4,15,.92); }
+.sky-zoom-card{ display:flex; flex-direction:column; width:100%; height:100%; max-height:100vh; max-height:100dvh;
+  padding:calc(.6rem + env(safe-area-inset-top, 0px)) .8rem calc(.6rem + env(safe-area-inset-bottom, 0px)); }
+.sky-zoom-bar{ display:flex; align-items:center; justify-content:space-between; gap:.8rem; flex-wrap:wrap; }
+.sky-zoom-title{ margin:0; color:#e8c36a; font-size:1.05rem; font-weight:600; }
+.sky-zoom-tools{ display:flex; gap:.4rem; }
+.sky-zoom-btn{ min-width:2.4rem; height:2.4rem; padding:0 .7rem; border-radius:999px; cursor:pointer; font:inherit; font-size:1.1rem;
+  color:#f0eaff; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.25); }
+.sky-zoom-btn.sky-zoom-reset{ font-size:.85rem; }
+.sky-zoom-btn:hover:not(:disabled){ border-color:#e8c36a; }
+.sky-zoom-btn:disabled{ opacity:.4; cursor:default; }
+.sky-zoom-btn:focus-visible, .sky-zoom-view:focus-visible{ outline:2px solid #e8c36a; outline-offset:2px; }
+.sky-zoom-view{ flex:1; min-height:0; display:flex; align-items:center; justify-content:center; touch-action:none; cursor:grab; margin:.5rem 0; border-radius:12px; }
+.sky-zoom-view:active{ cursor:grabbing; }
+.sky-zoom-svg{ width:100%; height:100%; max-width:100%; max-height:100%; --zf:1; }
+.sky-zoom-svg .cl, .sky-zoom-svg .ecl, .sky-zoom-svg .alt-ring, .sky-zoom-svg .sky-bg{ vector-effect:non-scaling-stroke; }
+.sky-zoom-svg .cl{ stroke-width:1.1px; } .sky-zoom-svg .ecl{ stroke-width:1px; } .sky-zoom-svg .alt-ring{ stroke-width:.8px; } .sky-zoom-svg .sky-bg{ stroke-width:1px; }
+.sky-zoom-svg .lbl{ font-size:calc(3.6px / var(--zf)); } .sky-zoom-svg .lbl-zod{ font-size:calc(4px / var(--zf)); }
+.sky-zoom-svg .pl-txt{ font-size:calc(4.6px / var(--zf)); }
+.sky-zoom-hint{ margin:0; text-align:center; color:#b8aed6; font-size:.82rem; }
 .sky-bg{ fill:#070616; stroke:rgba(255,255,255,.25); stroke-width:.4; }
 #skySvg.daylight .sky-bg{ fill:#1b2748; }
 #skySvg.daylight .st{ opacity:.2; }

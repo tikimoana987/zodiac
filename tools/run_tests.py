@@ -418,9 +418,25 @@ async def map_place_journey(browser, file):
             await page.wait_for_selector('#tabSky', timeout=60000)
             await page.click('#tabSky')
             kept = expect in await page.locator('.map-place').inner_text() and expect in await page.locator('#mapPlaceInput').input_value()
-            ok = no_select and kept and not errors
-            report(ok, f'{lang} : carte du ciel, lieu « {query} » saisi au clavier, carte mise à jour, retenu après rechargement'
-                   + ('' if ok else f' | liste {no_select}, retenu {kept}') + (f' | {errors}' if errors else ''))
+            # Carte agrandie : ouverture, molette, glisser, clavier (+, −, 0, flèches), Échap, retour du focus
+            await page.click('#skyZoomOpen')
+            await page.wait_for_selector('#skyZoom:not(.hidden) .sky-zoom-svg', timeout=5000)
+            box = await page.locator('#skyZoomView').bounding_box()
+            await page.mouse.move(box['x'] + box['width'] * .6, box['y'] + box['height'] * .4)
+            await page.mouse.wheel(0, -400)
+            await page.wait_for_function('SKYZ.s > 1.5', timeout=5000)
+            cx0 = await page.evaluate('SKYZ.cx')
+            await page.mouse.down(); await page.mouse.move(box['x'] + box['width'] * .3, box['y'] + box['height'] * .4, steps=6); await page.mouse.up()
+            panned = await page.evaluate('SKYZ.cx') != cx0
+            await page.focus('#skyZoomView')
+            await page.keyboard.press('+'); s_plus = await page.evaluate('SKYZ.s')
+            await page.keyboard.press('ArrowRight'); await page.keyboard.press('0')
+            reset = await page.evaluate('SKYZ.s === 1 && SKYZ.cx === 0 && SKYZ.cy === 0')
+            await page.keyboard.press('Escape')
+            zoom_ok = panned and s_plus > 2 and reset and await page.evaluate("document.getElementById('skyZoom').classList.contains('hidden') && document.activeElement.id === 'skyZoomOpen'")
+            ok = no_select and kept and zoom_ok and not errors
+            report(ok, f'{lang} : carte du ciel, lieu « {query} » saisi au clavier, carte mise à jour, retenu après rechargement ; carte agrandie (molette, glisser, clavier, Échap)'
+                   + ('' if ok else f' | liste {no_select}, retenu {kept}, zoom {zoom_ok}') + (f' | {errors}' if errors else ''))
         except Exception as exc:
             report(False, f'{lang} : carte du ciel, lieu d\'observation — {str(exc).splitlines()[0][:200]}')
         await ctx.close()
@@ -502,6 +518,15 @@ async def accessibility(browser, file):
                     .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
                 found += [f'{stage} : {v}' for v in violations]
             await page.evaluate('closeCosmicDialog()')
+            await page.click('#tabSky')   # carte du ciel agrandie, zoomée
+            await page.click('#skyZoomOpen')
+            await page.wait_for_selector('#skyZoom:not(.hidden) .sky-zoom-svg', timeout=5000)
+            await page.evaluate('skyZoomBy(3)')
+            await page.add_script_tag(content=script)
+            violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
+                .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
+            found += [f'carte agrandie : {v}' for v in violations]
+            await page.keyboard.press('Escape')
             await page.click('#tabSigns')   # bulle (i) avec son lien « En savoir plus », puis l'article ouvert
             await page.click('.info-btn[data-info="decan"]')
             for stage in ('bulle', 'article'):

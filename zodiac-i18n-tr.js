@@ -557,7 +557,14 @@ I18N.tr = deepMerge(I18N.fr, {
     eclAnnular: "buradan halkalı: {m} civarında {dur} halka ({a} – {b})",
     eclRises: "Güneş tutulmuş olarak doğuyor",
     eclSets: "Güneş hâlâ tutulmuş olarak batıyor",
-    eclSafety: "⚠️ Güneş'e asla ISO 12312-2 standardına uygun tutulma gözlüğü olmadan bakmayın."
+    eclSafety: "⚠️ Güneş'e asla ISO 12312-2 standardına uygun tutulma gözlüğü olmadan bakmayın.",
+    zoom: {
+      open: "Haritayı büyütün",
+      zoomIn: "Yakınlaştır",
+      zoomOut: "Uzaklaştır",
+      reset: "Görünümü sıfırla",
+      hint: "Yakınlaştırmak için fare tekerleğini veya iki parmağınızı kullanın; haritayı taşımak için sürükleyin."
+    }
   },
   pair: {
     title: "İki kişilik uyum",

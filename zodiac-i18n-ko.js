@@ -543,7 +543,14 @@ I18N.ko = deepMerge(I18N.fr, {
     eclAnnular: "이곳에서 금환 일식: {m}경 금환 {dur} (일식 {a}~{b})",
     eclRises: "해가 이미 가려진 채로 뜹니다",
     eclSets: "해가 아직 가려진 채로 집니다",
-    eclSafety: "⚠️ ISO 12312-2 규격에 맞는 일식 안경 없이 절대 태양을 보지 마세요."
+    eclSafety: "⚠️ ISO 12312-2 규격에 맞는 일식 안경 없이 절대 태양을 보지 마세요.",
+    zoom: {
+      open: "지도 확대 보기",
+      zoomIn: "확대",
+      zoomOut: "축소",
+      reset: "보기 초기화",
+      hint: "마우스 휠이나 두 손가락으로 확대·축소하고 드래그하여 이동하세요."
+    }
   },
   pair: {
     title: "두 사람의 궁합",

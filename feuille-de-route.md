@@ -12,7 +12,7 @@
 | Feuille de route d'origine (étapes 1 à 6) | ✅ terminée, sauf l'iPhone (gardé pour la fin) |
 | Pistes 1 à 6 | ✅ version et bandeau de mise à jour · ✅ cartes renversées · ✅ lieux par coordonnées GPS · ✅ calendrier du ciel · ✅ fiche du thème natal à imprimer ou en PDF · ✅ arcanes mineurs (jeu complet de 78 cartes) |
 | Langues | 14 (FR, EN, ES, PT, IT, DE, TR, RU, AR, HI, TH, ZH, JA, KO) |
-| Tests automatiques | 127 (110 + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit), bloquants, et dans Firefox, pour information |
+| Tests automatiques | 128 (111 + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit), bloquants, et dans Firefox, pour information |
 | Publication | automatique sur GitHub Pages, après les tests (circuit GitHub Actions) |
 | Poids | version autonome ≈ 8,4 Mo, mesurée le 2 novembre 2026 (7,8 Mo avant les articles ; l'ancien chiffre de 6,8 Mo était dépassé) : illustrations du tarot ≈ 3,1 Mo (déjà en WebP), villes ≈ 1 Mo, 14 langues ≈ 1,6 Mo, articles ≈ 0,6 Mo, textes du portrait ≈ 0,4 Mo |
 | Confidentialité | aucune donnée envoyée en ligne (adresse en « # », pas de serveur, pas de statistiques) ; seule exception : les événements ajoutés à Google Agenda à la demande de l'utilisateur |
@@ -95,6 +95,7 @@ Retour détaillé d'une testeuse, validé le 31 octobre. Fil conducteur pour tou
 - [x] **Lectures de tarot par thème** (V10.11, 8 novembre 2026 ; voir `docs/cahier-tarot.md`) : choix d'un thème avant le tirage (Amour, Travail et argent, Vie personnelle), sens de chaque carte selon le thème et la position, une quarantaine de combinaisons remarquables, petit récit reliant les cartes et synthèse propre au thème (souhait de la testeuse : « une vraie lecture, pas une suite de définitions ») ; sens traditionnels conservés, l'appli ne comprend pas la question tapée.
 - [x] Choix « avant / après le changement d'heure » pour la deuxième personne de la compatibilité (V10.12, 8 novembre 2026).
 - [x] Fond de page : la vraie carte du ciel (ciel du moment, puis de naissance) ; roue qui tourne toujours ; fondu entre onglets (V10.13, 8 novembre 2026, demandes de Joann).
+- [x] Carte du ciel agrandie : plein écran, zoom, déplacement, clavier (V10.14, 8 novembre 2026, idée de Joann).
 - [ ] À étudier : la version autonome atteint ≈ 13 Mo (toutes les langues de Cosmic Daily et du tarot par thème) ; la proposer par langue si besoin.
 - [ ] Plus tard : tirages accessibles sans profil, depuis l'accueil.
 - [x] **Cosmic Daily** (V10.8, 5 novembre 2026 ; voir `docs/cahier-cosmic-daily.md`) — validé le 4 novembre 2026, idée d'une testeuse : horoscope quotidien à partir du vrai ciel du jour, en trois voix au choix, Classique, Drôle et Piquant ; rubriques Carrière, Amour, Bien-être, Sagesse cosmique (+ éventuellement « Cosmic Roast »). Taquiner les clichés du signe, jamais la personne (corps, santé, argent) ; bien-être sans conseil médical ; présenté comme un jeu ; pas de compteur de jours. D'abord des exemples en français dans chaque ton, jugés avant toute traduction.

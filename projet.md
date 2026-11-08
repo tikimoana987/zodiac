@@ -1,5 +1,7 @@
 # 🌌 Zodiaque & Décans · Cosmic Interface
 
+> **V10.14 : carte du ciel agrandie.** Dans « Ciel du moment », un clic sur la carte du ciel (ou le bouton ⤢) l'ouvre en plein écran : zoom jusqu'à 8× (molette, pincement, boutons + et −, touches + et −), déplacement (glisser, flèches), « Recentrer » (ou 0) ; étoiles nettes, traits fins et noms lisibles à tous les zooms ; Échap ou × pour fermer, le focus revient au bouton. Idée de Joann ; libellés dans les 14 langues. 128 tests.
+
 > **V10.13 : la carte du ciel en fond, et une roue qui tourne toujours.** Le fond de page est désormais la vraie carte du ciel (étoiles et tracés des constellations, sans texte, très pâle, immobile) : le ciel du moment à l'accueil, le ciel de naissance dès qu'un résultat s'affiche. La roue du zodiaque continue de tourner lentement après le résultat, comme à l'accueil (votre signe, surligné, tourne avec elle). Fondu léger à chaque changement d'onglet. (La révélation animée de la constellation et l'étoile filante, essayées, ont été retirées : elles rompaient la symétrie.) 127 tests.
 
 > **V10.12 : changement d'heure pour la deuxième personne de la compatibilité.** Si l'heure de naissance de l'autre personne n'a pas existé ou a existé deux fois à son lieu de naissance, le même message s'affiche, avec le choix « avant / après le changement d'heure » ; il recalcule aussitôt les neuf axes, la synastrie, l'ascendant et la Lune. 126 tests.
@@ -100,6 +102,7 @@ Les fichiers sont chargés par de simples balises `<script src>` (pas de modules
 | `data/articles/articles-xx.json` | **Articles « En savoir plus »** : 10 articles × 14 langues (titre, 4 rubriques, sources) et libellés ; textes validés, source de vérité |
 | `data/cosmic/cosmic-xx.json` | **Cosmic Daily** : textes des 14 langues (libellés, « la Lune en … », textes communs, Mercure, 12 signes × 3 voix) ; source de vérité |
 | `zodiac-cosmic-ui.js`, `zodiac-cosmic-xx.js` | Cosmic Daily, **générés** par `node tools/regen_cosmic.js` : libellés (toujours chargés) et textes d'une langue (chargés à la demande sur le site) |
+| `zodiac-skyzoom.js` | **Carte du ciel agrandie** : copie de `#skySvg` dans la fenêtre `#skyZoom`, zoom autour du point visé (`skyZoomBy`), déplacement borné au disque, molette, pincement (événements pointeur), clavier en phase de capture, focus gardé |
 | `zodiac-cosmic.js` | **Onglet Cosmic Daily** (cahier `docs/cahier-cosmic-daily.md`) : ciel du jour, assemblage du texte, voix, signe, partage, chargement à la demande |
 | `zodiac-articles-data.js` | Articles dans les 14 langues (`ARTICLES_I18N`), **générés** par `node tools/regen_articles.js` (contrôle structure, accolades, apostrophes, thaï, sources) : ne pas modifier à la main |
 | `zodiac-articles.js` | **Articles « En savoir plus »** (cahier `docs/cahier-articles.md`) : table `ARTICLE_OF_INFO` (bulle → article), lien dans la bulle (via `showPop()`), panneau de lecture `#article` (focus gardé, Échap en phase de capture, retour du focus), bouton de l'Oracle `[data-article-open]` |
@@ -502,7 +505,7 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | aucune en ligne (html2canvas en copie locale) |
 | Poids approximatif | site : première visite ≈ 4,1 Mo compressés, mise à jour typique ≈ 80 Ko (V10.4) ; version autonome ≈ 8,4 Mo, mesurée le 2 novembre 2026 (7,8 Mo avant les articles) : ≈ 3,1 Mo d'illustrations du tarot, ≈ 1 Mo de villes, ≈ 1,6 Mo de traductions, ≈ 0,6 Mo d'articles, ≈ 0,4 Mo de textes du portrait |
-| Tests automatisés | 127 (110 dans `zodiac-tests.js`, dont 1 pour le fond de page, dont 3 pour les articles, 4 pour le changement d'heure, 3 pour la synthèse du tarot, 2 pour le tarot par thème, 1 pour la lisibilité des couleurs des signes et 3 pour Cosmic Daily, + 17 portrait) ; parcours réel protégé en CI, compatibilité, tarot, carré, articles et changement d'heure compris |
+| Tests automatisés | 128 (111 dans `zodiac-tests.js`, dont 1 pour la carte agrandie, dont 1 pour le fond de page, dont 3 pour les articles, 4 pour le changement d'heure, 3 pour la synthèse du tarot, 2 pour le tarot par thème, 1 pour la lisibilité des couleurs des signes et 3 pour Cosmic Daily, + 17 portrait) ; parcours réel protégé en CI, compatibilité, tarot, carré, articles et changement d'heure compris |
 
 ---
 

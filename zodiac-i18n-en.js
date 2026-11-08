@@ -558,7 +558,14 @@ I18N.en = deepMerge(I18N.fr, {
     eclAnnular: "annular from here: {dur} of ring around {m} (eclipse from {a} to {b})",
     eclRises: "the Sun rises already eclipsed",
     eclSets: "the Sun sets still eclipsed",
-    eclSafety: "⚠️ Never look at the Sun without eclipse glasses meeting the ISO 12312-2 standard."
+    eclSafety: "⚠️ Never look at the Sun without eclipse glasses meeting the ISO 12312-2 standard.",
+    zoom: {
+      open: "Enlarge sky map",
+      zoomIn: "Zoom in",
+      zoomOut: "Zoom out",
+      reset: "Reset view",
+      hint: "Use the mouse wheel or pinch to zoom, then drag to pan."
+    }
   },
   pair: {
     title: "Compatibility for two",

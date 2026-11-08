@@ -561,7 +561,14 @@ I18N.fr = {
     eclAnnular: "annulaire d'ici : {dur} d'anneau vers {m} (éclipse de {a} à {b})",
     eclRises: "le Soleil se lève déjà éclipsé",
     eclSets: "le Soleil se couche encore éclipsé",
-    eclSafety: "⚠️ Ne regardez jamais le Soleil sans lunettes d'éclipse conformes à la norme ISO 12312-2."
+    eclSafety: "⚠️ Ne regardez jamais le Soleil sans lunettes d'éclipse conformes à la norme ISO 12312-2.",
+    zoom: {
+      open: "Agrandir la carte",
+      zoomIn: "Zoom avant",
+      zoomOut: "Zoom arrière",
+      reset: "Recentrer",
+      hint: "Molette ou pincement pour zoomer, glisser pour se déplacer."
+    }
   },
   pair: {
     title: "Compatibilité à deux",

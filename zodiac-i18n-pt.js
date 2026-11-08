@@ -560,7 +560,14 @@ I18N.pt = deepMerge(I18N.fr, {
     eclAnnular: "anular daqui: {dur} de anel por volta das {m} (eclipse das {a} às {b})",
     eclRises: "o Sol nasce já eclipsado",
     eclSets: "o Sol se põe ainda eclipsado",
-    eclSafety: "⚠️ Nunca olhe para o Sol sem óculos de eclipse que atendam à norma ISO 12312-2."
+    eclSafety: "⚠️ Nunca olhe para o Sol sem óculos de eclipse que atendam à norma ISO 12312-2.",
+    zoom: {
+      open: "Ampliar o mapa",
+      zoomIn: "Aumentar o zoom",
+      zoomOut: "Diminuir o zoom",
+      reset: "Redefinir visualização",
+      hint: "Use a roda do mouse ou o gesto de pinça para dar zoom e arraste para mover."
+    }
   },
   pair: {
     title: "Compatibilidade a dois",

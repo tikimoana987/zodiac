@@ -561,7 +561,14 @@ I18N.de = deepMerge(I18N.fr, {
     eclAnnular: "ringförmig von hier: {dur} Ring gegen {m} (Finsternis von {a} bis {b})",
     eclRises: "die Sonne geht bereits verfinstert auf",
     eclSets: "die Sonne geht noch verfinstert unter",
-    eclSafety: "⚠️ Nie ohne Finsternisbrille nach Norm ISO 12312-2 in die Sonne schauen."
+    eclSafety: "⚠️ Nie ohne Finsternisbrille nach Norm ISO 12312-2 in die Sonne schauen.",
+    zoom: {
+      open: "Karte vergrößern",
+      zoomIn: "Vergrößern",
+      zoomOut: "Verkleinern",
+      reset: "Ansicht zurücksetzen",
+      hint: "Zoome mit dem Mausrad oder zwei Fingern und ziehe die Karte, um sie zu verschieben."
+    }
   },
   pair: {
     title: "Kompatibilität zu zweit",

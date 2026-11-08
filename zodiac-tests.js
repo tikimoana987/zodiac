@@ -1589,6 +1589,24 @@
     assertEq(document.getElementById('skyBg').innerHTML, before, 'même ciel : pas de nouveau dessin');
   });
 
+  section('Carte du ciel agrandie');
+  test('Carte du ciel agrandie : zoom autour du point visé, limites, déplacement borné, libellés', () => {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'), keep = SKYZ.svg;
+    SKYZ.svg = svg;
+    try {
+      Object.assign(SKYZ, { s: 1, cx: 0, cy: 0 });
+      skyZoomBy(2, 50, 0);
+      assertEq(SKYZ.s + '|' + SKYZ.cx + '|' + SKYZ.cy, '2|25|0', 'le point visé reste en place');
+      assertEq(svg.getAttribute('viewBox'), '-31.000 -56.000 112.000 112.000', 'vue');
+      skyZoomBy(100); assertEq(SKYZ.s, 8, 'zoom maximal');
+      skyZoomBy(.001); assertEq(SKYZ.s + '|' + SKYZ.cx + '|' + SKYZ.cy, '1|0|0', 'zoom minimal : carte entière, centrée');
+      Object.assign(SKYZ, { s: 4, cx: 500, cy: -500 }); skyZoomApply();
+      assertEq(SKYZ.cx + '|' + SKYZ.cy, '84|-84', 'déplacement limité au disque de la carte');
+      assertEq(svg.style.getPropertyValue('--zf'), Math.pow(4, .8).toFixed(3), 'noms : taille presque constante');
+    } finally { SKYZ.svg = keep; Object.assign(SKYZ, { s: 1, cx: 0, cy: 0 }); }
+    for (const lang of Object.keys(I18N)) { const z = I18N[lang].map.zoom || I18N.fr.map.zoom; assert(z.open && z.zoomIn && z.zoomOut && z.reset && z.hint, `${lang} : libellés`); }
+  });
+
   section('Couleurs lisibles');
   test('Couleur de chaque signe lisible en texte, thèmes sombre et clair (au moins 4,5:1)', () => {
     const palettes = Object.entries(SIGN_THEME).concat([['défaut', { gold: '#e8c36a' }]]);

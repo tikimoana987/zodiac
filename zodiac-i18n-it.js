@@ -561,7 +561,14 @@ I18N.it = deepMerge(I18N.fr, {
     eclAnnular: "anulare da qui: {dur} di anello verso le {m} (eclissi dalle {a} alle {b})",
     eclRises: "il Sole sorge già eclissato",
     eclSets: "il Sole tramonta ancora eclissato",
-    eclSafety: "⚠️ Non guardare mai il Sole senza occhiali per eclissi conformi alla norma ISO 12312-2."
+    eclSafety: "⚠️ Non guardare mai il Sole senza occhiali per eclissi conformi alla norma ISO 12312-2.",
+    zoom: {
+      open: "Ingrandisci la mappa",
+      zoomIn: "Zoom avanti",
+      zoomOut: "Zoom indietro",
+      reset: "Ripristina la vista",
+      hint: "Usa la rotellina del mouse o pizzica per zoomare, poi trascina per spostarti."
+    }
   },
   pair: {
     title: "Compatibilità di coppia",

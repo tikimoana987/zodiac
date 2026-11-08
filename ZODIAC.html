@@ -115,6 +115,23 @@
   <button type="button" class="oracle-close" id="oracleClose">Fermer</button>
 </div>
 
+<!-- CARTE DU CIEL AGRANDIE (zodiac-skyzoom.js) : zoom, déplacement, clavier -->
+<div id="skyZoom" class="modal-overlay sky-zoom-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="skyZoomTitle" aria-hidden="true">
+  <div class="sky-zoom-card">
+    <div class="sky-zoom-bar">
+      <h2 class="sky-zoom-title" id="skyZoomTitle">Carte du ciel</h2>
+      <div class="sky-zoom-tools">
+        <button type="button" class="sky-zoom-btn" id="skyZoomOut" aria-label="Zoom arrière">−</button>
+        <button type="button" class="sky-zoom-btn" id="skyZoomIn" aria-label="Zoom avant">+</button>
+        <button type="button" class="sky-zoom-btn sky-zoom-reset" id="skyZoomReset">Recentrer</button>
+        <button type="button" class="sky-zoom-btn" id="skyZoomClose" aria-label="Fermer">×</button>
+      </div>
+    </div>
+    <div class="sky-zoom-view" id="skyZoomView" tabindex="0" role="group" aria-describedby="skyZoomHint"></div>
+    <p class="sky-zoom-hint" id="skyZoomHint"></p>
+  </div>
+</div>
+
 <!-- COSMIC DAILY depuis l'accueil, sans profil (zodiac-cosmic.js) -->
 <div id="cosmicDialog" class="modal-overlay cosmic-overlay hidden" role="dialog" aria-modal="true" aria-hidden="true">
   <div class="modal cosmic-modal">
@@ -214,6 +231,7 @@
 <script src="zodiac-cosmic-ja.js"></script>
 <script src="zodiac-cosmic-ko.js"></script>
 <script src="zodiac-cosmic.js"></script>
+<script src="zodiac-skyzoom.js"></script>
 <script src="zodiac-tarot-themes-ui.js"></script>
 <script src="zodiac-tarot-themes-fr.js"></script>
 <script src="zodiac-tarot-themes-en.js"></script>

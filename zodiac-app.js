@@ -496,7 +496,10 @@ function renderResult(signKey, decanIdx){
       </div>
       <div class="map-grid">
         <div class="map-main">
-          <svg id="skySvg" viewBox="-112 -112 224 224" role="img" aria-label="${t.map.title}"></svg>
+          <div class="sky-map-wrap">
+            <svg id="skySvg" viewBox="-112 -112 224 224" role="img" aria-label="${t.map.title}"></svg>
+            <button type="button" class="sky-zoom-open" id="skyZoomOpen" aria-label="${escapeHtml((t.map.zoom || I18N.fr.map.zoom).open)}" title="${escapeHtml((t.map.zoom || I18N.fr.map.zoom).open)}">⤢</button>
+          </div>
           <div class="map-time">
             <label for="mapTime">${t.map.time}</label>
             <input type="range" id="mapTime" min="0" max="1430" step="10">
