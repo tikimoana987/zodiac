@@ -1,6 +1,6 @@
 # 🗺️ Zodiaque & Décans — ce qu'il reste à faire
 
-> État au 7 novembre 2026, après les articles « En savoir plus » (V10.3), l'allègement des mises à jour (V10.4), le test Safari bloquant (V10.5), le changement d'heure le jour de naissance (V10.6), la synthèse des tirages de tarot (V10.7) et Cosmic Daily (V10.8, puis V10.9 avec Roast My Zodiac et l'accès depuis l'accueil) ; auparavant le portrait symbolique, l'audit d'accessibilité et les tests Safari / Firefox (V7.3), et le retour détaillé d'une testeuse (§ 3). Ce document complète `projet.md` (ce qui est fait) et `reprise.md` (notes techniques).
+> État au 8 novembre 2026, après les articles « En savoir plus » (V10.3), l'allègement des mises à jour (V10.4), le test Safari bloquant (V10.5), le changement d'heure le jour de naissance (V10.6), la synthèse des tirages de tarot (V10.7), Cosmic Daily (V10.8, puis V10.9 avec Roast My Zodiac et l'accès depuis l'accueil) et les retouches de l'accueil et de la carte du ciel (V10.10) ; auparavant le portrait symbolique, l'audit d'accessibilité et les tests Safari / Firefox (V7.3), et le retour détaillé d'une testeuse (§ 3). Ce document complète `projet.md` (ce qui est fait) et `reprise.md` (notes techniques).
 > Légende : 🟢 petit · 🟡 moyen · 🔴 gros chantier · ❓ décision à prendre · ⭐ recommandation de Claude
 
 ---
@@ -91,6 +91,7 @@ Retour détaillé d'une testeuse, validé le 31 octobre. Fil conducteur pour tou
 - [x] Onglet Tarot à part ; quatre tirages interactifs (une question · une carte, Passé · Présent · Avenir, Situation · Défi · Conseil, les six prochains mois) ; mélanger, choisir dans l'éventail, poser, retourner ; sauvegarde par profil et par type.
 - [x] **Synthèse des tirages** « Ce que cela signifie pour votre question » (V10.7, 4 novembre 2026, idée d'une testeuse) : tendance d'ensemble et conclusion encourageante, sans promesse ; voir `docs/cahier-tarot.md`.
 - [x] **Cosmic Daily 2** (V10.9, 7 novembre 2026, essais de la testeuse) : textes réécrits (8 variantes, phrase d'ambiance), Piquant mordant, Roast My Zodiac avec partage en image, accès depuis l'accueil sans profil.
+- [x] **Retouches de Joann** (V10.10, 8 novembre 2026) : cartes animées de l'accueil (Cosmic Daily en premier, puis l'Oracle), un seul Roast My Zodiac par jour, lieu de la carte du ciel saisi comme le lieu de naissance.
 - [ ] **Lectures de tarot par thème** (validé le 6 novembre 2026, prochain chantier) : choix d'un thème avant le tirage (Amour, Travail et argent, Vie personnelle), sens de chaque carte selon le thème et la position, une quarantaine de combinaisons remarquables, petit récit reliant les cartes et synthèse propre au thème (souhait de la testeuse : « une vraie lecture, pas une suite de définitions ») ; sens traditionnels conservés, l'appli ne comprend pas la question tapée.
 - [ ] Ensuite (validé le 6 novembre 2026) : choix « avant / après le changement d'heure » pour la deuxième personne de la compatibilité.
 - [ ] Plus tard : tirages accessibles sans profil, depuis l'accueil.

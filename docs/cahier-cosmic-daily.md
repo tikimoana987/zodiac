@@ -1,5 +1,10 @@
 # Cahier — Cosmic Daily (V10.8, 5 novembre 2026 ; V10.9 « Cosmic Daily 2 », 7 novembre 2026)
 
+## 00. Retouches (V10.10, 8 novembre 2026)
+
+- **Un seul Roast My Zodiac par jour** et par signe (décision de Joann : la rareté fait le charme) ; bouton « Encore un » retiré.
+- **Accueil** : Cosmic Daily devient une carte animée (galaxie dessinée en code par `galaxySvg()` : spirale d'étoiles qui tourne, trois planètes en orbite, étoiles qui scintillent), placée en premier, à côté de la carte de l'Oracle.
+
 ## 0. Version 2 (V10.9), après les essais de la testeuse
 
 Constat (6 novembre) : textes trop semblables (Bien-être et Sagesse communs à tous les signes, deux variantes seulement, beaucoup de phrases ouvrant sur « la Lune en … ») et humour trop sage. Décisions (Joann, 6 et 7 novembre) : Classique sérieux et naturel ; Drôle franchement drôle ; Piquant et Roast My Zodiac mordants (sarcasme, comparaisons absurdes, chutes inattendues) ; vouvoiement partout ; limites : ni handicap, ni maladie, ni mort, ni suicide, ni terme médical ou psychiatrique, rien sur le physique, le poids, la sexualité, l'âge, le genre, l'origine, la religion ; clichés d'argent permis (Capricorne), jamais la situation financière réelle ; fausse certitude comique permise en Drôle et Piquant, jamais en Classique ni sur l'argent, la santé ou l'amour réels.

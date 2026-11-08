@@ -483,8 +483,12 @@ function renderResult(signKey, decanIdx){
       <div class="sky-head">
         <h3 id="mapTitle">${t.map.title}${infoBtn('skymap', t.map.title)}</h3>
         <div class="sky-controls">
-          <label class="sr-only" for="mapPlace">${t.map.place}</label>
-          <select id="mapPlace">${placeOptions(t)}</select>
+          <div class="place-box map-place-box">
+            <label class="sr-only" for="mapPlaceInput">${t.map.place}</label>
+            <input type="text" id="mapPlaceInput" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="mapPlaceList" autocomplete="off" spellcheck="false" placeholder="${escapeHtml(t.placePlaceholder)}">
+            <button type="button" class="place-clear" id="mapPlaceClear" hidden aria-label="${escapeHtml(t.placeClear)}">×</button>
+            <ul class="place-list" id="mapPlaceList" role="listbox" hidden></ul>
+          </div>
           <button type="button" class="btn-secondary" id="mapLocate">${t.map.locate}</button>
         </div>
       </div>
@@ -964,7 +968,7 @@ function placeLabel(p){
   if (p.coords) return `${p.name} (${I18N[currentLang].placeNear.replace('{city}', placeName(p.ref, currentLang))})`;   // coordonnées saisies
   return `${placeName(p, currentLang)} (${regionName(p.country)})`;
 }
-function makePlaceField(inputId, listId, clearId, onEnter){
+function makePlaceField(inputId, listId, clearId, onEnter, onSet){   // onSet(key) : lieu choisi ou effacé (carte du ciel)
   const input = document.getElementById(inputId), list = document.getElementById(listId), clear = document.getElementById(clearId);
   let key = '', results = [], active = -1, timer = null;
   // Ligne « Fuseau horaire » sous le champ, pour un lieu donné par ses coordonnées (choix parmi les fuseaux des environs)
@@ -988,6 +992,7 @@ function makePlaceField(inputId, listId, clearId, onEnter){
     clear.hidden = !input.value;
     renderTz(p);
     close();
+    if (onSet) onSet(key);
   };
   const render = () => {
     const t = I18N[currentLang], q = normPlace(input.value).replace(PLACE_ARTICLES, '');
@@ -1455,6 +1460,11 @@ let skyCache = null;     // étoiles et tracés ramenés à l'équinoxe de la da
 function currentPlace(){
   let saved = null;
   try { saved = JSON.parse(store.get('zodiac_place') || 'null'); } catch (e) {}
+  if (saved && saved.kind === 'place') {   // lieu choisi dans le champ de saisie (même liste que le lieu de naissance)
+    const p = birthPlace(saved.key);
+    if (p) return { kind: 'place', key: p.key, lat: p.lat, lon: p.lon, tz: p.tz };
+    saved = null;
+  }
   if (saved && Number.isFinite(saved.lat) && Number.isFinite(saved.lon)) return saved;
   const c = CITIES.find(x => x[0] === DEFAULT_CITY[currentLang]) || CITIES[0];
   return { kind: 'city', name: c[0], lat: c[2], lon: c[3] };
@@ -1465,6 +1475,7 @@ function regionName(code){
 /* Par défaut : l'heure actuelle si l'on regarde aujourd'hui après midi, sinon 22:00 */
 /* Fuseau du lieu d'observation : celui de la ville choisie ; null (appareil) pour « Ma position » */
 function mapTz(place){
+  if (place.kind === 'place') return place.tz || null;
   if (place.kind !== 'city') return null;
   const c = CITIES.find(x => x[0] === place.name);
   return c ? c[4] : null;
@@ -1475,11 +1486,6 @@ function defaultMapMinutes(){
   if (!date) return 600;
   const m = (Date.now() - localInstant(date, 12, 0, mapTz(currentPlace()))) / 60000;
   return m >= 0 && m < 1440 ? Math.round(m / 10) * 10 : 600;
-}
-function placeOptions(t){
-  const p = currentPlace();
-  const geo = p.kind === 'geo' ? `<option value="geo" selected>${t.map.myPosition}</option>` : '';
-  return geo + CITIES.map((c, i) => `<option value="${i}"${p.kind === 'city' && p.name === c[0] ? ' selected' : ''}>${c[0]} (${regionName(c[1])})</option>`).join('');
 }
 
 function renderMap(){
@@ -1576,7 +1582,7 @@ function renderMap(){
     return `<li>${m.eclipseTypes[e.type]} <span class="sub">· ${eFmt.format(new Date(e.ms))} · ${where}</span></li>`;
   }).join('');
   side.innerHTML = `
-    <p class="map-place">${place.kind === 'geo' ? m.myPosition : `${place.name} (${regionName((CITIES.find(c => c[0] === place.name) || [])[1] || '')})`}<br><span class="sub">${coords}</span></p>
+    <p class="map-place">${place.kind === 'geo' ? m.myPosition : place.kind === 'place' ? escapeHtml(placeLabel(birthPlace(place.key))) : `${place.name} (${regionName((CITIES.find(c => c[0] === place.name) || [])[1] || '')})`}<br><span class="sub">${coords}</span></p>
     ${day ? `<p class="map-day">${m.daylight}</p>` : ''}
     <h4>${day ? m.aboveHorizon : m.visibleNow}</h4><ul class="map-list">${visible || `<li class="sub">${m.noneVisible}</li>`}</ul>
     <h4>${m.meteors}</h4><ul class="map-list">${meteors}</ul>
@@ -1649,23 +1655,28 @@ function renderNight(){
 }
 
 /* Branchements de la carte (appelés après chaque rendu du résultat) */
+let mapField = null;   // champ « lieu d'observation » de la carte du ciel (recréé avec la carte)
 function bindMap(){
   const t = I18N[currentLang];
-  const select = document.getElementById('mapPlace'), btn = document.getElementById('mapLocate');
-  select.addEventListener('change', () => {
-    if (select.value !== 'geo') {
-      const c = CITIES[+select.value];
-      store.set('zodiac_place', JSON.stringify({ kind: 'city', name: c[0], lat: c[2], lon: c[3] }));
-    }
+  const btn = document.getElementById('mapLocate');
+  // Saisie comme pour le lieu de naissance : quelques lettres, puis un choix dans les suggestions
+  let ready = false;
+  mapField = makePlaceField('mapPlaceInput', 'mapPlaceList', 'mapPlaceClear', () => {}, key => {
+    if (!ready || !key) return;   // effacer le champ garde le lieu affiché
+    store.set('zodiac_place', JSON.stringify({ kind: 'place', key }));
     renderMap();
   });
+  const here = currentPlace();
+  if (here.kind === 'place') mapField.set(here.key);
+  else if (here.kind === 'city') { const p = searchPlaces(here.name, 1)[0]; if (p) mapField.set(p.key); }   // ancienne liste : retrouvée par son nom
+  ready = true;
   btn.addEventListener('click', () => {
     const fail = () => { btn.textContent = t.map.locate; btn.disabled = false; showError(t.map.geoError); };
     if (!navigator.geolocation) return fail();
     btn.textContent = t.map.locating; btn.disabled = true;
     navigator.geolocation.getCurrentPosition(p => {
       store.set('zodiac_place', JSON.stringify({ kind: 'geo', lat: +p.coords.latitude.toFixed(2), lon: +p.coords.longitude.toFixed(2) }));
-      select.innerHTML = placeOptions(t);
+      ready = false; mapField.set(''); ready = true;   // « Ma position » : le champ se vide, la carte l'indique
       btn.textContent = t.map.locate; btn.disabled = false;
       renderMap();
     }, fail, { timeout: 10000, maximumAge: 600000 });
@@ -2006,6 +2017,8 @@ function applyUITranslations(){
   if (birthField) birthField.relabel();   // pays affiché dans la nouvelle langue
   document.getElementById('labelName').textContent = t.labelName;
   document.getElementById('oracleOpenLabel').textContent = t.oracle.open;
+  document.getElementById('oracleOpenSub').textContent = t.oracle.hint;
+  document.getElementById('oracleOpenNote').textContent = t.oracle.note;
   if (typeof refreshSupport === 'function') refreshSupport();
   document.getElementById('privacyLine').textContent = t.privacyLine;
   for (const [slot, key, labelId] of [['infoSlotName', 'fieldName', 'labelName'], ['infoSlotTime', 'fieldTime', 'labelBirthTime'], ['infoSlotPlace', 'fieldPlace', 'labelBirthPlace']]) {

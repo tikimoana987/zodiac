@@ -327,14 +327,10 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 @keyframes pulseText{ 0%,100%{opacity:.5} 50%{opacity:1} }
 
 /* ORACLE OUI / NON (zodiac-oracle.js) — même ambiance que l'écran de recherche, dans les deux thèmes */
-.oracle-entry{ display:flex; flex-wrap:wrap; justify-content:center; gap:.7rem; margin-top:1.2rem; }
-.app.has-result .oracle-entry{ display:none; }   /* profil affiché : l'Oracle est dans l'onglet Tarot, pas de doublon */
-.oracle-open{
-  background:transparent; border:1px solid var(--ov-15); color:var(--text); cursor:pointer;
-  border-radius:999px; padding:.45rem 1.1rem; font:inherit; font-size:.85rem;
-}
-.oracle-open:hover{ border-color:var(--gold); }
-.oracle-open:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+.home-entries{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1rem; max-width:920px; margin:1.4rem auto 0; }
+.app.has-result .home-entries{ display:none; }   /* profil affiché : Cosmic Daily et l'Oracle sont dans les onglets, pas de doublon */
+.home-teaser{ max-width:none; margin:0; }
+@media (max-width:700px){ .home-entries{ grid-template-columns:1fr; } }
 .oracle-more{ text-align:center; margin:1.4rem 0 .4rem; }
 .oracle-overlay{
   position:fixed; inset:0; z-index:150; overflow-y:auto;
@@ -1114,7 +1110,19 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .cosmic-roast-hint{ margin:0 0 .5rem; color:var(--muted); font-size:.85rem; font-style:italic; }
 .cosmic-roast-text{ margin:0 0 .8rem; color:var(--text); font-size:1rem; line-height:1.65; }
 .cosmic-roast-actions{ display:flex; flex-wrap:wrap; gap:.5rem; }
-.cosmic-open-icon{ color:var(--gold); }
+/* Carte Cosmic Daily de l'accueil : galaxie qui tourne, planètes en orbite, étoiles qui scintillent (galaxySvg) */
+.cosmic-teaser{ background:radial-gradient(ellipse at 20% 50%, #1d2a63 0%, #0c1030 70%); }
+.cosmic-galaxy{ display:inline-block; width:100px; height:100px; flex:none; filter:drop-shadow(0 0 10px rgba(180,140,255,.45)); }
+.cosmic-galaxy svg{ width:100%; height:100%; overflow:visible; }
+.gx-spin{ transform-origin:50px 50px; animation:gxSpin 50s linear infinite; }
+.gx-orbit{ transform-origin:50px 50px; animation:gxSpin 9s linear infinite; }
+.gx-orbit.o2{ animation-duration:16s; }
+.gx-orbit.o3{ animation-duration:24s; animation-direction:reverse; }
+.gx-tw{ animation:gxTwinkle 3.2s ease-in-out infinite; }
+.gx-tw.t2{ animation-delay:-1s; } .gx-tw.t3{ animation-delay:-2.1s; } .gx-tw.t4{ animation-delay:-.5s; }
+@keyframes gxSpin{ to{ transform:rotate(360deg); } }
+@keyframes gxTwinkle{ 0%, 100%{ opacity:.25; } 50%{ opacity:1; } }
+@media (prefers-reduced-motion: reduce){ .gx-spin, .gx-orbit, .gx-tw{ animation:none !important; } }
 .modal-overlay.cosmic-overlay{ z-index:205; }
 .modal.cosmic-modal{ max-width:48rem; max-height:calc(100vh - 2rem); max-height:calc(100dvh - 2rem); overflow-y:auto; overscroll-behavior:contain;
   padding:1.6rem 1.4rem 1.4rem; text-align:start; }

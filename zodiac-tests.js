@@ -1559,7 +1559,8 @@
     }
     const a = cosmicReading('fr', 'aries', 'funny', '2026-12-01'), b = cosmicReading('fr', 'taurus', 'funny', '2026-12-01');
     assert(COSMIC_RUBRICS.every(([k], i) => window.COSMIC_I18N.fr.signs.aries.funny[k].indexOf(a[k]) !== window.COSMIC_I18N.fr.signs.taurus.funny[k].indexOf(b[k])), 'deux signes, deux rangs différents le même jour');
-    assert(new Set([0, 1, 2, 3].map(n => cosmicRoastMy('fr', 'leo', '2026-12-01', n))).size === 4, '« Encore un » : un autre roast');
+    assertEq(cosmicRoastMy('fr', 'leo', '2026-12-01'), cosmicRoastMy('fr', 'leo', '2026-12-01'), 'un seul Roast My Zodiac par jour');
+    assert(cosmicRoastMy('fr', 'leo', '2026-12-02') !== cosmicRoastMy('fr', 'leo', '2026-12-01'), 'un autre le lendemain');
     const de = cosmicReading('de', 'taurus', 'piquant', '2026-11-05'), deMoon = window.COSMIC_I18N.de.moon[cosmicSky('2026-11-05').moonSign];
     assert(!de.ambiance.startsWith(deMoon) && !de.mercury.startsWith(deMoon), 'allemand : majuscule en début de phrase');
     assert('mercury' in de, 'ligne Mercure en période rétrograde');

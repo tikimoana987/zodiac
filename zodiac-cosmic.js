@@ -4,7 +4,8 @@
    Chaque jour, pour le signe et la voix choisis (Classique, Drôle, Piquant) : une phrase d'ambiance d'après le vrai
    ciel du jour (élément du signe que traverse la Lune à midi), cinq rubriques propres au signe (Carrière, Amour,
    Bien-être, Sagesse cosmique, Cosmic Roast ; 8 variantes chacune, qui tournent jour après jour), une ligne de plus
-   quand Mercure est rétrograde, et « Roast My Zodiac » (10 roasts par signe, à partager en image).
+   quand Mercure est rétrograde, et « Roast My Zodiac » : un seul roast par jour et par signe (10 par signe, qui
+   tournent ; décision du 8 novembre 2026 : pas de « Encore un », la rareté fait le charme), à partager en image.
    Deux entrées : l'onglet du profil, et le bouton de l'accueil (fenêtre, sans profil).
    Textes : data/cosmic/cosmic-xx.json → tools/regen_cosmic.js → zodiac-cosmic-ui.js (libellés, toujours chargé) et
    zodiac-cosmic-xx.js (textes d'une langue ; sur le site, chargés à la demande : window.ZODIAC_LAZY).
@@ -16,10 +17,10 @@ const COSMIC_VOICES = ['classic', 'funny', 'piquant'];
 const COSMIC_RUBRICS = [['career', '💼'], ['love', '❤️'], ['wellbeing', '🌿'], ['wisdom', '✨'], ['roast', '😈']];
 let cosmicVoice = COSMIC_VOICES.includes(store.get('zodiac_cosmicVoice')) ? store.get('zodiac_cosmicVoice') : 'classic';
 /* Deux affichages : 'tab' (onglet du profil : signe du profil par défaut) et 'dlg' (fenêtre de l'accueil :
-   dernier signe choisi, retenu sur l'appareil) ; roast : décalage du bouton « Encore un » */
+   dernier signe choisi, retenu sur l'appareil) */
 const cosmicCtx = {
-  tab: { body: 'cosmicBody', sign: null, roast: 0, open: false },
-  dlg: { body: 'cosmicDlgBody', sign: SIGN_ORDER.includes(store.get('zodiac_cosmicSign')) ? store.get('zodiac_cosmicSign') : null, roast: 0, open: false }
+  tab: { body: 'cosmicBody', sign: null, open: false },
+  dlg: { body: 'cosmicDlgBody', sign: SIGN_ORDER.includes(store.get('zodiac_cosmicSign')) ? store.get('zodiac_cosmicSign') : null, open: false }
 };
 
 // Bulle (i)
@@ -66,11 +67,11 @@ function cosmicReading(lang, sign, voice, iso){
   if (sky.mercuryRx) out.mercury = fill(pick(data.mercury[voice], 0));
   return out;
 }
-/* Roast My Zodiac : le roast du jour, puis les suivants avec « Encore un » */
-function cosmicRoastMy(lang, sign, iso, shift = 0){
+/* Roast My Zodiac : un seul par jour et par signe */
+function cosmicRoastMy(lang, sign, iso){
   const data = cosmicData(lang) || cosmicData('fr');
   if (!data) return '';
-  const arr = data.signs[sign].roastMy, day = cosmicSky(iso).day + SIGN_ORDER.indexOf(sign) + shift;
+  const arr = data.signs[sign].roastMy, day = cosmicSky(iso).day + SIGN_ORDER.indexOf(sign);
   return arr[((day % arr.length) + arr.length) % arr.length];
 }
 
@@ -89,7 +90,6 @@ function renderCosmic(which = 'tab'){
   if (!body) return;
   const t = I18N[currentLang], u = cosmicUi(), iso = todayISO(), id = s => `${s}-${which}`;
   if (!c.sign || !SIGN_ORDER.includes(c.sign)) c.sign = which === 'tab' && currentSky ? currentSky.sign : 'aries';
-  c.roast = 0;
   const tag = which === 'dlg' ? 'div' : 'section';   // dans la fenêtre, le dialogue porte déjà le titre : pas de second repère
   body.innerHTML = `<${tag} class="card cosmic-card" aria-labelledby="${id('cosmicTitle')}">
       <h3 id="${id('cosmicTitle')}">${escapeHtml(u.tab)}${infoBtn('cosmic', u.tab)}</h3>
@@ -112,7 +112,6 @@ function renderCosmic(which = 'tab'){
           <p class="cosmic-roast-hint">${escapeHtml(u.roastMyHint)}</p>
           <p class="cosmic-roast-text" aria-live="polite"></p>
           <div class="cosmic-roast-actions">
-            <button type="button" class="btn-secondary cosmic-roast-again">🎲 ${escapeHtml(u.roastAgain)}</button>
             <button type="button" class="btn-secondary cosmic-roast-image">🖼️ ${escapeHtml(u.shareImage)}</button>
           </div>
         </div>
@@ -123,7 +122,7 @@ function renderCosmic(which = 'tab'){
       </div>
     </${tag}>`;
   body.querySelector('.cosmic-sign').addEventListener('change', e => {
-    c.sign = e.target.value; c.roast = 0;
+    c.sign = e.target.value;
     if (which === 'dlg') store.set('zodiac_cosmicSign', c.sign);
     renderCosmicParts(which);
   });
@@ -139,7 +138,6 @@ function renderCosmic(which = 'tab'){
     roastBox.hidden = !open;
     roastBtn.setAttribute('aria-expanded', String(open));
   });
-  body.querySelector('.cosmic-roast-again').addEventListener('click', () => { c.roast++; renderCosmicParts(which); });
   body.querySelector('.cosmic-roast-image').addEventListener('click', () => shareRoastImage(which));
   body.querySelector('.cosmic-share').addEventListener('click', () => shareCosmic(which));
   renderCosmicParts(which);
@@ -161,7 +159,7 @@ function renderCosmicParts(which){
       <h4><span class="cosmic-icon" aria-hidden="true">${icon}</span> ${escapeHtml(u.rubrics[k])}</h4>
       <p>${escapeHtml(r[k])}</p></article>`).join('') +
     (r.mercury ? `<p class="cosmic-mercury"><span aria-hidden="true">☿</span> ${escapeHtml(r.mercury)}</p>` : '');
-  body.querySelector('.cosmic-roast-text').textContent = cosmicRoastMy(currentLang, c.sign, iso, c.roast);
+  body.querySelector('.cosmic-roast-text').textContent = cosmicRoastMy(currentLang, c.sign, iso);
 }
 
 /* Partage du jour : texte (signe, voix, rubriques) et adresse du site, jamais le profil */
@@ -233,7 +231,7 @@ function cosmicRoastCanvas(sign, text, lang){
   return cv;
 }
 async function shareRoastImage(which = 'tab'){
-  const c = cosmicCtx[which], text = cosmicRoastMy(currentLang, c.sign, todayISO(), c.roast);
+  const c = cosmicCtx[which], text = cosmicRoastMy(currentLang, c.sign, todayISO());
   if (!text) return;
   const blob = await new Promise(res => cosmicRoastCanvas(c.sign, text, currentLang).toBlob(res, 'image/png'));
   if (!blob) return;
@@ -292,8 +290,43 @@ document.addEventListener('keydown', e => {
   else if (!e.shiftKey && i === items.length - 1) { e.preventDefault(); items[0].focus(); }
 }, true);
 
-/* Libellé du bouton de l'accueil */
-function cosmicHomeLabel(){ const el = document.getElementById('cosmicOpenLabel'); if (el) el.textContent = cosmicUi().tab; }
+/* Carte de l'accueil : textes, et galaxie animée dessinée en code (aucune image). Une spirale d'étoiles qui tourne
+   lentement autour d'un cœur doré, trois planètes en orbite, des étoiles qui scintillent ; inclinaison 3/5 pour
+   l'effet de disque vu de biais. Animations coupées si « réduire les animations » (zodiac.css). */
+function cosmicHomeLabel(){
+  const u = cosmicUi(), set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  set('cosmicOpenLabel', u.tab); set('cosmicOpenSub', u.homeHint); set('cosmicOpenNote', u.note);
+}
+function galaxySvg(){
+  let seed = 11;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647, f = v => v.toFixed(1), dots = [];
+  for (let arm = 0; arm < 3; arm++) for (let i = 0; i < 40; i++) {
+    const a = arm * 2 * Math.PI / 3 + i * .26 + (rnd() - .5) * .3, r = 6 + i * 1.05 + (rnd() - .5) * 2.4;
+    const size = Math.max(.55, 2.3 - i * .045) * (.7 + rnd() * .6);
+    const col = rnd() < .18 ? '#f7d47a' : rnd() < .5 ? '#ffffff' : '#cdb8ff';
+    dots.push(`<circle cx="${f(50 + r * Math.cos(a))}" cy="${f(50 + r * Math.sin(a))}" r="${f(size)}" fill="${col}" opacity="${f(.45 + rnd() * .55)}"/>`);
+  }
+  const tw = [[8, 14, 1.3, 't1'], [91, 20, 1.1, 't2'], [12, 86, 1, 't3'], [88, 84, 1.4, 't4'], [52, 4, .9, 't2']]
+    .map(([x, y, r, k]) => `<circle class="gx-tw ${k}" cx="${x}" cy="${y}" r="${r}" fill="#fff"/>`).join('');
+  return `<svg viewBox="0 0 100 100" focusable="false" aria-hidden="true">
+    <defs>
+      <radialGradient id="gx-glow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff3c4" stop-opacity="1"/><stop offset="18%" stop-color="#c9a8ff" stop-opacity=".75"/><stop offset="55%" stop-color="#5a3fc2" stop-opacity=".45"/><stop offset="100%" stop-color="#3b2a8f" stop-opacity="0"/></radialGradient>
+      <radialGradient id="gx-core" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fffbe6"/><stop offset="45%" stop-color="#f7d47a"/><stop offset="100%" stop-color="#f7d47a" stop-opacity="0"/></radialGradient>
+    </defs>
+    <ellipse cx="50" cy="50" rx="50" ry="38" fill="url(#gx-glow)"/>
+    <g transform="translate(0 14) scale(1 .72)">
+      <g class="gx-spin">${dots.join('')}</g>
+      <circle cx="50" cy="50" r="12" fill="url(#gx-core)"/>
+      <circle cx="50" cy="50" r="30" fill="none" stroke="#ffffff" stroke-opacity=".12" stroke-width=".6"/>
+      <circle cx="50" cy="50" r="41" fill="none" stroke="#ffffff" stroke-opacity=".09" stroke-width=".6"/>
+      <g class="gx-orbit o1"><circle cx="80" cy="50" r="4.2" fill="#7fd1ff"/></g>
+      <g class="gx-orbit o2"><circle cx="9" cy="50" r="3.2" fill="#ff9e7a"/><ellipse cx="9" cy="50" rx="5.6" ry="1.4" fill="none" stroke="#ffd2b8" stroke-width=".7"/></g>
+      <g class="gx-orbit o3"><circle cx="50" cy="20" r="2.4" fill="#b9f2a8"/></g>
+    </g>
+    ${tw}
+  </svg>`;
+}
+document.querySelectorAll('[data-galaxy]').forEach(el => { el.innerHTML = galaxySvg(); });
 cosmicHomeLabel();
 
 /* Site : la langue affichée est chargée tôt (puis gardée par le service worker pour l'usage hors ligne) */

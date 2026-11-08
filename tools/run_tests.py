@@ -143,7 +143,7 @@ async def journey(browser, file):
             closed = await page.locator('#article.hidden').count() == 1
             back = await page.evaluate('document.activeElement.dataset.info')
             await page.locator('#tabTarot').click(timeout=10000)
-            await page.locator('.oracle-teaser').click(timeout=10000)
+            await page.locator('#viewTarot .oracle-teaser').click(timeout=10000)
             await page.locator('#oracleArticle').click(timeout=10000)
             await page.wait_for_selector('#article:not(.hidden)', timeout=5000)
             oracle_title = await page.text_content('#articleTitle') == await page.evaluate(f"ARTICLES_I18N['{lang}'].articles.oracle.title")
@@ -327,12 +327,13 @@ async def cosmic_journey(browser, file):
             step = 'Roast My Zodiac'
             await page.click('#viewCosmic .cosmic-roast-btn')
             roast1 = await page.locator('#viewCosmic .cosmic-roast-text').inner_text()
-            await page.click('#viewCosmic .cosmic-roast-again')
-            roast2 = await page.locator('#viewCosmic .cosmic-roast-text').inner_text()
+            single = await page.locator('#viewCosmic .cosmic-roast-again').count() == 0   # un seul roast par jour
             step = 'rechargement'
             await page.reload()
             await page.wait_for_selector('#viewCosmic .cosmic-rubric', timeout=60000)
             kept = await page.locator('input[name="cosmicVoice-tab"][value="funny"]').is_checked()
+            await page.select_option('#cosmicSign-tab', 'pisces')
+            roast2 = await page.locator('#viewCosmic .cosmic-roast-text').text_content()
             step = 'accueil sans profil'
             await page.goto(file.as_uri() + f'?lang={lang}')
             await page.wait_for_selector('#cosmicOpen', timeout=60000)
@@ -345,14 +346,45 @@ async def cosmic_journey(browser, file):
             back = await page.evaluate('document.activeElement.id')
             remembered = await page.evaluate("localStorage.getItem('zodiac_cosmicSign')")
             ok = (rubrics == 5 and ambiance and focus == 'cosmicVoice-tab=funny' and funny != before and pisces != funny
-                  and sky.strip() and roast1 and roast2 != roast1 and kept and dlg_rubrics == 5 and closed and back == 'cosmicOpen'
+                  and sky.strip() and roast1 and single and roast2 == roast1 and kept and dlg_rubrics == 5 and closed and back == 'cosmicOpen'
                   and remembered == 'libra' and not errors)
             report(ok, f'{lang} : Cosmic Daily, 5 rubriques et ambiance, voix au clavier (focus gardé, retenue), autre signe, '
-                       f'Roast My Zodiac, fenêtre de l\'accueil (signe retenu, Échap) — ciel « {sky.strip()} »'
-                   + ('' if ok else f' | {rubrics} {bool(ambiance)} {focus} {funny != before} {pisces != funny} {roast2 != roast1} {kept} {dlg_rubrics} {closed} {back} {remembered}')
+                       f'Roast My Zodiac (un par jour), fenêtre de l\'accueil (signe retenu, Échap) — ciel « {sky.strip()} »'
+                   + ('' if ok else f' | {rubrics} {bool(ambiance)} {focus} {funny != before} {pisces != funny} {single} {roast2 == roast1} {kept} {dlg_rubrics} {closed} {back} {remembered}')
                    + (f' | {errors}' if errors else ''))
         except Exception as exc:
             report(False, f'{lang} : Cosmic Daily, étape « {step} » — {str(exc).splitlines()[0][:200]}')
+        await ctx.close()
+
+
+async def map_place_journey(browser, file):
+    """Carte du ciel : le lieu d'observation se saisit comme le lieu de naissance (quelques lettres, suggestions,
+    Entrée), la carte suit, et le lieu est retenu après rechargement. En français et en japonais."""
+    print(f'Carte du ciel, lieu d\'observation — {file.name}')
+    for lang, query, expect in (('fr', 'Lyon', 'Lyon'), ('ja', 'Osaka', '大阪')):
+        ctx = await browser.new_context(viewport={'width': 1280, 'height': 900}, reduced_motion='reduce')
+        page = await ctx.new_page()
+        errors = []
+        page.on('pageerror', lambda e: errors.append(str(e)))
+        try:
+            await page.goto(file.as_uri() + PROFILE + lang)
+            await page.wait_for_selector('#tabSky', timeout=60000)
+            await page.click('#tabSky')
+            no_select = await page.locator('select#mapPlace').count() == 0
+            field = page.locator('#mapPlaceInput')
+            await field.fill(query)
+            await page.wait_for_selector('#mapPlaceList:not([hidden]) li[data-i]', timeout=5000)
+            await field.press('Enter')
+            await page.wait_for_function(f"document.querySelector('.map-place') && document.querySelector('.map-place').textContent.includes({expect!r})", timeout=5000)
+            await page.reload()
+            await page.wait_for_selector('#tabSky', timeout=60000)
+            await page.click('#tabSky')
+            kept = expect in await page.locator('.map-place').inner_text() and expect in await page.locator('#mapPlaceInput').input_value()
+            ok = no_select and kept and not errors
+            report(ok, f'{lang} : carte du ciel, lieu « {query} » saisi au clavier, carte mise à jour, retenu après rechargement'
+                   + ('' if ok else f' | liste {no_select}, retenu {kept}') + (f' | {errors}' if errors else ''))
+        except Exception as exc:
+            report(False, f'{lang} : carte du ciel, lieu d\'observation — {str(exc).splitlines()[0][:200]}')
         await ctx.close()
 
 
@@ -373,6 +405,13 @@ async def accessibility(browser, file):
             page = await ctx.new_page()
             errors, found = [], []
             page.on('pageerror', lambda e: errors.append(str(e)))
+            # Accueil sans profil : cartes animées de Cosmic Daily et de l'Oracle
+            await page.goto(file.as_uri() + f'?lang={lang}')
+            await page.wait_for_selector('#cosmicOpen .cosmic-galaxy svg', timeout=60000)
+            await page.add_script_tag(content=script)
+            violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
+                .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
+            found += [f'accueil sans profil : {v}' for v in violations]
             await page.goto(file.as_uri() + PROFILE + lang)
             await page.wait_for_selector('#tabNumbers', timeout=60000)
             if scheme == 'light':   # l'appli est sombre par défaut : on passe au thème clair par son bouton ☀
@@ -439,7 +478,7 @@ async def accessibility(browser, file):
                 .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
             found += [f'compatibilité : {v}' for v in violations]
             await page.click('#tabTarot')   # l'Oracle ouvert depuis l'onglet Tarot (le bouton de l'accueil est masqué quand un profil est affiché)
-            await page.click('.oracle-teaser')
+            await page.click('#viewTarot .oracle-teaser')
             await page.add_script_tag(content=script)
             violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
                 .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
@@ -588,6 +627,7 @@ async def main():
         await oracle_journey(browser, ROOT / 'ZODIAC.html')
         await dst_journey(browser, ROOT / 'ZODIAC.html')
         await cosmic_journey(browser, ROOT / 'ZODIAC.html')
+        await map_place_journey(browser, ROOT / 'ZODIAC.html')
         if BROWSER == 'chromium':
             await accessibility(browser, ROOT / 'ZODIAC.html')
         await installable_site(browser)
