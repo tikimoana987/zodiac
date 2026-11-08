@@ -1734,6 +1734,14 @@
     assert(URL_KEYS.includes('fold'), 'lien');
   });
 
+  test('Changement d’heure : même message et même choix pour la deuxième personne de la compatibilité', () => {
+    const overlap = dstNoticeFor('2026-10-25', '02:30', 'Paris|FR', 1, 'pairFold');
+    assert(overlap.includes('name="pairFold" value="1" checked') && !overlap.includes('name="pairFold" value="0" checked'), 'choix « après » coché');
+    const gap = dstNoticeFor('2026-03-29', '02:30', 'Paris|FR', 0, 'pairFold');
+    assert(gap.includes('dst-note') && !gap.includes('pairFold'), 'heure sautée : message sans choix');
+    assertEq(dstNoticeFor('2026-10-25', '02:30', '', 0, 'pairFold') + dstNoticeFor('2026-07-14', '02:30', 'Paris|FR', 0, 'pairFold'), '', 'sans lieu ou heure ordinaire : rien');
+  });
+
   test('Changement d’heure : message et choix dans les 14 langues', () => {
     const keys = 'gap,overlap,before,after,choice,old', latin = ['fr', 'en', 'es', 'pt', 'it', 'de', 'tr'];
     const marks = { gap: ['{equiv}', '{place}', '{shift}', '{time}'], overlap: ['{place}', '{shift}', '{time}'] };

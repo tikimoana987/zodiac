@@ -304,6 +304,31 @@ async def dst_journey(browser, file):
                    + ('' if ok else f' | {first} {second} {reopened} {gap}') + (f' | {errors}' if errors else ''))
         except Exception as exc:
             report(False, f'{lang} : changement d\'heure, étape « {step} » — {str(exc).splitlines()[0][:200]}')
+        # Deuxième personne de la compatibilité : même message, choix au clavier, résultats recalculés, focus gardé
+        try:
+            step = 'compatibilité'
+            page = await ctx.new_page()
+            page.on('pageerror', lambda e: errors.append(str(e)))
+            await page.goto(file.as_uri() + PROFILE + lang)
+            await page.wait_for_selector('#tabCompat', timeout=60000)
+            await page.click('#tabCompat')
+            await page.fill('#pairDate', '2026-10-25')
+            await page.fill('#pairTime', '02:30')
+            await page.evaluate("pairField.set('Paris|FR')")
+            await page.click('#pairBtn')
+            await page.wait_for_selector('#pairDst input[name="pairFold"]', timeout=10000)
+            await page.locator('#pairDst input[name="pairFold"][value="0"]').focus()
+            await page.keyboard.press('ArrowDown')
+            await page.wait_for_function('pairState && pairState.fold === 1', timeout=5000)
+            asc_b = await page.evaluate("""(() => { const t = parseTime(pairState.time); t.fold = pairState.fold;
+                return signFromLongitude(natalChart(parseISODate(pairState.date), t, birthPlace(pairState.place)).asc); })()""")
+            focus = await page.evaluate('document.activeElement.name + "=" + document.activeElement.value')
+            body = await page.locator('#pairBody .compat-tally').count()
+            ok = asc_b == 'virgo' and focus == 'pairFold=1' and body == 1 and not errors
+            report(ok, f'{lang} : compatibilité, deuxième personne née à l\'heure vécue deux fois : choix au clavier, ascendant Vierge, focus gardé'
+                   + ('' if ok else f' | {asc_b} {focus} {body}') + (f' | {errors}' if errors else ''))
+        except Exception as exc:
+            report(False, f'{lang} : changement d\'heure, étape « {step} » — {str(exc).splitlines()[0][:200]}')
         await ctx.close()
 
 

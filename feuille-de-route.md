@@ -1,6 +1,6 @@
 # 🗺️ Zodiaque & Décans — ce qu'il reste à faire
 
-> État au 8 novembre 2026, après les articles « En savoir plus » (V10.3), l'allègement des mises à jour (V10.4), le test Safari bloquant (V10.5), le changement d'heure le jour de naissance (V10.6), la synthèse des tirages de tarot (V10.7), Cosmic Daily (V10.8, puis V10.9 avec Roast My Zodiac et l'accès depuis l'accueil) les retouches de l'accueil et de la carte du ciel (V10.10) et le tarot par thème (V10.11) ; auparavant le portrait symbolique, l'audit d'accessibilité et les tests Safari / Firefox (V7.3), et le retour détaillé d'une testeuse (§ 3). Ce document complète `projet.md` (ce qui est fait) et `reprise.md` (notes techniques).
+> État au 8 novembre 2026, après les articles « En savoir plus » (V10.3), l'allègement des mises à jour (V10.4), le test Safari bloquant (V10.5), le changement d'heure le jour de naissance (V10.6), la synthèse des tirages de tarot (V10.7), Cosmic Daily (V10.8, puis V10.9 avec Roast My Zodiac et l'accès depuis l'accueil) les retouches de l'accueil et de la carte du ciel (V10.10), le tarot par thème (V10.11) et le changement d'heure pour la deuxième personne de la compatibilité (V10.12) ; auparavant le portrait symbolique, l'audit d'accessibilité et les tests Safari / Firefox (V7.3), et le retour détaillé d'une testeuse (§ 3). Ce document complète `projet.md` (ce qui est fait) et `reprise.md` (notes techniques).
 > Légende : 🟢 petit · 🟡 moyen · 🔴 gros chantier · ❓ décision à prendre · ⭐ recommandation de Claude
 
 ---
@@ -12,7 +12,7 @@
 | Feuille de route d'origine (étapes 1 à 6) | ✅ terminée, sauf l'iPhone (gardé pour la fin) |
 | Pistes 1 à 6 | ✅ version et bandeau de mise à jour · ✅ cartes renversées · ✅ lieux par coordonnées GPS · ✅ calendrier du ciel · ✅ fiche du thème natal à imprimer ou en PDF · ✅ arcanes mineurs (jeu complet de 78 cartes) |
 | Langues | 14 (FR, EN, ES, PT, IT, DE, TR, RU, AR, HI, TH, ZH, JA, KO) |
-| Tests automatiques | 125 (108 + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit), bloquants, et dans Firefox, pour information |
+| Tests automatiques | 126 (109 + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit), bloquants, et dans Firefox, pour information |
 | Publication | automatique sur GitHub Pages, après les tests (circuit GitHub Actions) |
 | Poids | version autonome ≈ 8,4 Mo, mesurée le 2 novembre 2026 (7,8 Mo avant les articles ; l'ancien chiffre de 6,8 Mo était dépassé) : illustrations du tarot ≈ 3,1 Mo (déjà en WebP), villes ≈ 1 Mo, 14 langues ≈ 1,6 Mo, articles ≈ 0,6 Mo, textes du portrait ≈ 0,4 Mo |
 | Confidentialité | aucune donnée envoyée en ligne (adresse en « # », pas de serveur, pas de statistiques) ; seule exception : les événements ajoutés à Google Agenda à la demande de l'utilisateur |
@@ -93,7 +93,7 @@ Retour détaillé d'une testeuse, validé le 31 octobre. Fil conducteur pour tou
 - [x] **Cosmic Daily 2** (V10.9, 7 novembre 2026, essais de la testeuse) : textes réécrits (8 variantes, phrase d'ambiance), Piquant mordant, Roast My Zodiac avec partage en image, accès depuis l'accueil sans profil.
 - [x] **Retouches de Joann** (V10.10, 8 novembre 2026) : cartes animées de l'accueil (Cosmic Daily en premier, puis l'Oracle), un seul Roast My Zodiac par jour, lieu de la carte du ciel saisi comme le lieu de naissance.
 - [x] **Lectures de tarot par thème** (V10.11, 8 novembre 2026 ; voir `docs/cahier-tarot.md`) : choix d'un thème avant le tirage (Amour, Travail et argent, Vie personnelle), sens de chaque carte selon le thème et la position, une quarantaine de combinaisons remarquables, petit récit reliant les cartes et synthèse propre au thème (souhait de la testeuse : « une vraie lecture, pas une suite de définitions ») ; sens traditionnels conservés, l'appli ne comprend pas la question tapée.
-- [ ] **Prochain chantier** (validé le 6 novembre 2026) : choix « avant / après le changement d'heure » pour la deuxième personne de la compatibilité.
+- [x] Choix « avant / après le changement d'heure » pour la deuxième personne de la compatibilité (V10.12, 8 novembre 2026).
 - [ ] À étudier : la version autonome atteint ≈ 13 Mo (toutes les langues de Cosmic Daily et du tarot par thème) ; la proposer par langue si besoin.
 - [ ] Plus tard : tirages accessibles sans profil, depuis l'accueil.
 - [x] **Cosmic Daily** (V10.8, 5 novembre 2026 ; voir `docs/cahier-cosmic-daily.md`) — validé le 4 novembre 2026, idée d'une testeuse : horoscope quotidien à partir du vrai ciel du jour, en trois voix au choix, Classique, Drôle et Piquant ; rubriques Carrière, Amour, Bien-être, Sagesse cosmique (+ éventuellement « Cosmic Roast »). Taquiner les clichés du signe, jamais la personne (corps, santé, argent) ; bien-être sans conseil médical ; présenté comme un jeu ; pas de compteur de jours. D'abord des exemples en français dans chaque ton, jugés avant toute traduction.
@@ -176,7 +176,7 @@ Idée notée le 27 octobre. Point clé : l'appli est publique et n'a pas de serv
 
 ## 8. 🟢 Qualité, maintenance, technique
 
-- [x] **Heures inexistantes ou vécues deux fois au changement d'heure** (V10.6, 2 novembre 2026) : message dans les deux cas, d'après l'historique officiel des heures du lieu (tous pays, toutes époques) ; choix « Avant / Après le changement d'heure » pour l'heure vécue deux fois, gardé avec le profil et le lien. La personne de la compatibilité saisie à la main garde la première occurrence (choix possible plus tard si besoin).
+- [x] **Heures inexistantes ou vécues deux fois au changement d'heure** (V10.6, 2 novembre 2026) : message dans les deux cas, d'après l'historique officiel des heures du lieu (tous pays, toutes époques) ; choix « Avant / Après le changement d'heure » pour l'heure vécue deux fois, gardé avec le profil et le lien. Même message et même choix pour la deuxième personne de la compatibilité depuis V10.12.
 
 - [ ] **Licence du projet** ❓ : le dépôt est public mais sans licence, ce qui veut dire « tous droits réservés » par défaut. À décider : garder ainsi, ou choisir une licence (MIT, CC BY-NC…). Les crédits des données sont déjà dans le README, y compris la mention des illustrations générées avec Gemini.
 - [ ] **Versions à surveiller** dans le circuit GitHub : Ubuntu fixé à 24.04, Playwright 1.56, actions (checkout v7, setup-python v7, upload-pages-artifact v5, deploy-pages v5). À mettre à jour de temps en temps, quand GitHub prévient d'une fin de prise en charge.

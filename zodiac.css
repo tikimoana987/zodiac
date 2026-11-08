@@ -163,6 +163,7 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .dst-note{ margin:.5rem 0 0; max-width:40rem; padding:.6rem .85rem; border-radius:10px; font-size:.85rem; line-height:1.5;
   color:var(--text); text-align:start; background:rgba(255,167,87,.12); border:1px solid rgba(255,167,87,.4); }
 .dst-note p{ margin:0; }
+#pairDst .dst-note{ margin:.8rem 0 0; max-width:none; }   /* deuxième personne de la compatibilité */
 .dst-choice{ display:flex; flex-wrap:wrap; gap:.4rem .9rem; margin-top:.5rem; }
 .dst-option{ display:inline-flex; align-items:center; gap:.4rem; cursor:pointer; padding:.25rem .1rem; }
 .dst-option input{ accent-color:var(--gold); width:1.05rem; height:1.05rem; margin:0; }

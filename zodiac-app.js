@@ -272,8 +272,10 @@ function timeKey(){ return (currentTime || '') + (currentFold ? '+' : ''); }
 
 /* Changement d'heure le jour de naissance au lieu de naissance (wallTimeInfo, zodiac-natal.js) : message, et
    pour une heure vécue deux fois, choix entre avant et après le changement d'heure */
-function dstNoticeHtml(){
-  const t = I18N[currentLang], d = parseISODate(currentDate), tm = parseTime(currentTime), place = birthPlace(currentBirthPlace);
+function dstNoticeHtml(){ return dstNoticeFor(currentDate, currentTime, currentBirthPlace, currentFold, 'dstFold'); }
+/* Même message pour toute personne (profil, deuxième personne de la compatibilité) : date, heure, lieu, choix */
+function dstNoticeFor(dateISO, timeStr, placeKey, fold, radioName){
+  const t = I18N[currentLang], d = parseISODate(dateISO), tm = parseTime(timeStr), place = birthPlace(placeKey);
   const info = d && tm && place ? wallTimeInfo(d, tm.h, tm.min, place.tz) : null;
   if (!info) return '';
   const clock = (h, min) => new Intl.DateTimeFormat(loc(currentLang), { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }).format(Date.UTC(2000, 0, 1, h, min));
@@ -285,7 +287,7 @@ function dstNoticeHtml(){
     .replace('{time}', clock(tm.h, tm.min)).replace('{equiv}', info.equiv ? clock(info.equiv.h, info.equiv.min) : '');
   const text = fill(info.kind === 'gap' ? t.dst.gap : t.dst.overlap) + (d.y < 1970 ? ' ' + t.dst.old : '');
   const choice = info.kind === 'overlap' ? `<div class="dst-choice" role="radiogroup" aria-label="${escapeHtml(t.dst.choice)}">` +
-    [0, 1].map(f => `<label class="dst-option"><input type="radio" name="dstFold" value="${f}"${currentFold === f ? ' checked' : ''}> ${f ? t.dst.after : t.dst.before}</label>`).join('') +
+    [0, 1].map(f => `<label class="dst-option"><input type="radio" name="${radioName}" value="${f}"${(fold ? 1 : 0) === f ? ' checked' : ''}> ${f ? t.dst.after : t.dst.before}</label>`).join('') +
     '</div>' : '';
   return `<div class="dst-note" role="note"><p>${text}</p>${choice}</div>`;
 }
@@ -1366,7 +1368,7 @@ function setView(mode, focus){
 /* ============================================================
    COMPATIBILITÉ À DEUX
    ============================================================ */
-let pairState = null;    // { name, date: "AAAA-MM-JJ", time: "HH:MM" ou "" } — en mémoire seulement, jamais enregistré
+let pairState = null;    // { name, date: "AAAA-MM-JJ", time: "HH:MM" ou "", place, fold: 0 | 1 } — en mémoire seulement, jamais enregistré
 
 function compatCardHtml(t){
   const p = pairState || { name: '', date: '', time: '', place: '' }, q = t.pair;
@@ -1387,6 +1389,7 @@ function compatCardHtml(t){
         <button type="button" class="btn-reveal" id="pairBtn">${q.compare}</button>
       </div>
       <p class="pair-error hidden" id="pairError" role="alert"></p>
+      <div id="pairDst"></div>
       <div id="pairBody" aria-live="polite"></div>
     </section>`;
 }
@@ -1398,7 +1401,9 @@ function renderCompat(){
   const t = I18N[currentLang], q = t.pair;
   const me = { date: parseISODate(currentDate), time: birthTime(), tz: birthTz() };
   const op = birthPlace(pairState.place);
-  const other = { date: parseISODate(pairState.date), time: parseTime(pairState.time), tz: op ? op.tz : null };
+  const otime = parseTime(pairState.time);
+  if (otime && pairState.fold) otime.fold = 1;   // heure vécue deux fois au lieu de naissance de l'autre personne : la seconde
+  const other = { date: parseISODate(pairState.date), time: otime, tz: op ? op.tz : null };
   const c = compatibility(me, other);   // signes affichés en tête (comme l'onglet Signes)
   const nameA = escapeHtml(currentName || q.you), nameB = escapeHtml(pairState.name || q.other);
   const cnA = chineseYearInfo(me.date), cnB = chineseYearInfo(other.date);
@@ -1431,6 +1436,19 @@ function renderCompat(){
     ${compatDeepHtml(deep, nameA, nameB, synHtml, !(me.time && other.time && myPlace && op))}`;
 }
 
+/* Changement d'heure le jour de naissance de l'autre personne : message, et choix pour une heure vécue deux fois.
+   Le choix ne redessine que les résultats (#pairBody) : le bouton choisi garde le focus. */
+function renderPairDst(){
+  const box = document.getElementById('pairDst');
+  if (!box) return;
+  box.innerHTML = pairState ? dstNoticeFor(pairState.date, pairState.time, pairState.place, pairState.fold, 'pairFold') : '';
+  box.querySelectorAll('input[name="pairFold"]').forEach(r => r.addEventListener('change', () => {
+    if (!r.checked || !pairState) return;
+    pairState = { ...pairState, fold: +r.value };
+    renderCompat();
+  }));
+}
+
 function bindCompat(){
   const t = I18N[currentLang], err = document.getElementById('pairError');
   const run = () => {
@@ -1439,14 +1457,17 @@ function bindCompat(){
     if (!date) { err.textContent = t.pair.noDate; err.classList.remove('hidden'); return; }
     if (!parseISODate(date)) { err.textContent = t.pair.invalid; err.classList.remove('hidden'); return; }
     if (!pairField.resolve()) { err.textContent = t.placeUnknown; err.classList.remove('hidden'); return; }
-    const time = document.getElementById('pairTime').value;
-    pairState = { name: document.getElementById('pairName').value.trim(), date, time: parseTime(time) ? time.slice(0, 5) : '', place: pairField.key };
+    const time = document.getElementById('pairTime').value, prev = pairState;
+    pairState = { name: document.getElementById('pairName').value.trim(), date, time: parseTime(time) ? time.slice(0, 5) : '', place: pairField.key, fold: 0 };
+    if (prev && prev.fold && prev.date === pairState.date && prev.time === pairState.time && prev.place === pairState.place) pairState.fold = 1;
+    renderPairDst();
     renderCompat();
   };
   pairField = makePlaceField('pairPlace', 'pairPlaceList', 'pairPlaceClear', run);
   if (pairState && pairState.place) pairField.set(pairState.place);
   document.getElementById('pairBtn').addEventListener('click', run);
   ['pairName', 'pairDate', 'pairTime'].forEach(id => document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') run(); }));
+  renderPairDst();
   renderCompat();
 }
 
