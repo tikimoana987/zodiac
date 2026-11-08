@@ -1,5 +1,7 @@
 # 🌌 Zodiaque & Décans · Cosmic Interface
 
+> **V10.13 : effets visuels après le résultat.** A. La roue reste vivante : le secteur du signe « respire » d'une lueur dorée et une étoile filante en fait le tour (22 s). B. Révélation : la constellation du signe se trace trait par trait derrière son nom, avec quelques étincelles autour du symbole, puis reste en filigrane. C. Fondu léger à chaque changement d'onglet, étoiles du fond qui scintillent lentement. Tous coupés si l'on a demandé moins de mouvements ; rien ne clignote. 127 tests.
+
 > **V10.12 : changement d'heure pour la deuxième personne de la compatibilité.** Si l'heure de naissance de l'autre personne n'a pas existé ou a existé deux fois à son lieu de naissance, le même message s'affiche, avec le choix « avant / après le changement d'heure » ; il recalcule aussitôt les neuf axes, la synastrie, l'ascendant et la Lune. 126 tests.
 
 > **V10.11 : tarot par thème.** Avant de tirer, on choisit un thème : Question libre, Amour, Travail et argent, Vie personnelle. Après le tirage, « Votre lecture » relie les cartes en petit récit : pour chaque carte, une phrase qui la situe puis son sens dans le thème (78 cartes, à l'endroit et renversées), les combinaisons remarquables (40 paires de la tradition), puis une synthèse propre au thème. Sens traditionnels, jamais de promesse. Idée de la testeuse ; 14 langues. Cahier : `docs/cahier-tarot.md`. 125 tests.
@@ -500,7 +502,7 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | aucune en ligne (html2canvas en copie locale) |
 | Poids approximatif | site : première visite ≈ 4,1 Mo compressés, mise à jour typique ≈ 80 Ko (V10.4) ; version autonome ≈ 8,4 Mo, mesurée le 2 novembre 2026 (7,8 Mo avant les articles) : ≈ 3,1 Mo d'illustrations du tarot, ≈ 1 Mo de villes, ≈ 1,6 Mo de traductions, ≈ 0,6 Mo d'articles, ≈ 0,4 Mo de textes du portrait |
-| Tests automatisés | 126 (109 dans `zodiac-tests.js`, dont 3 pour les articles, 4 pour le changement d'heure, 3 pour la synthèse du tarot, 2 pour le tarot par thème, 1 pour la lisibilité des couleurs des signes et 3 pour Cosmic Daily, + 17 portrait) ; parcours réel protégé en CI, compatibilité, tarot, carré, articles et changement d'heure compris |
+| Tests automatisés | 127 (110 dans `zodiac-tests.js`, dont 1 pour les effets visuels, dont 3 pour les articles, 4 pour le changement d'heure, 3 pour la synthèse du tarot, 2 pour le tarot par thème, 1 pour la lisibilité des couleurs des signes et 3 pour Cosmic Daily, + 17 portrait) ; parcours réel protégé en CI, compatibilité, tarot, carré, articles et changement d'heure compris |
 
 ---
 

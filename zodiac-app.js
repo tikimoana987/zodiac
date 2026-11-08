@@ -214,6 +214,17 @@ function runSearch(signKey, onDone){
   }, 1400);
 }
 
+/* Révélation du signe (V10.13) : sa constellation se dessine trait par trait derrière son nom, puis reste en
+   filigrane ; quelques étincelles autour du symbole. Une fois par affichage ; rien d'animé si l'on a demandé moins
+   de mouvements (zodiac.css). Même dessin que la recherche (CONST). */
+function revealConstellationSvg(signKey){
+  const data = CONST[signKey];
+  if (!data) return '';
+  const lines = data.lines.map(([a, b], i) => { const [x1, y1] = data.stars[a], [x2, y2] = data.stars[b];
+    return `<path d="M${x1} ${y1}L${x2} ${y2}" pathLength="1" style="animation-delay:${(.15 + i * .09).toFixed(2)}s"/>`; }).join('');
+  const stars = data.stars.map(([x, y], i) => `<circle cx="${x}" cy="${y}" r="2.6" style="animation-delay:${(i * .07).toFixed(2)}s"/>`).join('');
+  return `<svg class="reveal-const" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><g class="rc-lines">${lines}</g><g class="rc-stars">${stars}</g></svg>`;
+}
 function drawConstellation(signKey){
   const svg = document.getElementById('constSvg');
   const data = CONST[signKey];
@@ -353,8 +364,9 @@ function westernCards(t, signKey, decanIdx){
   return [
     `<div class="card">
         <h3>${t.sections.western}${infoBtn('signVsConstellation', t.sections.western)}</h3>
-        <div class="sign-head">
-          <span class="sign-icon" aria-hidden="true">${meta.sym}</span>
+        <div class="sign-head sign-reveal">
+          ${revealConstellationSvg(signKey)}
+          <span class="sign-icon" aria-hidden="true">${meta.sym}<span class="sign-sparks">${'<i></i>'.repeat(6)}</span></span>
           <div>
             <div class="sign-name">${t.signNames[signKey]}</div>
             <div class="sign-meta">${t.elements[meta.element]} · ${t.rulers[meta.ruler]} · ${t.modalities[meta.modality]}</div>
@@ -714,7 +726,9 @@ function buildWheel(){
   g += `<circle class="w-inner" r="70"/>`;
   for (const [id, sym] of [['wheelSun', PLANET_SYM.sun], ['wheelMoon', PLANET_SYM.moon]])
     g += `<circle class="wm-dot" id="${id}Dot" r="8"/><text class="wm" id="${id}">${sym}</text>`;
-  svg.innerHTML = `<circle class="w-outer" r="111"/><g id="wheelRot">${g}</g>`;
+  svg.innerHTML = `<circle class="w-outer" r="111"/><g id="wheelRot">${g}</g>` +
+    // Étoile filante qui fait le tour de la roue quand un résultat est affiché (zodiac.css : .w-comet)
+    `<g class="w-comet" aria-hidden="true"><path class="w-comet-tail" d="M0,-111 A111,111 0 0 0 -71.3,-85.0" /><path class="w-comet-tail2" d="M0,-111 A111,111 0 0 0 -38,-104.3" /><circle class="w-comet-head" cx="0" cy="-111" r="4.2"/></g>`;
 }
 function setWheelMarker(id, lon, r){
   const [x, y] = wheelPoint(r, wheelScreenAngle(lon)), dot = document.getElementById(id + 'Dot'), txt = document.getElementById(id);
@@ -1361,6 +1375,7 @@ function setView(mode, focus){
     if (!tb) continue;
     tb.setAttribute('aria-selected', String(m === mode)); tb.tabIndex = m === mode ? 0 : -1;
     pn.hidden = m !== mode;
+    if (m === mode) { pn.classList.remove('view-enter'); void pn.offsetWidth; pn.classList.add('view-enter'); }   // fondu (zodiac.css)
     if (focus && m === mode) tb.focus();
   }
 }

@@ -1577,6 +1577,17 @@
     }
   });
 
+  section('Effets visuels');
+  test('Effets : constellation de révélation pour les 12 signes, étoile filante sur la roue', () => {
+    for (const k of SIGN_ORDER) {
+      const svg = revealConstellationSvg(k), d = CONST[k];
+      assertEq((svg.match(/<path /g) || []).length, d.lines.length, `${k} : traits`);
+      assertEq((svg.match(/<circle /g) || []).length, d.stars.length, `${k} : étoiles`);
+      assert(svg.includes('aria-hidden="true"'), `${k} : décoratif, ignoré des lecteurs d'écran`);
+    }
+    assert(document.querySelector('#wheel .w-comet[aria-hidden="true"] .w-comet-head'), 'étoile filante dessinée avec la roue');
+  });
+
   section('Couleurs lisibles');
   test('Couleur de chaque signe lisible en texte, thèmes sombre et clair (au moins 4,5:1)', () => {
     const palettes = Object.entries(SIGN_THEME).concat([['défaut', { gold: '#e8c36a' }]]);
