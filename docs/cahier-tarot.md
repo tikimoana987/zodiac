@@ -118,6 +118,17 @@ Idée d'une testeuse (4 novembre 2026). Une fois toutes les cartes d'un tirage r
 - **Ton** : encourageant, jamais de promesse, de peur ni de fatalité ; français rédigé par ChatGPT sur consigne, contrôlé et corrigé (accord avec un seul mois, « Conseil »), 13 traductions contrôlées automatiquement.
 - **Tests** : tendances des 78 cartes, synthèse de chaque tirage (cas pondérés, mois, même texte au rechargement, aucun repère non remplacé dans les 14 langues), textes des 14 langues ; parcours réel (fr, ar, ja) : la tendance affichée est celle du tirage ; audit axe-core avec le tirage retourné.
 
+## Tarot par thème (V10.11, 8 novembre 2026)
+
+Souhait de la testeuse (6 novembre) : « une vraie lecture personnalisée, pas une succession de définitions ». L'appli ne comprend pas la question tapée (tout reste sur l'appareil) ; la personnalisation vient du **thème**, des **positions** et des **combinaisons**.
+
+- **Thème choisi avant le tirage** (`SPREAD_THEMES` : `general` « Question libre », `love` « Amour », `work` « Travail et argent », `self` « Vie personnelle ») ; retenu sur l'appareil (`zodiac_spread_theme`), gardé avec le brouillon et la lecture (`theme`), rappelé au-dessus des cartes ; anciens tirages sans thème : question libre (`themeOf`).
+- **« Votre lecture »** (`spreadStoryHtml`) : pour chaque carte, une phrase de position du thème (`positions[theme][answer|past|present|future|situation|challenge|advice|month]`, 3 variantes, `{card}`, `{month}`), puis le sens de la carte dans le thème (`cards[key][theme].up|rev` ; question libre : le sens général déjà affiché) ; puis les **combinaisons remarquables** présentes (`combos`, 40 paires choisies d'après la tradition, deux au plus, `{a}` et `{b}`, dans les deux sens). Variantes choisies d'après le tirage (même lecture au rechargement).
+- **Synthèse du thème** : `spreadSynthHtml` prend `synth[theme][type][tendance]` (2 variantes) quand un thème est choisi, la synthèse générale sinon ; même calcul de tendance qu'avant.
+- **Textes** : français rédigé par ChatGPT en deux lots (majeurs, positions, combinaisons, synthèses ; puis 56 mineurs), contrôlé (repères, longueurs, aucune promesse, sens traditionnels et tendances respectés), 13 traductions contrôlées ; russe : « Vie personnelle » = « Личное развитие » (« Личная жизнь » se comprend comme la vie amoureuse).
+- **Fichiers** : `data/tarot-themes/tarot-themes-xx.json` → `node tools/regen_tarot_themes.js` → `zodiac-tarot-themes-ui.js` (`TAROT_THEMES_UI`, noms des thèmes, toujours chargé) et `zodiac-tarot-themes-xx.js` (`window.TAROT_THEMES_I18N.xx`, chargé à la demande sur le site, `ensureTarotThemes`).
+- **Tests** : 2 tests intégrés (textes des 14 langues ; récit, combinaisons, synthèse du thème, ancien tirage) ; parcours réel (thème choisi au clavier, lecture complète, retrouvée après rechargement) ; site installable (chargement à la demande, hors ligne).
+
 ## Tests
 
 Mélange (reproductible et statistique), choix dans l'éventail, reprise et « Recommencer », fréquence (jour, mois), profils, migration, nettoyage, options, six mois (novembre → avril, décembre → mai, noms des mois dans les 14 langues), textes (14 langues avant publication), parcours réel en français, arabe et japonais (choix au clavier, rechargement), accessibilité (éventail ouvert, tirage retourné, thèmes sombre et clair), export (image réelle).

@@ -15,6 +15,14 @@ let spreadDraft = '';         // question en cours de saisie (gardée si l'affic
 let spreadJustFlipped = -1;   // carte qui vient d'être retournée (animation)
 let spreadShuffling = false;  // animation de mélange en cours
 let fanFocus = 0;             // carte de l'éventail qui a le focus (un seul arrêt de la touche Tab)
+/* Tarot par thème (V10.11) : thème choisi avant le tirage, gardé avec la lecture ; « general » = question libre */
+const SPREAD_THEMES = ['general', 'love', 'work', 'self'];
+let spreadTheme = null;      // lu sur l'appareil au premier affichage (ce fichier est chargé avant zodiac-app.js)
+function chosenTheme(){
+  if (spreadTheme === null) spreadTheme = SPREAD_THEMES.includes(store.get('zodiac_spread_theme')) ? store.get('zodiac_spread_theme') : 'general';
+  return spreadTheme;
+}
+const themeOf = x => SPREAD_THEMES.includes(x) ? x : 'general';
 
 /* Période d'un tirage : le jour (AAAA-MM-JJ) ou, pour les six mois, le mois civil (AAAA-MM) */
 function spreadPeriod(type, dayISO){ return type === 'six' ? dayISO.slice(0, 7) : dayISO; }
@@ -83,7 +91,7 @@ function setSpreadSlot(type, slot, birth = currentDate){
 function readingOf(type, birth = currentDate){
   const s = spreadSlot(type, birth), r = s && s.reading, n = SPREAD_SIZE[type];
   if (!r || !validCards(r.cards, n)) return null;
-  return { cards: r.cards, question: typeof r.question === 'string' ? r.question : '',
+  return { cards: r.cards, question: typeof r.question === 'string' ? r.question : '', theme: themeOf(r.theme),
     revealed: Array.isArray(r.revealed) && r.revealed.length === n ? r.revealed.map(Boolean) : Array(n).fill(true),
     reversed: Array.isArray(r.reversed) && r.reversed.length === n ? r.reversed.map(Boolean) : Array(n).fill(false) };
 }
@@ -91,7 +99,7 @@ function draftOf(type, birth = currentDate){
   const s = spreadSlot(type, birth), d = s && s.draft;
   if (!d || !Array.isArray(d.order) || !d.order.every(k => TAROT_ALL_KEYS.includes(k)) || !Array.isArray(d.picked)) return null;
   return { order: d.order, rev: Array.isArray(d.rev) ? d.rev.map(Boolean) : d.order.map(() => false),
-    picked: d.picked.filter(i => Number.isInteger(i) && i >= 0 && i < d.order.length).slice(0, SPREAD_SIZE[type]), question: d.question || '' };
+    picked: d.picked.filter(i => Number.isInteger(i) && i >= 0 && i < d.order.length).slice(0, SPREAD_SIZE[type]), question: d.question || '', theme: themeOf(d.theme) };
 }
 function saveDraft(type, draft){ setSpreadSlot(type, draft ? { period: spreadPeriod(type, todayISO()), draft } : null); }
 function saveReading(type, reading){ setSpreadSlot(type, { period: spreadPeriod(type, todayISO()), reading }); }
@@ -112,7 +120,7 @@ function saveSpread(s){
 function startShuffle(type){
   const order = shuffleKeys(tarotFull ? TAROT_ALL_KEYS : TAROT_KEYS);   // options appliquées au moment du mélange
   const rev = order.map(() => tarotReversed && secureRandom() < 0.5);
-  saveDraft(type, { order, rev, picked: [], question: SPREAD_ASKS[type] ? spreadDraft.trim() : '' });
+  saveDraft(type, { order, rev, picked: [], question: SPREAD_ASKS[type] ? spreadDraft.trim() : '', theme: chosenTheme() });
   fanFocus = 0;
 }
 function togglePick(type, i){
@@ -125,7 +133,7 @@ function togglePick(type, i){
 function placeCards(type){
   const d = draftOf(type), n = SPREAD_SIZE[type];
   if (!d || d.picked.length !== n) return false;
-  saveReading(type, { cards: d.picked.map(i => d.order[i]), reversed: d.picked.map(i => d.rev[i]), revealed: Array(n).fill(false), question: d.question });
+  saveReading(type, { cards: d.picked.map(i => d.order[i]), reversed: d.picked.map(i => d.rev[i]), revealed: Array(n).fill(false), question: d.question, theme: d.theme });
   spreadDraft = '';
   return true;
 }
@@ -138,6 +146,54 @@ function spreadPositions(t, type, period){
   if (type === 'sca') return ['situation', 'challenge', 'advice'].map(k => ({ name: s.sca.pos[k], hint: s.sca.hints[k] }));
   return sixMonths(period).map(ym => ({ name: monthLabel(ym, lang), hint: s.six.hint }));
 }
+/* ---------- Tarot par thème (V10.11) ----------
+   Données d'une langue (zodiac-tarot-themes-xx.js, tools/regen_tarot_themes.js) : sens des 78 cartes en Amour,
+   Travail et argent, Vie personnelle ; phrases de position ; 40 combinaisons remarquables ; synthèses par thème.
+   Déjà présentes dans ZODIAC.html et la version autonome ; sur le site, chargées à la demande (window.ZODIAC_LAZY). */
+const themesLoading = {};
+function themesData(lang){ return window.TAROT_THEMES_I18N && window.TAROT_THEMES_I18N[lang] || null; }
+function themesUi(lang = currentLang){ return typeof TAROT_THEMES_UI === 'object' ? (TAROT_THEMES_UI[lang] || TAROT_THEMES_UI.fr) : null; }
+function ensureTarotThemes(lang){
+  if (themesData(lang)) return Promise.resolve(true);
+  const file = (window.ZODIAC_LAZY || {})[`zodiac-tarot-themes-${lang}.js`];
+  if (!file) return Promise.resolve(false);
+  return themesLoading[lang] || (themesLoading[lang] = new Promise(resolve => {
+    const sc = document.createElement('script');
+    sc.src = file;
+    sc.onload = () => resolve(!!themesData(lang));
+    sc.onerror = () => { delete themesLoading[lang]; sc.remove(); resolve(false); };
+    document.head.appendChild(sc);
+  }));
+}
+function langOfTexts(t){ return Object.keys(I18N).find(l => I18N[l] === t) || currentLang; }
+const STORY_POS = { one: ['answer'], three: ['past', 'present', 'future'], sca: ['situation', 'challenge', 'advice'], six: Array(6).fill('month') };
+function readingSeed(type, reading, period){
+  let seed = 0;
+  for (const ch of type + period + reading.cards.join() + reading.reversed.join()) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
+  return seed;
+}
+/* « Votre lecture » : pour chaque carte, une phrase qui la situe (position et thème) puis son sens dans le thème
+   (question libre : le sens général déjà affiché sous la carte) ; puis les combinaisons remarquables du tirage
+   (deux au plus). La synthèse suit. Mêmes variantes à chaque affichage d'un même tirage. */
+function spreadStoryHtml(t, deck, type, reading, period){
+  const lang = langOfTexts(t), data = themesData(lang) || themesData('fr'), ui = themesUi(lang);
+  if (!data || !ui) return '';
+  const theme = themeOf(reading.theme), seed = readingSeed(type, reading, period);
+  const months = type === 'six' ? sixMonths(period).map(ym => monthLabel(ym, lang)) : [];
+  const nameOf = key => escapeHtml(tarotName(t, key, deck));
+  const lines = reading.cards.map((key, i) => {
+    const pool = data.positions[theme][STORY_POS[type][i]], rev = reading.reversed[i];
+    const lead = escapeHtml(pool[(seed + i) % pool.length]).replace('{card}', nameOf(key)).replace('{month}', escapeHtml(months[i] || ''));
+    const meaning = theme === 'general' ? tarotMeaning(t, key, rev).text : escapeHtml(data.cards[key][theme][rev ? 'rev' : 'up']);
+    return `<p class="story-line"><span class="story-lead">${lead}</span> ${meaning}</p>`;
+  });
+  const combos = Object.keys(data.combos).filter(k => { const [a, b] = k.split('+'); return reading.cards.includes(a) && reading.cards.includes(b); })
+    .slice(0, 2).map(k => { const [a, b] = k.split('+');
+      return `<p class="story-combo"><span aria-hidden="true">✦</span> ${escapeHtml(data.combos[k]).replace('{a}', nameOf(a)).replace('{b}', nameOf(b))}</p>`; });
+  return `<section class="spread-story" aria-labelledby="storyTitle-${type}">
+      <h5 class="story-title" id="storyTitle-${type}">${escapeHtml(ui.reading)}</h5>${lines.join('')}${combos.join('')}</section>`;
+}
+
 /* Synthèse d'un tirage entièrement retourné : « Ce que cela signifie pour votre question ».
    Tendance d'ensemble à partir des tendances traditionnelles des cartes (tarotTendency, zodiac-tarot.js),
    pondérées selon leur place : présent et avenir comptent davantage ; dans Situation · Défi · Conseil, le défi
@@ -157,7 +213,9 @@ function spreadSynthHtml(t, deck, type, reading, period){
   const { overall, cards } = spreadTendency(type, reading);
   let seed = 0;
   for (const ch of type + period + reading.cards.join() + reading.reversed.join()) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
-  let text = y[type][overall][seed % y[type][overall].length];
+  const themed = reading.theme && reading.theme !== 'general' && themesData(lang) ? themesData(lang).synth[reading.theme] : null;
+  const pool = themed ? themed[type][overall] : y[type][overall];   // tarot par thème : synthèse propre au thème
+  let text = pool[seed % pool.length];
   if (type in SYNTH_KEY_CARD) { const i = SYNTH_KEY_CARD[type]; text = text.replace('{card}', escapeHtml(tarotName(t, reading.cards[i], deck))); }
   let months = '';
   if (type === 'six') {
@@ -199,11 +257,17 @@ function spreadPanelHtml(t, deck, type){
         ${isMinorKey(key) ? minorBadge(t, key, deck) : ''}<div class="traits">${m.keywords.map(k => `<span class="trait-tag">${k}</span>`).join('')}</div>
         <p class="num-text">${m.text}</p></div>`;
     }).join('');
+    const tu = themesUi(langOfTexts(t));
+    if (done && !themesData(langOfTexts(t))) {   // site : textes du thème pas encore chargés
+      const lang = langOfTexts(t);
+      ensureTarotThemes(lang).then(ok => { if (ok && lang === currentLang && document.getElementById('spreadPanel')) renderTarot(); });
+    }
     return `<h4 class="spread-name">${escapeHtml(s[type].name)}</h4>
       ${reading.question ? `<p class="spread-question" dir="auto">${escapeHtml(reading.question)}</p>` : ''}
+      ${tu && reading.theme !== 'general' ? `<p class="spread-theme">${escapeHtml(tu.chosen.replace('{theme}', tu[reading.theme]))}</p>` : ''}
       ${done ? '' : `<p class="sky-sub">${u.spreadFlip}</p>`}
       <div class="spread-row spread-${type}">${slots}</div>
-      ${done ? spreadSynthHtml(t, deck, type, reading, spreadPeriod(type, todayISO())) : ''}
+      ${done ? spreadStoryHtml(t, deck, type, reading, spreadPeriod(type, todayISO())) + spreadSynthHtml(t, deck, type, reading, spreadPeriod(type, todayISO())) : ''}
       ${done ? `<p class="spread-done">${escapeHtml(type === 'six' ? s.six.done : u.spreadTomorrow)}</p>` : ''}
       <p class="sky-note">${escapeHtml(type === 'six' ? s.six.note : u.spreadNote)}</p>`;
   }
@@ -221,7 +285,9 @@ function spreadPanelHtml(t, deck, type){
       const at = draft.picked.indexOf(i);
       return `<button type="button" class="fan-card" data-i="${i}" tabindex="${i === fanFocus ? 0 : -1}" aria-pressed="${at >= 0}" aria-label="${escapeHtml(g.cardAria)} ${i + 1}/${N}">${at >= 0 ? `<span class="fan-no" aria-hidden="true">${at + 1}</span>` : ''}</button>`;
     }).join('');
+    const tu = themesUi(langOfTexts(t));
     return `${draft.question ? `<p class="spread-question" dir="auto">${escapeHtml(draft.question)}</p>` : ''}
+      ${tu && draft.theme !== 'general' ? `<p class="spread-theme">${escapeHtml(tu.chosen.replace('{theme}', tu[draft.theme]))}</p>` : ''}
       <p class="sky-sub">${escapeHtml(g.pick)}</p>
       <div class="tarot-fan" role="group" aria-label="${escapeHtml(g.pick)}" style="--fan-back:url('${back}')">${cards}</div>
       <p class="fan-count"><span dir="ltr">${draft.picked.length}/${n}</span></p>
@@ -233,6 +299,8 @@ function spreadPanelHtml(t, deck, type){
   return `<div class="spread-form">
       ${ask ? `<p class="sky-sub">${u.spreadIntro}</p><label for="spreadQuestion" class="spread-label">${u.spreadQuestionLabel}</label>
       <textarea id="spreadQuestion" dir="auto" rows="2" maxlength="200" placeholder="${escapeHtml(u.spreadQuestionHint)}">${escapeHtml(spreadDraft)}</textarea>` : `<p class="sky-sub">${escapeHtml(s.six.desc)}</p>`}
+      ${themesUi(langOfTexts(t)) ? `<fieldset class="spread-themes"><legend class="spread-label">${escapeHtml(themesUi(langOfTexts(t)).label)}</legend>
+        ${SPREAD_THEMES.map(k => `<label class="spread-theme-opt"><input type="radio" name="spreadTheme" value="${k}"${k === chosenTheme() ? ' checked' : ''}> ${escapeHtml(themesUi(langOfTexts(t))[k])}</label>`).join('')}</fieldset>` : ''}
       <div class="spread-actions"><button type="button" class="btn-reveal" id="spreadDraw"${!ask || spreadDraft.trim().length >= 3 ? '' : ' disabled'}>${escapeHtml(g.shuffle)}</button></div></div>`;
 }
 /* Ancienne fonction (tirage à trois cartes), gardée pour la compatibilité */
@@ -250,6 +318,9 @@ function bindSpreads(el){
     spreadType = b.dataset.type; store.set('zodiac_spread_type', spreadType); refresh(`.spread-choice[data-type="${spreadType}"]`);
   }));
   const q = el.querySelector('#spreadQuestion'), draw = el.querySelector('#spreadDraw');
+  el.querySelectorAll('input[name="spreadTheme"]').forEach(r => r.addEventListener('change', () => {   // pas de nouvel affichage : le focus reste
+    if (r.checked) { spreadTheme = r.value; store.set('zodiac_spread_theme', spreadTheme); }
+  }));
   if (q) q.addEventListener('input', () => { spreadDraft = q.value; draw.disabled = q.value.trim().length < 3; });
   if (draw) draw.addEventListener('click', () => {
     if (SPREAD_ASKS[spreadType] && spreadDraft.trim().length < 3) return;
@@ -291,3 +362,7 @@ function bindSpreads(el){
     const next = document.querySelector('.spread-flip'); if (next) next.focus();
   }));
 }
+
+/* Site : textes du thème dans la langue affichée, chargés tôt (puis gardés hors ligne par le service worker) */
+window.addEventListener('load', () => setTimeout(() => ensureTarotThemes(currentLang), 2000));
+document.getElementById('langSelect').addEventListener('change', () => setTimeout(() => ensureTarotThemes(currentLang), 0));

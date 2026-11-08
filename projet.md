@@ -1,5 +1,7 @@
 # 🌌 Zodiaque & Décans · Cosmic Interface
 
+> **V10.11 : tarot par thème.** Avant de tirer, on choisit un thème : Question libre, Amour, Travail et argent, Vie personnelle. Après le tirage, « Votre lecture » relie les cartes en petit récit : pour chaque carte, une phrase qui la situe puis son sens dans le thème (78 cartes, à l'endroit et renversées), les combinaisons remarquables (40 paires de la tradition), puis une synthèse propre au thème. Sens traditionnels, jamais de promesse. Idée de la testeuse ; 14 langues. Cahier : `docs/cahier-tarot.md`. 125 tests.
+
 > **V10.10 : retouches demandées par Joann (8 novembre 2026).** Accueil : deux cartes animées sous « Révéler mon signe », **Cosmic Daily en premier** (galaxie qui tourne, planètes en orbite, étoiles qui scintillent, dessinée en code) puis **l'Oracle** (la boule de cristal animée de l'onglet Tarot) ; animations coupées si l'on a demandé moins de mouvements ; masquées quand un profil est affiché. **Roast My Zodiac : un seul par jour** (« Encore un » retiré, la rareté fait le charme). **Carte du ciel** : le lieu d'observation se saisit comme le lieu de naissance (quelques lettres, suggestions), au lieu d'une longue liste déroulante ; « Me localiser » reste. 123 tests.
 
 > **V10.9 : Cosmic Daily 2.** Après les essais d'une testeuse : textes réécrits et bien plus variés (8 variantes par signe, voix et rubrique, Bien-être et Sagesse propres à chaque signe, phrase d'ambiance d'après le ciel du jour), Classique sérieux, Drôle franchement drôle, Piquant mordant ; **Roast My Zodiac** (10 roasts par signe, « Encore un », partage en image 1080 × 1350 dessinée sur l'appareil) ; **Cosmic Daily depuis l'accueil, sans profil** (fenêtre, signe retenu). Vouvoiement partout ; limites de l'humour validées. Cahier : `docs/cahier-cosmic-daily.md`. 123 tests.
@@ -496,7 +498,7 @@ Codée en dur (12×12 symétrique). Tendances par paire d'éléments :
 | Explications élémentaires | 10 (× 7 langues = 70 textes) |
 | Dépendances externes | aucune en ligne (html2canvas en copie locale) |
 | Poids approximatif | site : première visite ≈ 4,1 Mo compressés, mise à jour typique ≈ 80 Ko (V10.4) ; version autonome ≈ 8,4 Mo, mesurée le 2 novembre 2026 (7,8 Mo avant les articles) : ≈ 3,1 Mo d'illustrations du tarot, ≈ 1 Mo de villes, ≈ 1,6 Mo de traductions, ≈ 0,6 Mo d'articles, ≈ 0,4 Mo de textes du portrait |
-| Tests automatisés | 123 (106 dans `zodiac-tests.js`, dont 3 pour les articles, 3 pour le changement d'heure, 3 pour la synthèse du tarot, 1 pour la lisibilité des couleurs des signes et 3 pour Cosmic Daily, + 17 portrait) ; parcours réel protégé en CI, compatibilité, tarot, carré, articles et changement d'heure compris |
+| Tests automatisés | 125 (108 dans `zodiac-tests.js`, dont 3 pour les articles, 3 pour le changement d'heure, 3 pour la synthèse du tarot, 2 pour le tarot par thème, 1 pour la lisibilité des couleurs des signes et 3 pour Cosmic Daily, + 17 portrait) ; parcours réel protégé en CI, compatibilité, tarot, carré, articles et changement d'heure compris |
 
 ---
 

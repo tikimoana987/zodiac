@@ -98,7 +98,7 @@ PWA_HEAD = """<link rel="manifest" href="manifest.webmanifest">
 SITE_FILES = ['manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png']
 
 
-LAZY_RE = re.compile(r'zodiac-cosmic-(?!ui\.)[a-z]{2}\.js')   # textes de Cosmic Daily, une langue par fichier (pas les libellés « ui »)
+LAZY_RE = re.compile(r'zodiac-(?:cosmic|tarot-themes)-(?!ui\.)[a-z]{2}\.js')   # textes d'une langue (Cosmic Daily, tarot par thème), pas les libellés « ui »
 
 
 def asset_name(name, data):

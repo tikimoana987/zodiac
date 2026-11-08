@@ -1,0 +1,1494 @@
+{
+  "lang": "en",
+  "ui": {
+    "label": "Reading theme",
+    "general": "Open question",
+    "love": "Love",
+    "work": "Work and money",
+    "self": "Personal life",
+    "reading": "Your reading",
+    "chosen": "Theme: {theme}"
+  },
+  "cards": {
+    "fool": {
+      "love": {
+        "up": "A spontaneous impulse opens the relationship to discovery. Traditionally, it suggests the freshness of a bond that benefits from unfolding without a fixed script.",
+        "rev": "Enthusiasm may conceal differing expectations. Taking time to name them helps distinguish freedom from avoidance."
+      },
+      "work": {
+        "up": "A new initiative brings a favourable breath of fresh air. Exploring a possibility without claiming to master everything may reveal unexpected abilities.",
+        "rev": "The urge to begin quickly risks overlooking details. Clarifying the framework makes boldness more constructive."
+      },
+      "self": {
+        "up": "The wish to break with routine invites you to discover another side of yourself. Taking the first step matters more than following a perfect path.",
+        "rev": "Seeking freedom without any bearings may scatter your energy. Choosing what truly deserves your efforts helps you move forward."
+      }
+    },
+    "magician": {
+      "love": {
+        "up": "Communication and initiative encourage an authentic meeting of intentions. Your ability to connect with others can sustain a lively exchange.",
+        "rev": "Charm and fine promises alone do not create trust. Consistency between words and actions deserves attention."
+      },
+      "work": {
+        "up": "Skills, tools and determination seem ready to come together. Tradition suggests fertile ground for turning an idea into something tangible.",
+        "rev": "Misguided talent or unclear intentions may cloud a project. It helps to clarify what each person can genuinely contribute."
+      },
+      "self": {
+        "up": "You have resources you may underestimate for initiating a change of your choosing. Putting them to use can strengthen your confidence.",
+        "rev": "Being capable is no substitute for knowing why you act. Returning to a sincere intention helps you avoid becoming lost in appearances."
+      }
+    },
+    "priestess": {
+      "love": {
+        "up": "Deep listening and feelings not yet expressed invite you to respect the relationship's pace. Not everything reveals itself straight away.",
+        "rev": "Things left unsaid may cloud mutual understanding. Making room for conversation helps separate intuition from assumptions."
+      },
+      "work": {
+        "up": "Careful observation and knowledge of the context offer a useful opening. What has yet to be voiced deserves patient attention.",
+        "rev": "Withheld information or overlooked intuition may limit your grasp of a situation. Clearing up uncertainties becomes valuable."
+      },
+      "self": {
+        "up": "Your inner world holds wisdom worth hearing without haste. Stepping back for a while may bring a fresh understanding to light.",
+        "rev": "Withdrawal can become a way of silencing your own needs. Putting your feelings into words helps you recover your voice."
+      }
+    },
+    "empress": {
+      "love": {
+        "up": "Affection, creativity and the pleasure of sharing support a flourishing bond. Freely expressed care can grow.",
+        "rev": "An opportunity lies in finding a better balance between giving and receiving. Nurturing the bond without taking charge of everything leaves it room to breathe."
+      },
+      "work": {
+        "up": "A fertile idea may develop through discussion and creativity. Traditionally, this is a favourable time to help a project mature.",
+        "rev": "Creativity that has slowed invites you to reconsider the conditions in which it can flourish. Welcoming fresh perspectives may revive what has been waiting."
+      },
+      "self": {
+        "up": "Your ability to create and care for what matters encourages personal fulfilment. Give your own wishes the value they deserve.",
+        "rev": "Giving too much space to others' expectations may stifle your momentum. You have an opportunity to rediscover your own way of creating."
+      }
+    },
+    "emperor": {
+      "love": {
+        "up": "Stability, consistency and clear commitments offer a favourable foundation for relationships. Emotional security is also built through actions.",
+        "rev": "The desire to organise everything may restrict each person's freedom. Relaxing the relationship's rules can help preserve its strength."
+      },
+      "work": {
+        "up": "Clear structures and accepted responsibilities support progress. A project gains stability when everyone knows their role.",
+        "rev": "Excessive control may hold back initiative. Sharing responsibilities can reinforce what you are trying to establish."
+      },
+      "self": {
+        "up": "Defining your boundaries and priorities helps you build a framework that suits you. Discipline can become support rather than constraint.",
+        "rev": "Overly rigid demands may distance you from your real needs. Reviewing your own rules opens a more flexible path."
+      }
+    },
+    "hierophant": {
+      "love": {
+        "up": "Shared values and trust built over time open the possibility of greater closeness. It is worth expressing what the bond means to you.",
+        "rev": "Inherited models do not always suit your way of loving. You can consciously choose the commitments that feel meaningful."
+      },
+      "work": {
+        "up": "The experience of a mentor, a tried-and-tested method or learning together may guide a useful decision.",
+        "rev": "Reconsidering a professional rule or habit opens a possibility. Keeping what teaches you, without accepting the rest unquestioningly, supports growth."
+      },
+      "self": {
+        "up": "Reflecting on your values and what you wish to pass on may illuminate your path. A lesson may acquire fresh meaning.",
+        "rev": "An old belief can be re-examined without denying your history. The opening lies in choosing your guiding principles instead of merely inheriting them."
+      }
+    },
+    "lovers": {
+      "love": {
+        "up": "A heartfelt choice and genuine affinity bring momentum to the bond. Tradition emphasises the possibility of harmony between desire and values.",
+        "rev": "Hesitation or differing expectations complicate harmony. Saying what truly matters helps you make a free choice again."
+      },
+      "work": {
+        "up": "An alliance or a choice aligned with your values favours meaningful commitment. The quality of dialogue may make all the difference.",
+        "rev": "Two appealing directions may divide your efforts. Defining your criteria helps you move beyond a decision made merely to please."
+      },
+      "self": {
+        "up": "You can bring your convictions and actions closer together. A choice you own, rather than one imposed on you, supports fulfilment.",
+        "rev": "Conflicting wishes need to be acknowledged. Finding your own inner agreement helps you avoid living according to someone else's choice."
+      }
+    },
+    "chariot": {
+      "love": {
+        "up": "Shared determination can advance a relationship project. The momentum is favourable when each person has a say in the direction taken.",
+        "rev": "Moving too fast or deciding alone may weaken understanding. Respecting the other person's pace helps you regain a shared direction."
+      },
+      "work": {
+        "up": "Determination and well-directed effort support a project's progress. Tradition associates this card with well-earned advancement.",
+        "rev": "Scattered initiatives or a desire to force results complicate matters. Bringing efforts together around a clear aim becomes essential."
+      },
+      "self": {
+        "up": "You may regain control of a personal choice with confidence. Directing your energy matters as much as putting it to use.",
+        "rev": "Wanting to control everything may draw you away from your deeper direction. Reviewing your priorities restores meaning to the movement."
+      }
+    },
+    "strength": {
+      "love": {
+        "up": "Patience, kindness and quiet courage support relationships. A compassionate word can soothe what confrontation might harden.",
+        "rev": "A tested sensitivity offers the chance to set boundaries calmly. Strength need not impose itself."
+      },
+      "work": {
+        "up": "Composure and flexible perseverance may help overcome an obstacle. Steady persuasion serves better than force.",
+        "rev": "A passing lack of confidence invites you to recognise your resources. This is a chance to find your footing without seeking to dominate."
+      },
+      "self": {
+        "up": "Gently learning to manage your reactions reveals lasting inner strength. Courage can take a peaceful form.",
+        "rev": "An opportunity lies in treating your own expectations more kindly. Accepting a moment of vulnerability takes nothing away from your worth."
+      }
+    },
+    "hermit": {
+      "love": {
+        "up": "Time for reflection may help distinguish a need for closeness from a need for space. The relationship benefits from respecting that difference.",
+        "rev": "Retreating without explaining what is happening within you may widen the distance. A simple conversation helps break the silence."
+      },
+      "work": {
+        "up": "Patient research or the perspective of someone experienced can illuminate a project. Stepping back opens a path towards greater mastery.",
+        "rev": "Facing every question alone risks delaying a useful exchange. Sharing a reflection before it is complete may help."
+      },
+      "self": {
+        "up": "Chosen solitude encourages the discovery of your deeper values. Meaning sometimes emerges through slowness.",
+        "rev": "Introspection may go round in circles if it cuts you off from others. A trusted connection can refresh your perspective."
+      }
+    },
+    "wheel": {
+      "love": {
+        "up": "A change in the relationship's dynamics may bring renewed momentum. Welcoming the unexpected with flexibility encourages a happier evolution.",
+        "rev": "A fluctuating period may make expectations unstable. Recognising what lies within your control helps you adapt to changes."
+      },
+      "work": {
+        "up": "A shift in circumstances may reveal a favourable opportunity. Tradition encourages you to stay alert to possibilities without assuming success.",
+        "rev": "Reversals or difficulty keeping up with change call for adaptability. Returning to what you can control provides a foothold."
+      },
+      "self": {
+        "up": "You may be moving through a period of renewal. Accepting that not everything is fixed may broaden your possibilities.",
+        "rev": "Resisting a changing cycle may fuel frustration. Identifying the choices still available helps restore flexibility."
+      }
+    },
+    "justice": {
+      "love": {
+        "up": "Clear expectations and respect for each person open the way to more balanced relationships. Honest words can rebuild trust.",
+        "rev": "An imbalance deserves to be recognised clearly. Reconsidering what is fair to each person opens a path to dialogue."
+      },
+      "work": {
+        "up": "Fair evaluation and transparent criteria help clarify responsibilities. Consistent decisions matter more than impressions.",
+        "rev": "A decision avoided or unequal criteria complicate matters. Clarifying facts and responsibilities remains an essential step."
+      },
+      "self": {
+        "up": "Looking honestly at your actions opens the possibility of a fairer choice towards yourself and those around you.",
+        "rev": "Overly harsh judgement or avoided responsibility calls for sincere reflection. Balance can be restored without condemning yourself."
+      }
+    },
+    "hangedman": {
+      "love": {
+        "up": "A pause or shift in perspective may shed new light on the relationship. Listening opens doors that insistence cannot.",
+        "rev": "Waiting indefinitely without clear words may leave the bond stuck. Considering what you can express helps you move beyond the standstill."
+      },
+      "work": {
+        "up": "A pause or fresh perspective offers an opportunity to rethink a method. What seems motionless may reveal another logic.",
+        "rev": "A suspended project may conceal a postponed decision. Distinguishing useful patience from passive surrender helps you regain a hold."
+      },
+      "self": {
+        "up": "Seeing a situation from another angle may transform your relationship with expectations. Letting go becomes a resource.",
+        "rev": "Repeated sacrifice without a clear purpose may wear you down. Reconsidering what you carry opens the way to a freer choice."
+      }
+    },
+    "death": {
+      "love": {
+        "up": "The end of an old way of relating may open a fruitful transformation. Making space for a different balance calls for honesty.",
+        "rev": "Clinging to a past form of the relationship may hinder its growth. Acknowledging what is changing helps you move on without forcing it."
+      },
+      "work": {
+        "up": "A significant transition invites you to leave behind a method that no longer fits. Closing that chapter may create fresh momentum.",
+        "rev": "A necessary transformation may meet resistance. Examining what needs to evolve helps avoid prolonging a dead end."
+      },
+      "self": {
+        "up": "An inner chapter may close, making room for a new way of defining yourself. The transformation here is symbolic.",
+        "rev": "Holding on to an old self-image makes change harder. Welcoming what is ending allows for renewal."
+      }
+    },
+    "temperance": {
+      "love": {
+        "up": "Dialogue, patience and mutual adjustment support harmony in the bond. Tradition suggests understanding cultivated little by little.",
+        "rev": "An out-of-step dynamic offers a chance to restore dialogue. Measured gestures can bring differing rhythms closer."
+      },
+      "work": {
+        "up": "Cooperation and a balanced pace favour progress. Bringing people's skills together can help a project run more smoothly.",
+        "rev": "An unbalanced organisation invites you to redistribute efforts. A more flexible method may ease collaboration."
+      },
+      "self": {
+        "up": "Reconciling your needs and obligations encourages a peaceful stability. Small adjustments matter as much as major decisions.",
+        "rev": "An opportunity arises to rediscover your own sense of balance. Welcoming your different impulses without setting them against each other can bring calm."
+      }
+    },
+    "devil": {
+      "love": {
+        "up": "Strong attraction may mix with habits of control or dependence. Naming these patterns helps preserve freedom within the bond.",
+        "rev": "Recognising a burdensome attachment opens the possibility of loosening its grip. The relationship benefits when everyone freely chooses their place."
+      },
+      "work": {
+        "up": "Overwhelming ambition or a struggle for power may obscure your priorities. Distinguishing the desire to succeed from the urge to control is useful.",
+        "rev": "An opportunity arises to move beyond pressure or a habit that restricts your choices. Returning to your own criteria restores autonomy."
+      },
+      "self": {
+        "up": "A desire that has become a constraint invites you to examine what holds you back. Recognising these attachments is a first step towards freedom.",
+        "rev": "An automatic habit loses some of its hold once you become aware of it. You can reconsider an attachment without judging yourself."
+      }
+    },
+    "tower": {
+      "love": {
+        "up": "An assumption about the bond may be called into question. Welcoming what comes to light allows you to rebuild on more honest communication.",
+        "rev": "After a destabilising realisation, the opening lies in rebuilding without trying to restore the old façade at any cost."
+      },
+      "work": {
+        "up": "A fragile structure may reveal its limits. Facing the facts helps you rethink a stronger foundation.",
+        "rev": "A reassessment already under way opens a path to rebuilding. Making room for new solutions becomes possible."
+      },
+      "self": {
+        "up": "An old belief about yourself may no longer hold. This symbolic upheaval invites you to redefine what supports you.",
+        "rev": "An opportunity lies in the freedom to rebuild after a revelation. You need not preserve a self-image that has become too narrow."
+      }
+    },
+    "star": {
+      "love": {
+        "up": "Trust, gentleness and sincerity favour a calmer relationship. Hope can return without demanding guarantees.",
+        "rev": "Uncertain trust opens the possibility of reconnecting with your aspirations. Small, sincere gestures may brighten the bond."
+      },
+      "work": {
+        "up": "An inspiring prospect renews the meaning of your efforts. Tradition associates this card with hope and progress aligned with your values.",
+        "rev": "Fading motivation may find direction again. The opportunity lies in recognising the resources and support already available."
+      },
+      "self": {
+        "up": "Quiet confidence in your path may return. Welcoming your hopes simply encourages peace of mind.",
+        "rev": "A period of doubt opens the chance to rediscover what genuinely inspires you. Hope is rebuilt through small steps."
+      }
+    },
+    "moon": {
+      "love": {
+        "up": "Strong emotions and uncertain impressions may cloud your reading of the bond. Separating feelings from facts helps restore clarity.",
+        "rev": "Things left unsaid may begin to be clarified. Asking a simple question rather than imagining the answer opens dialogue."
+      },
+      "work": {
+        "up": "An ambiguous situation may mingle intuition with misunderstandings. Checking information guards against hasty conclusions.",
+        "rev": "As confusion clears, an opportunity arises to specify expectations and give decisions a clearer outline."
+      },
+      "self": {
+        "up": "Imagination and emotions give special depth to your inner world. They also need practical points of reference.",
+        "rev": "Vague fears may find words. This opening helps you distinguish what you feel from what you know."
+      }
+    },
+    "sun": {
+      "love": {
+        "up": "Shared joy, honesty and warmth bring favourable energy to the bond. Tradition suggests a bright, openly shared connection.",
+        "rev": "Quiet joy may return when you stop expecting everything to match an ideal. The opening lies in rediscovered simplicity."
+      },
+      "work": {
+        "up": "Clarity, cooperation and recognition of effort support the project. Success may begin to emerge if the work finds its proper place.",
+        "rev": "Less visible satisfaction offers an opportunity to recognise progress better and share achievements."
+      },
+      "self": {
+        "up": "Your confidence and joy in life may find simple expression. Seeing your progress clearly reinforces that momentum.",
+        "rev": "Confidence seeking renewal finds an opening in ordinary pleasures and a kinder view of yourself."
+      }
+    },
+    "judgement": {
+      "love": {
+        "up": "A realisation may renew the way you understand each other. Expressing what has changed can create a fairer new beginning.",
+        "rev": "A conversation or reflection avoided may keep the bond trapped in an old narrative. Recognising what needs a response helps you move forward."
+      },
+      "work": {
+        "up": "An honest assessment may highlight skills and a new direction. Tradition suggests a call to take a clear position.",
+        "rev": "A long-postponed decision needs consideration. Avoiding reflection may prevent you from recognising a necessary evolution."
+      },
+      "self": {
+        "up": "A fresh understanding of your journey may give you the courage to answer what moves you deeply.",
+        "rev": "A fixed view of the past may stifle new momentum. Looking back without trapping yourself in judgement helps you grow."
+      }
+    },
+    "world": {
+      "love": {
+        "up": "A sense of harmony and maturity brings fulfilment to relationships. Tradition suggests a relational cycle finding its coherence.",
+        "rev": "An unfinished chapter opens the possibility of defining more clearly what harmony means to each person."
+      },
+      "work": {
+        "up": "A project's completion or recognition of a skill may come into view. Tradition associates this card with accomplishment.",
+        "rev": "Partial success offers an opening to bring a project's remaining elements together and acknowledge the distance travelled."
+      },
+      "self": {
+        "up": "An experience finds its place in a wider whole. You can recognise how far you have come and feel more at peace with yourself.",
+        "rev": "A feeling of unfinished business opens a path towards better integrating your experiences, without demanding perfection."
+      }
+    },
+    "wands_ace": {
+      "love": {
+        "up": "A new attraction may awaken the wish to share and be more daring. This momentum benefits from respecting each person's pace.",
+        "rev": "A wish for closeness is present but has yet to find expression. A simple initiative could give it room."
+      },
+      "work": {
+        "up": "A stimulating idea suggests a promising beginning. Channeling this energy into a practical project may open new possibilities.",
+        "rev": "Inspiration seems present but not fully mobilised. Identifying what excites you helps you give it a workable form."
+      },
+      "self": {
+        "up": "A creative impulse invites you to try what appeals to you. A first step may nurture fresh confidence.",
+        "rev": "A desire for renewal is finding its way. Setting aside overly high expectations could restore the pleasure of beginning."
+      }
+    },
+    "wands_2": {
+      "love": {
+        "up": "A shared project may grow if your aspirations are expressed openly. The relationship benefits from a common horizon.",
+        "rev": "Emotional possibilities remain open, but their direction needs clarification. Talking about expectations may make the choice easier."
+      },
+      "work": {
+        "up": "A broader vision invites you to prepare for expansion or a new role. Your ability to plan ahead supports this favourable momentum.",
+        "rev": "Several directions seem possible, but none is settled. Assessing their real potential helps you move forward confidently."
+      },
+      "self": {
+        "up": "Looking beyond familiar habits reveals a legitimate wish to grow. Choosing a direction can bring coherence to your efforts.",
+        "rev": "Hesitation before the unknown opens useful reflection on your priorities. A project on your own scale may make the future feel less abstract."
+      }
+    },
+    "wands_3": {
+      "love": {
+        "up": "A relationship may be enriched by new perspectives and conversations focused on the future. Openness to each other widens the shared path.",
+        "rev": "A relationship expectation deserves patient examination. Adjusting your hopes to what is actually developing opens possibilities."
+      },
+      "work": {
+        "up": "Work already under way may begin to reveal its potential. Tradition associates this card with expansion, cooperation and a broader vision.",
+        "rev": "Results may require more patience than expected. Reviewing your support networks and stages helps you recognise opportunities."
+      },
+      "self": {
+        "up": "Your earlier choices provide a foundation for exploring new horizons. Confidence grows from what you have already begun.",
+        "rev": "A possibility still seems distant. Connecting what you have achieved with what you wish for can turn waiting into useful preparation."
+      }
+    },
+    "wands_4": {
+      "love": {
+        "up": "A sense of togetherness and shared joy may strengthen bonds. Happy little rituals give the relationship a foundation.",
+        "rev": "An opportunity to reconnect through conviviality appears, even if harmony is incomplete. Welcoming everyone without forcing a celebration helps bring you together."
+      },
+      "work": {
+        "up": "A completed milestone deserves collective recognition. Team cohesion may support the next stage of a project.",
+        "rev": "Quiet success or still-fragile cooperation invites better recognition of everyone's contribution. A simple celebration may restore team spirit."
+      },
+      "self": {
+        "up": "Returning to a place or circle where you feel welcome supports inner stability. A sense of belonging can be a strength.",
+        "rev": "The feeling of belonging still needs to be built. Reworking your surroundings or renewing familiar bonds offers an opening."
+      }
+    },
+    "wands_5": {
+      "love": {
+        "up": "Disagreements or rivalry may take too much space in the bond. Listening for the need behind each objection helps move beyond competition.",
+        "rev": "Repeated tension may ease if everyone gives up the need for the last word. Dialogue can then find room again."
+      },
+      "work": {
+        "up": "Competing methods or heated exchanges complicate collective progress. Distinguishing useful debate from rivalry allows movement forward.",
+        "rev": "A conflict of ideas may become an opportunity for cooperation. Bringing skills together offers a more constructive outcome."
+      },
+      "self": {
+        "up": "You may be comparing yourself too much with those around you. Respecting your own pace helps turn competition into learning.",
+        "rev": "Inner tensions may begin to give way to a clearer direction. Choosing your priorities can reduce distraction."
+      }
+    },
+    "wands_6": {
+      "love": {
+        "up": "Mutual recognition brings warmth and momentum to the relationship. Valuing each person's efforts nurtures shared trust.",
+        "rev": "A need for appreciation may reveal expectations that have remained unspoken. Expressing them simply offers an opening for closeness."
+      },
+      "work": {
+        "up": "Visible and valued work may receive a favourable response. Tradition associates this card with recognition and shared success.",
+        "rev": "A contribution that has gone unnoticed may find its place differently. Presenting your achievements without comparison opens fresh perspectives."
+      },
+      "self": {
+        "up": "Recognising how far you have come strengthens confidence. You can welcome a personal achievement without seeking everyone's approval.",
+        "rev": "Others' opinions may be weighing on your satisfaction. Returning to your own measures of progress offers new freedom."
+      }
+    },
+    "wands_7": {
+      "love": {
+        "up": "Defending your needs without attacking the other person's can strengthen balance. This card opens the way to clear boundaries.",
+        "rev": "A defensive stance may exhaust the bond. Distinguishing a necessary boundary from a pointless battle helps you be heard."
+      },
+      "work": {
+        "up": "A position you have earned deserves to be defended wisely. Clear arguments may help preserve your room to act.",
+        "rev": "Feeling obliged to answer every objection may isolate you. Finding allies and choosing your battles becomes essential."
+      },
+      "self": {
+        "up": "Standing by your convictions in the face of outside expectations opens space for autonomy. Your individuality need not be imposed.",
+        "rev": "Constant vigilance can make exchanges burdensome. Recognising available support helps you lower your guard."
+      }
+    },
+    "wands_8": {
+      "love": {
+        "up": "A spontaneous exchange or long-awaited conversation may bring movement to the bond. Clear communication favours renewed closeness.",
+        "rev": "Slower communication invites simple words rather than repeated reminders. Ease may return without haste."
+      },
+      "work": {
+        "up": "Information flowing and coordinated action may speed a project along. This momentum benefits from a clear direction.",
+        "rev": "Uneven progress offers an opportunity to clarify priorities. Reorganising communication can restore momentum."
+      },
+      "self": {
+        "up": "The wish to act finds a stimulating rhythm. By focusing your attention, small steps may come together.",
+        "rev": "Ideas are arriving from every direction and need sorting. The opening lies in finding the right pace, not simply going faster."
+      }
+    },
+    "wands_9": {
+      "love": {
+        "up": "Past experience prompts you to protect the bond. Trust may be rebuilt gradually with reassuring boundaries.",
+        "rev": "Precautions that have become excessive risk keeping the other person at a distance. Distinguishing the present from past disappointments offers a way forward."
+      },
+      "work": {
+        "up": "Your perseverance helps you hold a course despite obstacles. Saving resources for the final stretch seems wise.",
+        "rev": "A sense of weariness may make every request feel heavier. Reviewing your workload and accepting support helps restore stability."
+      },
+      "self": {
+        "up": "Your endurance reflects inner resources already tested. You can move ahead without denying the need for protection.",
+        "rev": "Staying permanently on guard may limit new experiences. Allowing yourself breaks helps distinguish strength from strain."
+      }
+    },
+    "wands_10": {
+      "love": {
+        "up": "Feeling responsible for everything in a relationship may diminish the joy of being together. Sharing responsibilities opens a necessary conversation.",
+        "rev": "Relief may become possible when expectations are expressed and shared. Letting the other person play their part may give the bond room to breathe."
+      },
+      "work": {
+        "up": "An accumulation of tasks risks hiding the purpose of the work. Identifying what can be delegated helps prevent commitment becoming overload.",
+        "rev": "Redistributing tasks opens a path to a more sustainable organisation. Giving up the need to manage everything alone may free energy."
+      },
+      "self": {
+        "up": "Trying to meet every expectation may distance you from your own wishes. Recognising your limits provides a calmer basis for choices.",
+        "rev": "The possibility of setting some obligations aside becomes clearer. Making room for what truly matters encourages a new balance."
+      }
+    },
+    "wands_page": {
+      "love": {
+        "up": "Fresh emotional curiosity favours exchange and discovery. A spontaneous gesture may rekindle closeness.",
+        "rev": "The wish to say or try something has yet to find its shape. Welcoming enthusiasm without impatience creates an opening."
+      },
+      "work": {
+        "up": "News of an idea or new possibility feeds motivation. Experimenting with curiosity may reveal abilities.",
+        "rev": "A tentative initiative deserves room to be tested. Exploring without demanding immediate results allows confidence to grow."
+      },
+      "self": {
+        "up": "A meeting, new skill or passion may awaken your spirit of exploration. The momentum lies in discovery.",
+        "rev": "Emerging confidence needs encouragement. Allowing yourself to learn without succeeding at once opens the way."
+      }
+    },
+    "wands_knight": {
+      "love": {
+        "up": "Lively passion brings movement to relationships, provided you respect the other person's space. Shared enthusiasm can be a real asset.",
+        "rev": "A changing emotional impulse invites you to distinguish a passing desire from lasting intention. Sincerity can give this energy direction."
+      },
+      "work": {
+        "up": "Energetic action favours progress on an ambitious project. A taste for challenges may bring others along if the direction remains shared.",
+        "rev": "The urge to speed everything up deserves to be channelled. Choosing one clear task turns impulse into practical opportunity."
+      },
+      "self": {
+        "up": "Boldness urges you to leave behind habits that have grown restrictive. This momentum may enrich your experience and confidence.",
+        "rev": "Inner restlessness can become a force for change if you give it a clear purpose. Not every movement requires a departure."
+      }
+    },
+    "wands_queen": {
+      "love": {
+        "up": "Warmth, openness and self-confidence can make the bond more vibrant. Each person benefits from being able to shine in their own way.",
+        "rev": "Expressing your wishes more calmly opens a better balance. Your presence need not overshadow the other person's."
+      },
+      "work": {
+        "up": "Creativity and confidence can bring people together around an idea. Warm leadership encourages everyone's contribution.",
+        "rev": "Leadership can be expressed without trying to control everything. Recognising the talents around you opens new sources of support."
+      },
+      "self": {
+        "up": "You are invited to trust your capacity for initiative. Sharing your energy can strengthen bonds with those around you.",
+        "rev": "Confidence that has been held back is looking for room to grow. Recognising your worth without waiting for outside approval supports this momentum."
+      }
+    },
+    "wands_king": {
+      "love": {
+        "up": "Commitment guided by a clear vision can support a couple. Giving shared plans direction without imposing your own nurtures trust.",
+        "rev": "The wish to guide the relationship may become a strength if it leaves room for the other person's hopes. Dialogue opens that possibility."
+      },
+      "work": {
+        "up": "Vision, boldness and responsibility come together favourably. An assured decision may give structure to a shared initiative.",
+        "rev": "A project would benefit from more flexible authority. Delegating and listening to suggestions allows skills to be used more effectively."
+      },
+      "self": {
+        "up": "You may take a leading role among those close to you. Your confidence matters most when it also encourages others' independence.",
+        "rev": "Personal ambition is seeking a fairer framework. Reconciling determination and listening offers a chance to become a guide without directing everything."
+      }
+    },
+    "cups_ace": {
+      "love": {
+        "up": "A surge of tenderness or an opening of the heart favours sincerity. The bond may deepen when emotions are welcomed freely.",
+        "rev": "Feelings held back are seeking simpler expression. Allowing yourself to name what touches you may open the way to a more authentic relationship."
+      },
+      "work": {
+        "up": "A kindly atmosphere may encourage cooperation. Welcoming ideas with sensitivity helps a meaningful project take shape.",
+        "rev": "An inspiration set aside may regain its place. Connecting work with what truly moves you opens more fulfilling prospects."
+      },
+      "self": {
+        "up": "Emotional renewal invites you to listen to your aspirations. Creativity and gentleness may accompany a period of fulfilment.",
+        "rev": "Sensitivity long held in check needs attention. Giving it peaceful space may support a new balance."
+      }
+    },
+    "cups_2": {
+      "love": {
+        "up": "Genuine reciprocity favours closeness or a heartfelt agreement. Mutual respect gives companionship its strength.",
+        "rev": "Meeting each other's expectations remains possible despite a slight mismatch. An honest exchange may restore balance between giving and receiving."
+      },
+      "work": {
+        "up": "A partnership built on trust may support shared aims. Cooperation opens a constructive path.",
+        "rev": "A collaboration needs to find a shared language again. Clarifying roles and expectations may help agreement."
+      },
+      "self": {
+        "up": "A trusting bond with someone close may help you understand yourself better. Mutual listening nurtures this opening.",
+        "rev": "An important relationship invites you to reconsider each person's place. Balanced dialogue may change established habits."
+      }
+    },
+    "cups_3": {
+      "love": {
+        "up": "The joy of gathering with loved ones may nourish the relationship. Sociability brings favourable energy to romantic exchanges.",
+        "rev": "There is an opportunity to reconnect through simple moments. Sharing your attention more fairly may restore a sense of togetherness."
+      },
+      "work": {
+        "up": "Mutual support and celebrating collective work encourage team spirit. Shared achievements may strengthen motivation.",
+        "rev": "A group may regain cohesion by recognising everyone's efforts. The opening lies in genuine companionship."
+      },
+      "self": {
+        "up": "Friendship and shared activities offer valuable support. Welcoming others' joy may enrich your inner life.",
+        "rev": "Your place in a circle of friends may need to be rediscovered or redefined. Favouring authentic exchanges opens a lighter path."
+      }
+    },
+    "cups_4": {
+      "love": {
+        "up": "A degree of weariness may hide the care already present. Seeing the relationship differently offers the possibility of renewed feeling.",
+        "rev": "Withdrawal or disinterest risks closing the door to dialogue. Acknowledging your feelings helps you avoid dismissing a sincere gesture."
+      },
+      "work": {
+        "up": "Professional routine invites you to reconsider overlooked possibilities. A fresh look at your tasks may rekindle interest.",
+        "rev": "Dissatisfaction may lead you to reject a useful possibility without examining it. Distinguishing tiredness from a lack of meaning helps you move forward."
+      },
+      "self": {
+        "up": "A need to step back invites you to listen to what no longer satisfies you. Beneath boredom, an aspiration may be asking for attention.",
+        "rev": "Retreating into disappointment can make opportunities hard to see. Returning to simple experiences helps restore momentum."
+      }
+    },
+    "cups_5": {
+      "love": {
+        "up": "Emotional disappointment may be taking up all the space. Acknowledging your sadness without forgetting the bonds still alive offers a path towards peace.",
+        "rev": "Accepting a past disappointment opens the possibility of a renewed bond. What remains precious may regain its place."
+      },
+      "work": {
+        "up": "A disappointing outcome may overshadow what you have gained. Taking stock of remaining resources may support a new project.",
+        "rev": "Looking back on a missed opportunity allows you to learn from it. Fresh cooperation may become imaginable again."
+      },
+      "self": {
+        "up": "Regret may occupy more of your attention than your available resources. Recognising what remains helps you find direction.",
+        "rev": "Acceptance invites you to loosen your hold on what did not happen. Hope can be rebuilt without denying your experience."
+      }
+    },
+    "cups_6": {
+      "love": {
+        "up": "The warmth of shared memories may nurture present affection. Tradition associates this card with simple, gentle care.",
+        "rev": "An old memory may become a source of understanding rather than a pattern to repeat. The present offers its own way of loving."
+      },
+      "work": {
+        "up": "Familiar skills or a former contact may support a project. Returning to something meaningful offers favourable continuity.",
+        "rev": "Revisiting a proven method may offer an opening, provided it is adapted to current circumstances. Nostalgia then becomes a resource."
+      },
+      "self": {
+        "up": "A connection with your roots or history may bring comfort. Happy memories help you recognise what sustains you.",
+        "rev": "Revisiting the past without idealising it opens space for inner reconciliation. Fresh points of reference may grow from this understanding."
+      }
+    },
+    "cups_7": {
+      "love": {
+        "up": "Several images of love may appeal without reflecting the actual bond. Distinguishing desire from reality opens the way to more sincere expectations.",
+        "rev": "Too many ideals risk distancing you from real exchanges. Returning to what is genuinely shared helps clarify your feelings."
+      },
+      "work": {
+        "up": "Varied possibilities stimulate professional imagination. Prioritising them helps turn a dream into a project you can examine.",
+        "rev": "An abundance of options may scatter your efforts. Choosing practical criteria prevents confusing an appealing promise with a realistic opportunity."
+      },
+      "self": {
+        "up": "Your aspirations are rich and varied. Considering them clearly may reveal which best suits your path.",
+        "rev": "Idealising every possibility risks prolonging indecision. Making a limited choice may help you be more present."
+      }
+    },
+    "cups_8": {
+      "love": {
+        "up": "Taking some distance may help you understand what no longer nourishes the bond. This search for meaning opens the way to a more authentic exchange.",
+        "rev": "Attachment to an unsatisfying relationship may hold back movement. Recognising your needs helps you imagine another way of connecting."
+      },
+      "work": {
+        "up": "Work that once inspired you may have lost its meaning. Exploring other ways to contribute may reveal a better perspective.",
+        "rev": "Hesitation about leaving an old professional habit may prolong a lack of motivation. Identifying what is missing opens useful reflection."
+      },
+      "self": {
+        "up": "You may feel drawn towards a deeper inner search. Leaving an old expectation behind encourages self-discovery.",
+        "rev": "Fear of leaving a chapter behind may sustain a sense of deadlock. Accepting that aspirations evolve helps you move forward."
+      }
+    },
+    "cups_9": {
+      "love": {
+        "up": "Peaceful emotional satisfaction encourages moments of gratitude. Appreciating what is there strengthens warmth in the bond.",
+        "rev": "A personal wish deserves to be shared more clearly. Acknowledging expectations without demanding they all be met opens dialogue."
+      },
+      "work": {
+        "up": "The feeling of having reached a goal may strengthen motivation. Appreciating achievement fairly supports confidence.",
+        "rev": "An expected accomplishment benefits from being redefined in light of your values. This reflection may reveal more genuine satisfaction."
+      },
+      "self": {
+        "up": "Gratitude for your progress invites you to enjoy the present. Tradition links this card with fulfilment found in simple pleasures.",
+        "rev": "External satisfaction may leave a deeper wish unexplored. Identifying what truly delights you opens a path to fulfilment."
+      }
+    },
+    "cups_10": {
+      "love": {
+        "up": "A sense of support and harmony may strengthen emotional bonds. Tradition suggests shared happiness within a close circle.",
+        "rev": "An overly idealised picture of life together can become more flexible. Recognising differences offers a chance for more genuine harmony."
+      },
+      "work": {
+        "up": "A team united by shared values may find lasting momentum. Trust and recognition nurture that understanding.",
+        "rev": "A collective vision of success deserves discussion. Welcoming differing expectations may create stronger agreement."
+      },
+      "self": {
+        "up": "Family and friendship ties may provide a reassuring setting. Cultivating shared joy supports your personal balance.",
+        "rev": "Expectations of perfect harmony may soften. Making room for individuality helps you feel more accepted."
+      }
+    },
+    "cups_page": {
+      "love": {
+        "up": "A spontaneous gesture of affection or a thoughtful message may open the heart. Welcoming this tenderness encourages closeness.",
+        "rev": "A still-tentative emotion calls for simple language. Making room for vulnerability can bring people closer without forcing confidences."
+      },
+      "work": {
+        "up": "A creative suggestion or thoughtful feedback may enrich a project. Your receptiveness becomes a professional resource.",
+        "rev": "An intuitive idea deserves exploration rather than being dismissed as too fragile. Giving it a concrete form may reveal its value."
+      },
+      "self": {
+        "up": "Your imagination finds fertile ground in an artistic or emotional discovery. Emotional curiosity nurtures growth.",
+        "rev": "Quiet inspiration may come alive again if you accept not understanding everything at once. Sensitivity becomes a doorway."
+      }
+    },
+    "cups_knight": {
+      "love": {
+        "up": "A romantic impulse and considerate words may favour genuine closeness. Feelings benefit from remaining connected to actions.",
+        "rev": "A romantic ideal may become more accessible when expectations are simply stated. Sincerity matters more than a grand gesture."
+      },
+      "work": {
+        "up": "A proposal driven by human values may win support. Diplomacy and creativity sustain the project.",
+        "rev": "An attractive idea still needs practical detail. Connecting inspiration with available means opens a constructive path."
+      },
+      "self": {
+        "up": "Seeking beauty and meaning may guide you towards an inspiring activity. A sensitive approach strengthens self-expression.",
+        "rev": "Highly idealised aspirations may find grounding in modest actions. This opens the door to more tangible joy."
+      }
+    },
+    "cups_queen": {
+      "love": {
+        "up": "Attentive listening and deep tenderness may support the bond. Understanding the other person without forgetting your own needs favours balanced affection.",
+        "rev": "Sensitivity can become a strength when combined with boundaries. Space for your own feelings opens a fairer exchange."
+      },
+      "work": {
+        "up": "Your ability to sense a team's needs may nurture calm cooperation. Empathy informs collective decisions.",
+        "rev": "Being too often called upon emotionally deserves rebalancing. Allowing yourself boundaries may preserve the quality of exchanges."
+      },
+      "self": {
+        "up": "Gentle intuition helps you recognise what matters. Welcoming your emotions without immediately having to explain them may bring calm.",
+        "rev": "The tendency to absorb others' worries may give way to a more peaceful presence. Taking a step back leaves room for everyone."
+      }
+    },
+    "cups_king": {
+      "love": {
+        "up": "Steady affection and measured words encourage trust. Welcoming emotions without letting them govern everything strengthens the bond.",
+        "rev": "Emotional reserve may soften through sincere dialogue. Expressing what you feel opens a warmer balance."
+      },
+      "work": {
+        "up": "A calm attitude amid tensions may help a team reconnect. Emotional discernment supports professional exchanges.",
+        "rev": "Excessive restraint may leave your intentions unclear. Sharing your motivations thoughtfully opens more trusting cooperation."
+      },
+      "self": {
+        "up": "Emotional maturity invites you to welcome feelings without losing yourself in them. You can offer support while remaining true to yourself.",
+        "rev": "Excessive control over emotions deserves to soften. Expressing your experience more simply may make mutual understanding easier."
+      }
+    },
+    "swords_ace": {
+      "love": {
+        "up": "Clear words may resolve a misunderstanding and give the bond a fresh start. Honesty benefits from sensitivity to the other person's feelings.",
+        "rev": "A truth that is still hard to express invites preparation for a calm conversation. Finding the right words may open the way to mutual understanding."
+      },
+      "work": {
+        "up": "A precise idea or clear-headed decision favours professional progress. Separating fact from assumption strengthens your approach.",
+        "rev": "A complex situation deserves clarification before any conclusion. Restating what matters offers a chance to regain coherence."
+      },
+      "self": {
+        "up": "A realisation may help you name what you truly want. This clarity supports a change you choose.",
+        "rev": "A confused intuition may become clearer through honest examination. Sorting through your thoughts opens a clearer horizon."
+      }
+    },
+    "swords_2": {
+      "love": {
+        "up": "A relationship choice deserves consideration without shutting out your feelings. Listening to both points of view opens a way forward.",
+        "rev": "Avoiding a difficult conversation risks leaving the bond stuck. Naming what makes you hesitate may restart sincere dialogue."
+      },
+      "work": {
+        "up": "Two directions seem equally defensible. Clarifying important criteria helps you move ahead without seeking impossible certainty.",
+        "rev": "Continually postponing a decision may complicate cooperation. Gathering the essentials helps break the deadlock."
+      },
+      "self": {
+        "up": "Inner hesitation invites you to recognise conflicting needs. Naming them may illuminate your choices.",
+        "rev": "Refusing to face a personal tension may prolong immobility. Reflection without judgement offers a first step."
+      }
+    },
+    "swords_3": {
+      "love": {
+        "up": "Words or disappointment may have weakened trust. Welcoming what was felt, without automatic blame, opens space for dialogue.",
+        "rev": "The hurt caused by misunderstanding may begin to ease. Acknowledging what caused pain encourages a clearer relationship."
+      },
+      "work": {
+        "up": "Criticism or professional disagreement may be difficult to receive. Separating the message from your personal worth helps you regain footing.",
+        "rev": "After a setback, a fairer understanding of the facts becomes possible. Learning from experience opens a new perspective."
+      },
+      "self": {
+        "up": "An old emotional hurt asks to be considered gently. Naming it without allowing it to define you helps you resume your path.",
+        "rev": "Sadness may give way to a form of acceptance. Welcoming this shift opens a calmer inner space."
+      }
+    },
+    "swords_4": {
+      "love": {
+        "up": "A pause in discussions may help restore a more peaceful tone. Stepping back offers a chance to hear one another better.",
+        "rev": "Prolonged silence risks becoming a burdensome distance. Making room for rest while keeping dialogue possible helps the bond."
+      },
+      "work": {
+        "up": "Time for reflection may clarify a busy professional situation. Reassessing priorities before resuming encourages sound judgement.",
+        "rev": "Putting things on hold for too long may delay necessary exchanges. Gradually reconnecting with the project helps progress."
+      },
+      "self": {
+        "up": "Allowing yourself some quiet may clear scattered thoughts. Chosen withdrawal becomes restorative time.",
+        "rev": "The need for rest may turn into avoidance of your aspirations. Gently returning to a chosen activity may renew momentum."
+      }
+    },
+    "swords_5": {
+      "love": {
+        "up": "An argument in which everyone seeks victory may impoverish the bond. Choosing understanding over winning opens another outcome.",
+        "rev": "Letting go of a fruitless rivalry allows closeness to be considered again. Acknowledging your part may restore mutual respect."
+      },
+      "work": {
+        "up": "Poorly handled competition may weaken trust at work. Considering the consequences of a confrontation helps you choose a constructive way forward.",
+        "rev": "Tension between colleagues may ease if the need to be right gives way to a shared aim. Cooperation becomes possible again."
+      },
+      "self": {
+        "up": "Inner conflict or insistent comparison may drain your energy. Weighing what truly matters helps you step out of confrontation.",
+        "rev": "An old disagreement may lose its weight. Letting go of the need to prove something opens the way to more genuine peace."
+      }
+    },
+    "swords_6": {
+      "love": {
+        "up": "Moving towards a calmer relationship may become possible. Creating distance from old disagreements can encourage new dialogue.",
+        "rev": "An emotional transition remains delicate when you cling to old bearings. Acknowledging change helps prevent stagnation."
+      },
+      "work": {
+        "up": "Reorganisation or a change of method may open a more peaceful working environment. Progress is built in stages.",
+        "rev": "A hesitant professional transition needs to be accompanied by clarity. Identifying what holds movement back makes the passage easier."
+      },
+      "self": {
+        "up": "Moving away from familiar tensions may leave you more open to novelty. A transitional stage opens a perspective.",
+        "rev": "Regret for an old balance may complicate progress. Welcoming what you leave behind helps you continue your path."
+      }
+    },
+    "swords_7": {
+      "love": {
+        "up": "Things left unsaid or an overly indirect approach may weaken trust. Seeking facts and clear dialogue avoids assumptions.",
+        "rev": "More direct words may replace evasions. Acknowledging what was not said offers a chance to rebuild trust."
+      },
+      "work": {
+        "up": "Incomplete information or unclear methods call for vigilance. Checking the facts helps protect cooperation.",
+        "rev": "An unclear situation may become easier to understand through greater transparency. Being open about intentions offers a chance to start again fairly."
+      },
+      "self": {
+        "up": "Avoiding a personal truth may keep you uncertain. Recognising your motivations helps you find a sincere direction.",
+        "rev": "A tendency to sidestep difficulty may soften. Facing your choices honestly opens greater freedom."
+      }
+    },
+    "swords_8": {
+      "love": {
+        "up": "Fear of getting something wrong may limit your expression within the bond. Identifying the choices available helps loosen that sense of being stuck.",
+        "rev": "The belief that nothing can change may begin to lose its hold. Naming your needs creates room to act differently."
+      },
+      "work": {
+        "up": "Conflicting instructions or perceived constraints may slow your initiative. Distinguishing real limits from assumptions helps.",
+        "rev": "Solutions previously dismissed may become visible again. Clarifying your responsibilities helps you regain room to act."
+      },
+      "self": {
+        "up": "Restrictive thoughts may prevent you trying a new direction. Questioning them gently reveals forgotten possibilities.",
+        "rev": "Recognising your own resources opens a path towards freedom. A small chosen decision may break the feeling of immobility."
+      }
+    },
+    "swords_9": {
+      "love": {
+        "up": "Recurring worries may colour your emotional exchanges. Separating what was said from what was imagined helps preserve trust.",
+        "rev": "A concern long kept to yourself may be expressed more gently. Listening opens the possibility of relief."
+      },
+      "work": {
+        "up": "A responsibility may occupy too much space in your thoughts. Sorting facts and expectations helps restore a fairer perspective.",
+        "rev": "Tension linked to high demands may ease. Recognising efforts already made opens another way of viewing your work."
+      },
+      "self": {
+        "up": "Inner concerns may hide the resources around you. Naming them with kindness helps restore perspective.",
+        "rev": "A persistent worry may loosen its grip when you no longer carry it alone. The opening lies in a more forgiving outlook."
+      }
+    },
+    "swords_10": {
+      "love": {
+        "up": "An exhausting way of experiencing the bond may be coming to an end. Acknowledging what is no longer sustainable allows different foundations to be imagined.",
+        "rev": "The weight of past disappointment may begin to lift. A period of rebuilding comes into view through acceptance of change."
+      },
+      "work": {
+        "up": "A difficult professional cycle may reveal that a method has reached its limits. Taking honest stock allows you to imagine what comes next differently.",
+        "rev": "After a period of intense tension, a path towards renewal appears. Recognising what the experience taught you helps rebuild."
+      },
+      "self": {
+        "up": "An old way of judging yourself may no longer fit. Turning the page on these demands opens a more generous view of yourself.",
+        "rev": "A sense of deadlock may yield to the possibility of a new beginning. What ends does not sum up your entire journey."
+      }
+    },
+    "swords_page": {
+      "love": {
+        "up": "Lively curiosity invites you to ask the right questions in the relationship. Listening as much as observing encourages better understanding.",
+        "rev": "Suspicion or hasty interpretations may complicate trust. Checking your impressions before drawing conclusions becomes essential."
+      },
+      "work": {
+        "up": "Intellectual alertness may reveal useful details. Examining information carefully opens a constructive avenue.",
+        "rev": "Asking questions endlessly without a framework risks feeding mistrust. Separating essentials from details helps progress."
+      },
+      "self": {
+        "up": "Your wish to understand others and yourself opens a period of learning. Keeping a curious mind enriches exchanges.",
+        "rev": "A tendency to analyse everything may leave little room for experience. Accepting uncertainty helps you move beyond doubt."
+      }
+    },
+    "swords_knight": {
+      "love": {
+        "up": "A direct discussion may move a situation beyond uncertainty. The opportunity lies in making room for honesty that respects everyone.",
+        "rev": "Words that are too sharp risk turning a useful exchange into confrontation. Slowing down before replying helps preserve the bond."
+      },
+      "work": {
+        "up": "A decisive move may unblock a task. Clear reasoning strengthens this opening, provided you listen to objections.",
+        "rev": "Intellectual haste risks overwhelming a team. Connecting your conviction to facts and the collective pace becomes important."
+      },
+      "self": {
+        "up": "The determination to move past hesitation may support personal change. Your ideas benefit from being tested against experience.",
+        "rev": "Impatience with nuances may distance you from the answers you seek. Allowing other interpretations helps refine your convictions."
+      }
+    },
+    "swords_queen": {
+      "love": {
+        "up": "Fair words and clear boundaries encourage more honest exchanges. Independence can coexist with tenderness.",
+        "rev": "Protective honesty may become more welcoming. Softening your judgements opens a relationship in which everyone feels heard."
+      },
+      "work": {
+        "up": "Discernment helps you step back and establish sound criteria. Clear exchanges support a favourable decision.",
+        "rev": "Demanding analysis may gain strength when it considers people's sensitivities. This opening reinforces cooperation."
+      },
+      "self": {
+        "up": "Insight gained through experience helps you stand by your choices. Consistent boundaries encourage independence.",
+        "rev": "An overly severe view of yourself may soften. Recognising your journey fairly opens a more peaceful confidence."
+      }
+    },
+    "swords_king": {
+      "love": {
+        "up": "Mature, consistent communication may strengthen trust. Fairness in words matters as much as firmness of conviction.",
+        "rev": "A tendency to reason without showing feelings may evolve into more balanced dialogue. Making room for emotion opens the exchange."
+      },
+      "work": {
+        "up": "A methodical and impartial approach favours professional decisions. Explaining your reasoning contributes to collective trust.",
+        "rev": "Overly distant authority may become more flexible. Involving those concerned in decisions opens fairer collaboration."
+      },
+      "self": {
+        "up": "You can find a stable direction by reconciling clear thinking with personal principles. Structured thought supports independence.",
+        "rev": "A need for intellectual control may soften. Accepting that some answers remain open encourages more humane judgement."
+      }
+    },
+    "pentacles_ace": {
+      "love": {
+        "up": "A relationship may find a new anchor in reliable, practical gestures. Regular consideration encourages trust.",
+        "rev": "An opportunity to strengthen emotional stability exists, even if your foundations are still fragile. Simple commitments may help it grow."
+      },
+      "work": {
+        "up": "A material or professional possibility seems favourable to a practical project. Examining its scope carefully helps reveal its potential.",
+        "rev": "An opportunity that is not yet obvious deserves close examination. Identifying what can genuinely be built opens a solid perspective."
+      },
+      "self": {
+        "up": "A new point of reference in daily life may support your independence. The pleasure of practical action nurtures trust in your abilities.",
+        "rev": "A wish for stability is seeking concrete form. Beginning with an accessible change may make your aspirations more tangible."
+      }
+    },
+    "pentacles_2": {
+      "love": {
+        "up": "Reconciling everyone's expectations calls for flexible adjustments. Seeking a shared rhythm opens the way to greater ease.",
+        "rev": "Too many commitments risk leaving little room for the relationship. Clarifying emotional priorities helps restore balance."
+      },
+      "work": {
+        "up": "Several responsibilities need to be managed flexibly. This card invites you to organise resources without losing sight of what matters.",
+        "rev": "A succession of tasks may unbalance your organisation. Reviewing what really matters helps you avoid being driven by every new request."
+      },
+      "self": {
+        "up": "You are learning to bring different aspects of life together. Accepting gradual adjustment may enrich your freedom.",
+        "rev": "Trying to keep everything moving may make you forget what restores you. Making room for breaks again helps you find your centre."
+      }
+    },
+    "pentacles_3": {
+      "love": {
+        "up": "Building a relationship together can become a shared creation. Recognising each other's qualities encourages lasting closeness.",
+        "rev": "Emotional cooperation may need rethinking when contributions feel unequal. Acknowledging everyone's efforts opens a path to agreement."
+      },
+      "work": {
+        "up": "Complementary skills and careful work may help a project progress. Tradition values shared learning here.",
+        "rev": "A team could make better use of its expertise by communicating more. Welcoming feedback opens constructive improvement."
+      },
+      "self": {
+        "up": "A shared project with loved ones may reveal your talents. Creating together lends value to sometimes overlooked abilities.",
+        "rev": "Recognising what others can teach you opens room for growth. Collaboration does not diminish your individuality."
+      }
+    },
+    "pentacles_4": {
+      "love": {
+        "up": "The need for security invites you to reflect on the foundations protecting the bond. Stability freely chosen can coexist with openness.",
+        "rev": "Fear of losing stability risks making the relationship too controlled. Relaxing expectations helps everyone breathe."
+      },
+      "work": {
+        "up": "Preserving what has been achieved offers a foundation for considering new choices. Assessing what is worth keeping may support stability.",
+        "rev": "Clinging to methods or resources for fear of change risks holding work back. Making room for measured trials helps."
+      },
+      "self": {
+        "up": "Reassuring habits provide a point of support. You can choose which truly sustain your autonomy.",
+        "rev": "An excessive need for control may narrow daily life. Accepting a small change helps loosen habits that have grown rigid."
+      }
+    },
+    "pentacles_5": {
+      "love": {
+        "up": "Feeling alone or unsupported may weigh on the bond. Recognising what sources of support remain offers perspective.",
+        "rev": "A period of distance may give way to greater mutual support. Welcoming sincere companionship offers a path to closeness."
+      },
+      "work": {
+        "up": "An unsupportive working environment may increase feelings of exclusion. Making your needs known encourages a search for support.",
+        "rev": "Help or cooperation previously overlooked may become accessible. Reconnecting with support opens a possibility of rebuilding."
+      },
+      "self": {
+        "up": "Feeling that you must face a difficulty alone may limit your momentum. Recognising available connections helps restore confidence.",
+        "rev": "An improved sense of belonging becomes conceivable. Accepting others' support may make more room for your plans."
+      }
+    },
+    "pentacles_6": {
+      "love": {
+        "up": "A relationship where both give and receive respectfully may find a fine balance. Mutual generosity nurtures trust.",
+        "rev": "An unequal exchange may be adjusted through more clearly expressed expectations. The opening lies in reciprocity."
+      },
+      "work": {
+        "up": "Professional support or fair cooperation may help a project move forward. Sharing skills benefits everyone.",
+        "rev": "Help given or received invites clarification of the exchange's terms. A fairer balance may be built."
+      },
+      "self": {
+        "up": "Sharing your time or skills with loved ones may reinforce a sense of usefulness. Generosity freely chosen nurtures bonds.",
+        "rev": "Recognising your limits when helping others opens a more respectful balance. You may also receive without needing to repay everything immediately."
+      }
+    },
+    "pentacles_7": {
+      "love": {
+        "up": "A bond built patiently deserves to be considered in terms of its real development. Taking stock of shared efforts opens perspectives.",
+        "rev": "Waiting for change without talking about it may sustain frustration. Revisiting expectations helps avoid emotional stagnation."
+      },
+      "work": {
+        "up": "Steady efforts call for careful assessment. Observing early results allows you to guide the next stage of a project better.",
+        "rev": "Prolonged waiting or weariness may conceal useful adjustments. Examining what works helps you regain direction."
+      },
+      "self": {
+        "up": "You may step back and consider how far you have travelled. Patience is fruitful when accompanied by conscious choices.",
+        "rev": "Doubting your progress may make you forget small advances. Assessing your journey fairly helps you avoid giving up too soon."
+      }
+    },
+    "pentacles_8": {
+      "love": {
+        "up": "Repeated, sincere acts of care may strengthen the bond. Consistent affectionate gestures give trust tangible form.",
+        "rev": "A relationship routine may regain meaning if it is not treated as an obligation. More personal attention opens a new quality of exchange."
+      },
+      "work": {
+        "up": "Perseverance in learning a trade or skill brings favourable momentum. Mastery develops through care and regular practice.",
+        "rev": "A skill may benefit from being practised differently. Welcoming feedback and diversifying methods opens progress."
+      },
+      "self": {
+        "up": "Learning an activity you enjoy may nurture self-esteem. The pleasure of improving matters as much as mastery.",
+        "rev": "Overly high expectations may be readjusted. Allowing yourself to learn at your own pace opens a happier relationship with your abilities."
+      }
+    },
+    "pentacles_9": {
+      "love": {
+        "up": "Confidence in your own balance enriches bonds without creating dependence. Sharing by choice encourages peaceful affection.",
+        "rev": "Emotional independence that is not yet secure may grow stronger. Recognising what you bring to the bond opens a more balanced relationship."
+      },
+      "work": {
+        "up": "Consistent work may show signs of achievement and independence. Recognising your expertise supports favourable progress.",
+        "rev": "Personal achievement deserves appreciation without depending entirely on outside judgement. Defining your own criteria opens a new balance."
+      },
+      "self": {
+        "up": "The satisfaction of having built your own foundations encourages independence. Enjoying simple pleasures nurtures a sense of fulfilment.",
+        "rev": "Confidence tied to appearances may give way to deeper self-worth. Seeing your personal resources differently opens new possibilities."
+      }
+    },
+    "pentacles_10": {
+      "love": {
+        "up": "Lasting bonds, shared habits and a feeling of belonging may strengthen the relationship. Tradition associates this card with a stable home.",
+        "rev": "An overly fixed idea of home may evolve. Redefining what stability means for each person opens the way to more flexible harmony."
+      },
+      "work": {
+        "up": "Collective achievements and a lasting organisation may favour a project's continuity. Passing on expertise reinforces that foundation.",
+        "rev": "An established structure may benefit from adaptation. Bringing experience and novelty into dialogue opens renewed prospects for stability."
+      },
+      "self": {
+        "up": "Inherited family values and experiences may offer support. You choose what to carry forward.",
+        "rev": "A model handed down to you may no longer fit your aspirations. Reinterpreting it freely may strengthen your sense of belonging."
+      }
+    },
+    "pentacles_page": {
+      "love": {
+        "up": "Practical, understated consideration may strengthen emotional trust. Curiosity about the other person's daily life encourages the bond.",
+        "rev": "A wish to build something together is still seeking its bearings. Simple gestures may give it sincere expression."
+      },
+      "work": {
+        "up": "An opportunity to learn or develop a practical skill may support a project. Applied curiosity becomes an asset.",
+        "rev": "A promising possibility still needs preparation. Taking time to learn the basics opens realistic progress."
+      },
+      "self": {
+        "up": "You may discover new pleasure in practical learning. Patience with your early attempts enriches the experience.",
+        "rev": "An emerging interest deserves exploration without perfectionism. Giving it regular attention opens a path to confidence."
+      }
+    },
+    "pentacles_knight": {
+      "love": {
+        "up": "Loyalty expressed through regular actions may reassure the bond. Reliability favours closeness rooted in everyday life.",
+        "rev": "An emotional routine may regain warmth if you allow room for unexpected gestures. Consistency remains precious without becoming rigid."
+      },
+      "work": {
+        "up": "A patient, rigorous method favours progress at work. Regular effort allows lasting results to be built.",
+        "rev": "Progress that feels too slow invites you to reconsider organisation. Adjusting your method without abandoning consistency opens a solution."
+      },
+      "self": {
+        "up": "Your ability to keep commitments nurtures personal confidence. Small habits freely chosen may sustain your aspirations.",
+        "rev": "An excessive attachment to routine may loosen. Changing a familiar gesture opens a way forward without losing your bearings."
+      }
+    },
+    "pentacles_queen": {
+      "love": {
+        "up": "Tenderness shown through hospitality and practical gestures may support the bond. Everyday warmth encourages a reassuring relationship.",
+        "rev": "Constant care for others deserves to include your own needs. Better-balanced generosity may make the bond more peaceful."
+      },
+      "work": {
+        "up": "Practical sense combined with kindness favours stable organisation. Caring for working conditions may support collective effort.",
+        "rev": "Your ability to support others benefits from clear limits. Preserving your resources opens lasting cooperation."
+      },
+      "self": {
+        "up": "A welcoming environment and simple pleasures may nurture a feeling of balance. Confidence is built through practical things.",
+        "rev": "A habit of forgetting yourself amid daily tasks may change. Making space for your wishes allows gentleness to return."
+      }
+    },
+    "pentacles_king": {
+      "love": {
+        "up": "Reliable presence and consistent commitment may strengthen a feeling of security in the bond. Stability benefits from remaining generous.",
+        "rev": "The wish to organise everything may soften to welcome the other person's needs. Trust opens the way to less rigid security."
+      },
+      "work": {
+        "up": "Experience and a sense of responsibility may support a solid project. Practical leadership favours collective trust.",
+        "rev": "Authority too attached to past achievements may become more flexible. Recognising new approaches opens constructive progress."
+      },
+      "self": {
+        "up": "You can draw on concrete achievements to strengthen confidence. Stability of your choosing allows you to welcome others.",
+        "rev": "An overly material view of success may broaden. Making room for relationships and satisfaction beyond measurement opens your horizons."
+      }
+    }
+  },
+  "positions": {
+    "general": {
+      "answer": [
+        "To explore your question without assuming its content, “{card}” offers a first avenue for reflection.",
+        "In response to your enquiry, “{card}” invites you to consider a possible symbolic meaning.",
+        "In this one-card reading, “{card}” offers a perspective to compare with your own experience."
+      ],
+      "past": [
+        "Looking at the past, “{card}” recalls circumstances that may have shaped you.",
+        "In what came before, “{card}” illuminates a possible lesson.",
+        "For the past, “{card}” lends symbolic colour to what has taken shape."
+      ],
+      "present": [
+        "In the present, “{card}” highlights a dynamic worth observing.",
+        "For what you are experiencing now, “{card}” offers some insight.",
+        "In the current situation, “{card}” draws attention to an important point."
+      ],
+      "future": [
+        "If the current pattern continues, “{card}” suggests a possible development.",
+        "Looking towards a possible future, “{card}” suggests a direction without fixing it.",
+        "For what might take shape, “{card}” offers a perspective worth considering."
+      ],
+      "situation": [
+        "To set the scene, “{card}” sheds light on how the situation can be read symbolically.",
+        "At the heart of the situation, “{card}” highlights a possible issue.",
+        "In the Situation position, “{card}” offers a starting point for the reading."
+      ],
+      "challenge": [
+        "In the Challenge position, “{card}” highlights what deserves attention.",
+        "For the obstacle to understand, “{card}” invites you to consider a possible pattern.",
+        "As the Challenge, “{card}” points to a tension to approach with clarity."
+      ],
+      "advice": [
+        "As an avenue for reflection, “{card}” indicates a possible attitude.",
+        "In the Advice position, “{card}” invites you to consider a way forward.",
+        "To guide your perspective, “{card}” suggests a symbolic source of support."
+      ],
+      "month": [
+        "For {month}, “{card}” gives this stage of the journey a symbolic tone.",
+        "In the sequence for {month}, “{card}” suggests a dynamic to observe.",
+        "Throughout {month}, “{card}” opens an avenue for interpretation without fixing events."
+      ]
+    },
+    "love": {
+      "answer": [
+        "For your love theme, “{card}” sheds light on a possible emotional dynamic.",
+        "In matters of romantic connection, “{card}” invites you to reflect on your way of loving.",
+        "In love, “{card}” offers insight into expectations and exchanges."
+      ],
+      "past": [
+        "In your romantic past, “{card}” suggests what may have shaped your expectations.",
+        "Looking back at past emotional experiences, “{card}” illuminates a lesson.",
+        "For earlier relationships, “{card}” highlights a possible lasting impression."
+      ],
+      "present": [
+        "In your romantic present, “{card}” points to a dynamic worth recognising.",
+        "For your current emotional exchanges, “{card}” provides symbolic insight.",
+        "In your love life today, “{card}” invites you to observe what is happening within the bond."
+      ],
+      "future": [
+        "If exchanges continue as they are, “{card}” suggests a possibility for the bond.",
+        "Looking towards the emotional future, “{card}” suggests a direction without promising an outcome.",
+        "For what might evolve in your relationships, “{card}” offers a nuance."
+      ],
+      "situation": [
+        "At the heart of your romantic situation, “{card}” sheds light on an aspect of the bond.",
+        "To place emotional exchanges in context, “{card}” highlights a dynamic.",
+        "In matters of love, “{card}” sets the symbolic scene for this reading."
+      ],
+      "challenge": [
+        "As a romantic challenge, “{card}” invites you to examine what hinders understanding.",
+        "In matters of the heart, “{card}” highlights a tension to understand.",
+        "At a sensitive point in the relationship, “{card}” draws attention to a possible difficulty."
+      ],
+      "advice": [
+        "To shed light on your way of loving, “{card}” suggests an attitude.",
+        "In the romantic Advice position, “{card}” offers a path towards better dialogue.",
+        "In love, “{card}” invites you to consider a different gesture or perspective."
+      ],
+      "month": [
+        "For {month}, “{card}” evokes a possible atmosphere in your emotional connections.",
+        "In the love reading for {month}, “{card}” highlights an issue to observe.",
+        "In matters of the heart, during {month}, “{card}” offers symbolic insight into your exchanges."
+      ]
+    },
+    "work": {
+      "answer": [
+        "For Work and Money, “{card}” sheds light on an issue in your professional or material life.",
+        "In your projects and resources, “{card}” offers an angle of interpretation.",
+        "In matters of work and material stability, “{card}” invites you to examine a dynamic."
+      ],
+      "past": [
+        "In your professional past, “{card}” recalls something you may have gained.",
+        "Looking back at work experiences, “{card}” sheds light on what may have shaped you.",
+        "For the history of your projects and resources, “{card}” suggests a symbolic legacy."
+      ],
+      "present": [
+        "In your current professional situation, “{card}” highlights an issue.",
+        "In work and resources, “{card}” illuminates what deserves your attention.",
+        "In the present stage of your projects, “{card}” reveals a possible dynamic."
+      ],
+      "future": [
+        "If the situation continues on its course, “{card}” suggests a possible professional development.",
+        "Looking towards material prospects, “{card}” offers a direction without guarantees.",
+        "For the possible next stage of your projects, “{card}” offers a symbolic opening."
+      ],
+      "situation": [
+        "At the heart of your work situation, “{card}” highlights a practical issue.",
+        "To frame the professional context, “{card}” brings a dynamic to light.",
+        "In projects and resources, “{card}” sets the starting point of the reading."
+      ],
+      "challenge": [
+        "Facing a professional challenge, “{card}” invites you to recognise a possible obstacle.",
+        "Regarding material constraints, “{card}” highlights a point to clarify.",
+        "In the Challenge position, “{card}” emphasises what complicates the project."
+      ],
+      "advice": [
+        "As guidance for your activities, “{card}” offers a perspective to adopt.",
+        "In the professional Advice position, “{card}” indicates a symbolic source of support.",
+        "For decisions about work and resources, “{card}” invites you to step back."
+      ],
+      "month": [
+        "For {month}, “{card}” symbolically illuminates an aspect of your projects.",
+        "In the work reading for {month}, “{card}” offers a possibility to explore.",
+        "In resources and activities, “{card}” colours the dynamic of {month}."
+      ]
+    },
+    "self": {
+      "answer": [
+        "For your personal life, “{card}” sheds light on a question of balance or fulfilment.",
+        "In your relationship with yourself and loved ones, “{card}” offers an avenue for reflection.",
+        "Regarding life choices, “{card}” invites you to examine what matters to you."
+      ],
+      "past": [
+        "In your personal past, “{card}” recalls a formative stage.",
+        "Looking back at your inner journey, “{card}” sheds light on a lesson.",
+        "For the choices that shaped you, “{card}” suggests a symbolic imprint."
+      ],
+      "present": [
+        "In your personal life now, “{card}” reveals an issue worth observing.",
+        "In your inner journey, “{card}” highlights a current dynamic.",
+        "Regarding fulfilment, “{card}” invites you to consider your present balance."
+      ],
+      "future": [
+        "If your path continues in this direction, “{card}” suggests a possible development.",
+        "For the next stage of your personal life, “{card}” suggests a path without fixing it.",
+        "Looking at what may grow within you, “{card}” offers a perspective."
+      ],
+      "situation": [
+        "At the heart of your personal life, “{card}” highlights an inner concern.",
+        "To place your journey in context, “{card}” illuminates what occupies your thoughts.",
+        "In the personal Situation position, “{card}” offers a starting point."
+      ],
+      "challenge": [
+        "As a personal challenge, “{card}” invites you to recognise an inner obstacle.",
+        "In your life choices, “{card}” highlights a tension to understand.",
+        "Regarding what holds you back, “{card}” brings a possible difficulty to light."
+      ],
+      "advice": [
+        "To support your fulfilment, “{card}” suggests a fresh angle.",
+        "In the personal Advice position, “{card}” invites you to reconsider an attitude.",
+        "Regarding inner balance and loved ones, “{card}” offers a path for reflection."
+      ],
+      "month": [
+        "For {month}, “{card}” evokes a symbolic stage in your journey.",
+        "In your personal journey during {month}, “{card}” invites a fresh perspective.",
+        "In your personal life, “{card}” illuminates the possible atmosphere of {month}."
+      ]
+    }
+  },
+  "combos": {
+    "empress+star": "The pairing of “{a}” and “{b}” traditionally suggests growth nurtured by trust: a hope may gently begin to take shape.",
+    "empress+lovers": "Together, “{a}” and “{b}” link affection, creativity and a heartfelt choice: the bond may grow when it is freely shared.",
+    "sun+world": "The combination of “{a}” and “{b}” symbolises radiant achievement: a journey may find coherence and full expression.",
+    "sun+star": "With “{a}” and “{b}”, hope gains a favourable light: tradition sees a trust that may become reality.",
+    "lovers+devil": "The meeting of “{a}” and “{b}” blends attraction with restrictive attachment. It invites you to distinguish shared desire from a bond that limits freedom.",
+    "tower+star": "After the upheaval evoked by “{a}”, “{b}” symbolically opens the way to rebuilt confidence and renewal.",
+    "death+judgement": "“{a}” and “{b}” join the end of a cycle with a realisation. Tradition sees the possibility of renewed momentum after transformation.",
+    "death+sun": "With “{a}” and “{b}”, what ends may give way to greater clarity. The transition symbolically opens a brighter period.",
+    "moon+priestess": "“{a}” and “{b}” highlight deep intuition but also things left unsaid. This pairing invites you to listen without confusing feelings with certainty.",
+    "moon+swords_7": "“{a}” and “{b}” suggest the risk of concealed information or incomplete honesty among those around you. It helps to distinguish impressions from facts.",
+    "wheel+world": "In combining “{a}” and “{b}”, tradition suggests a cycle reaching completion, with circumstances that may turn favourable.",
+    "magician+chariot": "“{a}” and “{b}” link initiative and determination: a project may advance when resources and action come together.",
+    "emperor+empress": "The meeting of “{a}” and “{b}” suggests a balance between structure and growth, favourable to a home or stable framework.",
+    "hermit+priestess": "With “{a}” and “{b}”, tradition values reflection, fruitful silence and inner wisdom: an answer may mature within you.",
+    "devil+tower": "“{a}” and “{b}” may symbolise a break from control or a burdensome habit. Reassessment opens space for freedom.",
+    "hangedman+death": "The meeting of “{a}” and “{b}” links letting go with deep transformation: an old way of seeing things may give way.",
+    "justice+judgement": "“{a}” and “{b}” suggest an honest assessment followed by a fairer decision. Examining the facts may help reveal what needs to change.",
+    "strength+chariot": "“{a}” and “{b}” unite self-control with the will to advance. Tradition suggests success supported by measured courage.",
+    "temperance+lovers": "Together, “{a}” and “{b}” suggest reconciling differences, listening and the possibility of greater harmony.",
+    "fool+world": "With “{a}” and “{b}”, completion may open a new beginning. Tradition links experience gained with freedom rediscovered.",
+    "fool+magician": "“{a}” and “{b}” suggest a beginning rich in possibilities: initial enthusiasm may find practical means of expression.",
+    "hierophant+lovers": "The pairing of “{a}” and “{b}” links an emotional choice with shared values. It may suggest a recognised or clarified commitment.",
+    "star+moon": "“{a}” and “{b}” blend hope with uncertainty. Optimism remains, but impressions need clarification.",
+    "sun+cups_2": "With “{a}” and “{b}”, tradition evokes shared emotional joy, warm reciprocity and a harmony that may flourish.",
+    "cups_10+empress": "“{a}” and “{b}” bring together affection, harmony and generosity. They symbolise a nurturing home or family connections.",
+    "pentacles_10+world": "“{a}” and “{b}” suggest lasting material stability and the passing on of achievements or an inheritance.",
+    "pentacles_ace+magician": "The meeting of “{a}” and “{b}” suggests a tangible material opportunity that skills and initiative may help develop.",
+    "wands_ace+magician": "With “{a}” and “{b}”, tradition highlights a fresh idea and the means to launch it: an initiative may take shape.",
+    "swords_3+tower": "“{a}” and “{b}” link painful disappointment with a certainty being questioned. Acknowledging the hurt may help rebuild differently.",
+    "swords_10+sun": "After the trial symbolised by “{a}”, “{b}” offers a clearer outlook: the end of a difficult phase may allow renewal.",
+    "cups_5+star": "“{a}” and “{b}” connect regret with hope. Tradition suggests the possibility of comfort and renewed attention to what remains alive.",
+    "pentacles_5+star": "The meeting of “{a}” and “{b}” suggests that unexpected support or help may brighten a period of material difficulty.",
+    "wands_6+chariot": "“{a}” and “{b}” link determined progress and recognition: visible efforts may receive a favourable response.",
+    "swords_7+devil": "“{a}” and “{b}” invite caution around undue influence and withheld information. Clarity guards against misleading attachment.",
+    "cups_3+sun": "With “{a}” and “{b}”, tradition celebrates togetherness, friendships and the joy of celebrating with others.",
+    "pentacles_8+hermit": "“{a}” and “{b}” link patient learning and deep study: a skill may mature through steady effort.",
+    "wands_10+hangedman": "The meeting of “{a}” and “{b}” suggests an overbearing load and the value of stepping back. Reconsidering your responsibilities may ease the way.",
+    "cups_8+hermit": "“{a}” and “{b}” link the choice to leave a situation behind with an inner search for meaning and coherence.",
+    "swords_2+justice": "With “{a}” and “{b}”, hesitation calls for a choice based on clear criteria. Looking at the facts may help break the deadlock.",
+    "pentacles_3+emperor": "“{a}” and “{b}” unite collective expertise and solid structure: a well-coordinated project may encourage recognition of work accomplished."
+  },
+  "synth": {
+    "love": {
+      "one": {
+        "up": [
+          "With “{card}”, this love reading suggests favourable momentum in the way you relate to another person. Tradition invites you to nurture what brings you closer without assuming the outcome.",
+          "“{card}” gives the love theme an encouraging tone. Greater openness may nurture trust and joy within the bond."
+        ],
+        "open": [
+          "“{card}” opens a possibility in your emotional life: a nuance to recognise or a conversation to deepen. Nothing is fixed, but something deserves attention.",
+          "With “{card}”, the reading favours an opening to explore rather than a clear-cut answer. The quality of listening may prove valuable."
+        ],
+        "work": [
+          "“{card}” highlights a delicate point in your love life. The reading invites you to examine expectations or things left unsaid with kindness, without assuming a particular outcome.",
+          "With “{card}”, the emotional theme chiefly calls for clarity. Naming a tension may make room for a freer conversation."
+        ]
+      },
+      "three": {
+        "up": [
+          "With “{card}” in the Future position, the emotional journey may develop towards greater harmony or momentum. This prospect remains open to your choices and the other person's.",
+          "The past and present gain an encouraging perspective with “{card}” in the Future position. Tradition sees a possibility of growth worth nurturing."
+        ],
+        "open": [
+          "With “{card}” in the Future position, this love reading suggests a path yet to be discovered. The journey so far illuminates what may need clarification.",
+          "The Future card, “{card}”, closes no doors. Instead, it invites you to recognise an opportunity to understand the bond better."
+        ],
+        "work": [
+          "“{card}” in the Future position highlights tension that may persist if nothing changes. The past and present offer clues for facing it without fear.",
+          "What “{card}” symbolises ahead calls for attention: a relationship difficulty deserves to be named without being treated as inevitable."
+        ]
+      },
+      "sca": {
+        "up": [
+          "As Advice, “{card}” gives this reading a favourable direction. A confident, sincere attitude may support a more balanced bond.",
+          "The Situation and its Challenge find an encouraging opening with “{card}” as Advice. This is momentum to nurture, not a promise."
+        ],
+        "open": [
+          "“{card}” as Advice invites you to explore a relational possibility that remains open. A well-chosen word or shift in perspective may help.",
+          "The Advice offered by “{card}” suggests room for adjustment in the relationship. The reading encourages curiosity rather than a hasty conclusion."
+        ],
+        "work": [
+          "With “{card}” as Advice, the reading invites you to examine what complicates your exchanges. This difficulty may be the starting point for clarification.",
+          "The Advice card, “{card}”, highlights an emotional pattern to work through. Recognising what weighs on the bond opens useful reflection."
+        ]
+      },
+      "six": {
+        "up": [
+          "Across the reading's six stages, a broadly favourable emotional dynamic emerges. The cards suggest a bond that may grow in trust and warmth, depending on the choices made.",
+          "The six-month reading shows encouraging momentum in love. Tradition suggests nurturing sincerity and reciprocity without turning this tendency into certainty."
+        ],
+        "open": [
+          "The six-month sequence reveals emotional openings to recognise. Each stage invites you to adjust expectations rather than predict a specific result.",
+          "This six-card journey in love suggests possibilities to explore. Understanding mutual needs may provide a thread through the reading."
+        ],
+        "work": [
+          "Over six months, the emotional tendency highlights challenges to approach with kindness. The cards invite you to clarify bonds without predicting a break or fixed outcome.",
+          "The six cards sketch a demanding but changeable emotional dynamic. Recognising tensions and needs may support a more conscious path."
+        ]
+      }
+    },
+    "work": {
+      "one": {
+        "up": [
+          "With “{card}”, the Work and Money reading suggests favourable momentum for a project or skill. Tradition sees potential progress, never a guaranteed result.",
+          "“{card}” brings a constructive tone to your activities and resources. An opportunity to show the value of your efforts may arise, without a guarantee."
+        ],
+        "open": [
+          "“{card}” suggests an opening to consider in your projects or material organisation. The value lies in understanding possibilities, not in a promise.",
+          "With “{card}”, Work and Money highlights a possibility that still needs definition. Considering available resources may enrich your reflection."
+        ],
+        "work": [
+          "“{card}” highlights a challenge in organising work or resources. The reading invites you to recognise a difficulty without assuming losses or results.",
+          "With “{card}”, the reading calls for clarity about a professional or material obstacle. Better-defined priorities may help you understand the issue."
+        ]
+      },
+      "three": {
+        "up": [
+          "With “{card}” in the Future position, tradition suggests a project that may grow, perhaps even bringing recognition of your efforts. The prospect remains conditional.",
+          "“{card}” in the Future position gives this work journey a symbolically favourable outlook. Earlier efforts might bear fruit if momentum continues."
+        ],
+        "open": [
+          "With “{card}” in the Future position, the professional path suggests an opportunity to examine rather than an assured result. The past and present illuminate this choice.",
+          "The Future card, “{card}”, emphasises an open possibility in projects or resources. Further information may clarify its meaning."
+        ],
+        "work": [
+          "“{card}” in the Future position highlights a difficulty that may remain if the dynamic continues. The reading invites you to understand what is holding things back.",
+          "With “{card}” in the Future position, Work and Money draws attention to a challenge requiring effort. It predicts neither certain failure nor certain loss."
+        ]
+      },
+      "sca": {
+        "up": [
+          "“{card}” as Advice offers favourable support for your projects. The reading highlights what may strengthen your ability to advance with method and confidence.",
+          "With “{card}” as Advice, the Situation and Challenge lead to a constructive avenue. The reading encourages you to value your resources."
+        ],
+        "open": [
+          "“{card}” as Advice opens a possibility in how you organise work or consider your resources. It deserves careful reflection.",
+          "The Situation and its Challenge find an avenue for exploration with “{card}” as Advice. The aim is to understand the options, not choose for you."
+        ],
+        "work": [
+          "“{card}” as Advice reveals a professional or material obstacle worth clarifying. Understanding its nature may give you more control of the situation.",
+          "With “{card}” as Advice, the reading highlights a challenge calling for attention and discernment. The cards offer perspective, not financial instructions."
+        ]
+      },
+      "six": {
+        "up": [
+          "The six-month reading shows a broadly favourable tendency for projects and their consolidation. The cards suggest possible progress without guaranteeing material results.",
+          "Across six stages, constructive momentum emerges around work and resources. Tradition suggests abilities that may grow with care."
+        ],
+        "open": [
+          "The six cards reveal avenues to explore in professional or material life. Their value lies in possibilities to understand, without prejudging outcomes.",
+          "This six-month journey highlights several potential openings. Your choices and circumstances remain essential to understanding them."
+        ],
+        "work": [
+          "The six-month sequence points to challenges in organisation or priorities. The cards invite you to face them clearly, without predicting inevitable setbacks.",
+          "In Work and Money, the six stages describe a period calling for adjustments. The reading offers symbolic guidance, not a financial forecast."
+        ]
+      }
+    },
+    "self": {
+      "one": {
+        "up": [
+          "With “{card}”, your personal life receives favourable momentum. Tradition invites you to recognise an inner strength or connection with loved ones that may flourish.",
+          "“{card}” lends an encouraging colour to your journey. A freer, more confident way of living your choices seems possible."
+        ],
+        "open": [
+          "“{card}” opens a fruitful question about your personal balance. A fresh perspective on your habits or loved ones may enrich the journey.",
+          "With “{card}”, the reading suggests an opportunity to know yourself better. No path is imposed: the opening lies in what you recognise within it."
+        ],
+        "work": [
+          "“{card}” draws attention to an inner or relational difficulty to understand. The reading offers a way of exploring it without defining you by that challenge.",
+          "With “{card}”, your personal life calls for more careful reflection. Identifying what holds you back may open a path to chosen change."
+        ]
+      },
+      "three": {
+        "up": [
+          "With “{card}” in the Future position, tradition suggests possible personal fulfilment. The past and present support this momentum without making it certain.",
+          "“{card}” in the Future position illuminates a favourable development in your relationship with yourself or loved ones. The reading shows potential, not results."
+        ],
+        "open": [
+          "With “{card}” in the Future position, a possibility for personal growth takes shape without becoming fixed. Your journey illuminates what may still need time.",
+          "The Future card, “{card}”, invites you to explore a new understanding of your needs. What comes next also depends on choices that remain open."
+        ],
+        "work": [
+          "“{card}” in the Future position highlights a personal challenge that may remain if nothing changes. The reading's story helps you consider it without judgement.",
+          "With “{card}” in the Future position, the reading suggests a difficulty to work through on your path. It makes neither a label nor a certain outcome of it."
+        ]
+      },
+      "sca": {
+        "up": [
+          "“{card}” as Advice provides an encouraging direction for your personal life. The reading suggests drawing on a strength you already have.",
+          "With “{card}” as Advice, the Situation and Challenge find a symbolically favourable way forward: a calmer approach becomes conceivable."
+        ],
+        "open": [
+          "“{card}” as Advice opens a path towards better reconciling your needs and close relationships. A fresh nuance may transform your outlook.",
+          "The Advice carried by “{card}” encourages exploration rather than a definitive answer. Your journey remains yours to shape through your choices."
+        ],
+        "work": [
+          "“{card}” as Advice highlights a habit or inner tension to work through. Recognising this pattern is already a way to give it less room.",
+          "With “{card}” as Advice, the reading invites you to face a personal difficulty honestly and gently. The path requires neither perfection nor haste."
+        ]
+      },
+      "six": {
+        "up": [
+          "Across the six stages of the reading, a dynamic favourable to fulfilment emerges. The cards invite you to develop inner resources and freely chosen bonds.",
+          "The six-month reading reveals encouraging personal momentum. Balance and confidence may strengthen through conscious choices."
+        ],
+        "open": [
+          "The six-card journey reveals several openings for understanding your wishes and connections better. Each stage is an invitation to explore, not an announcement.",
+          "The symbolic six months suggest possibilities for inner change. The reading invites you to welcome nuances without trying to solve everything at once."
+        ],
+        "work": [
+          "The six-month sequence highlights personal difficulties to consider without judging yourself. The cards offer ways to adjust, not a prescribed path.",
+          "This six-stage reading emphasises habits or tensions that need work. Change remains possible and is not defined by the more demanding passages."
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,1494 @@
+{
+  "lang": "de",
+  "ui": {
+    "label": "Thema der Legung",
+    "general": "Freie Frage",
+    "love": "Liebe",
+    "work": "Beruf und Finanzen",
+    "self": "Persönliches Leben",
+    "reading": "Deine Deutung",
+    "chosen": "Thema: {theme}"
+  },
+  "cards": {
+    "fool": {
+      "love": {
+        "up": "Ein spontaner Aufbruch öffnet die Beziehung für neue Entdeckungen. Traditionell steht er für die Frische einer Verbindung, die ohne festes Drehbuch wachsen darf.",
+        "rev": "Begeisterung könnte unterschiedliche Erwartungen verdecken. Sprecht rechtzeitig darüber, damit Freiheit nicht mit Rückzug verwechselt wird."
+      },
+      "work": {
+        "up": "Eine neue Initiative bringt frischen Schwung. Wer einen Weg erkundet, ohne alles beherrschen zu wollen, kann ungeahnte Fähigkeiten entdecken.",
+        "rev": "Der Wunsch, sofort loszulegen, könnte wichtige Einzelheiten übergehen. Ein klarer Rahmen macht den Mut fruchtbarer."
+      },
+      "self": {
+        "up": "Der Wunsch, Gewohntes hinter dir zu lassen, lädt dich ein, neue Seiten an dir zu entdecken. Der erste Schritt zählt mehr als ein perfekter Plan.",
+        "rev": "Freiheit ohne Orientierung kann deine Kräfte zerstreuen. Entscheide, was deine Energie wirklich verdient."
+      }
+    },
+    "magician": {
+      "love": {
+        "up": "Offene Worte und Eigeninitiative fördern ein ehrliches Aufeinandertreffen eurer Absichten. Deine zwischenmenschlichen Stärken können den Austausch beleben.",
+        "rev": "Charme und schöne Versprechen allein schaffen kein Vertrauen. Achte darauf, dass Worte und Taten zusammenpassen."
+      },
+      "work": {
+        "up": "Fähigkeiten, Werkzeuge und Tatkraft können sich jetzt sinnvoll verbinden. Die Tradition sieht darin gute Voraussetzungen, einer Idee Gestalt zu geben.",
+        "rev": "Fehlgeleitete Fähigkeiten oder unklare Absichten können das Vorhaben verwirren. Kläre, was alle tatsächlich beitragen können."
+      },
+      "self": {
+        "up": "Du verfügst über Fähigkeiten, die du womöglich unterschätzt. Sie einzusetzen kann dir helfen, eine selbst gewählte Veränderung anzustoßen.",
+        "rev": "Kompetent zu wirken ersetzt keinen klaren Beweggrund. Eine ehrliche Absicht schützt dich davor, dich in Äußerlichkeiten zu verlieren."
+      }
+    },
+    "priestess": {
+      "love": {
+        "up": "Aufmerksames Zuhören und noch unausgesprochene Gefühle laden dazu ein, das Tempo der Beziehung zu achten. Nicht alles zeigt sich sofort.",
+        "rev": "Unausgesprochenes kann das gegenseitige Verständnis trüben. Offenheit hilft, Intuition von bloßen Vermutungen zu unterscheiden."
+      },
+      "work": {
+        "up": "Genaues Beobachten und Wissen um die Hintergründe eröffnen einen hilfreichen Weg. Was noch nicht ausgesprochen wurde, verdient Geduld.",
+        "rev": "Zurückgehaltene Informationen oder überhörte Ahnungen können deinen Blick einengen. Kläre, was noch ungewiss ist."
+      },
+      "self": {
+        "up": "In deinem Inneren liegt eine Weisheit, die ohne Eile gehört werden möchte. Abstand kann neue Einsichten entstehen lassen.",
+        "rev": "Rückzug kann dazu führen, dass du deine eigenen Bedürfnisse verschweigst. Sie auszusprechen hilft dir, deine Stimme wiederzufinden."
+      }
+    },
+    "empress": {
+      "love": {
+        "up": "Zärtlichkeit, Kreativität und die Freude am Teilen fördern das Gedeihen der Beziehung. Frei gezeigte Zuneigung kann wachsen.",
+        "rev": "Eine Chance liegt darin, Geben und Nehmen besser auszubalancieren. Wenn du nicht alles trägst, gewinnt auch die Beziehung Raum."
+      },
+      "work": {
+        "up": "Eine fruchtbare Idee kann durch Austausch und Kreativität wachsen. Traditionell gilt dies als günstige Phase, um ein Projekt reifen zu lassen.",
+        "rev": "Stockende Kreativität lädt dazu ein, ihre Bedingungen zu überdenken. Neue Blickwinkel können eine wartende Idee wiederbeleben."
+      },
+      "self": {
+        "up": "Deine Fähigkeit zu gestalten und Wichtiges zu pflegen unterstützt deine persönliche Entfaltung. Nimm deine Wünsche ernst.",
+        "rev": "Zu viele Erwartungen von außen können deinen eigenen Antrieb ersticken. Entdecke erneut, wie du selbst gestalten möchtest."
+      }
+    },
+    "emperor": {
+      "love": {
+        "up": "Beständigkeit und klare Zusagen geben Beziehungen ein tragfähiges Fundament. Emotionale Sicherheit entsteht auch durch Taten.",
+        "rev": "Der Wunsch, alles zu regeln, kann die Freiheit beider einschränken. Beweglichere Absprachen helfen, die Verbindung zu stärken."
+      },
+      "work": {
+        "up": "Klare Strukturen und übernommene Verantwortung fördern den Fortschritt. Ein Projekt gewinnt Halt, wenn alle ihre Rolle kennen.",
+        "rev": "Übermäßige Kontrolle kann neue Ideen bremsen. Verantwortung zu teilen stärkt, was du sichern möchtest."
+      },
+      "self": {
+        "up": "Klare Grenzen und Prioritäten helfen dir, einen passenden Rahmen aufzubauen. Disziplin kann dich tragen, statt dich einzuengen.",
+        "rev": "Zu starre Ansprüche können dich von deinen Bedürfnissen entfernen. Eigene Regeln zu überdenken schafft mehr Spielraum."
+      }
+    },
+    "hierophant": {
+      "love": {
+        "up": "Gemeinsame Werte und gewachsenes Vertrauen eröffnen eine Chance auf Nähe. Sprecht darüber, was eure Verbindung bedeutet.",
+        "rev": "Übernommene Vorstellungen passen nicht immer zu deiner Art zu lieben. Du kannst bewusst wählen, welche Bindungen dir entsprechen."
+      },
+      "work": {
+        "up": "Der Rat einer erfahrenen Person, bewährte Methoden oder gemeinsames Lernen können bei einer Entscheidung helfen.",
+        "rev": "Eine berufliche Regel oder Gewohnheit zu hinterfragen kann neue Wege öffnen. Bewahre, was lehrt, und löse dich von unnötigen Zwängen."
+      },
+      "self": {
+        "up": "Deine Werte und die Frage, was du weitergeben möchtest, können deinen Weg erhellen. Eine Lehre erhält vielleicht neue Bedeutung.",
+        "rev": "Ein alter Glaubenssatz lässt sich prüfen, ohne deine Geschichte abzuwerten. Wähle deine Maßstäbe selbst, statt sie nur zu übernehmen."
+      }
+    },
+    "lovers": {
+      "love": {
+        "up": "Eine Herzensentscheidung und aufrichtige Zuneigung geben der Beziehung Schwung. Traditionell können Wunsch und Werte hier im Einklang stehen.",
+        "rev": "Zweifel oder unterschiedliche Erwartungen erschweren die Harmonie. Sag ehrlich, was dir wichtig ist, um frei wählen zu können."
+      },
+      "work": {
+        "up": "Eine Partnerschaft oder eine Entscheidung im Einklang mit deinen Werten kann motivieren. Entscheidend ist die Qualität des Gesprächs.",
+        "rev": "Zwei reizvolle Wege können deine Kräfte teilen. Eigene Kriterien helfen dir, nicht nur anderen gefallen zu wollen."
+      },
+      "self": {
+        "up": "Du kannst Überzeugungen und Handlungen näher zusammenbringen. Eine selbst gewählte Entscheidung fördert deine Entfaltung.",
+        "rev": "Widersprüchliche Wünsche wollen erkannt werden. Ein innerer Einklang hilft dir, nicht nach fremden Entscheidungen zu leben."
+      }
+    },
+    "chariot": {
+      "love": {
+        "up": "Ein gemeinsamer Wille kann ein Beziehungsvorhaben voranbringen. Das gelingt leichter, wenn beide die gewählte Richtung mitgestalten.",
+        "rev": "Zu viel Tempo oder einseitige Entscheidungen schwächen das Miteinander. Achtet auf den Rhythmus des anderen, um einen gemeinsamen Kurs zu finden."
+      },
+      "work": {
+        "up": "Entschlossenheit und gezielter Einsatz unterstützen ein Vorhaben. Traditionell steht diese Karte für einen durch eigenes Handeln erreichten Fortschritt.",
+        "rev": "Zerstreute Initiativen oder erzwungene Ergebnisse erschweren den Weg. Bündle die Kräfte auf ein klares Ziel."
+      },
+      "self": {
+        "up": "Du kannst einen persönlichen Entschluss wieder selbst in die Hand nehmen. Deine Energie zu steuern ist ebenso wichtig wie sie einzusetzen.",
+        "rev": "Alles kontrollieren zu wollen kann dich von deiner inneren Richtung entfernen. Neue Prioritäten geben der Bewegung wieder Sinn."
+      }
+    },
+    "strength": {
+      "love": {
+        "up": "Geduld, Sanftmut und stiller Mut stärken Beziehungen. Ein freundliches Wort kann besänftigen, was ein Streit verhärten würde.",
+        "rev": "Empfindlichkeit in einer angespannten Phase bietet die Chance, ruhig Grenzen zu setzen. Stärke muss sich nicht aufdrängen."
+      },
+      "work": {
+        "up": "Ruhe und beharrliche Flexibilität helfen, ein Hindernis zu überwinden. Beständiges Überzeugen wirkt oft besser als Zwang.",
+        "rev": "Ein vorübergehender Zweifel an dir selbst lädt ein, deine Stärken anzuerkennen. Du kannst wieder Halt finden, ohne alles beherrschen zu müssen."
+      },
+      "self": {
+        "up": "Wenn du deinen Reaktionen freundlich begegnest, zeigt sich eine dauerhafte innere Stärke. Mut kann ganz leise sein.",
+        "rev": "Eine Chance liegt darin, sanfter mit deinen Ansprüchen umzugehen. Verletzlichkeit in einem Moment mindert deinen Wert nicht."
+      }
+    },
+    "hermit": {
+      "love": {
+        "up": "Eine Phase des Nachdenkens kann zeigen, wo Nähe und wo Freiraum gebraucht werden. Die Beziehung profitiert davon, beides zu achten.",
+        "rev": "Wenn du dich ohne Erklärung zurückziehst, kann die Distanz wachsen. Ein einfaches Gespräch hilft, das Schweigen zu durchbrechen."
+      },
+      "work": {
+        "up": "Geduldige Recherche oder der Blick einer erfahrenen Person kann ein Projekt erhellen. Abstand eröffnet einen Weg zu größerer Sicherheit.",
+        "rev": "Alle Fragen allein klären zu wollen kann einen hilfreichen Austausch verzögern. Teile auch Gedanken, die noch nicht fertig sind."
+      },
+      "self": {
+        "up": "Frei gewählte Zeit für dich kann dir helfen, deine tiefen Werte zu entdecken. Sinn wird manchmal erst in der Ruhe sichtbar.",
+        "rev": "Selbstprüfung kann sich im Kreis drehen, wenn sie dich von anderen trennt. Ein vertrauter Mensch kann deinen Blick erneuern."
+      }
+    },
+    "wheel": {
+      "love": {
+        "up": "Eine veränderte Dynamik kann Gespräche neu beleben. Wer Unerwartetes flexibel annimmt, öffnet sich einer erfreulichen Entwicklung.",
+        "rev": "Wechselhafte Umstände können Erwartungen verunsichern. Erkenne, was du selbst beeinflussen kannst, statt nur auf Schwankungen zu reagieren."
+      },
+      "work": {
+        "up": "Eine Veränderung der Umstände kann eine günstige Gelegenheit sichtbar machen. Traditionell gilt es, Chancen wahrzunehmen, ohne mit ihnen zu rechnen.",
+        "rev": "Unerwartete Wendungen oder ein schwieriger Rhythmus verlangen Anpassung. Konzentriere dich auf das, was du beeinflussen kannst."
+      },
+      "self": {
+        "up": "Vielleicht befindest du dich in einer Phase des Neubeginns. Wenn nicht alles feststehen muss, werden neue Möglichkeiten sichtbar.",
+        "rev": "Widerstand gegen Veränderungen kann Frust verstärken. Erkenne die Entscheidungen, die dir weiterhin offenstehen."
+      }
+    },
+    "justice": {
+      "love": {
+        "up": "Klare Erwartungen und gegenseitiger Respekt eröffnen ausgewogenere Beziehungen. Ehrliche Worte können Vertrauen wiederherstellen.",
+        "rev": "Ein Ungleichgewicht verdient einen nüchternen Blick. Zu prüfen, was für beide gerecht ist, eröffnet ein Gespräch."
+      },
+      "work": {
+        "up": "Faire Beurteilungen und transparente Kriterien helfen, Zuständigkeiten zu klären. Stimmige Entscheidungen zählen mehr als Eindrücke.",
+        "rev": "Eine vermiedene Entscheidung oder ungleiche Maßstäbe erschweren die Lage. Tatsachen und Verantwortlichkeiten zu klären bleibt wichtig."
+      },
+      "self": {
+        "up": "Deine Handlungen ehrlich anzusehen eröffnet die Chance, gerechter mit dir und anderen umzugehen.",
+        "rev": "Ein zu hartes Urteil oder verdrängte Verantwortung verlangen ehrliche Prüfung. Gleichgewicht entsteht, ohne dich zu verurteilen."
+      }
+    },
+    "hangedman": {
+      "love": {
+        "up": "Eine Pause oder ein Perspektivwechsel kann die Beziehung neu erhellen. Zuhören öffnet Wege, die Druck nicht schafft.",
+        "rev": "Langes Warten ohne klare Worte kann die Beziehung erstarren lassen. Überlege, was du selbst aussprechen kannst."
+      },
+      "work": {
+        "up": "Stillstand oder ein neuer Blickwinkel bieten die Gelegenheit, eine Arbeitsweise zu überprüfen. Was unbeweglich wirkt, kann anders zu verstehen sein.",
+        "rev": "Ein stockendes Projekt kann eine aufgeschobene Entscheidung verbergen. Unterscheide hilfreiche Geduld von passivem Verzicht."
+      },
+      "self": {
+        "up": "Eine Situation anders zu betrachten kann deine Erwartungen verändern. Loslassen wird zu einer inneren Ressource.",
+        "rev": "Wiederholte Opfer ohne klaren Sinn können dich erschöpfen. Überdenke, was du trägst, um freier entscheiden zu können."
+      }
+    },
+    "death": {
+      "love": {
+        "up": "Das Ende einer alten Beziehungsform kann einen fruchtbaren Wandel ermöglichen. Ein neues Gleichgewicht braucht Aufrichtigkeit.",
+        "rev": "An der früheren Gestalt der Beziehung festzuhalten kann ihre Entwicklung bremsen. Anerkenne, was sich verändert."
+      },
+      "work": {
+        "up": "Ein wichtiger Übergang lädt dazu ein, eine überholte Methode hinter dir zu lassen. Dieser Abschluss kann Neues ermöglichen.",
+        "rev": "Notwendiger Wandel kann auf Widerstand stoßen. Prüfe, was sich ändern muss, damit eine Sackgasse nicht bestehen bleibt."
+      },
+      "self": {
+        "up": "Eine innere Lebensphase kann enden und Platz für ein neues Selbstbild schaffen. Gemeint ist eine symbolische Wandlung.",
+        "rev": "An einem alten Selbstbild festzuhalten kann Veränderung erschweren. Wer Abschiede annimmt, kann sich erneuern."
+      }
+    },
+    "temperance": {
+      "love": {
+        "up": "Gespräche, Geduld und gegenseitige Anpassung fördern die Harmonie. Traditionell wächst Einvernehmen durch behutsame Pflege.",
+        "rev": "Ein unstimmiger Rhythmus bietet Anlass, das Gespräch wiederzufinden. Kleine, bedachte Schritte können euch einander näherbringen."
+      },
+      "work": {
+        "up": "Zusammenarbeit und ein ausgeglichenes Tempo fördern den Fortschritt. Unterschiedliche Fähigkeiten zu verbinden bringt das Projekt voran.",
+        "rev": "Eine unausgewogene Organisation lädt ein, den Einsatz neu zu verteilen. Mehr Flexibilität kann die Zusammenarbeit erleichtern."
+      },
+      "self": {
+        "up": "Wenn du Bedürfnisse und Pflichten in Einklang bringst, entsteht Gelassenheit. Kleine Anpassungen zählen ebenso wie große Entscheidungen.",
+        "rev": "Die Gelegenheit, dein eigenes Maß wiederzufinden, ist da. Unterschiedliche Impulse anzunehmen kann innerlich beruhigen."
+      }
+    },
+    "devil": {
+      "love": {
+        "up": "Starke Anziehung kann sich mit Kontrolle oder Abhängigkeit mischen. Diese Muster zu benennen hilft, die Freiheit in der Beziehung zu bewahren.",
+        "rev": "Eine belastende Bindung zu erkennen eröffnet die Möglichkeit, sich davon zu lösen. Die Beziehung gewinnt, wenn beide frei ihren Platz wählen."
+      },
+      "work": {
+        "up": "Übermächtiger Ehrgeiz oder Machtkämpfe können Prioritäten verwischen. Unterscheide den Wunsch nach Erfolg von Abhängigkeiten.",
+        "rev": "Du kannst dich aus einem Druck oder einer Gewohnheit lösen, die deine Wahl begrenzt. Eigene Maßstäbe geben dir Selbstständigkeit zurück."
+      },
+      "self": {
+        "up": "Ein Wunsch, der zum Zwang wurde, lädt dazu ein, deine Bindungen zu prüfen. Sie zu erkennen ist ein erster Schritt zu mehr Freiheit.",
+        "rev": "Ein Automatismus verliert an Macht, wenn du ihn erkennst. Du kannst eine Bindung hinterfragen, ohne dich zu verurteilen."
+      }
+    },
+    "tower": {
+      "love": {
+        "up": "Eine vermeintliche Gewissheit in der Beziehung kann ins Wanken geraten. Was sichtbar wird, kann einen ehrlicheren Neuanfang ermöglichen.",
+        "rev": "Nach einer erschütternden Erkenntnis liegt die Chance darin, neu aufzubauen, statt die alte Fassade wiederherzustellen."
+      },
+      "work": {
+        "up": "Eine anfällige Organisation kann ihre Grenzen zeigen. Die Tatsachen anzusehen hilft, ein festeres Fundament zu schaffen.",
+        "rev": "Eine bereits begonnene Neubewertung eröffnet einen Weg zum Wiederaufbau. Neue Lösungen können Raum gewinnen."
+      },
+      "self": {
+        "up": "Ein früherer Glaube an dich selbst kann nicht mehr tragen. Dieser symbolische Umbruch lädt ein, neue Stützen zu finden.",
+        "rev": "Die Chance liegt darin, nach einer Erkenntnis frei neu anzufangen. Du musst kein Selbstbild bewahren, das zu eng geworden ist."
+      }
+    },
+    "star": {
+      "love": {
+        "up": "Vertrauen, Sanftmut und Ehrlichkeit fördern eine ruhigere Beziehung. Hoffnung darf zurückkehren, ohne Gewissheit zu verlangen.",
+        "rev": "Zögerndes Vertrauen eröffnet die Chance, zu deinen Wünschen zurückzufinden. Kleine ehrliche Gesten können Nähe schaffen."
+      },
+      "work": {
+        "up": "Eine inspirierende Perspektive gibt dem Einsatz neuen Sinn. Traditionell steht diese Karte für Hoffnung und Fortschritt im Einklang mit Werten.",
+        "rev": "Schwächere Motivation kann neue Richtung finden. Schau auf die Ressourcen und die Unterstützung, die bereits da sind."
+      },
+      "self": {
+        "up": "Ein stilles Vertrauen in deinen Weg kann wieder wachsen. Deine Wünsche einfach anzunehmen fördert innere Ruhe.",
+        "rev": "Eine Zeit des Zweifels bietet die Chance, wiederzufinden, was dich wirklich inspiriert. Hoffnung entsteht in kleinen Schritten."
+      }
+    },
+    "moon": {
+      "love": {
+        "up": "Starke Gefühle und unklare Eindrücke können den Blick auf die Beziehung trüben. Gefühle und Fakten zu unterscheiden schafft Klarheit.",
+        "rev": "Unausgesprochenes lässt sich allmählich klären. Eine offene Frage zu stellen ist hilfreicher, als die Antwort zu erraten."
+      },
+      "work": {
+        "up": "Eine unübersichtliche Lage kann Intuition und Missverständnisse vermischen. Informationen zu prüfen schützt vor vorschnellen Schlüssen.",
+        "rev": "Wenn Verwirrung nachlässt, lassen sich Erwartungen und Entscheidungen deutlicher fassen."
+      },
+      "self": {
+        "up": "Fantasie und Gefühle verleihen deinem Innenleben Tiefe. Zugleich brauchen sie greifbare Orientierungspunkte.",
+        "rev": "Unbestimmte Sorgen können Worte finden. Dadurch lässt sich besser unterscheiden, was du fühlst und was du weißt."
+      }
+    },
+    "sun": {
+      "love": {
+        "up": "Geteilte Freude, Offenheit und Wärme geben der Beziehung Schwung. Traditionell steht dies für eine lebendige, selbstbewusste Verbundenheit.",
+        "rev": "Zurückhaltende Freude kann wiederkehren, wenn nicht alles einem Ideal entsprechen muss. Die Chance liegt in neuer Einfachheit."
+      },
+      "work": {
+        "up": "Klarheit, Zusammenarbeit und Anerkennung der Anstrengungen fördern das Vorhaben. Ein Erfolg kann sich abzeichnen, wenn jeder Beitrag zählt.",
+        "rev": "Weniger sichtbare Erfolge bieten Anlass, Fortschritte bewusster anzuerkennen und gemeinsam zu würdigen."
+      },
+      "self": {
+        "up": "Dein Vertrauen und deine Lebensfreude können sich unbeschwert zeigen. Deine Fortschritte klar zu sehen stärkt diesen Schwung.",
+        "rev": "Wenn Vertrauen neu wachsen muss, können alltägliche Freuden und ein freundlicheres Selbstbild dabei helfen."
+      }
+    },
+    "judgement": {
+      "love": {
+        "up": "Eine Erkenntnis kann euer gegenseitiges Verständnis erneuern. Auszusprechen, was sich verändert hat, eröffnet eine stimmigere Richtung.",
+        "rev": "Ein vermiedenes Gespräch oder eine ausstehende Bilanz kann die Beziehung in alten Mustern halten. Erkenne, was eine Antwort verlangt."
+      },
+      "work": {
+        "up": "Ein ehrlicher Rückblick kann Fähigkeiten und einen neuen Weg sichtbar machen. Traditionell lädt diese Karte zu einer klaren Positionierung ein.",
+        "rev": "Eine lange vertagte Entscheidung möchte betrachtet werden. Wer die Bilanz meidet, übersieht womöglich nötige Veränderungen."
+      },
+      "self": {
+        "up": "Ein neuer Blick auf deinen Lebensweg kann dir den Mut geben, dem nachzugehen, was dich tief im Inneren bewegt.",
+        "rev": "Ein festgefahrener Blick auf Vergangenes kann neuen Schwung hemmen. Ziehe Bilanz, ohne dich auf ein Urteil festzulegen."
+      }
+    },
+    "world": {
+      "love": {
+        "up": "Einklang und Reife können Beziehungen erfüllen. Traditionell steht diese Karte für einen Beziehungszyklus, der stimmig zusammenfindet.",
+        "rev": "Ein noch unvollendeter Abschnitt eröffnet die Chance, gemeinsam neu zu bestimmen, was Harmonie bedeutet."
+      },
+      "work": {
+        "up": "Ein Projektabschluss oder die Anerkennung deiner Fähigkeiten kann sich abzeichnen. Traditionell steht diese Karte für Vollendung.",
+        "rev": "Ein Teilerfolg bietet die Gelegenheit, offene Teile zusammenzuführen und den bereits gegangenen Weg anzuerkennen."
+      },
+      "self": {
+        "up": "Eine Erfahrung fügt sich in einen größeren Zusammenhang. Du kannst deinen Weg würdigen und mehr innere Übereinstimmung finden.",
+        "rev": "Ein Gefühl des Unvollendeten eröffnet die Chance, Erfahrungen besser einzuordnen, ohne Perfektion zu verlangen."
+      }
+    },
+    "wands_ace": {
+      "love": {
+        "up": "Eine neue Anziehung kann den Wunsch wecken, mehr zu teilen und zu wagen. Dieser Schwung sollte das Tempo beider respektieren.",
+        "rev": "Der Wunsch nach Nähe ist da, findet aber noch keinen Ausdruck. Ein einfacher Schritt könnte ihm Raum geben."
+      },
+      "work": {
+        "up": "Eine anregende Idee deutet auf einen verheißungsvollen Anfang hin. Ihre Energie kann ein konkretes Vorhaben in Bewegung bringen.",
+        "rev": "Inspiration ist vorhanden, wird aber noch kaum genutzt. Erkenne, was dich begeistert, um daraus etwas Machbares zu entwickeln."
+      },
+      "self": {
+        "up": "Ein kreativer Impuls lädt dich ein, Neues auszuprobieren. Ein erster Versuch kann dein Vertrauen stärken.",
+        "rev": "Der Wunsch nach Erneuerung sucht noch seinen Weg. Weniger hohe Ansprüche können die Freude am Anfangen zurückbringen."
+      }
+    },
+    "wands_2": {
+      "love": {
+        "up": "Ein gemeinsames Vorhaben kann wachsen, wenn ihr offen über eure Ziele sprecht. Ein geteilter Ausblick tut der Beziehung gut.",
+        "rev": "Gefühlsmäßige Möglichkeiten bleiben offen, doch die Richtung braucht Klarheit. Ein Gespräch über Erwartungen hilft bei der Wahl."
+      },
+      "work": {
+        "up": "Ein weiter Blick lädt ein, Wachstum oder eine neue Rolle vorzubereiten. Deine Fähigkeit vorauszudenken unterstützt diese günstige Entwicklung.",
+        "rev": "Mehrere Richtungen stehen offen, ohne dass schon eine feststeht. Ihre tatsächlichen Chancen zu prüfen hilft beim Weitergehen."
+      },
+      "self": {
+        "up": "Über vertraute Grenzen hinauszusehen zeigt dir den Wunsch, zu wachsen. Ein klares Ziel kann deinen Bemühungen Sinn geben.",
+        "rev": "Das Zögern vor Neuem lädt dazu ein, deine Prioritäten zu prüfen. Ein passendes Vorhaben macht die Zukunft greifbarer."
+      }
+    },
+    "wands_3": {
+      "love": {
+        "up": "Neue Perspektiven und Gespräche über die Zukunft können die Beziehung bereichern. Offenheit erweitert euren gemeinsamen Weg.",
+        "rev": "Eine Erwartung an die Beziehung verdient einen ruhigen Blick. Hoffnungen an das anzupassen, was wirklich wächst, eröffnet Möglichkeiten."
+      },
+      "work": {
+        "up": "Ein begonnenes Vorhaben kann sein Potenzial zeigen. Traditionell verbindet diese Karte Wachstum, Zusammenarbeit und Weitblick.",
+        "rev": "Ergebnisse brauchen womöglich mehr Geduld als gedacht. Partner und Schritte neu zu prüfen hilft, Chancen zu erkennen."
+      },
+      "self": {
+        "up": "Frühere Entscheidungen geben dir Halt, um neue Horizonte zu erkunden. Selbstvertrauen wächst aus dem bereits Gewagten.",
+        "rev": "Eine Möglichkeit scheint noch fern. Verbinde deine Erfahrungen mit deinen Wünschen, damit Warten zur Vorbereitung wird."
+      }
+    },
+    "wands_4": {
+      "love": {
+        "up": "Gemeinsame Freude und Vertrautheit können Beziehungen festigen. Kleine, glückliche Rituale schaffen einen stabilen Boden.",
+        "rev": "Auch wenn die Harmonie noch nicht vollständig ist, bietet sich eine Chance auf neue Geselligkeit. Begegnung ohne Zwang hilft beim Wiedersehen."
+      },
+      "work": {
+        "up": "Eine erreichte Etappe verdient gemeinsame Anerkennung. Der Zusammenhalt im Team kann den nächsten Projektschritt tragen.",
+        "rev": "Ein stiller Erfolg oder eine noch fragile Einigkeit lädt ein, Beiträge stärker zu würdigen. Eine einfache Feier kann das Miteinander stärken."
+      },
+      "self": {
+        "up": "Ein Ort oder ein Kreis, in dem du willkommen bist, gibt dir inneren Halt. Zugehörigkeit kann Kraft schenken.",
+        "rev": "Das Gefühl, am richtigen Platz zu sein, will erst wachsen. Vertraute Verbindungen zu stärken eröffnet eine Chance."
+      }
+    },
+    "wands_5": {
+      "love": {
+        "up": "Meinungsverschiedenheiten oder Rivalität können die Beziehung überschatten. Hinter jedem Einwand das Bedürfnis zu hören hilft, Konkurrenz abzubauen.",
+        "rev": "Wiederkehrende Spannungen können abklingen, wenn niemand das letzte Wort haben muss. So wird Gespräch wieder möglich."
+      },
+      "work": {
+        "up": "Widersprüchliche Methoden und hitzige Debatten erschweren die Zusammenarbeit. Trenne nützlichen Austausch von Rivalität.",
+        "rev": "Ein Ideenkonflikt kann zur Zusammenarbeit führen. Gemeinsam genutzte Stärken eröffnen eine konstruktivere Lösung."
+      },
+      "self": {
+        "up": "Vielleicht vergleichst du dich zu sehr mit anderen. Den eigenen Rhythmus anzuerkennen verwandelt Wettbewerb in Lernen.",
+        "rev": "Innere Spannungen können einer klareren Richtung weichen. Eigene Prioritäten zu wählen verringert die Zerstreuung."
+      }
+    },
+    "wands_6": {
+      "love": {
+        "up": "Gegenseitige Anerkennung gibt der Beziehung Wärme. Wenn ihr die Bemühungen des anderen würdigt, wächst Vertrauen.",
+        "rev": "Das Bedürfnis nach Wertschätzung kann bisher unausgesprochene Erwartungen zeigen. Sie offen zu äußern eröffnet neue Nähe."
+      },
+      "work": {
+        "up": "Sichtbare und geschätzte Arbeit kann Anerkennung finden. Traditionell steht diese Karte für Erfolg und geteilte Wertschätzung.",
+        "rev": "Ein wenig beachteter Beitrag kann auf andere Weise sichtbar werden. Zeige deine Leistungen, ohne dich ständig zu vergleichen."
+      },
+      "self": {
+        "up": "Deinen bereits gegangenen Weg zu erkennen stärkt dein Vertrauen. Du darfst eigene Erfolge würdigen, ohne jeden Beifall zu brauchen.",
+        "rev": "Die Meinung anderer scheint deine Zufriedenheit stark zu beeinflussen. Eigene Maßstäbe für Fortschritt geben dir Freiheit."
+      }
+    },
+    "wands_7": {
+      "love": {
+        "up": "Deine Bedürfnisse zu vertreten, ohne die des anderen anzugreifen, kann das Gleichgewicht stärken. Klare Grenzen eröffnen einen Weg.",
+        "rev": "Ständige Abwehr kann die Beziehung ermüden. Unterscheide eine notwendige Grenze von einem unnötigen Streit."
+      },
+      "work": {
+        "up": "Eine errungene Position verdient kluge Verteidigung. Präzise Argumente können dir helfen, deinen Handlungsspielraum zu sichern.",
+        "rev": "Auf jeden Einwand reagieren zu müssen kann dich isolieren. Suche Verbündete und wähle aus, wofür du einstehst."
+      },
+      "self": {
+        "up": "Deine Überzeugungen trotz äußerer Erwartungen zu vertreten schafft Selbstständigkeit. Du musst deine Eigenart nicht aufzwingen.",
+        "rev": "Ständige Wachsamkeit kann Begegnungen belasten. Unterstützung zu erkennen hilft dir, die Abwehr zu lockern."
+      }
+    },
+    "wands_8": {
+      "love": {
+        "up": "Ein spontaner Austausch oder ein erwartetes Gespräch kann Bewegung in die Beziehung bringen. Klare Botschaften fördern Nähe.",
+        "rev": "Stockende Kommunikation lädt zu einfachen Worten statt vieler Nachfragen ein. Der Austausch kann ohne Eile wieder fließen."
+      },
+      "work": {
+        "up": "Schneller Informationsaustausch und abgestimmte Maßnahmen können ein Projekt voranbringen. Ein erkennbares Ziel hält den Schwung zusammen.",
+        "rev": "Unregelmäßige Fortschritte bieten Anlass, die Prioritäten zu klären. Besser geordnete Gespräche bringen Bewegung zurück."
+      },
+      "self": {
+        "up": "Die Lust aufs Handeln findet ein anregendes Tempo. Mit gebündelter Aufmerksamkeit können kleine Schritte zusammenwirken.",
+        "rev": "Zahlreiche Ideen wollen geordnet werden. Die Chance liegt in einem passenden Rhythmus, nicht allein in Geschwindigkeit."
+      }
+    },
+    "wands_9": {
+      "love": {
+        "up": "Vergangene Erfahrungen lassen dich die Beziehung schützen. Vertrauen kann mit beruhigenden Grenzen langsam wieder wachsen.",
+        "rev": "Übertriebene Vorsicht kann den anderen auf Abstand halten. Altes Enttäuschendes vom Heute zu trennen bietet einen Ausweg."
+      },
+      "work": {
+        "up": "Deine Ausdauer hält den Kurs trotz Hindernissen. Es ist sinnvoll, Kräfte für die letzte Etappe zu bewahren.",
+        "rev": "Erschöpfung kann jede Aufgabe schwerer wirken lassen. Belastung neu zu verteilen und Hilfe anzunehmen stärkt den Halt."
+      },
+      "self": {
+        "up": "Dein Durchhaltevermögen zeigt bewährte innere Kräfte. Du darfst weitergehen und zugleich deinen Schutzbedarf anerkennen.",
+        "rev": "Ständig auf der Hut zu sein kann neue Erfahrungen verhindern. Pausen helfen, Stärke nicht mit Anspannung zu verwechseln."
+      }
+    },
+    "wands_10": {
+      "love": {
+        "up": "Alles allein in der Beziehung tragen zu müssen kann die Freude am Miteinander mindern. Geteilte Verantwortung eröffnet ein nötiges Gespräch.",
+        "rev": "Entlastung wird möglich, wenn Erwartungen offen geteilt werden. Auch der andere darf Verantwortung übernehmen."
+      },
+      "work": {
+        "up": "Zu viele Aufgaben können den Sinn der Arbeit verdecken. Zu erkennen, was sich abgeben lässt, hilft gegen Überlastung.",
+        "rev": "Eine neue Aufgabenverteilung eröffnet eine tragfähigere Organisation. Nicht alles allein zu übernehmen setzt Kräfte frei."
+      },
+      "self": {
+        "up": "Allen Erwartungen entsprechen zu wollen kann dich von deinen Wünschen entfernen. Eigene Grenzen anzuerkennen hilft bei deinen Entscheidungen.",
+        "rev": "Manche Pflichten lassen sich ablegen. Mehr Raum für das Wesentliche fördert ein neues Gleichgewicht."
+      }
+    },
+    "wands_page": {
+      "love": {
+        "up": "Frische Neugier auf den anderen fördert Austausch und Entdeckungen. Eine spontane Geste kann die Vertrautheit beleben.",
+        "rev": "Du möchtest etwas sagen oder wagen, findest aber noch nicht die richtige Form. Geduld mit deiner Begeisterung öffnet eine Tür."
+      },
+      "work": {
+        "up": "Die Nachricht von einer Idee oder Chance stärkt die Motivation. Neugieriges Ausprobieren kann verborgene Begabungen zeigen.",
+        "rev": "Eine noch zögerliche Initiative verdient einen geschützten Versuch. Neues ohne sofortigen Erfolgsdruck zu testen stärkt das Vertrauen."
+      },
+      "self": {
+        "up": "Eine Begegnung, eine Lernerfahrung oder eine Leidenschaft kann deine Entdeckerlust wecken. Der Schwung liegt im Erkunden.",
+        "rev": "Wachsendes Vertrauen braucht Ermutigung. Erlaube dir, zu lernen, ohne auf Anhieb alles richtig zu machen."
+      }
+    },
+    "wands_knight": {
+      "love": {
+        "up": "Leidenschaft bringt Bewegung in die Beziehung, wenn der Freiraum beider geachtet wird. Geteilte Begeisterung kann viel bewirken.",
+        "rev": "Wechselnde Gefühle laden dazu ein, momentanes Begehren von dauerhafter Absicht zu trennen. Ehrlichkeit gibt der Energie eine Richtung."
+      },
+      "work": {
+        "up": "Energisches Handeln fördert ein ehrgeiziges Vorhaben. Begeisterung kann andere mitreißen, wenn das Ziel gemeinsam bleibt.",
+        "rev": "Der Drang, alles zu beschleunigen, braucht Führung. Eine klare Aufgabe verwandelt Impulsivität in eine konkrete Chance."
+      },
+      "self": {
+        "up": "Mut lässt dich Gewohnheiten verlassen, die zu eng wurden. Dieser Schwung kann deine Erfahrungen und dein Vertrauen bereichern.",
+        "rev": "Innere Unruhe kann Veränderung anstoßen, wenn du ihr einen klaren Sinn gibst. Nicht jede Bewegung verlangt einen Aufbruch."
+      }
+    },
+    "wands_queen": {
+      "love": {
+        "up": "Wärme, Offenheit und Selbstvertrauen können die Beziehung beleben. Beide dürfen auf ihre eigene Art strahlen.",
+        "rev": "Deine Wünsche ruhiger zu vertreten eröffnet ein besseres Gleichgewicht. Deine Präsenz muss die des anderen nicht überstrahlen."
+      },
+      "work": {
+        "up": "Kreativität und Selbstvertrauen können Menschen für eine Idee gewinnen. Eine zugewandte Führung fördert die Beiträge aller.",
+        "rev": "Führungsstärke kann wirken, ohne alles zu kontrollieren. Die Begabungen anderer anzuerkennen schafft neue Unterstützung."
+      },
+      "self": {
+        "up": "Du darfst deiner Initiative vertrauen. Deine Energie zu teilen kann die Verbindung zu deinem Umfeld stärken.",
+        "rev": "Ein noch zurückhaltendes Selbstvertrauen möchte sich entfalten. Deinen Wert ohne fremde Bestätigung anzuerkennen hilft dabei."
+      }
+    },
+    "wands_king": {
+      "love": {
+        "up": "Ein Engagement mit klarer gemeinsamer Vision kann die Beziehung stärken. Vertrauen wächst, wenn du die Richtung nicht allein vorgibst.",
+        "rev": "Der Wunsch, die Beziehung zu führen, kann hilfreich werden, wenn die Wünsche des anderen Raum behalten. Gespräche eröffnen diesen Weg."
+      },
+      "work": {
+        "up": "Weitblick, Mut und Verantwortungsgefühl wirken günstig zusammen. Eine entschiedene Haltung kann ein gemeinsames Vorhaben strukturieren.",
+        "rev": "Ein Projekt profitiert von flexiblerer Führung. Delegieren und Zuhören hilft, die Fähigkeiten aller einzubinden."
+      },
+      "self": {
+        "up": "Du kannst in deinem nahen Umfeld eine treibende Kraft sein. Dein Vertrauen wirkt besonders, wenn es auch andere selbstständig macht.",
+        "rev": "Persönlicher Ehrgeiz sucht einen angemessenen Rahmen. Wille und Zuhören zu verbinden macht dich zum Halt, ohne alles zu lenken."
+      }
+    },
+    "cups_ace": {
+      "love": {
+        "up": "Ein neuer Impuls der Zärtlichkeit oder Offenheit fördert ehrliche Gefühle. Die Verbindung kann durch frei gezeigte Emotionen wachsen.",
+        "rev": "Zurückgehaltene Gefühle suchen einen einfachen Ausdruck. Was dich bewegt, auszusprechen kann eine ehrlichere Beziehung eröffnen."
+      },
+      "work": {
+        "up": "Ein wohlwollendes Umfeld kann die Zusammenarbeit fördern. Ideen einfühlsam aufzunehmen hilft, ein sinnvolles Projekt zu entwickeln.",
+        "rev": "Eine verdrängte Inspiration darf wieder Raum gewinnen. Wenn du deine Arbeit mit dem verbindest, was dich bewegt, öffnen sich neue Perspektiven."
+      },
+      "self": {
+        "up": "Ein emotionaler Neubeginn lädt dich ein, deine Wünsche wahrzunehmen. Kreativität und Sanftheit begleiten deine Entfaltung.",
+        "rev": "Lange zurückgehaltene Empfindsamkeit verdient Beachtung. Ein ruhiger Raum dafür kann neues Gleichgewicht schaffen."
+      }
+    },
+    "cups_2": {
+      "love": {
+        "up": "Aufrichtige Gegenseitigkeit fördert Annäherung oder ein Einvernehmen des Herzens. Respekt gibt der Verbundenheit Kraft.",
+        "rev": "Trotz kleiner Unterschiede bleibt eine Verständigung möglich. Ehrlicher Austausch kann Geben und Nehmen ins Gleichgewicht bringen."
+      },
+      "work": {
+        "up": "Eine vertrauensvolle Partnerschaft kann gemeinsame Ziele stützen. Zusammenarbeit eröffnet einen konstruktiven Weg.",
+        "rev": "Eine Zusammenarbeit braucht eine neue gemeinsame Sprache. Klare Rollen und Erwartungen können die Einigung erleichtern."
+      },
+      "self": {
+        "up": "Eine vertraute Beziehung zu einem nahestehenden Menschen kann dir helfen, dich besser zu verstehen. Gegenseitiges Zuhören fördert das.",
+        "rev": "Eine wichtige Verbindung lädt dazu ein, die Rollen neu zu betrachten. Ein ausgewogenes Gespräch kann Gewohnheiten verändern."
+      }
+    },
+    "cups_3": {
+      "love": {
+        "up": "Die Freude an Begegnungen mit nahestehenden Menschen kann die Liebe bereichern. Geselligkeit bringt frischen Schwung in eure Gespräche.",
+        "rev": "Einfache gemeinsame Momente bieten die Chance, Nähe wiederzufinden. Aufmerksamkeit ausgewogener zu verteilen fördert das Miteinander."
+      },
+      "work": {
+        "up": "Gemeinsame Erfolge und gegenseitige Hilfe stärken den Teamgeist. Geteilte Freude kann neue Motivation schaffen.",
+        "rev": "Eine Gruppe kann zusammenfinden, wenn alle Beiträge Anerkennung erhalten. Aufrichtige Geselligkeit bietet die Chance dazu."
+      },
+      "self": {
+        "up": "Freundschaften und gemeinsame Aktivitäten geben wertvollen Halt. An der Freude anderer teilzuhaben bereichert dein Innenleben.",
+        "rev": "Deinen Platz im Freundeskreis neu zu finden oder zu bestimmen ist möglich. Echte Begegnungen bringen Leichtigkeit."
+      }
+    },
+    "cups_4": {
+      "love": {
+        "up": "Eine gewisse Müdigkeit kann verdecken, welche Zuwendung schon da ist. Ein neuer Blick auf die Beziehung eröffnet frische Gefühle.",
+        "rev": "Rückzug oder Desinteresse können den Austausch blockieren. Deine Gefühle zu erkennen hilft, ehrliche Gesten nicht abzuweisen."
+      },
+      "work": {
+        "up": "Beruflicher Alltag lädt ein, übersehene Möglichkeiten neu zu betrachten. Ein frischer Blick auf deine Aufgaben kann Interesse wecken.",
+        "rev": "Unzufriedenheit kann dazu führen, eine hilfreiche Chance ungeprüft abzulehnen. Unterscheide Erschöpfung von fehlendem Sinn."
+      },
+      "self": {
+        "up": "Das Bedürfnis nach Abstand lädt dich ein, unerfüllte Wünsche zu erkennen. Hinter Langeweile kann ein echtes Anliegen stehen.",
+        "rev": "Dich in Enttäuschung zurückzuziehen erschwert es, Chancen zu sehen. Einfache Erfahrungen können dir neuen Antrieb geben."
+      }
+    },
+    "cups_5": {
+      "love": {
+        "up": "Eine Enttäuschung in der Liebe kann alles überschatten. Deinen Schmerz anzunehmen und lebendige Bindungen nicht zu übersehen fördert Trost.",
+        "rev": "Eine frühere Enttäuschung anzunehmen eröffnet Raum für neue Nähe. Was wertvoll geblieben ist, darf wieder zählen."
+      },
+      "work": {
+        "up": "Ein enttäuschendes Ergebnis kann vorhandene Erfolge verdecken. Bewahre dir den Blick auf die Ressourcen, die für Neues bleiben.",
+        "rev": "Abstand zu einer verpassten Chance ermöglicht Lernen. Neue Formen der Zusammenarbeit können wieder denkbar werden."
+      },
+      "self": {
+        "up": "Reue kann deine Aufmerksamkeit stärker binden als vorhandene Möglichkeiten. Erkenne, was dir weiterhin zur Verfügung steht.",
+        "rev": "Akzeptanz lädt ein, dich weniger an das Ungelebte zu klammern. Hoffnung kann wachsen, ohne die Vergangenheit auszulöschen."
+      }
+    },
+    "cups_6": {
+      "love": {
+        "up": "Die Wärme gemeinsamer Erinnerungen kann heutige Zärtlichkeit nähren. Traditionell steht diese Karte für einfache, wohlwollende Zuneigung.",
+        "rev": "Eine alte Erinnerung kann Einsicht geben, ohne als Vorbild dienen zu müssen. Im Heute darf Liebe ihre eigene Form finden."
+      },
+      "work": {
+        "up": "Vertraute Fähigkeiten oder ein früherer Kontakt können ein Vorhaben unterstützen. Sinnvolles wiederzuentdecken gibt Halt.",
+        "rev": "Eine bewährte Methode kann erneut hilfreich sein, wenn sie an die Gegenwart angepasst wird. So wird Nostalgie zur Ressource."
+      },
+      "self": {
+        "up": "Deine Herkunft oder eigene Geschichte kann Trost schenken. Schöne Erinnerungen zeigen dir, was dich innerlich stärkt.",
+        "rev": "Die Vergangenheit ohne Verklärung zu betrachten öffnet Raum für Versöhnung mit dir selbst. Neue Maßstäbe können daraus entstehen."
+      }
+    },
+    "cups_7": {
+      "love": {
+        "up": "Verschiedene Vorstellungen von Liebe können verlocken, ohne der Wirklichkeit zu entsprechen. Wünsche und Tatsachen zu trennen macht Erwartungen ehrlicher.",
+        "rev": "Zu viele Idealbilder können von echten Gesprächen ablenken. Achte auf das, was tatsächlich geteilt wird, um Gefühle zu klären."
+      },
+      "work": {
+        "up": "Verschiedene berufliche Wege regen deine Fantasie an. Möglichkeiten zu ordnen hilft, aus einem Traum ein prüfbares Projekt zu machen.",
+        "rev": "Zu viele Optionen können deine Kräfte zerstreuen. Konkrete Kriterien trennen reizvolle Versprechen von realistischen Chancen."
+      },
+      "self": {
+        "up": "Deine Wünsche sind vielfältig und reich. Ein nüchterner Blick zeigt, welche davon am besten zu deinem Weg passen.",
+        "rev": "Jede Möglichkeit zu idealisieren kann Unentschlossenheit verlängern. Eine begrenzte Wahl schafft mehr Raum fürs Jetzt."
+      }
+    },
+    "cups_8": {
+      "love": {
+        "up": "Abstand kann helfen zu verstehen, was die Beziehung nicht mehr nährt. Die Suche nach Sinn eröffnet ehrlichere Gespräche.",
+        "rev": "An einer unbefriedigenden Bindung festzuhalten kann Veränderungen hemmen. Deine Bedürfnisse anzuerkennen eröffnet neue Formen von Nähe."
+      },
+      "work": {
+        "up": "Eine früher motivierende Aufgabe scheint Sinn verloren zu haben. Neue Arten, dich einzubringen, können stimmiger sein.",
+        "rev": "An einer beruflichen Gewohnheit festzuhalten kann den Motivationsverlust verlängern. Zu erkennen, was fehlt, eröffnet eine hilfreiche Prüfung."
+      },
+      "self": {
+        "up": "Vielleicht ruft dich eine tiefere innere Suche. Eine überholte Erwartung loszulassen fördert deine Selbstentdeckung.",
+        "rev": "Die Furcht, einen Abschnitt hinter dir zu lassen, kann dich festhalten. Anzunehmen, dass Wünsche sich ändern, hilft beim Weitergehen."
+      }
+    },
+    "cups_9": {
+      "love": {
+        "up": "Zufriedenheit in der Liebe fördert Momente der Dankbarkeit. Das Bestehende zu würdigen stärkt die Wärme der Beziehung.",
+        "rev": "Ein persönlicher Wunsch verdient es, besser geteilt zu werden. Eigene Erwartungen ohne Anspruch auf vollständige Erfüllung auszusprechen öffnet den Dialog."
+      },
+      "work": {
+        "up": "Ein erreichtes Ziel kann die Motivation stärken. Einen Erfolg angemessen zu würdigen fördert Vertrauen.",
+        "rev": "Ein erhoffter Erfolg darf nach deinen eigenen Werten neu bestimmt werden. Diese Klärung kann ehrlichere Zufriedenheit bringen."
+      },
+      "self": {
+        "up": "Dankbarkeit für deinen Fortschritt lädt dich ein, die Gegenwart zu genießen. Traditionell geht es um Freude an einfachen Dingen.",
+        "rev": "Äußerer Erfolg kann einen tieferen Wunsch offenlassen. Zu erkennen, was dich wirklich freut, eröffnet einen Weg zur Entfaltung."
+      }
+    },
+    "cups_10": {
+      "love": {
+        "up": "Harmonie und gegenseitiger Rückhalt können Bindungen festigen. Traditionell steht diese Karte für geteiltes Glück im nahen Kreis.",
+        "rev": "Ein zu ideales Bild vom Zusammenleben kann flexibler werden. Unterschiede zu akzeptieren eröffnet eine ehrlichere Harmonie."
+      },
+      "work": {
+        "up": "Ein Team mit gemeinsamen Werten kann dauerhaften Schwung finden. Vertrauen und Anerkennung fördern den Zusammenhalt.",
+        "rev": "Unterschiedliche Vorstellungen vom gemeinsamen Erfolg verdienen ein Gespräch. Sie anzunehmen schafft ein tragfähigeres Einvernehmen."
+      },
+      "self": {
+        "up": "Familie und Freundschaften können dir einen sicheren Rahmen geben. Geteilte Freude unterstützt dein persönliches Gleichgewicht.",
+        "rev": "Der Wunsch nach perfekter Harmonie darf nachlassen. Unterschiede zuzulassen hilft dir, dich besser angenommen zu fühlen."
+      }
+    },
+    "cups_page": {
+      "love": {
+        "up": "Eine spontane Zuneigung oder ein feinfühliger Gruß kann das Herz öffnen. Solche Aufmerksamkeiten fördern die Vertrautheit.",
+        "rev": "Ein noch schüchternes Gefühl sucht einfache Worte. Verletzlichkeit zuzulassen kann Nähe schaffen, ohne etwas zu erzwingen."
+      },
+      "work": {
+        "up": "Eine kreative Anregung oder freundliche Rückmeldung kann ein Projekt bereichern. Empfänglichkeit wird zur beruflichen Stärke.",
+        "rev": "Eine intuitive Idee verdient Prüfung, statt als zu zerbrechlich verworfen zu werden. Eine konkrete Form kann ihren Wert zeigen."
+      },
+      "self": {
+        "up": "Deine Fantasie findet Raum in einer künstlerischen oder gefühlsbezogenen Entdeckung. Neugier auf Gefühle fördert dein Wachstum.",
+        "rev": "Eine leise Inspiration kann wieder lebendig werden, wenn du nicht alles sofort verstehen musst. Empfindsamkeit öffnet einen Weg."
+      }
+    },
+    "cups_knight": {
+      "love": {
+        "up": "Romantischer Schwung und aufmerksame Worte können ehrliche Annäherung fördern. Gefühle gewinnen durch passende Taten.",
+        "rev": "Ein Liebesideal wird greifbarer, wenn Erwartungen einfach ausgesprochen werden. Ehrlichkeit zählt mehr als große Gesten."
+      },
+      "work": {
+        "up": "Ein Vorschlag, der menschliche Werte betont, kann Zustimmung finden. Diplomatie und Kreativität helfen dem Projekt.",
+        "rev": "Eine verlockende Idee braucht noch greifbare Grundlagen. Inspiration mit verfügbaren Mitteln zu verbinden eröffnet einen guten Weg."
+      },
+      "self": {
+        "up": "Die Suche nach Schönheit und Sinn kann dich zu einer inspirierenden Tätigkeit führen. Ein feinfühliger Zugang stärkt deinen Ausdruck.",
+        "rev": "Stark idealisierte Wünsche können durch kleine Schritte Boden gewinnen. So öffnet sich ein Weg zu greifbarer Freude."
+      }
+    },
+    "cups_queen": {
+      "love": {
+        "up": "Aufmerksames Zuhören und tiefe Zärtlichkeit stärken die Beziehung. Verständnis für den anderen und eigene Bedürfnisse gehören zusammen.",
+        "rev": "Empfindsamkeit wird zur Stärke, wenn du Grenzen setzt. Raum für deine Gefühle macht den Austausch gerechter."
+      },
+      "work": {
+        "up": "Dein Gespür für die Bedürfnisse eines Teams kann ruhige Zusammenarbeit fördern. Einfühlung unterstützt gemeinsame Entscheidungen.",
+        "rev": "Wenn viele deine emotionale Unterstützung brauchen, darfst du Grenzen ziehen. Das kann die Qualität des Miteinanders bewahren."
+      },
+      "self": {
+        "up": "Sanfte Intuition hilft dir, Wichtiges zu erkennen. Gefühle anzunehmen, ohne sie sofort erklären zu müssen, kann beruhigen.",
+        "rev": "Fremde Sorgen zu stark aufzunehmen muss nicht so bleiben. Mehr Abstand schafft Raum für alle Beteiligten."
+      }
+    },
+    "cups_king": {
+      "love": {
+        "up": "Beständige Zuneigung und besonnene Worte fördern Vertrauen. Gefühle anzunehmen, ohne sich von ihnen beherrschen zu lassen, stärkt das Band.",
+        "rev": "Eine zurückhaltende Gefühlsäußerung darf offener werden. Ehrlich über Empfindungen zu sprechen bringt Wärme ins Miteinander."
+      },
+      "work": {
+        "up": "Eine ruhige Haltung bei Spannungen kann das Team wieder zusammenbringen. Emotionales Gespür unterstützt den beruflichen Austausch.",
+        "rev": "Zu viel Zurückhaltung kann deine Absichten unverständlich machen. Deine Beweggründe maßvoll zu teilen schafft Vertrauen."
+      },
+      "self": {
+        "up": "Emotionale Reife lädt dich ein, Gefühle anzunehmen, ohne dich darin zu verlieren. Du kannst Halt geben und dir selbst treu bleiben.",
+        "rev": "Gefühle zu stark kontrollieren zu wollen darf nachlassen. Einfacher über dein Erleben zu sprechen fördert Verständnis."
+      }
+    },
+    "swords_ace": {
+      "love": {
+        "up": "Klare Worte können ein Missverständnis lösen und einen Neubeginn ermöglichen. Offenheit sollte die Empfindsamkeit des anderen achten.",
+        "rev": "Eine schwer auszusprechende Wahrheit lädt ein, ein ruhiges Gespräch vorzubereiten. Die richtigen Worte können Verständnis ermöglichen."
+      },
+      "work": {
+        "up": "Ein klarer Gedanke oder eine kluge Entscheidung fördert beruflichen Fortschritt. Tatsachen von Vermutungen zu trennen stärkt dein Vorgehen.",
+        "rev": "Eine komplexe Lage braucht Klärung, bevor Schlüsse gezogen werden. Die Fragen neu zu ordnen eröffnet mehr Stimmigkeit."
+      },
+      "self": {
+        "up": "Eine Erkenntnis kann dir helfen, deine wirklichen Wünsche zu benennen. Diese Klarheit unterstützt selbstbestimmte Veränderung.",
+        "rev": "Eine unklare Ahnung kann durch ehrliches Nachdenken verständlicher werden. Deine Gedanken zu ordnen eröffnet mehr Klarheit."
+      }
+    },
+    "swords_2": {
+      "love": {
+        "up": "Eine Herzensentscheidung will bedacht sein, ohne dass du deine Gefühle ausblendest. Beide Seiten anzuhören eröffnet einen Weg.",
+        "rev": "Ein schwieriges Gespräch zu vermeiden kann die Beziehung blockieren. Über deine Zweifel zu sprechen fördert ehrlichen Austausch."
+      },
+      "work": {
+        "up": "Zwei berufliche Richtungen erscheinen gleichermaßen vertretbar. Wichtige Kriterien zu klären hilft, ohne unmögliche Gewissheit zu wählen.",
+        "rev": "Eine Entscheidung ständig zu vertagen kann die Zusammenarbeit belasten. Wesentliche Informationen zu sammeln löst den Stillstand."
+      },
+      "self": {
+        "up": "Ein inneres Zögern lädt dich ein, widersprüchliche Bedürfnisse anzuerkennen. Sie zu benennen kann deine Wahl erhellen.",
+        "rev": "Einer persönlichen Spannung auszuweichen kann Stillstand verlängern. Wertfreies Nachdenken ermöglicht einen ersten Schritt."
+      }
+    },
+    "swords_3": {
+      "love": {
+        "up": "Ein Wort oder eine Enttäuschung kann Vertrauen geschwächt haben. Gefühle anzuerkennen, ohne sofort Schuld zuzuweisen, schafft Gesprächsraum.",
+        "rev": "Der Schmerz eines Missverständnisses kann nachlassen. Anzuerkennen, was verletzt hat, fördert eine klarere Beziehung."
+      },
+      "work": {
+        "up": "Kritik oder beruflicher Streit kann schwer anzunehmen sein. Trenne die Botschaft von deinem persönlichen Wert, um Halt zu finden.",
+        "rev": "Nach einer Enttäuschung kann ein gerechterer Blick auf die Tatsachen entstehen. Aus der Erfahrung zu lernen eröffnet neue Einsichten."
+      },
+      "self": {
+        "up": "Eine alte emotionale Verletzung verdient einen sanften Blick. Sie zu benennen, ohne dich darauf zu reduzieren, hilft dir weiter.",
+        "rev": "Kummer kann langsam Akzeptanz weichen. Diese Veränderung anzunehmen schafft inneren Frieden."
+      }
+    },
+    "swords_4": {
+      "love": {
+        "up": "Eine Pause in den Gesprächen kann wieder Ruhe bringen. Abstand hilft, den anderen besser zu hören.",
+        "rev": "Anhaltendes Schweigen kann zu belastender Distanz werden. Ruhe zu wahren und zugleich gesprächsbereit zu bleiben unterstützt die Beziehung."
+      },
+      "work": {
+        "up": "Eine Denkpause kann eine angespannte berufliche Lage klären. Prioritäten vor dem nächsten Schritt neu zu prüfen fördert Besonnenheit.",
+        "rev": "Zu langes Warten kann nötige Gespräche verzögern. Behutsam zum Projekt zurückzukehren bringt Fortschritt."
+      },
+      "self": {
+        "up": "Ruhe zuzulassen kann zerstreute Gedanken ordnen. Selbst gewählter Rückzug wird zur Quelle neuer Kraft.",
+        "rev": "Erholung kann zum Ausweichen vor deinen Wünschen werden. Eine selbst gewählte Aktivität wieder aufzunehmen bringt Schwung."
+      }
+    },
+    "swords_5": {
+      "love": {
+        "up": "Ein Streit, den beide gewinnen wollen, kann die Beziehung ärmer machen. Verständnis statt Sieg zu suchen öffnet einen anderen Weg.",
+        "rev": "Eine fruchtlose Rivalität loszulassen ermöglicht Annäherung. Die eigene Rolle anzuerkennen kann Respekt wiederherstellen."
+      },
+      "work": {
+        "up": "Schlecht geführter Wettbewerb kann Vertrauen am Arbeitsplatz schwächen. Die Folgen eines Streits zu prüfen hilft bei einer fairen Lösung.",
+        "rev": "Eine Spannung im Team kann sich lösen, wenn ein gemeinsames Ziel wichtiger wird als Recht zu behalten. Zusammenarbeit wird wieder möglich."
+      },
+      "self": {
+        "up": "Ein innerer Streit oder ständige Vergleiche können deine Energie aufzehren. Erkenne, was dir wirklich wichtig ist.",
+        "rev": "Ein alter Gegensatz kann an Gewicht verlieren. Den Drang loszulassen, etwas beweisen zu müssen, eröffnet mehr Frieden."
+      }
+    },
+    "swords_6": {
+      "love": {
+        "up": "Ein Übergang zu einer ruhigeren Beziehung wird denkbar. Abstand von alten Streitpunkten kann neue Gespräche fördern.",
+        "rev": "Ein emotionaler Übergang bleibt schwierig, wenn du alte Muster festhältst. Veränderung anzuerkennen hilft, nicht stehen zu bleiben."
+      },
+      "work": {
+        "up": "Eine Umorganisation oder neue Methode kann ruhigere Arbeit ermöglichen. Fortschritt entsteht Schritt für Schritt.",
+        "rev": "Ein zögerlicher beruflicher Übergang braucht klare Begleitung. Die Hindernisse zu erkennen erleichtert den nächsten Schritt."
+      },
+      "self": {
+        "up": "Dich von vertrauten Spannungen zu lösen kann dich für Neues öffnen. Eine Übergangsphase schafft Perspektiven.",
+        "rev": "Der Wunsch nach dem alten Gleichgewicht kann dich bremsen. Was du zurücklässt anzunehmen hilft dir weiter."
+      }
+    },
+    "swords_7": {
+      "love": {
+        "up": "Unausgesprochenes oder indirektes Verhalten kann Vertrauen mindern. Sich auf Fakten und klare Gespräche zu stützen vermeidet Verdächtigungen.",
+        "rev": "Mehr Offenheit kann Umwege ersetzen. Bisher Verschwiegenes anzusprechen eröffnet die Chance, Vertrauen zu erneuern."
+      },
+      "work": {
+        "up": "Unvollständige Informationen oder undurchsichtige Schritte verlangen Aufmerksamkeit. Fakten zu prüfen schützt die Zusammenarbeit.",
+        "rev": "Eine unklare Lage kann durch Transparenz verständlicher werden. Absichten offen zu besprechen ermöglicht einen fairen Neubeginn."
+      },
+      "self": {
+        "up": "Einer persönlichen Wahrheit auszuweichen kann dich verunsichern. Deine Beweggründe zu erkennen gibt dir eine ehrlichere Richtung.",
+        "rev": "Die Neigung, Schwieriges zu umgehen, kann nachlassen. Ehrlichkeit mit dir selbst eröffnet größere Freiheit."
+      }
+    },
+    "swords_8": {
+      "love": {
+        "up": "Die Sorge, etwas falsch zu machen, kann dich in der Liebe hemmen. Deine Handlungsmöglichkeiten zu erkennen löst das Gefühl der Sackgasse.",
+        "rev": "Der Gedanke, nichts ändern zu können, verliert vielleicht an Kraft. Eigene Bedürfnisse zu benennen eröffnet neue Schritte."
+      },
+      "work": {
+        "up": "Widersprüchliche Vorgaben oder empfundene Grenzen können Eigeninitiative bremsen. Unterscheide echte Hindernisse von Annahmen.",
+        "rev": "Bisher verworfene Lösungen können wieder sichtbar werden. Klare Zuständigkeiten eröffnen neuen Handlungsspielraum."
+      },
+      "self": {
+        "up": "Einengende Gedanken können dich daran hindern, Neues zu wagen. Sie freundlich zu hinterfragen zeigt vergessene Möglichkeiten.",
+        "rev": "Deine eigenen Kräfte zu erkennen schafft einen Weg zu mehr Freiheit. Eine kleine selbst gewählte Entscheidung kann Stillstand lösen."
+      }
+    },
+    "swords_9": {
+      "love": {
+        "up": "Wiederkehrende Sorgen können deine Gespräche in der Liebe färben. Zwischen Gesagtem und Befürchtetem zu unterscheiden schützt Vertrauen.",
+        "rev": "Eine lange verschwiegene Sorge lässt sich vielleicht sanfter aussprechen. Zuhören kann Entlastung schaffen."
+      },
+      "work": {
+        "up": "Eine Verantwortung kann deine Gedanken zu sehr beherrschen. Fakten und Erwartungen zu ordnen hilft zu einem gerechteren Blick.",
+        "rev": "Die Anspannung durch hohe Anforderungen kann nachlassen. Bisherige Anstrengungen anzuerkennen eröffnet eine andere Sicht."
+      },
+      "self": {
+        "up": "Innere Sorgen können verdecken, welche Hilfe um dich herum besteht. Sie wohlwollend zu benennen schafft Abstand.",
+        "rev": "Eine anhaltende Sorge kann an Macht verlieren, wenn du sie nicht allein trägst. Ein freundlicherer Blick eröffnet Entlastung."
+      }
+    },
+    "swords_10": {
+      "love": {
+        "up": "Eine erschöpfende Art, die Beziehung zu leben, kann an ihr Ende kommen. Ihre Grenzen anzuerkennen hilft, neue Grundlagen zu denken.",
+        "rev": "Die Last einer früheren Enttäuschung kann leichter werden. Akzeptierter Wandel öffnet einen Weg zum Wiederaufbau."
+      },
+      "work": {
+        "up": "Ein zermürbender beruflicher Abschnitt kann die Grenzen einer Methode zeigen. Ehrliche Bilanz ermöglicht neue Ansätze.",
+        "rev": "Nach großer Anspannung kann sich ein Weg zur Erneuerung zeigen. Aus dem Erlebten zu lernen hilft beim Neuaufbau."
+      },
+      "self": {
+        "up": "Eine alte Art, dich selbst zu beurteilen, kann unpassend geworden sein. Sie loszulassen öffnet einen freundlicheren Blick auf dich.",
+        "rev": "Das Gefühl einer Sackgasse kann der Chance auf einen Neubeginn weichen. Ein Abschluss bestimmt nicht deinen ganzen Weg."
+      }
+    },
+    "swords_page": {
+      "love": {
+        "up": "Wache Neugier lädt dazu ein, in der Beziehung die richtigen Fragen zu stellen. Zuhören ist ebenso wichtig wie Beobachten.",
+        "rev": "Verdächtigungen und vorschnelle Deutungen können Vertrauen erschweren. Prüfe deine Eindrücke, bevor du urteilst."
+      },
+      "work": {
+        "up": "Geistige Wachsamkeit kann wichtige Einzelheiten sichtbar machen. Informationen gründlich zu prüfen eröffnet gute Möglichkeiten.",
+        "rev": "Fragen ohne klare Richtung können Misstrauen nähren. Wichtiges von Nebensächlichem zu trennen hilft weiter."
+      },
+      "self": {
+        "up": "Dein Wunsch, dich und andere zu verstehen, eröffnet neues Lernen. Neugier bereichert deine Begegnungen.",
+        "rev": "Alles zu zerdenken lässt wenig Platz für Erfahrung. Ungewissheit anzunehmen hilft, Zweifel zu überwinden."
+      }
+    },
+    "swords_knight": {
+      "love": {
+        "up": "Ein offenes Gespräch kann eine unklare Lage voranbringen. Die Chance liegt in einer Ehrlichkeit, die beide respektiert.",
+        "rev": "Zu scharfe Worte können ein hilfreiches Gespräch zum Streit machen. Vor der Antwort kurz innezuhalten schützt die Beziehung."
+      },
+      "work": {
+        "up": "Eine energische Entscheidung kann ein Vorhaben voranbringen. Klares Denken hilft, solange du auch Einwände anhörst.",
+        "rev": "Gedankliche Hast kann ein Team vor den Kopf stoßen. Verbinde deine Überzeugung mit Fakten und dem gemeinsamen Tempo."
+      },
+      "self": {
+        "up": "Der Wunsch, Zweifel zu überwinden, kann eine persönliche Veränderung unterstützen. Deine Ideen profitieren von echter Erfahrung.",
+        "rev": "Ungeduld gegenüber Zwischentönen kann dich von Antworten entfernen. Andere Sichtweisen helfen, deine Überzeugungen zu schärfen."
+      }
+    },
+    "swords_queen": {
+      "love": {
+        "up": "Gerechte Worte und klare Grenzen fördern ehrliche Gespräche. Unabhängigkeit und Zärtlichkeit können zusammengehören.",
+        "rev": "Eine schützende Offenheit kann zugänglicher werden. Differenziertere Urteile ermöglichen ein Miteinander, in dem beide gehört werden."
+      },
+      "work": {
+        "up": "Dein Urteilsvermögen hilft dir, Abstand und klare Kriterien zu gewinnen. Verständliche Gespräche unterstützen gute Entscheidungen.",
+        "rev": "Eine strenge Analyse wirkt stärker, wenn sie Gefühle berücksichtigt. Diese Offenheit verbessert die Zusammenarbeit."
+      },
+      "self": {
+        "up": "Durch Erfahrung gewonnene Klarheit hilft dir, zu deinen Entscheidungen zu stehen. Stimmige Grenzen stärken deine Selbstständigkeit.",
+        "rev": "Ein zu hartes Urteil über dich selbst darf milder werden. Deinen Weg fair anzuerkennen eröffnet ruhigeres Vertrauen."
+      }
+    },
+    "swords_king": {
+      "love": {
+        "up": "Reife und stimmige Kommunikation fördert Vertrauen. Gerechtigkeit in Worten zählt ebenso wie feste Überzeugungen.",
+        "rev": "Gefühle nur zu durchdenken, statt sie zu zeigen, kann sich zu einem ausgewogeneren Gespräch entwickeln. Offenheit schafft Nähe."
+      },
+      "work": {
+        "up": "Methodisches und unparteiisches Vorgehen fördert berufliche Entscheidungen. Deine Gründe zu erklären stärkt gemeinsames Vertrauen.",
+        "rev": "Distanzierte Autorität kann flexibler werden. Betroffene einzubeziehen eröffnet fairere Zusammenarbeit."
+      },
+      "self": {
+        "up": "Klarheit und persönliche Grundsätze können dir eine feste Richtung geben. Geordnetes Denken stärkt deine Unabhängigkeit.",
+        "rev": "Alles gedanklich beherrschen zu wollen darf nachlassen. Offene Fragen zu akzeptieren fördert menschliches Urteilsvermögen."
+      }
+    },
+    "pentacles_ace": {
+      "love": {
+        "up": "Verlässliche, greifbare Gesten können einer Beziehung neuen Halt geben. Regelmäßige Aufmerksamkeit stärkt Vertrauen.",
+        "rev": "Auch bei noch unsicheren Grundlagen bietet sich die Chance auf mehr Stabilität. Einfache Zusagen können sie wachsen lassen."
+      },
+      "work": {
+        "up": "Eine materielle oder berufliche Gelegenheit scheint für ein konkretes Vorhaben günstig. Ihre Tragweite zu prüfen hilft, das Potenzial zu erkennen.",
+        "rev": "Eine noch wenig sichtbare Möglichkeit verdient Beachtung. Was sich tatsächlich aufbauen lässt, eröffnet eine solide Perspektive."
+      },
+      "self": {
+        "up": "Ein neuer Anker im Alltag kann deine Selbstständigkeit fördern. Etwas Greifbares zu schaffen stärkt dein Vertrauen.",
+        "rev": "Der Wunsch nach Stabilität sucht eine konkrete Form. Eine machbare Veränderung kann deine Ziele greifbarer machen."
+      }
+    },
+    "pentacles_2": {
+      "love": {
+        "up": "Unterschiedliche Erwartungen zu verbinden verlangt Flexibilität. Ein gemeinsamer Rhythmus macht mehr Leichtigkeit möglich.",
+        "rev": "Zu viele Verpflichtungen können wenig Raum für die Beziehung lassen. Klare Prioritäten helfen, das Gleichgewicht zu finden."
+      },
+      "work": {
+        "up": "Mehrere Verantwortlichkeiten wollen flexibel verbunden werden. Traditionell geht es darum, Ressourcen zu ordnen, ohne das Wesentliche zu verlieren.",
+        "rev": "Eine Abfolge von Aufgaben kann deine Organisation aus dem Gleichgewicht bringen. Klare Prioritäten helfen, nicht nur zu reagieren."
+      },
+      "self": {
+        "up": "Du lernst, verschiedene Seiten deines Lebens zu vereinen. Schrittweise Anpassungen können dir mehr Freiheit bringen.",
+        "rev": "Wenn du alles gleichzeitig bewegen willst, vergisst du womöglich, was dir Kraft gibt. Pausen schaffen ein neues Gleichgewicht."
+      }
+    },
+    "pentacles_3": {
+      "love": {
+        "up": "Eine Beziehung gemeinsam aufzubauen kann ein echtes Gemeinschaftswerk sein. Die Stärken beider anzuerkennen fördert beständige Nähe.",
+        "rev": "Wenn die Beiträge ungleich wirken, braucht eure Zusammenarbeit neue Formen. Bemühungen auszusprechen eröffnet eine Einigung."
+      },
+      "work": {
+        "up": "Sich ergänzende Fähigkeiten und sorgfältige Arbeit können ein Projekt voranbringen. Traditionell zählt hier gemeinsames Lernen.",
+        "rev": "Ein Team kann Fähigkeiten besser nutzen, wenn mehr Austausch stattfindet. Rückmeldungen anzunehmen eröffnet Verbesserungen."
+      },
+      "self": {
+        "up": "Ein gemeinsames Vorhaben mit nahestehenden Menschen kann deine Talente zeigen. Zusammen zu gestalten gibt stillen Fähigkeiten Wert.",
+        "rev": "Von anderen zu lernen eröffnet Entwicklung. Zusammenarbeit nimmt deiner Eigenart nichts."
+      }
+    },
+    "pentacles_4": {
+      "love": {
+        "up": "Das Bedürfnis nach Sicherheit lädt dazu ein, die Grundlagen eurer Verbindung zu prüfen. Bewusste Stabilität lässt Raum für Offenheit.",
+        "rev": "Aus Angst, ein Gleichgewicht zu verlieren, kann die Beziehung zu stark kontrolliert werden. Mehr Flexibilität lässt beide atmen."
+      },
+      "work": {
+        "up": "Erreichte Fortschritte zu bewahren bietet eine Basis für neue Entscheidungen. Prüfe, was die Stabilität wirklich trägt.",
+        "rev": "Aus Angst vor Veränderung an Methoden oder Mitteln festzuhalten kann Fortschritt bremsen. Kleine Versuche schaffen Spielraum."
+      },
+      "self": {
+        "up": "Vertraute Gewohnheiten geben dir Halt. Du kannst wählen, welche deine Selbstständigkeit wirklich unterstützen.",
+        "rev": "Zu viel Kontrolle kann deinen Alltag einengen. Kleine Neuerungen helfen, starre Gewohnheiten zu lockern."
+      }
+    },
+    "pentacles_5": {
+      "love": {
+        "up": "Einsamkeit oder fehlender Rückhalt kann die Beziehung belasten. Vorhandene Hilfen zu erkennen eröffnet Perspektiven.",
+        "rev": "Eine Phase der Distanz kann mehr gegenseitigem Beistand weichen. Ehrliche Zuwendung schafft die Chance auf Annäherung."
+      },
+      "work": {
+        "up": "Ein wenig unterstützendes Arbeitsumfeld kann das Gefühl verstärken, ausgeschlossen zu sein. Bedürfnisse anzusprechen hilft, Beistand zu finden.",
+        "rev": "Bisher übersehene Hilfe oder Zusammenarbeit kann zugänglich werden. Neue Anknüpfungspunkte ermöglichen einen Wiederaufbau."
+      },
+      "self": {
+        "up": "Schwierigkeiten allein durchstehen zu müssen kann deinen Antrieb schwächen. Die verfügbaren Beziehungen zu erkennen gibt Vertrauen.",
+        "rev": "Mehr Zugehörigkeit wird vorstellbar. Unterstützung anzunehmen kann deinen Vorhaben wieder Raum geben."
+      }
+    },
+    "pentacles_6": {
+      "love": {
+        "up": "Eine Beziehung, in der beide respektvoll geben und nehmen, kann ins Gleichgewicht finden. Gegenseitige Großzügigkeit stärkt Vertrauen.",
+        "rev": "Ein unausgeglichenes Geben und Nehmen kann sich durch offenere Erwartungen verändern. Die Chance liegt in Gegenseitigkeit."
+      },
+      "work": {
+        "up": "Berufliche Unterstützung oder faire Zusammenarbeit kann ein Vorhaben fördern. Geteiltes Wissen nützt allen.",
+        "rev": "Hilfe zu geben oder anzunehmen lädt dazu ein, die Bedingungen zu klären. Ein gerechteres Gleichgewicht kann wachsen."
+      },
+      "self": {
+        "up": "Zeit oder Fähigkeiten mit nahestehenden Menschen zu teilen kann Sinn stiften. Freiwillige Großzügigkeit stärkt eure Verbindung.",
+        "rev": "Eigene Grenzen beim Helfen zu erkennen schafft mehr Respekt. Du darfst auch etwas annehmen, ohne sofort alles zurückzugeben."
+      }
+    },
+    "pentacles_7": {
+      "love": {
+        "up": "Eine geduldig gewachsene Beziehung verdient einen Blick auf ihre wirkliche Entwicklung. Gemeinsame Bemühungen zu prüfen eröffnet Perspektiven.",
+        "rev": "Auf Veränderung zu warten, ohne darüber zu reden, kann Frust nähren. Erwartungen neu zu besprechen verhindert Stillstand."
+      },
+      "work": {
+        "up": "Regelmäßige Anstrengungen verdienen eine sorgfältige Bilanz. Erste Ergebnisse zu beobachten hilft, den weiteren Weg zu wählen.",
+        "rev": "Langes Warten oder Ermüdung können nötige Anpassungen verdecken. Schau, was funktioniert, um wieder Richtung zu gewinnen."
+      },
+      "self": {
+        "up": "Du darfst den bereits gegangenen Weg betrachten. Geduld trägt Früchte, wenn sie mit bewussten Entscheidungen verbunden bleibt.",
+        "rev": "Zweifel an deinen Fortschritten können kleine Erfolge verdecken. Beurteile deinen Weg mit Augenmaß, bevor du aufgibst."
+      }
+    },
+    "pentacles_8": {
+      "love": {
+        "up": "Wiederholte, aufrichtige Aufmerksamkeiten stärken die Beziehung. Beständige Gesten machen Vertrauen spürbar.",
+        "rev": "Eine gemeinsame Routine kann wieder Sinn erhalten, wenn sie nicht zur Pflicht wird. Persönliche Gesten eröffnen neue Qualität."
+      },
+      "work": {
+        "up": "Ausdauer beim Lernen eines Berufs oder Handgriffs ist günstig. Sorgfalt und Regelmäßigkeit führen zu größerem Können.",
+        "rev": "Eine Fähigkeit könnte anders geübt werden. Rückmeldungen anzunehmen und Methoden zu variieren eröffnet Fortschritt."
+      },
+      "self": {
+        "up": "Etwas zu lernen, das dir Freude macht, stärkt dein Selbstwertgefühl. Der Spaß am Wachsen zählt so viel wie die Meisterschaft.",
+        "rev": "Zu hohe Ansprüche dürfen sich verändern. In deinem Tempo zu lernen schafft eine freundlichere Beziehung zu deinen Fähigkeiten."
+      }
+    },
+    "pentacles_9": {
+      "love": {
+        "up": "Sicherheit in deinem eigenen Gleichgewicht bereichert Beziehungen ohne Abhängigkeit. Freiwilliges Teilen fördert ruhige Zuneigung.",
+        "rev": "Eine noch unsichere emotionale Selbstständigkeit kann wachsen. Deinen Beitrag anzuerkennen fördert mehr Gleichgewicht."
+      },
+      "work": {
+        "up": "Regelmäßiger Einsatz kann Erfolge und Selbstständigkeit sichtbar machen. Das eigene Können zu würdigen fördert Fortschritt.",
+        "rev": "Ein persönlicher Erfolg verdient Anerkennung, ohne ganz vom Blick anderer abzuhängen. Eigene Kriterien schaffen ein neues Gleichgewicht."
+      },
+      "self": {
+        "up": "Die Freude über selbst geschaffene Grundlagen stärkt deine Unabhängigkeit. Einfache Genüsse fördern Erfüllung.",
+        "rev": "Ein Selbstwert, der stark von Äußerlichkeiten abhängt, darf tiefer wurzeln. Eigene Kräfte neu zu sehen schafft Möglichkeiten."
+      }
+    },
+    "pentacles_10": {
+      "love": {
+        "up": "Dauerhafte Bindungen, gemeinsame Gewohnheiten und Zugehörigkeit können die Beziehung festigen. Traditionell steht dies für ein stabiles Zuhause.",
+        "rev": "Ein zu starres Bild von Familie oder Zuhause darf sich verändern. Stabilität gemeinsam neu zu bestimmen eröffnet Harmonie."
+      },
+      "work": {
+        "up": "Gemeinsame Erfolge und eine beständige Organisation können ein Vorhaben langfristig tragen. Wissen weiterzugeben festigt diese Grundlage.",
+        "rev": "Eine bestehende Struktur kann von Anpassungen profitieren. Erfahrung und Neues zu verbinden eröffnet erneuerte Beständigkeit."
+      },
+      "self": {
+        "up": "Überlieferte Werte und Familienerfahrungen können dir Halt geben. Du bestimmst, was du davon weitertragen möchtest.",
+        "rev": "Ein übernommenes Lebensmodell passt vielleicht nicht mehr zu dir. Es frei neu zu deuten kann Zugehörigkeit stärken."
+      }
+    },
+    "pentacles_page": {
+      "love": {
+        "up": "Eine unaufdringliche, praktische Aufmerksamkeit kann Vertrauen wachsen lassen. Interesse am Alltag des anderen stärkt die Verbindung.",
+        "rev": "Der Wunsch, etwas Gemeinsames aufzubauen, braucht noch Orientierung. Einfache Taten geben ihm einen ehrlichen Ausdruck."
+      },
+      "work": {
+        "up": "Eine Lernmöglichkeit oder praktische Fähigkeit kann dein Vorhaben unterstützen. Angewandte Neugier wird zum Vorteil.",
+        "rev": "Eine vielversprechende Spur verlangt noch Vorbereitung. Grundlagen zu lernen schafft eine realistische Entwicklung."
+      },
+      "self": {
+        "up": "Vielleicht entdeckst du Freude an einem neuen praktischen Können. Geduld mit ersten Versuchen bereichert die Erfahrung.",
+        "rev": "Ein neu erwachtes Interesse verdient Raum ohne Perfektionsdruck. Regelmäßig Zeit dafür zu finden stärkt dein Vertrauen."
+      }
+    },
+    "pentacles_knight": {
+      "love": {
+        "up": "Treue, die sich in verlässlichen Taten zeigt, kann der Beziehung Sicherheit geben. Beständigkeit stärkt die Nähe im Alltag.",
+        "rev": "Gewohnheiten in der Liebe können wieder Wärme gewinnen, wenn du spontane Gesten zulässt. Beständigkeit muss nicht starr sein."
+      },
+      "work": {
+        "up": "Eine geduldige, gründliche Methode fördert den Arbeitsfortschritt. Regelmäßigkeit schafft dauerhafte Ergebnisse.",
+        "rev": "Zu langsamer Fortschritt lädt ein, die Organisation zu prüfen. Die Methode anzupassen und zugleich beständig zu bleiben eröffnet Lösungen."
+      },
+      "self": {
+        "up": "Deine Verlässlichkeit bei Zusagen stärkt dein Selbstvertrauen. Selbst gewählte kleine Gewohnheiten unterstützen deine Ziele.",
+        "rev": "Starre Routinen dürfen flexibler werden. Eine vertraute Handlung zu verändern eröffnet Neues, ohne dir Halt zu nehmen."
+      }
+    },
+    "pentacles_queen": {
+      "love": {
+        "up": "Zärtlichkeit durch Gastfreundschaft und konkrete Gesten kann die Beziehung stärken. Alltägliche Wärme schafft Geborgenheit.",
+        "rev": "Ständige Fürsorge für andere sollte auch deine Bedürfnisse einschließen. Ausgewogene Großzügigkeit macht das Miteinander ruhiger."
+      },
+      "work": {
+        "up": "Praktischer Sinn und Freundlichkeit fördern eine stabile Organisation. Gute Arbeitsbedingungen unterstützen gemeinsame Bemühungen.",
+        "rev": "Andere zu unterstützen gelingt besser mit klaren Grenzen. Eigene Kräfte zu bewahren fördert dauerhafte Zusammenarbeit."
+      },
+      "self": {
+        "up": "Ein angenehmes Umfeld und kleine Freuden können dein Gleichgewicht stärken. Vertrauen wächst im Alltäglichen.",
+        "rev": "Dich in täglichen Aufgaben selbst zu vergessen muss nicht so bleiben. Raum für eigene Wünsche bringt mehr Wärme."
+      }
+    },
+    "pentacles_king": {
+      "love": {
+        "up": "Verlässlichkeit und beständiges Engagement stärken das Gefühl von Sicherheit. Stabilität sollte zugleich großzügig bleiben.",
+        "rev": "Der Wunsch, alles zu organisieren, kann den Bedürfnissen des anderen mehr Raum geben. Vertrauen macht Sicherheit flexibler."
+      },
+      "work": {
+        "up": "Erfahrung und Verantwortungsbewusstsein können ein solides Vorhaben tragen. Pragmatisches Handeln fördert gemeinsames Vertrauen.",
+        "rev": "Eine Führung, die zu stark am Erreichten festhält, kann beweglicher werden. Neue Ansätze anzuerkennen eröffnet Entwicklung."
+      },
+      "self": {
+        "up": "Konkrete Leistungen können dein Selbstvertrauen stärken. Selbst gewählte Stabilität lässt Raum für andere Menschen.",
+        "rev": "Ein rein materielles Bild von Erfolg darf sich weiten. Beziehungen und nicht messbare Freuden einzubeziehen öffnet deinen Horizont."
+      }
+    }
+  },
+  "positions": {
+    "general": {
+      "answer": [
+        "Um deine Frage zu beleuchten, ohne ihren Inhalt vorauszusetzen, bietet „{card}“ einen ersten Deutungsansatz.",
+        "Bei deiner Frage lädt „{card}“ dazu ein, eine mögliche symbolische Bedeutung zu betrachten.",
+        "In dieser Ein-Karten-Legung eröffnet „{card}“ einen Blickwinkel, den du mit deinem Erleben abgleichen kannst."
+      ],
+      "past": [
+        "Mit Blick auf die Vergangenheit erinnert „{card}“ an mögliche prägende Umstände.",
+        "Für das Vergangene beleuchtet „{card}“ eine mögliche Lernerfahrung.",
+        "In der Vergangenheit verleiht „{card}“ dem Gewachsenen eine symbolische Färbung."
+      ],
+      "present": [
+        "In der Gegenwart lenkt „{card}“ den Blick auf eine Dynamik, die du beobachten kannst.",
+        "Für dein heutiges Erleben bietet „{card}“ einen Deutungsansatz.",
+        "In deiner jetzigen Lage betont „{card}“ einen wesentlichen Gesichtspunkt."
+      ],
+      "future": [
+        "Wenn die bisherige Dynamik anhält, deutet „{card}“ auf eine mögliche Entwicklung hin.",
+        "Mit Blick auf die Zukunft zeigt „{card}“ eine Richtung, ohne sie festzulegen.",
+        "Für das, was sich entwickeln könnte, eröffnet „{card}“ eine Perspektive mit offenem Ausgang."
+      ],
+      "situation": [
+        "Als Ausgangspunkt beleuchtet „{card}“ die Situation aus symbolischer Sicht.",
+        "Im Zentrum der Lage hebt „{card}“ eine mögliche Frage hervor.",
+        "In der Position Situation setzt „{card}“ den Anfangspunkt der Deutung."
+      ],
+      "challenge": [
+        "Als Herausforderung weist „{card}“ auf etwas hin, das Aufmerksamkeit braucht.",
+        "Beim Hindernis lädt „{card}“ dazu ein, einen möglichen Mechanismus zu erkennen.",
+        "In der Position Herausforderung zeigt „{card}“ eine Spannung, die mit Klarheit betrachtet werden kann."
+      ],
+      "advice": [
+        "Als Anregung zeigt „{card}“ eine mögliche Haltung auf.",
+        "In der Position Rat lädt „{card}“ dazu ein, einen Weg nach vorn zu erwägen.",
+        "Als Orientierung bietet „{card}“ einen symbolischen Anhaltspunkt."
+      ],
+      "month": [
+        "Für {month} verleiht „{card}“ diesem Abschnitt eine symbolische Färbung.",
+        "Im Abschnitt {month} lässt „{card}“ eine Dynamik erkennen, auf die du achten kannst.",
+        "Für {month} eröffnet „{card}“ eine Lesart, ohne Ereignisse festzulegen."
+      ]
+    },
+    "love": {
+      "answer": [
+        "Für dein Liebesthema beleuchtet „{card}“ eine mögliche Dynamik der Gefühle.",
+        "In Liebesbeziehungen lädt „{card}“ dazu ein, deine Art zu lieben zu betrachten.",
+        "In Herzensfragen gibt „{card}“ einen Anstoß zu Erwartungen und Gesprächen."
+      ],
+      "past": [
+        "In deiner Liebesvergangenheit zeigt „{card}“, was deine Erwartungen geprägt haben könnte.",
+        "Mit Blick auf frühere Liebeserfahrungen beleuchtet „{card}“ eine Lernerfahrung.",
+        "Für vergangene Beziehungen hebt „{card}“ eine mögliche Spur hervor."
+      ],
+      "present": [
+        "In deiner gegenwärtigen Liebessituation betont „{card}“ eine erkennbare Dynamik.",
+        "Für deinen aktuellen Gefühlsaustausch bietet „{card}“ einen symbolischen Blick.",
+        "Heute lädt „{card}“ in Herzensfragen dazu ein, die Beziehung genauer anzusehen."
+      ],
+      "future": [
+        "Wenn der Austausch so weitergeht, zeigt „{card}“ eine Möglichkeit für eure Verbindung.",
+        "Mit Blick auf die Liebe deutet „{card}“ auf eine Richtung hin, ohne etwas zu versprechen.",
+        "Für die mögliche Entwicklung deiner Beziehungen bietet „{card}“ eine neue Nuance."
+      ],
+      "situation": [
+        "Im Herzen deiner Liebessituation beleuchtet „{card}“ einen Aspekt der Verbindung.",
+        "Um den Gefühlsaustausch einzuordnen, betont „{card}“ eine Dynamik.",
+        "In der Liebe gibt „{card}“ dieser Legung ihren symbolischen Ausgangspunkt."
+      ],
+      "challenge": [
+        "Als Herausforderung in der Liebe zeigt „{card}“, was die Verständigung bremsen könnte.",
+        "In Herzensbeziehungen lenkt „{card}“ den Blick auf eine Spannung.",
+        "Am empfindlichen Punkt der Beziehung hebt „{card}“ eine mögliche Schwierigkeit hervor."
+      ],
+      "advice": [
+        "Für deine Art zu lieben schlägt „{card}“ eine Haltung vor.",
+        "Als Rat in Liebesfragen zeigt „{card}“ einen Weg zu besseren Gesprächen.",
+        "In Herzensfragen lädt „{card}“ dazu ein, anders zu handeln oder hinzusehen."
+      ],
+      "month": [
+        "Für {month} deutet „{card}“ auf eine mögliche Stimmung in deinen Liebesbeziehungen hin.",
+        "In der Liebeslegung für {month} betont „{card}“ einen beachtenswerten Aspekt.",
+        "Für {month} bietet „{card}“ einen symbolischen Blick auf den Austausch in Herzensfragen."
+      ]
+    },
+    "work": {
+      "answer": [
+        "Zum Thema Beruf und Finanzen beleuchtet „{card}“ einen Aspekt deiner Arbeit oder materiellen Lage.",
+        "Bei deinen Vorhaben und Ressourcen bietet „{card}“ einen Deutungsansatz.",
+        "In Beruf und materieller Sicherheit lädt „{card}“ dazu ein, eine Dynamik zu prüfen."
+      ],
+      "past": [
+        "In deinem bisherigen Berufsweg erinnert „{card}“ an eine mögliche Errungenschaft.",
+        "Mit Blick auf frühere Arbeitserfahrungen beleuchtet „{card}“, was dich geprägt haben könnte.",
+        "In der Geschichte deiner Vorhaben und Mittel zeigt „{card}“ ein symbolisches Erbe."
+      ],
+      "present": [
+        "In deiner aktuellen beruflichen Lage hebt „{card}“ einen Aspekt hervor.",
+        "Bei Arbeit und Ressourcen zeigt „{card}“, was deine Aufmerksamkeit verdient.",
+        "In deinen gegenwärtigen Vorhaben deutet „{card}“ auf eine mögliche Dynamik hin."
+      ],
+      "future": [
+        "Wenn sich die Lage fortsetzt, zeigt „{card}“ eine mögliche berufliche Entwicklung.",
+        "Bei materiellen Aussichten bietet „{card}“ eine Richtung ohne Gewähr.",
+        "Für die mögliche Fortsetzung deiner Vorhaben eröffnet „{card}“ eine symbolische Perspektive."
+      ],
+      "situation": [
+        "Im Zentrum deiner Arbeitssituation betont „{card}“ ein greifbares Thema.",
+        "Als beruflichen Ausgangspunkt beleuchtet „{card}“ eine Dynamik.",
+        "Bei Vorhaben und Ressourcen zeigt „{card}“ den Beginn der Deutung."
+      ],
+      "challenge": [
+        "Bei beruflichen Herausforderungen zeigt „{card}“ ein mögliches Hindernis.",
+        "Mit Blick auf materielle Grenzen betont „{card}“ etwas, das Klärung braucht.",
+        "In der Position Herausforderung zeigt „{card}“, was das Vorhaben erschwert."
+      ],
+      "advice": [
+        "Als Anregung für deine Tätigkeit bietet „{card}“ einen neuen Blickwinkel.",
+        "In der beruflichen Position Rat gibt „{card}“ einen symbolischen Anhaltspunkt.",
+        "Für Arbeit und Ressourcen lädt „{card}“ dazu ein, Abstand zu gewinnen."
+      ],
+      "month": [
+        "Für {month} beleuchtet „{card}“ symbolisch einen Aspekt deiner Vorhaben.",
+        "In der beruflichen Deutung für {month} bietet „{card}“ einen Weg zum Nachdenken.",
+        "Bei Arbeit und Ressourcen färbt „{card}“ die Dynamik von {month} symbolisch."
+      ]
+    },
+    "self": {
+      "answer": [
+        "Für dein persönliches Leben beleuchtet „{card}“ Fragen von Gleichgewicht und Entfaltung.",
+        "In deiner Beziehung zu dir selbst und Nahestehenden bietet „{card}“ einen Ansatz.",
+        "Bei Lebensentscheidungen lädt „{card}“ dazu ein, deine Werte zu betrachten."
+      ],
+      "past": [
+        "In deiner persönlichen Vergangenheit erinnert „{card}“ an eine prägende Etappe.",
+        "Mit Blick auf deine innere Geschichte beleuchtet „{card}“ eine Lernerfahrung.",
+        "Für frühere Lebensentscheidungen zeigt „{card}“ eine mögliche symbolische Spur."
+      ],
+      "present": [
+        "Im heutigen persönlichen Leben hebt „{card}“ einen Punkt hervor, den du betrachten kannst.",
+        "Auf deinem inneren Weg betont „{card}“ eine gegenwärtige Dynamik.",
+        "Bei deiner Entfaltung lädt „{card}“ dazu ein, dein derzeitiges Gleichgewicht zu prüfen."
+      ],
+      "future": [
+        "Wenn dein Weg die Richtung behält, deutet „{card}“ auf eine mögliche Entwicklung hin.",
+        "Für deine persönliche Zukunft zeigt „{card}“ eine Richtung, ohne sie festzulegen.",
+        "Mit Blick auf das, was in dir wachsen könnte, bietet „{card}“ eine Perspektive."
+      ],
+      "situation": [
+        "Im Zentrum deines persönlichen Lebens hebt „{card}“ ein inneres Thema hervor.",
+        "Um deinen Weg einzuordnen, beleuchtet „{card}“, was dich beschäftigt.",
+        "In der Position Persönliche Situation bietet „{card}“ einen Ausgangspunkt."
+      ],
+      "challenge": [
+        "Als persönliche Herausforderung zeigt „{card}“ eine mögliche innere Bremse.",
+        "Bei deinen Lebensentscheidungen betont „{card}“ eine Spannung, die du verstehen kannst.",
+        "Mit Blick auf Hemmnisse beleuchtet „{card}“ eine mögliche Schwierigkeit."
+      ],
+      "advice": [
+        "Für deine persönliche Entfaltung bietet „{card}“ einen neuen Blickwinkel.",
+        "In der Position Persönlicher Rat lädt „{card}“ dazu ein, eine Haltung zu überdenken.",
+        "Bei innerem Gleichgewicht und Nahestehenden eröffnet „{card}“ einen Denkansatz."
+      ],
+      "month": [
+        "Für {month} deutet „{card}“ auf eine symbolische Etappe deiner Entwicklung hin.",
+        "Auf deinem persönlichen Weg lädt „{card}“ für {month} zu einem neuen Blick ein.",
+        "In deinem persönlichen Leben beleuchtet „{card}“ die mögliche Stimmung von {month}."
+      ]
+    }
+  },
+  "combos": {
+    "empress+star": "Die Begegnung von „{a}“ und „{b}“ steht traditionell für Entfaltung durch Vertrauen: Ein Wunsch könnte behutsam Gestalt annehmen.",
+    "empress+lovers": "„{a}“ und „{b}“ verbinden Zuneigung, Kreativität und Herzensentscheidungen. Eine Verbindung kann wachsen, wenn sie frei geteilt wird.",
+    "sun+world": "„{a}“ und „{b}“ symbolisieren strahlende Vollendung: Ein Weg kann zu einem stimmigen Abschluss und voller Entfaltung finden.",
+    "sun+star": "Mit „{a}“ und „{b}“ erhält die Hoffnung günstigen Rückenwind. Traditionell könnte sich wachsendes Vertrauen konkret zeigen.",
+    "lovers+devil": "„{a}“ und „{b}“ verbinden Anziehung mit belastender Bindung. Sie laden dazu ein, gemeinsame Wünsche von einengender Abhängigkeit zu unterscheiden.",
+    "tower+star": "Nach der Erschütterung, für die „{a}“ steht, eröffnet „{b}“ symbolisch einen Weg zu erneutem Vertrauen und einem Neuanfang.",
+    "death+judgement": "„{a}“ und „{b}“ verbinden das Ende eines Abschnitts mit einer Erkenntnis. Traditionell kann daraus nach einem Wandel neuer Schwung entstehen.",
+    "death+sun": "Mit „{a}“ und „{b}“ kann ein Abschluss zu mehr Klarheit führen. Der Übergang eröffnet symbolisch eine hellere Phase.",
+    "moon+priestess": "„{a}“ und „{b}“ betonen tiefe Intuition, aber auch Ungesagtes. Diese Begegnung lädt dazu ein, Gefühl nicht mit Gewissheit zu verwechseln.",
+    "moon+swords_7": "„{a}“ und „{b}“ deuten auf mögliche Geheimnisse oder mangelnde Offenheit im Umfeld hin. Unterscheide Eindrücke von belegbaren Tatsachen.",
+    "wheel+world": "Die Verbindung von „{a}“ und „{b}“ deutet traditionell auf einen vollendeten Zyklus und Umstände hin, die sich günstig entwickeln könnten.",
+    "magician+chariot": "„{a}“ und „{b}“ verknüpfen Initiative mit Entschlossenheit: Ein Projekt kann vorankommen, wenn Mittel und Handeln zusammenfinden.",
+    "emperor+empress": "Die Begegnung von „{a}“ und „{b}“ steht für das Gleichgewicht von Struktur und Entfaltung, das einem Zuhause oder einem festen Rahmen zugutekommen kann.",
+    "hermit+priestess": "„{a}“ und „{b}“ betonen Rückzug, fruchtbare Stille und innere Weisheit. Eine Antwort kann in dir reifen.",
+    "devil+tower": "„{a}“ und „{b}“ können die Loslösung von einer Abhängigkeit oder belastenden Gewohnheit symbolisieren. Neue Einsicht schafft Freiraum.",
+    "hangedman+death": "Die Begegnung von „{a}“ und „{b}“ verbindet Loslassen mit tiefgreifendem Wandel. Eine alte Sichtweise darf einer neuen weichen.",
+    "justice+judgement": "„{a}“ und „{b}“ stehen für eine ehrliche Bilanz und eine gerechtere Entscheidung. Fakten zu prüfen zeigt, was sich ändern sollte.",
+    "strength+chariot": "„{a}“ und „{b}“ vereinen Selbstbeherrschung und Tatkraft. Traditionell begünstigen maßvoller Mut und Ausdauer einen Erfolg.",
+    "temperance+lovers": "„{a}“ und „{b}“ deuten gemeinsam auf Versöhnung von Unterschieden, auf Zuhören und die Möglichkeit eines harmonischeren Einvernehmens.",
+    "fool+world": "Mit „{a}“ und „{b}“ kann nach einer Vollendung ein Neubeginn folgen. Erfahrung und wiedergewonnene Freiheit treffen hier zusammen.",
+    "fool+magician": "„{a}“ und „{b}“ stehen für einen Anfang voller Möglichkeiten. Der erste Impuls kann konkrete Mittel finden, um Wirklichkeit zu werden.",
+    "hierophant+lovers": "Die Begegnung von „{a}“ und „{b}“ verbindet eine Herzensentscheidung mit gemeinsamen Werten. Sie kann für eine anerkannte oder geklärte Bindung stehen.",
+    "star+moon": "„{a}“ und „{b}“ vereinen Hoffnung mit Ungewissheit. Vertrauen bleibt möglich, doch Eindrücke verdienen eine genauere Prüfung.",
+    "sun+cups_2": "„{a}“ und „{b}“ stehen traditionell für geteilte Freude in der Liebe, herzliche Gegenseitigkeit und eine Verbindung, die gedeihen kann.",
+    "cups_10+empress": "„{a}“ und „{b}“ verbinden Zuneigung, Harmonie und Großzügigkeit. Sie symbolisieren ein nährendes Zuhause oder warme Familienbande.",
+    "pentacles_10+world": "„{a}“ und „{b}“ stehen für langfristige materielle Beständigkeit und die Weitergabe von Errungenem oder eines Erbes.",
+    "pentacles_ace+magician": "„{a}“ und „{b}“ deuten auf eine greifbare materielle Gelegenheit hin, die sich mit Können und Initiative entwickeln lässt.",
+    "wands_ace+magician": "Mit „{a}“ und „{b}“ betont die Tradition eine neue Idee und die Mittel zu ihrer Umsetzung. Eine Initiative kann Form annehmen.",
+    "swords_3+tower": "„{a}“ und „{b}“ verbinden eine schmerzhafte Enttäuschung mit dem Erschüttern einer Gewissheit. Den Schmerz anzuerkennen hilft beim Neuaufbau.",
+    "swords_10+sun": "Nach der Belastung, für die „{a}“ steht, eröffnet „{b}“ mehr Klarheit. Das Ende einer schweren Phase kann Erneuerung ermöglichen.",
+    "cups_5+star": "„{a}“ und „{b}“ verbinden Bedauern mit Hoffnung. Traditionell können Trost und der Blick auf das verbliebene Gute zurückkehren.",
+    "pentacles_5+star": "Die Begegnung von „{a}“ und „{b}“ legt nahe, dass unerwartete Hilfe oder Unterstützung eine materiell schwierige Phase erhellen könnte.",
+    "wands_6+chariot": "„{a}“ und „{b}“ verbinden entschlossenes Vorankommen mit Anerkennung: Sichtbare Anstrengungen könnten positiv aufgenommen werden.",
+    "swords_7+devil": "„{a}“ und „{b}“ mahnen zur Aufmerksamkeit gegenüber Einflussnahme und verschwiegenen Informationen. Klarheit schützt vor trügerischen Bindungen.",
+    "cups_3+sun": "Mit „{a}“ und „{b}“ stellt die Tradition Geselligkeit, Freundschaft und die Freude an gemeinsamen Feiern in den Mittelpunkt.",
+    "pentacles_8+hermit": "„{a}“ und „{b}“ verbinden geduldiges Lernen mit gründlicher Suche. Ein Können kann durch Beständigkeit reifen.",
+    "wands_10+hangedman": "Die Begegnung von „{a}“ und „{b}“ zeigt eine schwere Last und den Wert von Abstand. Pflichten neu zu betrachten kann Erleichterung bringen.",
+    "cups_8+hermit": "„{a}“ und „{b}“ verbinden den Abschied von einer Situation mit der inneren Suche nach Sinn und Stimmigkeit.",
+    "swords_2+justice": "Mit „{a}“ und „{b}“ verlangt ein Zögern nach einer Entscheidung anhand klarer Kriterien. Fakten helfen, aus dem Stillstand zu finden.",
+    "pentacles_3+emperor": "„{a}“ und „{b}“ vereinen gemeinsames Können mit festen Strukturen. Gute Abstimmung kann die Anerkennung geleisteter Arbeit fördern."
+  },
+  "synth": {
+    "love": {
+      "one": {
+        "up": [
+          "Mit „{card}“ deutet die Liebeslegung auf günstigen Schwung in deinen Beziehungen hin. Traditionell gilt es, Nähe zu pflegen, ohne den Ausgang vorauszusetzen.",
+          "„{card}“ gibt der Liebe einen ermutigenden Ton. Mehr geteilte Ehrlichkeit könnte Vertrauen und Freude in der Verbindung stärken."
+        ],
+        "open": [
+          "„{card}“ eröffnet in deinem Gefühlsleben einen Ansatz: eine Nuance zu erkennen oder ein Gespräch zu vertiefen. Nichts ist festgelegt, doch eine Möglichkeit verdient Beachtung.",
+          "Mit „{card}“ legt die Deutung eine Chance zum Erkunden nahe, keine eindeutige Antwort. Aufmerksames Zuhören kann dabei wertvoll sein."
+        ],
+        "work": [
+          "„{card}“ weist auf eine heikle Stelle im Liebesleben hin. Die Legung lädt ein, Erwartungen und Ungesagtes sanft zu prüfen, ohne eine bestimmte Entwicklung vorzugeben.",
+          "Mit „{card}“ braucht die Liebe vor allem Klarheit. Eine Spannung anzusprechen kann freiere Gespräche ermöglichen."
+        ]
+      },
+      "three": {
+        "up": [
+          "Mit „{card}“ als Zukunftskarte könnte sich die Beziehung zu mehr Einklang und Schwung entwickeln. Diese Perspektive hängt weiterhin von den Entscheidungen beider ab.",
+          "Vergangenheit und Gegenwart führen mit „{card}“ als Zukunftskarte zu einer ermutigenden Aussicht. Traditionell zeigt sich eine Chance auf Entfaltung."
+        ],
+        "open": [
+          "Mit „{card}“ als Zukunftskarte zeigt sich in der Liebe ein Weg, den es noch zu erkunden gilt. Bisherige Erfahrungen helfen zu erkennen, was Klarheit braucht.",
+          "Die Zukunftskarte „{card}“ verschließt keine Tür. Sie lädt vielmehr ein, eine Chance auf besseres Verständnis der Beziehung zu erkennen."
+        ],
+        "work": [
+          "„{card}“ als Zukunftskarte betont eine Spannung, die bleiben könnte, falls sich nichts ändert. Vergangenheit und Gegenwart helfen, ihr ohne Angst zu begegnen.",
+          "Die mögliche Entwicklung mit „{card}“ verlangt Aufmerksamkeit. Eine Schwierigkeit in der Beziehung sollte benannt werden, ohne sie für unvermeidbar zu halten."
+        ]
+      },
+      "sca": {
+        "up": [
+          "Als Rat gibt „{card}“ der Deutung eine günstige Richtung. Zuversicht und Ehrlichkeit können eine ausgewogenere Verbindung fördern.",
+          "Mit „{card}“ als Rat finden Situation und Herausforderung einen ermutigenden Ansatz. Diesen Schwung kannst du pflegen, ohne darin ein Versprechen zu sehen."
+        ],
+        "open": [
+          "„{card}“ als Rat lädt ein, eine noch offene Beziehungsmöglichkeit zu erkunden. Gerechte Worte oder ein neuer Blick können helfen.",
+          "Der Rat von „{card}“ eröffnet Raum für Anpassung in der Beziehung. Die Legung fördert Neugier statt vorschneller Schlüsse."
+        ],
+        "work": [
+          "Mit „{card}“ als Rat lenkt die Legung den Blick auf das, was Gespräche erschwert. Diese Schwierigkeit kann Ausgangspunkt neuer Klarheit sein.",
+          "„{card}“ als Rat zeigt ein emotionales Muster, das Aufmerksamkeit braucht. Zu erkennen, was die Beziehung belastet, hilft beim Nachdenken."
+        ]
+      },
+      "six": {
+        "up": [
+          "Über sechs Stationen zeigt die Legung eine insgesamt günstige Dynamik in der Liebe. Die Karten deuten an, dass Vertrauen und Wärme durch bewusste Entscheidungen wachsen können.",
+          "Die Deutung der sechs Monate zeigt ermutigenden Schwung in der Liebe. Traditionell lohnt es sich, Ehrlichkeit und Gegenseitigkeit zu pflegen, ohne Gewissheit zu erwarten."
+        ],
+        "open": [
+          "Die sechs Monate zeigen mögliche Chancen in deinen Beziehungen. Jede Etappe lädt dazu ein, Erwartungen anzupassen, statt ein festes Ergebnis vorherzusagen.",
+          "Dieser Weg durch sechs Karten eröffnet Möglichkeiten in der Liebe. Gegenseitiges Verständnis kann den roten Faden der Legung bilden."
+        ],
+        "work": [
+          "Über sechs Monate hinweg betont die Liebeslegung Herausforderungen, die du behutsam betrachten kannst. Die Karten laden zu Klarheit ein, ohne Trennung oder einen festen Ausgang anzukündigen.",
+          "Die sechs Karten zeichnen eine anspruchsvolle, aber offene Liebesdynamik. Spannungen und Bedürfnisse zu erkennen kann einen bewussteren Weg unterstützen."
+        ]
+      }
+    },
+    "work": {
+      "one": {
+        "up": [
+          "Mit „{card}“ deutet die Legung zu Beruf und Finanzen auf günstigen Schwung für ein Projekt oder Können hin. Traditionell ist Fortschritt möglich, niemals garantiert.",
+          "„{card}“ gibt deinen Tätigkeiten und Mitteln eine konstruktive Richtung. Vielleicht bietet sich die Chance, deine Bemühungen sichtbar zu machen, ohne Erfolgsgarantie."
+        ],
+        "open": [
+          "„{card}“ zeigt eine Möglichkeit, die du bei deinen Vorhaben oder Ressourcen prüfen kannst. Entscheidend sind die offenen Fragen, nicht ein versprochener Erfolg.",
+          "Mit „{card}“ betont die Legung zu Beruf und Finanzen einen noch unklaren Weg. Vorhandene Mittel zu prüfen kann die Überlegungen bereichern."
+        ],
+        "work": [
+          "„{card}“ weist auf eine Herausforderung bei der Arbeit oder den Ressourcen hin. Die Deutung lädt dazu ein, eine Schwierigkeit ohne sichere Verlustprognose zu erkennen.",
+          "Mit „{card}“ fordert die Legung Klarheit über eine berufliche oder materielle Hürde. Geordnete Prioritäten können helfen, das Thema zu verstehen."
+        ]
+      },
+      "three": {
+        "up": [
+          "Mit „{card}“ als Zukunftskarte steht traditionell ein Projekt im Raum, das wachsen oder Anerkennung finden könnte. Diese Perspektive bleibt offen.",
+          "„{card}“ als Zukunftskarte gibt dem beruflichen Weg einen günstigen symbolischen Ausgang. Bisherige Mühen könnten sich auszahlen, wenn sich der Schwung bestätigt."
+        ],
+        "open": [
+          "Mit „{card}“ als Zukunftskarte deutet die berufliche Entwicklung auf eine Chance hin, die zu prüfen ist, statt auf ein sicheres Ergebnis. Vergangenes und Gegenwärtiges helfen dabei.",
+          "Die Zukunftskarte „{card}“ zeigt eine offene Möglichkeit bei Vorhaben oder Ressourcen. Mehr Informationen können ihre Bedeutung klären."
+        ],
+        "work": [
+          "„{card}“ als Zukunftskarte betont ein Hindernis, das bleiben könnte, wenn die Dynamik unverändert bleibt. Die Legung lädt dazu ein, seine Ursachen zu verstehen.",
+          "Mit „{card}“ als Zukunftskarte zeigt die Legung zu Beruf und Finanzen einen zu bearbeitenden Punkt. Sie kündigt weder sichere Verluste noch Scheitern an."
+        ]
+      },
+      "sca": {
+        "up": [
+          "„{card}“ als Rat bietet eine günstige Stütze für deine Vorhaben. Die Deutung zeigt, was methodisches und selbstbewusstes Handeln fördern könnte.",
+          "Mit „{card}“ als Rat führen Situation und Herausforderung zu einem konstruktiven Ansatz. Die Legung ermutigt, deine Fähigkeiten einzusetzen."
+        ],
+        "open": [
+          "„{card}“ als Rat eröffnet neue Möglichkeiten, Arbeit zu organisieren oder mit Ressourcen umzugehen. Diese Chance verdient eine ruhige Prüfung.",
+          "Mit „{card}“ als Rat zeigen Situation und Herausforderung einen Weg zum Erkunden. Es geht um Verständnis der Optionen, nicht um eine Entscheidung für dich."
+        ],
+        "work": [
+          "„{card}“ als Rat macht eine berufliche oder materielle Hürde sichtbar. Ihre Ursachen zu verstehen kann mehr Einfluss auf die Lage geben.",
+          "Mit „{card}“ als Rat betont die Legung eine Herausforderung, die Aufmerksamkeit braucht. Die Karten bieten einen Blickwinkel, keine Finanzanweisung."
+        ]
+      },
+      "six": {
+        "up": [
+          "Die sechsmonatige Legung deutet auf einen insgesamt günstigen Weg für Vorhaben und ihre Festigung hin. Fortschritt ist möglich, ohne materielle Ergebnisse zu garantieren.",
+          "In diesen sechs Etappen zeigt sich konstruktiver Schwung bei Arbeit und Ressourcen. Traditionell gilt es, Fähigkeiten mit Augenmaß zu entfalten."
+        ],
+        "open": [
+          "Die sechs Karten zeigen Möglichkeiten im beruflichen oder materiellen Bereich. Ihr Wert liegt darin, Chancen zu verstehen, ohne ihren Ausgang vorwegzunehmen.",
+          "Der Weg über sechs Monate betont mehrere mögliche Öffnungen. Deine Entscheidungen und die Umstände bleiben wichtig für ihre Deutung."
+        ],
+        "work": [
+          "Die sechs Monate lenken den Blick auf Schwierigkeiten in Organisation und Prioritäten. Die Karten laden zu einer nüchternen Betrachtung ein, ohne unausweichliche Rückschläge anzukündigen.",
+          "Bei Beruf und Finanzen zeigen die sechs Etappen Anpassungsbedarf. Die Legung bietet symbolische Orientierung, keine finanzielle Vorhersage."
+        ]
+      }
+    },
+    "self": {
+      "one": {
+        "up": [
+          "Mit „{card}“ erhält dein persönliches Leben einen günstigen Impuls. Traditionell kann eine innere Stärke oder eine Verbindung zu Nahestehenden wachsen.",
+          "„{card}“ gibt deinem Weg einen ermutigenden Ton. Ein freierer, zuversichtlicherer Umgang mit deinen Entscheidungen scheint möglich."
+        ],
+        "open": [
+          "„{card}“ eröffnet eine lohnende Frage für dein persönliches Gleichgewicht. Ein neuer Blick auf Gewohnheiten oder Nahestehende kann dich bereichern.",
+          "Mit „{card}“ zeigt die Legung eine Möglichkeit, dich besser kennenzulernen. Der Weg steht offen und hängt davon ab, was du darin erkennst."
+        ],
+        "work": [
+          "„{card}“ lenkt den Blick auf eine innere oder zwischenmenschliche Schwierigkeit. Die Deutung lädt dazu ein, sie zu erkunden, ohne dich darauf zu reduzieren.",
+          "Mit „{card}“ verdient dein persönliches Leben genauere Beachtung. Was dich hemmt zu erkennen kann selbst gewählten Wandel ermöglichen."
+        ]
+      },
+      "three": {
+        "up": [
+          "Mit „{card}“ als Zukunftskarte zeigt sich traditionell die Chance auf persönliche Entfaltung. Vergangenheit und Gegenwart stützen diesen Schwung, ohne ihn sicher zu machen.",
+          "„{card}“ als Zukunftskarte zeigt eine günstige Möglichkeit in deiner Beziehung zu dir selbst oder zu Nahestehenden. Die Legung deutet Potenzial an, kein Ergebnis."
+        ],
+        "open": [
+          "Mit „{card}“ als Zukunftskarte zeigt sich eine Möglichkeit für persönliches Wachstum, ohne festzustehen. Dein bisheriger Weg beleuchtet, was noch reifen muss.",
+          "Die Zukunftskarte „{card}“ lädt ein, deine Bedürfnisse neu zu verstehen. Wie es weitergeht, hängt auch von deinen offenen Entscheidungen ab."
+        ],
+        "work": [
+          "„{card}“ als Zukunftskarte betont eine persönliche Schwierigkeit, die ohne Veränderung fortbestehen könnte. Die Geschichte der Legung hilft, sie ohne Urteil anzusehen.",
+          "Mit „{card}“ als Zukunftskarte deutet die Legung auf eine Herausforderung hin. Sie macht daraus weder ein Etikett noch einen sicheren Ausgang."
+        ]
+      },
+      "sca": {
+        "up": [
+          "„{card}“ als Rat zeigt eine ermutigende Richtung für dein persönliches Leben. Die Legung regt an, auf eine bereits vorhandene Stärke zu bauen.",
+          "Mit „{card}“ als Rat erhalten Situation und Herausforderung eine günstige symbolische Perspektive: Ein gelassenerer Weg wird denkbar."
+        ],
+        "open": [
+          "„{card}“ als Rat eröffnet eine Möglichkeit, Bedürfnisse und Beziehungen zu Nahestehenden besser zu vereinen. Ein neuer Blickwinkel kann helfen.",
+          "Der Rat von „{card}“ fördert Erkundung statt endgültiger Antworten. Dein Weg bleibt von deinen Entscheidungen geprägt."
+        ],
+        "work": [
+          "„{card}“ als Rat zeigt eine Gewohnheit oder innere Spannung, an der du arbeiten kannst. Das Muster zu erkennen nimmt ihm bereits etwas Macht.",
+          "Mit „{card}“ als Rat lädt die Legung ein, eine persönliche Schwierigkeit ehrlich und sanft zu betrachten. Perfektion und Eile sind nicht nötig."
+        ]
+      },
+      "six": {
+        "up": [
+          "Über sechs Stationen zeigt sich eine günstige Dynamik für persönliche Entfaltung. Die Karten laden ein, innere Stärken und frei gewählte Beziehungen zu entwickeln.",
+          "Die Deutung der sechs Monate deutet auf ermutigenden persönlichen Schwung hin. Gleichgewicht und Vertrauen können durch bewusste Entscheidungen wachsen."
+        ],
+        "open": [
+          "Die sechs Karten eröffnen Möglichkeiten, Wünsche und Beziehungen besser zu verstehen. Jede Etappe lädt zum Erkunden ein, statt etwas anzukündigen.",
+          "Die symbolischen sechs Monate lassen Raum für innere Veränderung. Die Deutung lädt ein, Nuancen anzunehmen, ohne sofort alles lösen zu wollen."
+        ],
+        "work": [
+          "Die sechs Monate betonen persönliche Schwierigkeiten, die du ohne Selbstvorwurf betrachten kannst. Die Karten bieten Anregungen, keinen vorgeschriebenen Weg.",
+          "Diese Legung mit sechs Stationen zeigt Gewohnheiten oder Spannungen, die Aufmerksamkeit brauchen. Entwicklung bleibt möglich, auch in anspruchsvollen Phasen."
+        ]
+      }
+    }
+  }
+}

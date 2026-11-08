@@ -1651,6 +1651,49 @@
     }
   });
 
+  section('Tarot par thème');
+  test('Tarot par thème : textes des 14 langues (78 cartes × 3 thèmes, positions, combinaisons, synthèses)', () => {
+    const langs = ['fr', 'en', 'es', 'pt', 'it', 'de', 'tr', 'ru', 'ar', 'hi', 'th', 'zh', 'ja', 'ko'], latin = ['fr', 'en', 'es', 'pt', 'it', 'de', 'tr'];
+    const shape = o => Array.isArray(o) ? `[${o.length}]` : (o && typeof o === 'object') ? '{' + Object.keys(o).map(k => k + ':' + shape(o[k])).join(',') + '}' : typeof o;
+    const flat = (o, p = '', out = {}) => { if (typeof o === 'string') out[p] = o; else for (const k of Object.keys(o)) flat(o[k], p + '.' + k, out); return out; };
+    const fr = window.TAROT_THEMES_I18N.fr, frFlat = flat(fr), marks = v => (v.match(/\{[a-z]+\}/g) || []).sort().join();
+    assertEq(Object.keys(fr.cards).sort().join(), TAROT_ALL_KEYS.slice().sort().join(), '78 cartes');
+    for (const k of TAROT_ALL_KEYS) for (const th of ['love', 'work', 'self']) assert(fr.cards[k][th].up && fr.cards[k][th].rev, `${k}.${th}`);
+    assertEq(Object.keys(fr.combos).length, 40, '40 combinaisons');
+    for (const k of Object.keys(fr.combos)) assert(k.split('+').every(c => TAROT_ALL_KEYS.includes(c)), `combinaison ${k}`);
+    for (const lang of langs) {
+      const d = window.TAROT_THEMES_I18N[lang], u = TAROT_THEMES_UI[lang];
+      assertEq(shape(d), shape(fr), `${lang} : structure`);
+      assertEq(Object.keys(u).join(), 'label,general,love,work,self,reading,chosen', `${lang} : libellés`);
+      for (const [k, v] of Object.entries(flat(d))) {
+        assertEq(marks(v), marks(frFlat[k]), `${lang}${k} : repères`);
+        if (latin.includes(lang)) assert(!/’/.test(v), `${lang}${k} : apostrophe courbe`);
+        if (lang === 'th') assert(!/[:：]/.test(v) && !/\.$/.test(v), `thaï ${k}`);
+      }
+    }
+  });
+
+  test('Tarot par thème : récit « Votre lecture », combinaisons, synthèse du thème, thème gardé avec le tirage', () => {
+    const R = (cards, theme, rev) => ({ cards, reversed: rev || cards.map(() => false), revealed: cards.map(() => true), question: '', theme });
+    const t = I18N.fr, d = window.TAROT_THEMES_I18N.fr;
+    for (const theme of SPREAD_THEMES) for (const type of SPREAD_TYPES) {
+      const cards = ['moon', 'swords_7', 'empress', 'sun', 'tower', 'cups_3'].slice(0, SPREAD_SIZE[type]);
+      const html = spreadStoryHtml(t, 'ws', type, R(cards, theme), type === 'six' ? '2026-11' : '2026-11-08');
+      const lines = html.match(/class="story-line"/g) || [];
+      assertEq(lines.length, SPREAD_SIZE[type], `${theme} ${type} : une phrase par carte`);
+      assert(!/[{}]/.test(html), `${theme} ${type} : repère non remplacé`);
+      if (theme !== 'general') assert(html.includes(escapeHtml(d.cards.empress[theme].up)) || type === 'one' || SPREAD_SIZE[type] < 3, `${theme} ${type} : sens du thème`);
+    }
+    assert(spreadStoryHtml(t, 'ws', 'three', R(['swords_7', 'sun', 'moon'], 'love'), '2026-11-08').includes('story-combo'), 'combinaison dans les deux sens');
+    assert(!spreadStoryHtml(t, 'ws', 'three', R(['sun', 'hermit', 'cups_9'], 'love'), '2026-11-08').includes('story-combo'), 'pas de combinaison');
+    assert(spreadStoryHtml(t, 'ws', 'one', R(['sun'], 'general'), '2026-11-08').includes(tarotMeaning(t, 'sun', false).text), 'question libre : sens général');
+    const sca = R(['star', 'tower', 'cups_3'], 'work'), gen = R(['star', 'tower', 'cups_3'], 'general');
+    const synthWork = spreadSynthHtml(t, 'ws', 'sca', sca, '2026-11-08');
+    assert(d.synth.work.sca.up.some(x => synthWork.includes(escapeHtml(x.split('{card}')[1] || '').slice(0, 20))), 'synthèse du thème Travail');
+    assert(synthWork !== spreadSynthHtml(t, 'ws', 'sca', gen, '2026-11-08'), 'autre synthèse qu’en question libre');
+    assertEq(themeOf('love') + themeOf(undefined) + themeOf('autre'), 'lovegeneralgeneral', 'ancien tirage sans thème : question libre');
+  });
+
   section('Changement d’heure le jour de naissance');
   test('Changement d’heure : heures sautées et vécues deux fois, partout et à toute époque', () => {
     const W = (tz, y, m, d, h, min) => JSON.stringify(wallTimeInfo({ y, m, d }, h, min, tz));

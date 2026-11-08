@@ -1,0 +1,1494 @@
+{
+  "lang": "pt",
+  "ui": {
+    "label": "Tema da tiragem",
+    "general": "Pergunta livre",
+    "love": "Amor",
+    "work": "Trabalho e dinheiro",
+    "self": "Vida pessoal",
+    "reading": "Sua leitura",
+    "chosen": "Tema: {theme}"
+  },
+  "cards": {
+    "fool": {
+      "love": {
+        "up": "Um impulso espontâneo abre espaço para descobertas na relação. A tradição vê aqui o frescor de um vínculo que avança melhor sem um roteiro imposto.",
+        "rev": "O entusiasmo pode esconder expectativas diferentes. Dar nome a elas ajuda a não confundir liberdade com fuga."
+      },
+      "work": {
+        "up": "Uma nova iniciativa traz um sopro favorável. Explorar possibilidades sem querer dominar tudo pode revelar capacidades inesperadas.",
+        "rev": "A vontade de começar depressa pode deixar detalhes de lado. Esclarecer as condições torna a ousadia mais construtiva."
+      },
+      "self": {
+        "up": "Sair da rotina convida você a descobrir outra faceta de si. O primeiro passo importa mais do que um percurso perfeito.",
+        "rev": "Buscar liberdade sem referências pode dispersar sua energia. Escolher o que realmente merece atenção ajuda a seguir em frente."
+      }
+    },
+    "magician": {
+      "love": {
+        "up": "A comunicação e a iniciativa favorecem um encontro sincero de intenções. Seus recursos afetivos podem alimentar uma troca viva.",
+        "rev": "O charme e as belas promessas não bastam para criar confiança. É preciso observar a coerência entre palavras e atitudes."
+      },
+      "work": {
+        "up": "Habilidades, ferramentas e vontade parecem prontas para se unir. A tradição sugere condições propícias para concretizar uma ideia.",
+        "rev": "Um talento mal direcionado ou intenções pouco claras podem confundir o projeto. Convém definir o que cada pessoa pode oferecer."
+      },
+      "self": {
+        "up": "Você dispõe de recursos talvez subestimados para iniciar uma mudança escolhida. Colocá-los em prática pode fortalecer sua confiança.",
+        "rev": "Demonstrar capacidade não dispensa saber por que agir. Recuperar uma intenção sincera evita que você se perca nas aparências."
+      }
+    },
+    "priestess": {
+      "love": {
+        "up": "Uma escuta profunda e sentimentos ainda discretos convidam a respeitar o ritmo do vínculo. Nem tudo se revela de imediato.",
+        "rev": "O que não é dito pode dificultar o entendimento mútuo. Abrir espaço para conversar ajuda a distinguir intuição de suposição."
+      },
+      "work": {
+        "up": "Observar e conhecer o contexto abre um caminho útil. Aquilo que ainda não foi expresso merece atenção paciente.",
+        "rev": "Informações omitidas ou uma intuição ignorada podem limitar a compreensão da situação. Esclarecer pontos nebulosos faz diferença."
+      },
+      "self": {
+        "up": "Sua vida interior guarda uma sabedoria que merece ser ouvida sem pressa. Um momento de recolhimento pode trazer nova compreensão.",
+        "rev": "O recolhimento pode silenciar suas próprias necessidades. Dar palavras ao que você sente ajuda a recuperar sua voz."
+      }
+    },
+    "empress": {
+      "love": {
+        "up": "Carinho, criatividade e prazer em compartilhar favorecem o florescimento do vínculo. O afeto expresso livremente pode crescer.",
+        "rev": "A oportunidade está em equilibrar melhor dar e receber. Cuidar da relação sem assumir tudo deixa espaço para os dois."
+      },
+      "work": {
+        "up": "Uma ideia fértil pode crescer por meio do diálogo e da criatividade. A tradição evoca um momento propício para amadurecer um projeto.",
+        "rev": "Uma criatividade contida convida a rever as condições para expressá-la. Novos olhares podem reanimar algo que estava parado."
+      },
+      "self": {
+        "up": "Sua capacidade de criar e cuidar do que importa favorece a realização pessoal. Valorize também seus próprios desejos.",
+        "rev": "Dar espaço demais às expectativas alheias pode sufocar seu impulso. Surge a oportunidade de redescobrir sua forma de criar."
+      }
+    },
+    "emperor": {
+      "love": {
+        "up": "Estabilidade, constância e compromissos claros oferecem uma boa base às relações. A segurança afetiva também se constrói com ações.",
+        "rev": "Querer organizar tudo pode limitar a liberdade de cada um. Flexibilizar as regras do vínculo ajuda a preservar sua solidez."
+      },
+      "work": {
+        "up": "Uma estrutura clara e responsabilidades assumidas sustentam o progresso. O projeto ganha firmeza quando cada pessoa conhece seu papel.",
+        "rev": "O controle excessivo pode frear iniciativas. Dividir responsabilidades pode fortalecer aquilo que você procura estabilizar."
+      },
+      "self": {
+        "up": "Definir limites e prioridades ajuda a construir uma estrutura que combine com você. A disciplina pode ser apoio, não prisão.",
+        "rev": "Exigências rígidas demais podem afastar você de suas reais necessidades. Rever suas próprias regras abre um caminho mais flexível."
+      }
+    },
+    "hierophant": {
+      "love": {
+        "up": "Valores compartilhados e confiança construída com o tempo abrem uma possibilidade de aproximação. Vale conversar sobre o sentido do vínculo.",
+        "rev": "Modelos herdados nem sempre correspondem à sua forma de amar. Você pode escolher conscientemente os compromissos que fazem sentido."
+      },
+      "work": {
+        "up": "A experiência de alguém que orienta, um método consolidado ou o aprendizado coletivo podem ajudar numa decisão importante.",
+        "rev": "Repensar uma regra ou um hábito profissional abre possibilidades. Guardar o que ensina, sem aceitar o restante por obrigação, favorece a evolução."
+      },
+      "self": {
+        "up": "Refletir sobre seus valores e o que deseja transmitir pode iluminar seu caminho. Um ensinamento talvez ganhe novo significado.",
+        "rev": "Uma crença antiga pode ser revista sem negar sua história. A abertura está em escolher seus valores de referência, em vez de apenas segui-los."
+      }
+    },
+    "lovers": {
+      "love": {
+        "up": "Uma escolha do coração e uma afinidade sincera dão impulso ao vínculo. A tradição ressalta a harmonia possível entre desejo e valores.",
+        "rev": "A hesitação ou expectativas divergentes podem dificultar a harmonia. Dizer o que realmente importa ajuda a escolher com liberdade."
+      },
+      "work": {
+        "up": "Uma parceria ou escolha alinhada aos seus valores favorece um compromisso motivador. A qualidade do diálogo pode fazer a diferença.",
+        "rev": "Duas direções atraentes podem dividir seus esforços. Definir critérios próprios ajuda a superar uma decisão tomada apenas para agradar."
+      },
+      "self": {
+        "up": "Você pode aproximar suas convicções das suas ações. Uma escolha assumida, e não imposta, favorece sua realização pessoal.",
+        "rev": "Desejos contraditórios precisam ser reconhecidos. Buscar um acordo consigo ajuda a não viver de acordo com a escolha de outra pessoa."
+      }
+    },
+    "chariot": {
+      "love": {
+        "up": "Uma vontade compartilhada pode fazer avançar um projeto a dois. O impulso é favorável quando cada pessoa participa da direção escolhida.",
+        "rev": "Querer apressar o passo ou decidir sozinho fragiliza o entendimento. Respeitar o ritmo do outro ajuda a reencontrar um rumo comum."
+      },
+      "work": {
+        "up": "Determinação e controle dos esforços sustentam o avanço de um projeto. A tradição associa esta carta a uma conquista merecida.",
+        "rev": "Iniciativas dispersas ou a tentativa de forçar resultados dificultam o caminho. Reunir esforços em torno de um rumo claro é essencial."
+      },
+      "self": {
+        "up": "Você pode retomar as rédeas de uma escolha pessoal com confiança. Administrar sua energia importa tanto quanto colocá-la em ação.",
+        "rev": "A vontade de controlar tudo pode afastar você do seu rumo mais profundo. Rever prioridades devolve sentido ao movimento."
+      }
+    },
+    "strength": {
+      "love": {
+        "up": "Paciência, delicadeza e coragem tranquila sustentam os laços. Uma palavra gentil pode acalmar o que o confronto agravaria.",
+        "rev": "Uma sensibilidade posta à prova abre espaço para estabelecer limites com calma. A verdadeira força não precisa se impor."
+      },
+      "work": {
+        "up": "Autocontrole e perseverança flexível podem ajudar a superar um impasse. Convencer com constância vale mais do que pressionar.",
+        "rev": "Uma falta passageira de confiança convida a reconhecer seus recursos. Há espaço para se reerguer sem tentar dominar tudo."
+      },
+      "self": {
+        "up": "Lidar com suas reações com gentileza revela uma força interior duradoura. A coragem também pode ser serena.",
+        "rev": "A abertura está numa relação mais gentil com suas exigências. Aceitar um momento de fragilidade não diminui seu valor."
+      }
+    },
+    "hermit": {
+      "love": {
+        "up": "Um tempo para refletir pode ajudar a distinguir necessidade de intimidade e necessidade de espaço. O vínculo se beneficia desse respeito.",
+        "rev": "Afastar-se sem explicar o que acontece pode aumentar a distância. Uma conversa simples ajuda a romper o silêncio."
+      },
+      "work": {
+        "up": "Uma pesquisa paciente ou a visão de alguém experiente pode esclarecer um projeto. O distanciamento abre caminho para mais domínio.",
+        "rev": "Enfrentar todas as questões sozinho pode adiar uma troca valiosa. Compartilhar uma reflexão inacabada também pode ajudar."
+      },
+      "self": {
+        "up": "Um momento de solitude escolhida favorece a descoberta dos seus valores profundos. Às vezes, o sentido aparece devagar.",
+        "rev": "A introspecção pode girar em círculos quando afasta você das pessoas. Um vínculo de confiança pode renovar seu olhar."
+      }
+    },
+    "wheel": {
+      "love": {
+        "up": "Uma mudança na dinâmica pode renovar as trocas afetivas. Receber o inesperado com flexibilidade favorece uma evolução positiva.",
+        "rev": "Uma fase instável pode tornar as expectativas incertas. Reconhecer o que depende de você ajuda a lidar com as mudanças."
+      },
+      "work": {
+        "up": "Uma alteração no contexto pode revelar uma oportunidade favorável. A tradição convida à atenção, sem tratar possibilidades como garantias.",
+        "rev": "Reviravoltas ou dificuldades para acompanhar o ritmo pedem adaptação. Retomar o que está ao seu alcance oferece apoio."
+      },
+      "self": {
+        "up": "Talvez você esteja vivendo uma fase de renovação. Aceitar que nem tudo é fixo pode ampliar suas possibilidades.",
+        "rev": "Resistir a um ciclo de mudanças pode alimentar frustração. Identificar as escolhas que ainda existem ajuda a recuperar a flexibilidade."
+      }
+    },
+    "justice": {
+      "love": {
+        "up": "Expectativas claras e respeito mútuo abrem caminho para relações mais equilibradas. Uma conversa honesta pode restaurar a confiança.",
+        "rev": "Um desequilíbrio merece ser reconhecido com lucidez. Rever o que é justo para cada um abre espaço para o diálogo."
+      },
+      "work": {
+        "up": "Uma avaliação justa e critérios transparentes ajudam a esclarecer responsabilidades. Decisões coerentes importam mais do que impressões.",
+        "rev": "Uma decisão adiada ou critérios desiguais complicam a situação. Esclarecer os fatos e as responsabilidades continua sendo essencial."
+      },
+      "self": {
+        "up": "Olhar para suas ações com honestidade abre a possibilidade de escolhas mais justas com você e com quem está perto.",
+        "rev": "Um julgamento severo demais ou uma responsabilidade evitada pede reflexão sincera. O equilíbrio pode ser reconstruído sem condenações."
+      }
+    },
+    "hangedman": {
+      "love": {
+        "up": "Uma pausa ou mudança de perspectiva pode iluminar a relação de outro modo. A escuta abre portas que a insistência não abre.",
+        "rev": "Uma espera prolongada sem conversa clara pode deixar o vínculo parado. Pensar no que você pode expressar ajuda a mudar isso."
+      },
+      "work": {
+        "up": "Uma interrupção ou novo olhar oferece a chance de rever um método. O que parece imóvel pode revelar outra lógica.",
+        "rev": "Um projeto suspenso pode esconder uma decisão adiada. Distinguir paciência útil de resignação passiva ajuda a recuperar iniciativa."
+      },
+      "self": {
+        "up": "Aceitar ver a situação por outro ângulo pode transformar sua relação com as expectativas. Desapegar-se torna-se um recurso.",
+        "rev": "Sacrifícios repetidos sem propósito claro podem esgotar você. Reavaliar o que carrega abre caminho para uma escolha mais livre."
+      }
+    },
+    "death": {
+      "love": {
+        "up": "O fim de uma antiga maneira de viver a relação pode abrir uma transformação fértil. Criar outro equilíbrio exige sinceridade.",
+        "rev": "Apegar-se à forma anterior do vínculo pode impedir sua evolução. Reconhecer o que está mudando ajuda a seguir sem forçar."
+      },
+      "work": {
+        "up": "Uma transição importante convida a deixar para trás um método que já não serve tão bem. Esse encerramento pode abrir novo impulso.",
+        "rev": "Uma mudança necessária pode encontrar resistência. Examinar o que precisa evoluir ajuda a não prolongar um impasse."
+      },
+      "self": {
+        "up": "Uma etapa interior pode se encerrar e dar lugar a uma nova maneira de se definir. A transformação aqui é simbólica.",
+        "rev": "Apegar-se a uma antiga imagem de si dificulta a mudança. Aceitar o que chega ao fim permite renovar-se."
+      }
+    },
+    "temperance": {
+      "love": {
+        "up": "Diálogo, paciência e ajustes mútuos sustentam a harmonia da relação. A tradição evoca um entendimento cultivado aos poucos.",
+        "rev": "Um descompasso abre a oportunidade de retomar o diálogo. Atitudes ponderadas podem aproximar ritmos diferentes."
+      },
+      "work": {
+        "up": "Cooperação e ritmo equilibrado favorecem o progresso. Unir as habilidades de cada pessoa pode tornar o projeto mais fluido.",
+        "rev": "Uma organização desequilibrada convida a redistribuir esforços. Um método mais flexível pode facilitar a colaboração."
+      },
+      "self": {
+        "up": "Conciliar necessidades e obrigações favorece a serenidade. Pequenos ajustes importam tanto quanto grandes decisões.",
+        "rev": "Surge a oportunidade de recuperar sua medida. Acolher impulsos diferentes sem colocá-los em oposição pode trazer serenidade."
+      }
+    },
+    "devil": {
+      "love": {
+        "up": "Uma atração intensa pode se misturar a padrões de controle ou dependência. Reconhecê-los ajuda a preservar a liberdade do vínculo.",
+        "rev": "Reconhecer um apego pesado abre a possibilidade de se libertar dele. A relação ganha quando cada pessoa escolhe seu lugar livremente."
+      },
+      "work": {
+        "up": "Uma ambição dominante ou disputa de poder pode confundir prioridades. Distinguir vontade de vencer de controle excessivo ajuda.",
+        "rev": "Surge a oportunidade de deixar uma pressão ou hábito que limita escolhas. Recuperar seus critérios traz mais autonomia."
+      },
+      "self": {
+        "up": "Um desejo que virou obrigação convida a observar o que prende você. Reconhecer esses apegos é um passo rumo à liberdade.",
+        "rev": "Um automatismo perde força quando se torna visível. Você pode reavaliar um apego sem se julgar."
+      }
+    },
+    "tower": {
+      "love": {
+        "up": "Uma certeza sobre a relação pode ser questionada. Acolher o que vem à tona permite reconstruir com palavras mais autênticas.",
+        "rev": "Depois de uma percepção desconcertante, a abertura está em reconstruir sem tentar recuperar a antiga fachada a qualquer custo."
+      },
+      "work": {
+        "up": "Uma organização frágil pode revelar seus limites. Encarar os fatos ajuda a repensar bases mais sólidas.",
+        "rev": "Uma revisão já iniciada abre caminho para a reconstrução. Torna-se possível dar espaço a novas soluções."
+      },
+      "self": {
+        "up": "Uma antiga crença sobre si pode perder sustentação. Essa reviravolta simbólica convida a redefinir o que apoia você.",
+        "rev": "A abertura está na liberdade de reconstruir após uma descoberta. Você não precisa manter uma imagem de si que já ficou estreita."
+      }
+    },
+    "star": {
+      "love": {
+        "up": "Confiança, delicadeza e sinceridade favorecem uma relação mais tranquila. A esperança pode voltar sem exigir garantias.",
+        "rev": "Uma confiança vacilante abre a possibilidade de reencontrar suas aspirações. Pequenos gestos sinceros podem iluminar o vínculo."
+      },
+      "work": {
+        "up": "Uma perspectiva inspiradora devolve sentido aos esforços. A tradição associa esta carta à esperança e ao avanço fiel aos seus valores.",
+        "rev": "Uma motivação enfraquecida pode reencontrar direção. A oportunidade é reconhecer os recursos e apoios que já existem."
+      },
+      "self": {
+        "up": "Uma confiança serena no seu caminho pode renascer. Acolher suas aspirações com simplicidade favorece a paz interior.",
+        "rev": "Um momento de dúvida abre a chance de redescobrir o que realmente inspira você. A esperança se reconstrói aos poucos."
+      }
+    },
+    "moon": {
+      "love": {
+        "up": "Emoções intensas e impressões incertas podem dificultar a leitura do vínculo. Distinguir sentimentos de fatos ajuda a recuperar clareza.",
+        "rev": "Aquilo que não foi dito pode começar a ser esclarecido. Fazer uma pergunta simples, em vez de imaginar a resposta, abre diálogo."
+      },
+      "work": {
+        "up": "Uma situação ambígua pode misturar intuição e mal-entendidos. Conferir as informações evita conclusões precipitadas.",
+        "rev": "Quando a confusão começa a se dissipar, surge a oportunidade de esclarecer expectativas e dar mais precisão às decisões."
+      },
+      "self": {
+        "up": "Imaginação e emoções trazem profundidade à sua vida interior. Elas também precisam de referências concretas.",
+        "rev": "Receios indefinidos podem encontrar palavras. Essa abertura ajuda a distinguir o que você sente daquilo que sabe."
+      }
+    },
+    "sun": {
+      "love": {
+        "up": "Alegria compartilhada, franqueza e afeto dão um impulso favorável à relação. A tradição evoca uma cumplicidade luminosa e assumida.",
+        "rev": "Uma alegria discreta pode voltar quando você deixa de esperar um ideal perfeito. A abertura está na simplicidade recuperada."
+      },
+      "work": {
+        "up": "Clareza, cooperação e reconhecimento dos esforços sustentam o projeto. Uma conquista pode surgir se o trabalho encontrar seu lugar.",
+        "rev": "Uma satisfação pouco visível abre a possibilidade de reconhecer melhor os progressos e compartilhar as conquistas."
+      },
+      "self": {
+        "up": "Sua confiança e alegria de viver podem se expressar com simplicidade. Perceber claramente seus avanços fortalece esse impulso.",
+        "rev": "Uma confiança que busca renascer encontra abertura nos prazeres cotidianos e numa imagem de si mais acolhedora."
+      }
+    },
+    "judgement": {
+      "love": {
+        "up": "Uma tomada de consciência pode renovar a maneira como vocês se entendem. Dizer o que mudou abre um caminho mais justo.",
+        "rev": "Uma conversa ou avaliação evitada pode prender a relação a uma história antiga. Reconhecer o que pede resposta ajuda a avançar."
+      },
+      "work": {
+        "up": "Uma avaliação lúcida pode revelar competências e novos rumos. A tradição evoca um chamado a assumir uma posição clara.",
+        "rev": "Uma decisão adiada há muito tempo pede atenção. Evitar o balanço pode impedir o reconhecimento de uma mudança necessária."
+      },
+      "self": {
+        "up": "Uma nova compreensão da sua trajetória pode dar coragem para responder ao que move você profundamente.",
+        "rev": "Um olhar fixo no passado pode sufocar novos impulsos. Rever a trajetória sem se prender a julgamentos ajuda a evoluir."
+      }
+    },
+    "world": {
+      "love": {
+        "up": "Um sentimento de harmonia e maturidade traz plenitude aos laços. A tradição evoca um ciclo afetivo que encontra coerência.",
+        "rev": "Uma etapa ainda inacabada abre a possibilidade de definir melhor o que a harmonia significa para cada pessoa."
+      },
+      "work": {
+        "up": "A conclusão de um projeto ou o reconhecimento de uma competência pode se desenhar. A tradição associa esta carta à realização.",
+        "rev": "Uma conquista parcial abre espaço para unir as últimas partes do projeto e reconhecer o caminho já percorrido."
+      },
+      "self": {
+        "up": "Uma experiência encontra seu lugar num conjunto maior. Você pode reconhecer o que já viveu e sentir-se mais em sintonia consigo.",
+        "rev": "Uma sensação de incompletude abre caminho para integrar melhor suas experiências, sem exigir perfeição."
+      }
+    },
+    "wands_ace": {
+      "love": {
+        "up": "Uma nova atração pode despertar o desejo de compartilhar e ousar mais. Esse impulso ganha ao respeitar o ritmo de cada pessoa.",
+        "rev": "Existe vontade de aproximação, mas ainda falta uma forma de expressá-la. Uma iniciativa simples pode abrir esse espaço."
+      },
+      "work": {
+        "up": "Uma ideia estimulante sugere um começo promissor. Direcionar essa energia para um projeto concreto pode ampliar suas possibilidades.",
+        "rev": "A inspiração parece presente, mas ainda pouco aproveitada. Reconhecer o que entusiasma você ajuda a torná-la viável."
+      },
+      "self": {
+        "up": "Um impulso criativo convida você a experimentar o que desperta interesse. Um primeiro gesto pode alimentar nova confiança.",
+        "rev": "Um desejo de renovação ainda procura seu caminho. Deixar de lado expectativas exageradas pode devolver o prazer de começar."
+      }
+    },
+    "wands_2": {
+      "love": {
+        "up": "Um projeto em comum pode ganhar força se as aspirações forem expressas com franqueza. A relação se beneficia de um horizonte compartilhado.",
+        "rev": "As possibilidades afetivas continuam abertas, mas precisam de direção. Conversar sobre expectativas pode facilitar a escolha."
+      },
+      "work": {
+        "up": "Uma visão mais ampla convida a preparar uma expansão ou um novo papel. Sua capacidade de antecipar sustenta esse impulso favorável.",
+        "rev": "Várias direções parecem possíveis, mas nenhuma está definida. Avaliar seu alcance real ajuda a avançar com confiança."
+      },
+      "self": {
+        "up": "Olhar além da rotina revela um desejo legítimo de crescer. Escolher uma perspectiva pode dar coerência aos seus esforços.",
+        "rev": "Hesitar diante do desconhecido abre uma reflexão útil sobre prioridades. Um projeto à sua medida pode tornar o futuro mais concreto."
+      }
+    },
+    "wands_3": {
+      "love": {
+        "up": "A relação pode se enriquecer com novas perspectivas e conversas sobre o futuro. A abertura ao outro amplia o caminho comum.",
+        "rev": "Uma expectativa afetiva merece ser examinada sem pressa. Ajustar esperanças ao que realmente se constrói abre possibilidades."
+      },
+      "work": {
+        "up": "Um trabalho já iniciado pode começar a mostrar potencial. A tradição associa esta carta à expansão, à cooperação e à visão ampla.",
+        "rev": "Os resultados podem exigir mais paciência do que o esperado. Rever etapas e parcerias ajuda a aproveitar oportunidades."
+      },
+      "self": {
+        "up": "Escolhas anteriores oferecem uma base para explorar novos horizontes. A confiança cresce com o que você já começou.",
+        "rev": "Uma perspectiva ainda parece distante. Relacionar conquistas e desejos pode transformar a espera numa preparação produtiva."
+      }
+    },
+    "wands_4": {
+      "love": {
+        "up": "Um clima de cumplicidade e alegria compartilhada pode fortalecer os laços. Pequenos rituais felizes dão base à relação.",
+        "rev": "Surge a chance de recuperar a convivência, mesmo que a harmonia ainda não esteja completa. Acolher sem forçar a celebração aproxima."
+      },
+      "work": {
+        "up": "Uma etapa concluída merece reconhecimento coletivo. A união da equipe pode sustentar a continuidade do projeto.",
+        "rev": "Uma conquista discreta ou um entendimento frágil pede maior reconhecimento das contribuições. Celebrar de forma simples pode unir o grupo."
+      },
+      "self": {
+        "up": "Reencontrar um lugar ou círculo em que você se sinta acolhido favorece a estabilidade interior. Pertencer pode ser uma força.",
+        "rev": "O sentimento de pertencer ainda está em construção. Renovar suas referências ou retomar vínculos familiares oferece uma abertura."
+      }
+    },
+    "wands_5": {
+      "love": {
+        "up": "Desentendimentos ou rivalidades podem ocupar espaço demais na relação. Ouvir a necessidade por trás de cada objeção ajuda a superar a disputa.",
+        "rev": "Uma tensão recorrente pode diminuir quando ninguém insiste em ter a última palavra. Assim, o diálogo recupera espaço."
+      },
+      "work": {
+        "up": "Métodos concorrentes ou trocas agitadas dificultam o progresso coletivo. Distinguir debate útil de rivalidade permite avançar.",
+        "rev": "Um conflito de ideias pode virar oportunidade de cooperação. Unir habilidades traz uma saída mais construtiva."
+      },
+      "self": {
+        "up": "Você pode estar se comparando demais com quem está perto. Reconhecer seu ritmo transforma competição em aprendizado.",
+        "rev": "Conflitos internos começam a dar lugar a uma direção mais clara. Escolher prioridades pode diminuir a dispersão."
+      }
+    },
+    "wands_6": {
+      "love": {
+        "up": "O reconhecimento mútuo traz calor à relação. Valorizar os esforços de cada pessoa alimenta a confiança compartilhada.",
+        "rev": "Uma necessidade de reconhecimento pode revelar expectativas até então silenciosas. Expressá-las abre uma chance de aproximação."
+      },
+      "work": {
+        "up": "Um trabalho visível e apreciado pode receber resposta favorável. A tradição associa esta carta ao reconhecimento e ao êxito compartilhado.",
+        "rev": "Uma contribuição pouco notada pode ser valorizada de outra forma. Mostrar conquistas sem comparações abre novas perspectivas."
+      },
+      "self": {
+        "up": "Reconhecer o caminho percorrido fortalece sua confiança. Uma conquista pessoal pode ser celebrada sem a aprovação de todos.",
+        "rev": "A opinião alheia parece pesar na sua satisfação. Retomar seus critérios de progresso oferece uma nova liberdade."
+      }
+    },
+    "wands_7": {
+      "love": {
+        "up": "Defender suas necessidades sem atacar as do outro pode consolidar o equilíbrio. A carta abre espaço para limites claros.",
+        "rev": "Uma postura sempre defensiva pode desgastar a relação. Distinguir limites necessários de disputas inúteis ajuda a se fazer ouvir."
+      },
+      "work": {
+        "up": "Uma posição conquistada merece ser defendida com discernimento. Argumentos precisos ajudam a preservar sua autonomia.",
+        "rev": "Sentir que precisa responder a todas as críticas pode isolar você. Buscar aliados e escolher suas batalhas torna-se essencial."
+      },
+      "self": {
+        "up": "Afirmar convicções diante de expectativas alheias abre espaço para a autonomia. Sua singularidade não precisa ser imposta.",
+        "rev": "A vigilância constante pode tornar as trocas pesadas. Reconhecer o apoio disponível ajuda a baixar a guarda."
+      }
+    },
+    "wands_8": {
+      "love": {
+        "up": "Uma conversa espontânea ou aguardada pode movimentar o vínculo. Mensagens claras favorecem a aproximação.",
+        "rev": "Uma comunicação lenta pede palavras simples, em vez de insistentes cobranças. A fluidez pode voltar sem pressa."
+      },
+      "work": {
+        "up": "Informações que circulam e ações coordenadas podem acelerar o projeto. Esse impulso se fortalece com um rumo claro.",
+        "rev": "Um avanço irregular abre a chance de esclarecer prioridades. Reorganizar as trocas permite recuperar movimento."
+      },
+      "self": {
+        "up": "A vontade de agir encontra um ritmo estimulante. Ao concentrar sua atenção, pequenos passos podem se somar.",
+        "rev": "Ideias chegam de todos os lados e precisam ser organizadas. A abertura está no ritmo adequado, não apenas na velocidade."
+      }
+    },
+    "wands_9": {
+      "love": {
+        "up": "Uma experiência passada leva você a proteger a relação. A confiança pode ser reconstruída com limites que transmitam segurança.",
+        "rev": "Cuidados excessivos podem manter o outro distante. Distinguir o presente das decepções antigas oferece um caminho."
+      },
+      "work": {
+        "up": "Sua perseverança ajuda a manter o rumo apesar dos obstáculos. Guardar recursos para a etapa final parece importante.",
+        "rev": "O desgaste pode tornar cada pedido mais pesado. Rever a carga e aceitar ajuda favorece a estabilidade."
+      },
+      "self": {
+        "up": "Sua resistência revela recursos interiores já postos à prova. É possível seguir em frente sem negar a necessidade de proteção.",
+        "rev": "Estar sempre em alerta pode limitar novas experiências. Permitir-se pausas ajuda a não confundir força com tensão."
+      }
+    },
+    "wands_10": {
+      "love": {
+        "up": "Sentir que você sustenta tudo na relação pode diminuir a alegria a dois. Dividir responsabilidades abre um diálogo necessário.",
+        "rev": "O alívio se torna possível quando expectativas são expressas e compartilhadas. Deixar o outro assumir sua parte traz mais leveza."
+      },
+      "work": {
+        "up": "O acúmulo de tarefas pode esconder o sentido do trabalho. Identificar o que pode ser delegado evita confundir dedicação e sobrecarga.",
+        "rev": "Redistribuir tarefas abre caminho para uma organização mais sustentável. Deixar de assumir tudo sozinho pode liberar energia."
+      },
+      "self": {
+        "up": "Tentar atender a todas as expectativas pode afastar você de seus desejos. Reconhecer limites dá mais serenidade às escolhas.",
+        "rev": "Surge a possibilidade de deixar algumas obrigações para trás. Abrir espaço para o que importa favorece um novo equilíbrio."
+      }
+    },
+    "wands_page": {
+      "love": {
+        "up": "Uma curiosidade afetiva cheia de frescor favorece conversas e descobertas. Um gesto espontâneo pode reavivar a cumplicidade.",
+        "rev": "A vontade de dizer ou tentar algo ainda busca forma. Acolher seu entusiasmo sem impaciência cria uma abertura."
+      },
+      "work": {
+        "up": "A notícia de uma ideia ou possibilidade alimenta a motivação. Experimentar com curiosidade pode revelar aptidões.",
+        "rev": "Uma iniciativa ainda hesitante merece espaço para testes. Explorar sem exigir resultados imediatos pode fortalecer a confiança."
+      },
+      "self": {
+        "up": "Uma pessoa, um aprendizado ou uma paixão pode despertar seu espírito aventureiro. O impulso está na descoberta.",
+        "rev": "Uma confiança nascente precisa de incentivo. Permitir-se aprender sem acertar tudo de primeira abre caminhos."
+      }
+    },
+    "wands_knight": {
+      "love": {
+        "up": "Uma paixão intensa movimenta os laços, desde que respeite o espaço alheio. O entusiasmo compartilhado pode ser um ponto forte.",
+        "rev": "Um impulso afetivo instável convida a distinguir desejo passageiro de intenção duradoura. A sinceridade pode orientar essa energia."
+      },
+      "work": {
+        "up": "Uma ação vigorosa favorece o avanço de um projeto ambicioso. O gosto pelo desafio pode envolver outros se o rumo for comum.",
+        "rev": "A vontade de acelerar tudo merece ser direcionada. Escolher uma tarefa específica transforma o impulso em oportunidade concreta."
+      },
+      "self": {
+        "up": "A ousadia convida você a deixar hábitos que ficaram pequenos. Esse movimento pode enriquecer suas experiências e sua confiança.",
+        "rev": "Uma agitação interior pode impulsionar mudanças se tiver intenção clara. Nem todo movimento exige uma partida."
+      }
+    },
+    "wands_queen": {
+      "love": {
+        "up": "Calor humano, franqueza e confiança em si podem tornar a relação mais viva. Cada pessoa merece brilhar à sua maneira.",
+        "rev": "Expressar seus desejos com serenidade abre maior equilíbrio. Sua presença não precisa ofuscar a do outro."
+      },
+      "work": {
+        "up": "Sua criatividade e confiança podem unir pessoas em torno de uma ideia. Uma liderança acolhedora incentiva a participação de todos.",
+        "rev": "A capacidade de liderar pode aparecer sem necessidade de controlar tudo. Reconhecer talentos próximos revela novos apoios."
+      },
+      "self": {
+        "up": "Você é convidado a confiar em sua capacidade de iniciativa. Compartilhar sua energia pode fortalecer os laços à sua volta.",
+        "rev": "Uma confiança ainda contida procura espaço. Reconhecer seu valor sem depender da aprovação alheia facilita esse movimento."
+      }
+    },
+    "wands_king": {
+      "love": {
+        "up": "Um compromisso apoiado numa visão clara pode sustentar o casal. Dar rumo aos projetos comuns sem impor o seu fortalece a confiança.",
+        "rev": "O desejo de orientar a relação pode ser positivo se respeitar a vontade do outro. O diálogo abre essa possibilidade."
+      },
+      "work": {
+        "up": "Visão, ousadia e responsabilidade se combinam favoravelmente. Uma decisão assumida pode estruturar uma iniciativa coletiva.",
+        "rev": "O projeto pode se beneficiar de uma liderança mais flexível. Delegar e ouvir propostas ajuda a mobilizar competências."
+      },
+      "self": {
+        "up": "Você pode assumir um papel de referência entre pessoas próximas. Sua confiança ganha sentido quando incentiva a autonomia delas.",
+        "rev": "Uma ambição pessoal procura limites mais justos. Conciliar vontade e escuta abre espaço para orientar sem controlar tudo."
+      }
+    },
+    "cups_ace": {
+      "love": {
+        "up": "Uma onda de carinho ou abertura do coração favorece a sinceridade. O vínculo pode se enriquecer com emoções acolhidas livremente.",
+        "rev": "Sentimentos contidos procuram uma expressão mais simples. Permitir-se falar do que toca você pode abrir uma relação mais verdadeira."
+      },
+      "work": {
+        "up": "Um clima de gentileza pode estimular a cooperação. Acolher ideias com sensibilidade ajuda a criar um projeto cheio de sentido.",
+        "rev": "Uma inspiração deixada de lado pode recuperar espaço. Aproximar seu trabalho do que motiva você abre perspectivas mais gratificantes."
+      },
+      "self": {
+        "up": "Uma renovação emocional convida a ouvir suas aspirações. Criatividade e delicadeza podem acompanhar uma fase de realização.",
+        "rev": "Uma sensibilidade há muito contida pede atenção. Reservar-lhe um espaço tranquilo pode favorecer um novo equilíbrio."
+      }
+    },
+    "cups_2": {
+      "love": {
+        "up": "A reciprocidade sincera favorece uma aproximação ou acordo afetivo. O respeito mútuo dá força à cumplicidade.",
+        "rev": "Um encontro de expectativas ainda é possível apesar de certo descompasso. Uma conversa honesta pode equilibrar dar e receber."
+      },
+      "work": {
+        "up": "Uma parceria baseada na confiança pode sustentar objetivos comuns. A cooperação abre um caminho construtivo.",
+        "rev": "Uma colaboração precisa reencontrar uma linguagem comum. Esclarecer papéis e expectativas pode facilitar um acordo."
+      },
+      "self": {
+        "up": "Um vínculo de confiança com alguém próximo pode ajudar você a se compreender. A escuta recíproca alimenta essa abertura.",
+        "rev": "Uma relação importante convida a rever o espaço de cada pessoa. Um diálogo equilibrado pode transformar hábitos."
+      }
+    },
+    "cups_3": {
+      "love": {
+        "up": "A alegria de estar com pessoas queridas pode nutrir a relação. A convivência traz um impulso favorável às trocas amorosas.",
+        "rev": "Há uma chance de renovar os vínculos em momentos simples. Dividir melhor sua atenção pode restaurar a convivência."
+      },
+      "work": {
+        "up": "A ajuda mútua e a celebração do esforço coletivo favorecem a equipe. As conquistas compartilhadas podem aumentar a motivação.",
+        "rev": "Um grupo pode recuperar a união ao reconhecer os esforços de cada pessoa. A abertura está numa convivência sincera."
+      },
+      "self": {
+        "up": "Amizades e atividades compartilhadas oferecem apoio valioso. Acolher a alegria dos outros pode enriquecer sua vida interior.",
+        "rev": "Seu lugar num círculo de amigos talvez precise ser retomado ou redefinido. Trocas autênticas abrem um caminho mais leve."
+      }
+    },
+    "cups_4": {
+      "love": {
+        "up": "Certo desânimo pode esconder os gestos de carinho já presentes. Olhar para a relação de outra forma abre espaço para novas emoções.",
+        "rev": "O afastamento ou desinteresse pode fechar a porta ao diálogo. Reconhecer seus sentimentos ajuda a acolher um gesto sincero."
+      },
+      "work": {
+        "up": "Uma rotina profissional convida a reconsiderar possibilidades ignoradas. Um novo olhar sobre as tarefas pode renovar o interesse.",
+        "rev": "A insatisfação pode levar a rejeitar uma opção útil sem avaliá-la. Distinguir cansaço de falta de sentido ajuda a seguir."
+      },
+      "self": {
+        "up": "A necessidade de recuar convida a ouvir o que deixou de satisfazer você. Por trás do tédio, pode haver uma aspiração importante.",
+        "rev": "Isolar-se na decepção pode dificultar a percepção de oportunidades. Voltar a experiências simples ajuda a recuperar o ânimo."
+      }
+    },
+    "cups_5": {
+      "love": {
+        "up": "Uma decepção afetiva pode ocupar todos os pensamentos. Acolher a tristeza sem esquecer vínculos ainda vivos abre caminho ao alívio.",
+        "rev": "Aceitar uma decepção antiga abre a possibilidade de renovar os laços. O que continua precioso pode recuperar seu lugar."
+      },
+      "work": {
+        "up": "Um resultado decepcionante pode fazer você esquecer conquistas. Rever os recursos preservados pode apoiar um novo projeto.",
+        "rev": "Refletir sobre uma oportunidade perdida permite aprender com ela. Novas cooperações podem voltar a parecer possíveis."
+      },
+      "self": {
+        "up": "Um arrependimento pode receber mais atenção do que os recursos disponíveis. Reconhecer o que permanece ajuda a recuperar direção.",
+        "rev": "Uma etapa de aceitação convida a soltar o apego ao que não aconteceu. A esperança pode ser reconstruída sem apagar a experiência."
+      }
+    },
+    "cups_6": {
+      "love": {
+        "up": "A delicadeza das lembranças compartilhadas pode alimentar o carinho atual. A tradição associa esta carta a um afeto simples e generoso.",
+        "rev": "Uma lembrança antiga pode trazer compreensão, não um modelo a repetir. O presente oferece sua própria maneira de amar."
+      },
+      "work": {
+        "up": "Uma habilidade conhecida ou contato antigo pode sustentar um projeto. Recuperar o que fazia sentido traz continuidade favorável.",
+        "rev": "Retomar um método testado pode abrir caminhos, desde que adaptado ao presente. Assim, a nostalgia vira recurso."
+      },
+      "self": {
+        "up": "Reconectar-se com suas origens ou história pode trazer conforto. Boas lembranças ajudam a reconhecer o que nutre você.",
+        "rev": "Revisitar o passado sem idealizá-lo abre espaço para reconciliação interior. Novos pontos de apoio podem nascer dessa reflexão."
+      }
+    },
+    "cups_7": {
+      "love": {
+        "up": "Várias imagens idealizadas do amor podem seduzir sem representar o vínculo real. Distinguir desejo e realidade favorece expectativas sinceras.",
+        "rev": "Ideais numerosos demais podem afastar você das trocas concretas. Voltar ao que de fato é compartilhado ajuda a esclarecer sentimentos."
+      },
+      "work": {
+        "up": "Várias possibilidades estimulam a imaginação profissional. Organizar as opções por prioridade ajuda a transformar um sonho em projeto viável.",
+        "rev": "Opções em excesso podem dispersar seus esforços. Critérios concretos ajudam a distinguir promessas sedutoras de oportunidades reais."
+      },
+      "self": {
+        "up": "Suas aspirações são ricas e variadas. Olhá-las com lucidez pode revelar a que mais combina com seu caminho.",
+        "rev": "Idealizar todas as possibilidades pode prolongar a indecisão. Fazer uma escolha limitada pode aproximar você do presente."
+      }
+    },
+    "cups_8": {
+      "love": {
+        "up": "Tomar distância pode ajudar a compreender o que já não nutre o vínculo. Essa busca de sentido abre espaço para conversas autênticas.",
+        "rev": "O apego a uma relação insatisfatória pode impedir o movimento. Reconhecer suas necessidades ajuda a imaginar outra forma de se relacionar."
+      },
+      "work": {
+        "up": "Uma atividade antes motivadora pode ter perdido seu sentido. Explorar outras maneiras de contribuir pode revelar um caminho mais adequado.",
+        "rev": "Hesitar em deixar um hábito profissional pode prolongar a desmotivação. Identificar o que falta abre uma reflexão útil."
+      },
+      "self": {
+        "up": "Você pode sentir o chamado de uma busca interior mais profunda. Deixar uma expectativa antiga para trás favorece o autoconhecimento.",
+        "rev": "O receio de deixar uma etapa para trás pode alimentar a sensação de impasse. Aceitar que aspirações mudam ajuda a avançar."
+      }
+    },
+    "cups_9": {
+      "love": {
+        "up": "Uma satisfação afetiva serena favorece momentos de gratidão. Valorizar o que existe fortalece o calor da relação.",
+        "rev": "Um desejo pessoal merece ser melhor compartilhado. Reconhecer expectativas sem exigir que todas se realizem abre diálogo."
+      },
+      "work": {
+        "up": "Sentir que alcançou um objetivo pode reforçar a motivação. Uma conquista valorizada na medida certa favorece a confiança.",
+        "rev": "Um resultado esperado merece ser redefinido conforme seus valores. Essa reflexão pode revelar satisfação mais autêntica."
+      },
+      "self": {
+        "up": "A gratidão pelos seus progressos convida a saborear o presente. A tradição associa esta carta à plenitude dos prazeres simples.",
+        "rev": "Uma satisfação exterior pode esconder um desejo mais profundo. Esclarecer o que realmente alegra você abre caminho para realização."
+      }
+    },
+    "cups_10": {
+      "love": {
+        "up": "Uma sensação de apoio e harmonia pode fortalecer vínculos afetivos. A tradição evoca a felicidade compartilhada com pessoas próximas.",
+        "rev": "Uma imagem idealizada demais da vida a dois pode ser flexibilizada. Aceitar diferenças abre espaço para uma harmonia mais real."
+      },
+      "work": {
+        "up": "Uma equipe unida por valores comuns pode encontrar impulso duradouro. Confiança e reconhecimento alimentam esse entendimento.",
+        "rev": "Vale conversar sobre o significado coletivo do sucesso. Acolher expectativas diferentes pode criar uma união mais sólida."
+      },
+      "self": {
+        "up": "Laços familiares ou de amizade podem oferecer segurança. Cultivar a alegria compartilhada sustenta seu equilíbrio pessoal.",
+        "rev": "A expectativa de harmonia perfeita pode ser suavizada. Acolher as diferenças ajuda você a se sentir mais aceito."
+      }
+    },
+    "cups_page": {
+      "love": {
+        "up": "Um gesto espontâneo de carinho ou mensagem delicada pode abrir o coração. Acolher essa sensibilidade favorece a cumplicidade.",
+        "rev": "Uma emoção ainda tímida pede palavras simples. Dar espaço à vulnerabilidade pode aproximar sem forçar confidências."
+      },
+      "work": {
+        "up": "Uma sugestão criativa ou retorno gentil pode enriquecer um projeto. Sua receptividade se torna um recurso no trabalho.",
+        "rev": "Uma ideia intuitiva merece exploração, mesmo que pareça frágil. Dar-lhe forma concreta pode revelar seu valor."
+      },
+      "self": {
+        "up": "Sua imaginação encontra terreno fértil numa descoberta artística ou afetiva. A curiosidade emocional favorece seu crescimento.",
+        "rev": "Uma inspiração discreta pode voltar à vida se você aceitar não entender tudo de imediato. A sensibilidade abre uma porta."
+      }
+    },
+    "cups_knight": {
+      "love": {
+        "up": "Um impulso romântico e palavras atenciosas podem favorecer uma aproximação sincera. A emoção ganha força quando se traduz em atitudes.",
+        "rev": "Um ideal amoroso pode se tornar mais acessível com expectativas simples. A sinceridade importa mais do que gestos grandiosos."
+      },
+      "work": {
+        "up": "Uma proposta guiada por valores humanos pode conquistar apoio. Diplomacia e criatividade sustentam o projeto.",
+        "rev": "Uma ideia sedutora ainda precisa de elementos concretos. Unir inspiração e recursos disponíveis abre uma possibilidade construtiva."
+      },
+      "self": {
+        "up": "A busca de beleza e sentido pode levar você a uma atividade inspiradora. Uma atitude sensível fortalece sua expressão pessoal.",
+        "rev": "Aspirações idealizadas demais podem ganhar forma em ações modestas. Essa abordagem abre espaço para alegrias mais palpáveis."
+      }
+    },
+    "cups_queen": {
+      "love": {
+        "up": "Uma escuta atenta e carinho profundo podem sustentar a relação. Compreender o outro sem esquecer suas necessidades favorece o equilíbrio.",
+        "rev": "A sensibilidade se torna uma força quando acompanhada de limites. Abrir espaço para suas emoções permite trocas mais justas."
+      },
+      "work": {
+        "up": "Sua capacidade de perceber necessidades da equipe pode nutrir uma cooperação tranquila. A empatia ajuda nas decisões coletivas.",
+        "rev": "Uma disponibilidade emocional muito exigida merece ser reequilibrada. Permitir-se limites preserva a qualidade das trocas."
+      },
+      "self": {
+        "up": "Uma intuição delicada ajuda você a reconhecer o que importa. Acolher emoções sem precisar explicá-las de imediato pode trazer calma.",
+        "rev": "A tendência a absorver os problemas alheios pode dar lugar a uma presença mais serena. Tomar distância deixa espaço para todos."
+      }
+    },
+    "cups_king": {
+      "love": {
+        "up": "Uma afeição estável e palavras ponderadas favorecem a confiança. Acolher emoções sem deixar que dominem tudo fortalece o vínculo.",
+        "rev": "Uma reserva afetiva pode diminuir graças a um diálogo sincero. Expressar seus sentimentos abre um equilíbrio mais caloroso."
+      },
+      "work": {
+        "up": "Uma postura calma diante das tensões pode ajudar a equipe a se entender. Seu discernimento emocional sustenta as relações profissionais.",
+        "rev": "Uma reserva excessiva pode deixar suas intenções pouco claras. Compartilhar motivações com equilíbrio abre uma cooperação confiante."
+      },
+      "self": {
+        "up": "A maturidade emocional convida a acolher os sentimentos sem se perder neles. Você pode apoiar outros sem deixar de ser você.",
+        "rev": "Um controle muito rígido das emoções merece ser suavizado. Expressar o que vive com simplicidade pode favorecer o entendimento mútuo."
+      }
+    },
+    "swords_ace": {
+      "love": {
+        "up": "Uma conversa clara pode desfazer um mal-entendido e renovar a relação. A franqueza ganha ao respeitar a sensibilidade alheia.",
+        "rev": "Uma verdade ainda difícil de expressar convida a preparar uma conversa tranquila. Encontrar as palavras certas pode favorecer a compreensão."
+      },
+      "work": {
+        "up": "Uma ideia precisa ou decisão lúcida favorece o progresso profissional. Separar fatos de suposições fortalece sua iniciativa.",
+        "rev": "Uma situação complexa merece esclarecimento antes de qualquer conclusão. Reformular as questões oferece a chance de recuperar coerência."
+      },
+      "self": {
+        "up": "Uma tomada de consciência pode ajudar você a definir o que realmente deseja. Essa clareza sustenta uma mudança escolhida.",
+        "rev": "Uma intuição confusa pode se tornar mais nítida por meio de reflexão honesta. Organizar os pensamentos abre um horizonte mais claro."
+      }
+    },
+    "swords_2": {
+      "love": {
+        "up": "Uma escolha afetiva merece consideração sem que você ignore seus sentimentos. Ouvir os dois pontos de vista abre uma saída.",
+        "rev": "Evitar uma conversa delicada pode paralisar o vínculo. Dar nome às hesitações pode renovar um diálogo sincero."
+      },
+      "work": {
+        "up": "Duas direções parecem igualmente defensáveis. Esclarecer os critérios importantes permite avançar sem procurar certezas impossíveis.",
+        "rev": "Adiar sempre uma decisão pode complicar a cooperação. Reunir os elementos essenciais ajuda a superar o bloqueio."
+      },
+      "self": {
+        "up": "Uma hesitação interior convida a reconhecer necessidades contraditórias. Dar nome a elas pode iluminar suas escolhas.",
+        "rev": "Recusar-se a observar uma tensão pessoal pode prolongar a imobilidade. Refletir sem julgamentos oferece um primeiro passo."
+      }
+    },
+    "swords_3": {
+      "love": {
+        "up": "Uma palavra ou decepção pode ter abalado a confiança. Acolher os sentimentos envolvidos, sem acusações automáticas, abre diálogo.",
+        "rev": "A dor de um mal-entendido pode começar a diminuir. Reconhecer o que magoou favorece uma relação mais lúcida."
+      },
+      "work": {
+        "up": "Uma crítica ou discordância profissional pode ser difícil de receber. Separar a mensagem do seu valor pessoal ajuda a se reequilibrar.",
+        "rev": "Depois de uma decepção, pode surgir uma compreensão mais justa dos fatos. Aprender com a experiência abre um novo olhar."
+      },
+      "self": {
+        "up": "Uma antiga ferida emocional merece atenção gentil. Reconhecê-la sem se definir por ela permite seguir adiante.",
+        "rev": "Um sentimento de tristeza pode dar lugar à aceitação. Acolher essa mudança abre um espaço interior mais sereno."
+      }
+    },
+    "swords_4": {
+      "love": {
+        "up": "Uma pausa nas discussões pode ajudar a recuperar um tom mais tranquilo. O distanciamento permite ouvir melhor o outro.",
+        "rev": "O silêncio prolongado pode virar uma distância pesada. Descansar sem fechar a porta ao diálogo ajuda a preservar o vínculo."
+      },
+      "work": {
+        "up": "Um momento de reflexão pode esclarecer uma situação de trabalho intensa. Rever prioridades antes de retomar as atividades favorece a precisão.",
+        "rev": "Adiar demais pode atrasar conversas necessárias. Retomar o contato com o projeto aos poucos ajuda a avançar."
+      },
+      "self": {
+        "up": "Permitir-se tranquilidade pode organizar pensamentos dispersos. O recolhimento escolhido se torna um tempo para renovar energias.",
+        "rev": "A necessidade de descanso pode virar fuga das suas aspirações. Retomar aos poucos uma atividade escolhida pode renovar o ânimo."
+      }
+    },
+    "swords_5": {
+      "love": {
+        "up": "Uma discussão em que todos querem vencer pode empobrecer a relação. Buscar compreensão, e não vitória, abre outra saída.",
+        "rev": "Abrir mão de uma rivalidade desgastada permite imaginar uma aproximação. Reconhecer a própria parte pode restaurar o respeito."
+      },
+      "work": {
+        "up": "Uma competição mal resolvida pode fragilizar a confiança no trabalho. Examinar as consequências do confronto ajuda a buscar saída construtiva.",
+        "rev": "Uma tensão entre colegas pode diminuir quando o desejo de ter razão dá lugar a um objetivo comum. A cooperação volta a ser possível."
+      },
+      "self": {
+        "up": "Um conflito interior ou comparação insistente pode consumir sua energia. Reconhecer o que importa ajuda a sair da disputa.",
+        "rev": "Uma antiga oposição pode perder peso. Deixar de precisar provar algo abre caminho para uma paz mais autêntica."
+      }
+    },
+    "swords_6": {
+      "love": {
+        "up": "Uma passagem para relações mais tranquilas se torna possível. Afastar-se de antigos desentendimentos pode favorecer um novo diálogo.",
+        "rev": "Uma transição afetiva continua delicada quando há apego às antigas referências. Reconhecer a mudança ajuda a não ficar parado."
+      },
+      "work": {
+        "up": "Uma reorganização ou mudança de método pode abrir um ambiente de trabalho mais sereno. O progresso se constrói por etapas.",
+        "rev": "Uma transição profissional hesitante pede orientação clara. Identificar o que impede o movimento facilita a passagem."
+      },
+      "self": {
+        "up": "Afastar-se de tensões familiares pode deixar você mais aberto ao novo. Uma fase de transição oferece outra perspectiva.",
+        "rev": "A saudade de um equilíbrio antigo pode dificultar o avanço. Acolher o que fica para trás ajuda a continuar seu caminho."
+      }
+    },
+    "swords_7": {
+      "love": {
+        "up": "Silêncios ou estratégias indiretas demais podem enfraquecer a confiança. Buscar fatos e diálogo claro evita suposições.",
+        "rev": "Uma fala mais franca pode substituir os rodeios. Reconhecer o que ficou oculto abre a chance de recuperar a confiança."
+      },
+      "work": {
+        "up": "Informações incompletas ou práticas pouco transparentes pedem atenção. Conferir os elementos ajuda a preservar a cooperação.",
+        "rev": "Uma situação confusa pode se esclarecer com mais transparência. Expor intenções abre a possibilidade de retomar bases justas."
+      },
+      "self": {
+        "up": "Evitar uma verdade pessoal pode manter você na incerteza. Reconhecer suas motivações ajuda a recuperar uma direção sincera.",
+        "rev": "A tendência a contornar dificuldades pode diminuir. Encarar suas escolhas com honestidade abre uma liberdade mais real."
+      }
+    },
+    "swords_8": {
+      "love": {
+        "up": "O medo de agir mal pode limitar sua expressão na relação. Identificar as escolhas disponíveis ajuda a aliviar a sensação de impasse.",
+        "rev": "A crença de que nada pode mudar começa a perder força. Expressar suas necessidades abre espaço para agir de outro modo."
+      },
+      "work": {
+        "up": "Instruções contraditórias ou limitações percebidas podem frear sua iniciativa. Distinguir barreiras reais de suposições ajuda.",
+        "rev": "Soluções antes descartadas podem voltar a ser vistas. Esclarecer responsabilidades permite recuperar espaço de ação."
+      },
+      "self": {
+        "up": "Pensamentos limitadores podem impedir você de experimentar novos caminhos. Questioná-los com gentileza revela possibilidades esquecidas.",
+        "rev": "Reconhecer seus próprios recursos abre um caminho de liberdade. Uma pequena decisão consciente pode romper a sensação de imobilidade."
+      }
+    },
+    "swords_9": {
+      "love": {
+        "up": "Preocupações repetidas podem influenciar as trocas afetivas. Distinguir o que foi dito do que foi imaginado ajuda a preservar a confiança.",
+        "rev": "Uma preocupação guardada há muito tempo pode ser expressa com mais delicadeza. A escuta oferece uma possibilidade de alívio."
+      },
+      "work": {
+        "up": "Uma responsabilidade pode ocupar espaço demais em seus pensamentos. Organizar fatos e expectativas ajuda a recuperar uma visão justa.",
+        "rev": "A tensão ligada a exigências elevadas pode diminuir. Reconhecer os esforços feitos abre outra leitura do trabalho."
+      },
+      "self": {
+        "up": "Preocupações interiores podem esconder os recursos ao seu redor. Nomeá-las com gentileza ajuda a recuperar perspectiva.",
+        "rev": "Uma preocupação persistente pode perder força quando você deixa de carregá-la sozinho. A abertura está num olhar mais compreensivo."
+      }
+    },
+    "swords_10": {
+      "love": {
+        "up": "Uma maneira desgastante de viver a relação pode chegar ao fim. Reconhecer o que já não é sustentável permite imaginar outras bases.",
+        "rev": "O peso de uma antiga decepção pode começar a diminuir. Uma etapa de reconstrução surge na aceitação da mudança."
+      },
+      "work": {
+        "up": "Um ciclo profissional desgastante pode revelar os limites de um método. Fazer uma avaliação lúcida permite pensar a continuidade de outra forma.",
+        "rev": "Depois de um período de grande tensão, aparece a possibilidade de renovação. Reconhecer o que foi aprendido ajuda a reconstruir."
+      },
+      "self": {
+        "up": "Uma antiga maneira de julgar a si mesmo pode deixar de fazer sentido. Virar essa página abre um olhar mais generoso sobre você.",
+        "rev": "A sensação de impasse pode ceder à possibilidade de recomeço. O que termina não define toda a sua trajetória."
+      }
+    },
+    "swords_page": {
+      "love": {
+        "up": "Uma curiosidade viva convida a fazer boas perguntas sobre o vínculo. Ouvir tanto quanto observar favorece a compreensão.",
+        "rev": "Suspeitas ou interpretações precipitadas podem abalar a confiança. Conferir suas impressões antes de concluir é essencial."
+      },
+      "work": {
+        "up": "Uma atenção intelectual aguçada pode revelar detalhes úteis. Examinar as informações com rigor abre caminho construtivo.",
+        "rev": "Fazer perguntas sem critério pode alimentar a desconfiança. Separar o essencial do acessório ajuda a progredir."
+      },
+      "self": {
+        "up": "A vontade de entender a si e aos outros abre um período de aprendizado. Manter a curiosidade enriquece suas relações.",
+        "rev": "Analisar tudo em excesso pode deixar pouco espaço para viver experiências. Aceitar incertezas ajuda a superar dúvidas."
+      }
+    },
+    "swords_knight": {
+      "love": {
+        "up": "Uma conversa direta pode movimentar uma situação confusa. A oportunidade é ser franco sem deixar de respeitar cada pessoa.",
+        "rev": "Palavras duras demais podem transformar uma conversa útil em confronto. Desacelerar antes de responder ajuda a preservar o vínculo."
+      },
+      "work": {
+        "up": "Uma decisão enérgica pode destravar uma tarefa. A clareza do raciocínio fortalece essa abertura, desde que você ouça objeções.",
+        "rev": "A pressa intelectual pode atropelar a equipe. Relacionar convicções aos fatos e ao ritmo coletivo se torna importante."
+      },
+      "self": {
+        "up": "A vontade de superar hesitações pode sustentar uma mudança pessoal. Suas ideias ganham ao ser confrontadas com a experiência.",
+        "rev": "A impaciência diante das nuances pode afastar você das respostas buscadas. Considerar outras leituras ajuda a refinar convicções."
+      }
+    },
+    "swords_queen": {
+      "love": {
+        "up": "Uma fala justa e limites claros favorecem trocas mais honestas. Independência e carinho podem conviver.",
+        "rev": "Uma franqueza defensiva pode se tornar mais acolhedora. Nuance nos julgamentos abre uma relação em que todos sejam ouvidos."
+      },
+      "work": {
+        "up": "Seu discernimento ajuda a ganhar perspectiva e definir critérios sólidos. A clareza das trocas sustenta decisões favoráveis.",
+        "rev": "Uma análise exigente pode ganhar força ao considerar sensibilidades. Essa abertura reforça a cooperação."
+      },
+      "self": {
+        "up": "Uma lucidez construída com a experiência ajuda a afirmar escolhas. Estabelecer limites coerentes favorece sua autonomia.",
+        "rev": "Um olhar severo demais sobre si pode se suavizar. Reconhecer sua trajetória com justiça abre confiança mais serena."
+      }
+    },
+    "swords_king": {
+      "love": {
+        "up": "Uma comunicação madura e coerente pode fortalecer a confiança. A justiça nas palavras importa tanto quanto a firmeza das convicções.",
+        "rev": "Raciocinar sem mostrar sentimentos pode dar lugar a um diálogo mais equilibrado. Abrir espaço para a emoção favorece a troca."
+      },
+      "work": {
+        "up": "Uma abordagem metódica e imparcial favorece decisões profissionais. Explicar seu raciocínio contribui para a confiança coletiva.",
+        "rev": "Uma autoridade distante demais pode ganhar flexibilidade. Envolver os interessados nas decisões abre uma colaboração mais justa."
+      },
+      "self": {
+        "up": "Você pode encontrar direção estável conciliando lucidez e princípios pessoais. Um pensamento estruturado sustenta a independência.",
+        "rev": "A vontade de controlar tudo pela razão pode se suavizar. Admitir respostas em aberto favorece um discernimento mais humano."
+      }
+    },
+    "pentacles_ace": {
+      "love": {
+        "up": "Um vínculo pode encontrar novo apoio em atitudes confiáveis e concretas. Atenções constantes favorecem a confiança.",
+        "rev": "Existe a chance de fortalecer a estabilidade afetiva, mesmo com referências frágeis. Compromissos simples podem fazê-la crescer."
+      },
+      "work": {
+        "up": "Uma oportunidade material ou profissional parece favorável a um projeto concreto. Examinar seu alcance ajuda a reconhecer o potencial.",
+        "rev": "Uma oportunidade ainda pouco visível merece exame atento. Identificar o que pode ser construído abre uma perspectiva sólida."
+      },
+      "self": {
+        "up": "Uma nova referência na rotina pode sustentar sua autonomia. O prazer de agir concretamente alimenta a confiança nas suas capacidades.",
+        "rev": "Um desejo de estabilidade procura forma concreta. Começar por uma mudança acessível pode tornar suas aspirações mais palpáveis."
+      }
+    },
+    "pentacles_2": {
+      "love": {
+        "up": "Conciliar expectativas de cada pessoa exige ajustes flexíveis. Buscar um ritmo compartilhado abre caminho para mais leveza.",
+        "rev": "Compromissos demais podem deixar pouco espaço para o vínculo. Esclarecer prioridades afetivas ajuda a recuperar o equilíbrio."
+      },
+      "work": {
+        "up": "Várias responsabilidades pedem organização flexível. Esta carta convida a administrar recursos sem perder o essencial de vista.",
+        "rev": "Tarefas sucessivas podem desequilibrar sua organização. Rever o que realmente importa evita ficar à mercê de cada pedido."
+      },
+      "self": {
+        "up": "Você aprende a conciliar diferentes aspectos da vida. Aceitar ajustes graduais pode ampliar sua liberdade.",
+        "rev": "Tentar manter tudo em movimento pode fazer você esquecer o que renova suas forças. Abrir espaço para pausas ajuda a se recentrar."
+      }
+    },
+    "pentacles_3": {
+      "love": {
+        "up": "Construir a relação a dois pode se tornar uma obra conjunta. Reconhecer as qualidades de cada pessoa favorece uma cumplicidade duradoura.",
+        "rev": "A cooperação afetiva precisa ser repensada quando as contribuições parecem desiguais. Reconhecer esforços abre espaço para acordos."
+      },
+      "work": {
+        "up": "Habilidades complementares e trabalho cuidadoso podem fazer o projeto avançar. A tradição valoriza aqui o aprendizado compartilhado.",
+        "rev": "Uma equipe pode aproveitar melhor seus conhecimentos ao trocar experiências. Acolher retornos abre caminho para melhorias."
+      },
+      "self": {
+        "up": "Um projeto com pessoas próximas pode revelar seus talentos. Criar em conjunto valoriza habilidades às vezes discretas.",
+        "rev": "Reconhecer o que pode aprender com os outros abre espaço para crescer. Colaborar não diminui sua singularidade."
+      }
+    },
+    "pentacles_4": {
+      "love": {
+        "up": "A necessidade de segurança convida a pensar nas referências que protegem a relação. Estabilidade escolhida pode conviver com abertura.",
+        "rev": "O medo de perder o equilíbrio pode tornar a relação controladora demais. Flexibilizar expectativas deixa cada um respirar."
+      },
+      "work": {
+        "up": "Preservar conquistas oferece base para avaliar novos caminhos. Reconhecer o que merece ser mantido pode sustentar a estabilidade.",
+        "rev": "Agarrar-se a métodos ou recursos por medo da mudança pode frear a atividade. Abrir espaço para testes moderados ajuda."
+      },
+      "self": {
+        "up": "Hábitos tranquilizadores oferecem apoio. Você pode escolher quais deles realmente fortalecem sua autonomia.",
+        "rev": "Uma necessidade excessiva de controle pode limitar sua rotina. Aceitar uma pequena novidade ajuda a soltar hábitos rígidos."
+      }
+    },
+    "pentacles_5": {
+      "love": {
+        "up": "Uma sensação de solidão ou falta de apoio pode pesar sobre o vínculo. Reconhecer os apoios possíveis abre outra perspectiva.",
+        "rev": "Um período de distanciamento pode dar lugar a mais ajuda mútua. Acolher uma presença sincera oferece aproximação."
+      },
+      "work": {
+        "up": "Um ambiente profissional pouco acolhedor pode aumentar a sensação de exclusão. Expressar necessidades favorece a busca de apoio.",
+        "rev": "Uma ajuda ou cooperação antes ignorada pode se tornar acessível. Recuperar aliados abre uma possibilidade de reconstrução."
+      },
+      "self": {
+        "up": "Sentir que enfrenta dificuldades sozinho pode limitar seu impulso. Reconhecer vínculos disponíveis ajuda a recuperar confiança.",
+        "rev": "Uma sensação maior de pertencimento pode se tornar possível. Aceitar apoio alheio abre espaço para retomar projetos."
+      }
+    },
+    "pentacles_6": {
+      "love": {
+        "up": "Uma relação em que se dá e recebe com respeito pode encontrar belo equilíbrio. A generosidade recíproca alimenta a confiança.",
+        "rev": "Uma troca desigual pode ser reajustada quando as expectativas são mais claras. A abertura está na reciprocidade."
+      },
+      "work": {
+        "up": "Apoio profissional ou colaboração justa pode facilitar o avanço de um projeto. Compartilhar competências beneficia o grupo.",
+        "rev": "Oferecer ou receber ajuda convida a esclarecer as condições da troca. Um equilíbrio mais justo pode ser construído."
+      },
+      "self": {
+        "up": "Compartilhar tempo ou conhecimentos com pessoas próximas pode reforçar a sensação de utilidade. A generosidade escolhida nutre os vínculos.",
+        "rev": "Reconhecer seus limites ao ajudar abre um equilíbrio mais respeitoso. Você também pode receber sem precisar retribuir imediatamente."
+      }
+    },
+    "pentacles_7": {
+      "love": {
+        "up": "Um vínculo cultivado com paciência merece ser observado em sua evolução real. Avaliar esforços conjuntos abre perspectivas.",
+        "rev": "Esperar mudanças sem conversar pode alimentar frustrações. Rever expectativas ajuda a evitar a estagnação afetiva."
+      },
+      "work": {
+        "up": "Esforços contínuos pedem uma avaliação cuidadosa. Observar os primeiros resultados permite orientar melhor a continuidade do projeto.",
+        "rev": "Uma espera prolongada ou o desânimo pode esconder ajustes úteis. Examinar o que funciona ajuda a recuperar direção."
+      },
+      "self": {
+        "up": "Você pode olhar com distância para o caminho percorrido. A paciência rende frutos quando acompanhada de escolhas conscientes.",
+        "rev": "A dúvida sobre seus progressos pode esconder pequenas conquistas. Avaliar sua trajetória com equilíbrio ajuda a não desistir cedo."
+      }
+    },
+    "pentacles_8": {
+      "love": {
+        "up": "Gestos de carinho sinceros e repetidos podem fortalecer o vínculo. A constância das atitudes dá forma à confiança.",
+        "rev": "A rotina do casal pode recuperar sentido quando deixa de ser obrigação. Um gesto mais pessoal abre novas possibilidades de troca."
+      },
+      "work": {
+        "up": "A dedicação ao aprendizado de um ofício ou habilidade traz impulso favorável. A competência se constrói com cuidado e regularidade.",
+        "rev": "Uma habilidade pode se desenvolver com outra forma de prática. Aceitar retornos e variar métodos abre espaço para progredir."
+      },
+      "self": {
+        "up": "Aprender algo de que você gosta pode fortalecer a autoestima. O prazer de evoluir importa tanto quanto a excelência.",
+        "rev": "Uma exigência elevada demais pode ser reajustada. Aprender no próprio ritmo abre uma relação mais feliz com suas capacidades."
+      }
+    },
+    "pentacles_9": {
+      "love": {
+        "up": "Confiar no próprio equilíbrio enriquece os laços sem criar dependência. Compartilhar por escolha favorece o afeto sereno.",
+        "rev": "Uma autonomia afetiva ainda hesitante pode se fortalecer. Reconhecer o que você oferece ao vínculo abre uma relação mais equilibrada."
+      },
+      "work": {
+        "up": "Um trabalho constante pode mostrar sinais de realização e autonomia. Reconhecer sua experiência sustenta um avanço favorável.",
+        "rev": "Uma conquista pessoal merece ser apreciada sem depender apenas da opinião alheia. Definir critérios próprios abre novo equilíbrio."
+      },
+      "self": {
+        "up": "A satisfação de construir suas referências favorece a independência. Saborear prazeres simples alimenta uma sensação de plenitude.",
+        "rev": "Uma confiança baseada nas aparências pode dar lugar a uma autoestima mais profunda. Rever seus recursos pessoais abre novas possibilidades."
+      }
+    },
+    "pentacles_10": {
+      "love": {
+        "up": "Laços duradouros, hábitos compartilhados e pertencimento podem fortalecer a relação. A tradição associa esta carta a um lar estável.",
+        "rev": "Uma ideia muito rígida de lar pode evoluir. Redefinir estabilidade para cada pessoa abre espaço para harmonia mais flexível."
+      },
+      "work": {
+        "up": "Conquistas coletivas e uma organização duradoura podem favorecer a continuidade do projeto. Transmitir conhecimentos consolida essa base.",
+        "rev": "Uma estrutura antiga pode ser adaptada. Unir experiência e novidade abre perspectivas de estabilidade renovada."
+      },
+      "self": {
+        "up": "A herança de valores e experiências familiares pode servir de apoio. Você escolhe o que deseja manter vivo.",
+        "rev": "Um modelo transmitido talvez já não combine com suas aspirações. Reinterpretá-lo livremente pode reforçar o pertencimento."
+      }
+    },
+    "pentacles_page": {
+      "love": {
+        "up": "Um gesto concreto e discreto pode aumentar a confiança afetiva. A curiosidade pelo cotidiano do outro favorece o vínculo.",
+        "rev": "O desejo de construir algo a dois ainda procura referências. Gestos simples podem expressá-lo com sinceridade."
+      },
+      "work": {
+        "up": "Uma oportunidade de aprender ou desenvolver habilidade prática pode sustentar um projeto. A curiosidade aplicada vira um trunfo.",
+        "rev": "Uma possibilidade promissora ainda exige preparo. Reservar tempo para aprender o básico abre espaço para progressos realistas."
+      },
+      "self": {
+        "up": "Você pode descobrir novo prazer num aprendizado concreto. Ter paciência com as primeiras tentativas enriquece a experiência.",
+        "rev": "Um interesse nascente merece ser explorado sem perfeccionismo. Dar-lhe espaço regular abre um caminho de confiança."
+      }
+    },
+    "pentacles_knight": {
+      "love": {
+        "up": "Uma fidelidade expressa em atitudes constantes pode tranquilizar o vínculo. A confiabilidade favorece uma cumplicidade cotidiana.",
+        "rev": "A rotina afetiva pode recuperar calor ao abrir espaço para gestos inesperados. Constância é valiosa sem precisar ser rígida."
+      },
+      "work": {
+        "up": "Um método paciente e rigoroso favorece o avanço do trabalho. A regularidade permite construir resultados duradouros.",
+        "rev": "Um progresso lento demais convida a rever a organização. Ajustar o método sem abandonar a constância abre uma solução."
+      },
+      "self": {
+        "up": "Sua capacidade de cumprir compromissos alimenta a confiança pessoal. Pequenos hábitos escolhidos podem sustentar aspirações.",
+        "rev": "Um apego excessivo à rotina pode diminuir. Mudar um gesto familiar abre possibilidades sem abandonar suas referências."
+      }
+    },
+    "pentacles_queen": {
+      "love": {
+        "up": "Um carinho expresso no acolhimento e nos gestos concretos pode sustentar o vínculo. O calor cotidiano favorece uma relação segura.",
+        "rev": "Cuidar sempre dos outros também precisa incluir suas necessidades. Uma generosidade mais equilibrada pode trazer serenidade ao vínculo."
+      },
+      "work": {
+        "up": "Praticidade e gentileza favorecem uma organização estável. Cuidar das condições de trabalho pode apoiar os esforços coletivos.",
+        "rev": "Sua capacidade de apoiar outros precisa de limites claros. Preservar recursos pessoais abre caminho para cooperação duradoura."
+      },
+      "self": {
+        "up": "Um ambiente acolhedor e prazeres simples podem nutrir seu equilíbrio. A confiança se constrói nas experiências concretas.",
+        "rev": "O hábito de esquecer de si nas tarefas diárias pode mudar. Abrir espaço para seus desejos permite recuperar a delicadeza."
+      }
+    },
+    "pentacles_king": {
+      "love": {
+        "up": "Uma presença confiável e compromisso coerente podem reforçar a segurança afetiva. A estabilidade ganha quando permanece generosa.",
+        "rev": "A vontade de organizar tudo pode se flexibilizar para acolher necessidades do outro. A confiança abre uma segurança menos rígida."
+      },
+      "work": {
+        "up": "A experiência e a responsabilidade podem sustentar um projeto sólido. Uma condução prática favorece a confiança coletiva.",
+        "rev": "Uma autoridade apegada demais às conquistas pode se tornar mais flexível. Reconhecer abordagens novas abre progressos construtivos."
+      },
+      "self": {
+        "up": "Você pode se apoiar em realizações concretas para fortalecer sua confiança. A estabilidade escolhida permite acolher os outros.",
+        "rev": "Uma visão material demais do sucesso pode se ampliar. Dar valor aos vínculos e às satisfações não mensuráveis expande seus horizontes."
+      }
+    }
+  },
+  "positions": {
+    "general": {
+      "answer": [
+        "Para iluminar sua pergunta sem presumir seu conteúdo, “{card}” oferece uma primeira pista de interpretação.",
+        "Diante da sua dúvida, “{card}” convida a considerar um possível significado simbólico.",
+        "Nesta tiragem de uma carta, “{card}” oferece um olhar para relacionar à sua experiência."
+      ],
+      "past": [
+        "No passado, “{card}” recorda um contexto que pode ter moldado você.",
+        "Naquilo que veio antes, “{card}” ilumina um possível aprendizado.",
+        "Na posição Passado, “{card}” dá um tom simbólico ao que foi construído."
+      ],
+      "present": [
+        "No presente, “{card}” destaca uma dinâmica a observar.",
+        "Para o que você vive agora, “{card}” oferece uma perspectiva.",
+        "Na situação atual, “{card}” chama a atenção para um ponto essencial."
+      ],
+      "future": [
+        "Se essa dinâmica continuar, “{card}” evoca uma evolução possível.",
+        "Quanto ao futuro considerado, “{card}” sugere uma direção sem torná-la fixa.",
+        "Para o que poderá surgir, “{card}” abre uma perspectiva que pede nuances."
+      ],
+      "situation": [
+        "Para situar o contexto, “{card}” ilumina a situação sob uma ótica simbólica.",
+        "No centro da situação, “{card}” destaca uma possível questão importante.",
+        "Na posição Situação, “{card}” propõe um ponto de partida para a leitura."
+      ],
+      "challenge": [
+        "Na posição Desafio, “{card}” destaca o que merece atenção.",
+        "Quanto ao obstáculo a compreender, “{card}” convida a observar um possível mecanismo.",
+        "Na posição Desafio, “{card}” mostra uma tensão a atravessar com lucidez."
+      ],
+      "advice": [
+        "Como pista de reflexão, “{card}” indica uma possível atitude.",
+        "Na posição Conselho, “{card}” convida a considerar uma forma de avançar.",
+        "Para orientar seu olhar, “{card}” sugere um apoio simbólico."
+      ],
+      "month": [
+        "Para {month}, “{card}” dá um tom simbólico a esta etapa do percurso.",
+        "Na sequência de {month}, “{card}” sugere uma dinâmica a observar.",
+        "Ao longo de {month}, “{card}” abre uma interpretação sem determinar acontecimentos."
+      ]
+    },
+    "love": {
+      "answer": [
+        "Para o tema amoroso, “{card}” ilumina uma possível dinâmica afetiva.",
+        "No campo das relações amorosas, “{card}” convida a refletir sobre sua maneira de amar.",
+        "Nos assuntos do coração, “{card}” traz uma pista sobre expectativas e trocas."
+      ],
+      "past": [
+        "No seu passado amoroso, “{card}” evoca o que pode ter moldado expectativas.",
+        "Nas experiências afetivas do passado, “{card}” ilumina um aprendizado.",
+        "Nos vínculos de ontem, “{card}” destaca uma possível marca emocional."
+      ],
+      "present": [
+        "No presente amoroso, “{card}” destaca uma dinâmica a reconhecer.",
+        "Para suas trocas afetivas atuais, “{card}” traz uma perspectiva simbólica.",
+        "Hoje, nos assuntos do coração, “{card}” convida a observar o que acontece na relação."
+      ],
+      "future": [
+        "Se as trocas seguirem seu curso, “{card}” evoca uma possibilidade para o vínculo.",
+        "Quanto ao futuro afetivo, “{card}” sugere uma direção sem prometer resultados.",
+        "Para o que pode evoluir em suas relações, “{card}” propõe uma nuance."
+      ],
+      "situation": [
+        "No centro da sua situação amorosa, “{card}” ilumina uma questão do vínculo.",
+        "Para situar as trocas afetivas, “{card}” destaca uma dinâmica.",
+        "Na vida amorosa, “{card}” estabelece o contexto simbólico desta tiragem."
+      ],
+      "challenge": [
+        "No desafio amoroso, “{card}” convida a observar o que dificulta o entendimento.",
+        "Nos laços afetivos, “{card}” destaca uma tensão a compreender.",
+        "No ponto delicado da relação, “{card}” ressalta uma possível dificuldade."
+      ],
+      "advice": [
+        "Para iluminar sua maneira de amar, “{card}” sugere uma atitude.",
+        "Na posição Conselho amoroso, “{card}” oferece uma pista para dialogar melhor.",
+        "Nos assuntos do coração, “{card}” convida a considerar outro gesto ou olhar."
+      ],
+      "month": [
+        "Para {month}, “{card}” evoca um possível clima nos seus vínculos afetivos.",
+        "Na leitura amorosa de {month}, “{card}” destaca uma questão a observar.",
+        "Nos assuntos do coração, em {month}, “{card}” sugere uma pista para as trocas."
+      ]
+    },
+    "work": {
+      "answer": [
+        "No tema Trabalho e dinheiro, “{card}” ilumina uma questão profissional ou material.",
+        "Em seus projetos e recursos, “{card}” oferece um ângulo de interpretação.",
+        "Na atividade e estabilidade material, “{card}” convida a examinar uma dinâmica."
+      ],
+      "past": [
+        "Na sua trajetória profissional passada, “{card}” recorda uma possível conquista.",
+        "Nas experiências de trabalho, “{card}” ilumina o que pode ter formado você.",
+        "Na história de seus projetos e recursos, “{card}” sugere uma herança simbólica."
+      ],
+      "present": [
+        "Na sua situação profissional atual, “{card}” destaca uma questão importante.",
+        "No trabalho e nos recursos, “{card}” ilumina o que merece atenção.",
+        "No presente dos seus projetos, “{card}” revela uma possível dinâmica."
+      ],
+      "future": [
+        "Se a situação continuar, “{card}” sugere uma possível evolução profissional.",
+        "Quanto às perspectivas materiais, “{card}” oferece uma direção sem garantias.",
+        "Para a continuidade dos seus projetos, “{card}” propõe uma abertura simbólica."
+      ],
+      "situation": [
+        "No centro da sua situação profissional, “{card}” destaca uma questão concreta.",
+        "Para situar o contexto profissional, “{card}” ilumina uma dinâmica.",
+        "Nos projetos e recursos, “{card}” indica o ponto de partida da leitura."
+      ],
+      "challenge": [
+        "Diante do desafio profissional, “{card}” convida a reconhecer um possível obstáculo.",
+        "Quanto às restrições materiais, “{card}” destaca um ponto a esclarecer.",
+        "Na posição Desafio, “{card}” ressalta o que dificulta o projeto."
+      ],
+      "advice": [
+        "Como pista para sua atividade, “{card}” propõe um olhar a adotar.",
+        "Na posição Conselho profissional, “{card}” indica um apoio simbólico.",
+        "Nas escolhas de trabalho e recursos, “{card}” convida a ganhar perspectiva."
+      ],
+      "month": [
+        "Para {month}, “{card}” ilumina simbolicamente um aspecto dos seus projetos.",
+        "Na leitura profissional de {month}, “{card}” oferece uma pista a explorar.",
+        "Nos recursos e atividades, “{card}” dá o tom da dinâmica de {month}."
+      ]
+    },
+    "self": {
+      "answer": [
+        "Para a sua vida pessoal, “{card}” ilumina uma questão de equilíbrio ou realização.",
+        "Na relação consigo e com pessoas próximas, “{card}” oferece uma pista.",
+        "Nas escolhas de vida, “{card}” convida a examinar o que importa para você."
+      ],
+      "past": [
+        "No seu passado pessoal, “{card}” recorda uma etapa formadora.",
+        "Na sua história interior, “{card}” ilumina um aprendizado.",
+        "Nas escolhas que formaram você, “{card}” sugere uma marca simbólica."
+      ],
+      "present": [
+        "No presente da sua vida pessoal, “{card}” revela uma questão a observar.",
+        "No seu caminho interior, “{card}” destaca uma dinâmica atual.",
+        "Quanto à realização pessoal, “{card}” convida a olhar seu equilíbrio atual."
+      ],
+      "future": [
+        "Se seu caminho mantiver o rumo, “{card}” evoca uma evolução possível.",
+        "Para a continuidade da sua vida pessoal, “{card}” sugere uma pista sem fixá-la.",
+        "Quanto ao que pode amadurecer em você, “{card}” oferece uma perspectiva."
+      ],
+      "situation": [
+        "No centro da sua vida pessoal, “{card}” destaca uma questão interior.",
+        "Para situar seu caminho, “{card}” ilumina o que ocupa seus pensamentos.",
+        "Na posição Situação pessoal, “{card}” oferece um ponto de partida."
+      ],
+      "challenge": [
+        "No desafio pessoal, “{card}” convida a reconhecer um obstáculo interior.",
+        "Nas suas escolhas de vida, “{card}” destaca uma tensão a compreender.",
+        "Quanto ao que impede você de avançar, “{card}” ilumina uma possível dificuldade."
+      ],
+      "advice": [
+        "Para favorecer sua realização pessoal, “{card}” sugere outro ângulo.",
+        "Na posição Conselho pessoal, “{card}” convida a rever uma atitude.",
+        "No equilíbrio interior e nos laços próximos, “{card}” oferece uma pista de reflexão."
+      ],
+      "month": [
+        "Para {month}, “{card}” evoca uma etapa simbólica do seu caminho.",
+        "No seu percurso pessoal em {month}, “{card}” convida a um novo olhar.",
+        "Na vida pessoal, “{card}” ilumina o possível clima de {month}."
+      ]
+    }
+  },
+  "combos": {
+    "empress+star": "O encontro de “{a}” e “{b}” evoca tradicionalmente uma realização nutrida pela confiança: uma aspiração pode ganhar forma com delicadeza.",
+    "empress+lovers": "Juntas, “{a}” e “{b}” associam afeto, criatividade e escolhas do coração: o vínculo pode crescer quando é compartilhado livremente.",
+    "sun+world": "A associação de “{a}” e “{b}” simboliza uma realização luminosa: uma trajetória pode encontrar coerência e expressão plena.",
+    "sun+star": "Com “{a}” e “{b}”, a esperança recebe uma luz favorável: a tradição vê aqui uma confiança que pode se concretizar.",
+    "lovers+devil": "O encontro de “{a}” e “{b}” mistura atração e apego limitador. Convida a distinguir desejo compartilhado de vínculos que restringem a liberdade.",
+    "tower+star": "Após a revisão simbolizada por “{a}”, “{b}” abre simbolicamente caminho para a confiança reconstruída e a renovação.",
+    "death+judgement": "“{a}” e “{b}” associam fim de ciclo e tomada de consciência. A tradição vê a possibilidade de novo impulso após uma transformação.",
+    "death+sun": "Com “{a}” e “{b}”, o que termina pode abrir espaço para mais clareza. A transição simboliza uma fase mais luminosa.",
+    "moon+priestess": "“{a}” e “{b}” ressaltam a intuição profunda, mas também o que não foi dito. O encontro convida a ouvir sem confundir sentimentos com certezas.",
+    "moon+swords_7": "“{a}” e “{b}” evocam o risco de informações ocultas ou sinceridade incompleta entre pessoas próximas. Convém distinguir impressões de fatos.",
+    "wheel+world": "Ao associar “{a}” e “{b}”, a tradição sugere um ciclo que alcança sua conclusão, com um contexto que pode se tornar favorável.",
+    "magician+chariot": "“{a}” e “{b}” ligam iniciativa e determinação: um projeto pode avançar quando recursos e ações caminham juntos.",
+    "emperor+empress": "O encontro de “{a}” e “{b}” evoca equilíbrio entre estrutura e florescimento, favorável a um lar ou ambiente sólido.",
+    "hermit+priestess": "Com “{a}” e “{b}”, a tradição valoriza recolhimento, silêncio fértil e sabedoria interior: uma resposta pode amadurecer em você.",
+    "devil+tower": "“{a}” e “{b}” podem simbolizar o rompimento com um controle ou hábito pesado. A revisão abre espaço para a liberdade.",
+    "hangedman+death": "O encontro de “{a}” e “{b}” associa desapego e transformação profunda: uma antiga forma de ver as coisas pode dar lugar a outra.",
+    "justice+judgement": "“{a}” e “{b}” evocam uma avaliação lúcida seguida de decisão mais justa. Examinar os fatos ajuda a reconhecer o que precisa evoluir.",
+    "strength+chariot": "“{a}” e “{b}” unem autocontrole e vontade de avançar. A tradição vê aqui o sucesso favorecido por coragem equilibrada.",
+    "temperance+lovers": "Juntas, “{a}” e “{b}” sugerem reconciliação das diferenças, escuta e possibilidade de um acordo mais harmonioso.",
+    "fool+world": "Com “{a}” e “{b}”, uma realização pode abrir novo começo. A tradição une experiência adquirida e liberdade reencontrada.",
+    "fool+magician": "“{a}” e “{b}” evocam um início cheio de possibilidades: o impulso inicial pode encontrar meios concretos de se expressar.",
+    "hierophant+lovers": "O encontro de “{a}” e “{b}” associa escolha afetiva e valores partilhados. Pode evocar um compromisso reconhecido ou esclarecido.",
+    "star+moon": "“{a}” e “{b}” misturam confiança e incerteza. A esperança continua presente, mas as impressões pedem esclarecimento.",
+    "sun+cups_2": "Com “{a}” e “{b}”, a tradição evoca alegria afetiva compartilhada, reciprocidade calorosa e um entendimento que pode florescer.",
+    "cups_10+empress": "“{a}” e “{b}” reúnem afeto, harmonia e generosidade. Simbolizam um lar ou vínculos familiares acolhedores.",
+    "pentacles_10+world": "“{a}” e “{b}” evocam estabilidade material duradoura, além da transmissão de conquistas ou de um legado.",
+    "pentacles_ace+magician": "O encontro de “{a}” e “{b}” sugere uma oportunidade material concreta que habilidades e iniciativa podem ajudar a desenvolver.",
+    "wands_ace+magician": "Com “{a}” e “{b}”, a tradição destaca uma ideia nova e os meios para iniciá-la: uma iniciativa pode tomar forma.",
+    "swords_3+tower": "“{a}” e “{b}” associam decepção dolorosa à revisão de uma certeza. Reconhecer o sofrimento pode ajudar a reconstruir de outra forma.",
+    "swords_10+sun": "Depois da provação simbolizada por “{a}”, “{b}” abre uma perspectiva mais clara: o fim de uma fase difícil pode permitir renovação.",
+    "cups_5+star": "“{a}” e “{b}” ligam arrependimento e esperança. A tradição evoca a possibilidade de reencontrar conforto e valorizar o que permanece vivo.",
+    "pentacles_5+star": "O encontro de “{a}” e “{b}” sugere que um apoio ou ajuda inesperada pode iluminar uma fase de dificuldades materiais.",
+    "wands_6+chariot": "“{a}” e “{b}” associam avanço determinado e reconhecimento: esforços visíveis podem receber uma resposta favorável.",
+    "swords_7+devil": "“{a}” e “{b}” pedem atenção aos jogos de influência e informações ocultas. A clareza protege contra apegos enganosos.",
+    "cups_3+sun": "Com “{a}” e “{b}”, a tradição valoriza convivência, amizades e alegria de celebrar em conjunto.",
+    "pentacles_8+hermit": "“{a}” e “{b}” associam aprendizado paciente e pesquisa aprofundada: uma habilidade pode amadurecer com constância.",
+    "wands_10+hangedman": "O encontro de “{a}” e “{b}” evoca um peso excessivo e a importância de tomar distância. Rever responsabilidades pode aliviar o caminho.",
+    "cups_8+hermit": "“{a}” e “{b}” associam a escolha de deixar uma situação para trás a uma busca interior de sentido e coerência.",
+    "swords_2+justice": "Com “{a}” e “{b}”, uma hesitação pede uma escolha baseada em critérios claros. Examinar fatos pode ajudar a superar o impasse.",
+    "pentacles_3+emperor": "“{a}” e “{b}” unem competência coletiva e estrutura sólida: um projeto bem coordenado pode favorecer o reconhecimento do trabalho feito."
+  },
+  "synth": {
+    "love": {
+      "one": {
+        "up": [
+          "Com “{card}”, a leitura amorosa sugere um impulso favorável na forma de se relacionar. A tradição convida a cultivar o que aproxima, sem presumir o resultado.",
+          "“{card}” traz um tom promissor ao amor. Uma sinceridade mais compartilhada pode alimentar a confiança e a alegria do vínculo."
+        ],
+        "open": [
+          "“{card}” abre uma possibilidade na vida afetiva: uma nuance a reconhecer ou uma conversa a aprofundar. Nada está definido, mas algo merece sua atenção.",
+          "Com “{card}”, a leitura privilegia uma abertura a explorar, não uma resposta definitiva. A qualidade da escuta pode ser importante."
+        ],
+        "work": [
+          "“{card}” destaca um ponto delicado no amor. A tiragem convida a observar expectativas ou silêncios com gentileza, sem impor uma conclusão.",
+          "Com “{card}”, o tema afetivo pede sobretudo lucidez. Nomear uma tensão pode abrir espaço para um diálogo mais livre."
+        ]
+      },
+      "three": {
+        "up": [
+          "Com “{card}” no Futuro, a trajetória afetiva pode evoluir para mais harmonia ou impulso. Essa perspectiva continua aberta às escolhas de vocês.",
+          "Passado e Presente ganham uma perspectiva encorajadora com “{card}” no Futuro. A tradição vê aqui uma possibilidade de realização a cultivar."
+        ],
+        "open": [
+          "Com “{card}” no Futuro, a tiragem amorosa sugere um caminho ainda por descobrir. O percurso vivido ilumina o que pode ser esclarecido.",
+          "A carta do Futuro, “{card}”, não fecha portas. Ela convida a reconhecer uma oportunidade de compreender melhor o vínculo."
+        ],
+        "work": [
+          "“{card}” no Futuro destaca uma tensão que pode persistir se nada mudar. Passado e Presente oferecem referências para lidar com ela sem receio.",
+          "A continuação simbolizada por “{card}” pede atenção: uma dificuldade afetiva merece ser nomeada, sem ser considerada inevitável."
+        ]
+      },
+      "sca": {
+        "up": [
+          "No Conselho, “{card}” dá à leitura uma orientação favorável. Uma atitude confiante e sincera pode sustentar uma relação mais equilibrada.",
+          "Situação e Desafio encontram em “{card}”, no Conselho, um caminho encorajador. É um impulso a cultivar, não uma promessa."
+        ],
+        "open": [
+          "“{card}” no Conselho convida a explorar uma possibilidade afetiva ainda aberta. Uma palavra justa ou mudança de olhar pode ajudar.",
+          "O Conselho trazido por “{card}” oferece espaço para ajustes no vínculo. A tiragem incentiva a curiosidade em vez de conclusões precipitadas."
+        ],
+        "work": [
+          "Com “{card}” no Conselho, a tiragem convida a observar o que complica as trocas. Essa dificuldade pode iniciar um esclarecimento.",
+          "O Conselho, “{card}”, destaca um padrão afetivo a trabalhar. Reconhecer o que pesa sobre o vínculo abre uma reflexão útil."
+        ]
+      },
+      "six": {
+        "up": [
+          "Nas seis etapas da tiragem, destaca-se uma dinâmica afetiva globalmente favorável. As cartas evocam um vínculo que pode ganhar confiança e calor, conforme as escolhas.",
+          "A leitura dos seis meses revela um impulso amoroso encorajador. A tradição sugere cultivar sinceridade e reciprocidade, sem transformar tendência em certeza."
+        ],
+        "open": [
+          "A sequência dos seis meses mostra aberturas afetivas a reconhecer. Cada etapa convida a ajustar expectativas, não a prever resultados exatos.",
+          "Esse percurso amoroso de seis cartas evoca possibilidades a explorar. Compreender necessidades mútuas pode dar unidade à leitura."
+        ],
+        "work": [
+          "Ao longo dos seis meses, a tendência afetiva aponta desafios a olhar com delicadeza. As cartas convidam a esclarecer os vínculos, sem anunciar rompimento ou desfecho certo.",
+          "As seis cartas traçam uma dinâmica amorosa exigente, mas não fixa. Reconhecer tensões e necessidades pode favorecer um caminho mais consciente."
+        ]
+      }
+    },
+    "work": {
+      "one": {
+        "up": [
+          "Com “{card}”, a leitura de Trabalho e dinheiro evoca um impulso favorável para um projeto ou habilidade. A tradição vê uma progressão possível, nunca garantida.",
+          "“{card}” dá um tom construtivo às atividades e aos recursos. Pode surgir uma chance de valorizar esforços, sem garantia de resultado."
+        ],
+        "open": [
+          "“{card}” sugere uma abertura a examinar nos projetos ou na organização material. O valor está em entender possibilidades, não em promessas.",
+          "Com “{card}”, Trabalho e dinheiro destaca um caminho ainda a esclarecer. Observar recursos disponíveis pode enriquecer a reflexão."
+        ],
+        "work": [
+          "“{card}” destaca um desafio na organização do trabalho ou dos recursos. A tiragem convida a reconhecer a dificuldade sem prever perdas ou resultados.",
+          "Com “{card}”, a leitura pede lucidez diante de um obstáculo profissional ou material. Prioridades mais claras ajudam a compreender a questão."
+        ]
+      },
+      "three": {
+        "up": [
+          "Com “{card}” no Futuro, a tradição evoca um projeto que pode crescer, até com reconhecimento dos esforços. A perspectiva continua condicional.",
+          "“{card}” no Futuro dá um sentido simbolicamente favorável à trajetória profissional. O caminho percorrido pode render frutos se o impulso continuar."
+        ],
+        "open": [
+          "Com “{card}” no Futuro, a trajetória profissional sugere uma oportunidade a examinar, não um resultado assegurado. Passado e Presente iluminam a escolha.",
+          "A carta do Futuro, “{card}”, destaca uma possibilidade ainda aberta nos projetos ou recursos. Mais informações podem esclarecer seu sentido."
+        ],
+        "work": [
+          "“{card}” no Futuro destaca uma dificuldade que pode persistir se a dinâmica continuar. A tiragem convida a compreender melhor o bloqueio.",
+          "Com “{card}” no Futuro, a leitura de Trabalho e dinheiro chama atenção para um desafio. Ela não anuncia fracasso nem perda certa."
+        ]
+      },
+      "sca": {
+        "up": [
+          "“{card}” no Conselho oferece apoio favorável aos projetos. A leitura destaca o que pode reforçar sua capacidade de avançar com método e confiança.",
+          "Com “{card}” no Conselho, a Situação e o Desafio levam a um caminho construtivo. A tiragem incentiva a valorizar seus recursos."
+        ],
+        "open": [
+          "“{card}” no Conselho abre uma possibilidade na organização do trabalho ou na forma de pensar os recursos. Vale examiná-la com distanciamento.",
+          "A Situação e seu Desafio encontram em “{card}”, no Conselho, um caminho de exploração. A ideia é entender opções, não decidir por você."
+        ],
+        "work": [
+          "“{card}” no Conselho evidencia um obstáculo profissional ou material a esclarecer. Compreender sua lógica pode dar mais controle sobre a situação.",
+          "Com “{card}” no Conselho, a leitura ressalta um desafio que exige atenção e discernimento. As cartas oferecem perspectivas, não instruções financeiras."
+        ]
+      },
+      "six": {
+        "up": [
+          "A leitura dos seis meses aponta uma tendência globalmente favorável aos projetos e à sua consolidação. As cartas evocam progresso possível, sem garantir resultados materiais.",
+          "Nessas seis etapas, surge um impulso construtivo para o trabalho e os recursos. A tradição sugere capacidades a desenvolver com equilíbrio."
+        ],
+        "open": [
+          "As seis cartas revelam caminhos a explorar no campo profissional ou material. O valor está em entender as oportunidades, sem presumir resultados.",
+          "O percurso de seis meses destaca várias aberturas possíveis. Suas escolhas e o contexto continuam essenciais para dar sentido a elas."
+        ],
+        "work": [
+          "A sequência dos seis meses aponta desafios de organização ou prioridades. As cartas convidam a olhar para eles com lucidez, sem anunciar reveses inevitáveis.",
+          "No tema Trabalho e dinheiro, as seis etapas mostram uma fase que pede ajustes. A tiragem oferece referências simbólicas, não previsão financeira."
+        ]
+      }
+    },
+    "self": {
+      "one": {
+        "up": [
+          "Com “{card}”, sua vida pessoal recebe um impulso favorável. A tradição convida a reconhecer uma força interior ou um vínculo próximo que pode florescer.",
+          "“{card}” dá um tom encorajador ao seu caminho. Uma forma mais livre e confiante de viver suas escolhas parece possível."
+        ],
+        "open": [
+          "“{card}” abre uma questão fértil para seu equilíbrio pessoal. Um novo olhar sobre hábitos ou pessoas próximas pode enriquecer o percurso.",
+          "Com “{card}”, a tiragem sugere uma chance de se conhecer melhor. Nada impõe o caminho: a abertura depende do que você reconhecer nele."
+        ],
+        "work": [
+          "“{card}” chama a atenção para uma dificuldade interior ou relacional a compreender. A leitura convida a explorá-la sem reduzir você a esse desafio.",
+          "Com “{card}”, sua vida pessoal pede reflexão mais atenta. Identificar o que impede o avanço pode abrir caminho para uma mudança escolhida."
+        ]
+      },
+      "three": {
+        "up": [
+          "Com “{card}” no Futuro, a tradição sugere uma realização pessoal possível. Passado e Presente apoiam esse impulso sem torná-lo certo.",
+          "“{card}” no Futuro ilumina uma evolução favorável na relação consigo ou com pessoas próximas. A tiragem mostra potencial, não resultado."
+        ],
+        "open": [
+          "Com “{card}” no Futuro, uma possibilidade de crescimento pessoal se desenha sem se fixar. Sua trajetória ilumina o que ainda precisa amadurecer.",
+          "A carta do Futuro, “{card}”, convida a explorar outra compreensão das suas necessidades. O caminho também depende de escolhas ainda abertas."
+        ],
+        "work": [
+          "“{card}” no Futuro destaca um desafio pessoal que pode continuar se nada mudar. A história da tiragem ajuda a encará-lo sem julgamentos.",
+          "Com “{card}” no Futuro, a leitura evoca uma dificuldade a atravessar. Ela não define quem você é nem determina um resultado."
+        ]
+      },
+      "sca": {
+        "up": [
+          "“{card}” no Conselho oferece uma direção encorajadora à sua vida pessoal. A leitura sugere apoio numa qualidade que você já possui.",
+          "Com “{card}” no Conselho, a Situação e o Desafio encontram uma saída simbólica favorável: uma forma mais serena de avançar parece possível."
+        ],
+        "open": [
+          "“{card}” no Conselho abre um caminho para conciliar necessidades e vínculos próximos. Uma nova nuance pode transformar seu olhar.",
+          "O Conselho de “{card}” favorece a exploração, não uma resposta definitiva. Seu caminho continua a ser construído pelas suas escolhas."
+        ],
+        "work": [
+          "“{card}” no Conselho destaca um hábito ou tensão interior a trabalhar. Reconhecer esse padrão já é uma forma de diminuir sua força.",
+          "Com “{card}” no Conselho, a tiragem convida a observar uma dificuldade pessoal com honestidade e gentileza, sem exigir perfeição nem pressa."
+        ]
+      },
+      "six": {
+        "up": [
+          "Nas seis etapas, surge uma dinâmica favorável à realização pessoal. As cartas convidam a desenvolver recursos interiores e laços escolhidos.",
+          "A leitura dos seis meses revela um impulso pessoal encorajador. Equilíbrio e confiança podem se fortalecer por meio de escolhas conscientes."
+        ],
+        "open": [
+          "O percurso de seis cartas revela aberturas para compreender melhor seus desejos e vínculos. Cada etapa convida a explorar, não a prever.",
+          "Os seis meses simbólicos evocam possibilidades de mudança interior. A leitura convida a acolher nuances sem querer resolver tudo de uma vez."
+        ],
+        "work": [
+          "A sequência dos seis meses destaca dificuldades pessoais a observar sem se julgar. As cartas oferecem possibilidades de ajuste, não um caminho imposto.",
+          "Esta tiragem de seis etapas destaca hábitos ou tensões a trabalhar. A evolução continua aberta e não se resume aos momentos exigentes."
+        ]
+      }
+    }
+  }
+}

@@ -13,6 +13,7 @@ horoscope par transits, compatibilité, carte du ciel, éclipses de Soleil vues 
 | `ZODIAC.html`, `zodiac.css`, `zodiac-*.js` | L'appli (version de travail en plusieurs fichiers ; s'ouvre d'un double-clic) |
 | `build-standalone.py` | Assemble `ZODIAC-standalone.html` (un seul fichier) et le dossier `site/` publié |
 | `build-places.py` | Régénère la base des villes (`zodiac-places-data.js`) depuis GeoNames |
+| `tools/regen_tarot_themes.js` | Contrôle et génère les textes du tarot par thème à partir de `data/tarot-themes/` |
 | `tools/regen_cosmic.js` | Contrôle et génère les textes de Cosmic Daily à partir de `data/cosmic/` |
 | `tools/run_tests.py` | Tous les tests : suite intégrée (5 fuseaux), version autonome réseau coupé, parcours en 3 langues, accessibilité, site installable ; `--browser webkit` ou `firefox` pour Safari / Firefox (Safari bloque la publication en cas d'échec, Firefox est informatif) |
 | `.github/workflows/` | À chaque modification : tests, puis publication automatique du site s'ils passent |

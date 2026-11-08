@@ -180,6 +180,12 @@ async def journey(browser, file):
             await page.click('.spread-choice[data-type="three"]')
             if await page.locator('.tarot-fan').count() == 0 and await page.locator('.spread-flip, .spread-done').count() == 0:
                 await page.fill('#spreadQuestion', 'Que dois-je comprendre ?')
+                # Thème choisi au clavier : « Question libre » → flèche → « Amour » → flèche → « Travail et argent »
+                await page.locator('input[name="spreadTheme"]:checked').focus()
+                await page.locator('input[name="spreadTheme"][value="general"]').check()
+                await page.locator('input[name="spreadTheme"][value="general"]').focus()
+                await page.keyboard.press('ArrowDown')
+                await page.keyboard.press('ArrowDown')
                 await page.click('#spreadDraw')
                 await page.wait_for_selector('.tarot-fan', timeout=10000)
                 await page.focus('.fan-card[tabindex="0"]')
@@ -194,14 +200,21 @@ async def journey(browser, file):
                 return t.tarot.synth.tendency[spreadTendency(spreadType, r).overall]; })()""")
             synth = await page.locator('.spread-synth .synth-tendency').inner_text() == expected
             synth = synth and '{' not in await page.locator('.spread-synth').inner_text()
+            # Tarot par thème : récit « Votre lecture », une phrase par carte, thème rappelé, synthèse du thème
+            theme = await page.evaluate('readingOf(spreadType).theme')
+            story = await page.locator('.spread-story .story-line').count()
+            story_ok = theme == 'work' and story == 3 and '{' not in await page.locator('.spread-story').inner_text() \
+                and await page.locator('.spread-theme').count() == 1
             await page.reload()
             await page.wait_for_selector('#tabTarot', timeout=60000)
             await page.locator('#tabTarot').click()
             again = await page.locator('.spread-slot .tarot-title').count()
             synth = synth and await page.locator('.spread-synth').count() == 1
-            report(shown == 3 and again == 3 and synth and not errors,
-                   f'{lang} : tarot, trois cartes choisies au clavier, posées, retournées, synthèse « {expected} », retrouvées après rechargement'
-                   + ('' if synth else ' | synthèse absente ou fausse') + (f' | {errors}' if errors else ''))
+            story_ok = story_ok and await page.locator('.spread-story .story-line').count() == 3
+            report(shown == 3 and again == 3 and synth and story_ok and not errors,
+                   f'{lang} : tarot, thème « Travail et argent » au clavier, trois cartes choisies, posées, retournées, « Votre lecture », synthèse « {expected} », retrouvées après rechargement'
+                   + ('' if synth else ' | synthèse absente ou fausse') + ('' if story_ok else f' | récit : thème {theme}, {story} phrases')
+                   + (f' | {errors}' if errors else ''))
         except Exception as exc:
             report(False, f'{lang} : onglet Tarot absent ou non interactif — {str(exc)[:350]}')
 
@@ -554,9 +567,10 @@ async def installable_site(browser):
             await page.evaluate('navigator.serviceWorker.ready')
             await page.reload()
             controlled = await page.evaluate('!!navigator.serviceWorker.controller')
-            lazy_ok = await page.evaluate("ensureCosmic('fr')") and await page.evaluate("ensureCosmic('ja')")
-            report(lazy_ok and await page.evaluate("!!window.COSMIC_I18N.fr && !window.COSMIC_I18N.ko"),
-                   'Cosmic Daily : textes chargés à la demande, une langue à la fois')
+            lazy_ok = await page.evaluate("ensureCosmic('fr')") and await page.evaluate("ensureCosmic('ja')") \
+                and await page.evaluate("ensureTarotThemes('fr')")
+            report(lazy_ok and await page.evaluate("!!window.COSMIC_I18N.fr && !window.COSMIC_I18N.ko && !!window.TAROT_THEMES_I18N.fr && !window.TAROT_THEMES_I18N.ko"),
+                   'Cosmic Daily et tarot par thème : textes chargés à la demande, une langue à la fois')
             first = sum(size for _, _, size in log)
             report(controlled, f'installation : le service worker garde l\'appli en mémoire ({first // 1024} Ko téléchargés)')
 
@@ -599,8 +613,8 @@ async def installable_site(browser):
                 await ctx.set_offline(True)
             await page.goto(base + '?date=1982-11-03&lang=fr')
             await page.wait_for_selector('.sign-name', timeout=60000)
-            offline_cosmic = await page.evaluate("ensureCosmic('fr')")
-            report(not errors and offline_cosmic, 'réseau coupé, après la mise à jour : l\'appli s\'ouvre et calcule, Cosmic Daily en français disponible'
+            offline_cosmic = await page.evaluate("ensureCosmic('fr')") and await page.evaluate("ensureTarotThemes('fr')")
+            report(not errors and offline_cosmic, 'réseau coupé, après la mise à jour : l\'appli s\'ouvre et calcule, Cosmic Daily et tarot par thème en français disponibles'
                    + ('' if offline_cosmic else ' | Cosmic Daily absent hors ligne') + (f' | {errors}' if errors else ''))
             await ctx.close()
         except Exception as exc:   # un échec est signalé comme les autres, sans interrompre le rapport
