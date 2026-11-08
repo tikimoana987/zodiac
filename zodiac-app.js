@@ -214,17 +214,6 @@ function runSearch(signKey, onDone){
   }, 1400);
 }
 
-/* Révélation du signe (V10.13) : sa constellation se dessine trait par trait derrière son nom, puis reste en
-   filigrane ; quelques étincelles autour du symbole. Une fois par affichage ; rien d'animé si l'on a demandé moins
-   de mouvements (zodiac.css). Même dessin que la recherche (CONST). */
-function revealConstellationSvg(signKey){
-  const data = CONST[signKey];
-  if (!data) return '';
-  const lines = data.lines.map(([a, b], i) => { const [x1, y1] = data.stars[a], [x2, y2] = data.stars[b];
-    return `<path d="M${x1} ${y1}L${x2} ${y2}" pathLength="1" style="animation-delay:${(.15 + i * .09).toFixed(2)}s"/>`; }).join('');
-  const stars = data.stars.map(([x, y], i) => `<circle cx="${x}" cy="${y}" r="2.6" style="animation-delay:${(i * .07).toFixed(2)}s"/>`).join('');
-  return `<svg class="reveal-const" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><g class="rc-lines">${lines}</g><g class="rc-stars">${stars}</g></svg>`;
-}
 function drawConstellation(signKey){
   const svg = document.getElementById('constSvg');
   const data = CONST[signKey];
@@ -364,9 +353,8 @@ function westernCards(t, signKey, decanIdx){
   return [
     `<div class="card">
         <h3>${t.sections.western}${infoBtn('signVsConstellation', t.sections.western)}</h3>
-        <div class="sign-head sign-reveal">
-          ${revealConstellationSvg(signKey)}
-          <span class="sign-icon" aria-hidden="true">${meta.sym}<span class="sign-sparks">${'<i></i>'.repeat(6)}</span></span>
+        <div class="sign-head">
+          <span class="sign-icon" aria-hidden="true">${meta.sym}</span>
           <div>
             <div class="sign-name">${t.signNames[signKey]}</div>
             <div class="sign-meta">${t.elements[meta.element]} · ${t.rulers[meta.ruler]} · ${t.modalities[meta.modality]}</div>
@@ -726,9 +714,7 @@ function buildWheel(){
   g += `<circle class="w-inner" r="70"/>`;
   for (const [id, sym] of [['wheelSun', PLANET_SYM.sun], ['wheelMoon', PLANET_SYM.moon]])
     g += `<circle class="wm-dot" id="${id}Dot" r="8"/><text class="wm" id="${id}">${sym}</text>`;
-  svg.innerHTML = `<circle class="w-outer" r="111"/><g id="wheelRot">${g}</g>` +
-    // Étoile filante qui fait le tour de la roue quand un résultat est affiché (zodiac.css : .w-comet)
-    `<g class="w-comet" aria-hidden="true"><path class="w-comet-tail" d="M0,-111 A111,111 0 0 0 -71.3,-85.0" /><path class="w-comet-tail2" d="M0,-111 A111,111 0 0 0 -38,-104.3" /><circle class="w-comet-head" cx="0" cy="-111" r="4.2"/></g>`;
+  svg.innerHTML = `<circle class="w-outer" r="111"/><g id="wheelRot">${g}</g>`;
 }
 function setWheelMarker(id, lon, r){
   const [x, y] = wheelPoint(r, wheelScreenAngle(lon)), dot = document.getElementById(id + 'Dot'), txt = document.getElementById(id);
@@ -738,6 +724,44 @@ function setWheelMarker(id, lon, r){
   txt.dataset.x = x.toFixed(2); txt.dataset.y = y.toFixed(2);
 }
 /* Applique la rotation ; les symboles sont contre-tournés pour rester droits */
+/* Fond de page (V10.14, décision du 8 novembre 2026) : la vraie carte du ciel — étoiles et tracés des
+   constellations, sans texte — en très grand et très pâle, dessinée une fois puis immobile, à la place du fond étoilé.
+   À l'accueil : le ciel du moment au lieu de la carte du ciel (ou la ville par défaut) ; avec un résultat : le ciel
+   de la naissance (date ; heure, ou midi ; lieu de naissance, ou à défaut celui de la carte du ciel). Rien n'est envoyé. */
+let skyBgKey = null;
+function skyBackground(){
+  const host = document.getElementById('skyBg');
+  if (!host) return;
+  const here = currentPlace();
+  let ms = Date.now(), lat = here.lat, lon = here.lon;
+  if (currentDate && currentSky) {
+    const d = parseISODate(currentDate), tm = birthTime(), bp = birthPlace(currentBirthPlace), tz = bp ? bp.tz : mapTz(here);
+    ms = tm ? localInstant(d, tm.h, tm.min, tz, tm.fold) : localInstant(d, 12, 0, tz);
+    if (bp) { lat = bp.lat; lon = bp.lon; }
+  }
+  const key = [Math.round(ms / 6e5), lat, lon].join();   // même ciel à dix minutes près : rien à redessiner
+  if (key === skyBgKey) return;
+  skyBgKey = key;
+  const T = julianCenturies(ms), f = v => v.toFixed(1);
+  const proj = (ra, dec) => { const h = altAz(ra, dec, lat, lon, ms); return h.alt > 0 ? projectSky(h.alt, h.az, 100) : null; };
+  let lines = '', stars = '';
+  for (const id in CONSTELLATION_LINES) for (const poly of CONSTELLATION_LINES[id]) {
+    let d = '', open = false;
+    for (let i = 0; i < poly.length; i += 2) {
+      const q = proj(...precessFromJ2000(poly[i], poly[i + 1], T));
+      if (q) { d += `${open ? 'L' : 'M'}${f(q[0])},${f(q[1])}`; open = true; } else open = false;
+    }
+    if (d) lines += `<path d="${d}"/>`;
+  }
+  for (let i = 0; i < STARS.length; i += 4) {
+    const q = proj(...precessFromJ2000(STARS[i], STARS[i + 1], T));
+    if (q) stars += `<circle cx="${f(q[0])}" cy="${f(q[1])}" r="${Math.max(.2, .8 - .15 * STARS[i + 2]).toFixed(2)}"/>`;
+  }
+  host.innerHTML = `<svg viewBox="-100 -100 200 200" focusable="false"><circle class="skybg-dome" r="100"/>` +
+    `<g class="skybg-lines">${lines}</g><g class="skybg-stars">${stars}</g></svg>`;
+  document.body.classList.add('has-skybg');
+}
+
 function drawWheel(){
   const rot = document.getElementById('wheelRot');
   if (!rot) return;
@@ -755,7 +779,7 @@ function wheelFrame(ts){
     wheelAngle %= 360;
     drawWheel();
   }
-  if (!currentSignKey && !prefersReducedMotion()) {          // accueil : rotation lente, 4° par seconde
+  if (!prefersReducedMotion()) {          // rotation lente, 4° par seconde, à l'accueil comme avec un résultat (décision du 8 novembre 2026)
     if (wheelLast !== null) wheelAngle = (wheelAngle + (ts - wheelLast) * 0.004) % 360;
     wheelLast = ts;
     drawWheel();
@@ -807,6 +831,7 @@ function updateWheel(){
   const name = k => `<span aria-hidden="true">${SIGN_META[k].sym}</span> ${t.signNames[k]}`;
   document.getElementById('wheelCaption').innerHTML =
     `${label} · <span aria-hidden="true">${PLANET_SYM.sun}</span> ${name(sun)} · <span aria-hidden="true">${PLANET_SYM.moon}</span> ${moonSigns.map(name).join(' / ')}`;
+  skyBackground();   // le fond suit la même logique : ciel du jour à l'accueil, de naissance avec un résultat
 }
 
 /* ============================================================

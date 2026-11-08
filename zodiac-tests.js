@@ -1577,15 +1577,16 @@
     }
   });
 
-  section('Effets visuels');
-  test('Effets : constellation de révélation pour les 12 signes, étoile filante sur la roue', () => {
-    for (const k of SIGN_ORDER) {
-      const svg = revealConstellationSvg(k), d = CONST[k];
-      assertEq((svg.match(/<path /g) || []).length, d.lines.length, `${k} : traits`);
-      assertEq((svg.match(/<circle /g) || []).length, d.stars.length, `${k} : étoiles`);
-      assert(svg.includes('aria-hidden="true"'), `${k} : décoratif, ignoré des lecteurs d'écran`);
-    }
-    assert(document.querySelector('#wheel .w-comet[aria-hidden="true"] .w-comet-head'), 'étoile filante dessinée avec la roue');
+  section('Fond de page');
+  test('Fond : la vraie carte du ciel (étoiles et constellations), ciel du moment à l’accueil', () => {
+    const svg = document.querySelector('#skyBg svg');
+    assert(svg && document.body.classList.contains('has-skybg'), 'fond dessiné, étoiles décoratives retirées');
+    assert(svg.querySelectorAll('.skybg-stars circle').length > 100 && svg.querySelectorAll('.skybg-lines path').length > 20, 'étoiles et tracés visibles');
+    assertEq(document.getElementById('skyBg').getAttribute('aria-hidden'), 'true', 'décoratif, ignoré des lecteurs d’écran');
+    assert(!svg.querySelector('text'), 'aucun texte');
+    const before = document.getElementById('skyBg').innerHTML;
+    skyBackground();
+    assertEq(document.getElementById('skyBg').innerHTML, before, 'même ciel : pas de nouveau dessin');
   });
 
   section('Couleurs lisibles');

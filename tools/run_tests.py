@@ -426,6 +426,33 @@ async def map_place_journey(browser, file):
         await ctx.close()
 
 
+async def wheel_sky_journey(browser, file):
+    """Roue et fond : la roue tourne encore après le résultat (comme à l'accueil) ; le fond passe du ciel du moment
+    au ciel de naissance."""
+    print(f'Roue et carte du ciel en fond — {file.name}')
+    ctx = await browser.new_context(viewport={'width': 1280, 'height': 900}, reduced_motion='no-preference')
+    page = await ctx.new_page()
+    errors = []
+    page.on('pageerror', lambda e: errors.append(str(e)))
+    try:
+        await page.goto(file.as_uri() + '?lang=fr')
+        await page.wait_for_selector('#skyBg svg', timeout=60000)
+        home = await page.inner_html('#skyBg')
+        await page.goto(file.as_uri() + PROFILE + 'fr')
+        await page.wait_for_selector('#tabSigns', timeout=60000)
+        await page.wait_for_timeout(2500)   # la roue rejoint le signe, puis continue
+        a1 = await page.evaluate('wheelAngle')
+        await page.wait_for_timeout(1000)
+        a2 = await page.evaluate('wheelAngle')
+        birth = await page.inner_html('#skyBg')
+        ok = abs(a2 - a1) > 1 and birth and birth != home and not errors
+        report(ok, f'roue qui tourne après le résultat ({abs(a2 - a1):.1f}° en 1 s), fond : ciel du moment puis ciel de naissance'
+               + ('' if ok else f' | {a1} {a2} {birth != home}') + (f' | {errors}' if errors else ''))
+    except Exception as exc:
+        report(False, f'roue et fond — {str(exc).splitlines()[0][:200]}')
+    await ctx.close()
+
+
 async def accessibility(browser, file):
     """Audit axe-core : accueil + 5 onglets, français et arabe, thèmes sombre et clair. Aucune anomalie tolérée."""
     print(f'Accessibilité (audit axe-core) — {file.name}')
@@ -667,6 +694,7 @@ async def main():
         await dst_journey(browser, ROOT / 'ZODIAC.html')
         await cosmic_journey(browser, ROOT / 'ZODIAC.html')
         await map_place_journey(browser, ROOT / 'ZODIAC.html')
+        await wheel_sky_journey(browser, ROOT / 'ZODIAC.html')
         if BROWSER == 'chromium':
             await accessibility(browser, ROOT / 'ZODIAC.html')
         await installable_site(browser)
