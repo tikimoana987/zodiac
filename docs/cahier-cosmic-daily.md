@@ -1,4 +1,15 @@
-# Cahier — Cosmic Daily (V10.8, 5 novembre 2026)
+# Cahier — Cosmic Daily (V10.8, 5 novembre 2026 ; V10.9 « Cosmic Daily 2 », 7 novembre 2026)
+
+## 0. Version 2 (V10.9), après les essais de la testeuse
+
+Constat (6 novembre) : textes trop semblables (Bien-être et Sagesse communs à tous les signes, deux variantes seulement, beaucoup de phrases ouvrant sur « la Lune en … ») et humour trop sage. Décisions (Joann, 6 et 7 novembre) : Classique sérieux et naturel ; Drôle franchement drôle ; Piquant et Roast My Zodiac mordants (sarcasme, comparaisons absurdes, chutes inattendues) ; vouvoiement partout ; limites : ni handicap, ni maladie, ni mort, ni suicide, ni terme médical ou psychiatrique, rien sur le physique, le poids, la sexualité, l'âge, le genre, l'origine, la religion ; clichés d'argent permis (Capricorne), jamais la situation financière réelle ; fausse certitude comique permise en Drôle et Piquant, jamais en Classique ni sur l'argent, la santé ou l'amour réels.
+
+- **Textes** : chaque rubrique est propre au signe (Bien-être et Sagesse compris), **8 variantes** par signe × voix × rubrique (12 × 3 × 5 × 8 = 1 440), parcourues en 8 jours avec un décalage par rubrique et par signe ; une **phrase d'ambiance** (`sky`, 3 voix × 4 éléments × 6) porte seule le ciel du jour (`{moon}`), les rubriques parlent du signe dès la première phrase ; **Roast My Zodiac** : 10 roasts de 3 ou 4 phrases par signe (le roast du jour, puis « Encore un »). Rédaction ChatGPT en trois lots (le lot 1 a fait reprendre Piquant et Roast My Zodiac après lecture de la testeuse), 13 traductions.
+- **Partage en image** (`cosmicRoastCanvas`, `shareRoastImage`) : image 1080 × 1350 dessinée sur l'appareil (fond étoilé, symbole et nom du signe, texte coupé par mots avec `Intl.Segmenter`, adresse du site), partagée par le système (`navigator.share` avec fichier) ou téléchargée.
+- **Accueil, sans profil** : bouton « ✺ Cosmic Daily » à côté de l'Oracle (masqué quand un profil est affiché), fenêtre `#cosmicDialog` : choix du signe retenu sur l'appareil (`zodiac_cosmicSign`), focus gardé, Échap (après la bulle (i) si elle est ouverte), retour du focus au bouton. Deux affichages (`cosmicCtx.tab`, `cosmicCtx.dlg`) aux identifiants suffixés (`-tab`, `-dlg`) ; dans la fenêtre, la carte n'est pas une `section` (pas de second repère de même nom).
+- **Tests** : 3 tests intégrés (textes des 14 langues, nouvelle structure ; 8 jours sans répétition, deux signes jamais au même rang, Roast My Zodiac ; image 1080 × 1350 et coupure des lignes en français, arabe, japonais, thaï) ; parcours réel (onglet, voix au clavier, Roast My Zodiac, fenêtre de l'accueil) ; audit axe-core avec Roast My Zodiac déplié et avec la fenêtre ouverte.
+
+Les sections suivantes décrivent la version 1 ; ce qui change est résumé ci-dessus.
 
 ## 1. Principe
 

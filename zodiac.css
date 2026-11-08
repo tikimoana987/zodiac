@@ -327,7 +327,7 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 @keyframes pulseText{ 0%,100%{opacity:.5} 50%{opacity:1} }
 
 /* ORACLE OUI / NON (zodiac-oracle.js) — même ambiance que l'écran de recherche, dans les deux thèmes */
-.oracle-entry{ display:flex; justify-content:center; margin-top:1.2rem; }
+.oracle-entry{ display:flex; flex-wrap:wrap; justify-content:center; gap:.7rem; margin-top:1.2rem; }
 .app.has-result .oracle-entry{ display:none; }   /* profil affiché : l'Oracle est dans l'onglet Tarot, pas de doublon */
 .oracle-open{
   background:transparent; border:1px solid var(--ov-15); color:var(--text); cursor:pointer;
@@ -1102,6 +1102,28 @@ body::after{ background-size:400px 400px; animation-duration:200s; animation-dir
 .cosmic-roast{ grid-column:1 / -1; border-color:rgba(232,195,106,.4); background:linear-gradient(160deg, rgba(232,195,106,.09), rgba(155,123,255,.07)); }
 .cosmic-mercury{ grid-column:1 / -1; margin:.1rem 0 0; font-size:.88rem; color:var(--text); font-style:italic; }
 .cosmic-wait{ color:var(--muted); }
+.cosmic-ambiance{ margin:0 0 1rem; color:var(--text); font-style:italic; line-height:1.55; }
+.cosmic-roastmy{ margin-top:1.1rem; }
+.cosmic-roast-btn{ font:inherit; font-weight:700; font-size:.95rem; color:var(--text); cursor:pointer; padding:.6rem 1.2rem; border-radius:999px;
+  background:linear-gradient(135deg, rgba(232,195,106,.18), rgba(155,123,255,.16)); border:1px solid rgba(232,195,106,.5); }
+.cosmic-roast-btn:hover{ border-color:var(--gold); }
+.cosmic-roast-btn:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+.cosmic-roast-box{ margin-top:.8rem; padding:1rem 1.1rem; border-radius:14px; border:1px solid rgba(232,195,106,.4);
+  background:linear-gradient(160deg, rgba(232,195,106,.09), rgba(155,123,255,.08)); }
+.cosmic-roast-box[hidden]{ display:none; }
+.cosmic-roast-hint{ margin:0 0 .5rem; color:var(--muted); font-size:.85rem; font-style:italic; }
+.cosmic-roast-text{ margin:0 0 .8rem; color:var(--text); font-size:1rem; line-height:1.65; }
+.cosmic-roast-actions{ display:flex; flex-wrap:wrap; gap:.5rem; }
+.cosmic-open-icon{ color:var(--gold); }
+.modal-overlay.cosmic-overlay{ z-index:205; }
+.modal.cosmic-modal{ max-width:48rem; max-height:calc(100vh - 2rem); max-height:calc(100dvh - 2rem); overflow-y:auto; overscroll-behavior:contain;
+  padding:1.6rem 1.4rem 1.4rem; text-align:start; }
+.cosmic-modal .cosmic-card{ margin:0; border:0; background:none; box-shadow:none; padding:0; }
+@media (max-width:560px){
+  .modal-overlay.cosmic-overlay{ padding:0; }
+  .modal.cosmic-modal{ max-height:100vh; max-height:100dvh; height:100%; border-radius:0; border:0;
+    padding:calc(1.2rem + env(safe-area-inset-top, 0px)) 1rem calc(1.2rem + env(safe-area-inset-bottom, 0px)); }
+}
 .cosmic-foot{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.6rem 1rem; margin-top:1.1rem; }
 .cosmic-note{ margin:0; color:var(--muted); font-size:.82rem; font-style:italic; }
 

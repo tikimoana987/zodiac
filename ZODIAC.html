@@ -61,7 +61,8 @@
     <p class="field-hint"><span class="field-hint-icon" aria-hidden="true">i</span> <span id="timePlaceHint"></span></p>
     <p class="privacy-line"><span aria-hidden="true">🔒</span> <span id="privacyLine"></span> <span class="info-slot" id="infoSlotPrivacy"></span></p>
   </div>
-  <div class="oracle-entry"><button type="button" class="oracle-open" id="oracleOpen" data-oracle-open><span class="cb-mini" data-crystal="home"></span> <span id="oracleOpenLabel">Oracle Oui / Non</span></button></div>
+  <div class="oracle-entry"><button type="button" class="oracle-open" id="oracleOpen" data-oracle-open><span class="cb-mini" data-crystal="home"></span> <span id="oracleOpenLabel">Oracle Oui / Non</span></button>
+    <button type="button" class="oracle-open cosmic-open" id="cosmicOpen"><span class="cosmic-open-icon" aria-hidden="true">✺</span> <span id="cosmicOpenLabel">Cosmic Daily</span></button></div>
   <div id="errorMsg" class="error-msg hidden" role="alert"></div>
   <div class="history" id="history" hidden></div>
 
@@ -102,6 +103,14 @@
   <p class="oracle-note" id="oracleNote"></p>
   <button type="button" class="oracle-article" id="oracleArticle" data-article-open="oracle">En savoir plus</button>
   <button type="button" class="oracle-close" id="oracleClose">Fermer</button>
+</div>
+
+<!-- COSMIC DAILY depuis l'accueil, sans profil (zodiac-cosmic.js) -->
+<div id="cosmicDialog" class="modal-overlay cosmic-overlay hidden" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal cosmic-modal">
+    <button type="button" class="modal-close" id="cosmicDlgClose" aria-label="Fermer">×</button>
+    <div id="cosmicDlgBody"></div>
+  </div>
 </div>
 
 <!-- ARTICLE « EN SAVOIR PLUS » (zodiac-articles.js) : ouvert depuis une bulle (i) ou depuis l'Oracle -->

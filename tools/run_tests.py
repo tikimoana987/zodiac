@@ -295,8 +295,9 @@ async def dst_journey(browser, file):
 
 
 async def cosmic_journey(browser, file):
-    """Onglet Cosmic Daily : cinq rubriques, voix choisie au clavier (focus gardé, voix retenue après
-    rechargement), autre signe choisi. En français, arabe et japonais."""
+    """Cosmic Daily. Onglet du profil : cinq rubriques et phrase d'ambiance, voix choisie au clavier (focus gardé,
+    voix retenue après rechargement), autre signe, Roast My Zodiac (« Encore un »). Accueil, sans profil : la
+    fenêtre s'ouvre, le signe choisi est retenu, Échap la ferme et rend le focus au bouton. En fr, ar, ja."""
     print(f'Cosmic Daily — {file.name}')
     for lang in ('fr', 'ar', 'ja'):
         ctx = await browser.new_context(viewport={'width': 1280, 'height': 900}, reduced_motion='reduce')
@@ -310,26 +311,46 @@ async def cosmic_journey(browser, file):
             await page.click('#tabCosmic')
             await page.wait_for_selector('#viewCosmic .cosmic-rubric', timeout=10000)
             rubrics = await page.locator('#viewCosmic .cosmic-rubric').count()
-            before = await page.locator('.cosmic-roast p').inner_text()
+            ambiance = (await page.locator('#viewCosmic .cosmic-ambiance').inner_text()).strip()
+            before = await page.locator('#viewCosmic .cosmic-roast p').inner_text()
             step = 'voix au clavier'
-            await page.locator('input[name="cosmicVoice"][value="classic"]').check()
-            await page.locator('input[name="cosmicVoice"][value="classic"]').focus()
+            await page.locator('input[name="cosmicVoice-tab"][value="classic"]').check()
+            await page.locator('input[name="cosmicVoice-tab"][value="classic"]').focus()
             await page.keyboard.press('ArrowDown')   # voix suivante : Drôle
             await page.wait_for_function("cosmicVoice === 'funny'", timeout=5000)
             focus = await page.evaluate('document.activeElement.name + "=" + document.activeElement.value')
-            funny = await page.locator('.cosmic-roast p').inner_text()
+            funny = await page.locator('#viewCosmic .cosmic-roast p').inner_text()
             step = 'autre signe'
-            await page.select_option('#cosmicSign', 'pisces')
-            pisces = await page.locator('.cosmic-roast p').inner_text()
-            sky = await page.locator('#cosmicSkyText').inner_text()
+            await page.select_option('#cosmicSign-tab', 'pisces')
+            pisces = await page.locator('#viewCosmic .cosmic-roast p').inner_text()
+            sky = await page.locator('#viewCosmic .cosmic-sky-text').inner_text()
+            step = 'Roast My Zodiac'
+            await page.click('#viewCosmic .cosmic-roast-btn')
+            roast1 = await page.locator('#viewCosmic .cosmic-roast-text').inner_text()
+            await page.click('#viewCosmic .cosmic-roast-again')
+            roast2 = await page.locator('#viewCosmic .cosmic-roast-text').inner_text()
             step = 'rechargement'
             await page.reload()
             await page.wait_for_selector('#viewCosmic .cosmic-rubric', timeout=60000)
-            kept = await page.locator('input[name="cosmicVoice"][value="funny"]').is_checked()
-            ok = (rubrics == 5 and focus == 'cosmicVoice=funny' and funny != before and pisces != funny and sky.strip()
-                  and kept and not errors)
-            report(ok, f'{lang} : Cosmic Daily, 5 rubriques, voix au clavier (focus gardé, retenue), autre signe, ciel « {sky.strip()} »'
-                   + ('' if ok else f' | {rubrics} {focus} {funny != before} {pisces != funny} {kept}') + (f' | {errors}' if errors else ''))
+            kept = await page.locator('input[name="cosmicVoice-tab"][value="funny"]').is_checked()
+            step = 'accueil sans profil'
+            await page.goto(file.as_uri() + f'?lang={lang}')
+            await page.wait_for_selector('#cosmicOpen', timeout=60000)
+            await page.click('#cosmicOpen')
+            await page.wait_for_selector('#cosmicDialog:not(.hidden) .cosmic-rubric', timeout=10000)
+            await page.select_option('#cosmicSign-dlg', 'libra')
+            dlg_rubrics = await page.locator('#cosmicDialog .cosmic-rubric').count()
+            await page.keyboard.press('Escape')
+            closed = await page.locator('#cosmicDialog.hidden').count() == 1
+            back = await page.evaluate('document.activeElement.id')
+            remembered = await page.evaluate("localStorage.getItem('zodiac_cosmicSign')")
+            ok = (rubrics == 5 and ambiance and focus == 'cosmicVoice-tab=funny' and funny != before and pisces != funny
+                  and sky.strip() and roast1 and roast2 != roast1 and kept and dlg_rubrics == 5 and closed and back == 'cosmicOpen'
+                  and remembered == 'libra' and not errors)
+            report(ok, f'{lang} : Cosmic Daily, 5 rubriques et ambiance, voix au clavier (focus gardé, retenue), autre signe, '
+                       f'Roast My Zodiac, fenêtre de l\'accueil (signe retenu, Échap) — ciel « {sky.strip()} »'
+                   + ('' if ok else f' | {rubrics} {bool(ambiance)} {focus} {funny != before} {pisces != funny} {roast2 != roast1} {kept} {dlg_rubrics} {closed} {back} {remembered}')
+                   + (f' | {errors}' if errors else ''))
         except Exception as exc:
             report(False, f'{lang} : Cosmic Daily, étape « {step} » — {str(exc).splitlines()[0][:200]}')
         await ctx.close()
@@ -366,6 +387,17 @@ async def accessibility(browser, file):
                 violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
                     .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
                 found += [f'{tab} : {v}' for v in violations]
+            # Cosmic Daily : Roast My Zodiac déplié dans l'onglet, puis la fenêtre de l'accueil (ouverte par programme)
+            await page.click('#viewCosmic .cosmic-roast-btn')
+            for stage in ('cosmic-roast', 'cosmic-fenetre'):
+                if stage == 'cosmic-fenetre':
+                    await page.evaluate("openCosmicDialog(document.body); document.querySelector('#cosmicDialog .cosmic-roast-btn').click()")
+                    await page.wait_for_selector('#cosmicDialog:not(.hidden) .cosmic-roast-text', timeout=5000)
+                await page.add_script_tag(content=script)
+                violations = await page.evaluate("""async () => (await axe.run(document, { resultTypes: ['violations'] }))
+                    .violations.map(v => v.id + ' (' + v.impact + ') : ' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(', '))""")
+                found += [f'{stage} : {v}' for v in violations]
+            await page.evaluate('closeCosmicDialog()')
             await page.click('#tabSigns')   # bulle (i) avec son lien « En savoir plus », puis l'article ouvert
             await page.click('.info-btn[data-info="decan"]')
             for stage in ('bulle', 'article'):

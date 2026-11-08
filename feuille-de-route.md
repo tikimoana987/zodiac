@@ -1,6 +1,6 @@
 # 🗺️ Zodiaque & Décans — ce qu'il reste à faire
 
-> État au 5 novembre 2026, après les articles « En savoir plus » (V10.3), l'allègement des mises à jour (V10.4), le test Safari bloquant (V10.5), le changement d'heure le jour de naissance (V10.6), la synthèse des tirages de tarot (V10.7) et Cosmic Daily (V10.8) ; auparavant le portrait symbolique, l'audit d'accessibilité et les tests Safari / Firefox (V7.3), et le retour détaillé d'une testeuse (§ 3). Ce document complète `projet.md` (ce qui est fait) et `reprise.md` (notes techniques).
+> État au 7 novembre 2026, après les articles « En savoir plus » (V10.3), l'allègement des mises à jour (V10.4), le test Safari bloquant (V10.5), le changement d'heure le jour de naissance (V10.6), la synthèse des tirages de tarot (V10.7) et Cosmic Daily (V10.8, puis V10.9 avec Roast My Zodiac et l'accès depuis l'accueil) ; auparavant le portrait symbolique, l'audit d'accessibilité et les tests Safari / Firefox (V7.3), et le retour détaillé d'une testeuse (§ 3). Ce document complète `projet.md` (ce qui est fait) et `reprise.md` (notes techniques).
 > Légende : 🟢 petit · 🟡 moyen · 🔴 gros chantier · ❓ décision à prendre · ⭐ recommandation de Claude
 
 ---
@@ -12,7 +12,7 @@
 | Feuille de route d'origine (étapes 1 à 6) | ✅ terminée, sauf l'iPhone (gardé pour la fin) |
 | Pistes 1 à 6 | ✅ version et bandeau de mise à jour · ✅ cartes renversées · ✅ lieux par coordonnées GPS · ✅ calendrier du ciel · ✅ fiche du thème natal à imprimer ou en PDF · ✅ arcanes mineurs (jeu complet de 78 cartes) |
 | Langues | 14 (FR, EN, ES, PT, IT, DE, TR, RU, AR, HI, TH, ZH, JA, KO) |
-| Tests automatiques | 122 (105 + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit), bloquants, et dans Firefox, pour information |
+| Tests automatiques | 123 (106 + 17 portrait), dans 5 fuseaux horaires, plus la version autonome hors ligne, le site installable et un audit d'accessibilité bloquant (axe-core, 0 anomalie) ; mêmes tests dans Safari (WebKit), bloquants, et dans Firefox, pour information |
 | Publication | automatique sur GitHub Pages, après les tests (circuit GitHub Actions) |
 | Poids | version autonome ≈ 8,4 Mo, mesurée le 2 novembre 2026 (7,8 Mo avant les articles ; l'ancien chiffre de 6,8 Mo était dépassé) : illustrations du tarot ≈ 3,1 Mo (déjà en WebP), villes ≈ 1 Mo, 14 langues ≈ 1,6 Mo, articles ≈ 0,6 Mo, textes du portrait ≈ 0,4 Mo |
 | Confidentialité | aucune donnée envoyée en ligne (adresse en « # », pas de serveur, pas de statistiques) ; seule exception : les événements ajoutés à Google Agenda à la demande de l'utilisateur |
@@ -90,7 +90,10 @@ Retour détaillé d'une testeuse, validé le 31 octobre. Fil conducteur pour tou
 - [x] Cahier V0.2, relu par trois IA (`docs/cahier-tarot.md`).
 - [x] Onglet Tarot à part ; quatre tirages interactifs (une question · une carte, Passé · Présent · Avenir, Situation · Défi · Conseil, les six prochains mois) ; mélanger, choisir dans l'éventail, poser, retourner ; sauvegarde par profil et par type.
 - [x] **Synthèse des tirages** « Ce que cela signifie pour votre question » (V10.7, 4 novembre 2026, idée d'une testeuse) : tendance d'ensemble et conclusion encourageante, sans promesse ; voir `docs/cahier-tarot.md`.
-- [ ] Plus tard : lectures par thème (amour, travail, questions personnelles) en version légère ; tirages accessibles sans profil, depuis l'accueil.
+- [x] **Cosmic Daily 2** (V10.9, 7 novembre 2026, essais de la testeuse) : textes réécrits (8 variantes, phrase d'ambiance), Piquant mordant, Roast My Zodiac avec partage en image, accès depuis l'accueil sans profil.
+- [ ] **Lectures de tarot par thème** (validé le 6 novembre 2026, prochain chantier) : choix d'un thème avant le tirage (Amour, Travail et argent, Vie personnelle), sens de chaque carte selon le thème et la position, une quarantaine de combinaisons remarquables, petit récit reliant les cartes et synthèse propre au thème (souhait de la testeuse : « une vraie lecture, pas une suite de définitions ») ; sens traditionnels conservés, l'appli ne comprend pas la question tapée.
+- [ ] Ensuite (validé le 6 novembre 2026) : choix « avant / après le changement d'heure » pour la deuxième personne de la compatibilité.
+- [ ] Plus tard : tirages accessibles sans profil, depuis l'accueil.
 - [x] **Cosmic Daily** (V10.8, 5 novembre 2026 ; voir `docs/cahier-cosmic-daily.md`) — validé le 4 novembre 2026, idée d'une testeuse : horoscope quotidien à partir du vrai ciel du jour, en trois voix au choix, Classique, Drôle et Piquant ; rubriques Carrière, Amour, Bien-être, Sagesse cosmique (+ éventuellement « Cosmic Roast »). Taquiner les clichés du signe, jamais la personne (corps, santé, argent) ; bien-être sans conseil médical ; présenté comme un jeu ; pas de compteur de jours. D'abord des exemples en français dans chaque ton, jugés avant toute traduction.
 
 ### 3.4 ✅ Carré de Pythagore (V10)

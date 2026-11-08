@@ -3,7 +3,8 @@
    (data/cosmic/cosmic-xx.json). Exécution : node tools/regen_cosmic.js
    Produit :
    - zodiac-cosmic-ui.js : libellés de l'onglet et texte de la bulle (i), 14 langues (toujours chargé, ~25 Ko) ;
-   - zodiac-cosmic-xx.js : les textes d'une langue (« la Lune en… », communs, Mercure, signes). Sur le site, ils ne
+   - zodiac-cosmic-xx.js : les textes d'une langue (« la Lune en… », phrases d'ambiance, Mercure, signes avec
+     leurs 3 voix × 5 rubriques × 8 variantes et leurs 10 « Roast My Zodiac »). Sur le site, ils ne
      sont chargés qu'à la demande, une langue à la fois (build-standalone.py) ; la version autonome les contient tous.
    Toute anomalie arrête la génération : structure différente du français, {moon} déplacé, accolade, chevron,
    apostrophe courbe (langues en alphabet latin), deux-points ou point final en thaï, marques « Cosmic Daily » et
@@ -45,8 +46,8 @@ for (const lang of LANGS) {
   }
   if (d.ui.tab !== 'Cosmic Daily' || d.ui.rubrics.roast !== 'Cosmic Roast') fail(`${lang} : marques traduites`);
   ui[lang] = d.ui;
-  const { moon, common, mercury, signs } = d;
-  const data = JSON.stringify({ moon, common, mercury, signs }).replace(/</g, '\\u003c');
+  const { moon, sky, mercury, signs } = d;
+  const data = JSON.stringify({ moon, sky, mercury, signs }).replace(/</g, '\\u003c');
   fs.writeFileSync(path.join(root, `zodiac-cosmic-${lang}.js`),
     `/* Généré par tools/regen_cosmic.js — NE PAS ÉDITER. Source : data/cosmic/cosmic-${lang}.json. */\n` +
     `(window.COSMIC_I18N = window.COSMIC_I18N || {}).${lang} = Object.freeze(${data});\n`, 'utf8');
