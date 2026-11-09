@@ -1,5 +1,15 @@
 # Cahier — Cosmic Daily (V10.8, 5 novembre 2026 ; V10.9 « Cosmic Daily 2 », 7 novembre 2026)
 
+## 000. Variété et événements du ciel (V10.15, 9 novembre 2026)
+
+Retour de la testeuse : trop de répétitions d'une rubrique à l'autre (le même trait du signe dans plusieurs rubriques le même jour, les mêmes formules de chute). Décisions de Joann : plutôt qu'une réécriture complète, **plus de variantes** et **corrections ciblées** ; et des lignes liées au **vrai ciel du jour**.
+
+- **Carte des traits** (dans les consignes de rédaction) : pour chaque signe, les facettes propres à chaque rubrique et des motifs réservés à une seule rubrique (le canapé du Taureau en Bien-être, les onglets des Gémeaux en Carrière…), plus un catalogue de mécaniques comiques à faire tourner (fausse dépêche, faux avis client, faux sondage, mini-dialogue, note de service, témoin inattendu…) et un plafond pour la chute « … demande / réclame Y ».
+- **Volume** : Drôle et Piquant passent de 8 à **12 variantes** par rubrique, Roast My Zodiac de 10 à **15** ; 243 textes repérés (motif hors de sa rubrique ou formule répétée) réécrits. Mesure : textes Drôle et Piquant dont le motif sort de sa rubrique, **22 % → 1 %** (sur 1 440 textes au lieu de 960). Classique et phrases d'ambiance inchangés.
+- **Événements du ciel** (`cosmicEvents(iso, sign)`, `COSMIC_EVENTS` par ordre d'importance) : éclipse de Soleil ou de Lune dans les trois jours, pleine ou nouvelle Lune (±12°), premier ou dernier quartier (±8°), Lune, Soleil, Vénus, Mars, Jupiter ou Saturne dans le signe lu, Mercure, Vénus, Mars, Jupiter ou Saturne rétrograde, pluie d'étoiles filantes en cours (`{shower}`, nom sans article). Deux au plus par jour, sous les rubriques (symbole et ligne dans la voix choisie) et dans la ligne « Ciel du jour » (libellés `ui.events`, sans doublon pour « Lune dans votre signe ») ; Mercure garde ses textes (`mercury`). Textes `events` : 17 événements × 3 voix × 3 variantes.
+- **Traductions** : seulement les textes nouveaux ou réécrits (environ 950 par langue, fichiers `cosmic3-xx.json`), fusionnés par numéro dans `data/cosmic/cosmic-xx.json`.
+- **Tests** : tailles (8 / 12 / 15), événements des 14 langues, cas réels (Saturne dans le Bélier en 2026, éclipse de Soleil et nouvelle Lune du 6 février 2027, pleine Lune du 24 novembre 2026, Mercure rétrograde le 5 novembre 2026).
+
 ## 00. Retouches (V10.10, 8 novembre 2026)
 
 - **Un seul Roast My Zodiac par jour** et par signe (décision de Joann : la rareté fait le charme) ; bouton « Encore un » retiré.

@@ -51,6 +51,30 @@ function cosmicSky(iso){
   return { moonSign, element: SIGN_META[moonSign].element, mercuryRx: isRetrograde('mercury', ms), day: Math.floor(Date.UTC(d.y, d.m - 1, d.d) / 864e5) };
 }
 
+/* Événements du ciel du jour (V10.15) : faits réels, du plus marquant au plus courant ; deux au plus sont
+   affichés (sous les rubriques, et dans la ligne « Ciel du jour »). Certains dépendent du signe lu (« dans votre
+   signe »). Rien n'est inventé : un événement n'apparaît que s'il a lieu. */
+const COSMIC_EVENTS = [['eclipseSolar', '◐'], ['eclipseLunar', '◑'], ['fullMoon', '○'], ['newMoon', '●'], ['moonInSign', '☽'],
+  ['venusInSign', '♀'], ['marsInSign', '♂'], ['jupiterInSign', '♃'], ['saturnInSign', '♄'], ['sunInSign', '☉'],
+  ['mercuryRx', '☿'], ['venusRx', '♀'], ['marsRx', '♂'], ['meteors', '✶'], ['firstQuarter', '◐'], ['lastQuarter', '◑'],
+  ['jupiterRx', '♃'], ['saturnRx', '♄']];
+function cosmicEvents(iso, sign){
+  const d = parseISODate(iso), ms = localInstant(d, 12, 0, null), elong = moonPhase(ms).elong;
+  const near = (a, b, w) => Math.abs(((a - b + 540) % 360) - 180) < w;   // écart angulaire inférieur à w degrés
+  const ecl = nextEclipses(ms - 864e5, 1)[0], soon = ecl && ecl.ms - ms <= 3 * 864e5;   // éclipse d'hier à dans trois jours
+  const inSign = body => signFromLongitude(body === 'moon' ? moonLongitude(ms) : body === 'sun' ? sunLongitude(ms) : bodyLongitude(body, ms)) === sign;
+  const showers = activeShowers(d);
+  const facts = {
+    eclipseSolar: soon && ecl.solar, eclipseLunar: soon && !ecl.solar,
+    fullMoon: near(elong, 180, 12), newMoon: near(elong, 0, 12), firstQuarter: near(elong, 90, 8), lastQuarter: near(elong, 270, 8),
+    moonInSign: inSign('moon'), sunInSign: inSign('sun'), venusInSign: inSign('venus'), marsInSign: inSign('mars'),
+    jupiterInSign: inSign('jupiter'), saturnInSign: inSign('saturn'),
+    mercuryRx: isRetrograde('mercury', ms), venusRx: isRetrograde('venus', ms), marsRx: isRetrograde('mars', ms),
+    jupiterRx: isRetrograde('jupiter', ms), saturnRx: isRetrograde('saturn', ms), meteors: showers.length > 0
+  };
+  return COSMIC_EVENTS.filter(([k]) => facts[k]).map(([key, sym]) => ({ key, sym, shower: key === 'meteors' ? showers[0] : null }));
+}
+
 /* Horoscope du jour. Chaque rubrique parcourt ses 8 variantes en 8 jours, décalée selon la rubrique et le signe
    (deux signes ou deux rubriques ne tombent pas sur le même rang le même jour) ; la phrase d'ambiance est la même
    pour tous (c'est le même ciel). « {moon} » devient « la Lune en … », avec majuscule en début de phrase. */
@@ -64,7 +88,12 @@ function cosmicReading(lang, sign, voice, iso){
   const ambiance = data.sky[voice][sky.element];
   const out = { sky, moon: cap(moon), ambiance: fill(pick(ambiance, 0)) };
   COSMIC_RUBRICS.forEach(([r], ri) => { out[r] = pick(data.signs[sign][voice][r], ri * 3 + si * 5); });
-  if (sky.mercuryRx) out.mercury = fill(pick(data.mercury[voice], 0));
+  // Deux événements du ciel au plus ; Mercure rétrograde garde ses textes (data.mercury), les autres viennent de data.events
+  out.events = cosmicEvents(iso, sign).slice(0, 2).map(({ key, sym, shower }, i) => {
+    const pool = key === 'mercuryRx' ? data.mercury[voice] : data.events[key][voice];
+    const show = shower ? ((I18N[lang] || I18N.fr).map.showers[shower] || shower) : '';
+    return { key, sym, text: fill(pick(pool, i + si)).replace('{shower}', show) };
+  });
   return out;
 }
 /* Roast My Zodiac : un seul par jour et par signe */
@@ -153,12 +182,14 @@ function renderCosmicParts(which){
   const u = cosmicUi(), iso = todayISO(), r = cosmicReading(currentLang, c.sign, cosmicVoice, iso);
   const box = body.querySelector('.cosmic-rubrics');
   if (!r) { box.innerHTML = '<p class="cosmic-wait">…</p>'; return; }
-  body.querySelector('.cosmic-sky-text').textContent = r.moon + (r.sky.mercuryRx ? ' · ' + u.mercuryRx : '');
+  // « La Lune en … » est déjà en tête : pas de second « Lune dans votre signe » dans la ligne du ciel
+  body.querySelector('.cosmic-sky-text').textContent = [r.moon, ...r.events.filter(e => e.key !== 'moonInSign')
+    .map(e => e.key === 'mercuryRx' ? u.mercuryRx : u.events[e.key])].join(' · ');
   body.querySelector('.cosmic-ambiance').textContent = r.ambiance;
   box.innerHTML = COSMIC_RUBRICS.map(([k, icon]) => `<article class="cosmic-rubric cosmic-${k}">
       <h4><span class="cosmic-icon" aria-hidden="true">${icon}</span> ${escapeHtml(u.rubrics[k])}</h4>
       <p>${escapeHtml(r[k])}</p></article>`).join('') +
-    (r.mercury ? `<p class="cosmic-mercury"><span aria-hidden="true">☿</span> ${escapeHtml(r.mercury)}</p>` : '');
+    r.events.map(e => `<p class="cosmic-mercury cosmic-event"><span aria-hidden="true">${e.sym}</span> ${escapeHtml(e.text)}</p>`).join('');
   body.querySelector('.cosmic-roast-text').textContent = cosmicRoastMy(currentLang, c.sign, iso);
 }
 
@@ -168,7 +199,7 @@ async function shareCosmic(which = 'tab'){
   if (!r) return;
   const text = `${u.tab} — ${cosmicDateLabel(iso, currentLang)}\n${t.signNames[c.sign]} · ${u.voices[cosmicVoice]}\n${r.ambiance}\n\n` +
     COSMIC_RUBRICS.map(([k, icon]) => `${icon} ${u.rubrics[k]} : ${r[k]}`).join('\n') +
-    (r.mercury ? `\n☿ ${r.mercury}` : '') + `\n\n${APP_URL}`;
+    r.events.map(e => `\n${e.sym} ${e.text}`).join('') + `\n\n${APP_URL}`;
   if (navigator.share) {
     try { await navigator.share({ title: u.tab, text }); return; }
     catch (e) { if (e && e.name === 'AbortError') return; }

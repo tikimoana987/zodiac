@@ -96,7 +96,8 @@ Retour détaillé d'une testeuse, validé le 31 octobre. Fil conducteur pour tou
 - [x] Choix « avant / après le changement d'heure » pour la deuxième personne de la compatibilité (V10.12, 8 novembre 2026).
 - [x] Fond de page : la vraie carte du ciel (ciel du moment, puis de naissance) ; roue qui tourne toujours ; fondu entre onglets (V10.13, 8 novembre 2026, demandes de Joann).
 - [x] Carte du ciel agrandie : plein écran, zoom, déplacement, clavier (V10.14, 8 novembre 2026, idée de Joann).
-- [ ] À étudier : la version autonome atteint ≈ 13 Mo (toutes les langues de Cosmic Daily et du tarot par thème) ; la proposer par langue si besoin.
+- [x] Cosmic Daily plus varié et relié au vrai ciel du jour (V10.15, 9 novembre 2026, retour de la testeuse) : 12 variantes, 15 Roast My Zodiac, carte des traits par signe, événements du ciel.
+- [ ] À étudier : la version autonome atteint ≈ 14,6 Mo (toutes les langues de Cosmic Daily et du tarot par thème) ; la proposer par langue si besoin.
 - [ ] Plus tard : tirages accessibles sans profil, depuis l'accueil.
 - [x] **Cosmic Daily** (V10.8, 5 novembre 2026 ; voir `docs/cahier-cosmic-daily.md`) — validé le 4 novembre 2026, idée d'une testeuse : horoscope quotidien à partir du vrai ciel du jour, en trois voix au choix, Classique, Drôle et Piquant ; rubriques Carrière, Amour, Bien-être, Sagesse cosmique (+ éventuellement « Cosmic Roast »). Taquiner les clichés du signe, jamais la personne (corps, santé, argent) ; bien-être sans conseil médical ; présenté comme un jeu ; pas de compteur de jours. D'abord des exemples en français dans chaque ton, jugés avant toute traduction.
 

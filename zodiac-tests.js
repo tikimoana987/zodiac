@@ -1522,9 +1522,13 @@
     const fr = window.COSMIC_I18N.fr, frFlat = flat(fr), frShape = shape(fr), uiShape = shape(COSMIC_UI.fr);
     assertEq(Object.keys(fr.moon).join() + '|' + Object.keys(fr.signs).join(), SIGN_ORDER.join() + '|' + SIGN_ORDER.join(), '12 signes');
     for (const k of SIGN_ORDER) {
-      for (const v of COSMIC_VOICES) for (const [r] of COSMIC_RUBRICS) assertEq(fr.signs[k][v][r].length, 8, `${k}.${v}.${r} : 8 variantes`);
-      assertEq(fr.signs[k].roastMy.length, 10, `${k} : 10 Roast My Zodiac`);
+      for (const v of COSMIC_VOICES) for (const [r] of COSMIC_RUBRICS) assertEq(fr.signs[k][v][r].length, v === 'classic' ? 8 : 12, `${k}.${v}.${r} : variantes`);
+      assertEq(fr.signs[k].roastMy.length, 15, `${k} : 15 Roast My Zodiac`);
     }
+    const evKeys = COSMIC_EVENTS.map(([k]) => k).filter(k => k !== 'mercuryRx');
+    assertEq(Object.keys(fr.events).sort().join(), evKeys.slice().sort().join(), 'événements du ciel');
+    for (const k of evKeys) for (const v of COSMIC_VOICES) assertEq(fr.events[k][v].length, 3, `événement ${k}.${v}`);
+    assertEq(Object.keys(COSMIC_UI.fr.events).sort().join(), evKeys.slice().sort().join(), 'libellés des événements');
     for (const v of COSMIC_VOICES) for (const e of ['fire', 'earth', 'air', 'water']) assertEq(fr.sky[v][e].length, 6, `ambiance ${v}.${e}`);
     for (const lang of langs) {
       const d = window.COSMIC_I18N[lang], u = COSMIC_UI[lang], f = flat(d);
@@ -1532,8 +1536,8 @@
       assertEq(shape(u), uiShape, `${lang} : libellés`);
       assert(u.tab === 'Cosmic Daily' && u.rubrics.roast === 'Cosmic Roast', `${lang} : marques`);
       for (const [k, v] of Object.entries({ ...f, ...flat(u, '.ui') })) {
-        if (k in frFlat) assertEq((v.match(/\{moon\}/g) || []).length, (frFlat[k].match(/\{moon\}/g) || []).length, `${lang}${k} : {moon}`);
-        assert(v.trim() === v && v.length > 0 && !/[{}<>]/.test(v.replace(/\{moon\}/g, '')), `${lang}${k} : texte`);
+        if (k in frFlat) assertEq((v.match(/\{(moon|shower)\}/g) || []).join(), (frFlat[k].match(/\{(moon|shower)\}/g) || []).join(), `${lang}${k} : repères`);
+        assert(v.trim() === v && v.length > 0 && !/[{}<>]/.test(v.replace(/\{(moon|shower)\}/g, '')), `${lang}${k} : texte`);
         if (latin.includes(lang)) assert(!/’/.test(v), `${lang}${k} : apostrophe courbe`);
         if (lang === 'th') assert(!/[:：]/.test(v) && !/\.$/.test(v), `thaï ${k}`);
       }
@@ -1542,6 +1546,11 @@
 
   test('Cosmic Daily : ciel du jour, 8 jours sans répétition, Roast My Zodiac, majuscule', () => {
     assert(cosmicSky('2026-11-05').mercuryRx && !cosmicSky('2026-12-15').mercuryRx, 'Mercure rétrograde du 24 octobre au 13 novembre 2026');
+    const ev = (iso, sign) => cosmicEvents(iso, sign).map(e => e.key);
+    assert(ev('2026-11-05', 'aries').includes('saturnInSign') && !ev('2026-11-05', 'leo').includes('saturnInSign'), 'Saturne dans le Bélier (2026), pas dans le Lion');
+    assert(ev('2027-02-06', 'leo').includes('eclipseSolar') && ev('2027-02-06', 'leo').includes('newMoon'), 'éclipse de Soleil et nouvelle Lune du 6 février 2027');
+    assert(ev('2026-11-24', 'virgo').includes('fullMoon'), 'pleine Lune du 24 novembre 2026');
+    assert(ev('2026-11-05', 'taurus').includes('mercuryRx'), 'Mercure rétrograde parmi les événements');
     for (const lang of ['fr', 'de', 'ar', 'ja']) for (const voice of COSMIC_VOICES) for (const sign of ['aries', 'scorpio', 'pisces']) {
       const seen = Object.fromEntries(COSMIC_RUBRICS.map(([k]) => [k, new Set()])), roasts = new Set();
       for (let day = 1; day <= 8; day++) {
@@ -1550,7 +1559,7 @@
         const data = window.COSMIC_I18N[lang];
         for (const [k] of COSMIC_RUBRICS) { assert(data.signs[sign][voice][k].includes(r[k]), `${lang} ${sign} ${voice} ${k} : texte du signe`); seen[k].add(r[k]); }
         assert(r.ambiance && !/[{}]/.test(r.ambiance), `${lang} : ambiance`);
-        assert(!('mercury' in r), 'décembre 2026 : Mercure direct, pas de ligne');
+        assert(r.events.length <= 2 && !r.events.some(e => e.key === 'mercuryRx') && r.events.every(e => e.text && !/[{}]/.test(e.text)), 'décembre 2026 : Mercure direct ; deux événements au plus, sans repère');
         assertEq(JSON.stringify(cosmicReading(lang, sign, voice, iso)), JSON.stringify(r), 'même jour, même horoscope');
         roasts.add(cosmicRoastMy(lang, sign, iso));
       }
@@ -1562,8 +1571,9 @@
     assertEq(cosmicRoastMy('fr', 'leo', '2026-12-01'), cosmicRoastMy('fr', 'leo', '2026-12-01'), 'un seul Roast My Zodiac par jour');
     assert(cosmicRoastMy('fr', 'leo', '2026-12-02') !== cosmicRoastMy('fr', 'leo', '2026-12-01'), 'un autre le lendemain');
     const de = cosmicReading('de', 'taurus', 'piquant', '2026-11-05'), deMoon = window.COSMIC_I18N.de.moon[cosmicSky('2026-11-05').moonSign];
-    assert(!de.ambiance.startsWith(deMoon) && !de.mercury.startsWith(deMoon), 'allemand : majuscule en début de phrase');
-    assert('mercury' in de, 'ligne Mercure en période rétrograde');
+    assert(!de.ambiance.startsWith(deMoon) && de.events.every(e => !e.text.startsWith(deMoon)), 'allemand : majuscule en début de phrase');
+    const meteors = window.COSMIC_I18N.fr.events.meteors.funny.map(x => x.replace('{shower}', 'Léonides'));
+    assert(meteors.every(x => !/[{}]/.test(x)), 'étoiles filantes : nom de la pluie');
   });
 
   test('Cosmic Daily : image Roast My Zodiac (1080 × 1350, lignes dans le cadre, 4 écritures)', () => {

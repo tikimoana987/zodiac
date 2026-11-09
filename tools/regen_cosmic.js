@@ -4,9 +4,10 @@
    Produit :
    - zodiac-cosmic-ui.js : libellés de l'onglet et texte de la bulle (i), 14 langues (toujours chargé, ~25 Ko) ;
    - zodiac-cosmic-xx.js : les textes d'une langue (« la Lune en… », phrases d'ambiance, Mercure, signes avec
-     leurs 3 voix × 5 rubriques × 8 variantes et leurs 10 « Roast My Zodiac »). Sur le site, ils ne
+     leurs 3 voix × 5 rubriques (8 variantes en Classique, 12 en Drôle et Piquant) et leurs 15 « Roast My Zodiac »,
+     événements du ciel). Sur le site, ils ne
      sont chargés qu'à la demande, une langue à la fois (build-standalone.py) ; la version autonome les contient tous.
-   Toute anomalie arrête la génération : structure différente du français, {moon} déplacé, accolade, chevron,
+   Toute anomalie arrête la génération : structure différente du français, {moon} ou {shower} déplacé, accolade, chevron,
    apostrophe courbe (langues en alphabet latin), deux-points ou point final en thaï, marques « Cosmic Daily » et
    « Cosmic Roast » traduites. */
 'use strict';
@@ -39,15 +40,16 @@ for (const lang of LANGS) {
     if (typeof v !== 'string' || !v.trim() || v !== v.trim()) fail(`${lang}${p} : texte vide ou espaces`);
     const moons = (v.match(/\{moon\}/g) || []).length;
     if (moons !== (frTexts.get(p).match(/\{moon\}/g) || []).length) fail(`${lang}${p} : {moon} déplacé`);
-    if (/[{}<>]/.test(v.replace(/\{moon\}/g, ''))) fail(`${lang}${p} : accolade ou chevron`);
+    if ((v.match(/\{shower\}/g) || []).length !== (frTexts.get(p).match(/\{shower\}/g) || []).length) fail(`${lang}${p} : {shower} déplacé`);
+    if (/[{}<>]/.test(v.replace(/\{(moon|shower)\}/g, ''))) fail(`${lang}${p} : accolade ou chevron`);
     if (LATIN.includes(lang) && /[’]/.test(v)) fail(`${lang}${p} : apostrophe courbe`);
     if (lang === 'th' && (/[:：]/.test(v) || /\.$/.test(v))) fail(`${lang}${p} : deux-points ou point final en thaï`);
     n++;
   }
   if (d.ui.tab !== 'Cosmic Daily' || d.ui.rubrics.roast !== 'Cosmic Roast') fail(`${lang} : marques traduites`);
   ui[lang] = d.ui;
-  const { moon, sky, mercury, signs } = d;
-  const data = JSON.stringify({ moon, sky, mercury, signs }).replace(/</g, '\\u003c');
+  const { moon, sky, mercury, signs, events } = d;
+  const data = JSON.stringify({ moon, sky, mercury, signs, events }).replace(/</g, '\\u003c');
   fs.writeFileSync(path.join(root, `zodiac-cosmic-${lang}.js`),
     `/* Généré par tools/regen_cosmic.js — NE PAS ÉDITER. Source : data/cosmic/cosmic-${lang}.json. */\n` +
     `(window.COSMIC_I18N = window.COSMIC_I18N || {}).${lang} = Object.freeze(${data});\n`, 'utf8');
